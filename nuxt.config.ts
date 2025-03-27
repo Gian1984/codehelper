@@ -1,5 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import { defineNuxtConfig } from 'nuxt/config'
+import { tools } from './utils/toolRegistry'
 
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
@@ -15,9 +16,10 @@ export default defineNuxtConfig({
     siteUrl: 'https://codehelper.me',
     sitemapName: 'sitemap.xml',
     gzip: true,
-    routes: [
-      '/',        // Home page
-      '/about'    // About page
-    ]
+    routes: () => {
+      const staticRoutes = ['/', '/about', '/tools']
+      const dynamicToolRoutes = Object.keys(tools).map(slug => `/tools/${slug}`)
+      return [...staticRoutes, ...dynamicToolRoutes]
+    }
   }
 })

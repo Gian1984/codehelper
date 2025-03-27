@@ -20,7 +20,16 @@
                   Home
                 </NuxtLink>
 
-                <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Team</a>
+                <NuxtLink
+                    to="/tools"
+                    :class="[
+                      'rounded-md px-3 py-2 text-sm font-medium',
+                       route.path === '/tools' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'
+                     ]"
+                >
+                  Tools
+                </NuxtLink>
+
                 <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Projects</a>
 
                 <NuxtLink
@@ -102,11 +111,14 @@
           </DisclosureButton>
 
           <DisclosureButton
-              as="a"
-              href="#"
-              class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+              as="NuxtLink"
+              to="/tools"
+              :class="[
+                'block rounded-md px-3 py-2 text-base font-medium',
+                route.path === '/tools' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'
+              ]"
           >
-            Team
+            Tools
           </DisclosureButton>
 
           <DisclosureButton
