@@ -1,64 +1,91 @@
 <template>
-  <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-black/10 px-6 ring-1 ring-white/5">
-    <div class="flex h-16 shrink-0 items-center">
-      <img class="h-8 w-auto" src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company" />
-    </div>
-    <nav class="flex flex-1 flex-col">
-      <ul role="list" class="flex flex-1 flex-col gap-y-2">
-        <li v-for="category in sortedCategories" :key="category">
-          <Disclosure v-slot="{ open }">
-            <DisclosureButton
-                class="flex w-full items-center gap-x-3 rounded-md p-2 text-left text-sm font-semibold text-gray-400 hover:bg-gray-800 hover:text-white"
-            >
-              <FolderIcon class="size-6 shrink-0" />
-              <span class="capitalize">{{ category }}</span>
-              <ChevronRightIcon
-                  :class="[open ? 'rotate-90 text-gray-500' : 'text-gray-400', 'ml-auto size-5 shrink-0 transition-transform']"
-                  aria-hidden="true"
-              />
-            </DisclosureButton>
-            <DisclosurePanel>
-              <ul role="list" class="ml-4 mt-2 space-y-1">
-                <li v-for="tool in categorizedTools[category]" :key="tool.slug">
-                  <NuxtLink
-                      :to="`/tools/${tool.slug}`"
-                      class="group flex gap-x-3 rounded-md p-2 text-sm text-gray-400 hover:bg-gray-800 hover:text-white"
-                  >
-                    <span class="truncate">{{ tool.title }}</span>
-                  </NuxtLink>
-                </li>
-              </ul>
-            </DisclosurePanel>
-          </Disclosure>
-        </li>
+  <div>
+    <!-- Mobile Sidebar -->
+    <TransitionRoot as="template" :show="sidebarOpen">
+      <Dialog class="relative z-50 xl:hidden" @close="sidebarOpen = false">
+        <TransitionChild
+            as="template"
+            enter="transition-opacity ease-linear duration-300"
+            enter-from="opacity-0"
+            enter-to="opacity-100"
+            leave="transition-opacity ease-linear duration-300"
+            leave-from="opacity-100"
+            leave-to="opacity-0"
+        >
+          <div class="fixed inset-0 bg-gray-900" />
+        </TransitionChild>
 
-      </ul>
-    </nav>
+        <div class="fixed inset-0 flex">
+          <TransitionChild
+              as="template"
+              enter="transition ease-in-out duration-300 transform"
+              enter-from="-translate-x-full"
+              enter-to="translate-x-0"
+              leave="transition ease-in-out duration-300 transform"
+              leave-from="translate-x-0"
+              leave-to="-translate-x-full"
+          >
+            <DialogPanel class="relative mr-16 flex w-full max-w-xs flex-1">
+              <TransitionChild
+                  as="template"
+                  enter="ease-in-out duration-300"
+                  enter-from="opacity-0"
+                  enter-to="opacity-100"
+                  leave="ease-in-out duration-300"
+                  leave-from="opacity-100"
+                  leave-to="opacity-0"
+              >
+                <div class="absolute top-0 left-full flex w-16 justify-center pt-5">
+                  <button type="button" class="-m-2.5 p-2.5" @click="sidebarOpen = false">
+                    <span class="sr-only">Close sidebar</span>
+                    <XMarkIcon class="size-6 text-white" aria-hidden="true" />
+                  </button>
+                </div>
+              </TransitionChild>
+              <SidebarContent />
+            </DialogPanel>
+          </TransitionChild>
+        </div>
+      </Dialog>
+    </TransitionRoot>
+
+    <!-- Desktop Sidebar -->
+    <div class="hidden min-h-screen xl:fixed  xl:z-50 xl:flex xl:w-72 xl:flex-col">
+      <SidebarContent />
+    </div>
+
+    <!-- Topbar -->
+    <div class="xl:pl-72 sticky top-0 z-40 flex h-16 items-center gap-x-6 border-b border-white/5 bg-gray-900 px-4 sm:px-6 lg:px-8">
+      <button type="button" class="-m-2.5 p-2.5 text-white xl:hidden" @click="sidebarOpen = true">
+        <span class="sr-only">Open sidebar</span>
+        <Bars3Icon class="size-5" aria-hidden="true" />
+      </button>
+
+      <div class="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
+        <form class="grid flex-1 grid-cols-1" action="#" method="GET">
+          <input type="search" name="search" aria-label="Search" class="col-start-1 row-start-1 block size-full bg-transparent pl-8 text-base text-white placeholder:text-gray-500 sm:text-sm" placeholder="Search" />
+          <MagnifyingGlassIcon class="pointer-events-none col-start-1 row-start-1 size-5 self-center text-gray-500" aria-hidden="true" />
+        </form>
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
+import SidebarContent from './SidebarContent.vue'
 import {
-  FolderIcon,
-  ChevronRightIcon
-} from '@heroicons/vue/24/outline'
-import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue'
-import { tools } from '~/utils/toolRegistry'
+  Dialog,
+  DialogPanel,
+  TransitionChild,
+  TransitionRoot
+} from '@headlessui/vue'
+import {
+  Bars3Icon,
+  MagnifyingGlassIcon,
+  XMarkIcon
+} from '@heroicons/vue/20/solid'
 
-// Categorize and sort tools
-const categorizedTools = Object.entries(tools).reduce((acc, [slug, tool]) => {
-  const category = tool.category || slug.split('-')[0] || 'other'
-  if (!acc[category]) acc[category] = []
-  acc[category].push({ ...tool, slug })
-  return acc
-}, {} as Record<string, any[]>)
-
-// Sort tools inside each category alphabetically by title
-for (const cat in categorizedTools) {
-  categorizedTools[cat].sort((a, b) => a.title.localeCompare(b.title))
-}
-
-// Create a sorted array of categories (to use in template)
-const sortedCategories = Object.keys(categorizedTools).sort()
+const sidebarOpen = ref(false)
 </script>
 
