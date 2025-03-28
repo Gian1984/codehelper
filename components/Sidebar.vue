@@ -51,22 +51,26 @@
 
     <!-- Desktop Sidebar -->
     <div class="hidden min-h-screen xl:fixed  xl:z-50 xl:flex xl:w-72 xl:flex-col">
+      <button type="button" class="-m-2.5 p-2.5 text-white xl:hidden" @click="sidebarOpen = true">
+        <span class="flex items-center gap-x-1 font-semibold">
+          Toolbar
+          <WrenchIcon class="size-5" aria-hidden="true" />
+          <ChevronRightIcon class="size-5 text-gray-400" aria-hidden="true" />
+        </span>
+      </button>
       <SidebarContent />
     </div>
 
     <!-- Topbar -->
-    <div class="xl:pl-72 sticky top-0 z-40 flex h-16 items-center gap-x-6 border-b border-white/5 bg-gray-900 px-4 sm:px-6 lg:px-8">
+    <div class="xl:hidden flex sticky top-0 z-40 h-16 items-center gap-x-6 border-b border-white/5 bg-gray-900 px-4 sm:px-6 lg:px-8">
       <button type="button" class="-m-2.5 p-2.5 text-white xl:hidden" @click="sidebarOpen = true">
-        <span class="sr-only">Open sidebar</span>
-        <Bars3Icon class="size-5" aria-hidden="true" />
+        <span class="flex items-center gap-x-1 font-semibold">
+          Toolbar
+          <WrenchIcon class="size-5" aria-hidden="true" />
+          <ChevronRightIcon class="size-5 text-gray-400" aria-hidden="true" />
+        </span>
       </button>
 
-      <div class="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
-        <form class="grid flex-1 grid-cols-1" action="#" method="GET">
-          <input type="search" name="search" aria-label="Search" class="col-start-1 row-start-1 block size-full bg-transparent pl-8 text-base text-white placeholder:text-gray-500 sm:text-sm" placeholder="Search" />
-          <MagnifyingGlassIcon class="pointer-events-none col-start-1 row-start-1 size-5 self-center text-gray-500" aria-hidden="true" />
-        </form>
-      </div>
     </div>
   </div>
 </template>
@@ -82,8 +86,9 @@ import {
 } from '@headlessui/vue'
 import {
   Bars3Icon,
-  MagnifyingGlassIcon,
-  XMarkIcon
+  WrenchIcon,
+  XMarkIcon,
+  ChevronRightIcon
 } from '@heroicons/vue/20/solid'
 
 const sidebarOpen = ref(false)

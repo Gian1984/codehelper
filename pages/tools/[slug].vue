@@ -3,7 +3,7 @@
     <Sidebar />
 
     <div class="xl:pl-72">
-      <div class="p-8">
+      <div class="p-8 min-h-screen">
         <h1 class="text-3xl font-bold mb-4">{{ toolData.title }}</h1>
         <p class="text-gray-400 mb-6">{{ toolData.description }}</p>
         <component :is="ToolComponent" />

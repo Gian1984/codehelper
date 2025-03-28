@@ -1,7 +1,10 @@
 <template>
-  <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 ring-1 ring-white/5">
+  <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6">
     <div class="flex h-16 shrink-0 items-center">
-      <img class="h-8 w-auto" src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company" />
+        <span class="flex items-center gap-x-1 text-white font-semibold">
+          Toolbar
+          <WrenchIcon class="size-5" aria-hidden="true" />
+        </span>
     </div>
     <nav class="flex flex-1 flex-col">
       <ul role="list" class="flex flex-1 flex-col gap-y-2">
@@ -38,6 +41,7 @@ import {
 } from '@heroicons/vue/24/outline'
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue'
 import { tools } from '~/utils/toolRegistry'
+import {WrenchIcon} from "@heroicons/vue/20/solid";
 
 const categorizedTools = Object.entries(tools).reduce((acc, [slug, tool]) => {
   const category = tool.category || slug.split('-')[0] || 'other'
