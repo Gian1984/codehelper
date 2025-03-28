@@ -88,5 +88,58 @@ export const tools: Record<string, Tool> = {
                 }
             }
         }
+    },
+
+    'px-to-vh-converter': {
+        title: 'PX to VH Converter',
+        description: 'Convert pixel values to responsive vh units based on viewport height.',
+        category: 'css',
+        component: () => import('~/components/tools/css/PxToVhConverter.vue'),
+        seo: {
+            title: 'PX to VH Converter – CodeHelper',
+            description: 'Convert pixel (px) values into responsive viewport height (vh) units easily.',
+            ogImage: 'https://codehelper.me/og-images/px-to-vh-converter.png',
+            keywords: 'px, vh, converter, responsive, css, unit converter, viewport height',
+            structuredData: {
+                "@context": "https://schema.org",
+                "@type": "SoftwareApplication",
+                "name": "PX to VH Converter",
+                "operatingSystem": "All",
+                "applicationCategory": "DeveloperApplication",
+                "aggregateRating": {
+                    "@type": "AggregateRating",
+                    "ratingValue": "5",
+                    "ratingCount": "17"
+                }
+            }
+        }
+    },
+
+    'px-to-vw-converter': {
+        title: 'PX to VW Converter',
+        description: 'Convert pixel values to responsive vw units based on viewport width.',
+        category: 'css',
+        component: () => import('~/components/tools/css/PxToVwConverter.vue'),
+        seo: {
+            title: 'PX to VW Converter – CodeHelper',
+            description: 'Convert pixel (px) values into responsive viewport width (vw) units easily.',
+            ogImage: 'https://codehelper.me/og-images/px-to-vw-converter.png',
+            keywords: 'px, vw, converter, responsive, css, unit converter, viewport width',
+            structuredData: {
+                "@context": "https://schema.org",
+                "@type": "SoftwareApplication",
+                "name": "PX to VW Converter",
+                "operatingSystem": "All",
+                "applicationCategory": "DeveloperApplication",
+                "aggregateRating": {
+                    "@type": "AggregateRating",
+                    "ratingValue": "5",
+                    "ratingCount": "19"
+                }
+            }
+        }
     }
+
+
 }
+
