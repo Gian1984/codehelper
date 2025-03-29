@@ -5,7 +5,7 @@
         <div class="relative flex h-16 items-center justify-between">
           <div class="flex items-center px-2 lg:px-0">
             <div class="shrink-0">
-              <img class="h-8 w-auto" src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500" alt="Your Company" />
+              <img class="h-8 w-auto" src="/images/logo_nav.webp" alt="Codehelper.me" />
             </div>
             <div class="hidden lg:ml-6 lg:block">
               <div class="flex space-x-4">

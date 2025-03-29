@@ -138,7 +138,33 @@ export const tools: Record<string, Tool> = {
                 }
             }
         }
+    },
+
+    'svg-icon-generator': {
+        title: 'SVG Icon Generator',
+        description: 'Create and customize SVG icons for the web directly in your browser.',
+        category: 'svg',
+        component: () => import('~/components/tools/svg/IconGenerator.vue'),
+        seo: {
+            title: 'SVG Icon Generator – CodeHelper',
+            description: 'Design, customize and export scalable vector icons directly in your browser.',
+            ogImage: 'https://codehelper.me/og-images/svg-icon-generator.png',
+            keywords: 'svg, icon, generator, design, web icon, svg builder, icon editor',
+            structuredData: {
+                "@context": "https://schema.org",
+                "@type": "SoftwareApplication",
+                "name": "SVG Icon Generator",
+                "operatingSystem": "All",
+                "applicationCategory": "DeveloperApplication",
+                "aggregateRating": {
+                    "@type": "AggregateRating",
+                    "ratingValue": "5",
+                    "ratingCount": "9"
+                }
+            }
+        }
     }
+
 
 
 }
