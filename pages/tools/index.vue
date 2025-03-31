@@ -1,13 +1,29 @@
 <template>
-  <div class=" bg-gray-900 text-white">
+  <div class="bg-gray-900 text-white">
     <Sidebar />
 
     <div class="xl:pl-72">
       <div class="p-8 min-h-screen">
-        <h1 class="text-3xl font-semibold tracking-tight text-white sm:text-5xl mb-6">Tools</h1>
+        <div class="flex items-center justify-between mb-6">
+          <h1 class="text-3xl font-semibold tracking-tight text-white sm:text-5xl">
+            Tools
+            <span v-if="selectedCategory" class="text-indigo-400 text-2xl ml-2">
+              /&nbsp;&nbsp;&nbsp;{{ capitalize(selectedCategory) }}
+            </span>
+          </h1>
+
+          <NuxtLink
+              v-if="selectedCategory"
+              to="/tools"
+              class="inline-block text-sm font-medium bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded transition"
+          >
+            Reset Filter
+          </NuxtLink>
+        </div>
+
         <ul class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
           <li
-              v-for="[slug, tool] in sortedTools"
+              v-for="[slug, tool] in filteredTools"
               :key="slug"
               class="rounded-lg bg-gray-800 p-4 shadow hover:shadow-md transition"
           >
@@ -27,6 +43,7 @@ import { computed } from 'vue'
 import Sidebar from '~/components/Sidebar.vue'
 import { tools } from '~/utils/toolRegistry'
 import { useSeoMeta, useHead } from '#imports'
+import { useRoute } from 'vue-router'
 
 // SEO Meta
 useSeoMeta({
@@ -34,12 +51,12 @@ useSeoMeta({
   description: 'Boost your workflow with modern web tools built for developers. Format, convert, minify and optimize code — all in one place.',
   ogTitle: 'CodeHelper — Free Tools for Developers',
   ogDescription: 'All-in-one web tools for developers. Format JSON, minify CSS, convert code, and more — fast and free.',
-  ogImage: '/images/codehelper_logo.webp',
+  ogImage: '/images/codehelper_OGIMAGE.webp',
   ogUrl: 'https://codehelper.me',
   twitterCard: 'summary_large_image',
   twitterTitle: 'CodeHelper — Free Tools for Developers',
   twitterDescription: 'A modern toolbox for coders: JSON formatter, CSS minifier, and more.',
-  twitterImage: '/images/codehelper_logo.webp'
+  twitterImage: '/images/codehelper_OGIMAGE.webp'
 })
 
 // Structured Data
@@ -53,7 +70,7 @@ useHead({
         name: 'CodeHelper',
         url: 'https://codehelper.me',
         description: 'Boost your workflow with modern tools for web developers. Format, convert, and minify code — fast and free.',
-        image: 'https://codehelper.me/images/codehelper_logo.webp',
+        image: 'https://codehelper.me/images/codehelper_OGIMAGE.webp',
         potentialAction: {
           '@type': 'SearchAction',
           target: 'https://codehelper.me/tools?q={search_term_string}',
@@ -64,11 +81,24 @@ useHead({
   ]
 })
 
-// Sorted tools
+const route = useRoute()
+const selectedCategory = computed(() => route.query.category || null)
+
+const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1)
+
+const filteredTools = computed(() => {
+  if (!selectedCategory.value) return Object.entries(tools)
+
+  return Object.entries(tools).filter(([, tool]) => {
+    return tool.category?.toLowerCase() === selectedCategory.value?.toString().toLowerCase()
+  })
+})
+
 const sortedTools = computed(() =>
     Object.entries(tools).sort(([, a], [, b]) => a.title.localeCompare(b.title))
 )
 </script>
+
 
 
 

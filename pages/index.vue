@@ -19,7 +19,7 @@
       <ul class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
         <li v-for="([slug, tool], i) in topTools" :key="slug" class="rounded-lg bg-gray-800 p-4 shadow hover:shadow-md transition">
           <NuxtLink :to="`/tools/${slug}`" class="block">
-            <h3 class="text-xl font-semibold">{{ tool.title }}</h3>
+            <h3 class="text-xl font-semibold hover:text-indigo-400">{{ tool.title }}</h3>
             <p class="text-gray-400 text-sm mt-1">{{ tool.description }}</p>
           </NuxtLink>
         </li>
@@ -29,6 +29,31 @@
       </div>
     </div>
   </div>
+
+
+  <div class="bg-gray-900 text-white px-6 pb-24 sm:pb-32 lg:px-8">
+    <div class="mx-auto max-w-6xl pt-12">
+      <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl mb-6">Browse by Category</h2>
+
+      <ul class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+        <li
+            v-for="(toolsInCategory, category) in toolsByCategory"
+            :key="category"
+            class="rounded-lg bg-gray-800 p-6 shadow hover:shadow-md transition text-center"
+        >
+          <NuxtLink
+              :to="`/tools?category=${category}`"
+              class="block text-lg font-semibold capitalize text-white hover:text-indigo-400"
+          >
+            {{ category }}
+          </NuxtLink>
+          <p class="mt-2 text-gray-400 text-sm">{{ toolsInCategory.length }} tool{{ toolsInCategory.length > 1 ? 's' : '' }}</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+
 </template>
 
 <script setup lang="ts">
@@ -73,6 +98,18 @@ useHead({
 const topTools = computed(() =>
     Object.entries(tools).slice(0, 8)
 )
+
+const toolsByCategory = computed(() => {
+  const grouped: Record<string, any[]> = {}
+  for (const [slug, tool] of Object.entries(tools)) {
+    const category = tool.category || 'Uncategorized'
+    if (!grouped[category]) grouped[category] = []
+    grouped[category].push(tool)
+  }
+  return grouped
+})
+
+
 </script>
 
 <style scoped>
