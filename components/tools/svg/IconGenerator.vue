@@ -1,8 +1,8 @@
 <template>
-  <div class="space-y-4 bg-gray-800 p-6 rounded-lg shadow p-8 mx-auto">
+  <div class="space-y-4 bg-gray-800 p-8 rounded-lg shadow p-8 mx-auto">
     <h2 class="text-2xl font-semibold text-white">SVG Icon Generator</h2>
 
-    <!-- Colore -->
+    <!-- Color -->
     <label class="block">
       <span class="text-gray-300">Colore</span>
       <div class="flex items-center space-x-2">

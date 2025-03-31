@@ -1,5 +1,5 @@
 <template>
-  <div class="space-y-4 bg-gray-800 p-6 rounded-lg shadow">
+  <div class="space-y-4 bg-gray-800 p-8 rounded-lg shadow">
     <h2 class="text-2xl font-semibold">PX to VW Converter</h2>
 
     <label class="block">

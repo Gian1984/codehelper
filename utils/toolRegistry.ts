@@ -39,7 +39,6 @@ export const tools: Record<string, Tool> = {
             }
         }
     },
-
     'clamp-generator': {
         title: 'Clamp Generator',
         description: 'Generate responsive font-size clamp() CSS.',
@@ -64,7 +63,6 @@ export const tools: Record<string, Tool> = {
             }
         }
     },
-
     'var-dump-formatter': {
         title: 'Var Dump Formatter',
         description: 'Beautify and format PHP var_dump() output.',
@@ -89,7 +87,6 @@ export const tools: Record<string, Tool> = {
             }
         }
     },
-
     'px-to-vh-converter': {
         title: 'PX to VH Converter',
         description: 'Convert pixel values to responsive vh units based on viewport height.',
@@ -114,7 +111,6 @@ export const tools: Record<string, Tool> = {
             }
         }
     },
-
     'px-to-vw-converter': {
         title: 'PX to VW Converter',
         description: 'Convert pixel values to responsive vw units based on viewport width.',
@@ -139,7 +135,6 @@ export const tools: Record<string, Tool> = {
             }
         }
     },
-
     'svg-icon-generator': {
         title: 'SVG Icon Generator',
         description: 'Create and customize SVG icons for the web directly in your browser.',
@@ -163,9 +158,55 @@ export const tools: Record<string, Tool> = {
                 }
             }
         }
+    },
+    'aspect-ratio-calculator': {
+        title: 'Aspect Ratio Calculator',
+        description: 'Calculate aspect ratios and pixel dimensions for media and screens.',
+        category: 'css',
+        component: () => import('~/components/tools/css/AspectRatioCalculator.vue'),
+        seo: {
+            title: 'Aspect Ratio Calculator – CodeHelper',
+            description: 'Easily calculate aspect ratios from pixel dimensions (width and height).',
+            ogImage: 'https://codehelper.me/og-images/aspect-ratio-calculator.png',
+            keywords: 'aspect ratio, calculator, responsive, design, media, video, image, resolution',
+            structuredData: {
+                "@context": "https://schema.org",
+                "@type": "SoftwareApplication",
+                "name": "Aspect Ratio Calculator",
+                "operatingSystem": "All",
+                "applicationCategory": "DeveloperApplication",
+                "aggregateRating": {
+                    "@type": "AggregateRating",
+                    "ratingValue": "5",
+                    "ratingCount": "27"
+                }
+            }
+        }
+    },
+    'aspect-frame-generator': {
+        title: 'Aspect Frame Generator',
+        description: 'Generate matte frames with custom aspect ratios and download them as images.',
+        category: 'imaging',
+        component: () => import('~/components/tools/imaging/FrameGenerator.vue'),
+        seo: {
+            title: 'Aspect Frame Generator – CodeHelper',
+            description: 'Create and download matte-style image overlays with custom aspect ratios and resolution.',
+            ogImage: 'https://codehelper.me/og-images/aspect-frame-generator.png',
+            keywords: 'aspect ratio, matte, frame, overlay, video, image, resolution, generator',
+            structuredData: {
+                "@context": "https://schema.org",
+                "@type": "SoftwareApplication",
+                "name": "Aspect Frame Generator",
+                "operatingSystem": "All",
+                "applicationCategory": "GraphicsApplication",
+                "aggregateRating": {
+                    "@type": "AggregateRating",
+                    "ratingValue": "5",
+                    "ratingCount": "15"
+                }
+            }
+        }
     }
-
-
-
 }
+
 

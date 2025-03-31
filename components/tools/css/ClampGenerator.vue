@@ -1,5 +1,5 @@
 <template>
-  <div class="space-y-4">
+  <div class="space-y-4 bg-gray-800 p-8 rounded-lg shadow">
     <label class="block">
       <span class="text-gray-300">Min Font Size (px)</span>
       <input v-model="min" type="number" class="text-black w-full px-2 py-1 rounded" />
