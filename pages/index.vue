@@ -41,12 +41,12 @@ useSeoMeta({
   description: 'Boost your workflow with modern web tools built for developers. Format, convert, minify and optimize code — all in one place.',
   ogTitle: 'CodeHelper — Free Tools for Developers',
   ogDescription: 'All-in-one web tools for developers. Format JSON, minify CSS, convert code, and more — fast and free.',
-  ogImage: '/images/codehelper_logo.webp',
+  ogImage: '/images/codehelper_OGIMAGE.webp',
   ogUrl: 'https://codehelper.me',
   twitterCard: 'summary_large_image',
   twitterTitle: 'CodeHelper — Free Tools for Developers',
   twitterDescription: 'A modern toolbox for coders: JSON formatter, CSS minifier, and more.',
-  twitterImage: '/images/codehelper_logo.webp'
+  twitterImage: '/images/codehelper_OGIMAGE.webp'
 })
 
 useHead({
@@ -59,7 +59,7 @@ useHead({
         name: 'CodeHelper',
         url: 'https://codehelper.me',
         description: 'Boost your workflow with modern tools for web developers. Format, convert, and minify code — fast and free.',
-        image: 'https://codehelper.me/images/codehelper_logo.webp',
+        image: 'https://codehelper.me/codehelper_OGIMAGE.webp',
         potentialAction: {
           '@type': 'SearchAction',
           target: 'https://codehelper.me/tools?q={search_term_string}',

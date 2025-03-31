@@ -23,7 +23,7 @@ export const tools: Record<string, Tool> = {
         seo: {
             title: 'JSON Formatter – CodeHelper',
             description: 'Beautify, format, and validate JSON instantly in the browser.',
-            ogImage: 'https://codehelper.me/og-images/json-formatter.png',
+            ogImage: 'https://codehelper.me/images/codehelper_OGIMAGE.webp',
             keywords: 'json, formatter, beautify, validator, online tool',
             structuredData: {
                 "@context": "https://schema.org",
@@ -47,7 +47,7 @@ export const tools: Record<string, Tool> = {
         seo: {
             title: 'CSS Clamp Generator – CodeHelper',
             description: 'Build fluid font-sizes with CSS clamp() utility.',
-            ogImage: 'https://codehelper.me/og-images/clamp-generator.png',
+            ogImage: 'https://codehelper.me/images/codehelper_OGIMAGE.webp',
             keywords: 'clamp, css, font-size, generator, responsive design',
             structuredData: {
                 "@context": "https://schema.org",
@@ -71,7 +71,7 @@ export const tools: Record<string, Tool> = {
         seo: {
             title: 'Var Dump Formatter – CodeHelper',
             description: 'Format messy var_dump() output into readable structure instantly.',
-            ogImage: 'https://codehelper.me/og-images/var-dump-formatter.png',
+            ogImage: 'https://codehelper.me/images/codehelper_OGIMAGE.webp',
             keywords: 'php, var_dump, formatter, beautifier, code formatter, dump viewer',
             structuredData: {
                 "@context": "https://schema.org",
@@ -95,7 +95,7 @@ export const tools: Record<string, Tool> = {
         seo: {
             title: 'PX to VH Converter – CodeHelper',
             description: 'Convert pixel (px) values into responsive viewport height (vh) units easily.',
-            ogImage: 'https://codehelper.me/og-images/px-to-vh-converter.png',
+            ogImage: 'https://codehelper.me/images/codehelper_OGIMAGE.webp',
             keywords: 'px, vh, converter, responsive, css, unit converter, viewport height',
             structuredData: {
                 "@context": "https://schema.org",
@@ -119,7 +119,7 @@ export const tools: Record<string, Tool> = {
         seo: {
             title: 'PX to VW Converter – CodeHelper',
             description: 'Convert pixel (px) values into responsive viewport width (vw) units easily.',
-            ogImage: 'https://codehelper.me/og-images/px-to-vw-converter.png',
+            ogImage: 'https://codehelper.me/images/codehelper_OGIMAGE.webp',
             keywords: 'px, vw, converter, responsive, css, unit converter, viewport width',
             structuredData: {
                 "@context": "https://schema.org",
@@ -143,7 +143,7 @@ export const tools: Record<string, Tool> = {
         seo: {
             title: 'SVG Icon Generator – CodeHelper',
             description: 'Design, customize and export scalable vector icons directly in your browser.',
-            ogImage: 'https://codehelper.me/og-images/svg-icon-generator.png',
+            ogImage: 'https://codehelper.me/images/codehelper_OGIMAGE.webp',
             keywords: 'svg, icon, generator, design, web icon, svg builder, icon editor',
             structuredData: {
                 "@context": "https://schema.org",
@@ -167,7 +167,7 @@ export const tools: Record<string, Tool> = {
         seo: {
             title: 'Aspect Ratio Calculator – CodeHelper',
             description: 'Easily calculate aspect ratios from pixel dimensions (width and height).',
-            ogImage: 'https://codehelper.me/og-images/aspect-ratio-calculator.png',
+            ogImage: 'https://codehelper.me/images/codehelper_OGIMAGE.webp',
             keywords: 'aspect ratio, calculator, responsive, design, media, video, image, resolution',
             structuredData: {
                 "@context": "https://schema.org",
@@ -191,7 +191,7 @@ export const tools: Record<string, Tool> = {
         seo: {
             title: 'Aspect Frame Generator – CodeHelper',
             description: 'Create and download matte-style image overlays with custom aspect ratios and resolution.',
-            ogImage: 'https://codehelper.me/og-images/aspect-frame-generator.png',
+            ogImage: 'https://codehelper.me/images/codehelper_OGIMAGE.webp',
             keywords: 'aspect ratio, matte, frame, overlay, video, image, resolution, generator',
             structuredData: {
                 "@context": "https://schema.org",
@@ -215,7 +215,7 @@ export const tools: Record<string, Tool> = {
         seo: {
             title: 'Lorem Ipsum Generator – CodeHelper',
             description: 'Create dummy placeholder text in various formats for design and development.',
-            ogImage: 'https://codehelper.me/og-images/lorem-ipsum-generator.png',
+            ogImage: 'https://codehelper.me/images/codehelper_OGIMAGE.webp',
             keywords: 'lorem ipsum, placeholder text, dummy text, generator, paragraphs, characters, web design',
             structuredData: {
                 "@context": "https://schema.org",
@@ -239,7 +239,7 @@ export const tools: Record<string, Tool> = {
         seo: {
             title: 'Text Case Converter – CodeHelper',
             description: 'Easily convert any text to uppercase, capitalized case, or sentence case for formatting and readability.',
-            ogImage: 'https://codehelper.me/og-images/text-case-converter.png',
+            ogImage: 'https://codehelper.me/images/codehelper_OGIMAGE.webp',
             keywords: 'text case, convert, uppercase, lowercase, capitalize, sentence case, formatter',
             structuredData: {
                 "@context": "https://schema.org",
@@ -263,7 +263,7 @@ export const tools: Record<string, Tool> = {
         seo: {
             title: 'Color Converter – CodeHelper',
             description: 'Easily convert HEX to RGB and HSL color values for design and development.',
-            ogImage: 'https://codehelper.me/og-images/color-converter.png',
+            ogImage: 'https://codehelper.me/images/codehelper_OGIMAGE.webp',
             keywords: 'color converter, hex to rgb, rgb to hsl, color formats, design tools, web colors',
             structuredData: {
                 "@context": "https://schema.org",
@@ -287,7 +287,7 @@ export const tools: Record<string, Tool> = {
         seo: {
             title: 'Color Palette Generator – CodeHelper',
             description: 'Create visually balanced color palettes from a single base HEX color for design and UI use.',
-            ogImage: 'https://codehelper.me/og-images/color-palette-generator.png',
+            ogImage: 'https://codehelper.me/images/codehelper_OGIMAGE.webp',
             keywords: 'color palette, palette generator, hex colors, design tools, web colors, shades, tints',
             structuredData: {
                 "@context": "https://schema.org",
