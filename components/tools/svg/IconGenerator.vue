@@ -1,5 +1,5 @@
 <template>
-  <div class="space-y-4 bg-gray-800 p-6 rounded-lg shadow p-8 mx-auto">
+  <div class="space-y-4 bg-gray-800 p-6 rounded-lg shadow max-w-3xl mx-auto">
     <h2 class="text-2xl font-semibold text-white">SVG Icon Generator</h2>
 
     <!-- Colore -->
@@ -19,23 +19,32 @@
 
     <!-- Toolbar -->
     <div class="flex flex-wrap gap-2">
-      <button @click="drawCircle" class="bg-indigo-600 px-4 py-2 rounded text-white">Circle</button>
-      <button @click="drawRect" class="bg-indigo-600 px-4 py-2 rounded text-white">Rectangle</button>
-      <button @click="drawChevronRight" class="bg-indigo-600 px-4 py-2 rounded text-white">Chevron →</button>
-      <button @click="drawChevronLeft" class="bg-indigo-600 px-4 py-2 rounded text-white">Chevron ←</button>
-      <button @click="drawChevronUp" class="bg-indigo-600 px-4 py-2 rounded text-white">Chevron ↑</button>
-      <button @click="drawChevronDown" class="bg-indigo-600 px-4 py-2 rounded text-white">Chevron ↓</button>
-      <button @click="drawArrowUp" class="bg-gray-700 px-4 py-2 rounded text-white">↑</button>
-      <button @click="drawArrowDown" class="bg-gray-700 px-4 py-2 rounded text-white">↓</button>
-      <button @click="drawArrowLeft" class="bg-gray-700 px-4 py-2 rounded text-white">←</button>
-      <button @click="drawArrowRight" class="bg-gray-700 px-4 py-2 rounded text-white">→</button>
-      <button @click="drawFacebookF" class="bg-blue-600 px-4 py-2 rounded text-white">Facebook</button>
-      <button @click="drawInstagram" class="bg-pink-600 px-4 py-2 rounded text-white">Instagram</button>
-      <button @click="drawTwitter" class="bg-sky-500 px-4 py-2 rounded text-white">Twitter</button>
-      <button @click="drawLinkedIn" class="bg-blue-700 px-4 py-2 rounded text-white">LinkedIn</button>
-      <button @click="drawYoutube" class="bg-red-700 px-4 py-2 rounded text-white">YouTube</button>
-      <button @click="deleteSelected" class="bg-red-600 px-4 py-2 rounded text-white">Delete</button>
-      <button @click="clearCanvas" class="bg-yellow-600 px-4 py-2 rounded text-white">Clear</button>
+      <!-- Basic shapes -->
+      <button @click="drawCircle" class="icon-btn">●</button>
+      <button @click="drawRect" class="icon-btn">■</button>
+
+      <!-- Directional -->
+      <button @click="drawChevronRight" class="icon-btn">›</button>
+      <button @click="drawChevronLeft" class="icon-btn">‹</button>
+      <button @click="drawChevronUp" class="icon-btn">˄</button>
+      <button @click="drawChevronDown" class="icon-btn">˅</button>
+      <button @click="drawArrowRight" class="icon-btn">→</button>
+      <button @click="drawArrowLeft" class="icon-btn">←</button>
+      <button @click="drawArrowUp" class="icon-btn">↑</button>
+      <button @click="drawArrowDown" class="icon-btn">↓</button>
+      <button @click="drawAngleRight" class="icon-btn">&gt;</button>
+      <button @click="drawAngleLeft" class="icon-btn">&lt;</button>
+      <button @click="drawDoubleAngleRight" class="icon-btn">»</button>
+      <button @click="drawDoubleAngleLeft" class="icon-btn">«</button>
+
+      <!-- Dots -->
+      <button @click="drawVerticalDots" class="icon-btn">⋮</button>
+      <button @click="drawHorizontalDots" class="icon-btn">⋯</button>
+
+
+      <!-- Controls -->
+      <button @click="deleteSelected" class="icon-btn bg-red-600 hover:bg-red-500">Delete</button>
+      <button @click="clearCanvas" class="icon-btn bg-yellow-600 hover:bg-yellow-500">Clear</button>
     </div>
 
     <!-- Toggle Grid -->
@@ -56,11 +65,12 @@
           class="block mx-auto"
           xmlns="http://www.w3.org/2000/svg"
       ></svg>
+      <div class="text-sm text-center text-gray-400 pt-1">Output: 64x64 px</div>
     </div>
 
     <!-- Anteprima -->
     <div class="pt-4 text-center">
-      <h3 class="text-white mb-2">Anteprima (1:1)</h3>
+      <h3 class="text-white mb-2">Preview (1:1)</h3>
       <div class="inline-block border bg-white rounded p-2">
         <svg id="svgPreview" viewBox="0 0 64 64" width="64" height="64"></svg>
       </div>
@@ -68,23 +78,26 @@
 
     <!-- Download Button -->
     <div class="pt-4 text-right">
-      <button @click="exportSvg" class="bg-green-600 px-4 py-2 rounded text-white">Download SVG</button>
+      <button @click="exportSvg" class="bg-green-600 px-4 py-2 rounded hover:bg-green-500 text-white">Download SVG</button>
     </div>
   </div>
 </template>
 
+<style scoped>
+.icon-btn {
+  @apply bg-indigo-600 px-3 py-2 rounded hover:bg-indigo-500 text-white;
+}
+</style>
+
 <script setup lang="ts">
 import { onMounted, ref, watch } from 'vue'
 
-const fillColor = ref('#ff0000')
+const fillColor = ref('#000000')
 const showGrid = ref(true)
 let Snap: any
 let snap: any
 let previewSnap: any
 let selectedShape: any = null
-let gridLayer: any = null
-const CANVAS_SIZE = 64
-const GRID_SIZE = 4
 
 const validateColor = () => {
   if (!/^#[0-9A-Fa-f]{6}$/.test(fillColor.value)) {
@@ -92,7 +105,7 @@ const validateColor = () => {
   }
 }
 
-const snapToGrid = (value: number, gridSize = GRID_SIZE) => Math.floor(value / gridSize) * gridSize
+const snapToGrid = (value: number, gridSize = 4) => Math.floor(value / gridSize) * gridSize
 
 onMounted(async () => {
   await import('eve')
@@ -101,72 +114,36 @@ onMounted(async () => {
 
   snap = Snap('#svgCanvas')
   previewSnap = Snap('#svgPreview')
-
   if (showGrid.value) drawGrid()
 })
 
 watch(showGrid, (val) => {
-  if (val) drawGrid()
-  else snap.select('#grid')?.remove()
+  if (val) {
+    drawGrid()
+  } else {
+    const grid = snap.select('#grid')
+    grid?.remove()
+  }
 })
 
 const drawGrid = () => {
-  const total = CANVAS_SIZE
-  gridLayer = snap.group()
-  gridLayer.attr({ id: 'grid' })
-  for (let x = 0; x <= total; x += GRID_SIZE) {
-    const vLine = snap.line(x, 0, x, total).attr({ stroke: '#ddd', strokeWidth: 0.5 })
-    gridLayer.add(vLine)
+  const gridSize = 4
+  const total = 64
+  const grid = snap.group().attr({ id: 'grid' })
+  for (let x = 0; x <= total; x += gridSize) {
+    grid.add(snap.line(x, 0, x, total).attr({ stroke: '#eee', strokeWidth: 0.3 }))
   }
-  for (let y = 0; y <= total; y += GRID_SIZE) {
-    const hLine = snap.line(0, y, total, y).attr({ stroke: '#ddd', strokeWidth: 0.5 })
-    gridLayer.add(hLine)
+  for (let y = 0; y <= total; y += gridSize) {
+    grid.add(snap.line(0, y, total, y).attr({ stroke: '#eee', strokeWidth: 0.3 }))
   }
+  snap.append(grid)
 }
 
 const refreshPreview = () => {
-  const content = snap.selectAll('*').clone()
+  const elements = snap.selectAll('*').items.filter((el: any) => el.node.id !== 'grid')
   previewSnap.clear()
-  previewSnap.append(content)
+  elements.forEach((el: any) => previewSnap.append(el.clone()))
 }
-
-const drawPath = (d: string) => {
-  const path = snap.path(d)
-  path.attr({
-    fill: fillColor.value,
-    transform: `scale(${CANVAS_SIZE / 64}) translate(${(64 - CANVAS_SIZE) / 2}, ${(64 - CANVAS_SIZE) / 2})`
-  })
-  setupElement(path)
-  refreshPreview()
-}
-
-const drawCircle = () => {
-  const circle = snap.circle(CANVAS_SIZE / 2, CANVAS_SIZE / 2, CANVAS_SIZE / 2 - 4)
-  setupElement(circle)
-  refreshPreview()
-}
-
-const drawRect = () => {
-  const rect = snap.rect(4, 4, CANVAS_SIZE - 8, CANVAS_SIZE - 8)
-  setupElement(rect)
-  refreshPreview()
-}
-
-const drawChevronRight = () => drawPath("M20 16 L32 32 L20 48")
-const drawChevronLeft = () => drawPath("M44 16 L32 32 L44 48")
-const drawChevronUp = () => drawPath("M16 44 L32 32 L48 44")
-const drawChevronDown = () => drawPath("M16 20 L32 32 L48 20")
-
-const drawArrowUp = () => drawPath("M32 12 L20 32 H28 V52 H36 V32 H44 Z")
-const drawArrowDown = () => drawPath("M32 52 L44 32 H36 V12 H28 V32 H20 Z")
-const drawArrowLeft = () => drawPath("M12 32 L32 20 V28 H52 V36 H32 V44 Z")
-const drawArrowRight = () => drawPath("M52 32 L32 44 V36 H12 V28 H32 V20 Z")
-
-const drawFacebookF = () => drawPath("M36 12h-8c-6.6 0-12 5.4-12 12v8h-8v12h8v24h16V44h10l2-12h-12v-6c0-1.1.9-2 2-2h10V12z")
-const drawInstagram = () => drawPath("M16 12h32a4 4 0 0 1 4 4v32a4 4 0 0 1-4 4H16a4 4 0 0 1-4-4V16a4 4 0 0 1 4-4zm16 10a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm13-3a2 2 0 1 0 0 4 2 2 0 0 0 0-4z")
-const drawTwitter = () => drawPath("M54 16.1a20 20 0 0 1-5.8 1.6 10 10 0 0 0 4.4-5.6 20 20 0 0 1-6.3 2.4 10 10 0 0 0-17 9.1A28 28 0 0 1 12.4 14a10 10 0 0 0 3.1 13.3 10 10 0 0 1-4.6-1.3v.1a10 10 0 0 0 8 9.8 10 10 0 0 1-4.5.2 10 10 0 0 0 9.3 6.9A20 20 0 0 1 10 50a28 28 0 0 0 15.1 4.4c18.1 0 28-15 28-28v-1.3a20 20 0 0 0 4.9-5.1z")
-const drawLinkedIn = () => drawPath("M16 16h10v32H16zm5-5a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm11 5h9v5.3h.1a9.9 9.9 0 0 1 9-5c9.7 0 11 6.4 11 14.7V48H51V36.1c0-2.8-.1-6.5-4-6.5s-4.6 3-4.6 6.3V48H32V16z")
-const drawYoutube = () => drawPath("M58 20a6 6 0 0 0-4.2-4.2C49 14 32 14 32 14s-17 0-21.8 1.8A6 6 0 0 0 6 20c-1.8 4.7-1.8 14-1.8 14s0 9.3 1.8 14a6 6 0 0 0 4.2 4.2C15 50 32 50 32 50s17 0 21.8-1.8A6 6 0 0 0 58 48c1.8-4.7 1.8-14 1.8-14s0-9.3-1.8-14zM26 40V24l16 8-16 8z")
 
 const setupElement = (el: any) => {
   el.attr({
@@ -181,7 +158,78 @@ const setupElement = (el: any) => {
     selectedShape = el
     el.attr({ stroke: '#00f', strokeWidth: 1 })
   })
+
+  el.drag(
+      function (dx, dy) {
+        const type = el.type
+        if (type === 'circle') {
+          const originX = parseFloat(el.data('originX')) || 0
+          const originY = parseFloat(el.data('originY')) || 0
+          el.attr({
+            cx: snapToGrid(originX + dx),
+            cy: snapToGrid(originY + dy)
+          })
+        } else if (type === 'rect') {
+          const originX = parseFloat(el.data('originX')) || 0
+          const originY = parseFloat(el.data('originY')) || 0
+          el.attr({
+            x: snapToGrid(originX + dx),
+            y: snapToGrid(originY + dy)
+          })
+        }
+      },
+      function () {
+        const type = el.type
+        if (type === 'circle') {
+          el.data('originX', el.attr('cx'))
+          el.data('originY', el.attr('cy'))
+        } else if (type === 'rect') {
+          el.data('originX', el.attr('x'))
+          el.data('originY', el.attr('y'))
+        }
+      },
+      () => {}
+  )
 }
+
+const drawCircle = () => {
+  const circle = snap.circle(32, 32, 4)
+  setupElement(circle)
+  refreshPreview()
+}
+
+const drawRect = () => {
+  const rect = snap.rect(28, 28, 8, 8)
+  setupElement(rect)
+  refreshPreview()
+}
+
+const drawPath = (d: string) => {
+  const path = snap.path(d)
+  setupElement(path)
+  refreshPreview()
+}
+
+const drawChevronRight = () => drawPath('M26 20 L38 32 L26 44')
+const drawChevronLeft = () => drawPath('M38 20 L26 32 L38 44')
+const drawChevronUp = () => drawPath('M20 38 L32 26 L44 38')
+const drawChevronDown = () => drawPath('M20 26 L32 38 L44 26')
+
+const drawArrowRight = () => drawPath('M20 32 H44 M36 24 L44 32 L36 40')
+const drawArrowLeft = () => drawPath('M44 32 H20 M28 24 L20 32 L28 40')
+const drawArrowUp = () => drawPath('M32 44 V20 M24 28 L32 20 L40 28')
+const drawArrowDown = () => drawPath('M32 20 V44 M24 36 L32 44 L40 36')
+
+const drawAngleRight = () => drawPath('M24 16 L40 32 L24 48')
+const drawAngleLeft = () => drawPath('M40 16 L24 32 L40 48')
+const drawDoubleAngleRight = () => drawPath('M22 16 L34 32 L22 48 M34 16 L46 32 L34 48')
+const drawDoubleAngleLeft = () => drawPath('M42 16 L30 32 L42 48 M30 16 L18 32 L30 48')
+
+const drawVerticalDots = () => drawPath('M32 20 a2 2 0 1 0 0.1 0 M32 32 a2 2 0 1 0 0.1 0 M32 44 a2 2 0 1 0 0.1 0')
+const drawHorizontalDots = () => drawPath('M20 32 a2 2 0 1 0 0.1 0 M32 32 a2 2 0 1 0 0.1 0 M44 32 a2 2 0 1 0 0.1 0')
+
+
+
 
 const deleteSelected = () => {
   if (selectedShape) {
@@ -200,6 +248,7 @@ const clearCanvas = () => {
 const exportSvg = () => {
   const grid = snap.select('#grid')
   grid?.remove()
+
   const svgContent = snap.toString()
   const blob = new Blob([svgContent], { type: 'image/svg+xml' })
   const url = URL.createObjectURL(blob)
@@ -207,7 +256,9 @@ const exportSvg = () => {
   link.href = url
   link.download = 'icon.svg'
   link.click()
+
   if (showGrid.value) drawGrid()
   refreshPreview()
 }
 </script>
+
