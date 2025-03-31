@@ -30,7 +30,15 @@
                   Tools
                 </NuxtLink>
 
-                <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Projects</a>
+                <NuxtLink
+                    to="/project"
+                    :class="[
+                      'rounded-md px-3 py-2 text-sm font-medium',
+                       route.path === '/project' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'
+                     ]"
+                >
+                  Project
+                </NuxtLink>
 
                 <NuxtLink
                     to="/about"
@@ -47,8 +55,31 @@
           </div>
           <div class="flex flex-1 justify-center px-2 lg:ml-6 lg:justify-end">
             <div class="grid w-full max-w-lg grid-cols-1 lg:max-w-xs">
-              <input type="search" name="search" aria-label="Search" class="col-start-1 row-start-1 block w-full rounded-md bg-gray-700 py-1.5 pr-3 pl-10 text-base text-white outline-hidden placeholder:text-gray-400 focus:bg-white focus:text-gray-900 focus:placeholder:text-gray-400 sm:text-sm/6" placeholder="Search" />
-              <MagnifyingGlassIcon class="pointer-events-none col-start-1 row-start-1 ml-3 size-5 self-center text-gray-400" aria-hidden="true" />
+              <div class="relative w-full max-w-lg">
+                <input
+                    v-model="query"
+                    type="search"
+                    @focus="showSuggestions = true"
+                    @blur="() => setTimeout(() => (showSuggestions = false), 200)"
+                    class="block w-full rounded-md bg-gray-700 py-1.5 pr-3 pl-10 text-base text-white outline-none placeholder:text-gray-400 focus:bg-white focus:text-gray-900 sm:text-sm"
+                    placeholder="Search tools..."
+                />
+                <MagnifyingGlassIcon class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 size-5 text-gray-400" aria-hidden="true" />
+
+                <ul
+                    v-if="showSuggestions && suggestions.length"
+                    class="absolute z-10 mt-1 w-full rounded-md bg-white text-sm text-black shadow-lg max-h-64 overflow-auto"
+                >
+                  <li
+                      v-for="[slug, tool] in suggestions"
+                      :key="slug"
+                      class="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                      @click="goToTool(slug)"
+                  >
+                    {{ tool.title }}
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
           <div class="flex lg:hidden">
@@ -89,11 +120,14 @@
           </DisclosureButton>
 
           <DisclosureButton
-              as="a"
-              href="#"
-              class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
+              as="NuxtLink"
+              to="/project"
+              :class="[
+                'block rounded-md px-3 py-2 text-base font-medium',
+                route.path === '/project' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'
+              ]"
           >
-            Projects
+            Tools
           </DisclosureButton>
 
           <DisclosureButton
@@ -114,15 +148,14 @@
 </template>
 
 <script setup>
-import { useRoute } from 'vue-router'
+import { ref, computed, watch } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
+import { tools } from '~/utils/toolRegistry'
+
 import {
   Disclosure,
   DisclosureButton,
   DisclosurePanel,
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuItems
 } from '@headlessui/vue'
 
 import {
@@ -131,9 +164,36 @@ import {
 
 import {
   Bars3Icon,
-  BellIcon,
   XMarkIcon
 } from '@heroicons/vue/24/outline'
 
 const route = useRoute()
+const router = useRouter()
+
+// Search logic
+const query = ref('')
+const showSuggestions = ref(false)
+
+const toolEntries = computed(() =>
+    Object.entries(tools).sort(([, a], [, b]) => a.title.localeCompare(b.title))
+)
+
+const suggestions = computed(() => {
+  if (!query.value.trim()) return []
+  return toolEntries.value.filter(([slug, tool]) =>
+      tool.title.toLowerCase().includes(query.value.toLowerCase())
+  )
+})
+
+// Go to selected tool
+const goToTool = (slug) => {
+  query.value = ''
+  showSuggestions.value = false
+  router.push(`/tools/${slug}`)
+}
+
+// Hide suggestions on route change
+watch(() => route.path, () => {
+  showSuggestions.value = false
+})
 </script>

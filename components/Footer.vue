@@ -2,15 +2,26 @@
   <footer class="bg-gray-900">
     <div class="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-24 lg:px-8">
       <nav class="-mb-6 flex flex-wrap justify-center gap-x-12 gap-y-3 text-sm/6" aria-label="Footer">
-        <a v-for="item in navigation.main" :key="item.name" :href="item.href" class="text-gray-400 hover:text-white">{{ item.name }}</a>
+        <NuxtLink v-for="item in navigation.main" :key="item.name" :to="item.href" class="text-gray-400 hover:text-white">
+          {{ item.name }}
+        </NuxtLink>
       </nav>
-      <div class="mt-16 flex justify-center gap-x-10">
-        <a v-for="item in navigation.social" :key="item.name" :href="item.href" class="text-gray-400 hover:text-gray-300">
+      <div class="mt-16 flex justify-center gap-x-6">
+        <NuxtLink
+            v-for="item in navigation.social"
+            :key="item.name"
+            :to="item.href"
+            target="_blank"
+            class="bg-white rounded-full p-2 outline-none text-pink-500 hover:text-teal-600"
+        >
           <span class="sr-only">{{ item.name }}</span>
-          <component :is="item.icon" class="size-6" aria-hidden="true" />
-        </a>
+          <component :is="item.icon" class="h-6 w-6 sm:h-8 sm:w-8" aria-hidden="true" />
+        </NuxtLink>
       </div>
-      <p class="mt-10 text-center text-sm/6 text-gray-400">&copy; 2024 Your Company, Inc. All rights reserved.</p>
+      <p class="mt-10 text-center text-sm/6 text-gray-400">
+        &copy; {{ new Date().getFullYear() }}
+        <NuxtLink to="https://gianlucatiengo.com/" target="_blank" class="hover:underline text-white">Gianluca Tiengo</NuxtLink> - All rights reserved.
+      </p>
     </div>
   </footer>
 </template>
@@ -20,23 +31,21 @@ import { defineComponent, h } from 'vue'
 
 const navigation = {
   main: [
-    { name: 'About', href: '#' },
-    { name: 'Blog', href: '#' },
-    { name: 'Jobs', href: '#' },
-    { name: 'Press', href: '#' },
-    { name: 'Accessibility', href: '#' },
-    { name: 'Partners', href: '#' },
+    { name: 'Home', href: '/' },
+    { name: 'Tools', href: '/tools' },
+    { name: 'Project', href: '/project' },
+    { name: 'About', href: '/about' },
   ],
   social: [
     {
-      name: 'Facebook',
-      href: '#',
+      name: 'LinkedIn',
+      href: 'https://www.linkedin.com/in/gianluca-tiengo/',
       icon: defineComponent({
         render: () =>
-            h('svg', { fill: 'currentColor', viewBox: '0 0 24 24' }, [
+            h('svg', { fill: 'currentColor', viewBox: '0 0 21 21' }, [
               h('path', {
                 'fill-rule': 'evenodd',
-                d: 'M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z',
+                d: 'M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248H8.014v-8.59h2.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711zM5.005 6.575a1.548 1.548 0 11-.003-3.096 1.548 1.548 0 01.003 3.096zm-1.337 9.763H6.34v-8.59H3.667v8.59zM17.668 1H2.328C1.595 1 1 1.581 1 2.298v15.403C1 18.418 1.595 19 2.328 19h15.34c.734 0 1.332-.582 1.332-1.299V2.298C19 1.581 18.402 1 17.668 1z',
                 'clip-rule': 'evenodd',
               }),
             ]),
@@ -44,7 +53,7 @@ const navigation = {
     },
     {
       name: 'Instagram',
-      href: '#',
+      href: 'https://www.instagram.com/let_you_dev/',
       icon: defineComponent({
         render: () =>
             h('svg', { fill: 'currentColor', viewBox: '0 0 24 24' }, [
@@ -58,10 +67,10 @@ const navigation = {
     },
     {
       name: 'X',
-      href: '#',
+      href: 'https://twitter.com/truefreedom84',
       icon: defineComponent({
         render: () =>
-            h('svg', { fill: 'currentColor', viewBox: '0 0 24 24' }, [
+            h('svg', { fill: 'currentColor', viewBox: '0 0 23 23' }, [
               h('path', {
                 d: 'M13.6823 10.6218L20.2391 3H18.6854L12.9921 9.61788L8.44486 3H3.2002L10.0765 13.0074L3.2002 21H4.75404L10.7663 14.0113L15.5685 21H20.8131L13.6819 10.6218H13.6823ZM11.5541 13.0956L10.8574 12.0991L5.31391 4.16971H7.70053L12.1742 10.5689L12.8709 11.5655L18.6861 19.8835H16.2995L11.5541 13.096V13.0956Z',
               }),
@@ -70,7 +79,7 @@ const navigation = {
     },
     {
       name: 'GitHub',
-      href: '#',
+      href: 'https://github.com/Gian1984',
       icon: defineComponent({
         render: () =>
             h('svg', { fill: 'currentColor', viewBox: '0 0 24 24' }, [
@@ -82,20 +91,7 @@ const navigation = {
             ]),
       }),
     },
-    {
-      name: 'YouTube',
-      href: '#',
-      icon: defineComponent({
-        render: () =>
-            h('svg', { fill: 'currentColor', viewBox: '0 0 24 24' }, [
-              h('path', {
-                'fill-rule': 'evenodd',
-                d: 'M19.812 5.418c.861.23 1.538.907 1.768 1.768C21.998 8.746 22 12 22 12s0 3.255-.418 4.814a2.504 2.504 0 0 1-1.768 1.768c-1.56.419-7.814.419-7.814.419s-6.255 0-7.814-.419a2.505 2.505 0 0 1-1.768-1.768C2 15.255 2 12 2 12s0-3.255.417-4.814a2.507 2.507 0 0 1 1.768-1.768C5.744 5 11.998 5 11.998 5s6.255 0 7.814.418ZM15.194 12 10 15V9l5.194 3Z',
-                'clip-rule': 'evenodd',
-              }),
-            ]),
-      }),
-    },
   ],
 }
 </script>
+

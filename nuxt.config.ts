@@ -17,7 +17,7 @@ export default defineNuxtConfig({
     sitemapName: 'sitemap.xml',
     gzip: true,
     routes: () => {
-      const staticRoutes = ['/', '/about', '/tools']
+      const staticRoutes = ['/', '/about', '/tools','/project']
       const dynamicToolRoutes = Object.keys(tools).map(slug => `/tools/${slug}`)
       return [...staticRoutes, ...dynamicToolRoutes]
     }
