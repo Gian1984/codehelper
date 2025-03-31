@@ -206,7 +206,81 @@ export const tools: Record<string, Tool> = {
                 }
             }
         }
-    }
+    },
+    'lorem-ipsum-generator': {
+        title: 'Lorem Ipsum Generator',
+        description: 'Generate customizable placeholder text (words, paragraphs, characters).',
+        category: 'textes',
+        component: () => import('~/components/tools/textes/LoremIpsumGenerator.vue'),
+        seo: {
+            title: 'Lorem Ipsum Generator – CodeHelper',
+            description: 'Create dummy placeholder text in various formats for design and development.',
+            ogImage: 'https://codehelper.me/og-images/lorem-ipsum-generator.png',
+            keywords: 'lorem ipsum, placeholder text, dummy text, generator, paragraphs, characters, web design',
+            structuredData: {
+                "@context": "https://schema.org",
+                "@type": "SoftwareApplication",
+                "name": "Lorem Ipsum Generator",
+                "operatingSystem": "All",
+                "applicationCategory": "DeveloperApplication",
+                "aggregateRating": {
+                    "@type": "AggregateRating",
+                    "ratingValue": "5",
+                    "ratingCount": "24"
+                }
+            }
+        }
+    },
+    'text-case-converter': {
+        title: 'Text Case Converter',
+        description: 'Convert text to UPPERCASE, Capitalize Case, or Sentence case.',
+        category: 'textes',
+        component: () => import('~/components/tools/textes/TextCaseConverter.vue'),
+        seo: {
+            title: 'Text Case Converter – CodeHelper',
+            description: 'Easily convert any text to uppercase, capitalized case, or sentence case for formatting and readability.',
+            ogImage: 'https://codehelper.me/og-images/text-case-converter.png',
+            keywords: 'text case, convert, uppercase, lowercase, capitalize, sentence case, formatter',
+            structuredData: {
+                "@context": "https://schema.org",
+                "@type": "SoftwareApplication",
+                "name": "Text Case Converter",
+                "operatingSystem": "All",
+                "applicationCategory": "DeveloperApplication",
+                "aggregateRating": {
+                    "@type": "AggregateRating",
+                    "ratingValue": "5",
+                    "ratingCount": "21"
+                }
+            }
+        }
+    },
+    'color-converter': {
+        title: 'Color Converter',
+        description: 'Convert colors between HEX, RGB, and HSL formats instantly.',
+        category: 'colors',
+        component: () => import('~/components/tools/colors/ColorConverter.vue'),
+        seo: {
+            title: 'Color Converter – CodeHelper',
+            description: 'Easily convert HEX to RGB and HSL color values for design and development.',
+            ogImage: 'https://codehelper.me/og-images/color-converter.png',
+            keywords: 'color converter, hex to rgb, rgb to hsl, color formats, design tools, web colors',
+            structuredData: {
+                "@context": "https://schema.org",
+                "@type": "SoftwareApplication",
+                "name": "Color Converter",
+                "operatingSystem": "All",
+                "applicationCategory": "DeveloperApplication",
+                "aggregateRating": {
+                    "@type": "AggregateRating",
+                    "ratingValue": "5",
+                    "ratingCount": "18"
+                }
+            }
+        }
+    },
+
+
 }
 
 
