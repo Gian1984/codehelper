@@ -1,5 +1,5 @@
 <template>
-  <div class="space-y-4 bg-gray-800 p-6 rounded-lg shadow max-w-3xl mx-auto">
+  <div class="space-y-4 bg-gray-800 p-6 rounded-lg shadow p-8 mx-auto">
     <h2 class="text-2xl font-semibold text-white">SVG Icon Generator</h2>
 
     <!-- Colore -->
@@ -22,6 +22,8 @@
       <!-- Basic shapes -->
       <button @click="drawCircle" class="icon-btn">●</button>
       <button @click="drawRect" class="icon-btn">■</button>
+      <button @click="drawSmallCircle" class="icon-btn">◦</button>
+      <button @click="drawSmallRect" class="icon-btn">▫︎</button>
 
       <!-- Directional -->
       <button @click="drawChevronRight" class="icon-btn">›</button>
@@ -32,6 +34,8 @@
       <button @click="drawArrowLeft" class="icon-btn">←</button>
       <button @click="drawArrowUp" class="icon-btn">↑</button>
       <button @click="drawArrowDown" class="icon-btn">↓</button>
+      <button @click="drawAngleUp" class="icon-btn">˄</button>
+      <button @click="drawAngleDown" class="icon-btn">˅</button>
       <button @click="drawAngleRight" class="icon-btn">&gt;</button>
       <button @click="drawAngleLeft" class="icon-btn">&lt;</button>
       <button @click="drawDoubleAngleRight" class="icon-btn">»</button>
@@ -41,9 +45,19 @@
       <button @click="drawVerticalDots" class="icon-btn">⋮</button>
       <button @click="drawHorizontalDots" class="icon-btn">⋯</button>
 
+      <!-- Burger Icons -->
+      <button @click="drawBurgerClassic" class="icon-btn">☰</button>
+      <button @click="drawBurgerThin" class="icon-btn">≡</button>
+      <button @click="drawBurgerOffset" class="icon-btn">☱</button>
+
+      <!-- Additional UI icons -->
+      <button @click="drawCloseIcon" class="icon-btn">X</button>
+      <button @click="drawTrashIcon" class="icon-btn">🗑</button>
+      <button @click="drawSearchIcon" class="icon-btn">🔍</button>
+      <button @click="drawCheckIcon" class="icon-btn">✔️</button>
+
 
       <!-- Controls -->
-      <button @click="deleteSelected" class="icon-btn bg-red-600 hover:bg-red-500">Delete</button>
       <button @click="clearCanvas" class="icon-btn bg-yellow-600 hover:bg-yellow-500">Clear</button>
     </div>
 
@@ -145,52 +159,64 @@ const refreshPreview = () => {
   elements.forEach((el: any) => previewSnap.append(el.clone()))
 }
 
-const setupElement = (el: any) => {
+const setupElement = (el: any, strokeOnly = false) => {
   el.attr({
-    fill: el.type !== 'line' ? fillColor.value : 'none',
-    stroke: 'none',
-    strokeWidth: 0,
+    fill: strokeOnly ? 'none' : fillColor.value,
+    stroke: strokeOnly ? fillColor.value : 'none',
+    strokeWidth: strokeOnly ? 2 : 0,
     cursor: 'pointer'
-  })
+  });
 
   el.click(() => {
-    if (selectedShape) selectedShape.attr({ stroke: 'none' })
-    selectedShape = el
-    el.attr({ stroke: '#00f', strokeWidth: 1 })
-  })
+    if (selectedShape) {
+      selectedShape.attr({
+        stroke: selectedShape.data('strokeOnly') ? fillColor.value : 'none',
+        strokeWidth: selectedShape.data('strokeOnly') ? 2 : 0,
+      });
+    }
+    selectedShape = el;
+    el.attr({ stroke: '#00f', strokeWidth: strokeOnly ? 2 : 1 });
+  });
+
+  el.data('strokeOnly', strokeOnly);
 
   el.drag(
       function (dx, dy) {
-        const type = el.type
+        const type = el.type;
         if (type === 'circle') {
-          const originX = parseFloat(el.data('originX')) || 0
-          const originY = parseFloat(el.data('originY')) || 0
+          const originX = parseFloat(el.data('originX')) || 0;
+          const originY = parseFloat(el.data('originY')) || 0;
           el.attr({
             cx: snapToGrid(originX + dx),
             cy: snapToGrid(originY + dy)
-          })
+          });
         } else if (type === 'rect') {
-          const originX = parseFloat(el.data('originX')) || 0
-          const originY = parseFloat(el.data('originY')) || 0
+          const originX = parseFloat(el.data('originX')) || 0;
+          const originY = parseFloat(el.data('originY')) || 0;
           el.attr({
             x: snapToGrid(originX + dx),
             y: snapToGrid(originY + dy)
-          })
+          });
+        } else {
+          el.attr({
+            transform: `translate(${snapToGrid(dx)}, ${snapToGrid(dy)})`
+          });
         }
       },
       function () {
-        const type = el.type
+        const type = el.type;
         if (type === 'circle') {
-          el.data('originX', el.attr('cx'))
-          el.data('originY', el.attr('cy'))
+          el.data('originX', el.attr('cx'));
+          el.data('originY', el.attr('cy'));
         } else if (type === 'rect') {
-          el.data('originX', el.attr('x'))
-          el.data('originY', el.attr('y'))
+          el.data('originX', el.attr('x'));
+          el.data('originY', el.attr('y'));
         }
       },
       () => {}
-  )
-}
+  );
+};
+
 
 const drawCircle = () => {
   const circle = snap.circle(32, 32, 4)
@@ -204,24 +230,45 @@ const drawRect = () => {
   refreshPreview()
 }
 
-const drawPath = (d: string) => {
-  const path = snap.path(d)
-  setupElement(path)
-  refreshPreview()
+const drawSmallCircle = () => {
+  const circle = snap.circle(32, 32, 2);  // radius 2 for 4x4 circle
+  setupElement(circle);
+  refreshPreview();
 }
 
-const drawChevronRight = () => drawPath('M26 20 L38 32 L26 44')
-const drawChevronLeft = () => drawPath('M38 20 L26 32 L38 44')
-const drawChevronUp = () => drawPath('M20 38 L32 26 L44 38')
-const drawChevronDown = () => drawPath('M20 26 L32 38 L44 26')
+const drawSmallRect = () => {
+  const rect = snap.rect(30, 30, 4, 4);  // positioned to be centered initially
+  setupElement(rect);
+  refreshPreview();
+}
 
-const drawArrowRight = () => drawPath('M20 32 H44 M36 24 L44 32 L36 40')
-const drawArrowLeft = () => drawPath('M44 32 H20 M28 24 L20 32 L28 40')
-const drawArrowUp = () => drawPath('M32 44 V20 M24 28 L32 20 L40 28')
-const drawArrowDown = () => drawPath('M32 20 V44 M24 36 L32 44 L40 36')
 
-const drawAngleRight = () => drawPath('M24 16 L40 32 L24 48')
-const drawAngleLeft = () => drawPath('M40 16 L24 32 L40 48')
+const drawPath = (d: string, strokeOnly = false) => {
+  const path = snap.path(d);
+  setupElement(path, strokeOnly);
+  refreshPreview();
+}
+
+const drawChevronRight = () => drawPath('M24 16 L40 32 L24 48');
+const drawChevronLeft = () => drawPath('M40 16 L24 32 L40 48');
+const drawChevronUp = () => drawPath('M16 40 L32 24 L48 40');
+const drawChevronDown = () => drawPath('M16 24 L32 40 L48 24');
+
+
+
+const drawArrowRight = () => drawPath('M16 32 L44 16 V28 H56 V36 H44 V48 Z');
+const drawArrowLeft = () => drawPath('M48 32 L20 16 V28 H8 V36 H20 V48 Z');
+const drawArrowUp = () => drawPath('M32 48 L48 20 H36 V8 H28 V20 H16 Z');
+const drawArrowDown = () => drawPath('M32 16 L48 44 H36 V56 H28 V44 H16 Z');
+
+
+
+
+const drawAngleRight = () => drawPath('M16 16 L40 32 L16 48');
+const drawAngleLeft = () => drawPath('M48 16 L24 32 L48 48');
+const drawAngleUp = () => drawPath('M16 48 L32 24 L48 48');
+const drawAngleDown = () => drawPath('M16 16 L32 40 L48 16');
+
 const drawDoubleAngleRight = () => drawPath('M22 16 L34 32 L22 48 M34 16 L46 32 L34 48')
 const drawDoubleAngleLeft = () => drawPath('M42 16 L30 32 L42 48 M30 16 L18 32 L30 48')
 
@@ -229,15 +276,20 @@ const drawVerticalDots = () => drawPath('M32 20 a2 2 0 1 0 0.1 0 M32 32 a2 2 0 1
 const drawHorizontalDots = () => drawPath('M20 32 a2 2 0 1 0 0.1 0 M32 32 a2 2 0 1 0 0.1 0 M44 32 a2 2 0 1 0 0.1 0')
 
 
+const drawBurgerClassic = () => drawPath('M16 22 H48 M16 32 H48 M16 42 H48', true);
+const drawBurgerThin = () => drawPath('M16 24 H48 M16 32 H48 M16 40 H48', true);
+const drawBurgerOffset = () => drawPath('M16 20 H48 M24 32 H48 M32 44 H48', true);
+
+const drawCloseIcon = () => drawPath('M20 20 L44 44 M44 20 L20 44', true);
+
+const drawTrashIcon = () => drawPath('M20 24 H44 L40 48 H24 Z M28 24 V20 H36 V24', true);
+
+const drawSearchIcon = () => drawPath('M40 40 L48 48 M28 40 A12 12 0 1 1 40 28 12 12 0 0 1 28 40 Z', true);
+
+const drawCheckIcon = () => drawPath('M20 34 L28 42 L44 24', true);
 
 
-const deleteSelected = () => {
-  if (selectedShape) {
-    selectedShape.remove()
-    selectedShape = null
-    refreshPreview()
-  }
-}
+
 
 const clearCanvas = () => {
   snap.selectAll('*').forEach((el: any) => el.remove())
