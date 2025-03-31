@@ -279,6 +279,31 @@ export const tools: Record<string, Tool> = {
             }
         }
     },
+    'color-palette-generator': {
+        title: 'Color Palette Generator',
+        description: 'Generate harmonious color palettes from any base HEX color.',
+        category: 'colors',
+        component: () => import('~/components/tools/colors/ColorPaletteGenerator.vue'),
+        seo: {
+            title: 'Color Palette Generator – CodeHelper',
+            description: 'Create visually balanced color palettes from a single base HEX color for design and UI use.',
+            ogImage: 'https://codehelper.me/og-images/color-palette-generator.png',
+            keywords: 'color palette, palette generator, hex colors, design tools, web colors, shades, tints',
+            structuredData: {
+                "@context": "https://schema.org",
+                "@type": "SoftwareApplication",
+                "name": "Color Palette Generator",
+                "operatingSystem": "All",
+                "applicationCategory": "DeveloperApplication",
+                "aggregateRating": {
+                    "@type": "AggregateRating",
+                    "ratingValue": "5",
+                    "ratingCount": "14"
+                }
+            }
+        }
+    }
+
 
 
 }
