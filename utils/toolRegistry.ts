@@ -218,7 +218,7 @@ export const tools: Record<string, Tool> = {
         title: 'HTML Minifier',
         description: 'Minify your HTML files for optimized delivery.',
         category: 'formatter',
-        component: () => import('~/components/tools/formatter/HtmlMinifier.vue'),
+        component: () => import('~/components/tools/formatter/HTMLMinifier.vue'),
         seo: {
             title: 'HTML Minifier – CodeHelper',
             description: 'Minify and compress HTML code for faster loading and cleaner markup. Remove comments, collapse whitespace, and more.',
