@@ -433,6 +433,32 @@ export const tools: Record<string, Tool> = {
         }
     },
 
+    'box-shadow-tester': {
+        title: 'Box Shadow Tester',
+        description: 'Visualize and fine-tune CSS box shadows easily.',
+        category: 'css',
+        component: () => import('~/components/tools/css/BoxShadowTester.vue'),
+        seo: {
+            title: 'Box Shadow Tester – CodeHelper',
+            description: 'Generate and preview CSS box-shadow values in real time with offset, blur, color, and spread settings.',
+            ogImage: 'https://codehelper.me/images/codehelper_OGIMAGE.webp',
+            keywords: 'css, box shadow, shadow generator, visual css tool, web design, ui design, css box-shadow editor',
+            structuredData: {
+                "@context": "https://schema.org",
+                "@type": "SoftwareApplication",
+                "name": "Box Shadow Tester",
+                "operatingSystem": "All",
+                "applicationCategory": "DeveloperApplication",
+                "aggregateRating": {
+                    "@type": "AggregateRating",
+                    "ratingValue": "5",
+                    "ratingCount": "9"
+                }
+            }
+        }
+    },
+
+
     'color-converter': {
         title: 'Color Converter',
         description: 'Convert colors between HEX, RGB, and HSL formats instantly.',
