@@ -115,6 +115,32 @@ export const tools: Record<string, Tool> = {
         }
     },
 
+    'readme-generator': {
+        title: 'README Generator',
+        description: 'Generate GitHub README.md files with customizable sections.',
+        category: 'generator',
+        component: () => import('~/components/tools/generator/ReadmeGenerator.vue'),
+        seo: {
+            title: 'README Generator – CodeHelper',
+            description: 'Quickly generate structured README.md markdown files for your GitHub projects with customizable sections like Installation, Usage, and License.',
+            ogImage: 'https://codehelper.me/images/codehelper_OGIMAGE.webp',
+            keywords: 'readme generator, markdown, github readme, markdown template, project documentation, generator',
+            structuredData: {
+                "@context": "https://schema.org",
+                "@type": "SoftwareApplication",
+                "name": "README Generator",
+                "operatingSystem": "All",
+                "applicationCategory": "DeveloperApplication",
+                "aggregateRating": {
+                    "@type": "AggregateRating",
+                    "ratingValue": "5",
+                    "ratingCount": "7"
+                }
+            }
+        }
+    },
+
+
     'byte-size-converter': {
         title: 'Byte Size Converter',
         description: 'Convert between Bytes, KB, MB, GB, and TB easily.',
@@ -507,8 +533,6 @@ export const tools: Record<string, Tool> = {
             }
         }
     }
-
-
 
 }
 

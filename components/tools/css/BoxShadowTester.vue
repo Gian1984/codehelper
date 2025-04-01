@@ -71,7 +71,7 @@
     <div class="text-white mt-6">
       <p class="mb-2">Generated CSS:</p>
       <pre class="bg-gray-900 text-green-400 p-4 rounded text-sm">
-box-shadow: {{ boxShadowValue }};
+          box-shadow: {{ boxShadowValue }};
       </pre>
     </div>
   </div>
