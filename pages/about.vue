@@ -180,7 +180,7 @@ const values = [
   },
   {
     name: 'Enjoy downtime.',
-    description: 'Great ideas are born during rest. We believe balance fuels creativity — step back, recharge, and come back stronger.',
+    description: 'Great ideas are born during rest. I believe balance fuels creativity — step back, recharge, and come back stronger.',
     icon: SunIcon,
   },
 ]

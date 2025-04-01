@@ -39,6 +39,107 @@ export const tools: Record<string, Tool> = {
             }
         }
     },
+
+    'xml-formatter': {
+        title: 'XML Formatter',
+        description: 'Pretty-print and validate XML structures.',
+        category: 'formatter',
+        component: () => import('~/components/tools/formatter/XmlFormatter.vue'),
+        seo: {
+            title: 'XML Formatter & Validator – CodeHelper',
+            description: 'Beautify and validate XML code directly in the browser. Indent, highlight errors, and clean your markup.',
+            ogImage: 'https://codehelper.me/images/codehelper_OGIMAGE.webp',
+            keywords: 'xml, formatter, beautifier, validator, pretty-print, xml validator online, code formatter',
+            structuredData: {
+                "@context": "https://schema.org",
+                "@type": "SoftwareApplication",
+                "name": "XML Formatter",
+                "operatingSystem": "All",
+                "applicationCategory": "DeveloperApplication",
+                "aggregateRating": {
+                    "@type": "AggregateRating",
+                    "ratingValue": "5",
+                    "ratingCount": "20"
+                }
+            }
+        }
+    },
+
+    'json-yaml-converter': {
+        title: 'JSON ↔ YAML Converter',
+        description: 'Convert JSON to YAML and YAML to JSON seamlessly.',
+        category: 'converter',
+        component: () => import('~/components/tools/converter/JsonYamlConverter.vue'),
+        seo: {
+            title: 'JSON ↔ YAML Converter – CodeHelper',
+            description: 'Convert JSON to YAML and vice versa easily in your browser. No installation, fast and reliable.',
+            ogImage: 'https://codehelper.me/images/codehelper_OGIMAGE.webp',
+            keywords: 'json to yaml, yaml to json, json converter, yaml converter, code conversion, online tool',
+            structuredData: {
+                "@context": "https://schema.org",
+                "@type": "SoftwareApplication",
+                "name": "JSON ↔ YAML Converter",
+                "operatingSystem": "All",
+                "applicationCategory": "DeveloperApplication",
+                "aggregateRating": {
+                    "@type": "AggregateRating",
+                    "ratingValue": "5",
+                    "ratingCount": "16"
+                }
+            }
+        }
+    },
+
+    'number-base-converter': {
+        title: 'Number Base Converter',
+        description: 'Convert numbers between Binary, Octal, Decimal, and Hex.',
+        category: 'converter',
+        component: () => import('~/components/tools/converter/NumberBaseConverter.vue'),
+        seo: {
+            title: 'Number Base Converter – CodeHelper',
+            description: 'Convert between decimal, binary, octal, and hexadecimal with this fast and easy online converter.',
+            ogImage: 'https://codehelper.me/images/codehelper_OGIMAGE.webp',
+            keywords: 'number converter, binary, octal, decimal, hexadecimal, base converter, online tool',
+            structuredData: {
+                "@context": "https://schema.org",
+                "@type": "SoftwareApplication",
+                "name": "Number Base Converter",
+                "operatingSystem": "All",
+                "applicationCategory": "DeveloperApplication",
+                "aggregateRating": {
+                    "@type": "AggregateRating",
+                    "ratingValue": "5",
+                    "ratingCount": "26"
+                }
+            }
+        }
+    },
+
+    'byte-size-converter': {
+        title: 'Byte Size Converter',
+        description: 'Convert between Bytes, KB, MB, GB, and TB easily.',
+        category: 'converter',
+        component: () => import('~/components/tools/converter/ByteSizeConverter.vue'),
+        seo: {
+            title: 'Byte Size Converter – CodeHelper',
+            description: 'Convert bytes to KB, MB, GB, TB, and vice versa with this fast and accurate online converter.',
+            ogImage: 'https://codehelper.me/images/codehelper_OGIMAGE.webp',
+            keywords: 'byte converter, kb to mb, mb to gb, byte size converter, data size calculator, online tool',
+            structuredData: {
+                "@context": "https://schema.org",
+                "@type": "SoftwareApplication",
+                "name": "Byte Size Converter",
+                "operatingSystem": "All",
+                "applicationCategory": "DeveloperApplication",
+                "aggregateRating": {
+                    "@type": "AggregateRating",
+                    "ratingValue": "5",
+                    "ratingCount": "18"
+                }
+            }
+        }
+    },
+
     'clamp-generator': {
         title: 'Clamp Generator',
         description: 'Generate responsive font-size clamp() CSS.',
@@ -87,6 +188,31 @@ export const tools: Record<string, Tool> = {
             }
         }
     },
+    'html-minifier': {
+        title: 'HTML Minifier',
+        description: 'Minify your HTML files for optimized delivery.',
+        category: 'formatter',
+        component: () => import('~/components/tools/formatter/HtmlMinifier.vue'),
+        seo: {
+            title: 'HTML Minifier – CodeHelper',
+            description: 'Minify and compress HTML code for faster loading and cleaner markup. Remove comments, collapse whitespace, and more.',
+            ogImage: 'https://codehelper.me/images/codehelper_OGIMAGE.webp',
+            keywords: 'html, minifier, html compressor, remove comments, collapse whitespace, optimize, clean html',
+            structuredData: {
+                "@context": "https://schema.org",
+                "@type": "SoftwareApplication",
+                "name": "HTML Minifier",
+                "operatingSystem": "All",
+                "applicationCategory": "DeveloperApplication",
+                "aggregateRating": {
+                    "@type": "AggregateRating",
+                    "ratingValue": "5",
+                    "ratingCount": "11"
+                }
+            }
+        }
+    },
+
     'px-to-vh-converter': {
         title: 'PX to VH Converter',
         description: 'Convert pixel values to responsive vh units based on viewport height.',
