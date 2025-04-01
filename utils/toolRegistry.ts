@@ -407,6 +407,32 @@ export const tools: Record<string, Tool> = {
             }
         }
     },
+
+    'color-shades-generator': {
+        title: 'Color Shades Generator',
+        description: 'Create lighter and darker shades of a HEX color instantly.',
+        category: 'colors',
+        component: () => import('~/components/tools/colors/ColorShadesGenerator.vue'),
+        seo: {
+            title: 'Color Shades Generator – CodeHelper',
+            description: 'Generate smooth tints and shades of a HEX color for web design and UI development.',
+            ogImage: 'https://codehelper.me/images/codehelper_OGIMAGE.webp',
+            keywords: 'color shades, color palette, hex shades, lighter color, darker color, design tools',
+            structuredData: {
+                "@context": "https://schema.org",
+                "@type": "SoftwareApplication",
+                "name": "Color Shades Generator",
+                "operatingSystem": "All",
+                "applicationCategory": "DeveloperApplication",
+                "aggregateRating": {
+                    "@type": "AggregateRating",
+                    "ratingValue": "5",
+                    "ratingCount": "11"
+                }
+            }
+        }
+    },
+
     'color-converter': {
         title: 'Color Converter',
         description: 'Convert colors between HEX, RGB, and HSL formats instantly.',
