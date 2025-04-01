@@ -285,6 +285,32 @@ export const tools: Record<string, Tool> = {
             }
         }
     },
+
+    'wave-generator': {
+        title: 'SVG Wave Generator',
+        description: 'Create customizable SVG wave shapes easily.',
+        category: 'svg',
+        component: () => import('~/components/tools/svg/WaveGenerator.vue'),
+        seo: {
+            title: 'SVG Wave Generator – CodeHelper',
+            description: 'Generate customizable SVG wave shapes for your web projects.',
+            ogImage: 'https://codehelper.me/images/codehelper_OGIMAGE.webp',
+            keywords: 'svg, wave, generator, customizable, web design, graphic tool',
+            structuredData: {
+                "@context": "https://schema.org",
+                "@type": "SoftwareApplication",
+                "name": "SVG Wave Generator",
+                "operatingSystem": "All",
+                "applicationCategory": "DeveloperApplication",
+                "aggregateRating": {
+                    "@type": "AggregateRating",
+                    "ratingValue": "5",
+                    "ratingCount": "8"
+                }
+            }
+        }
+    },
+
     'aspect-ratio-calculator': {
         title: 'Aspect Ratio Calculator',
         description: 'Calculate aspect ratios and pixel dimensions for media and screens.',

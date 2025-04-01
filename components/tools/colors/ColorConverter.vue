@@ -23,12 +23,6 @@
       <input v-model="rgbInput" @blur="updateFromRgb" placeholder="e.g. 52, 152, 219" class="text-black w-full px-2 py-1 rounded" />
     </label>
 
-    <!-- RGBA Input -->
-    <label class="block">
-      <span class="text-gray-300">RGBA</span>
-      <input v-model="rgbaInput" @blur="updateFromRgba" placeholder="e.g. 52, 152, 219, 0.5" class="text-black w-full px-2 py-1 rounded" />
-    </label>
-
     <!-- HSL Input -->
     <label class="block">
       <span class="text-gray-300">HSL</span>
@@ -39,20 +33,17 @@
     <div class="text-white">
       <p><strong>HEX:</strong> {{ hex }}</p>
       <p><strong>RGB:</strong> {{ rgb }}</p>
-      <p><strong>RGBA:</strong> {{ rgba }}</p>
       <p><strong>HSL:</strong> {{ hsl }}</p>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 
 const hex = ref('#3498db')
 const rgbInput = ref('')
-const rgbaInput = ref('')
 const hslInput = ref('')
-const alpha = ref(1)
 
 const validateHex = () => {
   if (!/^#[0-9A-Fa-f]{6}$/.test(hex.value)) {
@@ -73,7 +64,7 @@ const rgbToHex = (r, g, b) => {
 }
 
 const rgbToHsl = (r, g, b) => {
-  r /= 255; g /= 255; b /= 255
+  r /= 255; g /= 255; b /= 255;
   const max = Math.max(r, g, b), min = Math.min(r, g, b)
   let h, s, l = (max + min) / 2
 
@@ -114,12 +105,6 @@ const rgb = computed(() => {
   return `rgb(${r}, ${g}, ${b})`
 })
 
-const rgba = computed(() => {
-  const { r, g, b } = hexToRgb(hex.value)
-  rgbaInput.value = `${r}, ${g}, ${b}, ${alpha.value}`
-  return `rgba(${r}, ${g}, ${b}, ${alpha.value})`
-})
-
 const hsl = computed(() => {
   const { r, g, b } = hexToRgb(hex.value)
   const { h, s, l } = rgbToHsl(r, g, b)
@@ -135,15 +120,6 @@ const updateFromRgb = () => {
   }
 }
 
-const updateFromRgba = () => {
-  const match = rgbaInput.value.match(/(\d+),\s*(\d+),\s*(\d+),\s*(\d*\.?\d+)/)
-  if (match) {
-    const [_, r, g, b, a] = match
-    hex.value = rgbToHex(+r, +g, +b)
-    alpha.value = parseFloat(a)
-  }
-}
-
 const updateFromHsl = () => {
   const match = hslInput.value.match(/(\d+),\s*(\d+)%?,\s*(\d+)%?/)
   if (match) {
@@ -155,7 +131,7 @@ const updateFromHsl = () => {
 </script>
 
 <style scoped>
-input[type="text"], input[type="number"] {
+input[type="text"] {
   @apply bg-white;
 }
 </style>
