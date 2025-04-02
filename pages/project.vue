@@ -1,6 +1,6 @@
 <template>
   <div class="bg-gray-900">
-    <div>
+
       <!-- Hero section -->
       <div class="relative isolate overflow-hidden">
         <svg class="absolute inset-0 -z-10 size-full stroke-white/10 [mask-image:radial-gradient(100%_100%_at_top_right,white,transparent)]" aria-hidden="true">
@@ -30,29 +30,37 @@
         </div>
       </div>
 
-      <!-- Category list -->
-      <div class="mx-auto mt-8 max-w-7xl px-6 sm:mt-16 lg:px-8">
-        <h2 class="text-base/7 font-semibold text-indigo-400 text-center">Browse by Category</h2>
-        <p class="mt-2 text-4xl font-semibold tracking-tight text-pretty text-white sm:text-5xl lg:text-balance text-center">
-          Discover tools tailored to your workflow
-        </p>
-        <p class="mt-6 text-lg/8 text-gray-300 text-center">
-          Quickly find the right tool for the job — organized by category to boost your productivity.
-        </p>
 
-        <div class="mx-auto mt-10 grid max-w-4xl grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 text-center">
+    <!-- Category list -->
+    <div class="mx-auto mt-8 max-w-7xl px-6 sm:mt-16 lg:px-8">
+      <h2 class="text-base/7 font-semibold text-indigo-400 text-center">Browse by Category</h2>
+      <p class="mt-2 text-4xl font-semibold tracking-tight text-pretty text-white sm:text-5xl lg:text-balance text-center">
+        Discover tools tailored to your workflow
+      </p>
+      <p class="mt-6 text-lg/8 text-gray-300 text-center">
+        Quickly find the right tool for the job organized by category to boost your productivity.
+      </p>
+      <ul class="mx-auto mt-10 grid max-w-6xl grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 text-center">
+        <li
+            v-for="([category, toolsInCategory], i) in toolsByCategory"
+            :key="category"
+            class="rounded-lg bg-gray-800 p-6 shadow hover:shadow-md transition text-center"
+        >
           <NuxtLink
-              v-for="(toolsInCategory, category) in toolsByCategory"
-              :key="category"
               :to="`/tools?category=${category}`"
-              class="capitalize text-white bg-gray-800 hover:bg-indigo-500 rounded-lg py-4 px-6 font-medium text-lg shadow transition-colors duration-200"
+              class="block text-lg font-semibold capitalize text-white hover:text-indigo-400"
           >
             {{ category }}
           </NuxtLink>
-        </div>
-      </div>
+          <p class="mt-2 text-gray-400 text-sm">
+            {{ toolsInCategory.length }} tool{{ toolsInCategory.length > 1 ? 's' : '' }}
+          </p>
+        </li>
+      </ul>
+    </div>
 
-      <!-- Random tools -->
+
+    <!-- Random tools -->
       <div class="mx-auto mt-32 pb-32 max-w-7xl px-6 sm:mt-56 sm:pb-56 lg:px-8">
         <div class="mx-auto max-w-2xl lg:text-center">
           <h2 class="text-base/7 font-semibold text-indigo-400">Smart and powerful</h2>
@@ -87,11 +95,11 @@
       </div>
 
 
-    </div>
+
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { computed } from 'vue'
 import { useSeoMeta, useHead } from '#imports'
 import { tools } from '~/utils/toolRegistry'
@@ -126,13 +134,16 @@ useHead({
 })
 
 const toolsByCategory = computed(() => {
-  const grouped = {}
+  const grouped = new Map<string, any[]>()
+
   for (const [slug, tool] of Object.entries(tools)) {
     const category = tool.category || 'Uncategorized'
-    if (!grouped[category]) grouped[category] = []
-    grouped[category].push(tool)
+    if (!grouped.has(category)) grouped.set(category, [])
+    grouped.get(category)!.push(tool)
   }
-  return grouped
+
+  // Sort categories alphabetically
+  return [...grouped.entries()].sort(([a], [b]) => a.localeCompare(b))
 })
 
 const randomTools = computed(() => {

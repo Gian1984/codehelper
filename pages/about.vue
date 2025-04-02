@@ -8,7 +8,7 @@
 
       <!-- Header section -->
       <div class="px-6 pt-14 lg:px-8">
-        <div class="mx-auto max-w-2xl pt-24 text-center sm:pt-40">
+        <div class="mx-auto max-w-4xl pt-6 text-center sm:pt-24">
           <h1 class="text-5xl font-semibold tracking-tight text-white sm:text-7xl">Empowering Developers Everywhere</h1>
           <p class="mt-8 text-lg font-medium text-pretty text-gray-400 sm:text-xl/8">
             Open source isn't just code—it's a movement. By sharing knowledge and making tools freely accessible, we enable developers to build, learn, and grow together.
@@ -44,11 +44,6 @@
             </div>
           </dl>
         </div>
-      </div>
-
-      <!-- Image section -->
-      <div class="mt-32 sm:mt-40 xl:mx-auto xl:max-w-7xl xl:px-8">
-        <img src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2894&q=80" alt="" class="aspect-9/4 w-full object-cover xl:rounded-3xl" />
       </div>
 
       <!-- Values section -->

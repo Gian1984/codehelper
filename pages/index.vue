@@ -14,13 +14,32 @@
           alt="Gianluca Tiengo"
       />
       <h1 class="text-5xl font-semibold tracking-tight text-white sm:text-7xl">CodeHelper</h1>
-      <p class="mt-6 text-lg font-medium text-gray-400 sm:text-xl">A modern toolbox for developers. Format, convert, generate, and optimize your work with simple, free tools for the web.</p>
+      <p class="mt-6 text-lg font-medium text-gray-400 sm:text-xl">A modern toolbox for developers. Format, convert, generate, and optimize your work with simple, free tools for the web and more.</p>
     </div>
   </div>
 
+
+  <div class="bg-gray-900 text-white px-6 py-24 sm:py-32 lg:px-8">
+    <div class="mx-auto max-w-6xl pt-12 ">
+      <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl mb-6">
+        A Simpler Tool Is Often the Best Tool
+      </h2>
+      <div class="rounded-lg bg-gray-800 p-8 shadow hover:shadow-md transition">
+        <p class="text-lg text-gray-400">
+          CodeHelper is built to promote mindful, efficient development. Using a dedicated tool for a specific task is not only faster and easier, it also uses <strong>far less energy</strong> than running an AI model or large framework just to pretty-print JSON, convert units, or generate a README.
+        </p>
+        <p class="mt-4 text-lg text-gray-400">
+          This site is designed to be fast, lightweight, and sustainable — helping developers do more while consuming less. Make every click count — for your workflow and the planet.
+        </p>
+      </div>
+    </div>
+  </div>
+
+
+
   <div class="bg-gray-900 text-white px-6 pb-24 sm:pb-32 lg:px-8">
     <div class="mx-auto max-w-6xl pt-12">
-      <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl mb-6">Popular Tools</h2>
+      <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl mb-6">Popular</h2>
       <ul class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
         <li v-for="([slug, tool], i) in topTools" :key="slug" class="rounded-lg bg-gray-800 p-4 shadow hover:shadow-md transition">
           <NuxtLink :to="`/tools/${slug}`" class="block">
@@ -30,7 +49,7 @@
         </li>
       </ul>
       <div class="text-center mt-10">
-        <NuxtLink to="/tools" class="bg-indigo-600 px-5 py-3 rounded hover:bg-indigo-500 text-white text-lg">Explore All Tools</NuxtLink>
+        <NuxtLink to="/tools" class="bg-indigo-600 px-5 py-3 rounded hover:bg-indigo-500 text-white text-lg">Explore all tools</NuxtLink>
       </div>
     </div>
   </div>
@@ -38,7 +57,7 @@
 
   <div class="bg-gray-900 text-white px-6 pb-24 sm:pb-32 lg:px-8">
     <div class="mx-auto max-w-6xl pt-12">
-      <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl mb-6">Browse by Category</h2>
+      <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl mb-6">Category</h2>
 
       <ul class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
         <li
@@ -57,6 +76,25 @@
       </ul>
     </div>
   </div>
+
+
+  <div class="bg-gray-900 text-white px-6 pb-24 sm:pb-32 lg:px-8">
+    <div class="mx-auto max-w-6xl pt-12">
+      <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl mb-6">
+        For Everyone
+      </h2>
+      <div class="rounded-lg bg-gray-800 p-8 shadow hover:shadow-md transition">
+        <p class="text-lg text-gray-400">
+          CodeHelper is a free and open source project built to help developers solve everyday problems quickly and cleanly.
+          Whether you want to improve a tool, add a new one, or simply explore how it works, you’re welcome to dive into the code.
+        </p>
+        <p class="mt-4 text-lg text-gray-400">
+          Anyone can fork the project on <a href="https://github.com/Gian1984/codehelper" class="text-indigo-400 hover:underline" target="_blank" rel="noopener">GitHub</a> and contribute. Community-driven, developer-first, that's what makes CodeHelper better every day.
+        </p>
+      </div>
+    </div>
+  </div>
+
 
 
 </template>
@@ -100,19 +138,36 @@ useHead({
   ]
 })
 
-const topTools = computed(() =>
-    Object.entries(tools).slice(0, 8)
-)
+const topTools = computed(() => {
+  const shuffled = Object.entries(tools)
+      .map((tool) => ({ sort: Math.random(), value: tool }))
+      .sort((a, b) => a.sort - b.sort)
+      .map((a) => a.value)
+
+  return shuffled.slice(0, 8)
+})
+
 
 const toolsByCategory = computed(() => {
   const grouped: Record<string, any[]> = {}
+
   for (const [slug, tool] of Object.entries(tools)) {
     const category = tool.category || 'Uncategorized'
     if (!grouped[category]) grouped[category] = []
     grouped[category].push(tool)
   }
-  return grouped
+
+  // Sort categories alphabetically
+  const sorted = Object.keys(grouped).sort()
+
+  const ordered: Record<string, any[]> = {}
+  for (const category of sorted) {
+    ordered[category] = grouped[category]
+  }
+
+  return ordered
 })
+
 
 
 </script>
