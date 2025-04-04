@@ -100,7 +100,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import { tools } from '~/utils/toolRegistry'
 import { useSeoMeta, useHead } from '#imports'
 
@@ -138,16 +138,19 @@ useHead({
   ]
 })
 
-const topTools = computed(() => {
+// ✅ Moved random logic into client-only onMounted
+const topTools = ref([])
+
+onMounted(() => {
   const shuffled = Object.entries(tools)
       .map((tool) => ({ sort: Math.random(), value: tool }))
       .sort((a, b) => a.sort - b.sort)
       .map((a) => a.value)
 
-  return shuffled.slice(0, 8)
+  topTools.value = shuffled.slice(0, 8)
 })
 
-
+// ✅ Categorized tools (not affected by SSR, can stay as computed)
 const toolsByCategory = computed(() => {
   const grouped: Record<string, any[]> = {}
 
@@ -157,10 +160,9 @@ const toolsByCategory = computed(() => {
     grouped[category].push(tool)
   }
 
-  // Sort categories alphabetically
   const sorted = Object.keys(grouped).sort()
-
   const ordered: Record<string, any[]> = {}
+
   for (const category of sorted) {
     ordered[category] = grouped[category]
   }
@@ -171,8 +173,4 @@ const toolsByCategory = computed(() => {
 
 
 </script>
-
-<style scoped>
-</style>
-
 

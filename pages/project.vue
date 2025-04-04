@@ -69,7 +69,7 @@
         </div>
         <div class="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
           <dl class="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
-            <div v-for="([slug, tool], i) in randomTools" :key="slug" class="flex flex-col">
+            <div  v-for="([slug, tool], i) in randomTools" :key="slug"class="flex flex-col">
               <dt class="text-base/7 font-semibold text-white">
                 <div class="mb-6 flex size-10 items-center justify-center rounded-lg bg-indigo-500">
                   <span class="text-lg font-bold text-white">{{ i + 1 }}</span>
@@ -100,9 +100,16 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import { useSeoMeta, useHead } from '#imports'
 import { tools } from '~/utils/toolRegistry'
+
+// Define the Tool type
+interface Tool {
+  title: string
+  description: string
+  category?: string
+}
 
 useSeoMeta({
   title: 'Projects – CodeHelper',
@@ -120,8 +127,9 @@ useSeoMeta({
 useHead({
   script: [
     {
+      key: 'ld-json',
       type: 'application/ld+json',
-      children: JSON.stringify({
+      innerHTML: JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'WebPage',
         name: 'CodeHelper Projects',
@@ -130,11 +138,12 @@ useHead({
         image: 'https://codehelper.me/images/codehelper_OGIMAGE.webp'
       })
     }
-  ]
+  ],
+  __dangerouslyDisableSanitizers: ['script']
 })
 
-const toolsByCategory = computed(() => {
-  const grouped = new Map<string, any[]>()
+const toolsByCategory = computed<[string, Tool[]][]>(() => {
+  const grouped = new Map<string, Tool[]>()
 
   for (const [slug, tool] of Object.entries(tools)) {
     const category = tool.category || 'Uncategorized'
@@ -142,12 +151,13 @@ const toolsByCategory = computed(() => {
     grouped.get(category)!.push(tool)
   }
 
-  // Sort categories alphabetically
   return [...grouped.entries()].sort(([a], [b]) => a.localeCompare(b))
 })
 
-const randomTools = computed(() => {
+const randomTools = ref<[string, Tool][]>([])
+
+onMounted(() => {
   const shuffled = Object.entries(tools).sort(() => 0.5 - Math.random())
-  return shuffled.slice(0, 6)
+  randomTools.value = shuffled.slice(0, 6)
 })
 </script>

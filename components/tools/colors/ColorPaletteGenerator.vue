@@ -43,7 +43,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 
 const baseColor = ref('#3498db')
 
@@ -79,17 +79,16 @@ const generateRandomColor = () => {
   return `#${r}${g}${b}`
 }
 
-const randomPalette = ref([
-  generateRandomColor(),
-  generateRandomColor(),
-  generateRandomColor(),
-  generateRandomColor(),
-  generateRandomColor()
-])
+const randomPalette = ref([])
 
 const generateRandomPalette = () => {
   randomPalette.value = Array.from({ length: 5 }, () => generateRandomColor())
 }
+
+// ⬇️ Run once on client only
+onMounted(() => {
+  generateRandomPalette()
+})
 </script>
 
 <style scoped>
@@ -97,3 +96,4 @@ input[type="text"] {
   @apply bg-white;
 }
 </style>
+
