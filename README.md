@@ -1,75 +1,94 @@
-# Nuxt Minimal Starter
+# 🛠️ CodeHelper – Developer Tools in the Browser
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+**CodeHelper** is a free and growing collection of powerful tools built for developers, designers, and web creators. Format code, convert data, test UI ideas, and generate assets — all from your browser.
 
-## Setup
+🌐 Visit: [https://codehelper.me](https://codehelper.me)
 
-Make sure to install dependencies:
+---
 
+## 🚀 How to Run and Build the Project (Nuxt 3)
+
+### ⚙️ Requirements
+- Node.js 18+
+- NPM or Yarn
+
+### 📦 Install dependencies
 ```bash
-# npm
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
 ```
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
+### 💻 Start local dev server
 ```bash
-# npm
 npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
+Visit: `http://localhost:3000`
 
-## Production
-
-Build the application for production:
-
+### 📦 Build static version for production
 ```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
+npx nuxi generate
 ```
+Static files will be generated in the `.output/public` folder — ready to deploy on any static hosting (Vercel, Netlify, Cloudflare Pages, etc.)
 
-Locally preview production build:
-
+To preview the static build locally:
 ```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
+npx serve .output/public
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+---
+
+## 🧰 Available Tools
+Here’s a list of all tools currently available on CodeHelper:
+
+### 🔧 Formatters
+- [JSON Formatter](https://codehelper.me/tools/json-formatter)
+- [XML Formatter](https://codehelper.me/tools/xml-formatter)
+- [Var Dump Formatter](https://codehelper.me/tools/var-dump-formatter)
+- [HTML Minifier](https://codehelper.me/tools/html-minifier)
+
+### 🔄 Converters
+- [JSON ↔ YAML Converter](https://codehelper.me/tools/json-yaml-converter)
+- [Number Base Converter](https://codehelper.me/tools/number-base-converter)
+- [Byte Size Converter](https://codehelper.me/tools/byte-size-converter)
+
+### 🎨 Color Tools
+- [Color Shades Generator](https://codehelper.me/tools/color-shades-generator)
+- [Color Converter](https://codehelper.me/tools/color-converter)
+- [Color Palette Generator](https://codehelper.me/tools/color-palette-generator)
+
+### 🧪 CSS + UI Tools
+- [Clamp Generator](https://codehelper.me/tools/clamp-generator)
+- [Box Shadow Tester](https://codehelper.me/tools/box-shadow-tester)
+- [PX to VH Converter](https://codehelper.me/tools/px-to-vh-converter)
+- [PX to VW Converter](https://codehelper.me/tools/px-to-vw-converter)
+- [Aspect Ratio Calculator](https://codehelper.me/tools/aspect-ratio-calculator)
+
+### 🖼 SVG + Design Tools
+- [SVG Icon Generator](https://codehelper.me/tools/svg-icon-generator)
+- [SVG Wave Generator](https://codehelper.me/tools/wave-generator)
+- [Aspect Frame Generator](https://codehelper.me/tools/aspect-frame-generator)
+
+### 📝 Text Tools
+- [Lorem Ipsum Generator](https://codehelper.me/tools/lorem-ipsum-generator)
+- [Text Case Converter](https://codehelper.me/tools/text-case-converter)
+
+### 📄 Markdown Tools
+- [README Generator](https://codehelper.me/tools/readme-generator)
+
+---
+
+## 💡 Why CodeHelper?
+- 🧠 Smart tools made with developers in mind
+- ⚡ Instant browser use — no login, no tracking
+- 🎯 Fast, minimal, and distraction-free
+- 🌍 Open for feedback and contributions
+
+---
+
+## 📣 Feedback / Suggestions
+Have a tool idea or bug to report? Feel free to [open an issue](https://github.com/YOUR_USERNAME/codehelper/issues) or contact me via [https://codehelper.me](https://codehelper.me).
+
+---
+
+## 📃 License
+MIT © Gianluca
+
