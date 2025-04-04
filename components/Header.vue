@@ -1,7 +1,7 @@
 <template>
   <header>
-    <Disclosure as="nav" class="bg-gray-800" v-slot="{ open }">
-      <div class="mx-auto max-w-7xl px-2 sm:px-4 lg:px-8">
+    <Disclosure as="nav" class="bg-gray-800" v-slot="{ open, close }">
+    <div class="mx-auto max-w-7xl px-2 sm:px-4 lg:px-8">
         <div class="relative flex h-16 items-center justify-between">
           <div class="flex items-center px-2 lg:px-0">
             <div class="shrink-0">
@@ -9,13 +9,12 @@
             </div>
             <div class="hidden lg:ml-6 lg:block">
               <div class="flex space-x-4">
-                <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                 <NuxtLink
                     to="/"
                     :class="[
-                      'rounded-md px-3 py-2 text-sm font-medium',
-                       route.path === '/' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'
-                     ]"
+                    'rounded-md px-3 py-2 text-sm font-medium',
+                    route.path === '/' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'
+                  ]"
                 >
                   Home
                 </NuxtLink>
@@ -23,9 +22,9 @@
                 <NuxtLink
                     to="/tools"
                     :class="[
-                      'rounded-md px-3 py-2 text-sm font-medium',
-                       route.path === '/tools' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'
-                     ]"
+                    'rounded-md px-3 py-2 text-sm font-medium',
+                    route.path === '/tools' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'
+                  ]"
                 >
                   Tools
                 </NuxtLink>
@@ -33,9 +32,9 @@
                 <NuxtLink
                     to="/project"
                     :class="[
-                      'rounded-md px-3 py-2 text-sm font-medium',
-                       route.path === '/project' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'
-                     ]"
+                    'rounded-md px-3 py-2 text-sm font-medium',
+                    route.path === '/project' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'
+                  ]"
                 >
                   Project
                 </NuxtLink>
@@ -43,16 +42,17 @@
                 <NuxtLink
                     to="/about"
                     :class="[
-                      'rounded-md px-3 py-2 text-sm font-medium',
-                      route.path === '/about' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'
-                    ]"
+                    'rounded-md px-3 py-2 text-sm font-medium',
+                    route.path === '/about' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'
+                  ]"
                 >
                   About
                 </NuxtLink>
-
               </div>
             </div>
           </div>
+
+          <!-- Search bar -->
           <div class="flex flex-1 justify-center px-2 lg:ml-6 lg:justify-end">
             <div class="grid w-full max-w-lg grid-cols-1 lg:max-w-xs">
               <div class="relative w-full max-w-lg">
@@ -82,10 +82,10 @@
               </div>
             </div>
           </div>
+
+          <!-- Mobile menu button -->
           <div class="flex lg:hidden">
-            <!-- Mobile menu button -->
             <DisclosureButton class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:ring-2 focus:ring-white focus:outline-hidden focus:ring-inset">
-              <span class="absolute -inset-0.5" />
               <span class="sr-only">Open main menu</span>
               <Bars3Icon v-if="!open" class="block size-6" aria-hidden="true" />
               <XMarkIcon v-else class="block size-6" aria-hidden="true" />
@@ -94,58 +94,53 @@
         </div>
       </div>
 
+      <!-- ✅ Updated mobile nav -->
       <DisclosurePanel class="lg:hidden">
         <div class="space-y-1 px-2 pt-2 pb-3">
-          <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-          <DisclosureButton
-              as="NuxtLink"
+          <NuxtLink
               to="/"
+              @click="close()"
               :class="[
                 'block rounded-md px-3 py-2 text-base font-medium',
                 route.path === '/' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'
-              ]"
-          >
+              ]">
             Home
-          </DisclosureButton>
-
-          <DisclosureButton
-              as="NuxtLink"
+          </NuxtLink>
+          <NuxtLink
               to="/tools"
+              @click="close()"
               :class="[
                 'block rounded-md px-3 py-2 text-base font-medium',
                 route.path === '/tools' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'
-              ]"
-          >
+              ]">
             Tools
-          </DisclosureButton>
-
-          <DisclosureButton
-              as="NuxtLink"
+          </NuxtLink>
+          <NuxtLink
               to="/project"
+              @click="close()"
               :class="[
                 'block rounded-md px-3 py-2 text-base font-medium',
                 route.path === '/project' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'
-              ]"
-          >
-            Tools
-          </DisclosureButton>
+              ]">
+            Project
+          </NuxtLink>
 
-          <DisclosureButton
-              as="NuxtLink"
+          <NuxtLink
               to="/about"
+              @click="close()"
               :class="[
                 'block rounded-md px-3 py-2 text-base font-medium',
                 route.path === '/about' ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'
-              ]"
-          >
+              ]">
             About
-          </DisclosureButton>
-
+          </NuxtLink>
         </div>
       </DisclosurePanel>
+
     </Disclosure>
   </header>
 </template>
+
 
 <script setup>
 import { ref, computed, watch } from 'vue'
