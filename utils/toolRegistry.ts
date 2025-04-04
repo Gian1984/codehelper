@@ -19,7 +19,10 @@ export const tools: Record<string, Tool> = {
         title: 'JSON Formatter',
         description: 'Beautify and validate your JSON.',
         category: 'formatter',
-        component: () => import('~/components/tools/formatter/JsonFormatter.vue'),
+        component: () =>
+            import('~/components/tools/formatter/JsonFormatter.vue') as Promise<{
+                default: DefineComponent
+            }>,
         seo: {
             title: 'JSON Formatter – CodeHelper',
             description: 'Beautify, format, and validate JSON instantly in the browser.',
@@ -44,7 +47,9 @@ export const tools: Record<string, Tool> = {
         title: 'XML Formatter',
         description: 'Pretty-print and validate XML structures.',
         category: 'formatter',
-        component: () => import('~/components/tools/formatter/XmlFormatter.vue'),
+        component: () => import('~/components/tools/formatter/XmlFormatter.vue') as Promise<{
+            default: DefineComponent
+        }>,
         seo: {
             title: 'XML Formatter & Validator – CodeHelper',
             description: 'Beautify and validate XML code directly in the browser. Indent, highlight errors, and clean your markup.',
@@ -69,7 +74,9 @@ export const tools: Record<string, Tool> = {
         title: 'JSON ↔ YAML Converter',
         description: 'Convert JSON to YAML and YAML to JSON seamlessly.',
         category: 'converter',
-        component: () => import('~/components/tools/converter/JsonYamlConverter.vue'),
+        component: () => import('~/components/tools/converter/JsonYamlConverter.vue')as Promise<{
+            default: DefineComponent
+        }>,
         seo: {
             title: 'JSON ↔ YAML Converter – CodeHelper',
             description: 'Convert JSON to YAML and vice versa easily in your browser. No installation, fast and reliable.',
@@ -94,7 +101,9 @@ export const tools: Record<string, Tool> = {
         title: 'Number Base Converter',
         description: 'Convert numbers between Binary, Octal, Decimal, and Hex.',
         category: 'converter',
-        component: () => import('~/components/tools/converter/NumberBaseConverter.vue'),
+        component: () => import('~/components/tools/converter/NumberBaseConverter.vue') as Promise<{
+            default: DefineComponent
+        }>,
         seo: {
             title: 'Number Base Converter – CodeHelper',
             description: 'Convert between decimal, binary, octal, and hexadecimal with this fast and easy online converter.',
@@ -119,7 +128,9 @@ export const tools: Record<string, Tool> = {
         title: 'README Generator',
         description: 'Generate GitHub README.md files with customizable sections.',
         category: 'generator',
-        component: () => import('~/components/tools/generator/ReadmeGenerator.vue'),
+        component: () => import('~/components/tools/generator/ReadmeGenerator.vue') as Promise<{
+            default: DefineComponent
+        }>,
         seo: {
             title: 'README Generator – CodeHelper',
             description: 'Quickly generate structured README.md markdown files for your GitHub projects with customizable sections like Installation, Usage, and License.',
@@ -145,7 +156,9 @@ export const tools: Record<string, Tool> = {
         title: 'Byte Size Converter',
         description: 'Convert between Bytes, KB, MB, GB, and TB easily.',
         category: 'converter',
-        component: () => import('~/components/tools/converter/ByteSizeConverter.vue'),
+        component: () => import('~/components/tools/converter/ByteSizeConverter.vue') as Promise<{
+            default: DefineComponent
+        }>,
         seo: {
             title: 'Byte Size Converter – CodeHelper',
             description: 'Convert bytes to KB, MB, GB, TB, and vice versa with this fast and accurate online converter.',
@@ -170,7 +183,9 @@ export const tools: Record<string, Tool> = {
         title: 'Clamp Generator',
         description: 'Generate responsive font-size clamp() CSS.',
         category: 'css',
-        component: () => import('~/components/tools/css/ClampGenerator.vue'),
+        component: () => import('~/components/tools/css/ClampGenerator.vue') as Promise<{
+            default: DefineComponent
+        }>,
         seo: {
             title: 'CSS Clamp Generator – CodeHelper',
             description: 'Build fluid font-sizes with CSS clamp() utility.',
@@ -194,7 +209,9 @@ export const tools: Record<string, Tool> = {
         title: 'Var Dump Formatter',
         description: 'Beautify and format PHP var_dump() output.',
         category: 'formatter',
-        component: () => import('~/components/tools/formatter/VarDumpFormatter.vue'),
+        component: () => import('~/components/tools/formatter/VarDumpFormatter.vue') as Promise<{
+            default: DefineComponent
+        }>,
         seo: {
             title: 'Var Dump Formatter – CodeHelper',
             description: 'Format messy var_dump() output into readable structure instantly.',
@@ -218,7 +235,9 @@ export const tools: Record<string, Tool> = {
         title: 'HTML Minifier',
         description: 'Minify your HTML files for optimized delivery.',
         category: 'formatter',
-        component: () => import('~/components/tools/formatter/HTMLMinifier.vue'),
+        component: () => import('~/components/tools/formatter/HTMLMinifier.vue') as Promise<{
+            default: DefineComponent
+        }>,
         seo: {
             title: 'HTML Minifier – CodeHelper',
             description: 'Minify and compress HTML code for faster loading and cleaner markup. Remove comments, collapse whitespace, and more.',
@@ -243,7 +262,9 @@ export const tools: Record<string, Tool> = {
         title: 'PX to VH Converter',
         description: 'Convert pixel values to responsive vh units based on viewport height.',
         category: 'css',
-        component: () => import('~/components/tools/css/PxToVhConverter.vue'),
+        component: () => import('~/components/tools/css/PxToVhConverter.vue') as Promise<{
+            default: DefineComponent
+        }>,
         seo: {
             title: 'PX to VH Converter – CodeHelper',
             description: 'Convert pixel (px) values into responsive viewport height (vh) units easily.',
@@ -267,7 +288,9 @@ export const tools: Record<string, Tool> = {
         title: 'PX to VW Converter',
         description: 'Convert pixel values to responsive vw units based on viewport width.',
         category: 'css',
-        component: () => import('~/components/tools/css/PxToVwConverter.vue'),
+        component: () => import('~/components/tools/css/PxToVwConverter.vue') as Promise<{
+            default: DefineComponent
+        }>,
         seo: {
             title: 'PX to VW Converter – CodeHelper',
             description: 'Convert pixel (px) values into responsive viewport width (vw) units easily.',
@@ -291,7 +314,9 @@ export const tools: Record<string, Tool> = {
         title: 'SVG Icon Generator',
         description: 'Create and customize SVG icons for the web directly in your browser.',
         category: 'svg',
-        component: () => import('~/components/tools/svg/IconGenerator.vue'),
+        component: () => import('~/components/tools/svg/IconGenerator.vue') as Promise<{
+            default: DefineComponent
+        }>,
         seo: {
             title: 'SVG Icon Generator – CodeHelper',
             description: 'Design, customize and export scalable vector icons directly in your browser.',
@@ -316,7 +341,9 @@ export const tools: Record<string, Tool> = {
         title: 'SVG Wave Generator',
         description: 'Create customizable SVG wave shapes easily.',
         category: 'svg',
-        component: () => import('~/components/tools/svg/WaveGenerator.vue'),
+        component: () => import('~/components/tools/svg/WaveGenerator.vue') as Promise<{
+            default: DefineComponent
+        }>,
         seo: {
             title: 'SVG Wave Generator – CodeHelper',
             description: 'Generate customizable SVG wave shapes for your web projects.',
@@ -341,7 +368,9 @@ export const tools: Record<string, Tool> = {
         title: 'Aspect Ratio Calculator',
         description: 'Calculate aspect ratios and pixel dimensions for media and screens.',
         category: 'css',
-        component: () => import('~/components/tools/css/AspectRatioCalculator.vue'),
+        component: () => import('~/components/tools/css/AspectRatioCalculator.vue') as Promise<{
+            default: DefineComponent
+        }>,
         seo: {
             title: 'Aspect Ratio Calculator – CodeHelper',
             description: 'Easily calculate aspect ratios from pixel dimensions (width and height).',
@@ -365,7 +394,9 @@ export const tools: Record<string, Tool> = {
         title: 'Aspect Frame Generator',
         description: 'Generate matte frames with custom aspect ratios and download them as images.',
         category: 'imaging',
-        component: () => import('~/components/tools/imaging/FrameGenerator.vue'),
+        component: () => import('~/components/tools/imaging/FrameGenerator.vue') as Promise<{
+            default: DefineComponent
+        }>,
         seo: {
             title: 'Aspect Frame Generator – CodeHelper',
             description: 'Create and download matte-style image overlays with custom aspect ratios and resolution.',
@@ -389,7 +420,9 @@ export const tools: Record<string, Tool> = {
         title: 'Lorem Ipsum Generator',
         description: 'Generate customizable placeholder text (words, paragraphs, characters).',
         category: 'textes',
-        component: () => import('~/components/tools/textes/LoremIpsumGenerator.vue'),
+        component: () => import('~/components/tools/textes/LoremIpsumGenerator.vue') as Promise<{
+            default: DefineComponent
+        }>,
         seo: {
             title: 'Lorem Ipsum Generator – CodeHelper',
             description: 'Create dummy placeholder text in various formats for design and development.',
@@ -413,7 +446,9 @@ export const tools: Record<string, Tool> = {
         title: 'Text Case Converter',
         description: 'Convert text to UPPERCASE, Capitalize Case, or Sentence case.',
         category: 'textes',
-        component: () => import('~/components/tools/textes/TextCaseConverter.vue'),
+        component: () => import('~/components/tools/textes/TextCaseConverter.vue') as Promise<{
+            default: DefineComponent
+        }>,
         seo: {
             title: 'Text Case Converter – CodeHelper',
             description: 'Easily convert any text to uppercase, capitalized case, or sentence case for formatting and readability.',
@@ -438,7 +473,9 @@ export const tools: Record<string, Tool> = {
         title: 'Color Shades Generator',
         description: 'Create lighter and darker shades of a HEX color instantly.',
         category: 'colors',
-        component: () => import('~/components/tools/colors/ColorShadesGenerator.vue'),
+        component: () => import('~/components/tools/colors/ColorShadesGenerator.vue') as Promise<{
+            default: DefineComponent
+        }>,
         seo: {
             title: 'Color Shades Generator – CodeHelper',
             description: 'Generate smooth tints and shades of a HEX color for web design and UI development.',
@@ -463,7 +500,9 @@ export const tools: Record<string, Tool> = {
         title: 'Box Shadow Tester',
         description: 'Visualize and fine-tune CSS box shadows easily.',
         category: 'css',
-        component: () => import('~/components/tools/css/BoxShadowTester.vue'),
+        component: () => import('~/components/tools/css/BoxShadowTester.vue') as Promise<{
+            default: DefineComponent
+        }>,
         seo: {
             title: 'Box Shadow Tester – CodeHelper',
             description: 'Generate and preview CSS box-shadow values in real time with offset, blur, color, and spread settings.',
@@ -489,7 +528,9 @@ export const tools: Record<string, Tool> = {
         title: 'Color Converter',
         description: 'Convert colors between HEX, RGB, and HSL formats instantly.',
         category: 'colors',
-        component: () => import('~/components/tools/colors/ColorConverter.vue'),
+        component: () => import('~/components/tools/colors/ColorConverter.vue') as Promise<{
+            default: DefineComponent
+        }>,
         seo: {
             title: 'Color Converter – CodeHelper',
             description: 'Easily convert HEX to RGB and HSL color values for design and development.',
@@ -513,7 +554,9 @@ export const tools: Record<string, Tool> = {
         title: 'Color Palette Generator',
         description: 'Generate harmonious color palettes from any base HEX color.',
         category: 'colors',
-        component: () => import('~/components/tools/colors/ColorPaletteGenerator.vue'),
+        component: () => import('~/components/tools/colors/ColorPaletteGenerator.vue') as Promise<{
+            default: DefineComponent
+        }>,
         seo: {
             title: 'Color Palette Generator – CodeHelper',
             description: 'Create visually balanced color palettes from a single base HEX color for design and UI use.',
