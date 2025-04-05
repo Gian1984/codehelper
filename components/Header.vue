@@ -5,7 +5,11 @@
         <div class="relative flex h-16 items-center justify-between">
           <div class="flex items-center px-2 lg:px-0">
             <div class="shrink-0">
-              <img class="h-8 w-auto" src="/images/logo_nav.webp" alt="Codehelper.me" />
+              <div class="shrink-0">
+                <NuxtLink to="/">
+                  <img class="h-8 w-auto" src="/images/logo_nav.webp" alt="Codehelper.me" />
+                </NuxtLink>
+              </div>
             </div>
             <div class="hidden lg:ml-6 lg:block">
               <div class="flex space-x-4">
@@ -140,7 +144,6 @@
     </Disclosure>
   </header>
 </template>
-
 
 <script setup>
 import { ref, computed, watch } from 'vue'
