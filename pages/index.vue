@@ -29,7 +29,7 @@
           CodeHelper is built to promote mindful, efficient development. Using a dedicated tool for a specific task is not only faster and easier, it also uses <strong>far less energy</strong> than running an AI model or large framework just to pretty-print JSON, convert units, or generate a README.
         </p>
         <p class="mt-4 text-lg text-gray-400">
-          This site is designed to be fast, lightweight, and sustainable — helping developers do more while consuming less. Make every click count — for your workflow and the planet.
+          This site is designed to be fast, lightweight, and sustainable, helping developers do more while consuming less. Make every click count for your workflow and the planet.
         </p>
       </div>
     </div>
@@ -104,6 +104,7 @@ import { ref, onMounted, computed } from 'vue'
 import { tools } from '~/utils/toolRegistry'
 import { useSeoMeta, useHead } from '#imports'
 
+// SEO Meta Tags
 useSeoMeta({
   title: 'CodeHelper — Free Tools for Developers',
   description: 'Boost your workflow with modern web tools built for developers. Format, convert, minify and optimize code — all in one place.',
@@ -117,11 +118,13 @@ useSeoMeta({
   twitterImage: '/images/codehelper_OGIMAGE.webp'
 })
 
+// Structured Data
 useHead({
   script: [
     {
       type: 'application/ld+json',
-      children: JSON.stringify({
+      id: 'ld-json-schema',
+      innerHTML: JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'WebSite',
         name: 'CodeHelper',
@@ -138,8 +141,19 @@ useHead({
   ]
 })
 
-// ✅ Moved random logic into client-only onMounted
-const topTools = ref([])
+// Add this separately right after to disable sanitization by tag ID
+useHead({
+  __dangerouslyDisableSanitizersByTagID: {
+    'ld-json-schema': ['innerHTML']
+  }
+} as any) // 👈 force bypass the typing issue
+
+
+// Define the tool entry type
+type ToolEntry = [string, typeof tools[string]]
+
+// Top tools (randomized on client only)
+const topTools = ref<ToolEntry[]>([])
 
 onMounted(() => {
   const shuffled = Object.entries(tools)
@@ -150,9 +164,9 @@ onMounted(() => {
   topTools.value = shuffled.slice(0, 8)
 })
 
-// ✅ Categorized tools (not affected by SSR, can stay as computed)
+// Group tools by category
 const toolsByCategory = computed(() => {
-  const grouped: Record<string, any[]> = {}
+  const grouped: Record<string, typeof tools[string][]> = {}
 
   for (const [slug, tool] of Object.entries(tools)) {
     const category = tool.category || 'Uncategorized'
@@ -160,8 +174,9 @@ const toolsByCategory = computed(() => {
     grouped[category].push(tool)
   }
 
+  // Optional: Sort categories alphabetically
   const sorted = Object.keys(grouped).sort()
-  const ordered: Record<string, any[]> = {}
+  const ordered: Record<string, typeof tools[string][]> = {}
 
   for (const category of sorted) {
     ordered[category] = grouped[category]
@@ -169,8 +184,4 @@ const toolsByCategory = computed(() => {
 
   return ordered
 })
-
-
-
 </script>
-
