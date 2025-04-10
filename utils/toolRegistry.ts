@@ -575,7 +575,106 @@ export const tools: Record<string, Tool> = {
                 }
             }
         }
+    },
+    'image-color-picker': {
+        title: 'Image Color Picker',
+        description: 'Pick any color from an uploaded image and get HEX/RGB instantly.',
+        category: 'colors',
+        component: () => import('~/components/tools/colors/ImageColorPicker.vue') as Promise<{ default: DefineComponent }>,
+        seo: {
+            title: 'Image Color Picker – CodeHelper',
+            description: 'Upload an image and pick any color to get the HEX and RGB value instantly. All in your browser.',
+            ogImage: 'https://codehelper.me/images/codehelper_OGIMAGE.webp',
+            keywords: 'color picker, image color picker, hex from image, get color from image, rgb, design tool',
+            structuredData: {
+                "@context": "https://schema.org",
+                "@type": "SoftwareApplication",
+                "name": "Image Color Picker",
+                "operatingSystem": "All",
+                "applicationCategory": "DeveloperApplication",
+                "aggregateRating": {
+                    "@type": "AggregateRating",
+                    "ratingValue": "5",
+                    "ratingCount": "5"
+                }
+            }
+        }
+    },
+    'dev-notepad': {
+        title: 'Dev Notepad',
+        description: 'A minimalist developer notepad with local storage and export to TXT.',
+        category: 'textes',
+        component: () => import('~/components/tools/textes/DevNotepad.vue') as Promise<{ default: DefineComponent }>,
+        seo: {
+            title: 'Dev Notepad – CodeHelper',
+            description: 'A simple browser-based notepad for developers. Save notes in localStorage or export as .txt.',
+            ogImage: 'https://codehelper.me/images/codehelper_OGIMAGE.webp',
+            keywords: 'developer notepad, code notes, browser notepad, txt export, localStorage notes',
+            structuredData: {
+                "@context": "https://schema.org",
+                "@type": "SoftwareApplication",
+                "name": "Dev Notepad",
+                "operatingSystem": "All",
+                "applicationCategory": "DeveloperApplication",
+                "aggregateRating": {
+                    "@type": "AggregateRating",
+                    "ratingValue": "5",
+                    "ratingCount": "4"
+                }
+            }
+        }
+    },
+    'css-formatter': {
+        title: 'CSS Minifier & Beautifier',
+        description: 'Minify or beautify your CSS code instantly.',
+        category: 'formatter',
+        component: () => import('~/components/tools/formatter/CssFormatter.vue') as Promise<{ default: DefineComponent }>,
+        seo: {
+            title: 'CSS Minifier & Beautifier – CodeHelper',
+            description: 'Minify or format your CSS code online. Remove whitespace and comments, or pretty-print for readability.',
+            ogImage: 'https://codehelper.me/images/codehelper_OGIMAGE.webp',
+            keywords: 'css, minifier, beautifier, css formatter, compress css, format css, online css tool',
+            structuredData: {
+                "@context": "https://schema.org",
+                "@type": "SoftwareApplication",
+                "name": "CSS Minifier & Beautifier",
+                "operatingSystem": "All",
+                "applicationCategory": "DeveloperApplication",
+                "aggregateRating": {
+                    "@type": "AggregateRating",
+                    "ratingValue": "5",
+                    "ratingCount": "5"
+                }
+            }
+        }
+    },
+    'clip-path-maker': {
+        title: 'Clip Path Maker',
+        description: 'Visually create CSS clip-path polygons on images.',
+        category: 'imaging',
+        component: () => import('~/components/tools/imaging/ClipPathMaker.vue') as Promise<{ default: DefineComponent }>,
+        seo: {
+            title: 'CSS Clip Path Maker – CodeHelper',
+            description: 'Create and visualize complex CSS clip-path polygons with draggable points. Perfect for clipping images and shapes.',
+            ogImage: 'https://codehelper.me/images/codehelper_OGIMAGE.webp',
+            keywords: 'css clip-path, polygon, visual tool, clipping image, clip path generator, css tools',
+            structuredData: {
+                "@context": "https://schema.org",
+                "@type": "SoftwareApplication",
+                "name": "Clip Path Maker",
+                "operatingSystem": "All",
+                "applicationCategory": "DeveloperApplication",
+                "aggregateRating": {
+                    "@type": "AggregateRating",
+                    "ratingValue": "5",
+                    "ratingCount": "12"
+                }
+            }
+        }
     }
+
+
+
 
 }
 
