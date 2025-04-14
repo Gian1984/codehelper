@@ -6,12 +6,11 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
 
-  ssr: true, // disables server rendering, full static
-
+  ssr: true, // site will be pre-rendered as static using Nitro
   nitro: {
-    preset: 'static' // makes sure Nuxt generates a static site
+    preset: 'static' // full static output in /dist
   },
-
+  // @ts-expect-error: used by @nuxtjs/sitemap and nuxt-seo
   site: {
     url: 'https://codehelper.me'
   },
@@ -32,9 +31,9 @@ export default defineNuxtConfig({
     '@nuxtjs/sitemap'
   ],
 
-  // @ts-ignore — PhpStorm/Volar doesn't recognize this, but Nuxt will
   sitemap: {
     sitemapName: 'sitemap.xml',
+    hostname: 'https://codehelper.me',
     gzip: true,
     routes: () => {
       const staticRoutes = ['/', '/about', '/tools', '/project']
