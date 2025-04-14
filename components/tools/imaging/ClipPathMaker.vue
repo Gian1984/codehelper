@@ -54,6 +54,9 @@
         Reset
       </button>
     </div>
+
+    <!-- Copied Message -->
+    <div v-if="copiedMessage" class="text-green-400 text-sm">{{ copiedMessage }}</div>
   </div>
 </template>
 
@@ -62,7 +65,8 @@ import { ref, reactive, computed, onMounted } from 'vue'
 
 const targetImage = ref<HTMLElement | null>(null)
 const draggingIndex = ref<number | null>(null)
-const pointCount = ref(4) // default number of points
+const pointCount = ref(4)
+const copiedMessage = ref('')
 
 const points = reactive<Array<{ x: number; y: number }>>([])
 
@@ -116,7 +120,10 @@ function startDrag(index: number, event: MouseEvent) {
 
 function copyClipPath() {
   navigator.clipboard.writeText(`clip-path: polygon(${formattedPoints.value});`)
-  alert('Clip-path copied to clipboard!')
+  copiedMessage.value = 'Copied to clipboard!'
+  setTimeout(() => {
+    copiedMessage.value = ''
+  }, 2000)
 }
 
 function resetPoints() {

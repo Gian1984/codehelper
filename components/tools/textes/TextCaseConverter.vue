@@ -11,6 +11,9 @@
       <button @click="toUpperCase" class="bg-indigo-600 px-3 py-2 rounded hover:bg-indigo-500 text-white">
         UPPERCASE
       </button>
+      <button @click="toLowerCase" class="bg-indigo-600 px-3 py-2 rounded hover:bg-indigo-500 text-white">
+        lowercase
+      </button>
       <button @click="toCapitalize" class="bg-indigo-600 px-3 py-2 rounded hover:bg-indigo-500 text-white">
         Capitalize Case
       </button>
@@ -25,6 +28,10 @@
       </button>
     </div>
 
+    <div v-if="copiedMessage" class="text-green-400 mt-2 text-sm">
+      {{ copiedMessage }}
+    </div>
+
     <div v-if="outputText" class="mt-4 bg-gray-700 text-white p-4 rounded whitespace-pre-wrap">
       {{ outputText }}
     </div>
@@ -36,9 +43,14 @@ import { ref } from 'vue'
 
 const inputText = ref('')
 const outputText = ref('')
+const copiedMessage = ref('')
 
 const toUpperCase = () => {
   outputText.value = inputText.value.toUpperCase()
+}
+
+const toLowerCase = () => {
+  outputText.value = inputText.value.toLowerCase()
 }
 
 const toCapitalize = () => {
@@ -52,13 +64,17 @@ const toSentenceCase = () => {
 const copyOutput = async () => {
   if (outputText.value) {
     await navigator.clipboard.writeText(outputText.value)
-    alert('Copied to clipboard!')
+    copiedMessage.value = 'Copied!'
+    setTimeout(() => {
+      copiedMessage.value = ''
+    }, 2000)
   }
 }
 
 const clearAll = () => {
   inputText.value = ''
   outputText.value = ''
+  copiedMessage.value = ''
 }
 </script>
 
