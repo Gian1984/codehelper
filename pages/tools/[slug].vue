@@ -51,20 +51,32 @@ useHead({
     {
       property: 'og:image',
       content: toolData.seo?.ogImage || '/images/codehelper_logo.webp'
+    },
+    {
+      property: 'og:url',
+      content: `https://codehelper.me/tools/${slug}`
+    }
+  ],
+  link: [
+    {
+      rel: 'canonical',
+      href: `https://codehelper.me/tools/${slug}`
     }
   ],
   script: toolData.seo?.structuredData
       ? [
         {
           type: 'application/ld+json',
-          children: JSON.stringify({
-            "@context": "https://schema.org",
+          innerHTML: JSON.stringify({
+            '@context': 'https://schema.org',
             ...toolData.seo.structuredData
           })
-        }
+        } as any
       ]
       : []
 })
+
+
 </script>
 
 
