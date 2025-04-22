@@ -84,12 +84,18 @@
         For Everyone
       </h2>
       <div class="rounded-lg bg-gray-800 p-8 shadow hover:shadow-md transition">
-        <p class="text-lg text-gray-400">
+        <p class="text-lg text-gray-300">
           CodeHelper is a free and open source project built to help developers solve everyday problems quickly and cleanly.
           Whether you want to improve a tool, add a new one, or simply explore how it works, you’re welcome to dive into the code.
         </p>
-        <p class="mt-4 text-lg text-gray-400">
-          Anyone can fork the project on <a href="https://github.com/Gian1984/codehelper" class="text-indigo-400 hover:underline" target="_blank" rel="noopener">GitHub</a> and contribute. Community-driven, developer-first, that's what makes CodeHelper better every day.
+        <p class="mt-4 text-lg text-gray-300">
+          Anyone can fork the project on
+          <a href="https://github.com/Gian1984/codehelper"
+             class="text-white hover:text-indigo-300 transition-colors"
+             target="_blank" rel="noopener">
+            GitHub
+          </a>
+           and contribute. Community-driven, developer-first, that's what makes CodeHelper better every day.
         </p>
       </div>
     </div>

@@ -14,7 +14,7 @@ export default defineNuxtConfig({
   nitro: {
     preset: 'static',
     prerender: {
-      routes: allRoutes 
+      routes: allRoutes
     }
   },
 

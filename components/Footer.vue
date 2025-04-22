@@ -2,8 +2,8 @@
   <footer class="bg-gray-900">
     <div class="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-24 lg:px-8">
       <nav class="-mb-6 flex flex-wrap justify-center gap-x-12 gap-y-3 text-sm/6" aria-label="Footer">
-        <NuxtLink v-for="item in navigation.main" :key="item.name" :to="item.href" class="text-gray-400 hover:text-white">
-          {{ item.name }}
+        <NuxtLink v-for="item in navigation.main" :key="item.name" :to="item.href" class="text-gray-200 hover:text-white">
+        {{ item.name }}
         </NuxtLink>
       </nav>
       <div class="mt-16 flex justify-center gap-x-6">
@@ -18,7 +18,7 @@
           <component :is="item.icon" class="h-6 w-6 sm:h-8 sm:w-8" aria-hidden="true" />
         </NuxtLink>
       </div>
-      <p class="mt-10 text-center text-sm/6 text-gray-400">
+      <p class="mt-10 text-center text-sm/6 text-gray-200">
         &copy; {{ new Date().getFullYear() }}
         <NuxtLink to="https://gianlucatiengo.com/" target="_blank" class="hover:underline text-white">Gianluca Tiengo</NuxtLink> - All rights reserved.
       </p>
