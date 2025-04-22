@@ -2,14 +2,22 @@
 import { defineNuxtConfig } from 'nuxt/config'
 import { tools } from './utils/toolRegistry'
 
+const staticRoutes = ['/', '/about', '/tools', '/project']
+const dynamicToolRoutes = Object.keys(tools).map(slug => `/tools/${slug}`)
+const allRoutes = [...staticRoutes, ...dynamicToolRoutes]
+
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
   devtools: { enabled: true },
 
   ssr: true, // site will be pre-rendered as static using Nitro
   nitro: {
-    preset: 'static' // full static output in /dist
+    preset: 'static',
+    prerender: {
+      routes: allRoutes 
+    }
   },
+
   // @ts-expect-error: used by @nuxtjs/sitemap and nuxt-seo
   site: {
     url: 'https://codehelper.me'
@@ -35,11 +43,7 @@ export default defineNuxtConfig({
     sitemapName: 'sitemap.xml',
     hostname: 'https://codehelper.me',
     gzip: true,
-    routes: () => {
-      const staticRoutes = ['/', '/about', '/tools', '/project']
-      const dynamicToolRoutes = Object.keys(tools).map(slug => `/tools/${slug}`)
-      return [...staticRoutes, ...dynamicToolRoutes]
-    }
+    routes: allRoutes // ← riutilizzo delle stesse rotte
   }
 })
 
