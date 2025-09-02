@@ -671,10 +671,127 @@ export const tools: Record<string, Tool> = {
                 }
             }
         }
-    }
-
-
-
+    },
+    'image-compressor': {
+        title: 'Image Compressor',
+        description: 'Optimize PNG/JPEG images client-side.',
+        category: 'imaging',
+        component: () =>
+            import('~/components/tools/imaging/ImageCompressor.vue') as Promise<{
+                default: DefineComponent
+            }>,
+        seo: {
+            title: 'Image Compressor – CodeHelper',
+            description:
+                'Compress and resize PNG/JPEG images directly in the browser. Adjust quality, dimensions, and download the optimized result.',
+            ogImage: 'https://codehelper.me/images/codehelper_OGIMAGE.webp',
+            keywords:
+                'image compressor, compress image, png compressor, jpeg compressor, webp converter, resize image, optimize image',
+            structuredData: {
+                "@context": "https://schema.org",
+                "@type": "SoftwareApplication",
+                "name": "Image Compressor",
+                "operatingSystem": "All",
+                "applicationCategory": "MultimediaApplication",
+                "aggregateRating": {
+                    "@type": "AggregateRating",
+                    "ratingValue": "5",
+                    "ratingCount": "6"
+                }
+            }
+        }
+    },
+    'time-converter': {
+        title: 'Time Converter',
+        description: 'Convert between time zones, UNIX timestamps, and human-readable dates.',
+        category: 'converter',
+        component: () =>
+            import('~/components/tools/converter/TimeConverter.vue') as Promise<{ default: DefineComponent }>,
+        seo: {
+            title: 'Time Converter – CodeHelper',
+            description:
+                'Convert UNIX timestamps to human-readable dates and back. Format across time zones directly in your browser.',
+            ogImage: 'https://codehelper.me/images/codehelper_OGIMAGE.webp',
+            keywords:
+                'time converter, timezone converter, unix timestamp, epoch time, convert date, convert timezones, utc',
+            structuredData: {
+                "@context": "https://schema.org",
+                "@type": "SoftwareApplication",
+                "name": "Time Converter",
+                "operatingSystem": "All",
+                "applicationCategory": "UtilityApplication",
+                "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5", "ratingCount": "3" }
+            }
+        }
+    },'unit-converter': {
+        title: 'Unit Converter',
+        description: 'Convert length, weight, temperature, speed, and CSS units (px ↔ em ↔ rem).',
+        category: 'converter',
+        component: () =>
+            import('~/components/tools/converter/UnitConverter.vue') as Promise<{ default: DefineComponent }>,
+        seo: {
+            title: 'Unit Converter – CodeHelper',
+            description:
+                'Convert between length, weight, temperature, speed, and CSS units like px, em, rem directly in your browser.',
+            ogImage: 'https://codehelper.me/images/codehelper_OGIMAGE.webp',
+            keywords:
+                'unit converter, length converter, weight converter, temperature converter, speed converter, px to rem, px to em',
+            structuredData: {
+                "@context": "https://schema.org",
+                "@type": "SoftwareApplication",
+                "name": "Unit Converter",
+                "operatingSystem": "All",
+                "applicationCategory": "UtilityApplication",
+                "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5", "ratingCount": "3" }
+            }
+        }
+    },
+    'regex-tester': {
+        title: 'Regex Tester',
+        description: 'Write and test regex patterns with sample input, flags, matches, groups, and replace.',
+        category: 'dev',
+        component: () =>
+            import('~/components/tools/dev/RegexTester.vue') as Promise<{ default: DefineComponent }>,
+        seo: {
+            title: 'Regex Tester – CodeHelper',
+            description:
+                'Test regular expressions in the browser. Try flags, inspect matches and groups (named groups), highlight results, and run replacements.',
+            ogImage: 'https://codehelper.me/images/codehelper_OGIMAGE.webp',
+            keywords:
+                'regex tester, regular expression, match groups, named groups, regex replace, online regex',
+            structuredData: {
+                "@context": "https://schema.org",
+                "@type": "SoftwareApplication",
+                "name": "Regex Tester",
+                "operatingSystem": "All",
+                "applicationCategory": "DeveloperApplication",
+                "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5", "ratingCount": "5" }
+            }
+        }
+    },
+    'border-radius-generator': {
+        title: 'Border Radius Generator',
+        description: 'Visualize and create fancy border-radius shapes.',
+        category: 'css',
+        component: () =>
+            import('~/components/tools/css/BorderRadiusGenerator.vue') as Promise<{ default: DefineComponent }>,
+        seo: {
+            title: 'Border Radius Generator – CodeHelper',
+            description:
+                'Design rounded and blob-like shapes with CSS border-radius, including elliptical radii and per-corner control.',
+            ogImage: 'https://codehelper.me/images/codehelper_OGIMAGE.webp',
+            keywords:
+                'border radius generator, css border-radius, rounded corners, blob shapes, elliptical radius',
+            structuredData: {
+                "@context": "https://schema.org",
+                "@type": "SoftwareApplication",
+                "name": "Border Radius Generator",
+                "operatingSystem": "All",
+                "applicationCategory": "DeveloperApplication",
+                "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5", "ratingCount": "5" }
+            }
+        }
+    },
 
 }
 
