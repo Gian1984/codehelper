@@ -1,4 +1,18 @@
 {
   "extends": "./.nuxt/tsconfig.json",
-  "include": ["types", "components", "pages", "composables", "utils"]
+  "compilerOptions": {
+    "types": ["nuxt", "vite/client"]
+  },
+  "include": [
+    "app.vue",
+    "components",
+    "composables",
+    "pages",
+    "plugins",
+    "layouts",
+    "utils",
+    "types",
+    "server",
+    "middleware"
+  ]
 }
