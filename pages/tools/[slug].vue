@@ -14,21 +14,24 @@
 
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
-import { defineAsyncComponent } from 'vue'
-import { createError, useHead } from '#imports'
-import { tools } from '~/utils/toolRegistry'
+import { defineAsyncComponent, onMounted } from 'vue'
+import { useHead, createError } from '#imports'
 import Sidebar from '~/components/Sidebar.vue'
+import { tools } from '~/utils/toolRegistry'
 
 const route = useRoute()
 const slug = route.params.slug as string
 const toolData = tools[slug]
 
+// 404 if component not found
 if (!toolData) {
   throw createError({ statusCode: 404, message: 'Tool not found' })
 }
 
+// laod the tool component dynamically
 const ToolComponent = defineAsyncComponent(toolData.component)
 
+// Meta / SEO
 useHead({
   title: toolData.seo?.title || `${toolData.title} – CodeHelper`,
   meta: [
@@ -55,6 +58,10 @@ useHead({
     {
       property: 'og:url',
       content: `https://codehelper.me/tools/${slug}`
+    },
+    {
+      property: 'og:type',
+      content: 'website'
     }
   ],
   link: [
@@ -71,12 +78,44 @@ useHead({
             '@context': 'https://schema.org',
             ...toolData.seo.structuredData
           })
-        } as any
+        }
       ]
       : []
 })
 
+// Tracking GTM + gtag
+onMounted(() => {
+  if (typeof window !== 'undefined') {
+    // Invia al dataLayer
+    window.dataLayer = window.dataLayer || []
+    window.dataLayer.push({
+      event: 'tool_view',
+      page_title: toolData.seo?.title || toolData.title,
+      page_type: 'tool',
+      tool_name: toolData.title,
+      tool_slug: slug,
+      tool_category: toolData.category || 'general'
+    })
 
+    // Gtag if available
+    if (typeof window.gtag === 'function') {
+      window.gtag('config', 'GTM-5W8Q4TK9', {
+        page_title: toolData.seo?.title || toolData.title,
+        page_path: `/tools/${slug}`,
+        page_location: `https://codehelper.me/tools/${slug}`
+      })
+    }
+  }
+})
+
+// Typing global for secure access
+declare global {
+  interface Window {
+    gtag?: (...args: any[]) => void
+    dataLayer?: any[]
+  }
+}
 </script>
+
 
 

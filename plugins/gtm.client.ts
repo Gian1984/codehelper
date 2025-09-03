@@ -6,22 +6,23 @@ export default defineNuxtPlugin(() => {
 
     const GTM_ID = 'GTM-5W8Q4TK9'
 
-    // Evita doppio inserimento
+    // Prevent double injection
     if (document.getElementById('gtm-loader')) return
 
-        ;(window as any).dataLayer = (window as any).dataLayer || []
+    // Initialize dataLayer
+    window.dataLayer = window.dataLayer || []
 
-    // Carica GTM
-    const s = document.createElement('script')
-    s.id = 'gtm-loader'
-    s.async = true
-    s.src = `https://www.googletagmanager.com/gtm.js?id=${encodeURIComponent(GTM_ID)}`
-    document.head.appendChild(s)
+    // Load GTM script
+    const script = document.createElement('script')
+    script.id = 'gtm-loader'
+    script.async = true
+    script.src = `https://www.googletagmanager.com/gtm.js?id=${encodeURIComponent(GTM_ID)}`
+    document.head.appendChild(script)
 
-    // Router sync
+    // Track route changes
     const router = useRouter()
     router.afterEach((to) => {
-        ;(window as any).dataLayer.push({
+        window.dataLayer?.push({
             event: 'nuxt.route_change',
             page_path: to.fullPath,
             page_location: window.location.href,
@@ -29,3 +30,6 @@ export default defineNuxtPlugin(() => {
         })
     })
 })
+
+
+

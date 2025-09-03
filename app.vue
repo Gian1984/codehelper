@@ -5,12 +5,7 @@
 
 <script setup>
 import { useHead } from '#imports'
-import CookieConsent from '~/components/CookieConsent.vue'
 
-/**
- * Set default consent BEFORE GTM loads:
- * everything denied except functionality/security (required).
- */
 useHead({
   script: [
     {
@@ -29,9 +24,17 @@ useHead({
       `
     }
   ],
-  // consenti inline script non sanitizzato
+  noscript: [
+    {
+      key: 'gtm-noscript',
+      innerHTML: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5W8Q4TK9"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe>`
+    }
+  ]
+}, {
   __dangerouslyDisableSanitizersByTagID: {
-    'consent-default': ['innerHTML']
+    'consent-default': ['innerHTML'],
+    'gtm-noscript': ['innerHTML']
   }
 })
 </script>
