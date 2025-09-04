@@ -1,51 +1,60 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import { defineNuxtConfig } from 'nuxt/config'
 import { tools } from './utils/toolRegistry'
+import { articles } from './utils/articlesRegistry' // ✅ Assicurati che esista
 
-const staticRoutes = ['/', '/about', '/tools', '/project']
+
+const staticRoutes = ['/', '/about', '/tools', '/project', '/articles']
+
+
 const dynamicToolRoutes = Object.keys(tools).map(slug => `/tools/${slug}`)
-const allRoutes = [...staticRoutes, ...dynamicToolRoutes]
+
+
+const dynamicArticleRoutes = Object.keys(articles).map(slug => `/articles/${slug}`)
+
+
+const allRoutes = [...staticRoutes, ...dynamicToolRoutes, ...dynamicArticleRoutes]
 
 export default defineNuxtConfig({
-  compatibilityDate: '2024-11-01',
-  devtools: { enabled: true },
+    compatibilityDate: '2024-11-01',
+    devtools: { enabled: true },
 
-  ssr: true, // site will be pre-rendered as static using Nitro
-  nitro: {
-    preset: 'static',
-    prerender: {
-      routes: allRoutes
+    ssr: true,
+    nitro: {
+        preset: 'static',
+        prerender: {
+            routes: allRoutes
+        }
+    },
+
+    // SEO settings (nuxt-seo, sitemap)
+    // @ts-expect-error: used by @nuxtjs/sitemap and nuxt-seo
+    site: {
+        url: 'https://codehelper.me'
+    },
+
+    app: {
+        head: {
+            htmlAttrs: {
+                lang: 'en'
+            },
+            link: [
+                { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+            ]
+        }
+    },
+
+    modules: [
+        '@nuxtjs/tailwindcss',
+        '@nuxtjs/sitemap'
+    ],
+
+    sitemap: {
+        sitemapName: 'sitemap.xml',
+        hostname: 'https://codehelper.me',
+        gzip: true,
+        routes: allRoutes // Include anche gli articoli
     }
-  },
-
-
-
-  // @ts-expect-error: used by @nuxtjs/sitemap and nuxt-seo
-  site: {
-    url: 'https://codehelper.me'
-  },
-
-  app: {
-    head: {
-      htmlAttrs: {
-        lang: 'en'
-      },
-      link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-      ]
-    }
-  },
-
-  modules: [
-    '@nuxtjs/tailwindcss',
-    '@nuxtjs/sitemap'
-  ],
-
-  sitemap: {
-    sitemapName: 'sitemap.xml',
-    hostname: 'https://codehelper.me',
-    gzip: true,
-    routes: allRoutes // ← riutilizzo delle stesse rotte
-  }
 })
+
 
