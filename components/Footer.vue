@@ -33,6 +33,7 @@ const navigation = {
   main: [
     { name: 'Home', href: '/' },
     { name: 'Tools', href: '/tools' },
+    { name: 'Articles', href: '/articles' }, // <-- AGGIUNTO QUI
     { name: 'Project', href: '/project' },
     { name: 'About', href: '/about' },
   ],

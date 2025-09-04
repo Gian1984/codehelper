@@ -53,9 +53,9 @@
     <div class="hidden min-h-screen xl:fixed  xl:z-50 xl:flex xl:w-72 xl:flex-col">
       <button type="button" class="-m-2.5 p-2.5 text-white xl:hidden" @click="sidebarOpen = true">
         <span class="flex items-center gap-x-1 font-semibold">
-          Toolbar
-          <WrenchIcon class="size-5" aria-hidden="true" />
-          <ChevronRightIcon class="size-5 text-gray-400" aria-hidden="true" />
+          Resources
+         <BookmarkIcon class="size-5" aria-hidden="true" />
+          <ChevronRightIcon class="size-5 text-gray-400 animate-wiggle" aria-hidden="true" />
         </span>
       </button>
       <SidebarContent />
@@ -65,9 +65,9 @@
     <div class="xl:hidden flex sticky top-0 z-40 h-16 items-center gap-x-6 border-b border-white/5 bg-gray-900 px-4 sm:px-6 lg:px-8">
       <button type="button" class="-m-2.5 p-2.5 text-white xl:hidden" @click="sidebarOpen = true">
         <span class="flex items-center gap-x-1 font-semibold">
-          Toolbar
-          <WrenchIcon class="size-5" aria-hidden="true" />
-          <ChevronRightIcon class="size-5 text-gray-400" aria-hidden="true" />
+          Resources
+          <BookmarkIcon class="size-5" aria-hidden="true" />
+          <ChevronRightIcon class="size-5 text-gray-400 animate-wiggle" aria-hidden="true" />
         </span>
       </button>
 
@@ -86,11 +86,23 @@ import {
 } from '@headlessui/vue'
 import {
   Bars3Icon,
-  WrenchIcon,
+  BookmarkIcon,
   XMarkIcon,
   ChevronRightIcon
 } from '@heroicons/vue/20/solid'
 
 const sidebarOpen = ref(false)
 </script>
+
+<style scoped>
+@keyframes wiggle {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(2px); }
+  75% { transform: translateX(-2px); }
+}
+
+.animate-wiggle {
+  animation: wiggle 0.6s ease-in-out infinite;
+}
+</style>
 

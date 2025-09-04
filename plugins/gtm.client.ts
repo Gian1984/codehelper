@@ -6,20 +6,16 @@ export default defineNuxtPlugin(() => {
 
     const GTM_ID = 'GTM-5W8Q4TK9'
 
-    // Prevent double injection
     if (document.getElementById('gtm-loader')) return
 
-    // Initialize dataLayer
     window.dataLayer = window.dataLayer || []
 
-    // Load GTM script
     const script = document.createElement('script')
     script.id = 'gtm-loader'
     script.async = true
-    script.src = `https://www.googletagmanager.com/gtm.js?id=${encodeURIComponent(GTM_ID)}`
+    script.src = `https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`
     document.head.appendChild(script)
 
-    // Track route changes
     const router = useRouter()
     router.afterEach((to) => {
         window.dataLayer?.push({
@@ -30,6 +26,8 @@ export default defineNuxtPlugin(() => {
         })
     })
 })
+
+
 
 
 

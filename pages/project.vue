@@ -20,8 +20,8 @@
         <div class="mx-auto max-w-7xl px-6 pt-10 pb-24 sm:pb-32 lg:flex lg:px-8 lg:py-40">
           <div class="mx-auto max-w-2xl shrink-0 lg:mx-0 lg:pt-8">
             <img class="h-36" src="/images/codehelper_logo_500_500_no_bg.webp" alt="CodeHelper Logo" />
-            <h1 class="mt-10 text-5xl font-semibold tracking-tight text-pretty text-white sm:text-7xl">All-in-one tools for developers</h1>
-            <p class="mt-8 text-lg font-medium text-pretty text-gray-400 sm:text-xl/8">CodeHelper provides smart tools to format, convert, and optimize code efficiently — free and directly in your browser.</p>
+            <h1 class="mt-10 text-5xl font-semibold tracking-tight text-pretty text-white sm:text-7xl">Tools & Articles for Developers</h1>
+            <p class="mt-8 text-lg font-medium text-pretty text-gray-400 sm:text-xl/8">Discover efficient tools and practical guides to boost your coding productivity fast, free, and in your browser.</p>
             <div class="mt-10 flex items-center gap-x-6">
               <NuxtLink to="/tools" class="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400">Get started</NuxtLink>
               <NuxtLink to="/about" class="text-sm/6 font-semibold text-white">Learn more <span aria-hidden="true">→</span></NuxtLink>
@@ -94,7 +94,37 @@
         </div>
       </div>
 
-
+    <!-- Articles Section -->
+    <div class="mx-auto max-w-7xl px-6 pb-32 lg:px-8">
+      <div class="mx-auto max-w-2xl lg:text-center">
+        <h2 class="text-base/7 font-semibold text-indigo-400">Knowledge Hub</h2>
+        <p class="mt-2 text-4xl font-semibold tracking-tight text-pretty text-white sm:text-5xl text-center">
+          Latest Articles & How-Tos
+        </p>
+        <p class="mt-6 text-lg/8 text-gray-300 text-center">
+          Read in-depth guides, best practices, and tips to enhance your development workflow.
+        </p>
+      </div>
+      <div class="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
+        <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <li v-for="([slug, article], i) in latestArticles" :key="slug" class="rounded-lg bg-gray-800 p-6 shadow hover:shadow-md transition">
+            <NuxtLink :to="`/articles/${slug}`" class="block">
+              <h3 class="text-xl font-semibold text-white hover:text-indigo-400">
+                {{ article.title }}
+              </h3>
+              <p class="mt-2 text-gray-400 text-sm">
+                {{ article.description }}
+              </p>
+            </NuxtLink>
+          </li>
+        </ul>
+        <div class="mt-20 flex items-center justify-center gap-x-6">
+          <NuxtLink to="/articles" class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-xs hover:bg-gray-100">
+            Read all articles
+          </NuxtLink>
+        </div>
+      </div>
+    </div>
 
   </div>
 </template>
@@ -103,9 +133,16 @@
 import { ref, onMounted, computed } from 'vue'
 import { useSeoMeta, useHead } from '#imports'
 import { tools } from '~/utils/toolRegistry'
+import { articles } from '~/utils/articlesRegistry'
 
 // Define the Tool type
 interface Tool {
+  title: string
+  description: string
+  category?: string
+}
+
+interface Article {
   title: string
   description: string
   category?: string
@@ -155,6 +192,10 @@ const toolsByCategory = computed<[string, Tool[]][]>(() => {
 })
 
 const randomTools = ref<[string, Tool][]>([])
+
+const latestArticles = computed<[string, Article][]>(() => {
+  return Object.entries(articles).slice(0, 6)
+})
 
 onMounted(() => {
   const shuffled = Object.entries(tools).sort(() => 0.5 - Math.random())

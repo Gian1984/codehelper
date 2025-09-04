@@ -1,4 +1,5 @@
 <template>
+  <!-- Banner -->
   <div
       v-if="mounted && !decision"
       class="fixed inset-x-0 bottom-0 z-50 bg-gray-900 text-white border-t border-gray-700"
@@ -8,7 +9,6 @@
         <p class="font-semibold">Cookies & Privacy</p>
         <p class="text-gray-300">
           We use essential cookies and, with your consent, analytics and advertising cookies.
-          You can change your choice at any time.
         </p>
         <div class="mt-2 flex gap-4">
           <label class="flex items-center gap-2 text-xs">
@@ -29,6 +29,16 @@
       </div>
     </div>
   </div>
+
+  <!-- Floating button to reopen -->
+  <button
+      v-if="mounted && decision"
+      @click="resetConsent"
+      class="fixed bottom-4 right-4 z-50 bg-gray-700 hover:bg-gray-600 text-white p-3 rounded-full shadow-lg"
+      title="Change cookie preferences"
+  >
+    ⚙️
+  </button>
 </template>
 
 <script setup lang="ts">
@@ -50,13 +60,8 @@ onMounted(() => {
       if (saved?.prefs) Object.assign(prefs, saved.prefs)
       if (saved?.decision) {
         decision.value = saved.decision
-        // Re-apply consent (e.g., on subsequent navigations)
         applyConsent(prefs)
       }
-    } else {
-      // Optional: if the browser's Do Not Track is enabled, deny everything
-      const dnt = typeof navigator !== 'undefined' && (navigator as any).doNotTrack === '1'
-      if (dnt) { prefs.analytics = false; prefs.ads = false }
     }
   } catch {}
 })
@@ -88,28 +93,42 @@ function save() {
   pushChoiceEvent('custom')
 }
 
-/** Consent Mode v2: update signals to Google */
+function resetConsent() {
+  decision.value = null
+  localStorage.removeItem(STORAGE_KEY)
+}
+
 function applyConsent(p: ConsentPrefs) {
   if (typeof window === 'undefined') return
+
   const gtag = (window as any).gtag || ((...args: any[]) => {
-    ;(window as any).dataLayer = (window as any).dataLayer || []
-    ;(window as any).dataLayer.push(args)
+    window.dataLayer = window.dataLayer || []
+    window.dataLayer.push(args)
   })
 
   gtag('consent', 'update', {
     analytics_storage: p.analytics ? 'granted' : 'denied',
-    ad_storage:       p.ads ? 'granted' : 'denied',
-    ad_user_data:     p.ads ? 'granted' : 'denied',
-    ad_personalization: p.ads ? 'granted' : 'denied',
-    // essentials already 'granted' in the default script (functionality/security)
+    ad_storage: p.ads ? 'granted' : 'denied',
+    ad_user_data: p.ads ? 'granted' : 'denied',
+    ad_personalization: p.ads ? 'granted' : 'denied'
   })
+
+  // opzionale: trigger page_view se l'utente ha appena accettato
+  if (p.analytics) {
+    const payload = {
+      page_path: location.pathname + location.search + location.hash,
+      page_location: location.href,
+      page_title: document.title
+    }
+    window.dataLayer?.push({ event: 'page_view', ...payload })
+    gtag('event', 'page_view', payload)
+  }
 }
 
-/** Optional event in dataLayer for GTM */
 function pushChoiceEvent(action: 'accept_all' | 'reject_all' | 'custom') {
   if (typeof window === 'undefined') return
-      ;(window as any).dataLayer = (window as any).dataLayer || []
-  ;(window as any).dataLayer.push({
+  window.dataLayer = window.dataLayer || []
+  window.dataLayer.push({
     event: 'consent_choice',
     consent_action: action,
     consent_analytics: prefs.analytics,
@@ -118,7 +137,4 @@ function pushChoiceEvent(action: 'accept_all' | 'reject_all' | 'custom') {
 }
 </script>
 
-<style scoped>
-/* using Tailwind; nothing extra */
-</style>
 

@@ -18,7 +18,7 @@
     </div>
   </div>
 
-
+  <!-- Philosophy Section -->
   <div class="bg-gray-900 text-white px-6 py-24 sm:py-32 lg:px-8">
     <div class="mx-auto max-w-6xl pt-12 ">
       <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl mb-6">
@@ -36,7 +36,7 @@
   </div>
 
 
-
+  <!-- Popular Tools -->
   <div class="bg-gray-900 text-white px-6 pb-24 sm:pb-32 lg:px-8">
     <div class="mx-auto max-w-6xl pt-12">
       <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl mb-6">Popular</h2>
@@ -55,20 +55,13 @@
   </div>
 
 
+  <!-- Tool Categories -->
   <div class="bg-gray-900 text-white px-6 pb-24 sm:pb-32 lg:px-8">
     <div class="mx-auto max-w-6xl pt-12">
       <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl mb-6">Category</h2>
-
       <ul class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
-        <li
-            v-for="(toolsInCategory, category) in toolsByCategory"
-            :key="category"
-            class="rounded-lg bg-gray-800 p-6 shadow hover:shadow-md transition text-center"
-        >
-          <NuxtLink
-              :to="`/tools?category=${category}`"
-              class="block text-lg font-semibold capitalize text-white hover:text-indigo-400"
-          >
+        <li v-for="(toolsInCategory, category) in toolsByCategory" :key="category" class="rounded-lg bg-gray-800 p-6 shadow hover:shadow-md transition text-center">
+          <NuxtLink :to="`/tools?category=${category}`" class="block text-lg font-semibold capitalize text-white hover:text-indigo-400">
             {{ category }}
           </NuxtLink>
           <p class="mt-2 text-gray-400 text-sm">{{ toolsInCategory.length }} tool{{ toolsInCategory.length > 1 ? 's' : '' }}</p>
@@ -78,11 +71,29 @@
   </div>
 
 
+  <!-- Latest Articles -->
   <div class="bg-gray-900 text-white px-6 pb-24 sm:pb-32 lg:px-8">
     <div class="mx-auto max-w-6xl pt-12">
-      <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl mb-6">
-        For Everyone
-      </h2>
+      <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl mb-6">Latest Articles</h2>
+      <ul class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+        <li v-for="article in latestArticles" :key="article.slug" class="rounded-lg bg-gray-800 p-6 shadow hover:shadow-md transition">
+          <NuxtLink :to="`/articles/${article.slug}`" class="block">
+            <h3 class="text-xl font-semibold hover:text-indigo-400">{{ article.title }}</h3>
+            <p class="text-gray-400 text-sm mt-2">{{ article.description }}</p>
+          </NuxtLink>
+        </li>
+      </ul>
+      <div class="text-center mt-10">
+        <NuxtLink to="/articles" class="bg-indigo-600 px-5 py-3 rounded hover:bg-indigo-500 text-white text-lg">Explore Articles</NuxtLink>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Community Section -->
+  <div class="bg-gray-900 text-white px-6 pb-24 sm:pb-32 lg:px-8">
+    <div class="mx-auto max-w-6xl pt-12">
+      <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl mb-6">For Everyone</h2>
       <div class="rounded-lg bg-gray-800 p-8 shadow hover:shadow-md transition">
         <p class="text-lg text-gray-300">
           CodeHelper is a free and open source project built to help developers solve everyday problems quickly and cleanly.
@@ -90,16 +101,15 @@
         </p>
         <p class="mt-4 text-lg text-gray-300">
           Anyone can fork the project on
-          <a href="https://github.com/Gian1984/codehelper"
-             class="text-white hover:text-indigo-300 transition-colors"
-             target="_blank" rel="noopener">
+          <a href="https://github.com/Gian1984/codehelper" class="text-white hover:text-indigo-300 transition-colors" target="_blank" rel="noopener">
             GitHub
           </a>
-           and contribute. Community-driven, developer-first, that's what makes CodeHelper better every day.
+          and contribute. Community-driven, developer-first, that's what makes CodeHelper better every day.
         </p>
       </div>
     </div>
   </div>
+
 
 
 
@@ -108,9 +118,10 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue'
 import { tools } from '~/utils/toolRegistry'
+import { articles } from '~/utils/articlesRegistry'
 import { useSeoMeta, useHead } from '#imports'
 
-// SEO Meta Tags
+
 useSeoMeta({
   title: 'CodeHelper — Free Tools for Developers',
   description: 'Boost your workflow with modern web tools built for developers. Format, convert, minify and optimize code — all in one place.',
@@ -124,7 +135,7 @@ useSeoMeta({
   twitterImage: '/images/codehelper_OGIMAGE.webp'
 })
 
-// Structured Data
+
 useHead({
   script: [
     {
@@ -147,19 +158,19 @@ useHead({
   ]
 })
 
-// Add this separately right after to disable sanitization by tag ID
+
 useHead({
   __dangerouslyDisableSanitizersByTagID: {
     'ld-json-schema': ['innerHTML']
   }
-} as any) // 👈 force bypass the typing issue
+} as any)
 
 
-// Define the tool entry type
 type ToolEntry = [string, typeof tools[string]]
 
-// Top tools (randomized on client only)
+
 const topTools = ref<ToolEntry[]>([])
+
 
 onMounted(() => {
   const shuffled = Object.entries(tools)
@@ -167,12 +178,14 @@ onMounted(() => {
       .sort((a, b) => a.sort - b.sort)
       .map((a) => a.value)
 
+
   topTools.value = shuffled.slice(0, 8)
 })
 
-// Group tools by category
+
 const toolsByCategory = computed(() => {
   const grouped: Record<string, typeof tools[string][]> = {}
+
 
   for (const [slug, tool] of Object.entries(tools)) {
     const category = tool.category || 'Uncategorized'
@@ -180,14 +193,24 @@ const toolsByCategory = computed(() => {
     grouped[category].push(tool)
   }
 
-  // Optional: Sort categories alphabetically
+
   const sorted = Object.keys(grouped).sort()
   const ordered: Record<string, typeof tools[string][]> = {}
+
 
   for (const category of sorted) {
     ordered[category] = grouped[category]
   }
 
+
   return ordered
+})
+
+
+const latestArticles = computed(() => {
+  return Object.entries(articles)
+      .sort(([, a], [, b]) => new Date(b.date).getTime() - new Date(a.date).getTime())
+      .slice(0, 6)
+      .map(([slug, article]) => ({ slug, ...article }))
 })
 </script>

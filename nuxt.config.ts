@@ -18,6 +18,8 @@ export default defineNuxtConfig({
     }
   },
 
+
+
   // @ts-expect-error: used by @nuxtjs/sitemap and nuxt-seo
   site: {
     url: 'https://codehelper.me'
