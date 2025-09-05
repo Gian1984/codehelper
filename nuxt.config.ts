@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import { defineNuxtConfig } from 'nuxt/config'
 import { tools } from './utils/toolRegistry'
-import { articles } from './utils/articlesRegistry' // ✅ Assicurati che esista
+import { articles } from './utils/articlesRegistry'
 
 
 const staticRoutes = ['/', '/about', '/tools', '/project', '/articles']

@@ -130,8 +130,4 @@ export const articles: Record<string, Article> = {
             }
         }
     }
-
-
-
-
 }
