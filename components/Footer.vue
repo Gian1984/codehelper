@@ -1,26 +1,46 @@
 <template>
-  <footer class="bg-gray-900">
-    <div class="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-24 lg:px-8">
-      <nav class="-mb-6 flex flex-wrap justify-center gap-x-12 gap-y-3 text-sm/6" aria-label="Footer">
-        <NuxtLink v-for="item in navigation.main" :key="item.name" :to="item.href" class="text-gray-200 hover:text-white">
-        {{ item.name }}
+  <footer class="bg-gray-900 border-t border-gray-800">
+    <div class="mx-auto max-w-7xl overflow-hidden px-6 py-16 sm:py-20 lg:px-8">
+
+      <!-- Main navigation -->
+      <nav class="-mb-6 flex flex-wrap justify-center gap-x-12 gap-y-3 text-sm font-medium" aria-label="Footer">
+        <NuxtLink
+            v-for="item in navigation.main"
+            :key="item.name"
+            :to="item.href"
+            class="text-gray-300 hover:text-indigo-400 transition-colors"
+        >
+          {{ item.name }}
         </NuxtLink>
       </nav>
-      <div class="mt-16 flex justify-center gap-x-6">
+
+      <!-- Social links -->
+      <div class="mt-12 flex justify-center gap-x-6">
         <NuxtLink
             v-for="item in navigation.social"
             :key="item.name"
             :to="item.href"
             target="_blank"
-            class="bg-white rounded-full p-2 outline-none text-pink-500 hover:text-teal-600"
+            rel="noopener"
+            class="rounded-full p-2 text-gray-300 hover:text-white hover:bg-indigo-500 transition-colors"
         >
           <span class="sr-only">{{ item.name }}</span>
-          <component :is="item.icon" class="h-6 w-6 sm:h-8 sm:w-8" aria-hidden="true" />
+          <component :is="item.icon" class="h-6 w-6 sm:h-7 sm:w-7" aria-hidden="true" />
         </NuxtLink>
       </div>
-      <p class="mt-10 text-center text-sm/6 text-gray-200">
+
+      <!-- Copyright -->
+      <p class="mt-10 text-center text-sm text-gray-400">
         &copy; {{ new Date().getFullYear() }}
-        <NuxtLink to="https://gianlucatiengo.com/" target="_blank" class="hover:underline text-white">Gianluca Tiengo</NuxtLink> - All rights reserved.
+        <NuxtLink
+            to="https://gianlucatiengo.com/"
+            target="_blank"
+            rel="noopener"
+            class="hover:underline text-gray-200 hover:text-indigo-400"
+        >
+          Gianluca Tiengo — Web Developer
+        </NuxtLink>.
+        All rights reserved.
       </p>
     </div>
   </footer>

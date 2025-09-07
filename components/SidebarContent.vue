@@ -1,5 +1,5 @@
 <template>
-  <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6">
+  <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6" role="complementary" aria-label="Sidebar: resources">
     <div class="flex h-16 shrink-0 items-center">
       <span class="flex items-center gap-x-1 text-white font-semibold">
         Resources
@@ -7,26 +7,41 @@
       </span>
     </div>
 
-    <nav class="flex flex-1 flex-col space-y-6">
+    <!-- Mark as navigation & SiteNavigationElement for crawlers -->
+    <nav class="flex flex-1 flex-col space-y-6"
+         role="navigation"
+         aria-label="Sidebar navigation"
+         itemscope
+         itemtype="https://schema.org/SiteNavigationElement">
 
       <!-- Tools Section -->
       <div>
-        <h2 class="text-gray-400 text-xs font-semibold uppercase tracking-wider mb-2">Tools</h2>
+        <h2 class="text-gray-200 text-xs font-semibold uppercase tracking-wider mb-2">Tools</h2>
         <ul role="list" class="flex flex-col gap-y-2">
           <li v-for="category in sortedToolCategories" :key="'tool-' + category">
             <Disclosure v-slot="{ open }">
-              <DisclosureButton class="flex w-full items-center gap-x-3 rounded-md p-2 text-left text-sm font-semibold text-gray-400 hover:bg-gray-800 hover:text-white">
-                <FolderIcon class="size-6 shrink-0" />
+              <!-- Add aria-controls + id to link button with panel -->
+              <DisclosureButton
+                  class="flex w-full items-center gap-x-3 rounded-md p-2 text-left text-sm font-semibold text-gray-200 hover:bg-gray-800 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900"
+                  :aria-controls="`tools-panel-${category}`"
+                  :aria-expanded="open ? 'true' : 'false'"
+                  :title="`Toggle ${category} tools`">
+                <FolderIcon class="size-6 shrink-0" aria-hidden="true" />
                 <span class="capitalize">{{ category }}</span>
-                <ChevronRightIcon :class="[open ? 'rotate-90 text-gray-500' : 'text-gray-400', 'ml-auto size-5 shrink-0 transition-transform']" aria-hidden="true" />
+                <ChevronRightIcon
+                    :class="[open ? 'rotate-90 text-gray-400' : 'text-gray-400', 'ml-auto size-5 shrink-0 transition-transform']"
+                    aria-hidden="true" />
               </DisclosureButton>
-              <DisclosurePanel>
+
+              <DisclosurePanel :id="`tools-panel-${category}`">
                 <ul role="list" class="ml-4 mt-2 space-y-1">
                   <li v-for="tool in categorizedTools[category]" :key="tool.slug">
                     <NuxtLink
                         :to="`/tools/${tool.slug}`"
-                        class="group flex gap-x-3 rounded-md p-2 text-sm text-gray-400 hover:bg-gray-800 hover:text-white"
-                    >
+                        class="group flex gap-x-3 rounded-md p-2 text-sm text-gray-200 hover:bg-gray-800 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900"
+                        :title="`${tool.title} – open tool`"
+                        itemprop="url"
+                        :prefetch="true">
                       <span class="truncate">{{ tool.title }}</span>
                     </NuxtLink>
                   </li>
@@ -39,22 +54,31 @@
 
       <!-- Articles Section -->
       <div>
-        <h2 class="text-gray-400 text-xs font-semibold uppercase tracking-wider mb-2">Articles</h2>
+        <h2 class="text-gray-200 text-xs font-semibold uppercase tracking-wider mb-2">Articles</h2>
         <ul role="list" class="flex flex-col gap-y-2">
           <li v-for="category in sortedArticleCategories" :key="'article-' + category">
             <Disclosure v-slot="{ open }">
-              <DisclosureButton class="flex w-full items-center gap-x-3 rounded-md p-2 text-left text-sm font-semibold text-gray-400 hover:bg-gray-800 hover:text-white">
-                <FolderIcon class="size-6 shrink-0" />
+              <DisclosureButton
+                  class="flex w-full items-center gap-x-3 rounded-md p-2 text-left text-sm font-semibold text-gray-200 hover:bg-gray-800 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900"
+                  :aria-controls="`articles-panel-${category}`"
+                  :aria-expanded="open ? 'true' : 'false'"
+                  :title="`Toggle ${category} articles`">
+                <FolderIcon class="size-6 shrink-0" aria-hidden="true" />
                 <span class="capitalize">{{ category }}</span>
-                <ChevronRightIcon :class="[open ? 'rotate-90 text-gray-500' : 'text-gray-400', 'ml-auto size-5 shrink-0 transition-transform']" aria-hidden="true" />
+                <ChevronRightIcon
+                    :class="[open ? 'rotate-90 text-gray-400' : 'text-gray-400', 'ml-auto size-5 shrink-0 transition-transform']"
+                    aria-hidden="true" />
               </DisclosureButton>
-              <DisclosurePanel>
+
+              <DisclosurePanel :id="`articles-panel-${category}`">
                 <ul role="list" class="ml-4 mt-2 space-y-1">
                   <li v-for="article in categorizedArticles[category]" :key="article.slug">
                     <NuxtLink
                         :to="`/articles/${article.slug}`"
-                        class="group flex gap-x-3 rounded-md p-2 text-sm text-gray-400 hover:bg-gray-800 hover:text-white"
-                    >
+                        class="group flex gap-x-3 rounded-md p-2 text-sm text-gray-200 hover:bg-gray-800 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900"
+                        :title="`${article.title} – read article`"
+                        itemprop="url"
+                        :prefetch="true">
                       <span class="truncate">{{ article.title }}</span>
                     </NuxtLink>
                   </li>
@@ -68,6 +92,7 @@
     </nav>
   </div>
 </template>
+
 
 <script setup lang="ts">
 import { FolderIcon, ChevronRightIcon } from '@heroicons/vue/24/outline'

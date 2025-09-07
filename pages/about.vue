@@ -9,9 +9,12 @@
       <!-- Header section -->
       <div class="px-6 pt-14 lg:px-8">
         <div class="mx-auto max-w-4xl pt-6 text-center sm:pt-24">
-          <h1 class="text-5xl font-semibold tracking-tight text-white sm:text-7xl">Empowering Developers Everywhere</h1>
+          <h1 class="text-5xl font-semibold tracking-tight text-white sm:text-7xl">
+            About CodeHelper
+          </h1>
           <p class="mt-8 text-lg font-medium text-pretty text-gray-400 sm:text-xl/8">
-            Open source isn't just code—it's a movement. By sharing knowledge and making tools freely accessible, we enable developers to build, learn, and grow together.
+            CodeHelper is a <strong class="text-white">privacy-first, open-source</strong> toolbox for developers.
+            Every tool runs <strong class="text-white">entirely in your browser</strong> fast, lightweight, and sustainable, so you can format, convert, and prototype without sending data anywhere.
           </p>
         </div>
       </div>
@@ -22,22 +25,28 @@
           <div class="grid max-w-xl grid-cols-1 gap-8 text-base/7 text-gray-300 lg:max-w-none lg:grid-cols-2">
             <div>
               <p>
-                Open source software fuels innovation. It gives developers the freedom to study, modify, and build upon the work of others—creating a cycle of continuous improvement. It’s how great ideas grow beyond borders and benefit everyone.
+                CodeHelper was created to remove friction from everyday development. Instead of spinning up heavy stacks
+                or cloud services, these <strong class="text-white">single-purpose, client-side utilities</strong> help you format JSON, minify assets, test regex, convert units, and more in second, no sign-ups, no tracking, no noise.
               </p>
               <p class="mt-8">
-                When we share our tools and knowledge freely, we lower the barriers for learning and unlock potential in communities across the world. Open ecosystems aren’t just about software—they’re about empowering people.
+                Because everything runs locally, your data stays with you. That means <strong class="text-white">zero server uploads</strong> and less energy use compared to remote tools or AI pipelines, better for privacy and the planet.
               </p>
             </div>
             <div>
               <p>
-                From the smallest script to the largest framework, open source plays a critical role in today’s technology. Most of the web is built on it. Most of what we use every day depends on it. It's not just a resource—it's a foundation.
+                Open source is how CodeHelper grows. Clear code, small dependencies, and pragmatic UX make each tool easy to
+                understand and easy to improve. Contributions new tools, bug fixes, docs are always welcome.
               </p>
               <p class="mt-8">
-                By contributing to open source or even just using it mindfully, you’re part of something bigger. You’re helping make the developer world more inclusive, more collaborative, and more accessible for all.
+                If you’re a designer, dev, or student, CodeHelper aims to be the <strong class="text-white">fastest way from idea to output</strong>.
+                Less setup. Fewer tabs. Cleaner results.
               </p>
             </div>
           </div>
+
+          <!-- Stats -->
           <dl class="mt-16 grid grid-cols-1 gap-x-8 gap-y-12 sm:mt-20 sm:grid-cols-2 sm:gap-y-16 lg:mt-28 lg:grid-cols-4">
+            <!-- Update these values with real numbers when available -->
             <div v-for="(stat, statIdx) in stats" :key="statIdx" class="flex flex-col-reverse gap-y-3 border-l border-white/20 pl-6">
               <dt class="text-base/7 text-gray-300">{{ stat.label }}</dt>
               <dd class="text-3xl font-semibold tracking-tight text-white">{{ stat.value }}</dd>
@@ -49,9 +58,9 @@
       <!-- Values section -->
       <div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
         <div class="mx-auto max-w-2xl lg:mx-0">
-          <h2 class="text-4xl font-semibold tracking-tight text-pretty text-white sm:text-5xl">My values</h2>
+          <h2 class="text-4xl font-semibold tracking-tight text-pretty text-white sm:text-5xl">Principles I build by</h2>
           <p class="mt-6 text-lg/8 text-gray-300">
-            I'm building CodeHelper with the belief that knowledge should be shared, tools should be accessible, and even one developer can make a big impact.
+            CodeHelper is guided by simple rules: <strong class="text-white">ship small, respect privacy,</strong> and make tools anyone can use, and learn from.
           </p>
         </div>
         <dl class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 text-base/7 text-gray-300 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-x-16">
@@ -69,9 +78,10 @@
       <!-- About Me section -->
       <div class="mx-auto max-w-2xl py-24 text-center sm:py-40">
         <div class="mx-auto max-w-2xl lg:mx-0 text-center">
-          <h2 class="text-4xl font-semibold tracking-tight text-pretty text-white sm:text-5xl mx-auto">About me</h2>
+          <h2 class="text-4xl font-semibold tracking-tight text-pretty text-white sm:text-5xl mx-auto">About Gianluca</h2>
           <p class="mt-6 text-lg/8 text-gray-300">
-            I'm Gianluca Tiengo, a passionate web developer who enjoys building everything from small tools to full interactive web apps. CodeHelper is my way to give back — open source, accessible, and built with love.
+            I’m <strong class="text-white">Gianluca Tiengo</strong>, a web developer who enjoys crafting <strong class="text-white">small, fast, and useful</strong> tools.
+            CodeHelper is my way to give back to the developer community fully open source, transparent, and focused on real world workflows.
           </p>
         </div>
 
@@ -79,12 +89,17 @@
           <img
               class="aspect-square w-full rounded-2xl"
               src="/images/codehelper_logo_500_500_no_bg.webp"
-              alt="Gianluca Tiengo"
+              alt="Logo placeholder for CodeHelper by Gianluca Tiengo"
           />
-          <h3 class="mt-10 text-lg font-semibold tracking-tight text-white">Gianluca Tiengo</h3>
-          <p class="text-base text-gray-300">Web Developer</p>
-          <p class="text-sm text-gray-500">Based in Europe, coding with ❤️</p>
+          <h3 class="mt-10 text-lg font-semibold tracking-tight text-white">
+            <a href="https://gianlucatiengo.com/" target="_blank" rel="noopener" class="hover:text-indigo-400">
+              Gianluca Tiengo
+            </a>
+          </h3>
+          <p class="text-base text-gray-300">Web Developer &amp; Open-Source Maker</p>
+          <p class="text-sm text-gray-500">Based in Europe</p>
         </div>
+
       </div>
 
     </div>
@@ -100,84 +115,135 @@ import {
   SunIcon,
   UserGroupIcon
 } from '@heroicons/vue/20/solid'
-
 import { useSeoMeta, useHead } from '#imports'
 
 useSeoMeta({
-  title: 'About CodeHelper — Gianluca Tiengo',
-  description: 'Learn more about Gianluca Tiengo, the creator of CodeHelper. Discover the values, vision, and mission behind this open-source-driven project.',
-  ogTitle: 'About CodeHelper — Gianluca Tiengo',
-  ogDescription: 'CodeHelper is built with love and dedication to open source. Learn about the developer behind the tools and why this project exists.',
+  title: 'About CodeHelper & Gianluca Tiengo — Open-Source, Privacy-First Developer Tools',
+  description: 'Learn about CodeHelper’s mission, values, and the maker behind it. Open-source, privacy-first, and fully client-side tools for developers.',
+  ogTitle: 'About CodeHelper & Gianluca Tiengo',
+  ogDescription: 'The story, principles, and mission behind CodeHelper—lightweight, client-side tools that respect privacy.',
   ogImage: '/images/codehelper_OGIMAGE.webp',
+  ogType: 'profile', // about a person & project
   ogUrl: 'https://codehelper.me/about',
   twitterCard: 'summary_large_image',
-  twitterTitle: 'About CodeHelper — Gianluca Tiengo',
-  twitterDescription: 'Meet the developer behind CodeHelper. Explore the mission and values of this open-source project.',
-  twitterImage: '/images/codehelper_OGIMAGE.webp'
+  twitterTitle: 'About CodeHelper & Gianluca Tiengo',
+  twitterDescription: 'Open-source, privacy-first tools for developers—learn the why behind CodeHelper.',
+  twitterImage: '/images/codehelper_OGIMAGE.webp',
+  robots: 'index,follow',
+  // Helpful extra metas
+  keywords: 'about codehelper, gianluca tiengo, open source developer tools, client-side tools, privacy-first, web development utilities'
 })
 
+// Add Organization + AboutPage + BreadcrumbList schema
 useHead({
+  link: [
+    { rel: 'canonical', href: 'https://codehelper.me/about' }
+  ],
   script: [
+    // AboutPage
     {
       type: 'application/ld+json',
+      key: 'aboutpage',
+      children: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'AboutPage',
+        name: 'About CodeHelper',
+        url: 'https://codehelper.me/about',
+        description: 'About CodeHelper and Gianluca Tiengo open-source, privacy-first tools for developers.'
+      })
+    },
+    // Person
+    {
+      type: 'application/ld+json',
+      key: 'person',
       children: JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'Person',
         name: 'Gianluca Tiengo',
         url: 'https://codehelper.me/about',
         image: 'https://codehelper.me/images/codehelper_OGIMAGE.webp',
+        jobTitle: 'Web Developer',
         sameAs: [
           'https://github.com/gianlucatiengo',
           'https://codehelper.me'
         ],
-        jobTitle: 'Web Developer',
         worksFor: {
           '@type': 'Organization',
-          name: 'CodeHelper'
+          name: 'CodeHelper',
+          url: 'https://codehelper.me'
         }
+      })
+    },
+    // Organization
+    {
+      type: 'application/ld+json',
+      key: 'org',
+      children: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        name: 'CodeHelper',
+        url: 'https://codehelper.me',
+        logo: 'https://codehelper.me/images/codehelper_OGIMAGE.webp',
+        sameAs: ['https://github.com/Gian1984/codehelper']
+      })
+    },
+    // Breadcrumbs
+    {
+      type: 'application/ld+json',
+      key: 'breadcrumbs',
+      children: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://codehelper.me' },
+          { '@type': 'ListItem', position: 2, name: 'About', item: 'https://codehelper.me/about' }
+        ]
       })
     }
   ]
 })
 
+// ---- Content data (update counts with real values) ----
 const stats = [
-  { label: 'Open source projects on GitHub', value: '400M+' },
-  { label: 'Developers contributing worldwide', value: '94M+' },
-  { label: 'Lines of open code shared daily', value: '1B+' },
-  { label: 'Countries participating', value: '180+' },
+  { label: 'Open-source tools', value: '20+' },        // ← update
+  { label: 'Lines of code shipped', value: '50k+' },   // ← update or remove
+  { label: 'GitHub stars', value: '100+' },            // ← update
+  { label: 'Community contributors', value: '10+' }    // ← update
 ]
 
 const values = [
   {
-    name: 'Be world-class.',
-    description: 'Strive for excellence in everything you build. CodeHelper aims to empower developers with the best tools, freely available to all.',
+    name: 'Ship small & fast.',
+    description: 'Each tool is focused, fast, and dependency light, so you get results in seconds.',
     icon: RocketLaunchIcon,
   },
   {
-    name: 'Take responsibility.',
-    description: 'Open source thrives on trust. Be accountable for the code you share and the impact it has on others using CodeHelper tools.',
+    name: 'Respect privacy.',
+    description: 'Everything runs client-side. Your data never leaves the browser.',
     icon: HandRaisedIcon,
   },
   {
-    name: 'Be supportive.',
-    description: 'Help other developers grow. Whether it’s a GitHub issue or a community forum, your support strengthens the ecosystem.',
+    name: 'Help each other grow.',
+    description: 'Clear code, clear docs, and friendly issues to welcome contributors.',
     icon: UserGroupIcon,
   },
   {
-    name: 'Always learning.',
-    description: 'Tech evolves fast. CodeHelper is built with curiosity and continuous learning in mind — stay sharp and keep exploring.',
+    name: 'Learn constantly.',
+    description: 'Keep iterating. Favor clarity over cleverness and polish over bloat.',
     icon: AcademicCapIcon,
   },
   {
-    name: 'Share everything you know.',
-    description: 'Knowledge should be open. Document, blog, or just push code — everything you share helps someone build better.',
+    name: 'Share knowledge.',
+    description: 'Publish what you build: articles, examples, and transparent roadmaps.',
     icon: SparklesIcon,
   },
   {
-    name: 'Enjoy downtime.',
-    description: 'Great ideas are born during rest. I believe balance fuels creativity — step back, recharge, and come back stronger.',
+    name: 'Protect the craft.',
+    description: 'Prefer sustainable tools and UX that respect users and their time.',
     icon: SunIcon,
   },
 ]
 </script>
+
+
 
