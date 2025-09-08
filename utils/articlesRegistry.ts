@@ -309,7 +309,8 @@ export const articles: Record<string, Article> = {
             }
         }
     },
-    ' samsung-9100-pro-nvme': {
+    
+    'samsung-9100-pro-nvme': {
         title: 'Samsung 9100 Pro NVMe — 14 GB/s Gen5 Storage & LLM Workflow Acceleration',
         description:
             'Explore Samsung’s 9100 Pro PCIe 5.0 NVMe SSD with up to 14.8 GB/s read/write. Its ultra-fast storage reshapes GPU offloading for large model workflows and data-heavy tasks.',
