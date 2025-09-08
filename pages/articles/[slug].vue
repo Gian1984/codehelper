@@ -6,6 +6,25 @@
       <div class="p-8 min-h-screen">
         <h1 class="text-3xl font-bold mb-4">{{ articleData.title }}</h1>
         <p class="text-gray-400 mb-6">{{ articleData.description }}</p>
+        <!-- Byline (same place) -->
+        <div class="mt-2 mb-8 text-gray-500 text-xs">
+          <p v-if="publishedISO">
+            📅 <time :datetime="publishedISO">{{ formatDate(publishedISO) }}</time>
+          </p>
+          <p v-if="authorName">
+            ✍️
+            <a
+                v-if="authorUrl"
+                :href="authorUrl"
+                target="_blank"
+                rel="author noopener noreferrer"
+                class="underline underline-offset-2 decoration-indigo-400 hover:decoration-indigo-300 focus-visible:ring-2 focus-visible:ring-indigo-400 rounded-sm"
+            >
+              {{ authorName }}
+            </a>
+            <span v-else>{{ authorName }}</span>
+          </p>
+        </div>
         <component :is="ArticleComponent" />
       </div>
     </div>
@@ -14,7 +33,7 @@
 
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
-import { defineAsyncComponent, onMounted } from 'vue'
+import { defineAsyncComponent, onMounted, computed } from 'vue'
 import { useHead, createError } from '#imports'
 import Sidebar from '~/components/Sidebar.vue'
 import { articles } from '~/utils/articlesRegistry'
@@ -31,7 +50,43 @@ if (!articleData) {
 // Dynamically load the article component
 const ArticleComponent = defineAsyncComponent(articleData.component)
 
-// SEO Meta
+// ---- Lightweight helpers / fallbacks (no structure changes)
+const sd = (articleData.seo && articleData.seo.structuredData) || {}
+
+const publishedISO = computed<string | ''>(() => {
+  // Prefer top-level publishedAt if you add it later; otherwise use SD
+  return (articleData as any).publishedAt || sd?.datePublished || ''
+})
+
+const authorName = computed<string | ''>(() => {
+  const topAuthor = (articleData as any).author
+  if (typeof topAuthor === 'string') return topAuthor
+  if (topAuthor && typeof topAuthor === 'object' && topAuthor.name) return topAuthor.name
+  if (sd?.author?.name) return sd.author.name
+  return '' // no fallback text to avoid wrong attribution
+})
+
+const authorUrl = computed<string | ''>(() => {
+  const topAuthor = (articleData as any).author
+  if (topAuthor && typeof topAuthor === 'object' && topAuthor.url) return topAuthor.url
+  if (sd?.author?.url) return sd.author.url
+  // try sameAs array if present
+  if (Array.isArray(sd?.sameAs) && sd.sameAs.length) return sd.sameAs[0]
+  return ''
+})
+
+// Small, safe date formatter for display
+function formatDate(iso: string) {
+  const d = new Date(iso)
+  if (isNaN(d.getTime())) return iso
+  return d.toLocaleDateString(undefined, {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  })
+}
+
+// SEO Meta (unchanged structure; added conditional og tags when available)
 useHead({
   title: articleData.seo?.title || `${articleData.title} – CodeHelper`,
   meta: [
@@ -62,7 +117,9 @@ useHead({
     {
       property: 'og:type',
       content: 'article'
-    }
+    },
+    ...(publishedISO.value ? [{ property: 'article:published_time', content: publishedISO.value }] : []),
+    ...(authorName.value ? [{ property: 'article:author', content: authorName.value }] : [])
   ],
   link: [
     {
@@ -83,7 +140,7 @@ useHead({
       : []
 })
 
-// Tracking
+// Tracking (unchanged)
 onMounted(() => {
   if (typeof window !== 'undefined') {
     window.dataLayer = window.dataLayer || []
@@ -93,7 +150,9 @@ onMounted(() => {
       page_type: 'article',
       article_title: articleData.title,
       article_slug: slug,
-      article_category: articleData.category || 'general'
+      article_category: articleData.category || 'general',
+      article_published_at: publishedISO.value || null,
+      article_author: authorName.value || null
     })
 
     if (typeof window.gtag === 'function') {

@@ -1,8 +1,8 @@
 <template>
   <div class="p-8 bg-gray-800 rounded-lg shadow-xl space-y-10">
-    <h1 class="text-3xl font-bold text-white">
+    <h2 class="text-3xl font-bold text-white">
       🧠 10 JavaScript Snippets Every Developer Should Keep in Their Clipboard Manager
-    </h1>
+    </h2>
 
     <p class="text-gray-300">
       As developers, we often rewrite the same utilities over and over. To boost productivity, here’s a curated list of

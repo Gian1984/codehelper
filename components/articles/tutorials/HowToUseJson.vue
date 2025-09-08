@@ -1,6 +1,6 @@
 <template>
   <div class="p-8 bg-gray-800 rounded-lg shadow-xl space-y-8">
-    <h1 class="text-3xl font-bold text-white">📘 How to Use JSON</h1>
+    <h2 class="text-3xl font-bold text-white">📘 How to Use JSON</h2>
 
     <p class="text-gray-300 text-base leading-relaxed">
       JSON (JavaScript Object Notation) is a lightweight data format that is easy for both humans and machines to understand.

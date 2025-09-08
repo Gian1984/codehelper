@@ -1,8 +1,8 @@
 <template>
   <div class="p-8 bg-gray-800 rounded-lg shadow-xl space-y-10">
-    <h1 class="text-3xl font-bold text-white">
+    <h2 class="text-3xl font-bold text-white">
       ⚡ The CO₂ Battery — Long-Duration Energy Storage Explained
-    </h1>
+    </h2>
 
     <p class="text-gray-300">
       The <strong class="text-white">CO₂ Battery</strong> is a breakthrough

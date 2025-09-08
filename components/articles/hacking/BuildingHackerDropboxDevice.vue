@@ -1,8 +1,8 @@
 <template>
   <div class="p-8 bg-gray-800 rounded-lg shadow-xl space-y-10">
-    <h1 class="text-3xl font-bold text-white">
+    <h2 class="text-3xl font-bold text-white">
       📦 Hacker Dropbox with Raspberry Pi &amp; Twingate — Remote Network Access Made Easy
-    </h1>
+    </h2>
 
     <p class="text-gray-300">
       Whether you’re an <strong class="text-white">ethical hacker</strong>, sysadmin, or the unofficial IT support for your family,

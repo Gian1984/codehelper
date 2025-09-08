@@ -1,8 +1,8 @@
 <template>
   <div class="p-8 bg-gray-800 rounded-lg shadow-xl space-y-10">
-    <h1 class="text-3xl font-bold text-white">
+    <h2 class="text-3xl font-bold text-white">
       💾 Samsung 9100 Pro NVMe SSD PCIe 5.0 (NVMe 2.0) Up to 14.8&nbsp;GB/s
-    </h1>
+    </h2>
 
     <p class="text-gray-300">
       The <strong class="text-white">Samsung 9100 Pro</strong> is Samsung’s first true

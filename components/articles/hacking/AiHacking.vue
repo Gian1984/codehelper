@@ -1,8 +1,8 @@
 <template>
   <div class="p-8 bg-gray-800 rounded-lg shadow-xl space-y-10">
-    <h1 class="text-3xl font-bold text-white">
+    <h2 class="text-3xl font-bold text-white">
       🤖 Can AI Be Hacked? Real-World Risks, Tactics & Defenses with Jason Haddix
-    </h1>
+    </h2>
 
     <p class="text-gray-300">
       As <strong class="text-white">LLMs</strong> and agent frameworks power more products, the question isn’t
