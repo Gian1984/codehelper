@@ -23,16 +23,16 @@
           class="underline underline-offset-2 decoration-indigo-400 hover:decoration-indigo-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
       >Tom’s Hardware</a>
       highlights the 8&nbsp;TB model with endurance up to <strong class="text-white">4,800&nbsp;TBW</strong>.
-      In mixed real-world tests, reads commonly land around <strong class="text-white">~12.4&nbsp;GB/s</strong>—still more than
+      In mixed real world tests, reads commonly land around <strong class="text-white">~12.4&nbsp;GB/s</strong> still more than
       2× the fastest PCIe&nbsp;4.0 SSDs.
     </p>
 
     <h2 class="text-xl font-semibold text-white">🔍 Why It Matters for AI &amp; LLMs</h2>
     <ul class="list-disc list-inside text-gray-300 space-y-2">
-      <li><strong>GPU offloading / oversubscription:</strong> When VRAM is exhausted, model weights and KV-caches spill to disk; Gen5 bandwidth reduces stalls and keeps tensor cores busier.</li>
-      <li><strong>High-throughput dataset streaming:</strong> Ingest multi-GB shards (images, parquet, text) at Gen5 speeds to minimize input bottlenecks.</li>
+      <li><strong>GPU offloading / oversubscription:</strong> When VRAM is exhausted, model weights and KV caches spill to disk; Gen5 bandwidth reduces stalls and keeps tensor cores busier.</li>
+      <li><strong>High throughput dataset streaming:</strong> Ingest multi GB shards (images, parquet, text) at Gen5 speeds to minimize input bottlenecks.</li>
       <li><strong>Fast checkpointing:</strong> Save and resume multi-gigabyte training states quickly to shrink downtime between runs.</li>
-      <li><strong>Concurrent I/O:</strong> Sustains parallel reads/writes while the GPU computes—useful for data loaders and multi-process training.</li>
+      <li><strong>Concurrent I/O:</strong> Sustains parallel reads/writes while the GPU computes useful for data loaders and multi process training.</li>
     </ul>
 
     <blockquote class="border-l-4 border-indigo-500 pl-4 text-gray-200/90 italic">
@@ -88,7 +88,7 @@
       To reach peak numbers you need a motherboard with true <strong class="text-white">PCIe&nbsp;5.0 x4</strong> wired lanes,
       adequate cooling (heatsink + airflow), and a slot not sharing bandwidth with a GPU. Consoles like PS5 and many
       mid-range desktops won’t fully leverage Gen5 bandwidth yet. Thermal limits or shared lanes can pull sustained speeds
-      closer to <strong class="text-white">~12&nbsp;GB/s</strong>—still class-leading.
+      closer to <strong class="text-white">~12&nbsp;GB/s</strong> still class-leading.
     </p>
 
     <h2 class="text-xl font-semibold text-white">🎥 Benchmarks &amp; Thermals (Video)</h2>
@@ -101,7 +101,7 @@
           aria-label="YouTube review of Samsung 9100 Pro Gen5 drive (opens in a new tab)"
           class="underline underline-offset-2 decoration-indigo-400 hover:decoration-indigo-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
       >a detailed Gen5 review</a>
-      covering sustained transfers, thermals, and real-world workloads.
+      covering sustained transfers, thermals, and real world workloads.
     </p>
 
     <h2 class="text-xl font-semibold text-white">🌐 Learn More &amp; Where to Buy</h2>
@@ -129,7 +129,7 @@
       >buy the Samsung&nbsp;9100&nbsp;Pro on Amazon</a>.
     </p>
     <p id="affiliate-note" class="text-xs text-gray-400">
-      As an Amazon Associate I may earn from qualifying purchases—at no extra cost to you.
+      As an Amazon Associate I may earn from qualifying purchases at no extra cost to you.
     </p>
   </div>
 </template>

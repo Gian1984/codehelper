@@ -309,7 +309,7 @@ export const articles: Record<string, Article> = {
             }
         }
     },
-    
+
     'samsung-9100-pro-nvme': {
         title: 'Samsung 9100 Pro NVMe — 14 GB/s Gen5 Storage & LLM Workflow Acceleration',
         description:
@@ -362,7 +362,58 @@ export const articles: Record<string, Article> = {
                 proficiencyLevel: 'Advanced'
             }
         }
-    }
+    },
+    'github-student-pack': {
+        title: 'GitHub Student Developer Pack — Free Tools & Resources for Students',
+        description:
+            'A complete overview of GitHub’s Student Developer Pack: free IDEs, cloud credits, domains, and pro tools to help students learn and ship real projects.',
+        category: 'education',
+        component: () =>
+            import('~/components/articles/education/GitHubStudentPack.vue') as Promise<{ default: DefineComponent }>,
+        seo: {
+            title: `GitHub Student Developer Pack — Free Tools & Resources – ${BRAND}`,
+            description:
+                'Discover everything included in GitHub’s Student Developer Pack: Copilot Pro, JetBrains IDEs, cloud credits, domains, and learning platforms—all free for verified students.',
+            ogImage: OG,
+            keywords:
+                'GitHub Student Pack, free developer tools students, GitHub Education benefits, JetBrains free student license, GitHub Copilot free, student cloud credits',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'TechArticle',
+                headline: 'GitHub Student Developer Pack — Free Tools & Resources for Students',
+                description:
+                    'Guide to GitHub’s Student Developer Pack, including Copilot, JetBrains, cloud credits, domains, and learning resources. Learn how to apply and maximize your benefits.',
+                author: { '@type': 'Person', name: 'Gianluca' },
+                publisher: {
+                    '@type': 'Organization',
+                    name: 'CodeHelper',
+                    logo: { '@type': 'ImageObject', url: OG }
+                },
+                image: OG,
+                datePublished: '2025-09-08',
+                dateModified: '2025-09-08',
+                mainEntityOfPage: {
+                    '@type': 'WebPage',
+                    '@id': 'https://codehelper.me/articles/github-student-pack'
+                },
+                articleSection: 'Education',
+                about: [
+                    'GitHub Student Developer Pack',
+                    'Free Tools for Students',
+                    'GitHub Education'
+                ],
+                keywords: [
+                    'GitHub Copilot free student',
+                    'JetBrains free IDE student',
+                    'cloud credits students',
+                    'student developer tools',
+                    'GitHub Education benefits'
+                ],
+                proficiencyLevel: 'Beginner'
+            }
+        }
+    },
+
 
 
 
