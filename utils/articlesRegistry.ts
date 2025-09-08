@@ -257,6 +257,112 @@ export const articles: Record<string, Article> = {
                 proficiencyLevel: 'General'
             }
         }
+    },
+    'co2-battery': {
+        title: 'CO₂ Battery: Closed Thermo-Mechanical Energy Storage Explained',
+        description:
+            'Learn how the CO₂ Battery stores and generates electricity using closed thermo-mechanical cycles with carbon dioxide—offering long-duration energy storage with zero emissions.',
+        category: 'energy',
+        component: () =>
+            import('~/components/articles/energy/CO2Battery.vue') as Promise<{ default: DefineComponent }>,
+        seo: {
+            title: `CO₂ Battery (Thermo-Mechanical Storage) – ${BRAND}`,
+            description:
+                'Discover the CO₂ Battery: a closed-cycle energy storage using liquid gas that delivers 75% round-trip efficiency, over 30-year life, and avoids lithium dependence.',
+            ogImage: OG,
+            keywords:
+                'CO2 battery, carbon dioxide energy storage, long duration energy storage, thermo-mechanical storage, energy dome, carbon-neutral grid, alternative to lithium batteries',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'TechArticle',
+                headline: 'CO₂ Battery: Closed Thermo-Mechanical Energy Storage Explained',
+                description:
+                    'An in-depth look at how the CO₂ Battery uses liquid-gas cycles of CO₂ to store energy for 8–24 hours with zero emissions and low cost.',
+                author: { '@type': 'Person', name: 'Gianluca' },
+                publisher: {
+                    '@type': 'Organization',
+                    name: 'CodeHelper',
+                    logo: { '@type': 'ImageObject', url: OG }
+                },
+                image: OG,
+                datePublished: '2025-09-08',
+                dateModified: '2025-09-08',
+                mainEntityOfPage: {
+                    '@type': 'WebPage',
+                    '@id': 'https://codehelper.me/articles/co2-battery'
+                },
+                articleSection: 'Energy',
+                about: [
+                    'Energy Storage',
+                    'CO₂ Battery',
+                    'Thermo-Mechanical Cycle',
+                    'Grid Services'
+                ],
+                keywords: [
+                    'CO2 battery',
+                    'energy dome',
+                    'long duration storage',
+                    'zero emissions',
+                    'alternative energy storage'
+                ],
+                proficiencyLevel: 'General'
+            }
+        }
+    },
+    ' samsung-9100-pro-nvme': {
+        title: 'Samsung 9100 Pro NVMe — 14 GB/s Gen5 Storage & LLM Workflow Acceleration',
+        description:
+            'Explore Samsung’s 9100 Pro PCIe 5.0 NVMe SSD with up to 14.8 GB/s read/write. Its ultra-fast storage reshapes GPU offloading for large model workflows and data-heavy tasks.',
+        category: 'hardware',
+        component: () =>
+            import('~/components/articles/hardware/Samsung9100Pro.vue') as Promise<{ default: DefineComponent }>,
+        seo: {
+            title: `Samsung 9100 Pro NVMe Gen5 (14 GB/s) — Hardware Deep Dive – ${BRAND}`,
+            description:
+                'Samsung’s 9100 Pro SSD delivers PCle 5.0 speeds—14.8 GB/s read, 13.4 GB/s write. Learn how this transforms GPU-based LLM offloading, dataset streaming, and checkpointing workflows.',
+            ogImage: OG,
+            keywords:
+                'Samsung 9100 Pro, PCIe 5.0 SSD, NVMe Gen5, LLM offload, model swapping, GPU workflows, fast storage SSD',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'TechArticle',
+                headline: 'Samsung 9100 Pro NVMe SSD – 14 GB/s PCIe 5.0 Storage for Next-gen Workflows',
+                description:
+                    'In-depth look at how the Samsung 9100 Pro NVMe unlocks ultra-fast storage to accelerate GPU-based model workflows and LLM tasks.',
+                author: { '@type': 'Person', name: 'Gianluca' },
+                publisher: {
+                    '@type': 'Organization',
+                    name: 'CodeHelper',
+                    logo: { '@type': 'ImageObject', url: OG }
+                },
+                image: OG,
+                datePublished: '2025-09-08',
+                dateModified: '2025-09-08',
+                mainEntityOfPage: {
+                    '@type': 'WebPage',
+                    '@id': 'https://codehelper.me/articles/samsung-9100-pro-nvme'
+                },
+                articleSection: 'Hardware',
+                about: [
+                    'PCIe 5.0 SSD',
+                    'Samsung 9100 Pro',
+                    'LLM Offload',
+                    'Data Streaming',
+                    'Hardware Acceleration'
+                ],
+                keywords: [
+                    'Samsung 9100 Pro',
+                    'NVMe Gen5',
+                    'LLM workflows',
+                    'GPU offload',
+                    'fast storage',
+                    'PCIe 5 SSD'
+                ],
+                proficiencyLevel: 'Advanced'
+            }
+        }
     }
+
+
 
 }

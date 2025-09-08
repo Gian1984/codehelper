@@ -1,26 +1,59 @@
 <template>
   <div class="p-8 bg-gray-800 rounded-lg shadow-xl space-y-10">
-    <h1 class="text-3xl font-bold text-white">🧠 10 JavaScript Snippets Every Developer Should Keep in Their Clipboard Manager</h1>
+    <h1 class="text-3xl font-bold text-white">
+      🧠 10 JavaScript Snippets Every Developer Should Keep in Their Clipboard Manager
+    </h1>
+
     <p class="text-gray-300">
-      If you're like most developers, you reuse the same snippets over and over. This list contains 10 practical, high-value code blocks
-      every JavaScript developer should have at their fingertips.
+      As developers, we often rewrite the same utilities over and over. To boost productivity, here’s a curated list of
+      <strong class="text-white">10 high-value JavaScript snippets</strong> you can copy and paste directly into your next project.
+      These cover everyday needs like debouncing, throttling, string formatting, and array manipulation.
     </p>
 
-    <div v-for="(snippet, i) in snippets" :key="i" class="space-y-4">
-      <h2 class="text-xl font-semibold text-white">{{ i + 1 }}. {{ snippet.title }}</h2>
-      <p class="text-gray-300 text-base leading-relaxed">{{ snippet.description }}</p>
+    <div
+        v-for="(snippet, i) in snippets"
+        :key="i"
+        class="space-y-4"
+    >
+      <h2 class="text-xl font-semibold text-white">
+        {{ i + 1 }}. {{ snippet.title }}
+      </h2>
+      <p class="text-gray-300 text-base leading-relaxed">
+        {{ snippet.description }}
+      </p>
       <div class="bg-gray-900 border border-gray-700 rounded-lg p-4 overflow-x-auto">
-        <pre class="text-sm font-mono text-green-400 whitespace-pre">{{ snippet.code }}</pre>
+        <pre class="text-sm font-mono text-green-400 whitespace-pre">
+<code>{{ snippet.code }}</code>
+        </pre>
       </div>
     </div>
 
     <div class="mt-12 text-gray-300">
       <h2 class="text-xl font-semibold text-white">📌 Final Tip</h2>
       <p class="mt-2">
-        Use a clipboard manager like <a class="text-indigo-400 underline" href="https://espanso.org" target="_blank">Espanso</a>,
-        <a class="text-indigo-400 underline" href="https://clipy-app.com" target="_blank">Clipy</a>, or
-        <a class="text-indigo-400 underline" href="https://raycast.com" target="_blank">Raycast</a> to store and organize your snippets.
-        It’ll save you hours every week.
+        Supercharge your workflow with a clipboard manager like
+        <a
+            class="underline underline-offset-2 decoration-indigo-400 hover:decoration-indigo-300 focus-visible:ring-2 focus-visible:ring-indigo-400"
+            href="https://espanso.org"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Espanso clipboard manager (opens in a new tab)"
+        >Espanso</a>,
+        <a
+            class="underline underline-offset-2 decoration-indigo-400 hover:decoration-indigo-300 focus-visible:ring-2 focus-visible:ring-indigo-400"
+            href="https://clipy-app.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Clipy clipboard manager (opens in a new tab)"
+        >Clipy</a>, or
+        <a
+            class="underline underline-offset-2 decoration-indigo-400 hover:decoration-indigo-300 focus-visible:ring-2 focus-visible:ring-indigo-400"
+            href="https://raycast.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Raycast clipboard manager (opens in a new tab)"
+        >Raycast</a>.
+        Keeping snippets ready-to-go will save you <strong class="text-white">hours every week</strong>.
       </p>
     </div>
   </div>
@@ -30,7 +63,7 @@
 const snippets = [
   {
     title: 'Debounce Function',
-    description: 'Limits how often a function is executed. Useful for input, scroll or resize events.',
+    description: 'Limits how often a function is executed. Useful for input, scroll, or resize events.',
     code: `function debounce(fn, delay) {
   let timeout
   return (...args) => {
@@ -55,7 +88,7 @@ const snippets = [
   },
   {
     title: 'Deep Clone',
-    description: 'Safely clones nested objects and arrays using JSON (works for most cases).',
+    description: 'Safely clones nested objects and arrays using JSON (works for most use cases).',
     code: `function deepClone(obj) {
   return JSON.parse(JSON.stringify(obj))
 }`
@@ -69,14 +102,14 @@ const snippets = [
   },
   {
     title: 'Check if Object is Empty',
-    description: 'Simple utility to validate if an object has no keys.',
+    description: 'Utility to validate if an object has no keys.',
     code: `function isEmpty(obj) {
   return Object.keys(obj).length === 0
 }`
   },
   {
     title: 'Generate Random ID',
-    description: 'Handy for generating unique IDs (not UUIDs, but good enough for UI use).',
+    description: 'Generate unique IDs (not UUIDs, but useful for UI components).',
     code: `function randomID(length = 8) {
   return Math.random().toString(36).substring(2, 2 + length)
 }`
@@ -102,17 +135,22 @@ const snippets = [
   },
   {
     title: 'Capitalize First Letter',
-    description: 'Quick string formatter for capitalizing the first character.',
+    description: 'Format strings by capitalizing the first character.',
     code: `function capitalize(str) {
   return str.charAt(0).toUpperCase() + str.slice(1)
 }`
   },
   {
     title: 'Clamp a Number Between Two Values',
-    description: 'Make sure a number stays within bounds.',
+    description: 'Ensure a number stays within bounds.',
     code: `function clamp(value, min, max) {
   return Math.min(Math.max(value, min), max)
 }`
   }
 ]
 </script>
+
+<style scoped>
+/* Tailwind only, improved hover/focus for links */
+</style>
+
