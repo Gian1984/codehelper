@@ -6,7 +6,7 @@
 
     <p class="text-gray-300">
       The <strong class="text-white">GitHub Student Developer Pack</strong> unlocks
-      <em>professional-grade developer tools</em> for verified students—completely free.
+      <em>professional grade developer tools</em> for verified students completely free.
       From <strong class="text-white">Copilot Pro</strong> to
       <strong class="text-white">JetBrains IDEs</strong>, cloud credits, domains, and
       learning platforms, it’s designed to help you learn and ship software like a pro.
@@ -43,7 +43,7 @@
     </ol>
 
     <blockquote class="border-l-4 border-indigo-500 pl-4 text-gray-200/90 italic">
-      “With just a school email, I got Copilot Pro, JetBrains, and $200 in cloud credits—
+      “With just a school email, I got Copilot Pro, JetBrains, and $200 in cloud credits
       enough to build and deploy real projects without spending a dime.”
     </blockquote>
 

@@ -67,7 +67,7 @@
 
     <h2 class="text-xl font-semibold text-white">🌐 A Step Toward Climate Neutrality</h2>
     <p class="text-gray-300">
-      For Pornainen, the Sand Battery is more than heat storage — it’s
+      For Pornainen, the Sand Battery is more than heat storage it’s
       <strong class="text-white">energy independence</strong>.
       By integrating electricity and heat, Loviisan Lämpö and its partners show how
       local communities can pioneer the <strong class="text-white">global energy transition</strong>

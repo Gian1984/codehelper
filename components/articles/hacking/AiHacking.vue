@@ -84,9 +84,9 @@
       <li><strong>Classical web security still applies:</strong> validate inputs, sanitize outputs, authenticate, authorize.</li>
       <li><strong>Policy + output filters:</strong> separate system prompts from user content; verify tool arguments and destinations.</li>
       <li><strong>Sandboxing:</strong> run tools in isolated environments; block egress by default, allowlist domains.</li>
-      <li><strong>Least privilege:</strong> scoped API keys, per-tool permissions, expirations, and just-in-time grants.</li>
+      <li><strong>Least privilege:</strong> scoped API keys, per tool permissions, expirations, and just in time grants.</li>
       <li><strong>Observability:</strong> full I/O logging, replay, anomaly detection, rate limits, and circuit breakers.</li>
-      <li><strong>Model Context Protocol (MCP):</strong> standardize tool/data access with explicit, reviewable capabilities —
+      <li><strong>Model Context Protocol (MCP):</strong> standardize tool/data access with explicit, reviewable capabilities
         see
         <a
             href="https://modelcontextprotocol.io/"
@@ -105,7 +105,7 @@
             href="https://github.com/elder-plinius"
             target="_blank"
             rel="noopener noreferrer"
-        >Pliney’s GitHub</a> — open-source AI testing utilities.
+        >Pliney’s GitHub</a> open-source AI testing utilities.
       </li>
       <li>Agent frameworks: LangChain, AutoGPT, etc. (audit tool catalogs and auth scopes).</li>
       <li>
@@ -114,7 +114,7 @@
             href="https://owasp.org/www-project-top-10-for-large-language-model-applications/"
             target="_blank"
             rel="noopener noreferrer"
-        >OWASP LLM Top 10</a> — shared vocabulary for risks and mitigations.
+        >OWASP LLM Top 10</a> shared vocabulary for risks and mitigations.
       </li>
     </ul>
 
@@ -126,7 +126,7 @@
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Watch The AI Attack Blueprint – Interview with Jason Haddix on YouTube (opens in a new tab)"
-      >▶️ The AI Attack Blueprint – Interview with Jason Haddix</a>
+      >▶️ The AI Attack Blueprint. Interview with Jason Haddix.</a>
     </p>
 
     <h2 class="text-xl font-semibold text-white">📚 Go Deeper</h2>
@@ -159,7 +159,7 @@
 
     <h2 class="text-xl font-semibold text-white">🧑‍💻 Final Thoughts</h2>
     <p class="text-gray-300">
-      AI supercharges productivity—and the attack surface. Treat LLMs like powerful,
+      AI supercharges productivity and the attack surface. Treat LLMs like powerful,
       <strong class="text-white">untrusted inputs</strong> with tool access. Invest in policies, sandboxes, and
       observability before incidents, not after.
     </p>

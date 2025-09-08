@@ -15,7 +15,7 @@
         aria-label="Energy Dome official website (opens in a new tab)"
     >Energy Dome</a>.
       It stores electricity by cycling carbon dioxide between high-pressure liquid and gaseous phases,
-      then converts expansion into electricity — without emissions, cryogenic temperatures, or rare materials.
+      then converts expansion into electricity without emissions, cryogenic temperatures, or rare materials.
     </p>
 
     <h2 class="text-xl font-semibold text-white">🔄 How It Works (Charge & Discharge)</h2>
