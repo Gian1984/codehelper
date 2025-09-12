@@ -711,6 +711,40 @@ export const tools: Record<string, Tool> = {
         }
     },
 
+    'mini-image-editor': {
+        title: 'Mini Image Editor',
+        description:
+            'Crop, resize, rotate, flip, and apply filters to images directly in your browser. No upload, everything stays local.',
+        category: 'imaging',
+        component: () =>
+            import('~/components/tools/imaging/MiniImageEditor.vue') as Promise<{ default: DefineComponent }>,
+        seo: {
+            title: `Mini Image Editor (Crop, Resize, Filters) – ${BRAND}`,
+            description:
+                'In-browser image editor for quick edits: crop, resize, rotate, flip, and apply filters. Local only, privacy-friendly.',
+            ogImage: OG,
+            keywords:
+                'image editor, crop image, resize image, rotate image, flip image, add filters, local image tool, photo editor online',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'Mini Image Editor',
+                applicationCategory: 'MultimediaApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    'Crop Selector',
+                    'Resize & Rotate',
+                    'Flip Horizontal/Vertical',
+                    'Image Filters',
+                    'Local Processing'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '5' }
+            }
+        }
+    },
+
+
     'unit-converter': {
         title: 'Unit Converter',
         description: 'Convert length, weight, temperature, speed, and CSS units (px ↔ em ↔ rem).',
