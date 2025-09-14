@@ -2,7 +2,7 @@
   <div class="p-8 bg-gray-800 rounded shadow space-y-6">
     <h2 class="text-xl text-white font-semibold">Mini Image Editor</h2>
 
-    <!-- Uploader / Dropzone -->
+    <!-- Dropzone -->
     <div
         class="border-2 border-dashed border-gray-600 rounded p-6 text-center bg-gray-900 text-gray-300 cursor-pointer"
         @dragover.prevent
@@ -14,17 +14,22 @@
       <input ref="fileInput" type="file" accept="image/*" class="hidden" @change="onFileChange" />
     </div>
 
-    <!-- keep canvases mounted to avoid null refs -->
+    <!-- Keep canvases mounted -->
     <div v-show="img.loaded" class="grid lg:grid-cols-2 gap-6">
-      <!-- Canvas workspace -->
+      <!-- Workspace -->
       <div class="space-y-3">
-        <div ref="stageRef" class="relative inline-block border border-gray-700 rounded bg-black/30 overflow-hidden">
+        <div
+            ref="stageRef"
+            class="relative inline-block bg-black/30 overflow-hidden rounded border border-gray-700"
+            :style="stageStyle"
+        >
+          <!-- Main canvas -->
           <canvas ref="canvasRef" class="block"></canvas>
 
-          <!-- Crop overlay (CSS pixels) -->
+          <!-- Crop overlay -->
           <div
               v-show="crop.visible"
-              class="absolute border-2 border-blue-500/90"
+              class="absolute pointer-events-auto border-2 border-blue-500/90"
               :style="cropBoxStyle"
               @mousedown.stop="startDrag($event, 'move')"
           >
@@ -39,11 +44,10 @@
           </div>
         </div>
 
-        <!-- quick controls -->
+        <!-- Quick actions -->
         <div class="flex flex-wrap gap-3">
           <button class="px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded disabled:opacity-50"
                   :disabled="!crop.visible" @click="applyCrop">apply crop</button>
-          <button class="px-3 py-2 bg-green-600 hover:bg-green-700 text-white rounded" @click="download">download</button>
           <button class="px-3 py-2 bg-yellow-600 hover:bg-yellow-700 text-white rounded disabled:opacity-50"
                   :disabled="!history.length" @click="undo">undo</button>
           <button class="px-3 py-2 bg-red-600 hover:bg-red-700 text-white rounded" @click="resetAll">reset</button>
@@ -55,7 +59,7 @@
 
       <!-- Controls + Preview -->
       <div class="space-y-5">
-        <!-- transform controls -->
+        <!-- Transform -->
         <div class="bg-gray-900 border border-gray-700 rounded p-4 space-y-3">
           <p class="text-white font-medium text-sm">transform</p>
           <div class="grid grid-cols-2 gap-4">
@@ -92,7 +96,7 @@
           </div>
         </div>
 
-        <!-- filters (inlined, no subcomponent) -->
+        <!-- Filters -->
         <div class="bg-gray-900 border border-gray-700 rounded p-4 space-y-3">
           <p class="text-white font-medium text-sm">filters</p>
 
@@ -153,7 +157,55 @@
           </div>
         </div>
 
-        <!-- crop + result preview -->
+        <!-- Export -->
+        <div class="bg-gray-900 border border-gray-700 rounded p-4 space-y-3">
+          <p class="text-white font-medium text-sm">export</p>
+
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block text-white text-xs mb-1">file name (no ext)</label>
+              <input type="text" v-model="exp.name" placeholder="edited-image"
+                     class="w-full bg-gray-800 text-white border border-gray-600 rounded px-2 py-1" />
+            </div>
+            <div>
+              <label class="block text-white text-xs mb-1">format</label>
+              <select v-model="exp.format"
+                      class="w-full bg-gray-800 text-white border border-gray-600 rounded px-2 py-1">
+                <option value="image/png">PNG (lossless)</option>
+                <option value="image/jpeg">JPEG</option>
+                <option :disabled="!exp.webpSupported" value="image/webp">WebP</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="space-y-1">
+            <div class="flex items-center justify-between">
+              <label class="text-white text-xs">quality (JPEG/WebP)</label>
+              <span class="text-gray-300 text-xs">{{ Math.round(exp.quality * 100) }}</span>
+            </div>
+            <input type="range" min="0.1" max="1" step="0.01" v-model.number="exp.quality"
+                   class="w-full" :disabled="exp.format === 'image/png'" />
+            <p v-if="exp.format === 'image/png'" class="text-xs text-gray-400">
+              PNG ignores quality (lossless). Use JPEG or WebP for smaller files.
+            </p>
+          </div>
+
+          <div class="flex items-center justify-between text-xs text-gray-300">
+            <span>encoded preview size</span>
+            <span>{{ exp.size ? prettySize(exp.size) : '—' }}</span>
+          </div>
+
+          <div class="flex gap-3">
+            <button class="px-3 py-2 bg-green-600 hover:bg-green-700 text-white rounded disabled:opacity-50"
+                    :disabled="!exp.url" @click="download">
+              download
+            </button>
+            <button class="px-3 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded"
+                    @click="refreshEncoded()">refresh</button>
+          </div>
+        </div>
+
+        <!-- Previews -->
         <div class="grid grid-cols-2 gap-4">
           <div>
             <p class="text-white text-sm mb-2">crop preview</p>
@@ -167,46 +219,63 @@
               <canvas ref="outputRef" class="block"></canvas>
             </div>
             <p class="text-xs text-gray-400 mt-2">
-              {{ state.outW }}×{{ state.outH }} • {{ estimatedSizePretty }}
+              {{ state.outW }}×{{ state.outH }}
             </p>
           </div>
         </div>
       </div>
     </div>
 
-    <p v-show="!img.loaded" class="text-xs text-gray-400">tip: draw a marquee to start a crop (click-drag on the image).</p>
+    <p v-show="!img.loaded" class="text-xs text-gray-400">Tip: click-drag on the image to show a crop box.</p>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, reactive, computed, watch, onMounted, onBeforeUnmount, nextTick } from 'vue'
 
+/* ---------- Image state ---------- */
 type ImgData = { el: HTMLImageElement | null; loaded: boolean; naturalW: number; naturalH: number; url: string | null }
 const img = reactive<ImgData>({ el: null, loaded: false, naturalW: 0, naturalH: 0, url: null })
 
+/* Refs */
 const fileInput = ref<HTMLInputElement | null>(null)
-const stageRef   = ref<HTMLDivElement | null>(null)
-const canvasRef  = ref<HTMLCanvasElement | null>(null)
+const stageRef = ref<HTMLDivElement | null>(null)
+const canvasRef = ref<HTMLCanvasElement | null>(null)
 const cropPreviewRef = ref<HTMLCanvasElement | null>(null)
-const outputRef  = ref<HTMLCanvasElement | null>(null)
+const outputRef = ref<HTMLCanvasElement | null>(null)
 
+/* Stage constraints (CSS px) */
 const MAX_W = 1200
 const MAX_H = 800
 
+/* Output transform state */
 const state = reactive({ rotate: 0, flipX: false, flipY: false, lockRatio: true, outW: 0, outH: 0 })
+
+/* Filters */
 const filters = reactive({ grayscale: 0, brightness: 100, contrast: 100, saturate: 100, sepia: 0, hue: 0 })
 
-/* undo history */
+/* Export options (download name/format/quality + encoded preview blob) */
+const exp = reactive({
+  name: 'edited',
+  format: 'image/png' as 'image/png' | 'image/jpeg' | 'image/webp',
+  quality: 0.9,
+  webpSupported: true,
+  url: null as string | null,
+  size: 0,
+})
+
+/* Undo history */
 const history = reactive<string[]>([])
 function pushHistory() { const c = canvasRef.value; if (!c) return; try { history.push(c.toDataURL('image/png')); if (history.length > 10) history.shift() } catch {} }
 function undo() { if (!history.length) return; const last = history.pop()!; loadFromDataURL(last, true) }
 
-/* crop state (CSS px) */
+/* Crop state (CSS px relative to the stage) */
 const crop = reactive({ visible: false, x: 0, y: 0, w: 0, h: 0 })
 let dragging = false as boolean
 let dragMode: 'move' | 'n' | 's' | 'e' | 'w' | 'ne' | 'nw' | 'se' | 'sw' | null = null
 let dragStart = { x: 0, y: 0, cx: 0, cy: 0, cw: 0, ch: 0 }
 
+/* Crop handles (relative to the crop box) */
 const handles = [
   { key: 'nw', x: 0, y: 0, cursor: 'nwse-resize' },
   { key: 'n',  x: .5, y: 0, cursor: 'ns-resize' },
@@ -218,6 +287,12 @@ const handles = [
   { key: 'se', x: 1, y: 1, cursor: 'nwse-resize' },
 ] as const
 
+/* Stage style (the geometry reference for canvas and overlay) */
+const stageW = ref(10)
+const stageH = ref(10)
+const stageStyle = computed(() => ({ width: stageW.value + 'px', height: stageH.value + 'px' }))
+
+/* Overlay styles */
 const cropBoxStyle = computed(() => ({
   left: crop.x + 'px',
   top: crop.y + 'px',
@@ -225,35 +300,42 @@ const cropBoxStyle = computed(() => ({
   height: Math.max(1, crop.h) + 'px',
   cursor: 'move',
 }))
-function handleStyle(h: any) {
+function handleStyle(h: { x:number; y:number; cursor:string }) {
+  // Position handles relative to the crop box (not the stage)
   const size = 10
-  const left = crop.x + h.x * crop.w - size / 2
-  const top  = crop.y + h.y * crop.h - size / 2
+  const left = h.x * crop.w - size / 2
+  const top  = h.y * crop.h - size / 2
   return { left: left + 'px', top: top + 'px', width: size + 'px', height: size + 'px', cursor: h.cursor }
 }
 
-/* DPR helper (SSR-safe) */
+/* DPR helper (SSR safe) */
 function dpr() { return typeof window === 'undefined' ? 1 : Math.max(1, window.devicePixelRatio || 1) }
 
-/* set canvas CSS size + backing resolution */
+/* Check encoder support (e.g., WebP) */
+function canEncodeType(type: string) {
+  try {
+    const c = document.createElement('canvas')
+    return c.toDataURL(type).startsWith(`data:${type}`)
+  } catch { return false }
+}
+
+/* Size stage + canvas coherently; image always "contain" inside the stage */
 function setCanvasSize(naturalW: number, naturalH: number) {
   const c = canvasRef.value!
-  const stage = stageRef.value!
   const scale = Math.min(MAX_W / naturalW, MAX_H / naturalH, 1)
   const cssW = Math.round(naturalW * scale)
   const cssH = Math.round(naturalH * scale)
+  stageW.value = cssW
+  stageH.value = cssH
 
-  stage.style.width = cssW + 'px'
-  stage.style.height = cssH + 'px'
   c.style.width = cssW + 'px'
   c.style.height = cssH + 'px'
-
   const ratio = dpr()
   c.width  = Math.round(cssW * ratio)
   c.height = Math.round(cssH * ratio)
 }
 
-/* load file */
+/* Load file */
 async function loadFile(file: File) {
   const url = URL.createObjectURL(file)
   const el = new Image()
@@ -262,38 +344,47 @@ async function loadFile(file: File) {
     await nextTick()
     setCanvasSize(img.naturalW, img.naturalH)
     state.outW = img.naturalW; state.outH = img.naturalH
-    draw(); drawOutputPreview()
+    draw(); drawOutputPreview(); scheduleEncodedUpdate()
   }
   el.onerror = () => { URL.revokeObjectURL(url); alert('could not load image') }
   el.src = url
 }
 
-/* draw main canvas */
+/* Draw main canvas (image contained; transforms + filters applied) */
 function draw() {
-  const c = canvasRef.value, ctx = c?.getContext('2d')
-  if (!c || !ctx || !img.el) return
+  const c = canvasRef.value
+  if (!c || !img.el) return
+  const ctx = c.getContext('2d', { willReadFrequently: true })!
   ctx.setTransform(1, 0, 0, 1, 0, 0)
   ctx.clearRect(0, 0, c.width, c.height)
 
   const ratio = dpr()
   ctx.scale(ratio, ratio)
-
+  ctx.imageSmoothingEnabled = true
+  ;(ctx as any).imageSmoothingQuality = 'high'
   ctx.filter = cssFilterString.value
 
   const cssW = c.width / ratio, cssH = c.height / ratio
+
+  // Contain sizing
+  const imgRatio = img.naturalW / img.naturalH
+  const boxRatio = cssW / cssH
+  let drawW = cssW, drawH = cssH
+  if (imgRatio > boxRatio) { drawW = cssW; drawH = cssW / imgRatio } else { drawH = cssH; drawW = cssH * imgRatio }
+
   ctx.save()
   ctx.translate(cssW / 2, cssH / 2)
   ctx.rotate((state.rotate * Math.PI) / 180)
   ctx.scale(state.flipX ? -1 : 1, state.flipY ? -1 : 1)
-  ctx.drawImage(img.el, -cssW / 2, -cssH / 2, cssW, cssH)
+  ctx.drawImage(img.el, -drawW / 2, -drawH / 2, drawW, drawH)
   ctx.restore()
 }
 
-/* crop preview */
+/* Crop preview */
 function drawCropPreview() {
-  const cp = cropPreviewRef.value, ctx = cp?.getContext('2d')
-  const c = canvasRef.value
-  if (!cp || !ctx || !c) return
+  const cp = cropPreviewRef.value, c = canvasRef.value
+  if (!cp || !c) return
+  const ctx = cp.getContext('2d', { willReadFrequently: true })!
 
   const ratio = dpr()
   const sw = Math.max(1, Math.round(crop.w * ratio))
@@ -304,19 +395,19 @@ function drawCropPreview() {
   ctx.clearRect(0, 0, sw, sh)
 
   if (!crop.visible || !img.el) return
-  const mctx = c.getContext('2d')!
+  const mctx = c.getContext('2d', { willReadFrequently: true })!
   const sx = Math.round(crop.x * ratio)
   const sy = Math.round(crop.y * ratio)
   const data = mctx.getImageData(sx, sy, sw, sh)
   ctx.putImageData(data, 0, 0)
 }
 
-/* apply crop */
+/* Apply crop */
 function applyCrop() {
   if (!crop.visible || !img.el) return
   pushHistory()
 
-  const c = canvasRef.value!, mctx = c.getContext('2d')!
+  const c = canvasRef.value!, mctx = c.getContext('2d', { willReadFrequently: true })!
   const ratio = dpr()
   const sx = Math.round(crop.x * ratio), sy = Math.round(crop.y * ratio)
   const sw = Math.round(crop.w * ratio), sh = Math.round(crop.h * ratio)
@@ -330,7 +421,7 @@ function applyCrop() {
   crop.visible = false
 }
 
-/* reload from dataURL */
+/* Reload from dataURL (crop/undo) */
 async function loadFromDataURL(url: string, skipHistory = false) {
   const el = new Image()
   el.onload = async () => {
@@ -339,24 +430,24 @@ async function loadFromDataURL(url: string, skipHistory = false) {
     setCanvasSize(img.naturalW, img.naturalH)
     state.rotate = 0; state.flipX = false; state.flipY = false
     state.outW = img.naturalW; state.outH = img.naturalH
-    draw(); drawOutputPreview(); drawCropPreview()
+    draw(); drawOutputPreview(); drawCropPreview(); scheduleEncodedUpdate()
   }
   el.src = url
   if (!skipHistory) pushHistory()
 }
 
-/* crop ui */
+/* Toggle crop UI */
 function toggleCrop() {
-  const c = canvasRef.value!
+  const stage = stageRef.value!
   if (!crop.visible) {
-    const s = Math.min(c.clientWidth, c.clientHeight) * 0.6
-    crop.w = s; crop.h = s; crop.x = (c.clientWidth - s) / 2; crop.y = (c.clientHeight - s) / 2
+    const s = Math.min(stage.clientWidth, stage.clientHeight) * 0.6
+    crop.w = s; crop.h = s; crop.x = (stage.clientWidth - s) / 2; crop.y = (stage.clientHeight - s) / 2
     crop.visible = true
-  } else {
-    crop.visible = false
-  }
+  } else { crop.visible = false }
   drawCropPreview()
 }
+
+/* Dragging/Resizing crop */
 function startDrag(e: MouseEvent, mode: typeof dragMode) {
   dragging = true; dragMode = mode
   dragStart = { x: e.clientX, y: e.clientY, cx: crop.x, cy: crop.y, cw: crop.w, ch: crop.h }
@@ -367,9 +458,10 @@ function onDrag(e: MouseEvent) {
   if (!dragging) return
   const dx = e.clientX - dragStart.x
   const dy = e.clientY - dragStart.y
-  const c = canvasRef.value!
-  const W = c.clientWidth, H = c.clientHeight
+  const stage = stageRef.value!
+  const W = stage.clientWidth, H = stage.clientHeight
   const min = 10
+
   if (dragMode === 'move') {
     crop.x = clamp(dragStart.cx + dx, 0, W - crop.w)
     crop.y = clamp(dragStart.cy + dy, 0, H - crop.h)
@@ -389,26 +481,83 @@ function endDrag() {
   window.removeEventListener('mouseup', endDrag)
 }
 
-/* output preview */
+/* Output preview (canvas scaled to requested export W×H) */
 function drawOutputPreview() {
-  const out = outputRef.value, ctx = out?.getContext('2d')
-  const main = canvasRef.value
-  if (!out || !ctx || !main) return
+  const out = outputRef.value, main = canvasRef.value
+  if (!out || !main) return
+  const ctx = out.getContext('2d')!
   out.style.width  = '100%'
   out.width  = Math.max(1, state.outW)
   out.height = Math.max(1, state.outH)
   out.style.aspectRatio = `${state.outW}/${state.outH}`
   ctx.clearRect(0, 0, out.width, out.height)
+  ctx.imageSmoothingEnabled = true
+  ;(ctx as any).imageSmoothingQuality = 'high'
   ctx.drawImage(main, 0, 0, out.width, out.height)
 }
 
-/* helpers */
+/* ------- Presets ------- */
+function preset(name: 'none' | 'bw' | 'punch' | 'warm' | 'cool') {
+  if (name === 'none')  Object.assign(filters, { grayscale: 0, brightness: 100, contrast: 100, saturate: 100, sepia: 0, hue: 0 })
+  if (name === 'bw')    Object.assign(filters, { grayscale: 100, brightness: 110, contrast: 120, saturate: 0,   sepia: 0, hue: 0 })
+  if (name === 'punch') Object.assign(filters, { grayscale: 0,   brightness: 105, contrast: 125, saturate: 135, sepia: 0, hue: 0 })
+  if (name === 'warm')  Object.assign(filters, { grayscale: 0,   brightness: 105, contrast: 105, saturate: 115, sepia: 10, hue: 350 })
+  if (name === 'cool')  Object.assign(filters, { grayscale: 0,   brightness: 100, contrast: 110, saturate: 110, sepia: 0,  hue: 205 })
+  draw(); drawCropPreview(); drawOutputPreview(); scheduleEncodedUpdate()
+}
+
+/* ------- Encoding (quality/format) ------- */
+/* Encode the output canvas to the chosen format+quality, update exp.url + exp.size. */
+let lastUrl: string | null = null
+function revokeUrl() { if (lastUrl) { URL.revokeObjectURL(lastUrl); lastUrl = null } }
+
+function encodeFromOutputCanvas(): Promise<Blob | null> {
+  return new Promise((resolve) => {
+    const out = outputRef.value
+    if (!out) return resolve(null)
+
+    // For JPEG we paint a white background to avoid black where alpha exists.
+    const needsBg = exp.format === 'image/jpeg'
+    const enc = document.createElement('canvas')
+    enc.width = out.width
+    enc.height = out.height
+    const ectx = enc.getContext('2d')!
+    if (needsBg) { ectx.fillStyle = '#ffffff'; ectx.fillRect(0, 0, enc.width, enc.height) }
+    ectx.drawImage(out, 0, 0)
+
+    // If requested type is unsupported, toBlob may return null → fallback to JPEG.
+    enc.toBlob((blob) => {
+      if (!blob && exp.format !== 'image/jpeg') {
+        enc.toBlob((fb) => resolve(fb || null), 'image/jpeg', exp.quality)
+      } else {
+        resolve(blob)
+      }
+    }, exp.format, exp.format === 'image/png' ? undefined : exp.quality)
+  })
+}
+
+async function refreshEncoded() {
+  revokeUrl()
+  const blob = await encodeFromOutputCanvas()
+  if (!blob) { exp.url = null; exp.size = 0; return }
+  lastUrl = URL.createObjectURL(blob)
+  exp.url = lastUrl
+  exp.size = blob.size
+}
+
+let encodeTimer: number | null = null
+function scheduleEncodedUpdate() {
+  if (encodeTimer) window.clearTimeout(encodeTimer)
+  encodeTimer = window.setTimeout(() => { refreshEncoded() }, 200)
+}
+
+/* Watchers: redraw + re-encode when anything relevant changes */
 const cssFilterString = computed(() =>
     `grayscale(${filters.grayscale}%) brightness(${filters.brightness}%) contrast(${filters.contrast}%) saturate(${filters.saturate}%) sepia(${filters.sepia}%) hue-rotate(${filters.hue}deg)`
 )
 watch(
     () => [state.rotate, state.flipX, state.flipY, filters.grayscale, filters.brightness, filters.contrast, filters.saturate, filters.sepia, filters.hue],
-    () => { draw(); drawCropPreview(); drawOutputPreview() }
+    () => { draw(); drawCropPreview(); drawOutputPreview(); scheduleEncodedUpdate() }
 )
 watch(
     () => [state.outW, state.outH, state.lockRatio],
@@ -421,29 +570,26 @@ watch(
         if (w !== undefined) state.outH = Math.round(state.outW / r)
         else state.outW = Math.round(state.outH * r)
       }
-      drawOutputPreview()
+      drawOutputPreview(); scheduleEncodedUpdate()
     }
 )
+watch(() => [exp.format, exp.quality], () => { scheduleEncodedUpdate() })
 
+/* Utilities */
 function prettySize(bytes: number) {
   const units = ['B', 'KB', 'MB', 'GB']; let i = 0, n = bytes
   while (n >= 1024 && i < units.length - 1) { n /= 1024; i++ }
   return `${n.toFixed(2)} ${units[i]}`
 }
-const estimatedSize = computed(() => Math.round(state.outW * state.outH * 4 * 0.35))
-const estimatedSizePretty = computed(() => prettySize(estimatedSize.value))
 
+/* Export / Reset / IO */
 function download() {
-  const out = outputRef.value
-  if (!out) return
-  out.toBlob((blob) => {
-    if (!blob) return
-    const a = document.createElement('a')
-    a.href = URL.createObjectURL(blob)
-    a.download = 'edited.png'
-    a.click()
-    URL.revokeObjectURL(a.href)
-  }, 'image/png')
+  if (!exp.url) return
+  const a = document.createElement('a')
+  const ext = exp.format === 'image/png' ? 'png' : exp.format === 'image/webp' ? 'webp' : 'jpg'
+  a.href = exp.url
+  a.download = `${(exp.name || 'edited').replace(/[^\w\-]+/g, '_')}.${ext}`
+  a.click()
 }
 function resetAll() {
   if (!img.url) return
@@ -452,41 +598,48 @@ function resetAll() {
   crop.visible = false
   history.splice(0, history.length)
 }
-function onFileChange(e: Event) {
-  const f = (e.target as HTMLInputElement).files?.[0]
-  if (f) loadFile(f)
-}
-function onDrop(e: DragEvent) {
-  const f = e.dataTransfer?.files?.[0]
-  if (f) loadFile(f)
-}
+
+/* Input/drag */
+function onFileChange(e: Event) { const f = (e.target as HTMLInputElement).files?.[0]; if (f) loadFile(f) }
+function onDrop(e: DragEvent) { const f = e.dataTransfer?.files?.[0]; if (f) loadFile(f) }
+
+/* Keyboard nudge */
 function onKey(e: KeyboardEvent) {
   if (!crop.visible) return
   const step = e.shiftKey ? 10 : 1
-  const c = canvasRef.value!
-  if (e.key === 'ArrowLeft') { crop.x = Math.max(0, crop.x - step) }
-  if (e.key === 'ArrowRight'){ crop.x = Math.min(c.clientWidth - crop.w, crop.x + step) }
-  if (e.key === 'ArrowUp')   { crop.y = Math.max(0, crop.y - step) }
-  if (e.key === 'ArrowDown') { crop.y = Math.min(c.clientHeight - crop.h, crop.y + step) }
+  const stage = stageRef.value!
+  if (e.key === 'ArrowLeft')  crop.x = Math.max(0, crop.x - step)
+  if (e.key === 'ArrowRight') crop.x = Math.min(stage.clientWidth - crop.w, crop.x + step)
+  if (e.key === 'ArrowUp')    crop.y = Math.max(0, crop.y - step)
+  if (e.key === 'ArrowDown')  crop.y = Math.min(stage.clientHeight - crop.h, crop.y + step)
   if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'z') { e.preventDefault(); undo() }
   drawCropPreview()
 }
 function clamp(n: number, a: number, b: number) { return Math.min(b, Math.max(a, n)) }
 
+/* Mount/unmount */
 onMounted(() => {
   window.addEventListener('keydown', onKey)
   ;[canvasRef, cropPreviewRef, outputRef].forEach(r => { if (r.value) { r.value.width = 10; r.value.height = 10 } })
+  // encoder support
+  exp.webpSupported = canEncodeType('image/webp')
 })
-onBeforeUnmount(() => { window.removeEventListener('keydown', onKey) })
+onBeforeUnmount(() => {
+  window.removeEventListener('keydown', onKey)
+  revokeUrl()
+})
 </script>
 
 <style scoped>
+/* Larger targets for resize handles */
 [style*="cursor:nwse-resize"], [style*="cursor:nesw-resize"],
 [style*="cursor:ew-resize"], [style*="cursor:ns-resize"] {
   width: 12px !important;
   height: 12px !important;
 }
 </style>
+
+
 
 
 
