@@ -14,34 +14,46 @@
       <input ref="fileInput" type="file" accept="image/*" class="hidden" @change="onFileChange" />
     </div>
 
-    <!-- Keep canvases mounted -->
+    <!-- Workspace + Controls -->
     <div v-show="img.loaded" class="grid lg:grid-cols-2 gap-6">
-      <!-- Workspace -->
+      <!-- Left: scrollable viewport with stage inside -->
       <div class="space-y-3">
-        <div
-            ref="stageRef"
-            class="relative inline-block bg-black/30 overflow-hidden rounded border border-gray-700"
-            :style="stageStyle"
-        >
-          <!-- Main canvas -->
-          <canvas ref="canvasRef" class="block"></canvas>
-
-          <!-- Crop overlay -->
+        <div class="relative overflow-auto rounded border border-gray-700 bg-black/20" style="max-height:70vh">
           <div
-              v-show="crop.visible"
-              class="absolute pointer-events-auto border-2 border-blue-500/90"
-              :style="cropBoxStyle"
-              @mousedown.stop="startDrag($event, 'move')"
+              ref="stageRef"
+              class="relative inline-block bg-black/30 overflow-hidden"
+              :style="stageStyle"
           >
+            <!-- Main canvas -->
+            <canvas ref="canvasRef" class="block"></canvas>
+
+            <!-- Crop overlay -->
             <div
-                v-for="h in handles"
-                :key="h.key"
-                class="absolute bg-blue-500 border border-white rounded-sm"
-                :style="handleStyle(h)"
-                @mousedown.stop="startDrag($event, h.key as any)"
-            />
-            <div class="absolute inset-0 pointer-events-none" style="box-shadow:0 0 0 9999px rgba(0,0,0,.45)"></div>
+                v-show="crop.visible"
+                class="absolute pointer-events-auto border-2 border-blue-500/90"
+                :style="cropBoxStyle"
+                @mousedown.stop="startDrag($event, 'move')"
+            >
+              <div
+                  v-for="h in handles"
+                  :key="h.key"
+                  class="absolute bg-blue-500 border border-white rounded-sm"
+                  :style="handleStyle(h)"
+                  @mousedown.stop="startDrag($event, h.key as any)"
+              />
+              <div class="absolute inset-0 pointer-events-none" style="box-shadow:0 0 0 9999px rgba(0,0,0,.45)"></div>
+            </div>
           </div>
+        </div>
+
+        <!-- Zoom -->
+        <div class="flex flex-wrap items-center gap-3">
+          <span class="text-xs text-gray-300">zoom</span>
+          <button class="px-2 py-1 bg-gray-700 hover:bg-gray-600 text-white rounded" @click="nudgeZoom(-0.1)">−</button>
+          <input type="range" min="0.25" max="3" step="0.05" v-model.number="zoom.value" class="w-48" />
+          <button class="px-2 py-1 bg-gray-700 hover:bg-gray-600 text-white rounded" @click="nudgeZoom(0.1)">+</button>
+          <button class="px-2 py-1 bg-gray-700 hover:bg-gray-600 text-white rounded" @click="setZoom(1)">100%</button>
+          <span class="text-xs text-gray-400 ml-2">{{ Math.round(zoom.value * 100) }}%</span>
         </div>
 
         <!-- Quick actions -->
@@ -57,7 +69,7 @@
         </div>
       </div>
 
-      <!-- Controls + Preview -->
+      <!-- Right: controls + previews -->
       <div class="space-y-5">
         <!-- Transform -->
         <div class="bg-gray-900 border border-gray-700 rounded p-4 space-y-3">
@@ -100,52 +112,12 @@
         <div class="bg-gray-900 border border-gray-700 rounded p-4 space-y-3">
           <p class="text-white font-medium text-sm">filters</p>
 
-          <div class="space-y-1">
+          <div class="space-y-1" v-for="row in sliderRows" :key="row.key">
             <div class="flex items-center justify-between">
-              <label class="text-white text-xs">grayscale</label>
-              <span class="text-gray-300 text-xs">{{ Math.round(filters.grayscale) }}</span>
+              <label class="text-white text-xs">{{ row.label }}</label>
+              <span class="text-gray-300 text-xs">{{ Math.round(filters[row.key]) }}</span>
             </div>
-            <input type="range" min="0" max="100" step="1" v-model.number="filters.grayscale" class="w-full" />
-          </div>
-
-          <div class="space-y-1">
-            <div class="flex items-center justify-between">
-              <label class="text-white text-xs">brightness</label>
-              <span class="text-gray-300 text-xs">{{ Math.round(filters.brightness) }}</span>
-            </div>
-            <input type="range" min="0" max="200" step="1" v-model.number="filters.brightness" class="w-full" />
-          </div>
-
-          <div class="space-y-1">
-            <div class="flex items-center justify-between">
-              <label class="text-white text-xs">contrast</label>
-              <span class="text-gray-300 text-xs">{{ Math.round(filters.contrast) }}</span>
-            </div>
-            <input type="range" min="0" max="200" step="1" v-model.number="filters.contrast" class="w-full" />
-          </div>
-
-          <div class="space-y-1">
-            <div class="flex items-center justify-between">
-              <label class="text-white text-xs">saturation</label>
-              <span class="text-gray-300 text-xs">{{ Math.round(filters.saturate) }}</span>
-            </div>
-            <input type="range" min="0" max="200" step="1" v-model.number="filters.saturate" class="w-full" />
-          </div>
-
-          <div class="space-y-1">
-            <div class="flex items-center justify-between">
-              <label class="text-white text-xs">sepia</label>
-              <span class="text-gray-300 text-xs">{{ Math.round(filters.sepia) }}</span>
-            </div>
-            <input type="range" min="0" max="100" step="1" v-model.number="filters.sepia" class="w-full" />
-          </div>
-
-          <div class="space-y-1">
-            <div class="flex items-center justify-between">
-              <label class="text-white text-xs">hue</label>
-              <span class="text-gray-300 text-xs">{{ Math.round(filters.hue) }}</span>
-            </div>
-            <input type="range" min="0" max="360" step="1" v-model.number="filters.hue" class="w-full" />
+            <input type="range" :min="row.min" :max="row.max" step="1" v-model.number="filters[row.key]" class="w-full" />
           </div>
 
           <div class="flex flex-wrap gap-2">
@@ -218,9 +190,7 @@
             <div class="border border-gray-700 rounded overflow-hidden bg-black/30">
               <canvas ref="outputRef" class="block"></canvas>
             </div>
-            <p class="text-xs text-gray-400 mt-2">
-              {{ state.outW }}×{{ state.outH }}
-            </p>
+            <p class="text-xs text-gray-400 mt-2">{{ state.outW }}×{{ state.outH }}</p>
           </div>
         </div>
       </div>
@@ -231,7 +201,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed, watch, onMounted, onBeforeUnmount, nextTick } from 'vue'
+import { ref, reactive, computed, watch, onMounted, onBeforeUnmount, nextTick, type CSSProperties } from 'vue'
+
+/* ---------- Types for Volar ---------- */
+type FilterKey = 'grayscale' | 'brightness' | 'contrast' | 'saturate' | 'sepia' | 'hue'
+type HandleKey  = 'nw' | 'n' | 'ne' | 'w' | 'e' | 'sw' | 's' | 'se'
+type DragMode   = 'move' | HandleKey
+interface Handle { key: HandleKey; x: number; y: number; cursor: string }
 
 /* ---------- Image state ---------- */
 type ImgData = { el: HTMLImageElement | null; loaded: boolean; naturalW: number; naturalH: number; url: string | null }
@@ -244,17 +220,37 @@ const canvasRef = ref<HTMLCanvasElement | null>(null)
 const cropPreviewRef = ref<HTMLCanvasElement | null>(null)
 const outputRef = ref<HTMLCanvasElement | null>(null)
 
-/* Stage constraints (CSS px) */
+/* Stage constraints (base fit before zoom; CSS px) */
 const MAX_W = 1200
 const MAX_H = 800
+
+/* Zoom */
+const zoom = reactive({ value: 1 })
+const baseStageW = ref(10)
+const baseStageH = ref(10)
+const stageW = ref(10)
+const stageH = ref(10)
+const stageStyle = computed<CSSProperties>(() => ({ width: `${stageW.value}px`, height: `${stageH.value}px` }))
+function setZoom(v: number) { zoom.value = clamp(v, 0.25, 3) }
+function nudgeZoom(d: number) { setZoom(zoom.value + d) }
 
 /* Output transform state */
 const state = reactive({ rotate: 0, flipX: false, flipY: false, lockRatio: true, outW: 0, outH: 0 })
 
 /* Filters */
-const filters = reactive({ grayscale: 0, brightness: 100, contrast: 100, saturate: 100, sepia: 0, hue: 0 })
+const filters = reactive<Record<FilterKey, number>>({
+  grayscale: 0, brightness: 100, contrast: 100, saturate: 100, sepia: 0, hue: 0
+})
+const sliderRows: Array<{ key: FilterKey; label: string; min: number; max: number }> = [
+  { key: 'grayscale', label: 'grayscale', min: 0, max: 100 },
+  { key: 'brightness', label: 'brightness', min: 0, max: 200 },
+  { key: 'contrast',   label: 'contrast',   min: 0, max: 200 },
+  { key: 'saturate',   label: 'saturation', min: 0, max: 200 },
+  { key: 'sepia',      label: 'sepia',      min: 0, max: 100 },
+  { key: 'hue',        label: 'hue',        min: 0, max: 360 },
+]
 
-/* Export options (download name/format/quality + encoded preview blob) */
+/* Export options */
 const exp = reactive({
   name: 'edited',
   format: 'image/png' as 'image/png' | 'image/jpeg' | 'image/webp',
@@ -269,14 +265,14 @@ const history = reactive<string[]>([])
 function pushHistory() { const c = canvasRef.value; if (!c) return; try { history.push(c.toDataURL('image/png')); if (history.length > 10) history.shift() } catch {} }
 function undo() { if (!history.length) return; const last = history.pop()!; loadFromDataURL(last, true) }
 
-/* Crop state (CSS px relative to the stage) */
+/* Crop state (CSS px relative to stage) */
 const crop = reactive({ visible: false, x: 0, y: 0, w: 0, h: 0 })
 let dragging = false as boolean
-let dragMode: 'move' | 'n' | 's' | 'e' | 'w' | 'ne' | 'nw' | 'se' | 'sw' | null = null
+let dragMode: DragMode | null = null
 let dragStart = { x: 0, y: 0, cx: 0, cy: 0, cw: 0, ch: 0 }
 
 /* Crop handles (relative to the crop box) */
-const handles = [
+const handles: Handle[] = [
   { key: 'nw', x: 0, y: 0, cursor: 'nwse-resize' },
   { key: 'n',  x: .5, y: 0, cursor: 'ns-resize' },
   { key: 'ne', x: 1, y: 0, cursor: 'nesw-resize' },
@@ -285,54 +281,62 @@ const handles = [
   { key: 'sw', x: 0, y: 1, cursor: 'nesw-resize' },
   { key: 's',  x: .5, y: 1, cursor: 'ns-resize' },
   { key: 'se', x: 1, y: 1, cursor: 'nwse-resize' },
-] as const
+]
 
-/* Stage style (the geometry reference for canvas and overlay) */
-const stageW = ref(10)
-const stageH = ref(10)
-const stageStyle = computed(() => ({ width: stageW.value + 'px', height: stageH.value + 'px' }))
-
-/* Overlay styles */
-const cropBoxStyle = computed(() => ({
-  left: crop.x + 'px',
-  top: crop.y + 'px',
-  width: Math.max(1, crop.w) + 'px',
-  height: Math.max(1, crop.h) + 'px',
+/* Overlay styles (typed so Volar is happy) */
+const cropBoxStyle = computed<CSSProperties>(() => ({
+  left: `${crop.x}px`,
+  top: `${crop.y}px`,
+  width: `${Math.max(1, crop.w)}px`,
+  height: `${Math.max(1, crop.h)}px`,
   cursor: 'move',
 }))
-function handleStyle(h: { x:number; y:number; cursor:string }) {
-  // Position handles relative to the crop box (not the stage)
+function handleStyle(h: Handle): CSSProperties {
   const size = 10
-  const left = h.x * crop.w - size / 2
-  const top  = h.y * crop.h - size / 2
-  return { left: left + 'px', top: top + 'px', width: size + 'px', height: size + 'px', cursor: h.cursor }
+  return {
+    left: `${h.x * crop.w - size / 2}px`,
+    top: `${h.y * crop.h - size / 2}px`,
+    width: `${size}px`,
+    height: `${size}px`,
+    cursor: h.cursor,
+  }
 }
 
 /* DPR helper (SSR safe) */
 function dpr() { return typeof window === 'undefined' ? 1 : Math.max(1, window.devicePixelRatio || 1) }
 
-/* Check encoder support (e.g., WebP) */
+/* Encoder support (e.g., WebP) */
 function canEncodeType(type: string) {
-  try {
-    const c = document.createElement('canvas')
-    return c.toDataURL(type).startsWith(`data:${type}`)
-  } catch { return false }
+  try { return document.createElement('canvas').toDataURL(type).startsWith(`data:${type}`) } catch { return false }
 }
 
-/* Size stage + canvas coherently; image always "contain" inside the stage */
+/* --- Stage sizing & zoom --- */
 function setCanvasSize(naturalW: number, naturalH: number) {
+  const fitScale = Math.min(MAX_W / naturalW, MAX_H / naturalH, 1)
+  baseStageW.value = Math.max(1, Math.round(naturalW * fitScale))
+  baseStageH.value = Math.max(1, Math.round(naturalH * fitScale))
+  applyZoom()
+}
+function applyZoom() {
   const c = canvasRef.value!
-  const scale = Math.min(MAX_W / naturalW, MAX_H / naturalH, 1)
-  const cssW = Math.round(naturalW * scale)
-  const cssH = Math.round(naturalH * scale)
-  stageW.value = cssW
-  stageH.value = cssH
+  stageW.value = Math.max(1, Math.round(baseStageW.value * zoom.value))
+  stageH.value = Math.max(1, Math.round(baseStageH.value * zoom.value))
 
-  c.style.width = cssW + 'px'
-  c.style.height = cssH + 'px'
+  c.style.width = `${stageW.value}px`
+  c.style.height = `${stageH.value}px`
   const ratio = dpr()
-  c.width  = Math.round(cssW * ratio)
-  c.height = Math.round(cssH * ratio)
+  c.width  = Math.round(stageW.value * ratio)
+  c.height = Math.round(stageH.value * ratio)
+
+  clampCropToStage()
+  draw(); drawCropPreview(); drawOutputPreview(); scheduleEncodedUpdate()
+}
+function clampCropToStage() {
+  const W = stageW.value, H = stageH.value
+  crop.w = Math.min(Math.max(10, crop.w), W)
+  crop.h = Math.min(Math.max(10, crop.h), H)
+  crop.x = clamp(crop.x, 0, W - crop.w)
+  crop.y = clamp(crop.y, 0, H - crop.h)
 }
 
 /* Load file */
@@ -350,7 +354,7 @@ async function loadFile(file: File) {
   el.src = url
 }
 
-/* Draw main canvas (image contained; transforms + filters applied) */
+/* ----- DRAW: rotation-aware contain so the image never overflows ----- */
 function draw() {
   const c = canvasRef.value
   if (!c || !img.el) return
@@ -364,17 +368,27 @@ function draw() {
   ;(ctx as any).imageSmoothingQuality = 'high'
   ctx.filter = cssFilterString.value
 
-  const cssW = c.width / ratio, cssH = c.height / ratio
+  const cssW = stageW.value, cssH = stageH.value
 
-  // Contain sizing
+  // Base "contain" ignoring rotation
   const imgRatio = img.naturalW / img.naturalH
   const boxRatio = cssW / cssH
-  let drawW = cssW, drawH = cssH
-  if (imgRatio > boxRatio) { drawW = cssW; drawH = cssW / imgRatio } else { drawH = cssH; drawW = cssH * imgRatio }
+  let w0: number, h0: number
+  if (imgRatio > boxRatio) { w0 = cssW; h0 = cssW / imgRatio } else { h0 = cssH; w0 = cssH * imgRatio }
+
+  // Rotation-aware fit
+  const ang = (state.rotate * Math.PI) / 180
+  const cos = Math.abs(Math.cos(ang))
+  const sin = Math.abs(Math.sin(ang))
+  const aabbW = w0 * cos + h0 * sin
+  const aabbH = w0 * sin + h0 * cos
+  const fit = Math.min(cssW / aabbW, cssH / aabbH, 1)
+  const drawW = w0 * fit
+  const drawH = h0 * fit
 
   ctx.save()
   ctx.translate(cssW / 2, cssH / 2)
-  ctx.rotate((state.rotate * Math.PI) / 180)
+  ctx.rotate(ang)
   ctx.scale(state.flipX ? -1 : 1, state.flipY ? -1 : 1)
   ctx.drawImage(img.el, -drawW / 2, -drawH / 2, drawW, drawH)
   ctx.restore()
@@ -390,8 +404,8 @@ function drawCropPreview() {
   const sw = Math.max(1, Math.round(crop.w * ratio))
   const sh = Math.max(1, Math.round(crop.h * ratio))
   cp.width = sw; cp.height = sh
-  cp.style.width = Math.round(crop.w) + 'px'
-  cp.style.height = Math.round(crop.h) + 'px'
+  cp.style.width = `${Math.round(crop.w)}px`
+  cp.style.height = `${Math.round(crop.h)}px`
   ctx.clearRect(0, 0, sw, sh)
 
   if (!crop.visible || !img.el) return
@@ -448,7 +462,7 @@ function toggleCrop() {
 }
 
 /* Dragging/Resizing crop */
-function startDrag(e: MouseEvent, mode: typeof dragMode) {
+function startDrag(e: MouseEvent, mode: DragMode) {
   dragging = true; dragMode = mode
   dragStart = { x: e.clientX, y: e.clientY, cx: crop.x, cy: crop.y, cw: crop.w, ch: crop.h }
   window.addEventListener('mousemove', onDrag)
@@ -496,7 +510,7 @@ function drawOutputPreview() {
   ctx.drawImage(main, 0, 0, out.width, out.height)
 }
 
-/* ------- Presets ------- */
+/* Presets */
 function preset(name: 'none' | 'bw' | 'punch' | 'warm' | 'cool') {
   if (name === 'none')  Object.assign(filters, { grayscale: 0, brightness: 100, contrast: 100, saturate: 100, sepia: 0, hue: 0 })
   if (name === 'bw')    Object.assign(filters, { grayscale: 100, brightness: 110, contrast: 120, saturate: 0,   sepia: 0, hue: 0 })
@@ -507,35 +521,25 @@ function preset(name: 'none' | 'bw' | 'punch' | 'warm' | 'cool') {
 }
 
 /* ------- Encoding (quality/format) ------- */
-/* Encode the output canvas to the chosen format+quality, update exp.url + exp.size. */
 let lastUrl: string | null = null
 function revokeUrl() { if (lastUrl) { URL.revokeObjectURL(lastUrl); lastUrl = null } }
-
 function encodeFromOutputCanvas(): Promise<Blob | null> {
   return new Promise((resolve) => {
     const out = outputRef.value
     if (!out) return resolve(null)
-
-    // For JPEG we paint a white background to avoid black where alpha exists.
     const needsBg = exp.format === 'image/jpeg'
     const enc = document.createElement('canvas')
-    enc.width = out.width
-    enc.height = out.height
+    enc.width = out.width; enc.height = out.height
     const ectx = enc.getContext('2d')!
     if (needsBg) { ectx.fillStyle = '#ffffff'; ectx.fillRect(0, 0, enc.width, enc.height) }
     ectx.drawImage(out, 0, 0)
-
-    // If requested type is unsupported, toBlob may return null → fallback to JPEG.
     enc.toBlob((blob) => {
       if (!blob && exp.format !== 'image/jpeg') {
         enc.toBlob((fb) => resolve(fb || null), 'image/jpeg', exp.quality)
-      } else {
-        resolve(blob)
-      }
+      } else { resolve(blob) }
     }, exp.format, exp.format === 'image/png' ? undefined : exp.quality)
   })
 }
-
 async function refreshEncoded() {
   revokeUrl()
   const blob = await encodeFromOutputCanvas()
@@ -544,14 +548,13 @@ async function refreshEncoded() {
   exp.url = lastUrl
   exp.size = blob.size
 }
-
 let encodeTimer: number | null = null
 function scheduleEncodedUpdate() {
   if (encodeTimer) window.clearTimeout(encodeTimer)
   encodeTimer = window.setTimeout(() => { refreshEncoded() }, 200)
 }
 
-/* Watchers: redraw + re-encode when anything relevant changes */
+/* Reactive glue */
 const cssFilterString = computed(() =>
     `grayscale(${filters.grayscale}%) brightness(${filters.brightness}%) contrast(${filters.contrast}%) saturate(${filters.saturate}%) sepia(${filters.sepia}%) hue-rotate(${filters.hue}deg)`
 )
@@ -561,7 +564,7 @@ watch(
 )
 watch(
     () => [state.outW, state.outH, state.lockRatio],
-    ([w, h]) => {
+    ([w]) => {
       if (!img.el) return
       state.outW = clamp(state.outW || img.naturalW, 1, 10000)
       state.outH = clamp(state.outH || img.naturalH, 1, 10000)
@@ -574,6 +577,7 @@ watch(
     }
 )
 watch(() => [exp.format, exp.quality], () => { scheduleEncodedUpdate() })
+watch(() => zoom.value, () => { applyZoom() })
 
 /* Utilities */
 function prettySize(bytes: number) {
@@ -581,8 +585,6 @@ function prettySize(bytes: number) {
   while (n >= 1024 && i < units.length - 1) { n /= 1024; i++ }
   return `${n.toFixed(2)} ${units[i]}`
 }
-
-/* Export / Reset / IO */
 function download() {
   if (!exp.url) return
   const a = document.createElement('a')
@@ -598,12 +600,8 @@ function resetAll() {
   crop.visible = false
   history.splice(0, history.length)
 }
-
-/* Input/drag */
 function onFileChange(e: Event) { const f = (e.target as HTMLInputElement).files?.[0]; if (f) loadFile(f) }
 function onDrop(e: DragEvent) { const f = e.dataTransfer?.files?.[0]; if (f) loadFile(f) }
-
-/* Keyboard nudge */
 function onKey(e: KeyboardEvent) {
   if (!crop.visible) return
   const step = e.shiftKey ? 10 : 1
@@ -621,23 +619,26 @@ function clamp(n: number, a: number, b: number) { return Math.min(b, Math.max(a,
 onMounted(() => {
   window.addEventListener('keydown', onKey)
   ;[canvasRef, cropPreviewRef, outputRef].forEach(r => { if (r.value) { r.value.width = 10; r.value.height = 10 } })
-  // encoder support
   exp.webpSupported = canEncodeType('image/webp')
 })
 onBeforeUnmount(() => {
   window.removeEventListener('keydown', onKey)
-  revokeUrl()
+  if (lastUrl) URL.revokeObjectURL(lastUrl)
 })
+
+/* Help Volar with template inference (optional) */
+defineExpose({ stageStyle, cropBoxStyle, handleStyle })
 </script>
 
 <style scoped>
-/* Larger targets for resize handles */
+/* Bigger resize handles for easier grabbing */
 [style*="cursor:nwse-resize"], [style*="cursor:nesw-resize"],
 [style*="cursor:ew-resize"], [style*="cursor:ns-resize"] {
   width: 12px !important;
   height: 12px !important;
 }
 </style>
+
 
 
 
