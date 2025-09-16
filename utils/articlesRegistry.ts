@@ -14,7 +14,7 @@ type Article = {
     }
 }
 
-const OG = 'https://codehelper.me/images/codehelper_OGIMAGE.webp'
+const OG = 'https://codehelper.me/images/Codehelper_og_articles-optimized.webp'
 const BRAND = 'CodeHelper'
 
 export const articles: Record<string, Article> = {
@@ -152,6 +152,57 @@ export const articles: Record<string, Article> = {
                     'sandbox',
                     'allowlist',
                     'audit logs'
+                ],
+                proficiencyLevel: 'Intermediate'
+            }
+        }
+    },
+
+    'ai-cyberattacks-rising': {
+        title: 'AI-powered cyberattacks: how AI is fueling a new wave of hacking',
+        description:
+            'AI is scaling cybercrime: ransomware automation, deepfake fraud, spear phishing at scale, and adaptive malware. Data-backed analysis with practical defenses.',
+        category: 'security',
+        component: () =>
+            import('~/components/articles/security/AiCyberattacksRising.vue') as Promise<{ default: DefineComponent }>,
+        seo: {
+            title: `AI-powered cyberattacks: how AI is fueling a new wave of hacking – ${BRAND}`,
+            description:
+                'Data-backed analysis of AI-driven attacks in 2025 (ransomware, deepfakes, biometrics spoofing) with sources from IBM, MIT Sloan, Acronis, Reuters, and arXiv — plus a practical defense stack.',
+            ogImage: OG,
+            keywords:
+                'ai cyberattacks, ai hacking, deepfake phishing, ai-driven ransomware, autonomous agents, spear phishing llm, biometric spoofing, xdr, zero trust, 2025 cybersecurity trends',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'TechArticle',
+                headline: 'AI-powered cyberattacks: how AI is fueling a new wave of hacking',
+                description:
+                    'An in-depth look at how artificial intelligence is accelerating cyberattacks and what defenses enterprises need now.',
+                author: { '@type': 'Person', name: 'Gianluca' },
+                publisher: {
+                    '@type': 'Organization',
+                    name: 'CodeHelper',
+                    logo: { '@type': 'ImageObject', url: OG }
+                },
+                image: OG,
+                datePublished: '2025-09-16',
+                dateModified: '2025-09-16',
+                mainEntityOfPage: {
+                    '@type': 'WebPage',
+                    '@id': 'https://codehelper.me/articles/ai-cyberattacks-rising'
+                },
+                articleSection: 'Security',
+                about: ['Artificial Intelligence', 'Cybersecurity', 'Ransomware', 'Deepfakes'],
+                keywords: [
+                    'AI cyberattacks',
+                    'phishing 2.0',
+                    'voice cloning',
+                    'biometric spoofing',
+                    'polymorphic malware',
+                    'xdr',
+                    'zero trust',
+                    'mfa',
+                    'defense in depth'
                 ],
                 proficiencyLevel: 'Intermediate'
             }
