@@ -1,11 +1,10 @@
 <template>
   <div class="p-8 bg-gray-800 rounded-lg shadow-xl space-y-10">
     <h2 class="text-3xl font-bold text-white">
-      🔥 AI powered cyberattacks: how artificial intelligence is fueling a new wave of hacking
+      🔥Artificial Intelligence is transforming industries and supercharging cybercrime.
     </h2>
 
     <p class="text-gray-300">
-      <strong class="text-white">Artificial Intelligence</strong> is transforming industries and supercharging cybercrime.
       In 2025 we are seeing a sharp rise in <strong class="text-white">AI-driven attacks</strong>: faster campaigns, more convincing
       social engineering, and adaptive malware that evades controls. This article explains why attacks are scaling,
       which techniques matter most, how defenses must evolve, and what to expect next.
