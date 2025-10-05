@@ -64,7 +64,7 @@
                     v-if="showSuggestions && suggestions.length"
                     id="search-suggestions"
                     role="listbox"
-                    class="absolute z-10 mt-1 w-full rounded-md bg-white text-sm text-black shadow-lg max-h-64 overflow-auto ring-1 ring-black/5"
+                    class="absolute z-50 mt-1 w-full rounded-md bg-white text-sm text-black shadow-lg max-h-64 overflow-auto ring-1 ring-black/5"
                     aria-label="Search suggestions"
                 >
                   <li

@@ -36,13 +36,18 @@
                   leave-to="opacity-0"
               >
                 <div class="absolute top-0 left-full flex w-16 justify-center pt-5">
-                  <button type="button" class="-m-2.5 p-2.5" @click="sidebarOpen = false">
+                  <button
+                      type="button"
+                      class="-m-2.5 p-2.5"
+                      @click="sidebarOpen = false"
+                  >
                     <span class="sr-only">Close sidebar</span>
                     <XMarkIcon class="size-6 text-white" aria-hidden="true" />
                   </button>
                 </div>
               </TransitionChild>
-              <SidebarContent />
+
+              <SidebarContent class="custom-scrollbar" />
             </DialogPanel>
           </TransitionChild>
         </div>
@@ -50,27 +55,43 @@
     </TransitionRoot>
 
     <!-- Desktop Sidebar -->
-    <div class="hidden min-h-screen xl:fixed  xl:z-50 xl:flex xl:w-72 xl:flex-col">
-      <button type="button" class="-m-2.5 p-2.5 text-white xl:hidden" @click="sidebarOpen = true">
-        <span class="flex items-center gap-x-1 font-semibold">
-          Resources
-         <BookmarkIcon class="size-5" aria-hidden="true" />
-          <ChevronRightIcon class="size-5 text-gray-400 animate-wiggle" aria-hidden="true" />
-        </span>
-      </button>
-      <SidebarContent />
-    </div>
-
-    <!-- Topbar -->
-    <div class="xl:hidden flex sticky top-0 z-40 h-16 items-center gap-x-6 border-b border-white/5 bg-gray-900 px-4 sm:px-6 lg:px-8">
-      <button type="button" class="-m-2.5 p-2.5 text-white xl:hidden" @click="sidebarOpen = true">
+    <div class="hidden xl:fixed xl:top-16 xl:bottom-0 xl:z-50 xl:flex xl:w-72 xl:flex-col">
+      <button
+          type="button"
+          class="-m-2.5 p-2.5 text-white xl:hidden"
+          @click="sidebarOpen = true"
+      >
         <span class="flex items-center gap-x-1 font-semibold">
           Resources
           <BookmarkIcon class="size-5" aria-hidden="true" />
-          <ChevronRightIcon class="size-5 text-gray-400 animate-wiggle" aria-hidden="true" />
+          <ChevronRightIcon
+              class="size-5 text-gray-400 animate-wiggle"
+              aria-hidden="true"
+          />
         </span>
       </button>
 
+      <SidebarContent class="custom-scrollbar" />
+    </div>
+
+    <!-- Topbar -->
+    <div
+        class="xl:hidden flex sticky top-0 z-40 h-16 items-center gap-x-6 border-b border-white/5 bg-gray-900 px-4 sm:px-6 lg:px-8"
+    >
+      <button
+          type="button"
+          class="-m-2.5 p-2.5 text-white xl:hidden"
+          @click="sidebarOpen = true"
+      >
+        <span class="flex items-center gap-x-1 font-semibold">
+          Resources
+          <BookmarkIcon class="size-5" aria-hidden="true" />
+          <ChevronRightIcon
+              class="size-5 text-gray-400 animate-wiggle"
+              aria-hidden="true"
+          />
+        </span>
+      </button>
     </div>
   </div>
 </template>
@@ -78,18 +99,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import SidebarContent from './SidebarContent.vue'
-import {
-  Dialog,
-  DialogPanel,
-  TransitionChild,
-  TransitionRoot
-} from '@headlessui/vue'
-import {
-  Bars3Icon,
-  BookmarkIcon,
-  XMarkIcon,
-  ChevronRightIcon
-} from '@heroicons/vue/20/solid'
+import { Dialog, DialogPanel, TransitionChild, TransitionRoot } from '@headlessui/vue'
+import { Bars3Icon, BookmarkIcon, XMarkIcon, ChevronRightIcon } from '@heroicons/vue/20/solid'
 
 const sidebarOpen = ref(false)
 </script>
@@ -104,5 +115,30 @@ const sidebarOpen = ref(false)
 .animate-wiggle {
   animation: wiggle 0.6s ease-in-out infinite;
 }
+
+/* Custom scrollbar styling */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgb(17 24 39); /* bg-gray-900 */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgb(55 65 81); /* bg-gray-700 */
+  border-radius: 9999px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgb(75 85 99); /* bg-gray-600 */
+}
+
+/* Firefox */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(55 65 81) rgb(17 24 39);
+}
 </style>
+
 
