@@ -1,147 +1,170 @@
 <template>
-  <div class="p-8 bg-gray-800 rounded-lg shadow-xl space-y-10">
-    <h2 class="text-3xl font-bold text-white">
-      📦 Hacker Dropbox with Raspberry Pi &amp; Twingate — Remote Network Access Made Easy
-    </h2>
+  <article
+      class="mx-auto w-full max-w-[72ch] px-5 sm:px-6 py-6 sm:py-10 bg-gray-800 rounded-2xl shadow-2xl ring-1 ring-white/5"
+  >
 
-    <p class="text-gray-300">
-      Whether you’re an <strong class="text-white">ethical hacker</strong>, sysadmin, or the unofficial IT support for your family,
-      there’s one project that can save you time:
-      <strong class="text-white">the Hacker Dropbox</strong>. Drop a Raspberry Pi into any network and gain secure,
-      instant remote access — <strong class="text-white">without traditional VPN headaches</strong>.
-    </p>
+    <!-- intro -->
+    <section class="mt-6 sm:mt-8 space-y-5">
+      <p class="text-[15.5px] sm:text-base leading-7 text-gray-200">
+        whether you’re an <strong class="text-white">ethical hacker</strong>, sysadmin, or the unofficial it support
+        for your family, there’s one project that can save you time:
+        <strong class="text-white">the hacker dropbox</strong>. drop a raspberry pi into any network and gain secure,
+        instant remote access — <strong class="text-white">without traditional vpn headaches</strong>.
+      </p>
+    </section>
 
-    <h2 class="text-xl font-semibold text-white">🚀 What Is a Hacker Dropbox?</h2>
-    <p class="text-gray-300">
-      A Hacker Dropbox is a small <strong class="text-white">Raspberry Pi device</strong> pre-configured to automatically connect to
-      a secure external tunnel at boot. Once powered, it grants you seamless access to the network it’s plugged into.
-      Common use cases include:
-    </p>
-    <ul class="list-disc list-inside text-gray-300 space-y-1">
-      <li>Remote IT support for friends, family, or clients</li>
-      <li>Pentesting engagements where physical access is limited</li>
-      <li>Educational projects exploring <strong class="text-white">Zero Trust networking</strong></li>
-    </ul>
+    <!-- what is it -->
+    <section class="mt-7 sm:mt-9 space-y-3">
+      <h2 class="text-base sm:text-lg font-semibold text-white">🚀 what is a hacker dropbox?</h2>
+      <p class="text-[15.5px] sm:text-base leading-7 text-gray-200">
+        a hacker dropbox is a small <strong class="text-white">raspberry pi device</strong> pre-configured to
+        automatically connect to a secure external tunnel at boot. once powered, it grants you seamless access to the
+        network it’s plugged into. common uses:
+      </p>
+      <ul class="list-disc pl-5 grid gap-2.5 text-[15.5px] sm:text-base leading-7 text-gray-200">
+        <li>remote it support for friends, family, or clients</li>
+        <li>pentesting engagements where physical access is limited</li>
+        <li>educational projects exploring <strong class="text-white">zero trust networking</strong></li>
+      </ul>
+    </section>
 
-    <h2 class="text-xl font-semibold text-white">🔐 Why Not Just Use a VPN?</h2>
-    <p class="text-gray-300">
-      VPNs often require complex port forwarding and router tweaks. Instead, this setup uses
-      <strong class="text-white">ZTNA (Zero Trust Network Access)</strong> via
-      <a
-          href="https://www.twingate.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="underline underline-offset-2 decoration-indigo-400 hover:decoration-indigo-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400"
-          aria-label="Visit Twingate official website (opens in new tab)"
-      >Twingate</a>, which is:
-    </p>
-    <ul class="list-disc list-inside text-gray-300 space-y-1">
-      <li>More secure by default</li>
-      <li>Simpler to deploy</li>
-      <li>Cloud-native and scalable</li>
-    </ul>
-
-    <h2 class="text-xl font-semibold text-white">🧰 What You’ll Need</h2>
-    <ul class="list-disc list-inside text-gray-300 space-y-1">
-      <li>
+    <!-- why not vpn -->
+    <section class="mt-7 sm:mt-9 space-y-3">
+      <h2 class="text-base sm:text-lg font-semibold text-white">🔐 why not just use a vpn?</h2>
+      <p class="text-[15.5px] sm:text-base leading-7 text-gray-200">
+        vpns often require port forwarding and router tweaks. instead, this setup uses
+        <strong class="text-white">ztna (zero trust network access)</strong> via
         <a
-            href="https://amzn.to/3JMT9JV"
-            target="_blank"
-            rel="sponsored noopener noreferrer"
-            class="underline underline-offset-2 decoration-pink-400 hover:decoration-pink-300 focus-visible:ring-2 focus-visible:ring-pink-400 font-semibold"
-        >Raspberry Pi 4</a> or
-        <a
-            href="https://amzn.to/4g6u2Od"
-            target="_blank"
-            rel="sponsored noopener noreferrer"
-            class="underline underline-offset-2 decoration-pink-400 hover:decoration-pink-300 focus-visible:ring-2 focus-visible:ring-pink-400 font-semibold"
-        >Raspberry Pi 5</a>
-      </li>
-      <li>
-        <a
-            href="https://www.raspberrypi.com/software/"
+            href="https://www.twingate.com"
             target="_blank"
             rel="noopener noreferrer"
-            class="underline underline-offset-2 decoration-indigo-400 hover:decoration-indigo-300 focus-visible:ring-2 focus-visible:ring-indigo-400"
-        >Raspberry Pi Imager</a>
-      </li>
-      <li>
-        <a
-            href="https://www.twingate.com/docs/quick-start"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="underline underline-offset-2 decoration-indigo-400 hover:decoration-indigo-300 focus-visible:ring-2 focus-visible:ring-indigo-400"
-        >Twingate Account (Quick Start Guide)</a>
-      </li>
-    </ul>
-    <p class="text-xs text-gray-400" id="affiliate-note">
-      As an Amazon Associate I may earn from qualifying purchases — at no extra cost to you.
-    </p>
+            class="underline underline-offset-2 decoration-indigo-400 hover:decoration-indigo-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 rounded"
+            aria-label="visit twingate official website (opens in new tab)"
+        >twingate</a>, which is:
+      </p>
+      <ul class="list-disc pl-5 grid gap-2.5 text-[15.5px] sm:text-base leading-7 text-gray-200">
+        <li>more secure by default</li>
+        <li>simpler to deploy</li>
+        <li>cloud-native and scalable</li>
+      </ul>
+    </section>
 
-    <h2 class="text-xl font-semibold text-white">⚙️ Setup in a Nutshell</h2>
-    <ol class="list-decimal list-inside text-gray-300 space-y-1">
-      <li>
-        Flash Raspberry Pi OS with the
-        <a
-            href="https://www.raspberrypi.com/software/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="underline underline-offset-2 decoration-indigo-400 hover:decoration-indigo-300"
-        >Pi Imager</a>.
-      </li>
-      <li>Install the Twingate connector package on the Pi.</li>
-      <li>Authenticate and connect the Pi to your Twingate network.</li>
-      <li>Ship it or plug it in — it auto-connects every time it boots.</li>
-    </ol>
+    <!-- what you'll need -->
+    <section class="mt-7 sm:mt-9 space-y-3">
+      <h2 class="text-base sm:text-lg font-semibold text-white">🧰 what you’ll need</h2>
+      <ul class="list-disc pl-5 grid gap-2.5 text-[15.5px] sm:text-base leading-7 text-gray-200">
+        <li>
+          <a
+              href="https://amzn.to/3JMT9JV"
+              target="_blank"
+              rel="sponsored noopener noreferrer"
+              class="underline underline-offset-2 decoration-pink-400 hover:decoration-pink-300 focus-visible:ring-2 focus-visible:ring-pink-400 font-semibold rounded"
+          >raspberry pi 4</a>
+          or
+          <a
+              href="https://amzn.to/4g6u2Od"
+              target="_blank"
+              rel="sponsored noopener noreferrer"
+              class="underline underline-offset-2 decoration-pink-400 hover:decoration-pink-300 focus-visible:ring-2 focus-visible:ring-pink-400 font-semibold rounded"
+          >raspberry pi 5</a>
+        </li>
+        <li>
+          <a
+              href="https://www.raspberrypi.com/software/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="underline underline-offset-2 decoration-indigo-400 hover:decoration-indigo-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 rounded"
+          >raspberry pi imager</a>
+        </li>
+        <li>
+          <a
+              href="https://www.twingate.com/docs/quick-start"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="underline underline-offset-2 decoration-indigo-400 hover:decoration-indigo-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 rounded"
+          >twingate account (quick start)</a>
+        </li>
+      </ul>
+      <p class="text-xs text-gray-400" id="affiliate-note">
+        as an amazon associate i may earn from qualifying purchases — at no extra cost to you.
+      </p>
+    </section>
 
-    <h2 class="text-xl font-semibold text-white">🧑‍💻 Practical Use Cases</h2>
-    <ul class="list-disc list-inside text-gray-300 space-y-1">
-      <li>Remote troubleshooting (e.g. fixing grandma’s printer… again)</li>
-      <li>Drop into a client’s site to monitor logs or troubleshoot securely</li>
-      <li>Red team foothold in authorized security assessments</li>
-    </ul>
+    <!-- setup -->
+    <section class="mt-7 sm:mt-9 space-y-3">
+      <h2 class="text-base sm:text-lg font-semibold text-white">⚙️ setup in a nutshell</h2>
+      <ol class="list-decimal pl-5 space-y-2 text-[15.5px] sm:text-base leading-7 text-gray-200">
+        <li>
+          flash raspberry pi os with the
+          <a
+              href="https://www.raspberrypi.com/software/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="underline underline-offset-2 decoration-indigo-400 hover:decoration-indigo-300"
+          >pi imager</a>.
+        </li>
+        <li>install the twingate connector package on the pi.</li>
+        <li>authenticate and connect the pi to your twingate network.</li>
+        <li>ship it or plug it in — it auto-connects every boot.</li>
+      </ol>
+    </section>
 
-    <h2 class="text-xl font-semibold text-white">🔗 Helpful Resources</h2>
-    <ul class="list-disc list-inside text-gray-300 space-y-1">
-      <li>
-        📝 Full Guide:
-        <a
-            href="https://ntck.co/hackerdropbox"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="underline underline-offset-2 decoration-indigo-400 hover:decoration-indigo-300"
-        >Hacker Dropbox Walkthrough</a>
-      </li>
-      <li>
-        📚 Twingate API Reference:
-        <a
-            href="https://www.twingate.com/docs/exploring-twingate-apis"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="underline underline-offset-2 decoration-indigo-400 hover:decoration-indigo-300"
-        >Explore API Docs</a>
-      </li>
-    </ul>
+    <!-- use cases -->
+    <section class="mt-7 sm:mt-9 space-y-3">
+      <h2 class="text-base sm:text-lg font-semibold text-white">🧑‍💻 practical use cases</h2>
+      <ul class="list-disc pl-5 grid gap-2.5 text-[15.5px] sm:text-base leading-7 text-gray-200">
+        <li>remote troubleshooting (e.g., fixing grandma’s printer… again)</li>
+        <li>drop into a client’s site to monitor logs or troubleshoot securely</li>
+        <li>red-team foothold in authorized security assessments</li>
+      </ul>
+    </section>
 
-    <h2 class="text-xl font-semibold text-white">🔒 Ethical Hacking Reminder</h2>
-    <p class="text-gray-300">
-      This project is for <strong class="text-white">legitimate and authorized use only</strong>.
-      Always get explicit permission before deploying, especially in corporate or client environments.
-    </p>
+    <!-- resources -->
+    <section class="mt-7 sm:mt-9 space-y-3">
+      <h2 class="text-base sm:text-lg font-semibold text-white">🔗 helpful resources</h2>
+      <ul class="list-disc pl-5 grid gap-2.5 text-[15.5px] sm:text-base leading-7 text-gray-200">
+        <li>
+          📝 full guide:
+          <a
+              href="https://ntck.co/hackerdropbox"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="underline underline-offset-2 decoration-indigo-400 hover:decoration-indigo-300"
+          >hacker dropbox walkthrough</a>
+        </li>
+        <li>
+          📚 twingate api reference:
+          <a
+              href="https://www.twingate.com/docs/exploring-twingate-apis"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="underline underline-offset-2 decoration-indigo-400 hover:decoration-indigo-300"
+          >explore api docs</a>
+        </li>
+      </ul>
+    </section>
 
-    <h2 class="text-xl font-semibold text-white">✅ Final Thoughts</h2>
-    <p class="text-gray-300">
-      A <strong class="text-white">Hacker Dropbox</strong> is a game-changer for sysadmins, freelancers, and security professionals.
-      With <strong class="text-white">Twingate ZTNA</strong>, setup time drops from hours to minutes.
-      From helping grandma to conducting pentests, this project belongs in your toolkit.
-    </p>
-  </div>
+    <!-- ethics -->
+    <section class="mt-7 sm:mt-9 space-y-3">
+      <h2 class="text-base sm:text-lg font-semibold text-white">🔒 ethical hacking reminder</h2>
+      <p class="text-[15.5px] sm:text-base leading-7 text-gray-200">
+        this project is for <strong class="text-white">legitimate and authorized use only</strong>.
+        always get explicit permission before deploying, especially in corporate or client environments.
+      </p>
+    </section>
+
+    <!-- closing -->
+    <section class="mt-7 sm:mt-9 space-y-3">
+      <h2 class="text-base sm:text-lg font-semibold text-white">✅ final thoughts</h2>
+      <p class="text-[15.5px] sm:text-base leading-7 text-gray-200">
+        a <strong class="text-white">hacker dropbox</strong> is a game-changer for sysadmins, freelancers, and security pros.
+        with <strong class="text-white">twingate ztna</strong>, setup time drops from hours to minutes. from helping grandma
+        to conducting pentests, this project belongs in your toolkit.
+      </p>
+    </section>
+  </article>
 </template>
 
-<script setup lang="ts">
-// Static article — no interactivity required
-</script>
-
 <style scoped>
-/* Tailwind only; links have underlines, high-contrast colors, and focus-visible rings for accessibility */
+:where(p, li){ word-break: break-word; hyphens: auto; }
 </style>

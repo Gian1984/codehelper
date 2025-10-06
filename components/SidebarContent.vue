@@ -1,5 +1,5 @@
 <template>
-  <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6" role="complementary" aria-label="Sidebar: resources">
+  <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 mb-8" role="complementary" aria-label="Sidebar: resources">
     <div class="flex h-16 shrink-0 items-center">
       <span class="flex items-center gap-x-1 text-white font-semibold">
         Resources

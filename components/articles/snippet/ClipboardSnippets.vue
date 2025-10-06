@@ -1,65 +1,67 @@
 <template>
-  <div class="p-8 bg-gray-800 rounded-lg shadow-xl space-y-10">
-    <h2 class="text-3xl font-bold text-white">
-      🧠 10 JavaScript Snippets Every Developer Should Keep in Their Clipboard Manager
-    </h2>
-
-    <p class="text-gray-300">
-      As developers, we often rewrite the same utilities over and over. To boost productivity, here’s a curated list of
-      <strong class="text-white">10 high-value JavaScript snippets</strong> you can copy and paste directly into your next project.
-      These cover everyday needs like debouncing, throttling, string formatting, and array manipulation.
-    </p>
-
-    <div
-        v-for="(snippet, i) in snippets"
-        :key="i"
-        class="space-y-4"
-    >
-      <h2 class="text-xl font-semibold text-white">
-        {{ i + 1 }}. {{ snippet.title }}
-      </h2>
-      <p class="text-gray-300 text-base leading-relaxed">
-        {{ snippet.description }}
+  <article
+      class="mx-auto w-full max-w-[72ch] px-5 sm:px-6 py-6 sm:py-10 bg-gray-800 rounded-2xl shadow-2xl ring-1 ring-white/5"
+  >
+    <!-- intro -->
+    <section class="mt-6 sm:mt-8 space-y-5">
+      <p class="text-[15.5px] sm:text-base leading-7 text-gray-200">
+        As developers, we often rewrite the same utilities. Here’s a curated list of
+        <strong class="text-white">10 high-value JavaScript snippets</strong> you can paste into your next project:
+        debouncing, throttling, string formatting, and array manipulation.
       </p>
-      <div class="bg-gray-900 border border-gray-700 rounded-lg p-4 overflow-x-auto">
-        <pre class="text-sm font-mono text-green-400 whitespace-pre">
-<code>{{ snippet.code }}</code>
-        </pre>
-      </div>
-    </div>
+    </section>
 
-    <div class="mt-12 text-gray-300">
-      <h2 class="text-xl font-semibold text-white">📌 Final Tip</h2>
-      <p class="mt-2">
+    <!-- snippets -->
+    <section class="mt-7 sm:mt-9 space-y-7">
+      <div
+          v-for="(snippet, i) in snippets"
+          :key="i"
+          class="space-y-3"
+      >
+        <h2 class="text-base sm:text-lg font-semibold text-white">
+          {{ i + 1 }}. {{ snippet.title }}
+        </h2>
+
+        <p class="text-[15.5px] sm:text-base leading-7 text-gray-200">
+          {{ snippet.description }}
+        </p>
+
+        <div class="bg-gray-900/80 border border-gray-700/70 rounded-xl p-4 overflow-x-auto">
+          <pre class="text-sm leading-6 font-mono text-green-400 whitespace-pre">
+<code>{{ snippet.code }}</code>
+          </pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- final tip -->
+    <section class="mt-10 sm:mt-12 space-y-3">
+      <h2 class="text-base sm:text-lg font-semibold text-white">📌 Final Tip</h2>
+      <p class="text-[15.5px] sm:text-base leading-7 text-gray-200">
         Supercharge your workflow with a clipboard manager like
         <a
-            class="underline underline-offset-2 decoration-indigo-400 hover:decoration-indigo-300 focus-visible:ring-2 focus-visible:ring-indigo-400"
-            href="https://espanso.org"
-            target="_blank"
-            rel="noopener noreferrer"
+            class="underline underline-offset-2 decoration-indigo-400 hover:decoration-indigo-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 rounded"
+            href="https://espanso.org" target="_blank" rel="noopener noreferrer"
             aria-label="Espanso clipboard manager (opens in a new tab)"
         >Espanso</a>,
         <a
-            class="underline underline-offset-2 decoration-indigo-400 hover:decoration-indigo-300 focus-visible:ring-2 focus-visible:ring-indigo-400"
-            href="https://clipy-app.com"
-            target="_blank"
-            rel="noopener noreferrer"
+            class="underline underline-offset-2 decoration-indigo-400 hover:decoration-indigo-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 rounded"
+            href="https://clipy-app.com" target="_blank" rel="noopener noreferrer"
             aria-label="Clipy clipboard manager (opens in a new tab)"
         >Clipy</a>, or
         <a
-            class="underline underline-offset-2 decoration-indigo-400 hover:decoration-indigo-300 focus-visible:ring-2 focus-visible:ring-indigo-400"
-            href="https://raycast.com"
-            target="_blank"
-            rel="noopener noreferrer"
+            class="underline underline-offset-2 decoration-indigo-400 hover:decoration-indigo-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 rounded"
+            href="https://raycast.com" target="_blank" rel="noopener noreferrer"
             aria-label="Raycast clipboard manager (opens in a new tab)"
         >Raycast</a>.
         Keeping snippets ready-to-go will save you <strong class="text-white">hours every week</strong>.
       </p>
-    </div>
-  </div>
+    </section>
+  </article>
 </template>
 
 <script setup lang="ts">
+
 const snippets = [
   {
     title: 'Debounce Function',
@@ -81,7 +83,7 @@ const snippets = [
     if (!inThrottle) {
       fn(...args)
       inThrottle = true
-      setTimeout(() => inThrottle = false, limit)
+      setTimeout(() => { inThrottle = false }, limit)
     }
   }
 }`
@@ -96,8 +98,8 @@ const snippets = [
   {
     title: 'Copy to Clipboard',
     description: 'Copy any text string directly to the clipboard.',
-    code: `function copyToClipboard(text) {
-  navigator.clipboard.writeText(text)
+    code: `async function copyToClipboard(text) {
+  try { await navigator.clipboard.writeText(text) } catch {}
 }`
   },
   {
@@ -111,7 +113,7 @@ const snippets = [
     title: 'Generate Random ID',
     description: 'Generate unique IDs (not UUIDs, but useful for UI components).',
     code: `function randomID(length = 8) {
-  return Math.random().toString(36).substring(2, 2 + length)
+  return Math.random().toString(36).slice(2, 2 + length)
 }`
   },
   {
@@ -127,8 +129,7 @@ const snippets = [
     code: `function groupBy(arr, key) {
   return arr.reduce((acc, obj) => {
     const val = obj[key]
-    acc[val] = acc[val] || []
-    acc[val].push(obj)
+    ;(acc[val] ||= []).push(obj)
     return acc
   }, {})
 }`
@@ -151,6 +152,6 @@ const snippets = [
 </script>
 
 <style scoped>
-/* Tailwind only, improved hover/focus for links */
+:where(p, li){ word-break: break-word; hyphens: auto; }
 </style>
 
