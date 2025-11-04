@@ -1,0 +1,74 @@
+/* TEAM */
+
+Developer & Designer: Gianluca Tiengo
+Site: https://codehelper.me
+Location: Italy
+GitHub: https://github.com/Gian1984
+
+/* THANKS */
+
+To the open-source community for making this possible
+To all contributors and bug reporters
+To developers who use and share CodeHelper
+
+/* SITE */
+
+Last update: 2025-11-04
+Standards: HTML5, CSS3, JavaScript ES2021+
+Components: Vue 3, Nuxt 4, Tailwind CSS
+Software: VS Code, Git, npm
+Hosting: Static Site Generation (SSG)
+Privacy: Client-side only, no tracking, no cookies (except analytics consent)
+
+/* TECHNOLOGY STACK */
+
+Framework: Nuxt 4.0
+UI Library: Vue 3.5
+Styling: Tailwind CSS 3
+Build: Vite 6
+TypeScript: Yes
+Node: 18+
+
+/* TOOLS & LIBRARIES */
+
+- @headlessui/vue - Accessible UI components
+- @heroicons/vue - Icon set
+- js-yaml - YAML parsing
+- vkbeautify - Code formatting
+
+/* VALUES */
+
+Privacy-first: All tools run client-side
+Open source: Contributions welcome
+Performance: Lightweight and fast
+Accessibility: WCAG AA compliant (work in progress)
+Sustainability: Minimal resource usage
+
+/* CONTACT */
+
+GitHub Issues: https://github.com/Gian1984/codehelper/issues
+Security: https://codehelper.me/.well-known/security.txt
+Website: https://codehelper.me
+
+/* FUN FACTS */
+
+- All 32 tools run without a backend
+- Zero personal data collected
+- Built with passion for developers
+- Named "CodeHelper" because it helps with code :)
+- Started as a side project, grew into something useful
+- Caffeine-powered development sessions
+
+                           _           _
+  ___ ___   __| | ___  | |__   ___
+ / __/ _ \ / _` |/ _ \ | '_ \ / _ \
+| (_| (_) | (_| |  __/ | | | |  __/
+ \___\___/ \__,_|\___| |_| |_|\___|
+
+    / /_  ___  / /___  ___  _____
+   / __ \/ _ \/ / __ \/ _ \/ ___/
+  / / / /  __/ / /_/ /  __/ /
+ /_/ /_/\___/_/ .___/\___/_/
+             /_/
+
+/* EOF */

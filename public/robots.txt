@@ -1,1 +1,29 @@
+# robots.txt for CodeHelper
+# https://codehelper.me
+# Last updated: 2025-11-04
 
+User-agent: *
+Allow: /
+
+# Disallow build artifacts
+Disallow: /_nuxt/
+Disallow: /__sitemap__/
+
+# Allow important pages
+Allow: /tools/
+Allow: /articles/
+Allow: /about
+Allow: /project
+
+# Sitemap location
+Sitemap: https://codehelper.me/sitemap.xml
+
+# Crawl delay (optional, be nice to your server)
+# Crawl-delay: 1
+
+# Block bad bots (optional - uncomment if needed)
+# User-agent: SemrushBot
+# Disallow: /
+#
+# User-agent: AhrefsBot
+# Disallow: /

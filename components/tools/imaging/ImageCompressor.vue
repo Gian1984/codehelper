@@ -247,8 +247,8 @@ async function compress() {
     optimized.width = targetW
     optimized.height = targetH
   } catch (e) {
-    console.error(e)
-    alert('Compression failed. Try switching format or using a different image.')
+    const errorMsg = e instanceof Error ? e.message : 'Unknown error'
+    alert(`Compression failed: ${errorMsg}. Try switching format or using a different image.`)
   } finally {
     processing.value = false
   }

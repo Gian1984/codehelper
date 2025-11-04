@@ -4,7 +4,7 @@ import { tools } from './utils/toolRegistry'
 import { articles } from './utils/articlesRegistry'
 
 
-const staticRoutes = ['/', '/about', '/tools', '/project', '/articles']
+const staticRoutes = ['/', '/about', '/tools', '/project', '/articles', '/feed.xml', '/feed.json']
 
 
 const dynamicToolRoutes = Object.keys(tools).map(slug => `/tools/${slug}`)
@@ -39,7 +39,9 @@ export default defineNuxtConfig({
                 lang: 'en'
             },
             link: [
-                { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+                { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+                { rel: 'alternate', type: 'application/rss+xml', title: 'CodeHelper RSS Feed', href: '/feed.xml' },
+                { rel: 'alternate', type: 'application/json', title: 'CodeHelper JSON Feed', href: '/feed.json' }
             ]
         }
     },
@@ -53,7 +55,30 @@ export default defineNuxtConfig({
         sitemapName: 'sitemap.xml',
         hostname: 'https://codehelper.me',
         gzip: true,
-        routes: allRoutes // Include anche gli articoli
+        routes: allRoutes,
+        defaults: {
+            changefreq: 'daily',
+            priority: 0.8,
+            lastmod: new Date().toISOString()
+        },
+        // Customize specific route priorities
+        urls: [
+            {
+                loc: '/',
+                priority: 1.0,
+                changefreq: 'daily'
+            },
+            {
+                loc: '/tools',
+                priority: 0.9,
+                changefreq: 'weekly'
+            },
+            {
+                loc: '/articles',
+                priority: 0.9,
+                changefreq: 'weekly'
+            }
+        ]
     }
 })
 

@@ -1,0 +1,30 @@
+# Security Policy for CodeHelper
+# https://codehelper.me/.well-known/security.txt
+
+# Our security address
+Contact: https://github.com/Gian1984/codehelper/security/advisories/new
+Contact: mailto:security@codehelper.me
+
+# Our OpenPGP key (optional - add if you have one)
+# Encryption: https://codehelper.me/.well-known/pgp-key.txt
+
+# Security page
+Policy: https://github.com/Gian1984/codehelper/blob/main/SECURITY.md
+
+# Preferred Languages
+Preferred-Languages: en, it
+
+# Canonical URL
+Canonical: https://codehelper.me/.well-known/security.txt
+
+# Expiration date (1 year from now - update annually)
+Expires: 2026-11-04T23:59:59.000Z
+
+# Acknowledgments
+Acknowledgments: https://github.com/Gian1984/codehelper#contributors
+
+# Additional Information
+# - All tools run client-side in the browser
+# - No user data is collected or stored on servers
+# - Please report security issues privately via GitHub Security Advisories
+# - We aim to respond to security reports within 48 hours
