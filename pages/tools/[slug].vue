@@ -4,6 +4,15 @@
 
     <div class="xl:pl-72">
       <div class="p-8 min-h-screen">
+        <!-- Breadcrumb navigation -->
+        <Breadcrumb
+          :items="[
+            { title: 'Home', url: '/' },
+            { title: 'Tools', url: '/tools' },
+            { title: toolData.title, url: `/tools/${slug}` }
+          ]"
+        />
+
         <h1 class="text-3xl font-bold mb-4">{{ toolData.title }}</h1>
         <p class="text-gray-400 mb-6">{{ toolData.description }}</p>
         <component :is="ToolComponent" />
@@ -17,7 +26,9 @@ import { useRoute } from 'vue-router'
 import { defineAsyncComponent, onMounted } from 'vue'
 import { useHead, createError } from '#imports'
 import Sidebar from '~/components/Sidebar.vue'
+import Breadcrumb from '~/components/Breadcrumb.vue'
 import { tools } from '~/utils/toolRegistry'
+import { useBreadcrumb } from '~/composables/useBreadcrumb'
 
 const route = useRoute()
 const slug = route.params.slug as string
@@ -30,6 +41,16 @@ if (!toolData) {
 
 // laod the tool component dynamically
 const ToolComponent = defineAsyncComponent(toolData.component)
+
+// Generate breadcrumb schema for SEO
+const breadcrumbSchema = useBreadcrumb(
+  toolData.title,
+  `https://codehelper.me/tools/${slug}`,
+  {
+    parentTitle: 'Tools',
+    parentUrl: 'https://codehelper.me/tools'
+  }
+)
 
 // Meta / SEO
 useHead({
@@ -70,17 +91,25 @@ useHead({
       href: `https://codehelper.me/tools/${slug}`
     }
   ],
-  script: toolData.seo?.structuredData
+  script: [
+    // Existing tool structured data
+    ...(toolData.seo?.structuredData
       ? [
-        {
-          type: 'application/ld+json',
-          innerHTML: JSON.stringify({
-            '@context': 'https://schema.org',
-            ...toolData.seo.structuredData
-          })
-        }
-      ]
-      : []
+          {
+            type: 'application/ld+json',
+            innerHTML: JSON.stringify({
+              '@context': 'https://schema.org',
+              ...toolData.seo.structuredData
+            })
+          }
+        ]
+      : []),
+    // Breadcrumb structured data
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify(breadcrumbSchema)
+    }
+  ]
 })
 
 // Tracking GTM + gtag

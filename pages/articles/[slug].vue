@@ -5,6 +5,15 @@
     <div class="xl:pl-72">
       <!-- contenitore più leggibile: riga max 72ch -->
       <div class="p-5 sm:p-8 min-h-screen mx-auto w-full max-w-[72ch]">
+        <!-- Breadcrumb navigation -->
+        <Breadcrumb
+          :items="[
+            { title: 'Home', url: '/' },
+            { title: 'Articles', url: '/articles' },
+            { title: articleData.title, url: `/articles/${slug}` }
+          ]"
+        />
+
         <h1 class="text-[26px] leading-[1.2] sm:text-3xl md:text-4xl font-extrabold tracking-tight mb-3 [text-wrap:balance]">
           {{ articleData.title }}
         </h1>
@@ -47,8 +56,10 @@ import { useRoute } from 'vue-router'
 import { defineAsyncComponent, computed } from 'vue'
 import { useHead, createError } from '#imports'
 import Sidebar from '~/components/Sidebar.vue'
-import DateBadge from '~/components/DateBadge.vue'        // <-- IMPORT
+import Breadcrumb from '~/components/Breadcrumb.vue'
+import DateBadge from '~/components/DateBadge.vue'
 import { articles } from '~/utils/articlesRegistry'
+import { useBreadcrumb } from '~/composables/useBreadcrumb'
 
 // slug sanificato (evita () o altri char)
 const route = useRoute()
@@ -62,6 +73,16 @@ if (!articleData) {
 
 // carica il componente articolo
 const ArticleComponent = defineAsyncComponent(articleData.component)
+
+// Generate breadcrumb schema for SEO
+const breadcrumbSchema = useBreadcrumb(
+  articleData.title,
+  `https://codehelper.me/articles/${slug}`,
+  {
+    parentTitle: 'Articles',
+    parentUrl: 'https://codehelper.me/articles'
+  }
+)
 
 // structured data helper
 const sd = (articleData.seo && articleData.seo.structuredData) || {}
@@ -103,9 +124,17 @@ useHead({
     ...(authorName.value ? [{ property: 'article:author', content: authorName.value }] : [])
   ],
   link: [{ rel: 'canonical', href: `https://codehelper.me/articles/${slug}` }],
-  script: articleData.seo?.structuredData
+  script: [
+    // Existing article structured data
+    ...(articleData.seo?.structuredData
       ? [{ type: 'application/ld+json', innerHTML: JSON.stringify({ '@context': 'https://schema.org', ...articleData.seo.structuredData }) }]
-      : []
+      : []),
+    // Breadcrumb structured data
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify(breadcrumbSchema)
+    }
+  ]
 })
 
 // tracking (immutato)

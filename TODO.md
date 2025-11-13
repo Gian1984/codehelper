@@ -23,7 +23,7 @@ This document outlines all improvements needed.
 - [x] **P2** Add `.well-known/security.txt` for security contact ✅ *Completed 2025-11-04*
 
 ### Structured Data & Rich Snippets
-- [ ] **P1** Add BreadcrumbList schema to all tool and article pages
+- [x] **P1** Add BreadcrumbList schema to all tool and article pages ✅ *Completed 2025-11-13*
 - [ ] **P1** Add HowTo schema for tutorial articles
 - [ ] **P1** Add VideoObject schema if/when video tutorials are added
 - [ ] **P1** Add FAQ schema for common questions (create FAQ page)
@@ -315,7 +315,7 @@ This document outlines all improvements needed.
 - [ ] **P3** Add tool state persistence in URL (shareable links)
 
 ### Navigation & Layout
-- [ ] **P1** Add breadcrumbs navigation
+- [x] **P1** Add breadcrumbs navigation ✅ *Completed 2025-11-13*
 - [ ] **P1** Add "Back to Top" button on long pages
 - [ ] **P1** Add sticky header on scroll
 - [ ] **P2** Improve mobile sidebar UX (swipe gesture)
