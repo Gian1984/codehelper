@@ -57,7 +57,7 @@
                     autocomplete="off"
                     spellcheck="false"
                     role="combobox"
-                    aria-expanded="!!(showSuggestions && suggestions.length)"
+                    :aria-expanded="showSuggestions && suggestions.length > 0"
                     aria-autocomplete="list"
                     aria-controls="search-suggestions"
                     aria-haspopup="listbox"

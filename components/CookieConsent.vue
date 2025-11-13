@@ -23,9 +23,9 @@
       </div>
 
       <div class="flex gap-2">
-        <button class="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded" @click="rejectAll">Reject</button>
-        <button class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded" @click="save">Save</button>
-        <button class="px-4 py-2 bg-green-600 hover:bg-green-700 rounded" @click="acceptAll">Accept all</button>
+        <button class="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded text-white font-medium" @click="rejectAll">Reject</button>
+        <button class="px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded text-white font-medium" @click="save">Save</button>
+        <button class="px-4 py-2 bg-green-700 hover:bg-green-800 text-white font-medium rounded" @click="acceptAll">Accept all</button>
       </div>
     </div>
   </div>
