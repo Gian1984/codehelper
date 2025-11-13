@@ -171,6 +171,8 @@
             :src="preview"
             :alt="`matte ${width}x${height}`"
             class="mx-auto block max-h-[60vh] rounded-lg shadow"
+            loading="lazy"
+            decoding="async"
         />
         <div v-else class="text-center text-gray-400 py-10">nessuna anteprima ancora…</div>
       </div>

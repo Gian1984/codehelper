@@ -19,7 +19,15 @@
       </div>
       <div class="mx-auto max-w-7xl px-6 pt-10 pb-24 sm:pb-32 lg:flex lg:px-8 lg:py-40">
         <div class="mx-auto max-w-2xl shrink-0 lg:mx-0 lg:pt-8 text-center lg:text-left">
-          <img class="h-36 mx-auto lg:mx-0" src="/images/codehelper_logo_500_500_no_bg.webp" alt="CodeHelper Logo" />
+          <NuxtImg
+            class="h-36 mx-auto lg:mx-0"
+            src="/images/codehelper_logo_500_500_no_bg.webp"
+            alt="CodeHelper Logo"
+            width="144"
+            height="144"
+            loading="lazy"
+            format="webp"
+          />
           <h1 class="mt-10 text-5xl font-semibold tracking-tight text-pretty text-white sm:text-7xl">
             Tools & Articles for Modern Developers
           </h1>

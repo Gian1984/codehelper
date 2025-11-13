@@ -2,10 +2,14 @@
 <template>
   <div class="min-h-screen grid place-items-center bg-gray-900 text-gray-200 px-6 py-16">
     <div class="w-full max-w-2xl text-center space-y-8">
-      <img
-          src="/images/codehelper_logo_500_500_no_bg.webp"
-          alt="codehelper logo"
-          class="mx-auto h-32 w-32 object-contain opacity-90"
+      <NuxtImg
+        src="/images/codehelper_logo_500_500_no_bg.webp"
+        alt="CodeHelper logo"
+        width="500"
+        height="500"
+        loading="eager"
+        format="webp"
+        class="mx-auto h-32 w-32 object-contain opacity-90"
       />
 
       <p class="text-3xl lg:text-5xl tracking-wide text-gray-400">

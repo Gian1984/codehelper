@@ -41,15 +41,38 @@ export default defineNuxtConfig({
             link: [
                 { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
                 { rel: 'alternate', type: 'application/rss+xml', title: 'CodeHelper RSS Feed', href: '/feed.xml' },
-                { rel: 'alternate', type: 'application/json', title: 'CodeHelper JSON Feed', href: '/feed.json' }
+                { rel: 'alternate', type: 'application/json', title: 'CodeHelper JSON Feed', href: '/feed.json' },
+
+                // Resource hints for external domains
+                { rel: 'preconnect', href: 'https://www.googletagmanager.com' },
+                { rel: 'dns-prefetch', href: 'https://www.googletagmanager.com' }
             ]
         }
     },
 
     modules: [
         '@nuxtjs/tailwindcss',
-        '@nuxtjs/sitemap'
+        '@nuxtjs/sitemap',
+        '@nuxt/image'
     ],
+
+    // Image optimization configuration
+    image: {
+        formats: ['webp', 'avif'],
+        quality: 80,
+        screens: {
+            xs: 320,
+            sm: 640,
+            md: 768,
+            lg: 1024,
+            xl: 1280,
+            xxl: 1536,
+        },
+        // Enable placeholder for better UX
+        placeholder: 10,
+        // Disable external image providers by default for privacy
+        providers: {}
+    },
 
     sitemap: {
         sitemapName: 'sitemap.xml',

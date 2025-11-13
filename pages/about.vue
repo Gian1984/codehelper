@@ -86,10 +86,14 @@
         </div>
 
         <div class="mx-auto mt-16 max-w-sm text-center">
-          <img
-              class="aspect-square w-full rounded-2xl"
-              src="/images/codehelper_logo_500_500_no_bg.webp"
-              alt="Logo placeholder for CodeHelper by Gianluca Tiengo"
+          <NuxtImg
+            class="aspect-square w-full rounded-2xl"
+            src="/images/codehelper_logo_500_500_no_bg.webp"
+            alt="Logo placeholder for CodeHelper by Gianluca Tiengo"
+            width="500"
+            height="500"
+            loading="lazy"
+            format="webp"
           />
           <h3 class="mt-10 text-lg font-semibold tracking-tight text-white">
             <a href="https://gianlucatiengo.com/" target="_blank" rel="noopener" class="hover:text-indigo-400">

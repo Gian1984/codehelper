@@ -8,7 +8,16 @@
             <div class="shrink-0">
               <!-- Improved alt, aria-label, rel, prefetch -->
               <NuxtLink to="/" aria-label="Go to CodeHelper home" rel="home" :prefetch="true">
-                <img class="h-8 w-auto" src="/images/logo_nav.webp" alt="CodeHelper — Home" width="128" height="32" decoding="async" />
+                <NuxtImg
+                  class="h-8 w-auto"
+                  src="/images/logo_nav.webp"
+                  alt="CodeHelper — Home"
+                  width="32"
+                  height="32"
+                  loading="eager"
+                  fetchpriority="high"
+                  format="webp"
+                />
               </NuxtLink>
             </div>
             <div class="hidden lg:ml-6 lg:block">

@@ -141,6 +141,8 @@
           class="w-full h-full select-none"
           :style="{ objectFit, clipPath: polygonCss(false) }"
           draggable="false"
+          loading="lazy"
+          decoding="async"
       />
 
       <!-- grid -->

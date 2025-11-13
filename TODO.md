@@ -56,10 +56,10 @@ This document outlines all improvements needed.
 
 ### Core Web Vitals
 - [x] **P0** Implement Web Vitals monitoring (CLS, LCP, FID, INP) ✅ *Completed 2025-11-04*
-- [ ] **P0** Add resource hints: `preconnect`, `dns-prefetch` for external resources
-- [ ] **P1** Optimize and lazy-load all images (use `<img loading="lazy">`)
-- [ ] **P1** Convert all images to WebP/AVIF with fallbacks
-- [ ] **P1** Add proper `width` and `height` attributes to all images (reduce CLS)
+- [x] **P0** Add resource hints: `preconnect`, `dns-prefetch` for external resources ✅ *Completed 2025-11-13*
+- [x] **P1** Optimize and lazy-load all images (use `<img loading="lazy">`) ✅ *Completed 2025-11-13*
+- [x] **P1** Convert all images to WebP/AVIF with fallbacks ✅ *Completed 2025-11-13*
+- [x] **P1** Add proper `width` and `height` attributes to all images (reduce CLS) ✅ *Completed 2025-11-13*
 - [ ] **P1** Implement critical CSS inlining for above-the-fold content
 - [ ] **P1** Add font preloading for primary fonts
 - [ ] **P2** Use `font-display: swap` or `optional` for web fonts
@@ -596,5 +596,5 @@ If others are contributing, prioritize by:
 
 ---
 
-**Last Updated:** 2025-11-04
+**Last Updated:** 2025-11-13
 **Version:** 1.0

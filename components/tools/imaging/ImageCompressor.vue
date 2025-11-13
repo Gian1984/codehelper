@@ -94,7 +94,7 @@
           <div>
             <p class="text-white text-sm mb-2">Original</p>
             <div class="border border-gray-700 rounded overflow-hidden bg-black/30">
-              <img v-if="original.previewUrl" :src="original.previewUrl" class="w-full h-60 object-contain" alt="original" />
+              <img v-if="original.previewUrl" :src="original.previewUrl" class="w-full h-60 object-contain" alt="original" loading="lazy" decoding="async" />
             </div>
             <p class="text-xs text-gray-400 mt-2">
               {{ original.width }}×{{ original.height }} • {{ prettySize(original.size) }}
@@ -103,7 +103,7 @@
           <div>
             <p class="text-white text-sm mb-2">Optimized</p>
             <div class="border border-gray-700 rounded overflow-hidden bg-black/30">
-              <img v-if="optimized.blobUrl" :src="optimized.blobUrl" class="w-full h-60 object-contain" alt="optimized" />
+              <img v-if="optimized.blobUrl" :src="optimized.blobUrl" class="w-full h-60 object-contain" alt="optimized" loading="lazy" decoding="async" />
             </div>
             <p class="text-xs text-gray-400 mt-2" v-if="optimized.size">
               {{ optimized.width }}×{{ optimized.height }} • {{ prettySize(optimized.size) }}
