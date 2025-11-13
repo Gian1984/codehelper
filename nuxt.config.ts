@@ -54,7 +54,6 @@ export default defineNuxtConfig({
         '@nuxtjs/tailwindcss',
         '@nuxtjs/sitemap',
         '@nuxt/image',
-        '@nuxtjs/critters'
     ],
 
     // Image optimization configuration
@@ -73,30 +72,6 @@ export default defineNuxtConfig({
         placeholder: 10,
         // Disable external image providers by default for privacy
         providers: {}
-    },
-
-    // Critical CSS inlining configuration
-    critters: {
-        config: {
-            // Inline critical CSS and preload the rest
-            preload: 'swap',
-            // Remove inlined CSS from external stylesheets
-            pruneSource: true,
-            // Merge multiple stylesheets into one
-            mergeStylesheets: true,
-            // Handle external stylesheets
-            external: true,
-            // Inline all critical CSS (no size threshold)
-            inlineThreshold: 0,
-            // Minimum size for external stylesheets
-            minimumExternalSize: 0,
-            // Preload external fonts
-            preloadFonts: true,
-            // Compress inlined CSS
-            compress: true,
-            // Log critical CSS extraction
-            logLevel: 'info'
-        }
     },
 
     sitemap: {
