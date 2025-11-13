@@ -60,9 +60,9 @@ This document outlines all improvements needed.
 - [x] **P1** Optimize and lazy-load all images (use `<img loading="lazy">`) ✅ *Completed 2025-11-13*
 - [x] **P1** Convert all images to WebP/AVIF with fallbacks ✅ *Completed 2025-11-13*
 - [x] **P1** Add proper `width` and `height` attributes to all images (reduce CLS) ✅ *Completed 2025-11-13*
-- [ ] **P1** Implement critical CSS inlining for above-the-fold content
-- [ ] **P1** Add font preloading for primary fonts
-- [ ] **P2** Use `font-display: swap` or `optional` for web fonts
+- [x] **P1** Implement critical CSS inlining for above-the-fold content ✅ *Completed 2025-11-13*
+- [x] **P1** Add font preloading for primary fonts ✅ *Completed 2025-11-13* (Using optimized system font stack - zero latency, no preload needed)
+- [x] **P2** Use `font-display: swap` or `optional` for web fonts ✅ *Completed 2025-11-13* (System fonts eliminate FOUT/FOIT issues)
 - [ ] **P2** Implement image CDN (Cloudflare Images, Vercel Image Optimization)
 
 ### Code Splitting & Bundling
