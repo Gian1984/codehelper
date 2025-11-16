@@ -97,7 +97,7 @@
             <dd class="mt-1 flex flex-auto flex-col text-base/7 text-gray-300">
               <p class="flex-auto">{{ tool.description }}</p>
               <p class="mt-6">
-                <NuxtLink :to="`/tools/${slug}`" class="text-sm/6 font-semibold text-indigo-400">Try tool <span aria-hidden="true">→</span></NuxtLink>
+                <NuxtLink :to="`/tools/${slug}/`" class="text-sm/6 font-semibold text-indigo-400">Try tool <span aria-hidden="true">→</span></NuxtLink>
               </p>
             </dd>
           </div>
@@ -124,7 +124,7 @@
       <div class="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
         <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <li v-for="([slug, article], i) in latestArticles" :key="slug" class="rounded-lg bg-gray-800 p-6 shadow hover:shadow-md transition">
-            <NuxtLink :to="`/articles/${slug}`" class="block">
+            <NuxtLink :to="`/articles/${slug}/`" class="block">
               <h3 class="text-xl font-semibold text-white hover:text-indigo-400">
                 {{ article.title }}
               </h3>

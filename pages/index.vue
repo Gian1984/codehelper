@@ -74,7 +74,7 @@
       </h2>
       <ul class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6" aria-label="Popular tools">
         <li v-for="([slug, tool], i) in topTools" :key="slug" class="rounded-lg bg-gray-800 p-4 shadow hover:shadow-md transition">
-          <NuxtLink :to="`/tools/${slug}`" class="block" :aria-label="`Open ${tool.title}`">
+          <NuxtLink :to="`/tools/${slug}/`" class="block" :aria-label="`Open ${tool.title}`">
             <h3 class="text-xl font-semibold hover:text-indigo-400">{{ tool.title }}</h3>
             <p class="text-gray-400 text-sm mt-1">{{ tool.description }}</p>
           </NuxtLink>
@@ -132,7 +132,7 @@
       <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl mb-6">Latest Articles & Tutorials</h2>
       <ul class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6" aria-label="Latest articles">
         <li v-for="article in latestArticles" :key="article.slug" class="rounded-lg bg-gray-800 p-6 shadow hover:shadow-md transition">
-          <NuxtLink :to="`/articles/${article.slug}`" class="block" :aria-label="`Read ${article.title}`">
+          <NuxtLink :to="`/articles/${article.slug}/`" class="block" :aria-label="`Read ${article.title}`">
             <h3 class="text-xl font-semibold hover:text-indigo-400">{{ article.title }}</h3>
             <p class="text-gray-400 text-sm mt-2">{{ article.description }}</p>
           </NuxtLink>

@@ -4,11 +4,11 @@ import { tools } from './utils/toolRegistry'
 import { articles } from './utils/articlesRegistry'
 
 
+// Static routes (Nuxt handles trailing slashes automatically)
 const staticRoutes = ['/', '/about', '/tools', '/project', '/articles', '/feed.xml', '/feed.json']
 
-
+// Dynamic routes
 const dynamicToolRoutes = Object.keys(tools).map(slug => `/tools/${slug}`)
-
 
 const dynamicArticleRoutes = Object.keys(articles).map(slug => `/articles/${slug}`)
 
@@ -20,6 +20,11 @@ export default defineNuxtConfig({
     devtools: { enabled: true },
 
     ssr: true,
+
+    css: [
+        'vue3-json-viewer/dist/vue3-json-viewer.css'
+    ],
+
     nitro: {
         preset: 'static',
         prerender: {

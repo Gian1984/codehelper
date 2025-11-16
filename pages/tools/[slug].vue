@@ -45,10 +45,10 @@ const ToolComponent = defineAsyncComponent(toolData.component)
 // Generate breadcrumb schema for SEO
 const breadcrumbSchema = useBreadcrumb(
   toolData.title,
-  `https://codehelper.me/tools/${slug}`,
+  `https://codehelper.me/tools/${slug}/`,
   {
     parentTitle: 'Tools',
-    parentUrl: 'https://codehelper.me/tools'
+    parentUrl: 'https://codehelper.me/tools/'
   }
 )
 
@@ -78,7 +78,7 @@ useHead({
     },
     {
       property: 'og:url',
-      content: `https://codehelper.me/tools/${slug}`
+      content: `https://codehelper.me/tools/${slug}/`
     },
     {
       property: 'og:type',
@@ -88,7 +88,7 @@ useHead({
   link: [
     {
       rel: 'canonical',
-      href: `https://codehelper.me/tools/${slug}`
+      href: `https://codehelper.me/tools/${slug}/`
     }
   ],
   script: [
@@ -131,7 +131,7 @@ onMounted(() => {
       window.gtag('config', 'GTM-5W8Q4TK9', {
         page_title: toolData.seo?.title || toolData.title,
         page_path: `/tools/${slug}`,
-        page_location: `https://codehelper.me/tools/${slug}`
+        page_location: `https://codehelper.me/tools/${slug}/`
       })
     }
   }

@@ -10,7 +10,7 @@
           :items="[
             { title: 'Home', url: '/' },
             { title: 'Articles', url: '/articles' },
-            { title: articleData.title, url: `/articles/${slug}` }
+            { title: articleData.title, url: `/articles/${slug}/` }
           ]"
         />
 
@@ -77,10 +77,10 @@ const ArticleComponent = defineAsyncComponent(articleData.component)
 // Generate breadcrumb schema for SEO
 const breadcrumbSchema = useBreadcrumb(
   articleData.title,
-  `https://codehelper.me/articles/${slug}`,
+  `https://codehelper.me/articles/${slug}/`,
   {
     parentTitle: 'Articles',
-    parentUrl: 'https://codehelper.me/articles'
+    parentUrl: 'https://codehelper.me/articles/'
   }
 )
 
@@ -118,12 +118,12 @@ useHead({
     { property: 'og:title', content: articleData.seo?.title || articleData.title },
     { property: 'og:description', content: articleData.seo?.description || articleData.description },
     { property: 'og:image', content: articleData.seo?.ogImage || '/images/codehelper_blog_OG.webp' },
-    { property: 'og:url', content: `https://codehelper.me/articles/${slug}` },
+    { property: 'og:url', content: `https://codehelper.me/articles/${slug}/` },
     { property: 'og:type', content: 'article' },
     ...(publishedISO.value ? [{ property: 'article:published_time', content: publishedISO.value }] : []),
     ...(authorName.value ? [{ property: 'article:author', content: authorName.value }] : [])
   ],
-  link: [{ rel: 'canonical', href: `https://codehelper.me/articles/${slug}` }],
+  link: [{ rel: 'canonical', href: `https://codehelper.me/articles/${slug}/` }],
   script: [
     // Existing article structured data
     ...(articleData.seo?.structuredData
@@ -155,7 +155,7 @@ if (process.client) {
     window.gtag('config', 'GTM-5W8Q4TK9', {
       page_title: articleData.seo?.title || articleData.title,
       page_path: `/articles/${slug}`,
-      page_location: `https://codehelper.me/articles/${slug}`
+      page_location: `https://codehelper.me/articles/${slug}/`
     })
   }
 }

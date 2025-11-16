@@ -27,7 +27,7 @@
               :key="slug"
               class="rounded-lg bg-gray-800 p-4 shadow hover:shadow-md transition"
           >
-            <NuxtLink :to="`/articles/${slug}`" class="block">
+            <NuxtLink :to="`/articles/${slug}/`" class="block">
               <h2 class="text-xl font-semibold">{{ article.title }}</h2>
               <p class="text-gray-400 text-sm mt-1">{{ article.description }}</p>
               <div class="mt-2 text-gray-500 text-xs">

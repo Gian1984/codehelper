@@ -37,7 +37,7 @@
                 <ul role="list" class="ml-4 mt-2 space-y-1">
                   <li v-for="tool in categorizedTools[category]" :key="tool.slug">
                     <NuxtLink
-                        :to="`/tools/${tool.slug}`"
+                        :to="`/tools/${tool.slug}/`"
                         class="group flex gap-x-3 rounded-md p-2 text-sm text-gray-200 hover:bg-gray-800 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900"
                         :title="`${tool.title} – open tool`"
                         itemprop="url"
@@ -74,7 +74,7 @@
                 <ul role="list" class="ml-4 mt-2 space-y-1">
                   <li v-for="article in categorizedArticles[category]" :key="article.slug">
                     <NuxtLink
-                        :to="`/articles/${article.slug}`"
+                        :to="`/articles/${article.slug}/`"
                         class="group flex gap-x-3 rounded-md p-2 text-sm text-gray-200 hover:bg-gray-800 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900"
                         :title="`${article.title} – read article`"
                         itemprop="url"

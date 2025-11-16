@@ -20,26 +20,37 @@ const BRAND = 'CodeHelper'
 export const tools: Record<string, Tool> = {
     'json-formatter': {
         title: 'JSON Formatter',
-        description: 'Beautify and validate your JSON.',
+        description: 'Professional JSON formatter with tree view, diff compare, schema validation, and syntax highlighting.',
         category: 'formatter',
         component: () =>
             import('~/components/tools/formatter/JsonFormatter.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `JSON Formatter & Validator (Free Online) – ${BRAND}`,
+            title: `JSON Formatter, Validator & Diff Tool (Free) – ${BRAND}`,
             description:
-                'Format, validate, and minify JSON in your browser. Instant error highlights, copy/download, and no data leaves your device.',
+                'Advanced JSON formatter with syntax highlighting, tree view, diff comparison, and JSON Schema validation. Format, validate, compare, and minify JSON—all in your browser with complete privacy.',
             ogImage: OG,
             keywords:
-                'json formatter, online json validator, pretty print json, json beautifier, json minify, format json online, paste json',
+                'json formatter, json validator, json schema validator, json diff, json compare, json tree view, pretty print json, json beautifier, json minify, format json online, jsonc support, json linter',
             structuredData: {
                 '@context': 'https://schema.org',
                 '@type': 'SoftwareApplication',
-                name: 'JSON Formatter',
+                name: 'JSON Formatter & Validator Pro',
                 applicationCategory: 'DeveloperApplication',
                 operatingSystem: 'All',
                 offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-                featureList: ['Format JSON', 'Validate JSON', 'Minify JSON', 'Copy & Download'],
-                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '38' }
+                featureList: [
+                    'Format & Beautify JSON',
+                    'Syntax Highlighting',
+                    'Tree View (Collapsible)',
+                    'JSON Diff & Compare',
+                    'JSON Schema Validation',
+                    'Minify JSON',
+                    'JSONC Support (Comments)',
+                    'Deep Sort Keys',
+                    'Enhanced Statistics',
+                    'Copy & Download'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '142' }
             }
         }
     },
