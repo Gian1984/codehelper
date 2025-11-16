@@ -688,25 +688,28 @@ export const tools: Record<string, Tool> = {
 
     'image-compressor': {
         title: 'Image Compressor',
-        description: 'Professional batch image compressor with JPEG, PNG, WebP, and AVIF support. Compress multiple images, download as ZIP, and track progress in real-time.',
+        description: 'Professional batch image compressor with AI-powered smart compression, EXIF data viewer, target file size mode, and support for JPEG, PNG, WebP, and AVIF formats. Download as ZIP with real-time progress tracking.',
         category: 'imaging',
         component: () =>
             import('~/components/tools/imaging/ImageCompressor.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `Image Compressor (PNG/JPEG/WebP/AVIF) - Batch & ZIP Download – ${BRAND}`,
+            title: `Image Compressor (PNG/JPEG/WebP/AVIF) - Smart Compression & EXIF Viewer – ${BRAND}`,
             description:
-                'Advanced batch image compressor supporting JPEG, PNG, WebP, and AVIF formats. Compress multiple images simultaneously, download as ZIP archive, and view real-time progress. All processing done client-side with complete privacy—no upload to server required.',
+                'Advanced AI-powered image compressor with smart compression, EXIF metadata viewer, and target file size mode. Supports JPEG, PNG, WebP, and AVIF formats. Compress multiple images in batch, view camera settings and GPS data, auto-optimize quality, and download as ZIP archive. All processing done client-side with complete privacy—no upload to server required.',
             ogImage: OG,
             keywords:
-                'image compressor, batch image compression, compress png, compress jpeg, convert to webp, avif compressor, resize image online, optimize images, zip download images, bulk image optimization, image quality reducer, webp converter, avif converter',
+                'image compressor, smart compression, exif viewer, batch image compression, compress png, compress jpeg, convert to webp, avif compressor, resize image online, optimize images, zip download images, bulk image optimization, image quality reducer, webp converter, avif converter, exif data, camera metadata, gps photo location, target file size, auto quality adjustment',
             structuredData: {
                 '@context': 'https://schema.org',
                 '@type': 'SoftwareApplication',
-                name: 'Image Compressor - Batch & ZIP',
+                name: 'Image Compressor Pro - Smart Compression & EXIF',
                 applicationCategory: 'MultimediaApplication',
                 operatingSystem: 'All',
                 offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
                 featureList: [
+                    'Smart Compression (Auto-detect Format & Quality)',
+                    'EXIF Data Viewer (Camera, GPS, Settings)',
+                    'Target File Size Mode (Binary Search)',
                     'Batch Image Compression',
                     'AVIF Format Support',
                     'WebP Format Support',
@@ -715,12 +718,14 @@ export const tools: Record<string, Tool> = {
                     'Real-time Progress Bar',
                     'Before/After Comparison',
                     'Drag & Drop Upload',
-                    'Client-side Processing',
+                    'Client-side Processing (Privacy)',
                     'Maintain Aspect Ratio',
                     'Custom Quality Control',
-                    'Resize Images'
+                    'Resize Images',
+                    'Camera Metadata Display',
+                    'GPS Coordinates Viewer'
                 ],
-                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '12' }
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '18' }
             }
         }
     },

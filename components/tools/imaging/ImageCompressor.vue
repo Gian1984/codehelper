@@ -68,10 +68,20 @@
       </div>
 
       <div class="flex items-center justify-between flex-wrap gap-3">
-        <label class="flex items-center gap-2">
-          <input id="keepRatio" type="checkbox" v-model="options.keepAspectRatio" class="w-4 h-4 accent-indigo-500" />
-          <span class="text-white text-sm">Keep aspect ratio</span>
-        </label>
+        <div class="flex flex-wrap gap-4">
+          <label class="flex items-center gap-2">
+            <input id="keepRatio" type="checkbox" v-model="options.keepAspectRatio" class="w-4 h-4 accent-indigo-500" />
+            <span class="text-white text-sm">Keep aspect ratio</span>
+          </label>
+          <label class="flex items-center gap-2">
+            <input id="showExif" type="checkbox" v-model="options.showExif" class="w-4 h-4 accent-indigo-500" />
+            <span class="text-white text-sm">Show EXIF data</span>
+          </label>
+          <label class="flex items-center gap-2">
+            <input id="smartCompression" type="checkbox" v-model="options.smartCompression" class="w-4 h-4 accent-indigo-500" />
+            <span class="text-white text-sm">Smart compression</span>
+          </label>
+        </div>
 
         <div class="flex gap-2">
           <button
@@ -90,6 +100,19 @@
             💾 Download All
           </button>
         </div>
+      </div>
+
+      <!-- Target File Size -->
+      <div v-if="options.targetFileSize > 0 || images.length > 0" class="flex items-center gap-3">
+        <label class="text-white text-sm font-medium">Target file size (KB):</label>
+        <input
+            type="number"
+            v-model.number="options.targetFileSize"
+            min="0"
+            placeholder="0 = disabled"
+            class="input-sm w-32"
+        />
+        <span class="text-xs text-gray-400">(0 = disabled, auto-adjusts quality)</span>
       </div>
     </div>
 
@@ -134,6 +157,33 @@
             <p class="text-xs text-gray-400 mt-1">
               {{ image.width }}×{{ image.height }} • {{ prettySize(image.size) }}
             </p>
+
+            <!-- EXIF Data -->
+            <div v-if="options.showExif && image.exif" class="mt-2 p-2 bg-gray-900/50 rounded text-xs text-gray-300 space-y-1">
+              <p class="font-semibold text-gray-200 mb-1">📷 EXIF Data</p>
+              <p v-if="image.exif.make || image.exif.model">
+                <span class="text-gray-500">Camera:</span> {{ image.exif.make }} {{ image.exif.model }}
+              </p>
+              <p v-if="image.exif.dateTime">
+                <span class="text-gray-500">Date:</span> {{ new Date(image.exif.dateTime).toLocaleDateString() }}
+              </p>
+              <p v-if="image.exif.fNumber">
+                <span class="text-gray-500">Aperture:</span> f/{{ image.exif.fNumber }}
+              </p>
+              <p v-if="image.exif.exposureTime">
+                <span class="text-gray-500">Shutter:</span> 1/{{ Math.round(1 / image.exif.exposureTime) }}s
+              </p>
+              <p v-if="image.exif.iso">
+                <span class="text-gray-500">ISO:</span> {{ image.exif.iso }}
+              </p>
+              <p v-if="image.exif.focalLength">
+                <span class="text-gray-500">Focal:</span> {{ image.exif.focalLength }}mm
+              </p>
+              <p v-if="image.exif.latitude && image.exif.longitude" class="text-blue-400">
+                <span class="text-gray-500">GPS:</span> {{ image.exif.latitude.toFixed(4) }}, {{ image.exif.longitude.toFixed(4) }}
+              </p>
+            </div>
+            <p v-if="options.showExif && !image.exif" class="text-xs text-gray-500 mt-2 italic">No EXIF data available</p>
           </div>
 
           <!-- Optimized Preview (if exists) -->
@@ -174,15 +224,38 @@
       </div>
     </div>
 
-    <p class="text-xs text-gray-400" v-if="images.length === 0">
-      Tip: WebP or JPEG with lower quality yields the best size reduction for photos.
-    </p>
+    <!-- Tips & Features -->
+    <div v-if="images.length === 0" class="card bg-gray-800/40">
+      <h3 class="text-white text-sm font-semibold mb-3">✨ Advanced Features</h3>
+      <ul class="text-xs text-gray-300 space-y-2">
+        <li><strong class="text-indigo-400">📷 EXIF Data Viewer:</strong> Enable "Show EXIF data" to view camera settings, GPS coordinates, and metadata from your photos</li>
+        <li><strong class="text-indigo-400">🧠 Smart Compression:</strong> Automatically selects the best format and quality settings based on image type (photos → AVIF/WebP, graphics → PNG)</li>
+        <li><strong class="text-indigo-400">🎯 Target File Size:</strong> Set a target size in KB and the compressor will automatically adjust quality to meet it (uses binary search)</li>
+        <li><strong class="text-indigo-400">📦 Batch Processing:</strong> Upload multiple images, compress all at once, and download as a ZIP archive</li>
+      </ul>
+      <p class="text-xs text-gray-400 mt-3 italic">
+        💡 Tip: WebP or JPEG with 80-85% quality yields the best size reduction for photos while maintaining visual quality.
+      </p>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, reactive, computed, onMounted } from 'vue'
 import JSZip from 'jszip'
+import * as exifr from 'exifr'
+
+type ExifData = {
+  make?: string
+  model?: string
+  dateTime?: string
+  exposureTime?: number
+  fNumber?: number
+  iso?: number
+  focalLength?: number
+  latitude?: number
+  longitude?: number
+}
 
 type ImageItem = {
   id: string
@@ -191,6 +264,7 @@ type ImageItem = {
   width: number
   height: number
   size: number
+  exif?: ExifData | null
   optimized?: {
     blob: Blob
     blobUrl: string
@@ -216,7 +290,10 @@ const options = reactive({
   quality: 0.8,
   maxWidth: 1920,
   maxHeight: 1080,
-  keepAspectRatio: true
+  keepAspectRatio: true,
+  showExif: false,
+  smartCompression: false,
+  targetFileSize: 0 // 0 = disabled, otherwise in KB
 })
 
 // Computed properties for backward compatibility with single-image template
@@ -275,9 +352,33 @@ function onDrop(e: DragEvent) {
   files.forEach(file => loadFile(file))
 }
 
-function loadFile(file: File) {
+async function loadFile(file: File) {
   const id = Math.random().toString(36).substring(7)
   const url = URL.createObjectURL(file)
+
+  // Read EXIF data if image supports it
+  let exifData: ExifData | null = null
+  try {
+    const exif = await exifr.parse(file, {
+      pick: ['Make', 'Model', 'DateTime', 'ExposureTime', 'FNumber', 'ISO', 'FocalLength', 'latitude', 'longitude']
+    })
+    if (exif) {
+      exifData = {
+        make: exif.Make,
+        model: exif.Model,
+        dateTime: exif.DateTime,
+        exposureTime: exif.ExposureTime,
+        fNumber: exif.FNumber,
+        iso: exif.ISO,
+        focalLength: exif.FocalLength,
+        latitude: exif.latitude,
+        longitude: exif.longitude
+      }
+    }
+  } catch (e) {
+    // EXIF not available or error reading it
+    console.debug('No EXIF data available for', file.name)
+  }
 
   const img = new Image()
   img.onload = () => {
@@ -287,7 +388,8 @@ function loadFile(file: File) {
       previewUrl: url,
       width: img.width,
       height: img.height,
-      size: file.size
+      size: file.size,
+      exif: exifData
     })
   }
   img.src = url
@@ -321,6 +423,87 @@ const progressPercent = computed(() => {
   return Math.round((processingProgress.value.current / processingProgress.value.total) * 100)
 })
 
+// Smart compression: auto-detect best format and quality
+function getSmartSettings(image: ImageItem): { format: typeof options.format, quality: number } {
+  const isPNG = image.file.type === 'image/png'
+  const isJPEG = image.file.type === 'image/jpeg' || image.file.type === 'image/jpg'
+  const isLarge = image.size > 500 * 1024 // > 500KB
+  const isHighRes = image.width > 1920 || image.height > 1080
+
+  // Prefer AVIF for large photos if supported
+  if (isLarge && isJPEG && avifSupported.value) {
+    return { format: 'image/avif', quality: 0.75 }
+  }
+
+  // Prefer WebP for photos if supported
+  if (isJPEG && webpSupported.value) {
+    return { format: 'image/webp', quality: 0.82 }
+  }
+
+  // Keep PNG for small graphics
+  if (isPNG && !isLarge && !isHighRes) {
+    return { format: 'image/png', quality: 1 }
+  }
+
+  // Convert large PNG to WebP
+  if (isPNG && isLarge && webpSupported.value) {
+    return { format: 'image/webp', quality: 0.88 }
+  }
+
+  // Default: keep original format with good quality
+  return {
+    format: isJPEG ? 'image/jpeg' : isPNG ? 'image/png' : 'image/jpeg',
+    quality: 0.85
+  }
+}
+
+// Find optimal quality to match target file size using binary search
+async function findQualityForTargetSize(
+    canvas: HTMLCanvasElement,
+    format: string,
+    targetSizeKB: number,
+    maxAttempts: number = 8
+): Promise<number> {
+  const targetBytes = targetSizeKB * 1024
+  let minQuality = 0.1
+  let maxQuality = 1.0
+  let bestQuality = 0.8
+  let bestBlob: Blob | null = null
+
+  for (let attempt = 0; attempt < maxAttempts; attempt++) {
+    const testQuality = (minQuality + maxQuality) / 2
+
+    const blob: Blob = await new Promise((resolve, reject) => {
+      canvas.toBlob(
+          b => (b ? resolve(b) : reject(new Error('toBlob failed'))),
+          format,
+          format === 'image/png' ? 1 : testQuality
+      )
+    })
+
+    if (!blob) break
+
+    // If we're within 5% of target, that's good enough
+    const sizeDiff = Math.abs(blob.size - targetBytes)
+    if (sizeDiff < targetBytes * 0.05) {
+      bestQuality = testQuality
+      bestBlob = blob
+      break
+    }
+
+    // Binary search adjustment
+    if (blob.size > targetBytes) {
+      maxQuality = testQuality
+    } else {
+      minQuality = testQuality
+      bestQuality = testQuality
+      bestBlob = blob
+    }
+  }
+
+  return bestQuality
+}
+
 async function compress() {
   if (images.value.length === 0) return
   processing.value = true
@@ -334,6 +517,16 @@ async function compress() {
       processingProgress.value.current = i
 
       try {
+        // Use smart settings if enabled, otherwise use manual settings
+        let format = options.format
+        let quality = options.quality
+
+        if (options.smartCompression) {
+          const smartSettings = getSmartSettings(imageItem)
+          format = smartSettings.format
+          quality = smartSettings.quality
+        }
+
         const imgBitmap = await createImageBitmap(imageItem.file)
         // compute target size
         let targetW = imgBitmap.width
@@ -357,17 +550,22 @@ async function compress() {
         const canvas = document.createElement('canvas')
         canvas.width = targetW
         canvas.height = targetH
-        const ctx = canvas.getContext('2d', { alpha: options.format !== 'image/jpeg' })!
+        const ctx = canvas.getContext('2d', { alpha: format !== 'image/jpeg' })!
         ctx.drawImage(imgBitmap, 0, 0, targetW, targetH)
 
-        const desiredType = options.format === 'image/webp' && !webpSupported.value ? 'image/jpeg' : options.format
-        const quality = desiredType === 'image/png' ? 1 : options.quality
+        const desiredType = format === 'image/webp' && !webpSupported.value ? 'image/jpeg' : format
+        let finalQuality = desiredType === 'image/png' ? 1 : quality
+
+        // If target file size is specified, find optimal quality
+        if (options.targetFileSize > 0 && desiredType !== 'image/png') {
+          finalQuality = await findQualityForTargetSize(canvas, desiredType, options.targetFileSize)
+        }
 
         const blob: Blob = await new Promise((resolve, reject) => {
           canvas.toBlob(
               b => (b ? resolve(b) : reject(new Error('toBlob failed or unsupported type'))),
               desiredType,
-              quality
+              finalQuality
           )
         })
 
