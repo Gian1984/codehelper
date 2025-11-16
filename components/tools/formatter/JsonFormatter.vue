@@ -1,93 +1,115 @@
 <template>
-  <div class="bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-xl space-y-5 text-gray-100">
+  <div class="bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-xl space-y-6 text-gray-100">
+    <!-- Header -->
     <div class="flex items-center justify-between gap-3 flex-wrap">
-      <h2 class="text-2xl font-semibold">JSON Formatter</h2>
-      <div class="flex items-center gap-2">
-        <button class="btn" @click="clearAll">clear</button>
-        <button class="btn" @click="formatJson">format</button>
-        <button class="btn-primary" @click="copyPretty" :disabled="!formatted">copy</button>
-        <button class="btn" @click="copyMinified" :disabled="!formatted">copy minified</button>
-        <button class="btn" @click="downloadJson" :disabled="!formatted">download</button>
+      <div>
+        <h2 class="text-2xl font-semibold">JSON Formatter</h2>
+        <p class="text-sm text-gray-400 mt-1">Format, validate, and analyze JSON with advanced tools</p>
+      </div>
+      <div class="flex items-center gap-2 flex-wrap">
+        <button class="btn-action" @click="formatJson" title="Format JSON">
+          <span class="text-lg">✨</span> Format
+        </button>
+        <button class="btn-action" @click="clearAll" title="Clear all">
+          <span class="text-lg">🗑️</span> Clear
+        </button>
       </div>
     </div>
 
-    <!-- input -->
-    <div class="space-y-2">
-      <div class="flex items-center gap-3 flex-wrap">
-        <label class="label">input</label>
-        <label class="btn cursor-pointer">
-          import .json
-          <input type="file" class="hidden" accept=".json,application/json,text/plain" @change="onFile" />
-        </label>
-        <label class="inline-flex items-center gap-2 ml-auto">
-          <input type="checkbox" v-model="autoFormatOnPaste" class="w-4 h-4" />
-          <span class="text-sm">auto-format on paste</span>
-        </label>
+    <!-- Input Section -->
+    <div class="card space-y-3">
+      <div class="flex items-center justify-between gap-3 flex-wrap">
+        <label class="label font-medium">📝 Input JSON</label>
+        <div class="flex items-center gap-2 flex-wrap">
+          <label class="btn-file cursor-pointer">
+            📁 Import File
+            <input type="file" class="hidden" accept=".json,application/json,text/plain" @change="onFile" />
+          </label>
+          <label class="inline-flex items-center gap-2">
+            <input type="checkbox" v-model="autoFormatOnPaste" class="w-4 h-4 accent-indigo-500" />
+            <span class="text-sm text-gray-300">Auto-format on paste</span>
+          </label>
+        </div>
       </div>
 
       <textarea
           v-model="input"
-          placeholder="Paste JSON (or JSON with comments) here…"
-          class="w-full min-h-48 p-4 rounded border border-gray-800 bg-gray-950 text-white focus:outline-none focus:ring focus:ring-indigo-500 font-mono resize-y"
+          placeholder="Paste your JSON here... (supports comments and trailing commas)"
+          class="w-full min-h-56 p-4 rounded-lg border-2 border-gray-700 bg-gray-950 text-white focus:outline-none focus:border-indigo-500 font-mono resize-y text-sm transition-colors"
           spellcheck="false"
           @paste="onPaste"
       ></textarea>
 
-      <div class="text-xs text-gray-400 flex gap-4">
-        <span>chars: {{ input.length }}</span>
-        <span v-if="error" class="text-red-400">{{ error }}</span>
-        <span v-if="copiedMsg" class="text-green-400">{{ copiedMsg }}</span>
-      </div>
-    </div>
-
-    <!-- options -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-      <div class="card space-y-3">
-        <label class="block">
-          <span class="label">indent type</span>
-          <select v-model="indentKind" class="input">
-            <option value="spaces">spaces</option>
-            <option value="tabs">tabs</option>
-          </select>
-        </label>
-        <label v-if="indentKind==='spaces'" class="block">
-          <span class="label">indent width</span>
-          <select v-model.number="indentWidth" class="input">
-            <option v-for="n in [2,3,4,6,8]" :key="n" :value="n">{{ n }}</option>
-          </select>
-        </label>
-        <label class="inline-flex items-center gap-2">
-          <input type="checkbox" v-model="sortKeys" class="w-4 h-4" />
-          <span class="text-sm">sort keys (deep)</span>
-        </label>
-      </div>
-
-      <div class="card space-y-3">
-        <label class="inline-flex items-center gap-2">
-          <input type="checkbox" v-model="allowComments" class="w-4 h-4" />
-          <span class="text-sm">accept comments (JSONC)</span>
-        </label>
-        <label class="inline-flex items-center gap-2">
-          <input type="checkbox" v-model="stripTrailingCommas" class="w-4 h-4" />
-          <span class="text-sm">strip trailing commas</span>
-        </label>
-        <label class="block">
-          <span class="label">download filename</span>
-          <input v-model="filename" class="input" placeholder="formatted.json" />
-        </label>
-      </div>
-
-      <div class="card space-y-2">
-        <button class="btn" @click="formatJson">apply formatting</button>
-        <div class="text-xs text-gray-400">
-          accepts <code>// line</code> and <code>/* block */</code> comments when enabled; also cleans trailing commas.
+      <div class="flex items-center justify-between text-xs">
+        <div class="flex gap-4 text-gray-400">
+          <span>Characters: {{ input.length.toLocaleString() }}</span>
+          <span v-if="stats">Lines: {{ stats.lines }}</span>
         </div>
-        <div class="text-xs text-gray-400 space-y-1" v-if="stats">
-          <div>📦 Size: {{ stats.pretty }} → {{ stats.min }} ({{ stats.ratio }} smaller)</div>
-          <div>📄 Lines: {{ stats.lines }} • Objects: {{ stats.objects }} • Arrays: {{ stats.arrays }}</div>
+        <div class="flex gap-4">
+          <span v-if="error" class="text-red-400 font-medium">❌ {{ error }}</span>
+          <span v-if="copiedMsg" class="text-green-400 font-medium">✅ {{ copiedMsg }}</span>
         </div>
       </div>
     </div>
+
+    <!-- Options -->
+    <details class="card" open>
+      <summary class="label font-medium cursor-pointer select-none hover:text-white transition-colors mb-4">
+        ⚙️ Format Options
+      </summary>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <!-- Indentation -->
+        <div class="space-y-2">
+          <label class="block">
+            <span class="label text-xs">Indent Type</span>
+            <select v-model="indentKind" class="input-sm">
+              <option value="spaces">Spaces</option>
+              <option value="tabs">Tabs</option>
+            </select>
+          </label>
+          <label v-if="indentKind==='spaces'" class="block">
+            <span class="label text-xs">Width</span>
+            <select v-model.number="indentWidth" class="input-sm">
+              <option v-for="n in [2,3,4,6,8]" :key="n" :value="n">{{ n }}</option>
+            </select>
+          </label>
+        </div>
+
+        <!-- Processing Options -->
+        <div class="space-y-2">
+          <label class="checkbox-label">
+            <input type="checkbox" v-model="sortKeys" class="checkbox" />
+            <span>Sort keys (deep)</span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" v-model="allowComments" class="checkbox" />
+            <span>Accept comments (JSONC)</span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" v-model="stripTrailingCommas" class="checkbox" />
+            <span>Strip trailing commas</span>
+          </label>
+        </div>
+
+        <!-- Download -->
+        <div class="space-y-2">
+          <label class="block">
+            <span class="label text-xs">Download Filename</span>
+            <input v-model="filename" class="input-sm" placeholder="formatted.json" />
+          </label>
+        </div>
+
+        <!-- Stats -->
+        <div v-if="stats" class="space-y-1 text-xs text-gray-400">
+          <div class="font-semibold text-gray-300 mb-2">📊 Statistics</div>
+          <div>Size: {{ stats.pretty }} → {{ stats.min }}</div>
+          <div>Saved: {{ stats.ratio }}</div>
+          <div>Lines: {{ stats.lines }}</div>
+          <div>Objects: {{ stats.objects }} • Arrays: {{ stats.arrays }}</div>
+        </div>
+      </div>
+    </details>
 
     <!-- schema validation section -->
     <div class="space-y-3">
@@ -155,50 +177,78 @@
       </div>
     </div>
 
-    <!-- view mode tabs -->
-    <div v-if="formatted || viewMode === 'diff'" class="flex gap-2 border-b border-gray-700 pb-2">
-      <button
-        @click="viewMode = 'text'"
-        :class="['px-4 py-2 rounded-t text-sm font-medium transition-colors', viewMode === 'text' ? 'bg-indigo-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600']"
-      >
-        📝 Text
-      </button>
-      <button
-        @click="viewMode = 'tree'"
-        :class="['px-4 py-2 rounded-t text-sm font-medium transition-colors', viewMode === 'tree' ? 'bg-indigo-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600']"
-        :disabled="!parsedObject"
-      >
-        🌳 Tree View
-      </button>
-      <button
-        @click="viewMode = 'diff'"
-        :class="['px-4 py-2 rounded-t text-sm font-medium transition-colors', viewMode === 'diff' ? 'bg-indigo-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600']"
-      >
-        🔀 Diff
-      </button>
+    <!-- View Mode Tabs -->
+    <div class="flex items-center justify-between gap-3 border-b border-gray-700 pb-2">
+      <div class="flex gap-2">
+        <button
+          @click="viewMode = 'text'"
+          :class="['px-4 py-2 rounded-t text-sm font-medium transition-colors', viewMode === 'text' ? 'bg-indigo-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600']"
+          :disabled="!formatted && viewMode !== 'text'"
+        >
+          📝 Text
+        </button>
+        <button
+          @click="viewMode = 'tree'"
+          :class="['px-4 py-2 rounded-t text-sm font-medium transition-colors', viewMode === 'tree' ? 'bg-indigo-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600']"
+          :disabled="!parsedObject"
+        >
+          🌳 Tree
+        </button>
+        <button
+          @click="viewMode = 'diff'"
+          :class="['px-4 py-2 rounded-t text-sm font-medium transition-colors', viewMode === 'diff' ? 'bg-indigo-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600']"
+        >
+          🔀 Diff
+        </button>
+      </div>
+
+      <!-- Actions for formatted output -->
+      <div v-if="formatted && viewMode !== 'diff'" class="flex items-center gap-2">
+        <button class="btn-icon" @click="copyPretty" title="Copy formatted">
+          📋 Copy
+        </button>
+        <button class="btn-icon" @click="copyMinified" title="Copy minified">
+          🗜️ Minified
+        </button>
+        <button class="btn-icon" @click="downloadJson" title="Download JSON">
+          💾 Download
+        </button>
+      </div>
     </div>
 
     <!-- Text View -->
-    <div v-if="viewMode === 'text' && formatted" class="space-y-2">
-      <label class="label">output</label>
-      <pre class="bg-gray-950 p-4 rounded border border-gray-800 overflow-auto text-sm font-mono max-h-[600px]"><code class="language-json" v-html="highlightedCode"></code></pre>
+    <div v-if="viewMode === 'text'" class="card">
+      <div v-if="formatted" class="space-y-2">
+        <label class="label font-medium">📄 Formatted Output</label>
+        <pre class="bg-gray-950 p-4 rounded-lg border-2 border-gray-700 overflow-auto text-sm font-mono max-h-[600px]"><code class="language-json" v-html="highlightedCode"></code></pre>
+      </div>
+      <div v-else class="text-center py-16 text-gray-500">
+        <div class="text-4xl mb-4">📝</div>
+        <p>Paste JSON above and click "Format" to see the output here</p>
+      </div>
     </div>
 
     <!-- Tree View -->
-    <div v-if="viewMode === 'tree' && parsedObject" class="space-y-2">
-      <label class="label">tree view</label>
-      <div class="bg-gray-950 p-4 rounded border border-gray-800 overflow-auto max-h-[600px]">
-        <ClientOnly>
-          <JsonViewer
-            :value="parsedObject"
-            :expand-depth="3"
-            copyable
-            theme="dark"
-          />
-          <template #fallback>
-            <div class="text-gray-400">Loading tree view...</div>
-          </template>
-        </ClientOnly>
+    <div v-if="viewMode === 'tree'" class="card">
+      <div v-if="parsedObject" class="space-y-2">
+        <label class="label font-medium">🌳 Tree View</label>
+        <div class="bg-gray-950 p-4 rounded-lg border-2 border-gray-700 overflow-auto max-h-[600px]">
+          <ClientOnly>
+            <JsonViewer
+              :value="parsedObject"
+              :expand-depth="3"
+              copyable
+              theme="dark"
+            />
+            <template #fallback>
+              <div class="text-gray-400">Loading tree view...</div>
+            </template>
+          </ClientOnly>
+        </div>
+      </div>
+      <div v-else class="text-center py-16 text-gray-500">
+        <div class="text-4xl mb-4">🌳</div>
+        <p>Format JSON first to explore it as an interactive tree</p>
       </div>
     </div>
 
@@ -727,9 +777,30 @@ function safeName(n: string): string {
 <style scoped>
 .label { @apply text-sm text-gray-300; }
 .input { @apply text-black w-full px-3 py-2 rounded-md border border-gray-300; }
+.input-sm { @apply text-white px-2 py-1.5 rounded border border-gray-700 bg-gray-900 text-sm w-full; }
+
 .btn { @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded text-white text-sm disabled:opacity-50 disabled:cursor-not-allowed; }
 .btn-primary { @apply bg-indigo-600 hover:bg-indigo-500 px-3 py-1.5 rounded text-white text-sm; }
-.card { @apply bg-gray-800/60 rounded-xl p-4 border border-gray-800; }
+.btn-action {
+  @apply bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded-lg text-white text-sm font-medium transition-colors flex items-center gap-2;
+}
+.btn-icon {
+  @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded-lg text-white text-xs font-medium transition-colors;
+}
+.btn-file {
+  @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded text-white text-sm transition-colors;
+}
+
+.card {
+  @apply bg-gray-800/60 rounded-xl p-5 border border-gray-700/50 shadow-lg;
+}
+
+.checkbox {
+  @apply w-4 h-4 accent-indigo-500 rounded;
+}
+.checkbox-label {
+  @apply flex items-center gap-2 text-sm text-gray-300 hover:text-white transition-colors cursor-pointer;
+}
 
 /* JsonViewer dark theme integration */
 :deep(.jv-container) {

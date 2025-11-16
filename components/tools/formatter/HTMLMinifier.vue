@@ -54,66 +54,20 @@
       </div>
     </div>
 
-    <!-- Minification Options -->
-    <details class="card" open>
-      <summary class="label font-medium cursor-pointer select-none hover:text-white transition-colors mb-3">
-        ⚙️ Minification Options
-      </summary>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div class="space-y-2">
-          <h4 class="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-2">Whitespace & Comments</h4>
-          <label class="checkbox-label">
-            <input type="checkbox" v-model="opts.removeComments" class="checkbox" />
-            <span>Remove comments</span>
-          </label>
-          <label class="checkbox-label">
-            <input type="checkbox" v-model="opts.collapseWhitespace" class="checkbox" />
-            <span>Collapse whitespace</span>
-          </label>
-          <label class="checkbox-label">
-            <input type="checkbox" v-model="opts.removeBetweenTags" class="checkbox" />
-            <span>Remove space between tags</span>
-          </label>
-        </div>
-
-        <div class="space-y-2">
-          <h4 class="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-2">Embedded Code</h4>
-          <label class="checkbox-label">
-            <input type="checkbox" v-model="opts.minifyCss" class="checkbox" />
-            <span>Minify CSS</span>
-          </label>
-          <label class="checkbox-label">
-            <input type="checkbox" v-model="opts.minifyJs" class="checkbox" />
-            <span>Minify JavaScript</span>
-          </label>
-          <label class="checkbox-label">
-            <input type="checkbox" v-model="opts.preservePreCodeTextarea" class="checkbox" />
-            <span>Preserve pre/code/textarea</span>
-          </label>
-        </div>
-
-        <div class="space-y-2">
-          <h4 class="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-2">Attributes & Tags</h4>
-          <label class="checkbox-label">
-            <input type="checkbox" v-model="opts.normalizeBooleanAttrs" class="checkbox" />
-            <span>Normalize boolean attrs</span>
-          </label>
-          <label class="checkbox-label">
-            <input type="checkbox" v-model="opts.removeDefaultTypes" class="checkbox" />
-            <span>Remove default types</span>
-          </label>
-          <label class="checkbox-label">
-            <input type="checkbox" v-model="opts.removeEmptyAttrs" class="checkbox" />
-            <span>Remove empty attributes</span>
-          </label>
-          <label class="checkbox-label">
-            <input type="checkbox" v-model="opts.removeOptionalEndTags" class="checkbox" />
-            <span>Remove optional end tags</span>
-          </label>
-        </div>
+    <!-- Options -->
+    <div class="card">
+      <h3 class="label font-medium mb-3">Options</h3>
+      <div class="flex flex-wrap gap-4">
+        <label class="checkbox-label">
+          <input type="checkbox" v-model="opts.removeComments" class="checkbox" />
+          <span>Remove HTML comments</span>
+        </label>
+        <label class="checkbox-label">
+          <input type="checkbox" v-model="opts.collapseWhitespace" class="checkbox" />
+          <span>Collapse whitespace</span>
+        </label>
       </div>
-    </details>
+    </div>
 
     <!-- Output Section -->
     <div v-if="minified" class="card space-y-3">
@@ -182,15 +136,6 @@ const filename = ref<string>('optimized.html')
 const opts = ref({
   removeComments: true,
   collapseWhitespace: true,
-  removeBetweenTags: true,
-  preservePreCodeTextarea: true,
-  preserveScriptStyle: true,
-  minifyCss: true,
-  minifyJs: false, // conservative; off by default
-  normalizeBooleanAttrs: true,
-  removeDefaultTypes: true,
-  removeEmptyAttrs: true,
-  removeOptionalEndTags: true,
 })
 
 const stats = ref<{ before: string; after: string; saved: string } | null>(null)
@@ -264,72 +209,16 @@ async function minifyHtml(): Promise<void> {
   const beforeBytes = bytes(src.length)
 
   try {
-    // Build html-minifier-terser options from our UI options
+    // Simple minification options that work reliably
     const minifierOptions: any = {
-      // Core options
       removeComments: opts.value.removeComments,
       collapseWhitespace: opts.value.collapseWhitespace,
-      removeAttributeQuotes: false, // Keep quotes for safety
-      removeRedundantAttributes: opts.value.removeDefaultTypes,
-      removeEmptyAttributes: opts.value.removeEmptyAttrs,
-      removeOptionalTags: opts.value.removeOptionalEndTags,
 
-      // Whitespace handling
-      conservativeCollapse: false, // More aggressive whitespace removal
-      collapseInlineTagWhitespace: opts.value.removeBetweenTags,
-
-      // Boolean attributes
-      collapseBooleanAttributes: opts.value.normalizeBooleanAttrs,
-
-      // Script/Style preservation
-      ignoreCustomComments: [],
-
-      // CSS minification
-      minifyCSS: opts.value.minifyCss,
-
-      // JS minification (using terser)
-      minifyJS: opts.value.minifyJs,
-
-      // Preserve certain content
-      preserveLineBreaks: false,
-
-      // Case sensitivity
+      // Safe defaults
+      removeAttributeQuotes: false,
+      minifyCSS: false,
+      minifyJS: false,
       caseSensitive: false,
-
-      // Keep closing slash in void elements for XHTML compatibility
-      keepClosingSlash: false,
-
-      // Process conditional comments
-      processConditionalComments: false,
-
-      // Sort attributes and classes
-      sortAttributes: false,
-      sortClassName: false,
-    }
-
-    // Add ignored tags for preservation
-    if (opts.value.preservePreCodeTextarea) {
-      minifierOptions.ignoreCustomFragments = [
-        /<pre\b[^>]*>[\s\S]*?<\/pre>/gi,
-        /<code\b[^>]*>[\s\S]*?<\/code>/gi,
-        /<textarea\b[^>]*>[\s\S]*?<\/textarea>/gi,
-      ]
-    }
-
-    if (opts.value.preserveScriptStyle) {
-      // If we want to preserve script/style content without minifying,
-      // we need to add custom fragments. But if minifyCSS/minifyJS are enabled,
-      // html-minifier-terser will handle them properly
-      if (!opts.value.minifyCss || !opts.value.minifyJs) {
-        const fragments = minifierOptions.ignoreCustomFragments || []
-        if (!opts.value.minifyCss) {
-          fragments.push(/<style\b[^>]*>[\s\S]*?<\/style>/gi)
-        }
-        if (!opts.value.minifyJs) {
-          fragments.push(/<script\b[^>]*>[\s\S]*?<\/script>/gi)
-        }
-        minifierOptions.ignoreCustomFragments = fragments
-      }
     }
 
     // Minify using html-minifier-terser
@@ -389,32 +278,16 @@ async function beautifyHtml(): Promise<void> {
   const beforeBytes = bytes(src.length)
 
   try {
-    // Beautify by disabling minification and enabling formatting
+    // Beautify: keep everything, just normalize and format
     const beautifyOptions: any = {
-      // Enable formatting
       collapseWhitespace: false,
-      conservativeCollapse: true,
-      preserveLineBreaks: true,
+      removeComments: opts.value.removeComments,
 
-      // Keep content intact
-      removeComments: false,
+      // Safe defaults
       removeAttributeQuotes: false,
-      removeRedundantAttributes: false,
-      removeEmptyAttributes: false,
-      removeOptionalTags: false,
-
-      // Don't minify embedded code
       minifyCSS: false,
       minifyJS: false,
-
-      // Keep whitespace
-      collapseInlineTagWhitespace: false,
-
-      // Normalize
       caseSensitive: false,
-
-      // Process to normalize structure
-      html5: true,
     }
 
     // Use html-minifier-terser for basic normalization

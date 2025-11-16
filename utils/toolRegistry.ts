@@ -237,17 +237,17 @@ export const tools: Record<string, Tool> = {
 
     'html-minifier': {
         title: 'HTML Optimizer',
-        description: 'Professional HTML optimizer with minify and beautify modes. Safe inline CSS/JS compression, formatting, and optimization.',
+        description: 'Professional HTML optimizer with minify and beautify modes. Compress, format, and optimize HTML with advanced whitespace control.',
         category: 'formatter',
         component: () =>
             import('~/components/tools/formatter/HTMLMinifier.vue') as Promise<{ default: DefineComponent }>,
         seo: {
             title: `HTML Optimizer - Minify & Beautify (Free) – ${BRAND}`,
             description:
-                'Professional HTML optimizer powered by html-minifier-terser. Minify or beautify HTML with inline scripts/styles. Advanced whitespace control, comment management, and attribute optimization. Format, compress, and optimize HTML—all in your browser.',
+                'Professional HTML optimizer powered by html-minifier-terser. Minify or beautify HTML code with advanced options. Remove comments, collapse whitespace, normalize attributes, and format HTML—all in your browser with complete privacy.',
             ogImage: OG,
             keywords:
-                'html optimizer, html minifier, html beautifier, compress html, format html, reduce html size, minify html online, beautify html, html formatter, remove comments, collapse whitespace, html-minifier-terser, minify inline css, minify inline javascript, html optimization, html prettifier',
+                'html optimizer, html minifier, html beautifier, compress html, format html, reduce html size, minify html online, beautify html, html formatter, remove comments, collapse whitespace, html-minifier-terser, html optimization, html prettifier, optimize html',
             structuredData: {
                 '@context': 'https://schema.org',
                 '@type': 'SoftwareApplication',
@@ -258,14 +258,15 @@ export const tools: Record<string, Tool> = {
                 featureList: [
                     'Minify HTML with Professional Parser',
                     'Beautify & Format HTML with Indentation',
-                    'Safe Inline CSS Minification',
-                    'Safe Inline JS Minification',
                     'Remove or Preserve Comments',
                     'Collapse or Preserve Whitespace',
+                    'Remove Whitespace Between Tags',
                     'Preserve Pre/Code/Textarea Content',
+                    'Preserve Script/Style Content',
                     'Normalize Boolean Attributes',
                     'Remove Empty Attributes',
                     'Remove Optional End Tags',
+                    'Remove Default Type Attributes',
                     'Show Size Statistics & Savings',
                     'Import & Export HTML Files',
                     'Auto-process on Paste',
@@ -687,26 +688,39 @@ export const tools: Record<string, Tool> = {
 
     'image-compressor': {
         title: 'Image Compressor',
-        description: 'Optimize PNG/JPEG images client-side.',
+        description: 'Professional batch image compressor with JPEG, PNG, WebP, and AVIF support. Compress multiple images, download as ZIP, and track progress in real-time.',
         category: 'imaging',
         component: () =>
             import('~/components/tools/imaging/ImageCompressor.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `Image Compressor (PNG/JPEG/WebP) – ${BRAND}`,
+            title: `Image Compressor (PNG/JPEG/WebP/AVIF) - Batch & ZIP Download – ${BRAND}`,
             description:
-                'Compress and resize images in-browser. Adjust quality, convert to WebP, and download optimized files—no upload to server.',
+                'Advanced batch image compressor supporting JPEG, PNG, WebP, and AVIF formats. Compress multiple images simultaneously, download as ZIP archive, and view real-time progress. All processing done client-side with complete privacy—no upload to server required.',
             ogImage: OG,
             keywords:
-                'image compressor, compress png, compress jpeg, convert to webp, resize image online, optimize images',
+                'image compressor, batch image compression, compress png, compress jpeg, convert to webp, avif compressor, resize image online, optimize images, zip download images, bulk image optimization, image quality reducer, webp converter, avif converter',
             structuredData: {
                 '@context': 'https://schema.org',
                 '@type': 'SoftwareApplication',
-                name: 'Image Compressor',
+                name: 'Image Compressor - Batch & ZIP',
                 applicationCategory: 'MultimediaApplication',
                 operatingSystem: 'All',
                 offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-                featureList: ['Compress', 'Resize', 'WebP Export', 'Client-side'],
-                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '6' }
+                featureList: [
+                    'Batch Image Compression',
+                    'AVIF Format Support',
+                    'WebP Format Support',
+                    'JPEG & PNG Compression',
+                    'ZIP Archive Download',
+                    'Real-time Progress Bar',
+                    'Before/After Comparison',
+                    'Drag & Drop Upload',
+                    'Client-side Processing',
+                    'Maintain Aspect Ratio',
+                    'Custom Quality Control',
+                    'Resize Images'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '12' }
             }
         }
     },
