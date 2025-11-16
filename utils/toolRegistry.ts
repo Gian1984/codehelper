@@ -836,7 +836,19 @@ export const tools: Record<string, Tool> = {
                 applicationCategory: 'DeveloperApplication',
                 operatingSystem: 'All',
                 offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-                featureList: ['Flags', 'Matches/Groups', 'Replace Preview', 'Copy Results'],
+                featureList: [
+                    'Flags',
+                    'Matches/Groups',
+                    'Replace Preview',
+                    'Copy Results',
+                    'Regex complexity analyzer',
+                    'Pattern explainer',
+                    'Common regex library',
+                    'Regex cheat sheet collapsible panel',
+                    'Highlight syntax errors in pattern',
+                    'Generate code for multiple languages',
+                    'Quick insert buttons for common patterns'
+                ],
                 aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '5' }
             }
         }
