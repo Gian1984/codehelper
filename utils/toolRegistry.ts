@@ -236,26 +236,41 @@ export const tools: Record<string, Tool> = {
     },
 
     'html-minifier': {
-        title: 'HTML Minifier',
-        description: 'Minify your HTML files for optimized delivery.',
+        title: 'HTML Optimizer',
+        description: 'Professional HTML optimizer with minify and beautify modes. Safe inline CSS/JS compression, formatting, and optimization.',
         category: 'formatter',
         component: () =>
             import('~/components/tools/formatter/HTMLMinifier.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `HTML Minifier & Compressor (Free) – ${BRAND}`,
+            title: `HTML Optimizer - Minify & Beautify (Free) – ${BRAND}`,
             description:
-                'Minify HTML to reduce size and speed up pages. Remove comments, collapse whitespace, and export the result.',
+                'Professional HTML optimizer powered by html-minifier-terser. Minify or beautify HTML with inline scripts/styles. Advanced whitespace control, comment management, and attribute optimization. Format, compress, and optimize HTML—all in your browser.',
             ogImage: OG,
             keywords:
-                'html minifier, compress html, reduce html size, minify html online, remove comments, collapse whitespace',
+                'html optimizer, html minifier, html beautifier, compress html, format html, reduce html size, minify html online, beautify html, html formatter, remove comments, collapse whitespace, html-minifier-terser, minify inline css, minify inline javascript, html optimization, html prettifier',
             structuredData: {
                 '@context': 'https://schema.org',
                 '@type': 'SoftwareApplication',
-                name: 'HTML Minifier',
+                name: 'HTML Optimizer Pro',
                 applicationCategory: 'DeveloperApplication',
                 operatingSystem: 'All',
                 offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-                featureList: ['Minify HTML', 'Remove Comments', 'Collapse Whitespace'],
+                featureList: [
+                    'Minify HTML with Professional Parser',
+                    'Beautify & Format HTML with Indentation',
+                    'Safe Inline CSS Minification',
+                    'Safe Inline JS Minification',
+                    'Remove or Preserve Comments',
+                    'Collapse or Preserve Whitespace',
+                    'Preserve Pre/Code/Textarea Content',
+                    'Normalize Boolean Attributes',
+                    'Remove Empty Attributes',
+                    'Remove Optional End Tags',
+                    'Show Size Statistics & Savings',
+                    'Import & Export HTML Files',
+                    'Auto-process on Paste',
+                    'Loading States & Error Handling'
+                ],
                 aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '11' }
             }
         }

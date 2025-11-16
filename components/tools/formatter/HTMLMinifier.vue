@@ -1,117 +1,172 @@
 <template>
   <div class="bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-xl space-y-5 text-gray-100">
     <div class="flex items-center justify-between gap-3 flex-wrap">
-      <h2 class="text-2xl font-semibold">HTML Minifier</h2>
+      <div>
+        <h2 class="text-2xl font-semibold">HTML Optimizer</h2>
+        <p class="text-sm text-gray-400 mt-1">Minify, beautify, and optimize your HTML code</p>
+      </div>
       <div class="flex items-center gap-2">
-        <button class="btn" @click="clearAll">clear</button>
-        <button class="btn" @click="minifyHtml">minify</button>
-        <button class="btn-primary" @click="copyToClipboard" :disabled="!minified">copy</button>
-        <button class="btn" @click="downloadHtml" :disabled="!minified">download</button>
+        <button class="btn" @click="clearAll">Clear</button>
+        <button class="btn-secondary" @click="beautifyHtml" :disabled="loading || !input.trim()">
+          <span v-if="loading && mode === 'beautify'">Beautifying...</span>
+          <span v-else>Beautify</span>
+        </button>
+        <button class="btn-primary" @click="minifyHtml" :disabled="loading || !input.trim()">
+          <span v-if="loading && mode === 'minify'">Minifying...</span>
+          <span v-else>Minify</span>
+        </button>
       </div>
     </div>
 
-    <!-- input & import -->
-    <div class="space-y-2">
-      <div class="flex items-center gap-3 flex-wrap">
-        <label class="label">input</label>
-        <label class="btn cursor-pointer">
-          import .html
-          <input type="file" class="hidden" accept=".html,text/html,text/plain" @change="onFile" />
-        </label>
-        <label class="inline-flex items-center gap-2 ml-auto">
-          <input type="checkbox" v-model="autoMinifyOnPaste" class="w-4 h-4" />
-          <span class="text-sm">auto-minify on paste</span>
-        </label>
+    <!-- Input Section -->
+    <div class="card space-y-3">
+      <div class="flex items-center justify-between gap-3 flex-wrap">
+        <label class="label font-medium">Input HTML</label>
+        <div class="flex items-center gap-2 flex-wrap">
+          <label class="btn-file cursor-pointer">
+            Import File
+            <input type="file" class="hidden" accept=".html,text/html,text/plain" @change="onFile" />
+          </label>
+          <label class="inline-flex items-center gap-2">
+            <input type="checkbox" v-model="autoProcessOnPaste" class="w-4 h-4 accent-indigo-500" />
+            <span class="text-sm text-gray-300">Auto-process on paste</span>
+          </label>
+        </div>
       </div>
 
       <textarea
           v-model="input"
-          placeholder="Paste your HTML here…"
-          class="w-full min-h-48 p-4 rounded border border-gray-800 bg-gray-950 text-white focus:outline-none focus:ring focus:ring-indigo-500 font-mono resize-y"
+          placeholder="Paste your HTML code here..."
+          class="w-full min-h-48 p-4 rounded-lg border-2 border-gray-700 bg-gray-950 text-white focus:outline-none focus:border-indigo-500 font-mono resize-y transition-colors"
           @paste="onPaste"
           spellcheck="false"
       ></textarea>
 
-      <div class="text-xs text-gray-400 flex gap-4">
-        <span>chars: {{ input.length }}</span>
-        <span v-if="error" class="text-red-400">{{ error }}</span>
-        <span v-if="copied" class="text-green-400">copied!</span>
-      </div>
-    </div>
-
-    <!-- options -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-      <div class="card space-y-2">
-        <label class="inline-flex items-center gap-2 mr-2">
-          <input type="checkbox" v-model="opts.removeComments" class="w-4 h-4" />
-          <span class="text-sm">remove comments</span>
-        </label>
-        <label class="inline-flex items-center gap-2">
-          <input type="checkbox" v-model="opts.collapseWhitespace" class="w-4 h-4" />
-          <span class="text-sm">collapse whitespace</span>
-        </label>
-        <label class="inline-flex items-center gap-2">
-          <input type="checkbox" v-model="opts.removeBetweenTags" class="w-4 h-4" />
-          <span class="text-sm">remove whitespace between tags</span>
-        </label>
-        <label class="inline-flex items-center gap-2">
-          <input type="checkbox" v-model="opts.preservePreCodeTextarea" class="w-4 h-4" />
-          <span class="text-sm">preserve pre/code/textarea</span>
-        </label>
-        <label class="inline-flex items-center gap-2">
-          <input type="checkbox" v-model="opts.preserveScriptStyle" class="w-4 h-4" />
-          <span class="text-sm">preserve script/style content</span>
-        </label>
-      </div>
-
-      <div class="card space-y-2">
-        <label class="inline-flex items-center gap-2 mr-2">
-          <input type="checkbox" v-model="opts.minifyCss" class="w-4 h-4" />
-          <span class="text-sm">minify CSS (basic)</span>
-        </label>
-        <label class="inline-flex items-center gap-2">
-          <input type="checkbox" v-model="opts.minifyJs" class="w-4 h-4" />
-          <span class="text-sm">minify JS (conservative)</span>
-        </label>
-        <label class="inline-flex items-center gap-2 mr-2">
-          <input type="checkbox" v-model="opts.normalizeBooleanAttrs" class="w-4 h-4" />
-          <span class="text-sm">normalize boolean attrs</span>
-        </label>
-        <label class="inline-flex items-center gap-2">
-          <input type="checkbox" v-model="opts.removeDefaultTypes" class="w-4 h-4" />
-          <span class="text-sm">remove default <code>type</code></span>
-        </label>
-        <label class="inline-flex items-center gap-2">
-          <input type="checkbox" v-model="opts.removeEmptyAttrs" class="w-4 h-4" />
-          <span class="text-sm">remove empty attributes</span>
-        </label>
-      </div>
-
-      <div class="card space-y-2">
-        <label class="inline-flex items-center gap-2">
-          <input type="checkbox" v-model="opts.removeOptionalEndTags" class="w-4 h-4" />
-          <span class="text-sm">remove optional end tags (safe)</span>
-        </label>
-        <label class="block">
-          <span class="label">download filename</span>
-          <input v-model="filename" class="input" placeholder="minified.html" />
-        </label>
-        <div class="text-xs text-gray-400" v-if="stats">
-          size: {{ stats.before }} → {{ stats.after }} (saved {{ stats.saved }})
+      <div class="flex items-center justify-between text-xs text-gray-400">
+        <div class="flex gap-4">
+          <span>Characters: {{ input.length.toLocaleString() }}</span>
+          <span v-if="stats">Size: {{ stats.before }}</span>
+        </div>
+        <div class="flex gap-4">
+          <span v-if="error" class="text-red-400 font-medium">{{ error }}</span>
+          <span v-if="copied" class="text-green-400 font-medium">✓ Copied!</span>
         </div>
       </div>
     </div>
 
-    <!-- output -->
-    <div v-if="minified" class="space-y-2">
-      <label class="label">output</label>
-      <pre class="bg-gray-950 p-4 rounded border border-gray-800 overflow-auto text-sm text-pink-300 font-mono whitespace-pre-wrap">{{ minified }}</pre>
+    <!-- Minification Options -->
+    <details class="card" open>
+      <summary class="label font-medium cursor-pointer select-none hover:text-white transition-colors mb-3">
+        ⚙️ Minification Options
+      </summary>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="space-y-2">
+          <h4 class="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-2">Whitespace & Comments</h4>
+          <label class="checkbox-label">
+            <input type="checkbox" v-model="opts.removeComments" class="checkbox" />
+            <span>Remove comments</span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" v-model="opts.collapseWhitespace" class="checkbox" />
+            <span>Collapse whitespace</span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" v-model="opts.removeBetweenTags" class="checkbox" />
+            <span>Remove space between tags</span>
+          </label>
+        </div>
+
+        <div class="space-y-2">
+          <h4 class="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-2">Embedded Code</h4>
+          <label class="checkbox-label">
+            <input type="checkbox" v-model="opts.minifyCss" class="checkbox" />
+            <span>Minify CSS</span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" v-model="opts.minifyJs" class="checkbox" />
+            <span>Minify JavaScript</span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" v-model="opts.preservePreCodeTextarea" class="checkbox" />
+            <span>Preserve pre/code/textarea</span>
+          </label>
+        </div>
+
+        <div class="space-y-2">
+          <h4 class="text-xs font-semibold text-gray-400 uppercase tracking-wide mb-2">Attributes & Tags</h4>
+          <label class="checkbox-label">
+            <input type="checkbox" v-model="opts.normalizeBooleanAttrs" class="checkbox" />
+            <span>Normalize boolean attrs</span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" v-model="opts.removeDefaultTypes" class="checkbox" />
+            <span>Remove default types</span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" v-model="opts.removeEmptyAttrs" class="checkbox" />
+            <span>Remove empty attributes</span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" v-model="opts.removeOptionalEndTags" class="checkbox" />
+            <span>Remove optional end tags</span>
+          </label>
+        </div>
+      </div>
+    </details>
+
+    <!-- Output Section -->
+    <div v-if="minified" class="card space-y-3">
+      <div class="flex items-center justify-between gap-3 flex-wrap">
+        <div class="flex items-center gap-3">
+          <label class="label font-medium">Output</label>
+          <span v-if="stats" class="text-xs px-2 py-1 bg-green-900/30 text-green-400 rounded-full font-medium">
+            Saved {{ stats.saved }}
+          </span>
+        </div>
+        <div class="flex items-center gap-2">
+          <button class="btn-icon" @click="copyToClipboard" title="Copy to clipboard">
+            📋 Copy
+          </button>
+          <button class="btn-icon" @click="downloadHtml" title="Download file">
+            💾 Download
+          </button>
+        </div>
+      </div>
+
+      <div class="relative">
+        <pre class="bg-gray-950 p-4 rounded-lg border-2 border-gray-700 overflow-auto max-h-96 text-sm text-emerald-300 font-mono whitespace-pre-wrap">{{ minified }}</pre>
+      </div>
+
+      <div class="flex items-center justify-between text-xs text-gray-400">
+        <div class="flex gap-4">
+          <span>Characters: {{ minified.length.toLocaleString() }}</span>
+          <span v-if="stats">{{ stats.before }} → {{ stats.after }}</span>
+        </div>
+        <div>
+          <label class="inline-flex items-center gap-2">
+            <span class="text-gray-400">Filename:</span>
+            <input v-model="filename" class="input-sm" placeholder="optimized.html" />
+          </label>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+
+/* ---------- html-minifier-terser ---------- */
+// Lazy load html-minifier-terser only on client side
+let htmlMinifier: any = null
+
+onMounted(async () => {
+  if (typeof window !== 'undefined') {
+    const module = await import('html-minifier-terser')
+    htmlMinifier = module
+  }
+})
 
 /* ---------- state ---------- */
 const input = ref<string>('')
@@ -119,8 +174,10 @@ const minified = ref<string>('')
 
 const error = ref<string>('')
 const copied = ref<boolean>(false)
-const autoMinifyOnPaste = ref<boolean>(false)
-const filename = ref<string>('minified.html')
+const loading = ref<boolean>(false)
+const mode = ref<'minify' | 'beautify' | null>(null)
+const autoProcessOnPaste = ref<boolean>(false)
+const filename = ref<string>('optimized.html')
 
 const opts = ref({
   removeComments: true,
@@ -156,8 +213,9 @@ function onFile(e: Event): void {
 }
 
 function onPaste(): void {
-  if (!autoMinifyOnPaste.value) return
-  setTimeout(() => minifyHtml(), 0)
+  if (!autoProcessOnPaste.value) return
+  // Auto-minify by default on paste
+  setTimeout(() => minifyHtml(), 100)
 }
 
 async function copyToClipboard(): Promise<void> {
@@ -179,198 +237,257 @@ function downloadHtml(): void {
 }
 
 /* ---------- minifier ---------- */
-function minifyHtml(): void {
+async function minifyHtml(): Promise<void> {
   error.value = ''
   minified.value = ''
   stats.value = null
+  loading.value = true
+  mode.value = 'minify'
+
+  // Check if html-minifier-terser is loaded
+  if (!htmlMinifier) {
+    error.value = '⚠️ HTML Optimizer not initialized. Please refresh the page.'
+    loading.value = false
+    mode.value = null
+    return
+  }
+
+  // Check if input is empty
+  if (!input.value.trim()) {
+    error.value = '❌ Input is empty. Please paste HTML in the input field above.'
+    loading.value = false
+    mode.value = null
+    return
+  }
 
   const src = input.value
   const beforeBytes = bytes(src.length)
 
   try {
-    let working = src
+    // Build html-minifier-terser options from our UI options
+    const minifierOptions: any = {
+      // Core options
+      removeComments: opts.value.removeComments,
+      collapseWhitespace: opts.value.collapseWhitespace,
+      removeAttributeQuotes: false, // Keep quotes for safety
+      removeRedundantAttributes: opts.value.removeDefaultTypes,
+      removeEmptyAttributes: opts.value.removeEmptyAttrs,
+      removeOptionalTags: opts.value.removeOptionalEndTags,
 
-    // 1) protect blocks we need to preserve
-    const stash = new Map<string, string>()
-    let counter = 0
-    const protect = (html: string, tag: string, transform?: (s: string) => string) => {
-      const re = new RegExp(`<${tag}\\b[^>]*>[\\s\\S]*?<\\/${tag}>`, 'gi')
-      return html.replace(re, (m) => {
-        const key = `§§BLOCK_${tag.toUpperCase()}_${counter++}§§`
-        const content = transform ? transform(m) : m
-        stash.set(key, content)
-        return key
-      })
+      // Whitespace handling
+      conservativeCollapse: false, // More aggressive whitespace removal
+      collapseInlineTagWhitespace: opts.value.removeBetweenTags,
+
+      // Boolean attributes
+      collapseBooleanAttributes: opts.value.normalizeBooleanAttrs,
+
+      // Script/Style preservation
+      ignoreCustomComments: [],
+
+      // CSS minification
+      minifyCSS: opts.value.minifyCss,
+
+      // JS minification (using terser)
+      minifyJS: opts.value.minifyJs,
+
+      // Preserve certain content
+      preserveLineBreaks: false,
+
+      // Case sensitivity
+      caseSensitive: false,
+
+      // Keep closing slash in void elements for XHTML compatibility
+      keepClosingSlash: false,
+
+      // Process conditional comments
+      processConditionalComments: false,
+
+      // Sort attributes and classes
+      sortAttributes: false,
+      sortClassName: false,
     }
 
-    // optionally minify CSS/JS while stashing
-    const minCssBlock = (block: string): string => {
-      // keep tag open/close, minify inside
-      const m = block.match(/^<style\b[^>]*>([\s\S]*?)<\/style>$/i)
-      if (!m) return block
-      const head = block.slice(0, m.index! + '<style>'.length)
-      const css = m[1]
-      const tail = '</style>'
-      return block.replace(css, minifyCss(css))
-    }
-
-    const minJsBlock = (block: string): string => {
-      const m = block.match(/^<script\b[^>]*>([\s\S]*?)<\/script>$/i)
-      if (!m) return block
-      const js = m[1]
-      return block.replace(js, minifyJs(js))
-    }
-
+    // Add ignored tags for preservation
     if (opts.value.preservePreCodeTextarea) {
-      working = protect(working, 'pre')
-      working = protect(working, 'code')
-      working = protect(working, 'textarea')
+      minifierOptions.ignoreCustomFragments = [
+        /<pre\b[^>]*>[\s\S]*?<\/pre>/gi,
+        /<code\b[^>]*>[\s\S]*?<\/code>/gi,
+        /<textarea\b[^>]*>[\s\S]*?<\/textarea>/gi,
+      ]
     }
 
     if (opts.value.preserveScriptStyle) {
-      working = protect(working, 'style', opts.value.minifyCss ? minCssBlock : undefined)
-      working = protect(working, 'script', opts.value.minifyJs ? minJsBlock : undefined)
-    } else {
-      // if not preserving, still minify CSS/JS if toggled
-      if (opts.value.minifyCss) working = working.replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, (b) => minCssBlock(b))
-      if (opts.value.minifyJs)  working = working.replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, (b) => minJsBlock(b))
-    }
-
-    // 2) remove HTML comments (preserving conditional comments is out-of-scope)
-    if (opts.value.removeComments) {
-      working = working.replace(/<!--([\s\S]*?)-->/g, '')
-    }
-
-    // 3) remove whitespace between tags
-    if (opts.value.removeBetweenTags) {
-      working = working.replace(/>\s+</g, '><')
-    }
-
-    // 4) collapse general whitespace sequences
-    if (opts.value.collapseWhitespace) {
-      // collapse runs of spaces/tabs/newlines to a single space, but keep tags intact
-      working = working
-          .replace(/[ \t\f\v]+/g, ' ')
-          .replace(/\s*\n+\s*/g, '\n') // keep single newlines where author inserted
-    }
-
-    // 5) attributes cleanups
-    if (opts.value.normalizeBooleanAttrs) {
-      const boolAttrs = ['disabled','checked','selected','readonly','multiple','required','autofocus','hidden','open','controls','loop','muted','playsinline','nomodule','defer']
-      for (const attr of boolAttrs) {
-        const re = new RegExp(`\\s${attr}="?${attr}"?`, 'gi')
-        working = working.replace(re, ` ${attr}`)
+      // If we want to preserve script/style content without minifying,
+      // we need to add custom fragments. But if minifyCSS/minifyJS are enabled,
+      // html-minifier-terser will handle them properly
+      if (!opts.value.minifyCss || !opts.value.minifyJs) {
+        const fragments = minifierOptions.ignoreCustomFragments || []
+        if (!opts.value.minifyCss) {
+          fragments.push(/<style\b[^>]*>[\s\S]*?<\/style>/gi)
+        }
+        if (!opts.value.minifyJs) {
+          fragments.push(/<script\b[^>]*>[\s\S]*?<\/script>/gi)
+        }
+        minifierOptions.ignoreCustomFragments = fragments
       }
     }
 
-    if (opts.value.removeDefaultTypes) {
-      // script type="text/javascript"
-      working = working.replace(/(<script\b[^>]*?)\s+type=("|')text\/javascript\2([^>]*>)/gi, '$1$3')
-      // style type="text/css"
-      working = working.replace(/(<style\b[^>]*?)\s+type=("|')text\/css\2([^>]*>)/gi, '$1$3')
+    // Minify using html-minifier-terser
+    // Note: htmlMinifier.minify can be sync or async depending on options
+    // Always await to handle both cases safely
+    const result = await Promise.resolve(htmlMinifier.minify(src, minifierOptions))
+
+    minified.value = result
+    const afterBytes = bytes(result.length)
+    stats.value = {
+      before: beforeBytes,
+      after: afterBytes,
+      saved: savedBytes(src.length, result.length)
     }
-
-    if (opts.value.removeEmptyAttrs) {
-      // remove empty class/id/style/data-* and empty aria-* values
-      working = working.replace(/\s(?:class|id|style|data-[\w-]+|aria-[\w-]+)=("|\')\1/gi, '')
-    }
-
-    // 6) remove some optional end tags (safe subset)
-    if (opts.value.removeOptionalEndTags) {
-      working = working
-          .replace(/<\/(li|dt|dd|tr|th|td|option)>\s*(?=<)/gi, '')
-    }
-
-    // 7) restore stashed blocks
-    for (const [key, value] of stash) {
-      working = working.split(key).join(value)
-    }
-
-    // 8) trim
-    working = working.trim()
-
-    minified.value = working
-    const afterBytes = bytes(working.length)
-    stats.value = { before: beforeBytes, after: afterBytes, saved: savedBytes(src.length, working.length) }
   } catch (err) {
-    error.value = (err as Error).message || 'Error while minifying.'
+    const errorMsg = (err as Error).message || 'Unknown error'
+
+    // Provide helpful error messages
+    if (errorMsg.includes('Parse Error')) {
+      error.value = `❌ HTML Parse Error: ${errorMsg}. Please check your HTML syntax.`
+    } else if (errorMsg.includes('Unexpected token')) {
+      error.value = `❌ Syntax Error: ${errorMsg}. There may be an issue with inline JS/CSS.`
+    } else {
+      error.value = `❌ Error while minifying: ${errorMsg}`
+    }
+  } finally {
+    loading.value = false
+    mode.value = null
   }
+}
+
+/* ---------- beautifier ---------- */
+async function beautifyHtml(): Promise<void> {
+  error.value = ''
+  minified.value = ''
+  stats.value = null
+  loading.value = true
+  mode.value = 'beautify'
+
+  // Check if html-minifier-terser is loaded
+  if (!htmlMinifier) {
+    error.value = '⚠️ HTML Optimizer not initialized. Please refresh the page.'
+    loading.value = false
+    mode.value = null
+    return
+  }
+
+  // Check if input is empty
+  if (!input.value.trim()) {
+    error.value = '❌ Input is empty. Please paste HTML in the input field above.'
+    loading.value = false
+    mode.value = null
+    return
+  }
+
+  const src = input.value
+  const beforeBytes = bytes(src.length)
+
+  try {
+    // Beautify by disabling minification and enabling formatting
+    const beautifyOptions: any = {
+      // Enable formatting
+      collapseWhitespace: false,
+      conservativeCollapse: true,
+      preserveLineBreaks: true,
+
+      // Keep content intact
+      removeComments: false,
+      removeAttributeQuotes: false,
+      removeRedundantAttributes: false,
+      removeEmptyAttributes: false,
+      removeOptionalTags: false,
+
+      // Don't minify embedded code
+      minifyCSS: false,
+      minifyJS: false,
+
+      // Keep whitespace
+      collapseInlineTagWhitespace: false,
+
+      // Normalize
+      caseSensitive: false,
+
+      // Process to normalize structure
+      html5: true,
+    }
+
+    // Use html-minifier-terser for basic normalization
+    const result = await Promise.resolve(htmlMinifier.minify(src, beautifyOptions))
+
+    // Add indentation for better readability
+    const formatted = formatHtml(result)
+
+    minified.value = formatted
+    const afterBytes = bytes(formatted.length)
+    stats.value = {
+      before: beforeBytes,
+      after: afterBytes,
+      saved: savedBytes(src.length, formatted.length)
+    }
+  } catch (err) {
+    const errorMsg = (err as Error).message || 'Unknown error'
+
+    if (errorMsg.includes('Parse Error')) {
+      error.value = `❌ HTML Parse Error: ${errorMsg}. Please check your HTML syntax.`
+    } else if (errorMsg.includes('Unexpected token')) {
+      error.value = `❌ Syntax Error: ${errorMsg}. There may be an issue with inline JS/CSS.`
+    } else {
+      error.value = `❌ Error while beautifying: ${errorMsg}`
+    }
+  } finally {
+    loading.value = false
+    mode.value = null
+  }
+}
+
+/* ---------- format html with indentation ---------- */
+function formatHtml(html: string): string {
+  let formatted = ''
+  let indent = 0
+  const tab = '  '
+
+  // Simple HTML formatter
+  html.split(/(<[^>]+>)/g).forEach(part => {
+    if (!part.trim()) return
+
+    // Check if it's a tag
+    if (part.startsWith('<')) {
+      // Closing tag
+      if (part.startsWith('</')) {
+        indent = Math.max(0, indent - 1)
+        formatted += tab.repeat(indent) + part + '\n'
+      }
+      // Self-closing or single tag
+      else if (part.endsWith('/>') || part.match(/<(img|br|hr|input|meta|link|area|base|col|embed|param|source|track|wbr)/i)) {
+        formatted += tab.repeat(indent) + part + '\n'
+      }
+      // Opening tag
+      else {
+        formatted += tab.repeat(indent) + part + '\n'
+        if (!part.match(/<(script|style|pre|code|textarea)/i)) {
+          indent++
+        }
+      }
+    }
+    // Text content
+    else {
+      const trimmed = part.trim()
+      if (trimmed) {
+        formatted += tab.repeat(indent) + trimmed + '\n'
+      }
+    }
+  })
+
+  return formatted.trim()
 }
 
 /* ---------- helpers ---------- */
-function minifyCss(css: string): string {
-  // remove comments
-  let s = css.replace(/\/\*[\s\S]*?\*\//g, '')
-  // collapse whitespace
-  s = s.replace(/\s+/g, ' ')
-  // remove spaces around punctuation
-  s = s.replace(/\s*([{}:;,>])\s*/g, '$1')
-  // trim ; before }
-  s = s.replace(/;}/g, '}')
-  return s.trim()
-}
-
-function minifyJs(js: string): string {
-  // VERY conservative: strip comments outside strings; collapse multiple spaces.
-  let out = ''
-  let i = 0
-  let inStr = false as false | '"' | "'" | '`'
-  let inRegex = false
-  while (i < js.length) {
-    const ch = js[i]
-    const next = js[i + 1]
-
-    if (!inStr && !inRegex && ch === '/' && next === '/') {
-      // line comment
-      i += 2
-      while (i < js.length && js[i] !== '\n') i++
-      continue
-    }
-    if (!inStr && !inRegex && ch === '/' && next === '*') {
-      // block comment
-      i += 2
-      while (i < js.length && !(js[i] === '*' && js[i + 1] === '/')) i++
-      i += 2
-      continue
-    }
-
-    if (!inRegex && !inStr && (ch === '"' || ch === "'" || ch === '`')) {
-      inStr = ch as typeof inStr
-      out += ch
-      i++
-      continue
-    }
-    if (inStr) {
-      out += ch
-      if (ch === '\\') { out += js[i + 1] ?? ''; i += 2; continue }
-      if (ch === inStr) inStr = false
-      i++
-      continue
-    }
-
-    // naive regex literal detection: after certain tokens
-    if (!inRegex && ch === '/' && /[({[=:\s,;!?\-+*&|^~%]/.test(out.slice(-1) || ' ')) {
-      inRegex = true
-      out += ch
-      i++
-      continue
-    }
-    if (inRegex) {
-      out += ch
-      if (ch === '\\') { out += js[i + 1] ?? ''; i += 2; continue }
-      if (ch === '/' ) { inRegex = false }
-      i++
-      continue
-    }
-
-    out += ch
-    i++
-  }
-  // whitespace squeeze but keep newlines
-  out = out.replace(/[ \t\f\v]+/g, ' ').replace(/\s*\n+\s*/g, '\n')
-  return out.trim()
-}
-
 function bytes(n: number): string {
   if (n < 1024) return `${n} B`
   const kb = n / 1024
@@ -391,8 +508,33 @@ function safeName(n: string): string {
 
 <style scoped>
 .label { @apply text-sm text-gray-300; }
-.input { @apply text-black w-full px-3 py-2 rounded-md border border-gray-300; }
-.btn { @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded text-white text-sm disabled:opacity-50 disabled:cursor-not-allowed; }
-.btn-primary { @apply bg-indigo-600 hover:bg-indigo-500 px-3 py-1.5 rounded text-white text-sm; }
-.card { @apply bg-gray-800/60 rounded-xl p-4 border border-gray-800; }
+.input { @apply text-white w-full px-3 py-2 rounded-md border border-gray-700 bg-gray-900; }
+.input-sm { @apply text-white px-2 py-1 rounded border border-gray-700 bg-gray-900 text-sm; }
+
+.btn {
+  @apply bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-lg text-white text-sm font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed;
+}
+.btn-primary {
+  @apply bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded-lg text-white text-sm font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed;
+}
+.btn-secondary {
+  @apply bg-emerald-600 hover:bg-emerald-500 px-4 py-2 rounded-lg text-white text-sm font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed;
+}
+.btn-icon {
+  @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded-lg text-white text-xs font-medium transition-colors;
+}
+.btn-file {
+  @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded text-white text-sm transition-colors;
+}
+
+.card {
+  @apply bg-gray-800/60 rounded-xl p-5 border border-gray-700/50 shadow-lg;
+}
+
+.checkbox {
+  @apply w-4 h-4 accent-indigo-500 rounded;
+}
+.checkbox-label {
+  @apply flex items-center gap-2 text-sm text-gray-300 hover:text-white transition-colors cursor-pointer;
+}
 </style>
