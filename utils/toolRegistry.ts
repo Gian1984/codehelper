@@ -93,25 +93,35 @@ export const tools: Record<string, Tool> = {
 
     'json-yaml-converter': {
         title: 'JSON ↔ YAML Converter',
-        description: 'Convert JSON to YAML and YAML to JSON seamlessly.',
+        description: 'Convert JSON to YAML and YAML to JSON with auto-detection, syntax highlighting, and format indicators. Fast, accurate conversion—all client-side.',
         category: 'converter',
         component: () =>
             import('~/components/tools/converter/JsonYamlConverter.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `JSON to YAML & YAML to JSON (Converter) – ${BRAND}`,
+            title: `JSON to YAML & YAML to JSON Converter with Auto-Detection – ${BRAND}`,
             description:
-                'Fast, accurate JSON ↔ YAML conversion in your browser. Preserve structure, validate input, and copy or download the result.',
+                'Fast JSON ↔ YAML converter with auto format detection, syntax highlighting, and conversion direction indicators. Prettify JSON, sort keys alphabetically—all in your browser with complete privacy.',
             ogImage: OG,
             keywords:
-                'json to yaml, yaml to json, convert yaml json, yaml converter, json converter, online converter, dev tools',
+                'json to yaml, yaml to json, convert yaml json, yaml converter, json converter, auto detect format, syntax highlighting, online converter, dev tools, json formatter, yaml formatter',
             structuredData: {
                 '@context': 'https://schema.org',
                 '@type': 'SoftwareApplication',
-                name: 'JSON ↔ YAML Converter',
+                name: 'JSON ↔ YAML Converter Pro',
                 applicationCategory: 'DeveloperApplication',
                 operatingSystem: 'All',
                 offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-                featureList: ['JSON → YAML', 'YAML → JSON', 'Validation', 'Copy & Download'],
+                featureList: [
+                    'Auto Format Detection',
+                    'JSON → YAML Conversion',
+                    'YAML → JSON Conversion',
+                    'Syntax Highlighting',
+                    'Direction Indicator',
+                    'Prettify JSON',
+                    'Sort Keys Alphabetically',
+                    'Copy Output',
+                    'Error Validation'
+                ],
                 aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '16' }
             }
         }
