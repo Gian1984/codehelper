@@ -1,104 +1,159 @@
 <template>
   <div class="p-6 sm:p-8 bg-gray-800 rounded-2xl shadow-xl space-y-6 text-gray-100">
+    <!-- Header -->
     <div class="flex items-center justify-between gap-3 flex-wrap">
-      <h2 class="text-2xl font-semibold">CSS Minifier & Beautifier</h2>
-      <div class="flex items-center gap-2">
-        <button class="btn" @click="clearAll">clear</button>
-        <button class="btn" @click="processCss">run</button>
-        <button class="btn-primary" @click="copyOut" :disabled="!output">copy</button>
-        <button class="btn" @click="downloadOutput" :disabled="!output">download</button>
+      <h2 class="text-2xl font-semibold text-white">CSS Formatter</h2>
+      <div class="flex items-center gap-2 flex-wrap">
+        <button class="btn-secondary" @click="clearAll">Clear</button>
+        <button class="btn-primary" @click="processCss">Format CSS</button>
+        <button class="btn-primary" @click="copyOut" :disabled="!output">
+          {{ copied ? 'Copied!' : 'Copy' }}
+        </button>
+        <button class="btn-secondary" @click="downloadOutput" :disabled="!output">Download</button>
       </div>
     </div>
 
-    <!-- mode -->
-    <div class="flex items-center gap-4 flex-wrap">
-      <label class="label">mode</label>
-      <select v-model="mode" class="input w-40">
-        <option value="minify">Minify</option>
-        <option value="beautify">Beautify</option>
-      </select>
+    <!-- Input Section -->
+    <div class="bg-gray-900 rounded-xl p-5 border border-gray-700 space-y-3">
+      <div class="flex items-center justify-between gap-3 flex-wrap">
+        <label class="text-sm font-medium text-gray-300">🎨 CSS Input</label>
+        <div class="flex items-center gap-2 flex-wrap">
+          <label class="text-xs font-medium text-gray-400 uppercase tracking-wider">Mode:</label>
+          <select v-model="mode" class="select-input-sm">
+            <option value="minify">Minify</option>
+            <option value="beautify">Beautify</option>
+          </select>
+          <label class="btn-secondary cursor-pointer text-sm ml-2">
+            Import .css
+            <input type="file" class="hidden" accept=".css,text/css,text/plain" @change="onFile" />
+          </label>
+          <label class="inline-flex items-center gap-2">
+            <input type="checkbox" v-model="autoRunOnPaste" class="w-4 h-4 accent-indigo-500" />
+            <span class="text-xs text-gray-400">Auto-run on paste</span>
+          </label>
+        </div>
+      </div>
 
-      <label class="btn cursor-pointer ml-auto">
-        import .css
-        <input type="file" class="hidden" accept=".css,text/css,text/plain" @change="onFile" />
-      </label>
-
-      <label class="inline-flex items-center gap-2">
-        <input type="checkbox" v-model="autoRunOnPaste" class="w-4 h-4" />
-        <span class="text-sm">auto-run on paste</span>
-      </label>
-    </div>
-
-    <!-- input -->
-    <div class="space-y-2">
       <textarea
           v-model="input"
           placeholder="Paste your CSS here…"
-          class="w-full min-h-48 bg-gray-950 text-white p-4 rounded border border-gray-800 resize-y font-mono"
+          class="w-full min-h-48 p-4 rounded-lg border border-gray-700 bg-black text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent font-mono text-sm resize-y transition-all"
           spellcheck="false"
           @paste="onPaste"
       ></textarea>
-      <div class="text-xs text-gray-400 flex gap-4">
-        <span>chars: {{ input.length }}</span>
-        <span v-if="stats">size: {{ stats.before }} → {{ stats.after }} (saved {{ stats.saved }})</span>
-        <span v-if="error" class="text-red-400">{{ error }}</span>
-        <span v-if="copied" class="text-green-400">copied!</span>
+
+      <div class="flex items-center justify-between gap-3 text-xs">
+        <span class="text-gray-400">{{ input.length.toLocaleString() }} characters</span>
+        <div class="flex gap-3">
+          <span v-if="error" class="text-red-400">❌ {{ error }}</span>
+          <span v-if="copied && !error" class="text-green-400">✓ Copied to clipboard!</span>
+        </div>
       </div>
     </div>
 
-    <!-- options -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-      <!-- minify options -->
-      <div v-if="mode==='minify'" class="card space-y-2">
-        <label class="inline-flex items-center gap-2 mr-2"><input type="checkbox" v-model="min.keepComments" class="w-4 h-4" /><span class="text-sm">keep comments</span></label>
-        <label class="inline-flex items-center gap-2 mr-2"><input type="checkbox" v-model="min.hexShorten" class="w-4 h-4" /><span class="text-sm">shorten hex colors</span></label>
-        <label class="inline-flex items-center gap-2 mr-2"><input type="checkbox" v-model="min.zeroUnits" class="w-4 h-4" /><span class="text-sm">drop units on zero</span></label>
-        <label class="inline-flex items-center gap-2 mr-2"><input type="checkbox" v-model="min.leadingZero" class="w-4 h-4" /><span class="text-sm">trim leading zero</span></label>
-        <label class="inline-flex items-center gap-2 mr-2"><input type="checkbox" v-model="min.shortenZeroLists" class="w-4 h-4" /><span class="text-sm">collapse zero shorthands</span></label>
-      </div>
+    <!-- Options -->
+    <div class="bg-gray-900 rounded-xl p-5 border border-gray-700">
+      <h3 class="text-sm font-medium text-gray-300 mb-4">⚙️ Formatting Options</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <!-- Minify Options -->
+        <div v-if="mode === 'minify'" class="space-y-3">
+          <p class="text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">Minify Options</p>
+          <label class="flex items-center gap-2">
+            <input type="checkbox" v-model="min.keepComments" class="w-4 h-4 accent-indigo-500" />
+            <span class="text-xs text-gray-300">Keep comments</span>
+          </label>
+          <label class="flex items-center gap-2">
+            <input type="checkbox" v-model="min.hexShorten" class="w-4 h-4 accent-indigo-500" />
+            <span class="text-xs text-gray-300">Shorten hex colors</span>
+          </label>
+          <label class="flex items-center gap-2">
+            <input type="checkbox" v-model="min.zeroUnits" class="w-4 h-4 accent-indigo-500" />
+            <span class="text-xs text-gray-300">Drop units on zero</span>
+          </label>
+          <label class="flex items-center gap-2">
+            <input type="checkbox" v-model="min.leadingZero" class="w-4 h-4 accent-indigo-500" />
+            <span class="text-xs text-gray-300">Trim leading zero</span>
+          </label>
+          <label class="flex items-center gap-2">
+            <input type="checkbox" v-model="min.shortenZeroLists" class="w-4 h-4 accent-indigo-500" />
+            <span class="text-xs text-gray-300">Collapse zero shorthands</span>
+          </label>
+        </div>
 
-      <!-- beautify options -->
-      <div v-else class="card space-y-3">
-        <label class="block">
-          <span class="label">indent type</span>
-          <select v-model="beaut.indentKind" class="input">
-            <option value="spaces">spaces</option>
-            <option value="tabs">tabs</option>
-          </select>
-        </label>
-        <label v-if="beaut.indentKind==='spaces'" class="block">
-          <span class="label">indent width</span>
-          <select v-model.number="beaut.indentWidth" class="input">
-            <option v-for="n in [2,3,4,6,8]" :key="n" :value="n">{{ n }}</option>
-          </select>
-        </label>
-        <label class="inline-flex items-center gap-2"><input type="checkbox" v-model="beaut.keepComments" class="w-4 h-4" /><span class="text-sm">keep comments</span></label>
-      </div>
+        <!-- Beautify Options -->
+        <div v-else class="space-y-3">
+          <p class="text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">Beautify Options</p>
+          <label class="block">
+            <span class="text-xs font-medium text-gray-400 mb-1.5 block">Indent Type</span>
+            <select v-model="beaut.indentKind" class="select-input">
+              <option value="spaces">Spaces</option>
+              <option value="tabs">Tabs</option>
+            </select>
+          </label>
+          <label v-if="beaut.indentKind === 'spaces'" class="block">
+            <span class="text-xs font-medium text-gray-400 mb-1.5 block">Indent Width</span>
+            <select v-model.number="beaut.indentWidth" class="select-input">
+              <option v-for="n in [2, 3, 4, 6, 8]" :key="n" :value="n">{{ n }} spaces</option>
+            </select>
+          </label>
+          <label class="flex items-center gap-2">
+            <input type="checkbox" v-model="beaut.keepComments" class="w-4 h-4 accent-indigo-500" />
+            <span class="text-xs text-gray-300">Keep comments</span>
+          </label>
+          <label class="flex items-center gap-2">
+            <input type="checkbox" v-model="beaut.sortProperties" class="w-4 h-4 accent-indigo-500" />
+            <span class="text-xs text-gray-300">Sort properties alphabetically</span>
+          </label>
+        </div>
 
-      <!-- filename -->
-      <div class="card space-y-2">
-        <label class="block">
-          <span class="label">download filename</span>
-          <input v-model="filename" class="input" placeholder="style.css" />
-        </label>
-        <button class="btn" @click="processCss">apply</button>
+        <!-- Output Settings -->
+        <div class="space-y-3">
+          <p class="text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">Output Settings</p>
+          <label class="block">
+            <span class="text-xs font-medium text-gray-400 mb-1.5 block">Download Filename</span>
+            <input v-model="filename" class="text-input" placeholder="style.css" />
+          </label>
+        </div>
       </div>
     </div>
 
-    <!-- output -->
-    <div v-if="output" class="space-y-2">
-      <label class="label">result</label>
-      <textarea
-          readonly
-          :value="output"
-          class="w-full min-h-48 bg-gray-950 text-white p-4 rounded border border-gray-800 resize-y font-mono"
-      ></textarea>
+    <!-- Output -->
+    <div v-if="output" class="bg-gray-900 rounded-xl border border-gray-700 overflow-hidden">
+      <div class="bg-gray-800/50 border-b border-gray-700 px-5 py-3 flex items-center justify-between gap-3">
+        <span class="text-sm font-medium text-gray-300">📄 CSS Output</span>
+        <span class="text-xs text-gray-400">{{ mode === 'minify' ? 'Minified' : 'Beautified' }}</span>
+      </div>
+      <div class="p-5">
+        <pre class="bg-black p-4 rounded-lg border border-gray-700 overflow-auto max-h-[600px] text-sm font-mono"><code class="language-css" v-html="highlightedOutput"></code></pre>
+      </div>
+    </div>
+
+    <!-- Statistics -->
+    <div v-if="stats" class="bg-gray-900 rounded-xl p-5 border border-gray-700">
+      <h3 class="text-sm font-medium text-gray-300 mb-4">📊 Statistics</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div class="bg-black rounded-lg p-4 text-center border border-gray-800">
+          <div class="text-2xl font-bold text-blue-400 mb-1">{{ stats.before }}</div>
+          <div class="text-xs text-gray-400 uppercase tracking-wider">Original Size</div>
+        </div>
+        <div class="bg-black rounded-lg p-4 text-center border border-gray-800">
+          <div class="text-2xl font-bold text-green-400 mb-1">{{ stats.after }}</div>
+          <div class="text-xs text-gray-400 uppercase tracking-wider">Output Size</div>
+        </div>
+        <div class="bg-black rounded-lg p-4 text-center border border-gray-800">
+          <div class="text-2xl font-bold text-yellow-400 mb-1">{{ stats.saved }}</div>
+          <div class="text-xs text-gray-400 uppercase tracking-wider">Saved</div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+import Prism from 'prismjs'
+import 'prismjs/components/prism-css'
+import 'prismjs/themes/prism-tomorrow.css'
 
 type Mode = 'minify' | 'beautify'
 
@@ -129,6 +184,13 @@ const beaut = ref({
   indentKind: 'spaces' as IndentKind,
   indentWidth: 2,
   keepComments: true,
+  sortProperties: false,
+})
+
+/* computed */
+const highlightedOutput = computed<string>(() => {
+  if (!output.value) return ''
+  return Prism.highlight(output.value, Prism.languages.css, 'css')
 })
 
 /* ---------- actions ---------- */
@@ -192,6 +254,7 @@ function processCss(): void {
       result = beautifyCss(src, {
         indent: beaut.value.indentKind === 'tabs' ? '\t' : ' '.repeat(beaut.value.indentWidth),
         keepComments: beaut.value.keepComments,
+        sortProperties: beaut.value.sortProperties,
       })
     }
 
@@ -308,7 +371,7 @@ function minifyCss(css: string, opts: MinifyOpts): string {
 }
 
 /* ---------- beautifier ---------- */
-type BeautifyOpts = { indent: string; keepComments: boolean }
+type BeautifyOpts = { indent: string; keepComments: boolean; sortProperties: boolean }
 
 function beautifyCss(css: string, opts: BeautifyOpts): string {
   const indent = opts.indent
@@ -377,16 +440,82 @@ function beautifyCss(css: string, opts: BeautifyOpts): string {
           .replace(/\s*>\s*/g, ' > ')
           .replace(/\s*\+\s*/g, ' + ')
           .replace(/\s*~\s*/g, ' ~ ')
-      pushLine(cleaned)
-    }
-    if (j < css.length && css[j] === ';') {
-      pushLine(';')
+
+      // Append semicolon to the line if present (don't create separate line)
+      if (j < css.length && css[j] === ';') {
+        pushLine(cleaned + ';')
+        j++
+      } else {
+        pushLine(cleaned)
+      }
+    } else if (j < css.length && css[j] === ';') {
+      // Skip standalone semicolons (empty declarations)
       j++
     }
     i = j
   }
 
-  return out.trim()
+  let result = out.trim()
+
+  // Sort properties alphabetically if requested
+  if (opts.sortProperties) {
+    result = sortCssProperties(result, indent)
+  }
+
+  return result
+}
+
+/* ---------- property sorter ---------- */
+function sortCssProperties(css: string, indent: string): string {
+  const lines = css.split('\n')
+  const result: string[] = []
+  let i = 0
+
+  while (i < lines.length) {
+    const line = lines[i]
+
+    // If line contains {, collect properties until }
+    if (line.includes('{')) {
+      result.push(line)
+      i++
+
+      // Collect all property lines
+      const props: string[] = []
+      while (i < lines.length && !lines[i].includes('}')) {
+        const propLine = lines[i].trim()
+        if (propLine && !propLine.startsWith('/*') && !propLine.startsWith('//')) {
+          props.push(propLine)
+        } else if (propLine) {
+          result.push(lines[i]) // Keep comments in place
+        }
+        i++
+      }
+
+      // Sort properties alphabetically
+      props.sort((a, b) => {
+        const aProp = a.split(':')[0].trim()
+        const bProp = b.split(':')[0].trim()
+        return aProp.localeCompare(bProp)
+      })
+
+      // Add sorted properties with proper indentation
+      props.forEach(prop => {
+        const level = (line.match(/^\s*/)?.[0].length || 0) / indent.length + 1
+        result.push(indent.repeat(level) + prop)
+      })
+
+      // Add closing brace
+      if (i < lines.length) {
+        result.push(lines[i])
+        i++
+      }
+    } else {
+      result.push(line)
+      i++
+    }
+  }
+
+  return result.join('\n')
 }
 
 /* ---------- tiny utils ---------- */
@@ -408,10 +537,34 @@ function safeName(n: string): string {
 </script>
 
 <style scoped>
-.label { @apply text-sm text-gray-300; }
-.input { @apply text-black w-full px-3 py-2 rounded-md border border-gray-300; }
-.btn { @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded text-white text-sm disabled:opacity-50 disabled:cursor-not-allowed; }
-.btn-primary { @apply bg-indigo-600 hover:bg-indigo-500 px-3 py-1.5 rounded text-white text-sm; }
-.card { @apply bg-gray-800/60 rounded-xl p-4 border border-gray-800; }
+.select-input {
+  @apply w-full px-3 py-2 rounded-lg border border-gray-700 bg-black text-white text-sm;
+  @apply focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent;
+  @apply transition-all;
+}
+
+.select-input-sm {
+  @apply px-2.5 py-1.5 rounded-lg border border-gray-700 bg-black text-white text-xs;
+  @apply focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent;
+  @apply transition-all;
+}
+
+.text-input {
+  @apply w-full px-3 py-2 rounded-lg border border-gray-700 bg-black text-white text-sm;
+  @apply focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent;
+  @apply font-mono transition-all;
+}
+
+.btn-primary {
+  @apply bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded-lg text-white text-sm font-medium;
+  @apply disabled:opacity-50 disabled:cursor-not-allowed;
+  @apply transition-all shadow-lg shadow-indigo-600/20 hover:shadow-indigo-600/40;
+}
+
+.btn-secondary {
+  @apply bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-lg text-white text-sm font-medium;
+  @apply disabled:opacity-50 disabled:cursor-not-allowed;
+  @apply transition-all;
+}
 </style>
 

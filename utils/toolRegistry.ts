@@ -664,25 +664,36 @@ export const tools: Record<string, Tool> = {
     },
 
     'css-formatter': {
-        title: 'CSS Minifier & Beautifier',
-        description: 'Minify or beautify your CSS code instantly.',
+        title: 'CSS Formatter',
+        description: 'Professional CSS formatter with syntax highlighting, property sorting, and advanced minification. Minify or beautify CSS with smart optimizations—all client-side.',
         category: 'formatter',
         component: () => import('~/components/tools/formatter/CssFormatter.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `CSS Minifier & Beautifier – ${BRAND}`,
+            title: `CSS Formatter & Minifier with Property Sorting – ${BRAND}`,
             description:
-                'Minify CSS to reduce file size or beautify for readability. Remove comments/whitespace and copy the result.',
+                'Advanced CSS formatter with syntax highlighting, property sorting, and smart minification. Beautify or compress CSS with hex color shortening, zero unit removal, and more—all in your browser.',
             ogImage: OG,
             keywords:
-                'css minifier, format css, css beautifier, compress css online, tidy css, css formatter tool',
+                'css minifier, format css, css beautifier, compress css online, tidy css, css formatter tool, sort css properties, css syntax highlighting, optimize css',
             structuredData: {
                 '@context': 'https://schema.org',
                 '@type': 'SoftwareApplication',
-                name: 'CSS Minifier & Beautifier',
+                name: 'CSS Formatter Pro',
                 applicationCategory: 'DeveloperApplication',
                 operatingSystem: 'All',
                 offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-                featureList: ['Minify CSS', 'Beautify CSS', 'Copy & Download'],
+                featureList: [
+                    'Minify CSS',
+                    'Beautify CSS',
+                    'Syntax Highlighting',
+                    'Sort Properties Alphabetically',
+                    'Shorten Hex Colors',
+                    'Remove Units on Zero',
+                    'Statistics Dashboard',
+                    'Custom Indentation',
+                    'Auto-run on Paste',
+                    'Copy & Download'
+                ],
                 aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '5' }
             }
         }

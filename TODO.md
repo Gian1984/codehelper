@@ -479,20 +479,53 @@ This section contains a comprehensive analysis of all 31 existing tools with spe
 ---
 
 #### 8. CSS Formatter (formatter/CssFormatter.vue)
-**Code Issues:**
-- [ ] **P2** Replace vkbeautify with more modern CSS parser
-- [ ] **P2** Add support for CSS-in-JS and SCSS/LESS
+**Status:** ✅ FEATURE-COMPLETE - Enhanced with syntax highlighting, property sorting, and modern UI
+**Recent Improvements:**
+- [x] **P2** Syntax highlighting with Prism.js ✅ *Completed 2025-11-27*
+  - Color-coded CSS syntax with dark theme
+  - Applied to output code blocks
+- [x] **P2** Sort properties alphabetically ✅ *Completed 2025-11-27*
+  - Optional checkbox in beautify mode
+  - Sorts CSS properties within each rule alphabetically
+  - Preserves comments
+- [x] **P2** Statistics dashboard ✅ *Completed 2025-11-27*
+  - Visual cards showing original size, output size, and savings
+  - Byte savings with percentage display
+  - Color-coded metrics (blue, green, yellow)
+- [x] **P2** Modern UI/UX redesign ✅ *Completed 2025-11-27*
+  - Black backgrounds for all inputs/outputs
+  - Improved options layout with clear sections
+  - Better visual hierarchy and spacing
+  - Consistent with other formatter tools
 
-**Missing Features:**
-- [ ] **P2** Autoprefixer integration
-- [ ] **P2** CSS to SCSS/LESS conversion
-- [ ] **P2** Remove unused selectors
-- [ ] **P2** Sort properties alphabetically
-- [ ] **P3** CSS linting with suggestions
+**Tool is feature-complete** with:
+- **Minify mode** with 5 optimization options:
+  - Keep/remove comments
+  - Shorten hex colors (#AABBCC → #abc)
+  - Drop units on zero (0px → 0)
+  - Trim leading zero (0.5 → .5)
+  - Collapse zero shorthands (margin: 0 0 0 0 → margin: 0)
+- **Beautify mode** with formatting options:
+  - Customizable indentation (spaces/tabs, width)
+  - Keep/remove comments
+  - Sort properties alphabetically (NEW)
+- **Syntax highlighting** for CSS output
+- **Statistics dashboard** with size metrics
+- Auto-run on paste option
+- Import from .css files
+- Download formatted output
+- All processing happens client-side
 
-**UI/UX:**
-- [ ] **P2** Show byte savings for minification
-- [ ] **P2** Syntax highlighting
+**Code Quality:**
+- ✅ Custom tokenizer-based minifier (safe for strings, URLs, calc())
+- ✅ Custom beautifier with proper formatting
+- ✅ No external dependencies for core formatting (vkbeautify not used)
+
+**Skipped Features (out of scope for quick tool):**
+- Autoprefixer integration - Complex, requires full PostCSS setup
+- CSS-in-JS/SCSS/LESS support - Different syntax, needs dedicated parsers
+- Remove unused selectors - Requires DOM analysis, too advanced
+- CSS linting - Complex validation, better suited for dedicated linters
 
 ---
 
