@@ -1,3 +1,5 @@
+import { defineNuxtPlugin } from '#app'
+
 /**
  * Web Vitals Monitoring Plugin
  * Tracks Core Web Vitals (CLS, LCP, FID/INP, TTFB, FCP) and sends to Google Analytics
@@ -31,7 +33,7 @@ export default defineNuxtPlugin(() => {
     }
 
     // Also log to console in development
-    if (process.dev) {
+    if (import.meta.env.DEV) {
       console.log('[Web Vitals]', {
         name: metric.name,
         value: metric.value,

@@ -24,4 +24,4 @@ logs
 !.env.example
 
 # Ignore specific file
-CLAUDE.md
+QUICK_INFO.md
