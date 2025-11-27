@@ -15,8 +15,71 @@
     </div>
 
     <!-- Workspace + Controls -->
-    <div v-show="img.loaded" class="grid lg:grid-cols-2 gap-6">
-      <!-- Left: scrollable viewport with stage inside -->
+    <div v-show="img.loaded" class="space-y-6">
+
+      <!-- TOP ROW: Editing Controls (Filters & Presets) -->
+      <div class="bg-gray-900 border border-gray-700 rounded p-4">
+        <p class="text-white font-medium text-sm mb-4">✨ Editing Controls</p>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <!-- Filter Intensity & Presets -->
+          <div class="space-y-4">
+            <div>
+              <p class="text-white text-xs font-medium mb-2">Filter Intensity</p>
+              <div class="space-y-1">
+                <div class="flex items-center justify-between">
+                  <span class="text-gray-400 text-xs">Global strength</span>
+                  <span class="text-indigo-400 text-xs font-medium">{{ filterIntensity }}%</span>
+                </div>
+                <input type="range" min="0" max="100" step="1" v-model.number="filterIntensity" class="w-full" />
+                <p class="text-xs text-gray-500 italic">0% = original, 100% = full filters</p>
+              </div>
+            </div>
+
+            <div>
+              <p class="text-white text-xs font-medium mb-2">Quick Presets</p>
+              <div class="space-y-2">
+                <!-- Basic Presets -->
+                <div class="flex flex-wrap gap-1.5">
+                  <button class="px-2 py-1 bg-gray-700 hover:bg-gray-600 text-white rounded text-xs" @click="preset('none')">none</button>
+                  <button class="px-2 py-1 bg-gray-700 hover:bg-gray-600 text-white rounded text-xs" @click="preset('bw')">b&w</button>
+                  <button class="px-2 py-1 bg-gray-700 hover:bg-gray-600 text-white rounded text-xs" @click="preset('punch')">punch</button>
+                  <button class="px-2 py-1 bg-gray-700 hover:bg-gray-600 text-white rounded text-xs" @click="preset('warm')">warm</button>
+                  <button class="px-2 py-1 bg-gray-700 hover:bg-gray-600 text-white rounded text-xs" @click="preset('cool')">cool</button>
+                </div>
+                <!-- Instagram-style Presets -->
+                <div class="pt-1 border-t border-gray-700">
+                  <p class="text-gray-500 text-xs mb-1.5 italic">Instagram-inspired</p>
+                  <div class="flex flex-wrap gap-1.5">
+                    <button class="px-2 py-1 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white rounded text-xs" @click="preset('clarendon')">clarendon</button>
+                    <button class="px-2 py-1 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white rounded text-xs" @click="preset('gingham')">gingham</button>
+                    <button class="px-2 py-1 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white rounded text-xs" @click="preset('juno')">juno</button>
+                    <button class="px-2 py-1 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white rounded text-xs" @click="preset('lark')">lark</button>
+                    <button class="px-2 py-1 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white rounded text-xs" @click="preset('ludwig')">ludwig</button>
+                    <button class="px-2 py-1 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white rounded text-xs" @click="preset('valencia')">valencia</button>
+                    <button class="px-2 py-1 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white rounded text-xs" @click="preset('hudson')">hudson</button>
+                    <button class="px-2 py-1 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white rounded text-xs" @click="preset('toaster')">toaster</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Individual Filters -->
+          <div class="space-y-2">
+            <p class="text-white text-xs font-medium mb-2">Individual Filters</p>
+            <div class="space-y-1" v-for="row in sliderRows" :key="row.key">
+              <div class="flex items-center justify-between">
+                <label class="text-gray-400 text-xs">{{ row.label }}</label>
+                <span class="text-gray-300 text-xs font-mono">{{ Math.round(filters[row.key]) }}</span>
+              </div>
+              <input type="range" :min="row.min" :max="row.max" step="1" v-model.number="filters[row.key]" class="w-full" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MIDDLE: Image Viewer -->
       <div class="space-y-3">
         <div class="relative overflow-auto rounded border border-gray-700 bg-black/20" style="max-height:70vh">
           <div
@@ -46,151 +109,125 @@
           </div>
         </div>
 
-        <!-- Zoom -->
-        <div class="flex flex-wrap items-center gap-3">
-          <span class="text-xs text-gray-300">zoom</span>
-          <button class="px-2 py-1 bg-gray-700 hover:bg-gray-600 text-white rounded" @click="nudgeZoom(-0.1)">−</button>
+        <!-- Zoom Controls -->
+        <div class="flex flex-wrap items-center justify-center gap-3 bg-gray-900 border border-gray-700 rounded p-3">
+          <span class="text-xs text-gray-400">Zoom:</span>
+          <button class="px-2 py-1 bg-gray-700 hover:bg-gray-600 text-white rounded text-sm" @click="nudgeZoom(-0.1)">−</button>
           <input type="range" min="0.25" max="3" step="0.05" v-model.number="zoom.value" class="w-48" />
-          <button class="px-2 py-1 bg-gray-700 hover:bg-gray-600 text-white rounded" @click="nudgeZoom(0.1)">+</button>
-          <button class="px-2 py-1 bg-gray-700 hover:bg-gray-600 text-white rounded" @click="setZoom(1)">100%</button>
-          <span class="text-xs text-gray-400 ml-2">{{ Math.round(zoom.value * 100) }}%</span>
-        </div>
-
-        <!-- Quick actions -->
-        <div class="flex flex-wrap gap-3">
-          <button class="px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded disabled:opacity-50"
-                  :disabled="!crop.visible" @click="applyCrop">apply crop</button>
-          <button class="px-3 py-2 bg-yellow-600 hover:bg-yellow-700 text-white rounded disabled:opacity-50"
-                  :disabled="!history.length" @click="undo">undo</button>
-          <button class="px-3 py-2 bg-red-600 hover:bg-red-700 text-white rounded" @click="resetAll">reset</button>
-          <button class="px-3 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded" @click="toggleCrop">
-            {{ crop.visible ? 'hide crop' : 'show crop' }}
-          </button>
+          <button class="px-2 py-1 bg-gray-700 hover:bg-gray-600 text-white rounded text-sm" @click="nudgeZoom(0.1)">+</button>
+          <button class="px-2 py-1 bg-gray-700 hover:bg-gray-600 text-white rounded text-sm" @click="setZoom(1)">100%</button>
+          <span class="text-xs text-gray-300 font-mono">{{ Math.round(zoom.value * 100) }}%</span>
         </div>
       </div>
 
-      <!-- Right: controls + previews -->
-      <div class="space-y-5">
-        <!-- Transform -->
-        <div class="bg-gray-900 border border-gray-700 rounded p-4 space-y-3">
-          <p class="text-white font-medium text-sm">transform</p>
-          <div class="grid grid-cols-2 gap-4">
-            <div>
-              <label class="block text-white text-xs mb-1">rotate (°)</label>
-              <input type="number" v-model.number="state.rotate"
-                     class="w-full bg-gray-800 text-white border border-gray-600 rounded px-2 py-1" />
-            </div>
-            <div class="flex items-end gap-2">
-              <label class="text-white text-xs">flip</label>
-              <button class="px-2 py-1 bg-gray-700 hover:bg-gray-600 text-white rounded"
-                      @click="state.flipX = !state.flipX">H</button>
-              <button class="px-2 py-1 bg-gray-700 hover:bg-gray-600 text-white rounded"
-                      @click="state.flipY = !state.flipY">V</button>
+      <!-- BOTTOM ROW: Output Controls (Transform, Crop Actions, Export) -->
+      <div class="bg-gray-900 border border-gray-700 rounded p-4">
+        <p class="text-white font-medium text-sm mb-4">💾 Output Controls</p>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          <!-- Transform -->
+          <div class="space-y-3">
+            <p class="text-white text-xs font-medium">Transform & Size</p>
+            <div class="space-y-2">
+              <div>
+                <label class="block text-gray-400 text-xs mb-1">rotate (°)</label>
+                <input type="number" v-model.number="state.rotate"
+                       class="w-full bg-gray-800 text-white border border-gray-600 rounded px-2 py-1 text-sm" />
+              </div>
+              <div class="flex items-center gap-2">
+                <label class="text-gray-400 text-xs">flip</label>
+                <button class="px-2 py-1 bg-gray-700 hover:bg-gray-600 text-white rounded text-xs"
+                        @click="state.flipX = !state.flipX">H</button>
+                <button class="px-2 py-1 bg-gray-700 hover:bg-gray-600 text-white rounded text-xs"
+                        @click="state.flipY = !state.flipY">V</button>
+              </div>
+              <div class="grid grid-cols-2 gap-2">
+                <div>
+                  <label class="block text-gray-400 text-xs mb-1">width</label>
+                  <input type="number" min="1" v-model.number="state.outW"
+                         class="w-full bg-gray-800 text-white border border-gray-600 rounded px-2 py-1 text-sm" />
+                </div>
+                <div>
+                  <label class="block text-gray-400 text-xs mb-1">height</label>
+                  <input type="number" min="1" v-model.number="state.outH"
+                         class="w-full bg-gray-800 text-white border border-gray-600 rounded px-2 py-1 text-sm" />
+                </div>
+              </div>
+              <div class="flex items-center gap-2">
+                <input id="lockRatio" type="checkbox" v-model="state.lockRatio" class="w-4 h-4" />
+                <label for="lockRatio" class="text-gray-400 text-xs">lock aspect ratio</label>
+              </div>
             </div>
           </div>
 
-          <div class="grid grid-cols-2 gap-4">
-            <div>
-              <label class="block text-white text-xs mb-1">output width (px)</label>
-              <input type="number" min="1" v-model.number="state.outW"
-                     class="w-full bg-gray-800 text-white border border-gray-600 rounded px-2 py-1" />
-            </div>
-            <div>
-              <label class="block text-white text-xs mb-1">output height (px)</label>
-              <input type="number" min="1" v-model.number="state.outH"
-                     class="w-full bg-gray-800 text-white border border-gray-600 rounded px-2 py-1" />
+          <!-- Crop Actions & History -->
+          <div class="space-y-3">
+            <p class="text-white text-xs font-medium">Crop & History</p>
+            <div class="flex flex-col gap-2">
+              <button class="px-3 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded text-sm" @click="toggleCrop">
+                {{ crop.visible ? '✕ hide crop' : '✂️ show crop' }}
+              </button>
+              <button class="px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded text-sm disabled:opacity-50"
+                      :disabled="!crop.visible" @click="applyCrop">
+                ✓ apply crop
+              </button>
+              <button class="px-3 py-2 bg-yellow-600 hover:bg-yellow-700 text-white rounded text-sm disabled:opacity-50"
+                      :disabled="!history.length" @click="undo">
+                ↶ undo
+              </button>
+              <button class="px-3 py-2 bg-red-600 hover:bg-red-700 text-white rounded text-sm" @click="resetAll">
+                ⟲ reset all
+              </button>
             </div>
           </div>
 
-          <div class="flex items-center gap-2">
-            <input id="lockRatio" type="checkbox" v-model="state.lockRatio" />
-            <label for="lockRatio" class="text-white text-xs">lock aspect ratio (output)</label>
+          <!-- Export -->
+          <div class="space-y-3">
+            <p class="text-white text-xs font-medium">Export Settings</p>
+            <div class="space-y-2">
+              <div>
+                <label class="block text-gray-400 text-xs mb-1">file name</label>
+                <input type="text" v-model="exp.name" placeholder="edited-image"
+                       class="w-full bg-gray-800 text-white border border-gray-600 rounded px-2 py-1 text-sm" />
+              </div>
+              <div>
+                <label class="block text-gray-400 text-xs mb-1">format</label>
+                <select v-model="exp.format"
+                        class="w-full bg-gray-800 text-white border border-gray-600 rounded px-2 py-1 text-sm">
+                  <option value="image/png">PNG (lossless)</option>
+                  <option value="image/jpeg">JPEG</option>
+                  <option :disabled="!exp.webpSupported" value="image/webp">WebP</option>
+                </select>
+              </div>
+              <div>
+                <div class="flex items-center justify-between mb-1">
+                  <label class="text-gray-400 text-xs">quality</label>
+                  <span class="text-gray-300 text-xs">{{ Math.round(exp.quality * 100) }}%</span>
+                </div>
+                <input type="range" min="0.1" max="1" step="0.01" v-model.number="exp.quality"
+                       class="w-full" :disabled="exp.format === 'image/png'" />
+              </div>
+              <div class="flex items-center justify-between text-xs text-gray-400 pt-1">
+                <span>size:</span>
+                <span class="font-mono">{{ exp.size ? prettySize(exp.size) : '—' }}</span>
+              </div>
+              <div class="flex gap-2 pt-2">
+                <button class="flex-1 px-3 py-2 bg-green-600 hover:bg-green-700 text-white rounded text-sm disabled:opacity-50"
+                        :disabled="!exp.url" @click="download">
+                  ⬇ download
+                </button>
+                <button class="px-3 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded text-sm"
+                        @click="refreshEncoded()">⟳</button>
+              </div>
+            </div>
           </div>
         </div>
 
-        <!-- Filters -->
-        <div class="bg-gray-900 border border-gray-700 rounded p-4 space-y-3">
-          <p class="text-white font-medium text-sm">filters</p>
-
-          <div class="space-y-1" v-for="row in sliderRows" :key="row.key">
-            <div class="flex items-center justify-between">
-              <label class="text-white text-xs">{{ row.label }}</label>
-              <span class="text-gray-300 text-xs">{{ Math.round(filters[row.key]) }}</span>
-            </div>
-            <input type="range" :min="row.min" :max="row.max" step="1" v-model.number="filters[row.key]" class="w-full" />
-          </div>
-
-          <div class="flex flex-wrap gap-2">
-            <button class="px-2 py-1 bg-gray-700 hover:bg-gray-600 text-white rounded" @click="preset('none')">none</button>
-            <button class="px-2 py-1 bg-gray-700 hover:bg-gray-600 text-white rounded" @click="preset('bw')">b&w</button>
-            <button class="px-2 py-1 bg-gray-700 hover:bg-gray-600 text-white rounded" @click="preset('punch')">punch</button>
-            <button class="px-2 py-1 bg-gray-700 hover:bg-gray-600 text-white rounded" @click="preset('warm')">warm</button>
-            <button class="px-2 py-1 bg-gray-700 hover:bg-gray-600 text-white rounded" @click="preset('cool')">cool</button>
-          </div>
-        </div>
-
-        <!-- Export -->
-        <div class="bg-gray-900 border border-gray-700 rounded p-4 space-y-3">
-          <p class="text-white font-medium text-sm">export</p>
-
-          <div class="grid grid-cols-2 gap-4">
-            <div>
-              <label class="block text-white text-xs mb-1">file name (no ext)</label>
-              <input type="text" v-model="exp.name" placeholder="edited-image"
-                     class="w-full bg-gray-800 text-white border border-gray-600 rounded px-2 py-1" />
-            </div>
-            <div>
-              <label class="block text-white text-xs mb-1">format</label>
-              <select v-model="exp.format"
-                      class="w-full bg-gray-800 text-white border border-gray-600 rounded px-2 py-1">
-                <option value="image/png">PNG (lossless)</option>
-                <option value="image/jpeg">JPEG</option>
-                <option :disabled="!exp.webpSupported" value="image/webp">WebP</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="space-y-1">
-            <div class="flex items-center justify-between">
-              <label class="text-white text-xs">quality (JPEG/WebP)</label>
-              <span class="text-gray-300 text-xs">{{ Math.round(exp.quality * 100) }}</span>
-            </div>
-            <input type="range" min="0.1" max="1" step="0.01" v-model.number="exp.quality"
-                   class="w-full" :disabled="exp.format === 'image/png'" />
-            <p v-if="exp.format === 'image/png'" class="text-xs text-gray-400">
-              PNG ignores quality (lossless). Use JPEG or WebP for smaller files.
-            </p>
-          </div>
-
-          <div class="flex items-center justify-between text-xs text-gray-300">
-            <span>encoded preview size</span>
-            <span>{{ exp.size ? prettySize(exp.size) : '—' }}</span>
-          </div>
-
-          <div class="flex gap-3">
-            <button class="px-3 py-2 bg-green-600 hover:bg-green-700 text-white rounded disabled:opacity-50"
-                    :disabled="!exp.url" @click="download">
-              download
-            </button>
-            <button class="px-3 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded"
-                    @click="refreshEncoded()">refresh</button>
-          </div>
-        </div>
-
-        <!-- Previews -->
-        <div class="grid grid-cols-2 gap-4">
-          <div>
-            <p class="text-white text-sm mb-2">crop preview</p>
-            <div class="border border-gray-700 rounded overflow-hidden bg-black/30">
-              <canvas ref="cropPreviewRef" class="block"></canvas>
-            </div>
-          </div>
-          <div>
-            <p class="text-white text-sm mb-2">final output preview</p>
-            <div class="border border-gray-700 rounded overflow-hidden bg-black/30">
-              <canvas ref="outputRef" class="block"></canvas>
-            </div>
-            <p class="text-xs text-gray-400 mt-2">{{ state.outW }}×{{ state.outH }}</p>
+        <!-- Output Preview (full width below) -->
+        <div class="mt-6 pt-4 border-t border-gray-700">
+          <p class="text-gray-400 text-xs mb-2">Final Output Preview <span class="text-gray-500">({{ state.outW }}×{{ state.outH }})</span></p>
+          <div class="border border-gray-700 rounded overflow-hidden bg-black/30 max-w-2xl mx-auto">
+            <canvas ref="outputRef" class="block w-full"></canvas>
           </div>
         </div>
       </div>
@@ -217,7 +254,6 @@ const img = reactive<ImgData>({ el: null, loaded: false, naturalW: 0, naturalH: 
 const fileInput = ref<HTMLInputElement | null>(null)
 const stageRef = ref<HTMLDivElement | null>(null)
 const canvasRef = ref<HTMLCanvasElement | null>(null)
-const cropPreviewRef = ref<HTMLCanvasElement | null>(null)
 const outputRef = ref<HTMLCanvasElement | null>(null)
 
 /* Stage constraints (base fit before zoom; CSS px) */
@@ -241,6 +277,7 @@ const state = reactive({ rotate: 0, flipX: false, flipY: false, lockRatio: true,
 const filters = reactive<Record<FilterKey, number>>({
   grayscale: 0, brightness: 100, contrast: 100, saturate: 100, sepia: 0, hue: 0
 })
+const filterIntensity = ref(100) // Global filter intensity: 0-100%
 const sliderRows: Array<{ key: FilterKey; label: string; min: number; max: number }> = [
   { key: 'grayscale', label: 'grayscale', min: 0, max: 100 },
   { key: 'brightness', label: 'brightness', min: 0, max: 200 },
@@ -329,7 +366,7 @@ function applyZoom() {
   c.height = Math.round(stageH.value * ratio)
 
   clampCropToStage()
-  draw(); drawCropPreview(); drawOutputPreview(); scheduleEncodedUpdate()
+  draw(); drawOutputPreview(); scheduleEncodedUpdate()
 }
 function clampCropToStage() {
   const W = stageW.value, H = stageH.value
@@ -394,28 +431,6 @@ function draw() {
   ctx.restore()
 }
 
-/* Crop preview */
-function drawCropPreview() {
-  const cp = cropPreviewRef.value, c = canvasRef.value
-  if (!cp || !c) return
-  const ctx = cp.getContext('2d', { willReadFrequently: true })!
-
-  const ratio = dpr()
-  const sw = Math.max(1, Math.round(crop.w * ratio))
-  const sh = Math.max(1, Math.round(crop.h * ratio))
-  cp.width = sw; cp.height = sh
-  cp.style.width = `${Math.round(crop.w)}px`
-  cp.style.height = `${Math.round(crop.h)}px`
-  ctx.clearRect(0, 0, sw, sh)
-
-  if (!crop.visible || !img.el) return
-  const mctx = c.getContext('2d', { willReadFrequently: true })!
-  const sx = Math.round(crop.x * ratio)
-  const sy = Math.round(crop.y * ratio)
-  const data = mctx.getImageData(sx, sy, sw, sh)
-  ctx.putImageData(data, 0, 0)
-}
-
 /* Apply crop */
 function applyCrop() {
   if (!crop.visible || !img.el) return
@@ -444,7 +459,7 @@ async function loadFromDataURL(url: string, skipHistory = false) {
     setCanvasSize(img.naturalW, img.naturalH)
     state.rotate = 0; state.flipX = false; state.flipY = false
     state.outW = img.naturalW; state.outH = img.naturalH
-    draw(); drawOutputPreview(); drawCropPreview(); scheduleEncodedUpdate()
+    draw(); drawOutputPreview(); scheduleEncodedUpdate()
   }
   el.src = url
   if (!skipHistory) pushHistory()
@@ -458,7 +473,6 @@ function toggleCrop() {
     crop.w = s; crop.h = s; crop.x = (stage.clientWidth - s) / 2; crop.y = (stage.clientHeight - s) / 2
     crop.visible = true
   } else { crop.visible = false }
-  drawCropPreview()
 }
 
 /* Dragging/Resizing crop */
@@ -487,7 +501,6 @@ function onDrag(e: MouseEvent) {
     if (dragMode?.includes('n')) { const ny = clamp(dragStart.cy + dy, 0, dragStart.cy + dragStart.ch - min); h = dragStart.ch + (dragStart.cy - ny); y = ny }
     crop.x = x; crop.y = y; crop.w = w; crop.h = h
   }
-  drawCropPreview()
 }
 function endDrag() {
   dragging = false; dragMode = null
@@ -511,13 +524,32 @@ function drawOutputPreview() {
 }
 
 /* Presets */
-function preset(name: 'none' | 'bw' | 'punch' | 'warm' | 'cool') {
-  if (name === 'none')  Object.assign(filters, { grayscale: 0, brightness: 100, contrast: 100, saturate: 100, sepia: 0, hue: 0 })
+type PresetName = 'none' | 'bw' | 'punch' | 'warm' | 'cool' | 'clarendon' | 'gingham' | 'juno' | 'lark' | 'ludwig' | 'valencia' | 'hudson' | 'toaster'
+
+function preset(name: PresetName) {
+  // Basic presets
+  if (name === 'none') {
+    Object.assign(filters, { grayscale: 0, brightness: 100, contrast: 100, saturate: 100, sepia: 0, hue: 0 })
+    filterIntensity.value = 100
+  }
   if (name === 'bw')    Object.assign(filters, { grayscale: 100, brightness: 110, contrast: 120, saturate: 0,   sepia: 0, hue: 0 })
   if (name === 'punch') Object.assign(filters, { grayscale: 0,   brightness: 105, contrast: 125, saturate: 135, sepia: 0, hue: 0 })
   if (name === 'warm')  Object.assign(filters, { grayscale: 0,   brightness: 105, contrast: 105, saturate: 115, sepia: 10, hue: 350 })
   if (name === 'cool')  Object.assign(filters, { grayscale: 0,   brightness: 100, contrast: 110, saturate: 110, sepia: 0,  hue: 205 })
-  draw(); drawCropPreview(); drawOutputPreview(); scheduleEncodedUpdate()
+
+  // Instagram-inspired presets
+  if (name === 'clarendon') Object.assign(filters, { grayscale: 0, brightness: 110, contrast: 135, saturate: 140, sepia: 0,  hue: 5 })   // Bright, high contrast, vivid
+  if (name === 'gingham')   Object.assign(filters, { grayscale: 0, brightness: 105, contrast: 95,  saturate: 85,  sepia: 15, hue: 350 }) // Vintage, warm undertones
+  if (name === 'juno')      Object.assign(filters, { grayscale: 0, brightness: 100, contrast: 110, saturate: 75,  sepia: 0,  hue: 195 }) // Cool tones, desaturated
+  if (name === 'lark')      Object.assign(filters, { grayscale: 0, brightness: 115, contrast: 125, saturate: 80,  sepia: 5,  hue: 0 })   // Bright, desaturated, high contrast
+  if (name === 'ludwig')    Object.assign(filters, { grayscale: 0, brightness: 105, contrast: 110, saturate: 70,  sepia: 20, hue: 10 })  // Desaturated, vintage
+  if (name === 'valencia')  Object.assign(filters, { grayscale: 0, brightness: 108, contrast: 95,  saturate: 90,  sepia: 25, hue: 355 }) // Warm, faded, vintage
+  if (name === 'hudson')    Object.assign(filters, { grayscale: 0, brightness: 100, contrast: 125, saturate: 65,  sepia: 0,  hue: 200 }) // Cool, desaturated, high contrast
+  if (name === 'toaster')   Object.assign(filters, { grayscale: 0, brightness: 110, contrast: 130, saturate: 100, sepia: 30, hue: 345 }) // Vintage, warm, high contrast
+
+  // Ensure full intensity for presets (except 'none')
+  if (name !== 'none') filterIntensity.value = 100
+  draw(); drawOutputPreview(); scheduleEncodedUpdate()
 }
 
 /* ------- Encoding (quality/format) ------- */
@@ -555,12 +587,26 @@ function scheduleEncodedUpdate() {
 }
 
 /* Reactive glue */
-const cssFilterString = computed(() =>
-    `grayscale(${filters.grayscale}%) brightness(${filters.brightness}%) contrast(${filters.contrast}%) saturate(${filters.saturate}%) sepia(${filters.sepia}%) hue-rotate(${filters.hue}deg)`
-)
+const cssFilterString = computed(() => {
+  // Apply global filter intensity (0-100%)
+  const intensity = filterIntensity.value / 100
+
+  // Default values for each filter (when intensity = 0%)
+  const defaults = { grayscale: 0, brightness: 100, contrast: 100, saturate: 100, sepia: 0, hue: 0 }
+
+  // Interpolate between default and set value based on intensity
+  const grayscale = defaults.grayscale + (filters.grayscale - defaults.grayscale) * intensity
+  const brightness = defaults.brightness + (filters.brightness - defaults.brightness) * intensity
+  const contrast = defaults.contrast + (filters.contrast - defaults.contrast) * intensity
+  const saturate = defaults.saturate + (filters.saturate - defaults.saturate) * intensity
+  const sepia = defaults.sepia + (filters.sepia - defaults.sepia) * intensity
+  const hue = defaults.hue + (filters.hue - defaults.hue) * intensity
+
+  return `grayscale(${grayscale}%) brightness(${brightness}%) contrast(${contrast}%) saturate(${saturate}%) sepia(${sepia}%) hue-rotate(${hue}deg)`
+})
 watch(
-    () => [state.rotate, state.flipX, state.flipY, filters.grayscale, filters.brightness, filters.contrast, filters.saturate, filters.sepia, filters.hue],
-    () => { draw(); drawCropPreview(); drawOutputPreview(); scheduleEncodedUpdate() }
+    () => [state.rotate, state.flipX, state.flipY, filters.grayscale, filters.brightness, filters.contrast, filters.saturate, filters.sepia, filters.hue, filterIntensity.value],
+    () => { draw(); drawOutputPreview(); scheduleEncodedUpdate() }
 )
 watch(
     () => [state.outW, state.outH, state.lockRatio],
@@ -597,6 +643,7 @@ function resetAll() {
   if (!img.url) return
   loadFromDataURL(img.url)
   Object.assign(filters, { grayscale: 0, brightness: 100, contrast: 100, saturate: 100, sepia: 0, hue: 0 })
+  filterIntensity.value = 100
   crop.visible = false
   history.splice(0, history.length)
 }
@@ -611,14 +658,13 @@ function onKey(e: KeyboardEvent) {
   if (e.key === 'ArrowUp')    crop.y = Math.max(0, crop.y - step)
   if (e.key === 'ArrowDown')  crop.y = Math.min(stage.clientHeight - crop.h, crop.y + step)
   if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'z') { e.preventDefault(); undo() }
-  drawCropPreview()
 }
 function clamp(n: number, a: number, b: number) { return Math.min(b, Math.max(a, n)) }
 
 /* Mount/unmount */
 onMounted(() => {
   window.addEventListener('keydown', onKey)
-  ;[canvasRef, cropPreviewRef, outputRef].forEach(r => { if (r.value) { r.value.width = 10; r.value.height = 10 } })
+  ;[canvasRef, outputRef].forEach(r => { if (r.value) { r.value.width = 10; r.value.height = 10 } })
   exp.webpSupported = canEncodeType('image/webp')
 })
 onBeforeUnmount(() => {

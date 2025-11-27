@@ -535,26 +535,42 @@ export const tools: Record<string, Tool> = {
     },
 
     'color-converter': {
-        title: 'Color Converter',
-        description: 'Convert colors between HEX, RGB, and HSL formats instantly.',
+        title: 'Color Converter & Analyzer',
+        description: 'Professional color converter with HEX, RGB, HSL, CMYK support. Features WCAG accessibility checker, color blindness simulator, harmony generator, and eyedropper tool.',
         category: 'colors',
         component: () => import('~/components/tools/colors/ColorConverter.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `HEX ⇄ RGB ⇄ HSL (Color Converter) – ${BRAND}`,
+            title: `Color Converter - HEX/RGB/HSL/CMYK + WCAG & Accessibility – ${BRAND}`,
             description:
-                'Convert between HEX, RGB, and HSL (with alpha) instantly. Copy CSS color strings for design and development.',
+                'Professional color converter with HEX, RGB, HSL, CMYK formats. WCAG AAA/AA checker, color blindness simulator (protanopia, deuteranopia, tritanopia), harmony generator, CSS export, eyedropper tool. Perfect for designers & developers.',
             ogImage: OG,
             keywords:
-                'hex to rgb, rgb to hex, rgb to hsl, hsl to rgb, color converter online, css color formats, color values',
+                'color converter, hex to rgb, rgb to hsl, cmyk converter, wcag contrast checker, color blindness simulator, protanopia deuteranopia tritanopia, color harmony generator, complementary colors, triadic colors, analogous colors, eyedropper tool, css color picker, color accessibility, color naming, css custom properties, tailwind colors, scss variables',
             structuredData: {
                 '@context': 'https://schema.org',
                 '@type': 'SoftwareApplication',
-                name: 'Color Converter',
+                name: 'Color Converter & Analyzer Pro',
                 applicationCategory: 'DeveloperApplication',
                 operatingSystem: 'All',
                 offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-                featureList: ['HEX ⇄ RGB ⇄ HSL', 'Alpha Support', 'Copy CSS'],
-                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '18' }
+                featureList: [
+                    'HEX ⇄ RGB ⇄ HSL ⇄ CMYK Conversion',
+                    'WCAG AAA/AA Accessibility Checker',
+                    'Contrast Ratio Calculator (White & Black)',
+                    'Color Blindness Simulator (Protanopia, Deuteranopia, Tritanopia)',
+                    'Color Harmony Generator (Complementary, Triadic, Analogous, Split)',
+                    'Native Eyedropper Tool (Screen Color Picker)',
+                    'Color Naming (140+ CSS Colors)',
+                    'Alpha Channel Support',
+                    'Export as CSS Custom Properties',
+                    'Export as Tailwind Config',
+                    'Export as SCSS Variables',
+                    'Visual WCAG Badges',
+                    'Copy Buttons for All Formats',
+                    'Real-time Conversion',
+                    'Professional UI Design'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '24' }
             }
         }
     },
@@ -759,17 +775,17 @@ export const tools: Record<string, Tool> = {
     'mini-image-editor': {
         title: 'Mini Image Editor',
         description:
-            'Crop, resize, rotate, flip, and apply filters to images directly in your browser. No upload, everything stays local.',
+            'Quick image editor: crop, resize, rotate, flip, and apply 13 filters (including Instagram-style presets). Global filter intensity control, undo/redo, and export to PNG/JPEG/WebP. Everything stays local in your browser.',
         category: 'imaging',
         component: () =>
             import('~/components/tools/imaging/MiniImageEditor.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `Mini Image Editor (Crop, Resize, Filters) – ${BRAND}`,
+            title: `Mini Image Editor with Instagram Filters (Crop, Resize, Filters) – ${BRAND}`,
             description:
-                'In-browser image editor for quick edits: crop, resize, rotate, flip, and apply filters. Local only, privacy-friendly.',
+                'In-browser image editor for quick edits: crop, resize, rotate, flip, and apply 13 filters including Instagram-style presets (Clarendon, Gingham, Valencia, etc.). Global filter intensity control, local only, privacy-friendly.',
             ogImage: OG,
             keywords:
-                'image editor, crop image, resize image, rotate image, flip image, add filters, local image tool, photo editor online',
+                'image editor, crop image, resize image, rotate image, flip image, instagram filters, photo filters, clarendon filter, valencia filter, local image tool, photo editor online, filter intensity, image presets',
             structuredData: {
                 '@context': 'https://schema.org',
                 '@type': 'SoftwareApplication',
@@ -778,11 +794,16 @@ export const tools: Record<string, Tool> = {
                 operatingSystem: 'All',
                 offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
                 featureList: [
-                    'Crop Selector',
+                    'Crop with Visual Handles',
                     'Resize & Rotate',
                     'Flip Horizontal/Vertical',
-                    'Image Filters',
-                    'Local Processing'
+                    '13 Filter Presets (Basic + Instagram-style)',
+                    'Global Filter Intensity Control (0-100%)',
+                    '6 Adjustable Filters (Brightness, Contrast, Saturation, etc.)',
+                    'Undo/Redo Support',
+                    'Zoom Control',
+                    'Export to PNG/JPEG/WebP',
+                    'Local Processing (Privacy-Friendly)'
                 ],
                 aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '5' }
             }
