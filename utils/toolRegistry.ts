@@ -57,24 +57,35 @@ export const tools: Record<string, Tool> = {
 
     'xml-formatter': {
         title: 'XML Formatter',
-        description: 'Pretty-print and validate XML structures.',
+        description: 'Professional XML formatter with syntax highlighting, statistics, XML to JSON conversion, and XPath query tester. Format, analyze, and convert XML—all client-side.',
         category: 'formatter',
         component: () => import('~/components/tools/formatter/XmlFormatter.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `XML Formatter & Validator (Pretty Print) – ${BRAND}`,
+            title: `XML Formatter with JSON Converter & XPath Tester – ${BRAND}`,
             description:
-                'Beautify and validate XML online. Pretty print, highlight parsing errors, and export clean markup—client-side and private.',
+                'Advanced XML formatter with syntax highlighting, XML to JSON conversion, statistics, and XPath query tester. Format, minify, convert, and analyze XML—all in your browser with complete privacy.',
             ogImage: OG,
             keywords:
-                'xml formatter, xml validator online, pretty print xml, xml beautifier, format xml, xml lint, tidy xml',
+                'xml formatter, xml to json converter, xpath tester, xml validator online, pretty print xml, xml beautifier, format xml, xml lint, tidy xml, xml statistics, xml minify, xml parser',
             structuredData: {
                 '@context': 'https://schema.org',
                 '@type': 'SoftwareApplication',
-                name: 'XML Formatter',
+                name: 'XML Formatter & Converter Pro',
                 applicationCategory: 'DeveloperApplication',
                 operatingSystem: 'All',
                 offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-                featureList: ['Pretty Print XML', 'Validate XML', 'Error Highlighting', 'Copy & Download'],
+                featureList: [
+                    'Format & Beautify XML',
+                    'Syntax Highlighting',
+                    'XML to JSON Conversion',
+                    'XPath Query Tester',
+                    'XML Statistics Dashboard',
+                    'Minify XML',
+                    'Validate XML',
+                    'Auto-format on Paste',
+                    'Custom Indentation',
+                    'Copy & Download (XML or JSON)'
+                ],
                 aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '20' }
             }
         }

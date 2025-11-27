@@ -1,115 +1,242 @@
 <template>
-  <div class="bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-xl space-y-5 text-gray-100">
-    <div  class="flex items-center justify-between gap-3 flex-wrap">
-      <h2 class="text-2xl font-semibold">XML Formatter</h2>
-      <div class="flex items-center gap-2">
-        <button class="btn" @click="clearAll">clear</button>
-        <button class="btn" @click="formatXml">format</button>
-        <button class="btn-primary" @click="copyToClipboard" :disabled="!formatted">copy</button>
-        <button class="btn" @click="downloadXml" :disabled="!formatted">download</button>
+  <div class="bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-xl space-y-6 text-gray-100">
+    <div class="flex items-center justify-between gap-3 flex-wrap">
+      <h2 class="text-2xl font-semibold text-white">XML Formatter</h2>
+      <div class="flex items-center gap-2 flex-wrap">
+        <button class="btn-secondary" @click="clearAll">Clear</button>
+        <button class="btn-primary" @click="formatXml">Format XML</button>
+        <button class="btn-primary" @click="copyToClipboard" :disabled="!formatted">
+          {{ copied ? 'Copied!' : 'Copy' }}
+        </button>
+        <button class="btn-secondary" @click="downloadXml" :disabled="!formatted">Download</button>
       </div>
-    </div >
+    </div>
 
-    <!-- input + import -->
-    <div  class="space-y-2">
-      <div class="flex items-center gap-3 flex-wrap">
-        <label class="label">input</label>
-        <label class="btn cursor-pointer">
-          import .xml
-          <input type="file" class="hidden" accept=".xml,text/xml,application/xml" @change="onFile" />
-        </label>
-        <label class="inline-flex items-center gap-2 ml-auto">
-          <input type="checkbox" v-model="autoFormatOnPaste" class="w-4 h-4" />
-          <span class="text-sm">auto-format on paste</span>
-        </label>
+    <!-- input section -->
+    <div class="bg-gray-900 rounded-xl p-5 border border-gray-700 space-y-3">
+      <div class="flex items-center justify-between gap-3 flex-wrap">
+        <label class="text-sm font-medium text-gray-300">📝 XML Input</label>
+        <div class="flex items-center gap-2 flex-wrap">
+          <label class="btn-secondary cursor-pointer text-sm">
+            Import .xml
+            <input type="file" class="hidden" accept=".xml,text/xml,application/xml" @change="onFile" />
+          </label>
+          <label class="inline-flex items-center gap-2">
+            <input type="checkbox" v-model="autoFormatOnPaste" class="w-4 h-4 accent-indigo-500" />
+            <span class="text-xs text-gray-400">Auto-format on paste</span>
+          </label>
+        </div>
       </div>
 
       <textarea
           v-model="input"
           placeholder="Paste your XML here…"
-          class="w-full min-h-48 p-4 rounded border border-gray-800 bg-gray-950 text-white focus:outline-none focus:ring focus:ring-indigo-500 font-mono resize-y"
+          class="w-full min-h-48 p-4 rounded-lg border border-gray-700 bg-black text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent font-mono text-sm resize-y transition-all"
           @paste="onPaste"
           spellcheck="false"
       ></textarea>
 
-      <div class="text-xs text-gray-400 flex gap-4">
-        <span>chars: {{ input.length }}</span>
-        <span v-if="error" class="text-red-400">{{ error }}</span>
-        <span v-if="copied" class="text-green-400">copied!</span>
+      <div class="flex items-center justify-between gap-3 text-xs">
+        <span class="text-gray-400">{{ input.length.toLocaleString() }} characters</span>
+        <div class="flex gap-3">
+          <span v-if="error" class="text-red-400">❌ {{ error }}</span>
+          <span v-if="copied && !error" class="text-green-400">✓ Copied to clipboard!</span>
+        </div>
       </div>
     </div>
 
     <!-- options -->
-    <div  class="grid grid-cols-1 md:grid-cols-3 gap-4">
-      <div class="card space-y-3">
-        <label class="block">
-          <span class="label">indent type</span>
-          <select v-model="indentKind" class="input">
-            <option value="spaces">spaces</option>
-            <option value="tabs">tabs</option>
-          </select>
-        </label>
-        <label v-if="indentKind === 'spaces'" class="block">
-          <span class="label">indent width</span>
-          <select v-model.number="indentWidth" class="input">
-            <option v-for="n in [2, 3, 4, 6, 8]" :key="n" :value="n">{{ n }}</option>
-          </select>
-        </label>
-        <label class="inline-flex items-center gap-2">
-          <input type="checkbox" v-model="stripWhitespaceText" class="w-4 h-4" />
-          <span class="text-sm">strip whitespace-only text nodes</span>
-        </label>
-      </div>
-
-      <div class="card space-y-3">
-        <label class="inline-flex items-center gap-2">
-          <input type="checkbox" v-model="includeXmlDecl" class="w-4 h-4" />
-          <span class="text-sm">include XML declaration</span>
-        </label>
-
-        <div class="grid grid-cols-2 gap-2">
+    <div class="bg-gray-900 rounded-xl p-5 border border-gray-700">
+      <h3 class="text-sm font-medium text-gray-300 mb-4">⚙️ Formatting Options</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <!-- Indentation -->
+        <div class="space-y-3">
           <label class="block">
-            <span class="label">version</span>
-            <input v-model="xmlVersion" class="input" />
+            <span class="text-xs font-medium text-gray-400 mb-1.5 block">Indent Type</span>
+            <select v-model="indentKind" class="select-input">
+              <option value="spaces">Spaces</option>
+              <option value="tabs">Tabs</option>
+            </select>
           </label>
-          <label class="block">
-            <span class="label">encoding</span>
-            <input v-model="xmlEncoding" class="input" />
+          <label v-if="indentKind === 'spaces'" class="block">
+            <span class="text-xs font-medium text-gray-400 mb-1.5 block">Indent Width</span>
+            <select v-model.number="indentWidth" class="select-input">
+              <option v-for="n in [2, 3, 4, 6, 8]" :key="n" :value="n">{{ n }} spaces</option>
+            </select>
+          </label>
+          <label class="inline-flex items-center gap-2">
+            <input type="checkbox" v-model="stripWhitespaceText" class="w-4 h-4 accent-indigo-500" />
+            <span class="text-xs text-gray-300">Strip whitespace-only text nodes</span>
           </label>
         </div>
 
-        <label class="block">
-          <span class="label">line endings</span>
-          <select v-model="lineEndings" class="input">
-            <option value="lf">LF (\n)</option>
-            <option value="crlf">CRLF (\r\n)</option>
-          </select>
-        </label>
-      </div>
+        <!-- XML Declaration -->
+        <div class="space-y-3">
+          <label class="inline-flex items-center gap-2">
+            <input type="checkbox" v-model="includeXmlDecl" class="w-4 h-4 accent-indigo-500" />
+            <span class="text-xs font-medium text-gray-300">Include XML declaration</span>
+          </label>
 
-      <div class="card space-y-3">
-        <label class="inline-flex items-center gap-2">
-          <input type="checkbox" v-model="minify" class="w-4 h-4" />
-          <span class="text-sm">minify (no pretty indent)</span>
-        </label>
-        <label class="block">
-          <span class="label">download filename</span>
-          <input v-model="filename" class="input" placeholder="formatted.xml" />
-        </label>
-        <button class="btn" @click="formatXml">apply formatting</button>
+          <div class="grid grid-cols-2 gap-2">
+            <label class="block">
+              <span class="text-xs font-medium text-gray-400 mb-1.5 block">Version</span>
+              <input v-model="xmlVersion" class="text-input" />
+            </label>
+            <label class="block">
+              <span class="text-xs font-medium text-gray-400 mb-1.5 block">Encoding</span>
+              <input v-model="xmlEncoding" class="text-input" />
+            </label>
+          </div>
+
+          <label class="block">
+            <span class="text-xs font-medium text-gray-400 mb-1.5 block">Line Endings</span>
+            <select v-model="lineEndings" class="select-input">
+              <option value="lf">LF (\n)</option>
+              <option value="crlf">CRLF (\r\n)</option>
+            </select>
+          </label>
+        </div>
+
+        <!-- Output Options -->
+        <div class="space-y-3">
+          <label class="inline-flex items-center gap-2">
+            <input type="checkbox" v-model="minify" class="w-4 h-4 accent-indigo-500" />
+            <span class="text-xs font-medium text-gray-300">Minify (no indentation)</span>
+          </label>
+          <label class="block">
+            <span class="text-xs font-medium text-gray-400 mb-1.5 block">Download Filename</span>
+            <input v-model="filename" class="text-input" placeholder="formatted.xml" />
+          </label>
+        </div>
       </div>
     </div>
 
     <!-- output -->
-    <div v-if="formatted" class="space-y-2">
-      <label class="label">output</label>
-      <pre class="bg-gray-950 p-4 rounded border border-gray-800 overflow-auto text-sm text-green-300 font-mono whitespace-pre-wrap">{{ formatted }}</pre>
+    <div v-if="formatted" class="bg-gray-900 rounded-xl border border-gray-700 overflow-hidden">
+      <!-- Tab Header -->
+      <div class="bg-gray-800/50 border-b border-gray-700 px-5 py-3 flex items-center justify-between gap-3 flex-wrap">
+        <div class="flex gap-2">
+          <button
+            @click="activeTab = 'xml'"
+            :class="[
+              'px-4 py-2 rounded-lg text-sm font-medium transition-all',
+              activeTab === 'xml'
+                ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/30'
+                : 'bg-gray-700/50 text-gray-300 hover:bg-gray-600'
+            ]"
+          >
+            📄 XML Output
+          </button>
+          <button
+            @click="activeTab = 'json'"
+            :class="[
+              'px-4 py-2 rounded-lg text-sm font-medium transition-all',
+              activeTab === 'json'
+                ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/30'
+                : 'bg-gray-700/50 text-gray-300 hover:bg-gray-600'
+            ]"
+          >
+            🔄 JSON Output
+          </button>
+        </div>
+        <span class="text-xs text-gray-400">{{ activeTab === 'xml' ? 'Formatted XML' : 'Converted to JSON' }}</span>
+      </div>
+
+      <!-- Tab Content -->
+      <div class="p-5">
+        <!-- XML Output -->
+        <div v-if="activeTab === 'xml'">
+          <pre class="bg-black p-4 rounded-lg border border-gray-700 overflow-auto max-h-[600px] text-sm font-mono"><code class="language-markup" v-html="highlightedXml"></code></pre>
+        </div>
+
+        <!-- JSON Output -->
+        <div v-if="activeTab === 'json'">
+          <pre class="bg-black p-4 rounded-lg border border-gray-700 overflow-auto max-h-[600px] text-sm font-mono"><code class="language-json" v-html="highlightedJson"></code></pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- statistics -->
+    <div v-if="stats" class="bg-gray-900 rounded-xl p-5 border border-gray-700">
+      <h3 class="text-sm font-medium text-gray-300 mb-4">📊 XML Statistics</h3>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        <div class="bg-black rounded-lg p-4 text-center border border-gray-800">
+          <div class="text-3xl font-bold text-indigo-400 mb-1">{{ stats.elements }}</div>
+          <div class="text-xs text-gray-400 uppercase tracking-wider">Elements</div>
+        </div>
+        <div class="bg-black rounded-lg p-4 text-center border border-gray-800">
+          <div class="text-3xl font-bold text-green-400 mb-1">{{ stats.attributes }}</div>
+          <div class="text-xs text-gray-400 uppercase tracking-wider">Attributes</div>
+        </div>
+        <div class="bg-black rounded-lg p-4 text-center border border-gray-800">
+          <div class="text-3xl font-bold text-yellow-400 mb-1">{{ stats.maxDepth }}</div>
+          <div class="text-xs text-gray-400 uppercase tracking-wider">Max Depth</div>
+        </div>
+        <div class="bg-black rounded-lg p-4 text-center border border-gray-800">
+          <div class="text-3xl font-bold text-blue-400 mb-1">{{ stats.textNodes }}</div>
+          <div class="text-xs text-gray-400 uppercase tracking-wider">Text Nodes</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- xpath tester -->
+    <div v-if="formatted" class="bg-gray-900 rounded-xl border border-gray-700 overflow-hidden">
+      <button
+        @click="showXpathTester = !showXpathTester"
+        class="w-full px-5 py-4 flex items-center justify-between text-left hover:bg-gray-800 transition-colors"
+      >
+        <span class="text-sm font-medium text-gray-300">🔍 XPath Query Tester</span>
+        <span class="text-gray-400 text-sm">{{ showXpathTester ? '▼ Hide' : '▶ Show' }}</span>
+      </button>
+
+      <div v-if="showXpathTester" class="p-5 space-y-4 border-t border-gray-700 bg-gray-900">
+        <!-- Common XPath examples -->
+        <div class="space-y-2">
+          <label class="text-xs font-medium text-gray-400 uppercase tracking-wider">Quick Examples:</label>
+          <div class="flex flex-wrap gap-2">
+            <button @click="insertXPathExample('//*')" class="px-3 py-1.5 text-xs bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg border border-gray-700 transition-colors">All elements</button>
+            <button @click="insertXPathExample('//@*')" class="px-3 py-1.5 text-xs bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg border border-gray-700 transition-colors">All attributes</button>
+            <button @click="insertXPathExample('//text()')" class="px-3 py-1.5 text-xs bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg border border-gray-700 transition-colors">All text</button>
+            <button @click="insertXPathExample('//*[@id]')" class="px-3 py-1.5 text-xs bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg border border-gray-700 transition-colors">Elements with @id</button>
+            <button @click="insertXPathExample('//*/text()[normalize-space()]')" class="px-3 py-1.5 text-xs bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg border border-gray-700 transition-colors">Non-empty text</button>
+          </div>
+        </div>
+
+        <!-- XPath input -->
+        <div class="space-y-2">
+          <label class="text-xs font-medium text-gray-400 uppercase tracking-wider">XPath Query:</label>
+          <div class="flex gap-2">
+            <input
+              v-model="xpathQuery"
+              type="text"
+              placeholder="Enter XPath query (e.g., //book/title)"
+              class="flex-1 px-4 py-2.5 rounded-lg border border-gray-700 bg-black text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent font-mono text-sm transition-all"
+              @keyup.enter="evaluateXPath"
+            />
+            <button @click="evaluateXPath" class="btn-primary whitespace-nowrap">Run Query</button>
+          </div>
+          <div v-if="xpathError" class="text-xs text-red-400 flex items-center gap-1.5">
+            <span>❌</span>
+            <span>{{ xpathError }}</span>
+          </div>
+        </div>
+
+        <!-- Results -->
+        <div v-if="xpathResults" class="space-y-2">
+          <label class="text-xs font-medium text-gray-400 uppercase tracking-wider">Results:</label>
+          <pre class="bg-black p-4 rounded-lg border border-gray-700 text-xs text-green-300 font-mono whitespace-pre-wrap overflow-auto max-h-64">{{ xpathResults }}</pre>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed, onMounted } from 'vue'
+import Prism from 'prismjs'
+import 'prismjs/components/prism-markup'
+import 'prismjs/components/prism-json'
+import 'prismjs/themes/prism-tomorrow.css'
 
 /** state */
 const input = ref<string>('')
@@ -118,6 +245,24 @@ const error = ref<string>('')
 
 const copied = ref<boolean>(false)
 const autoFormatOnPaste = ref<boolean>(false)
+
+interface XmlStats {
+  elements: number
+  attributes: number
+  maxDepth: number
+  textNodes: number
+}
+const stats = ref<XmlStats | null>(null)
+
+type OutputTab = 'xml' | 'json'
+const activeTab = ref<OutputTab>('xml')
+const jsonOutput = ref<string>('')
+
+// XPath tester
+const xpathQuery = ref<string>('')
+const xpathResults = ref<string>('')
+const xpathError = ref<string>('')
+const showXpathTester = ref<boolean>(false)
 
 type IndentKind = 'spaces' | 'tabs'
 type LineEndings = 'lf' | 'crlf'
@@ -134,12 +279,25 @@ const lineEndings = ref<LineEndings>('lf')
 const minify = ref<boolean>(false)
 const filename = ref<string>('formatted.xml')
 
+/** computed */
+const highlightedXml = computed<string>(() => {
+  if (!formatted.value) return ''
+  return Prism.highlight(formatted.value, Prism.languages.markup, 'markup')
+})
+
+const highlightedJson = computed<string>(() => {
+  if (!jsonOutput.value) return ''
+  return Prism.highlight(jsonOutput.value, Prism.languages.json, 'json')
+})
+
 /** actions */
 function clearAll(): void {
   input.value = ''
   formatted.value = ''
+  jsonOutput.value = ''
   error.value = ''
   copied.value = false
+  stats.value = null
 }
 
 function onFile(e: Event): void {
@@ -159,8 +317,9 @@ function onPaste(): void {
 }
 
 async function copyToClipboard(): Promise<void> {
-  if (!formatted.value) return
-  await navigator.clipboard.writeText(formatted.value)
+  const textToCopy = activeTab.value === 'json' ? jsonOutput.value : formatted.value
+  if (!textToCopy) return
+  await navigator.clipboard.writeText(textToCopy)
   copied.value = true
   window.setTimeout(() => {
     copied.value = false
@@ -168,20 +327,34 @@ async function copyToClipboard(): Promise<void> {
 }
 
 function downloadXml(): void {
-  if (!formatted.value) return
-  const blob = new Blob([formatted.value], { type: 'application/xml' })
-  const url = URL.createObjectURL(blob)
-  const a = document.createElement('a')
-  a.href = url
-  a.download = safeName(filename.value || 'formatted.xml')
-  a.click()
-  URL.revokeObjectURL(url)
+  if (activeTab.value === 'json') {
+    if (!jsonOutput.value) return
+    const blob = new Blob([jsonOutput.value], { type: 'application/json' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    const baseName = filename.value.replace(/\.xml$/, '') || 'formatted'
+    a.download = `${baseName}.json`
+    a.click()
+    URL.revokeObjectURL(url)
+  } else {
+    if (!formatted.value) return
+    const blob = new Blob([formatted.value], { type: 'application/xml' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = safeName(filename.value || 'formatted.xml')
+    a.click()
+    URL.revokeObjectURL(url)
+  }
 }
 
 /** main formatter */
 function formatXml(): void {
   error.value = ''
   formatted.value = ''
+  jsonOutput.value = ''
+  stats.value = null
   try {
     const doc = parseXml(input.value)
     const eol = lineEndings.value === 'lf' ? '\n' : '\r\n'
@@ -193,6 +366,13 @@ function formatXml(): void {
 
     const decl = includeXmlDecl.value ? `<?xml version="${xmlVersion.value}" encoding="${xmlEncoding.value}"?>${eol}` : ''
     formatted.value = normalizeEol(decl + body, eol)
+
+    // Calculate statistics
+    stats.value = calculateStats(doc)
+
+    // Generate JSON output
+    const jsonObj = xmlToJson(doc.documentElement)
+    jsonOutput.value = JSON.stringify(jsonObj, null, 2)
   } catch (err) {
     const msg = (err as Error).message || 'Invalid XML'
     error.value = msg
@@ -312,12 +492,167 @@ function safeName(n: string): string {
   const name = base.endsWith('.xml') ? base : `${base}.xml`
   return name.replace(/[^\w.\-]+/g, '_')
 }
+
+/** statistics */
+function calculateStats(doc: Document): XmlStats {
+  let elements = 0
+  let attributes = 0
+  let maxDepth = 0
+  let textNodes = 0
+
+  const walk = (node: Node, depth: number): void => {
+    maxDepth = Math.max(maxDepth, depth)
+
+    if (node.nodeType === 1) { // ELEMENT_NODE
+      elements++
+      const el = node as Element
+      attributes += el.attributes.length
+
+      for (const child of Array.from(node.childNodes)) {
+        walk(child, depth + 1)
+      }
+    } else if (node.nodeType === 3) { // TEXT_NODE
+      const text = (node.nodeValue ?? '').trim()
+      if (text) textNodes++
+    }
+  }
+
+  if (doc.documentElement) {
+    walk(doc.documentElement, 0)
+  }
+
+  return { elements, attributes, maxDepth, textNodes }
+}
+
+/** xml to json conversion */
+function xmlToJson(element: Element | null): any {
+  if (!element) return null
+
+  const obj: any = {}
+
+  // Add attributes with @ prefix
+  if (element.attributes.length > 0) {
+    obj['@attributes'] = {}
+    for (const attr of Array.from(element.attributes)) {
+      obj['@attributes'][attr.name] = attr.value
+    }
+  }
+
+  // Process child nodes
+  const children = Array.from(element.childNodes)
+  let textContent = ''
+
+  for (const child of children) {
+    if (child.nodeType === 3) { // TEXT_NODE
+      textContent += child.nodeValue ?? ''
+    } else if (child.nodeType === 1) { // ELEMENT_NODE
+      const childElement = child as Element
+      const childName = childElement.tagName
+      const childValue = xmlToJson(childElement)
+
+      if (obj[childName]) {
+        // If already exists, convert to array
+        if (!Array.isArray(obj[childName])) {
+          obj[childName] = [obj[childName]]
+        }
+        obj[childName].push(childValue)
+      } else {
+        obj[childName] = childValue
+      }
+    }
+  }
+
+  // If element has only text content and no children
+  textContent = textContent.trim()
+  if (textContent && Object.keys(obj).length === 0) {
+    return textContent
+  } else if (textContent && Object.keys(obj).filter(k => k !== '@attributes').length === 0) {
+    obj['#text'] = textContent
+  }
+
+  return obj
+}
+
+/** xpath query tester */
+function evaluateXPath(): void {
+  xpathError.value = ''
+  xpathResults.value = ''
+
+  if (!xpathQuery.value.trim()) {
+    xpathError.value = 'Please enter an XPath query'
+    return
+  }
+
+  if (!input.value.trim()) {
+    xpathError.value = 'Please provide XML input first'
+    return
+  }
+
+  try {
+    const doc = parseXml(input.value)
+    const results = doc.evaluate(
+      xpathQuery.value,
+      doc.documentElement,
+      null,
+      XPathResult.ANY_TYPE,
+      null
+    )
+
+    const matches: string[] = []
+    let node = results.iterateNext()
+
+    while (node) {
+      if (node.nodeType === 1) {
+        // ELEMENT_NODE
+        matches.push(`<${(node as Element).tagName}>`)
+      } else if (node.nodeType === 3) {
+        // TEXT_NODE
+        const text = (node.nodeValue ?? '').trim()
+        if (text) matches.push(`"${text}"`)
+      } else if (node.nodeType === 2) {
+        // ATTRIBUTE_NODE
+        matches.push(`@${node.nodeName}="${node.nodeValue}"`)
+      }
+      node = results.iterateNext()
+    }
+
+    if (matches.length === 0) {
+      xpathResults.value = 'No matches found'
+    } else {
+      xpathResults.value = `Found ${matches.length} match${matches.length > 1 ? 'es' : ''}:\n\n${matches.join('\n')}`
+    }
+  } catch (err) {
+    xpathError.value = `XPath error: ${(err as Error).message}`
+  }
+}
+
+function insertXPathExample(example: string): void {
+  xpathQuery.value = example
+}
 </script>
 
 <style scoped>
-.label { @apply text-sm text-gray-300; }
-.input { @apply text-black w-full px-3 py-2 rounded-md border border-gray-300; }
-.btn { @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded text-white text-sm disabled:opacity-50 disabled:cursor-not-allowed; }
-.btn-primary { @apply bg-indigo-600 hover:bg-indigo-500 px-3 py-1.5 rounded text-white text-sm; }
-.card { @apply bg-gray-800/60 rounded-xl p-4 border border-gray-800; }
+.select-input {
+  @apply w-full px-3 py-2 rounded-lg border border-gray-700 bg-black text-white text-sm;
+  @apply focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent;
+  @apply transition-all;
+}
+
+.text-input {
+  @apply w-full px-3 py-2 rounded-lg border border-gray-700 bg-black text-white text-sm;
+  @apply focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent;
+  @apply font-mono transition-all;
+}
+
+.btn-primary {
+  @apply bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded-lg text-white text-sm font-medium;
+  @apply disabled:opacity-50 disabled:cursor-not-allowed;
+  @apply transition-all shadow-lg shadow-indigo-600/20 hover:shadow-indigo-600/40;
+}
+
+.btn-secondary {
+  @apply bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-lg text-white text-sm font-medium;
+  @apply disabled:opacity-50 disabled:cursor-not-allowed;
+  @apply transition-all;
+}
 </style>
