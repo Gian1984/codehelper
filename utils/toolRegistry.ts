@@ -863,17 +863,17 @@ export const tools: Record<string, Tool> = {
 
     'unit-converter': {
         title: 'Unit Converter',
-        description: 'Convert length, weight, temperature, speed, and CSS units (px ↔ em ↔ rem).',
+        description: 'Convert length, weight, temperature, speed, pressure, energy, power, area, volume, and CSS units with search and favorites.',
         category: 'converter',
         component: () =>
             import('~/components/tools/converter/UnitConverter.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `Unit Converter (Length, Weight, Temperature, Speed, CSS) – ${BRAND}`,
+            title: `Unit Converter (Length, Weight, Temperature, Speed, Pressure, Energy, Power) – ${BRAND}`,
             description:
-                'Convert SI and imperial units—including meters, miles, kg, lb, °C/°F/K, mph, km/h—and CSS px/rem/em values.',
+                'Convert 80+ units across 9 categories: length, area, volume, weight, speed, temperature, pressure, energy, power, and CSS units. Search units, save favorites, track recent conversions.',
             ogImage: OG,
             keywords:
-                'unit converter, length converter, weight converter, temperature converter, speed converter, px to rem, px to em, metric to imperial',
+                'unit converter, length converter, weight converter, temperature converter, speed converter, pressure converter, energy converter, power converter, area converter, volume converter, px to rem, px to em, metric to imperial, unit search, favorite units',
             structuredData: {
                 '@context': 'https://schema.org',
                 '@type': 'SoftwareApplication',
@@ -881,7 +881,21 @@ export const tools: Record<string, Tool> = {
                 applicationCategory: 'UtilityApplication',
                 operatingSystem: 'All',
                 offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-                featureList: ['Length', 'Weight', 'Temperature', 'Speed', 'CSS px/rem/em'],
+                featureList: [
+                    'Length (km, m, mi, ft, in)',
+                    'Area (km², m², acre, hectare)',
+                    'Volume (m³, L, gal)',
+                    'Weight (kg, lb, oz, stone)',
+                    'Speed (m/s, km/h, mph, knot)',
+                    'Temperature (°C, °F, K)',
+                    'Pressure (Pa, bar, atm, psi)',
+                    'Energy (J, kWh, cal, BTU)',
+                    'Power (W, kW, hp)',
+                    'CSS Units (px/rem/em)',
+                    'Search & filter units',
+                    'Favorites with localStorage',
+                    'Recent conversions'
+                ],
                 aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '3' }
             }
         }
