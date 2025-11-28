@@ -1,17 +1,17 @@
 <template>
-  <div class="bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-xl space-y-6 text-gray-100">
+  <div class="space-y-6 bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-xl text-white">
     <!-- Header -->
-    <div class="flex items-center justify-between gap-3 flex-wrap">
+    <div class="card flex items-center justify-between gap-3 flex-wrap">
       <div>
-        <h2 class="text-2xl font-semibold">JSON Formatter</h2>
+        <h2 class="text-2xl font-semibold">✨ JSON Formatter</h2>
         <p class="text-sm text-gray-400 mt-1">Format, validate, and analyze JSON with advanced tools</p>
       </div>
       <div class="flex items-center gap-2 flex-wrap">
-        <button class="btn-action" @click="formatJson" title="Format JSON">
-          <span class="text-lg">✨</span> Format
+        <button class="btn-primary" @click="formatJson" title="Format JSON">
+          ✨ Format
         </button>
-        <button class="btn-action" @click="clearAll" title="Clear all">
-          <span class="text-lg">🗑️</span> Clear
+        <button class="btn" @click="clearAll" title="Clear all">
+          🗑️ Clear
         </button>
       </div>
     </div>
@@ -19,14 +19,14 @@
     <!-- Input Section -->
     <div class="card space-y-3">
       <div class="flex items-center justify-between gap-3 flex-wrap">
-        <label class="label font-medium">📝 Input JSON</label>
+        <label class="label">📝 Input JSON</label>
         <div class="flex items-center gap-2 flex-wrap">
-          <label class="btn-file cursor-pointer">
+          <label class="btn cursor-pointer">
             📁 Import File
             <input type="file" class="hidden" accept=".json,application/json,text/plain" @change="onFile" />
           </label>
-          <label class="inline-flex items-center gap-2">
-            <input type="checkbox" v-model="autoFormatOnPaste" class="w-4 h-4 accent-indigo-500" />
+          <label class="inline-flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" v-model="autoFormatOnPaste" />
             <span class="text-sm text-gray-300">Auto-format on paste</span>
           </label>
         </div>
@@ -35,7 +35,7 @@
       <textarea
           v-model="input"
           placeholder="Paste your JSON here... (supports comments and trailing commas)"
-          class="w-full min-h-56 p-4 rounded-lg border-2 border-gray-700 bg-gray-950 text-white focus:outline-none focus:border-indigo-500 font-mono resize-y text-sm transition-colors"
+          class="input font-mono resize-y min-h-[120px]"
           spellcheck="false"
           @paste="onPaste"
       ></textarea>
@@ -46,7 +46,7 @@
           <span v-if="stats">Lines: {{ stats.lines }}</span>
         </div>
         <div class="flex gap-4">
-          <span v-if="error" class="text-red-400 font-medium">❌ {{ error }}</span>
+          <span v-if="error" class="warn">❌ {{ error }}</span>
           <span v-if="copiedMsg" class="text-green-400 font-medium">✅ {{ copiedMsg }}</span>
         </div>
       </div>
@@ -54,65 +54,59 @@
 
     <!-- Options -->
     <details class="card" open>
-      <summary class="label font-medium cursor-pointer select-none hover:text-white transition-colors mb-4">
+      <summary class="label font-semibold cursor-pointer select-none hover:text-indigo-400 transition-colors mb-4">
         ⚙️ Format Options
       </summary>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <!-- Indentation -->
         <div class="space-y-2">
-          <label class="block">
-            <span class="label text-xs">Indent Type</span>
-            <select v-model="indentKind" class="input-sm">
-              <option value="spaces">Spaces</option>
-              <option value="tabs">Tabs</option>
-            </select>
-          </label>
-          <label v-if="indentKind==='spaces'" class="block">
-            <span class="label text-xs">Width</span>
-            <select v-model.number="indentWidth" class="input-sm">
-              <option v-for="n in [2,3,4,6,8]" :key="n" :value="n">{{ n }}</option>
-            </select>
-          </label>
+          <label class="label">Indent Type</label>
+          <select v-model="indentKind" class="input">
+            <option value="spaces">Spaces</option>
+            <option value="tabs">Tabs</option>
+          </select>
+          <label v-if="indentKind==='spaces'" class="label mt-3">Width</label>
+          <select v-if="indentKind==='spaces'" v-model.number="indentWidth" class="input">
+            <option v-for="n in [2,3,4,6,8]" :key="n" :value="n">{{ n }}</option>
+          </select>
         </div>
 
         <!-- Processing Options -->
         <div class="space-y-2">
-          <label class="checkbox-label">
-            <input type="checkbox" v-model="sortKeys" class="checkbox" />
-            <span>Sort keys (deep)</span>
+          <label class="inline-flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" v-model="sortKeys" />
+            <span class="text-sm text-gray-300">Sort keys (deep)</span>
           </label>
-          <label class="checkbox-label">
-            <input type="checkbox" v-model="allowComments" class="checkbox" />
-            <span>Accept comments (JSONC)</span>
+          <label class="inline-flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" v-model="allowComments" />
+            <span class="text-sm text-gray-300">Accept comments (JSONC)</span>
           </label>
-          <label class="checkbox-label">
-            <input type="checkbox" v-model="stripTrailingCommas" class="checkbox" />
-            <span>Strip trailing commas</span>
+          <label class="inline-flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" v-model="stripTrailingCommas" />
+            <span class="text-sm text-gray-300">Strip trailing commas</span>
           </label>
         </div>
 
         <!-- Download -->
         <div class="space-y-2">
-          <label class="block">
-            <span class="label text-xs">Download Filename</span>
-            <input v-model="filename" class="input-sm" placeholder="formatted.json" />
-          </label>
+          <label class="label">Download Filename</label>
+          <input v-model="filename" class="input" placeholder="formatted.json" />
         </div>
 
         <!-- Stats -->
-        <div v-if="stats" class="space-y-1 text-xs text-gray-400">
-          <div class="font-semibold text-gray-300 mb-2">📊 Statistics</div>
-          <div>Size: {{ stats.pretty }} → {{ stats.min }}</div>
-          <div>Saved: {{ stats.ratio }}</div>
-          <div>Lines: {{ stats.lines }}</div>
-          <div>Objects: {{ stats.objects }} • Arrays: {{ stats.arrays }}</div>
+        <div v-if="stats" class="card space-y-1 !p-3">
+          <h3 class="label !mb-1">📊 Statistics</h3>
+          <div class="mono-box !p-2">Size: {{ stats.pretty }} → {{ stats.min }}</div>
+          <div class="mono-box !p-2">Saved: {{ stats.ratio }}</div>
+          <div class="mono-box !p-2">Lines: {{ stats.lines }}</div>
+          <div class="mono-box !p-2">Objects: {{ stats.objects }} • Arrays: {{ stats.arrays }}</div>
         </div>
       </div>
     </details>
 
     <!-- schema validation section -->
-    <div class="space-y-3">
+    <div class="card space-y-3">
       <button
         @click="showSchemaValidator = !showSchemaValidator"
         class="btn flex items-center gap-2"
@@ -121,13 +115,13 @@
         🔍 JSON Schema Validation
       </button>
 
-      <div v-if="showSchemaValidator" class="space-y-3 bg-gray-800/60 rounded-xl p-4 border border-gray-800">
+      <div v-if="showSchemaValidator" class="card">
         <div class="space-y-2">
           <label class="label">JSON Schema</label>
           <textarea
             v-model="schemaInput"
             placeholder='Paste JSON Schema here (e.g., {"type": "object", "properties": {...}})'
-            class="w-full min-h-32 p-4 rounded border border-gray-800 bg-gray-950 text-white focus:outline-none focus:ring focus:ring-indigo-500 font-mono resize-y text-sm"
+            class="input font-mono resize-y min-h-[120px]"
             spellcheck="false"
           ></textarea>
         </div>
@@ -153,12 +147,12 @@
 
         <div v-if="isValid === false && validationErrors.length > 0" class="space-y-2">
           <div class="bg-red-900/20 border border-red-700 rounded p-4">
-            <h3 class="text-red-400 font-semibold mb-3">❌ Validation Errors ({{ validationErrors.length }})</h3>
+            <h3 class="label">❌ Validation Errors ({{ validationErrors.length }})</h3>
             <div class="space-y-3">
               <div
                 v-for="(err, idx) in validationErrors"
                 :key="idx"
-                class="bg-gray-900/50 rounded p-3 text-sm space-y-1"
+                class="bg-gray-800 rounded-lg p-3 border border-gray-700 text-sm space-y-1"
               >
                 <div class="text-yellow-300">
                   <span class="font-mono">{{ err.path }}</span>
@@ -182,21 +176,21 @@
       <div class="flex gap-2">
         <button
           @click="viewMode = 'text'"
-          :class="['px-4 py-2 rounded-t text-sm font-medium transition-colors', viewMode === 'text' ? 'bg-indigo-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600']"
+          :class="['btn', viewMode === 'text' ? 'bg-indigo-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600']"
           :disabled="!formatted && viewMode !== 'text'"
         >
           📝 Text
         </button>
         <button
           @click="viewMode = 'tree'"
-          :class="['px-4 py-2 rounded-t text-sm font-medium transition-colors', viewMode === 'tree' ? 'bg-indigo-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600']"
+          :class="['btn', viewMode === 'tree' ? 'bg-indigo-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600']"
           :disabled="!parsedObject"
         >
           🌳 Tree
         </button>
         <button
           @click="viewMode = 'diff'"
-          :class="['px-4 py-2 rounded-t text-sm font-medium transition-colors', viewMode === 'diff' ? 'bg-indigo-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600']"
+          :class="['btn', viewMode === 'diff' ? 'bg-indigo-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600']"
         >
           🔀 Diff
         </button>
@@ -204,13 +198,13 @@
 
       <!-- Actions for formatted output -->
       <div v-if="formatted && viewMode !== 'diff'" class="flex items-center gap-2">
-        <button class="btn-icon" @click="copyPretty" title="Copy formatted">
+        <button class="btn" @click="copyPretty" title="Copy formatted">
           📋 Copy
         </button>
-        <button class="btn-icon" @click="copyMinified" title="Copy minified">
+        <button class="btn" @click="copyMinified" title="Copy minified">
           🗜️ Minified
         </button>
-        <button class="btn-icon" @click="downloadJson" title="Download JSON">
+        <button class="btn" @click="downloadJson" title="Download JSON">
           💾 Download
         </button>
       </div>
@@ -219,8 +213,8 @@
     <!-- Text View -->
     <div v-if="viewMode === 'text'" class="card">
       <div v-if="formatted" class="space-y-2">
-        <label class="label font-medium">📄 Formatted Output</label>
-        <pre class="bg-gray-950 p-4 rounded-lg border-2 border-gray-700 overflow-auto text-sm font-mono max-h-[600px]"><code class="language-json" v-html="highlightedCode"></code></pre>
+        <label class="label">📄 Formatted Output</label>
+        <pre class="mono-box max-h-[600px]"><code class="language-json" v-html="highlightedCode"></code></pre>
       </div>
       <div v-else class="text-center py-16 text-gray-500">
         <div class="text-4xl mb-4">📝</div>
@@ -231,8 +225,8 @@
     <!-- Tree View -->
     <div v-if="viewMode === 'tree'" class="card">
       <div v-if="parsedObject" class="space-y-2">
-        <label class="label font-medium">🌳 Tree View</label>
-        <div class="bg-gray-950 p-4 rounded-lg border-2 border-gray-700 overflow-auto max-h-[600px]">
+        <label class="label">🌳 Tree View</label>
+        <div class="mono-box max-h-[600px] !p-3">
           <ClientOnly>
             <JsonViewer
               :value="parsedObject"
@@ -253,7 +247,7 @@
     </div>
 
     <!-- Diff View -->
-    <div v-if="viewMode === 'diff'" class="space-y-4">
+    <div v-if="viewMode === 'diff'" class="card space-y-4">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <!-- JSON A -->
         <div class="space-y-2">
@@ -261,7 +255,7 @@
           <textarea
             v-model="input"
             placeholder="Paste first JSON here…"
-            class="w-full min-h-48 p-4 rounded border border-gray-800 bg-gray-950 text-white focus:outline-none focus:ring focus:ring-indigo-500 font-mono resize-y"
+            class="input font-mono resize-y min-h-[120px]"
             spellcheck="false"
           ></textarea>
         </div>
@@ -272,7 +266,7 @@
           <textarea
             v-model="inputB"
             placeholder="Paste second JSON here…"
-            class="w-full min-h-48 p-4 rounded border border-gray-800 bg-gray-950 text-white focus:outline-none focus:ring focus:ring-indigo-500 font-mono resize-y"
+            class="input font-mono resize-y min-h-[120px]"
             spellcheck="false"
           ></textarea>
         </div>
@@ -283,22 +277,22 @@
       <!-- Diff Results -->
       <div v-if="diffResult" class="space-y-4">
         <ClientOnly>
-          <div v-if="Object.keys(diffResult.added).length > 0" class="bg-green-900/20 border border-green-700 rounded p-4">
-            <h3 class="text-green-400 font-semibold mb-2">✅ Added</h3>
+          <div v-if="Object.keys(diffResult.added).length > 0" class="bg-green-900/20 border border-green-700 rounded-lg p-4">
+            <h3 class="label">✅ Added</h3>
             <JsonViewer :value="diffResult.added" :expand-depth="5" theme="dark" copyable />
           </div>
 
-          <div v-if="Object.keys(diffResult.deleted).length > 0" class="bg-red-900/20 border border-red-700 rounded p-4">
-            <h3 class="text-red-400 font-semibold mb-2">❌ Deleted</h3>
+          <div v-if="Object.keys(diffResult.deleted).length > 0" class="bg-red-900/20 border border-red-700 rounded-lg p-4">
+            <h3 class="label">❌ Deleted</h3>
             <JsonViewer :value="diffResult.deleted" :expand-depth="5" theme="dark" copyable />
           </div>
 
-          <div v-if="Object.keys(diffResult.updated).length > 0" class="bg-yellow-900/20 border border-yellow-700 rounded p-4">
-            <h3 class="text-yellow-400 font-semibold mb-2">📝 Modified</h3>
+          <div v-if="Object.keys(diffResult.updated).length > 0" class="bg-yellow-900/20 border border-yellow-700 rounded-lg p-4">
+            <h3 class="label">📝 Modified</h3>
             <JsonViewer :value="diffResult.updated" :expand-depth="5" theme="dark" copyable />
           </div>
 
-          <div v-if="Object.keys(diffResult.added).length === 0 && Object.keys(diffResult.deleted).length === 0 && Object.keys(diffResult.updated).length === 0" class="bg-blue-900/20 border border-blue-700 rounded p-4">
+          <div v-if="Object.keys(diffResult.added).length === 0 && Object.keys(diffResult.deleted).length === 0 && Object.keys(diffResult.updated).length === 0" class="bg-blue-900/20 border border-blue-700 rounded-lg p-4">
             <p class="text-blue-400">✨ JSONs are identical!</p>
           </div>
         </ClientOnly>
@@ -775,31 +769,48 @@ function safeName(n: string): string {
 </script>
 
 <style scoped>
-.label { @apply text-sm text-gray-300; }
-.input { @apply text-black w-full px-3 py-2 rounded-md border border-gray-300; }
-.input-sm { @apply text-white px-2 py-1.5 rounded border border-gray-700 bg-gray-900 text-sm w-full; }
-
-.btn { @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded text-white text-sm disabled:opacity-50 disabled:cursor-not-allowed; }
-.btn-primary { @apply bg-indigo-600 hover:bg-indigo-500 px-3 py-1.5 rounded text-white text-sm; }
-.btn-action {
-  @apply bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded-lg text-white text-sm font-medium transition-colors flex items-center gap-2;
+.label {
+  @apply text-sm font-medium text-gray-300 block mb-2;
 }
-.btn-icon {
-  @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded-lg text-white text-xs font-medium transition-colors;
+.sub {
+  @apply block text-[10px] text-gray-400 mb-1 uppercase tracking-wide;
 }
-.btn-file {
-  @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded text-white text-sm transition-colors;
+.input {
+  @apply bg-black text-white border-2 border-gray-700 rounded-lg px-3 py-2 w-full;
+  @apply focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all;
 }
-
+select.input {
+  @apply appearance-none;
+  padding-right: 2.5rem;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+}
+textarea.input {
+  @apply resize-y;
+}
+/* Checkbox styles */
+input[type="checkbox"] {
+  @apply w-4 h-4 rounded border-gray-600 bg-gray-900 text-indigo-600 focus:ring-indigo-500;
+}
+code {
+  @apply bg-gray-800 px-1 py-0.5 rounded text-xs;
+}
+.btn {
+  @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded-lg text-white text-sm transition-colors;
+}
+.btn-primary {
+  @apply bg-indigo-600 hover:bg-indigo-500 px-4 py-1.5 rounded-lg text-white text-sm font-medium transition-colors shadow-lg;
+}
 .card {
-  @apply bg-gray-800/60 rounded-xl p-5 border border-gray-700/50 shadow-lg;
+  @apply bg-gray-900 rounded-xl p-5 border border-gray-700;
 }
-
-.checkbox {
-  @apply w-4 h-4 accent-indigo-500 rounded;
+.mono-box {
+  @apply bg-gray-800 text-green-300 font-mono text-sm p-3 rounded-lg border border-gray-700 overflow-x-auto;
 }
-.checkbox-label {
-  @apply flex items-center gap-2 text-sm text-gray-300 hover:text-white transition-colors cursor-pointer;
+.warn {
+  @apply text-sm text-red-400 bg-red-900/20 p-2 rounded-lg border border-red-700;
 }
 
 /* JsonViewer dark theme integration */
@@ -813,24 +824,23 @@ function safeName(n: string): string {
 }
 
 :deep(.jv-key) {
-  color: #60a5fa !important;
+  color: #60a5fa !important; /* Tailwind blue-400 */
 }
 
 :deep(.jv-item.jv-string) {
-  color: #34d399 !important;
+  color: #34d399 !important; /* Tailwind green-400 */
 }
 
 :deep(.jv-item.jv-number) {
-  color: #fbbf24 !important;
+  color: #fbbf24 !important; /* Tailwind yellow-400 */
 }
 
 :deep(.jv-item.jv-boolean) {
-  color: #c084fc !important;
+  color: #c084fc !important; /* Tailwind purple-400 */
 }
 
 :deep(.jv-button) {
-  color: #9ca3af !important;
+  color: #9ca3af !important; /* Tailwind gray-400 */
 }
 </style>
-
 

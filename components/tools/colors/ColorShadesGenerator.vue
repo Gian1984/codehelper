@@ -1,101 +1,128 @@
 <template>
-  <div class="bg-gray-800 p-6 sm:p-8 rounded-2xl shadow space-y-6 text-white">
-    <div class="flex items-center justify-between gap-3 flex-wrap">
-      <h2 class="text-2xl font-semibold">Color Shades Generator</h2>
-      <span v-if="copiedMsg" class="text-green-400 text-sm">{{ copiedMsg }}</span>
+  <div class="space-y-6 bg-gray-800 p-6 sm:p-8 rounded-2xl shadow text-white">
+    <!-- Header -->
+    <div class="bg-gray-900 rounded-xl p-5 border border-gray-700">
+      <div class="flex items-center justify-between gap-3 flex-wrap">
+        <h2 class="text-2xl font-semibold">🌗 Color Shades Generator</h2>
+        <div class="flex items-center gap-2">
+          <button class="btn" @click="reset">↺ reset</button>
+        </div>
+      </div>
     </div>
 
-    <!-- Base color + controls -->
-    <div class="grid lg:grid-cols-3 gap-6">
-      <div class="card p-4 space-y-3">
-        <label class="block text-sm text-gray-300">Base color (HEX)</label>
+    <!-- Controls Grid -->
+    <div class="grid lg:grid-cols-2 gap-6">
+      <!-- Base Color -->
+      <div class="card space-y-3">
+        <label class="label">🎨 Base Color (HEX)</label>
         <div class="flex items-center gap-3">
-          <input v-model="hex" type="color" class="w-12 h-10 p-0 rounded border border-gray-600" />
+          <input v-model="hex" type="color" class="w-12 h-12 p-1 border-2 border-gray-700 rounded-lg bg-black cursor-pointer" />
           <input
               v-model.trim="hex"
               @blur="normalizeHex"
               maxlength="7"
-              class="input mono w-36"
+              class="input font-mono w-full"
               placeholder="#0099ff"
           />
         </div>
-        <p class="text-xs text-gray-400">Tip: you can paste any 6-digit hex (#RRGGBB).</p>
+        <p class="text-xs text-gray-400">Paste any 6-digit hex (#RRGGBB).</p>
       </div>
 
-      <div class="card p-4 space-y-3">
+      <!-- Generation Settings -->
+      <div class="card space-y-3">
+        <label class="label">⚙️ Generation Settings</label>
+        
         <div class="flex items-center justify-between">
-          <label class="block text-sm text-gray-300">Hue lock</label>
-          <label class="flex items-center gap-2 text-sm">
-            <input type="checkbox" v-model="lockHue" />
-            Lock base hue
+          <span class="text-xs text-gray-400">Hue Lock</span>
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" v-model="lockHue" class="w-4 h-4 rounded border-gray-600 bg-gray-900 text-indigo-600 focus:ring-indigo-500" />
+            <span class="text-sm text-gray-300">Lock base hue</span>
           </label>
         </div>
+
         <div>
-          <label class="block text-sm text-gray-300 mb-1">Saturation bias</label>
-          <input type="range" min="-40" max="40" step="1" v-model.number="satBias" class="w-full" />
-          <div class="text-xs text-gray-400">Adjust saturation across the ramp (− desaturate · + saturate)</div>
-        </div>
-        <div>
-          <label class="block text-sm text-gray-300 mb-1">Lightness range</label>
-          <div class="grid grid-cols-2 gap-2">
-            <div>
-              <span class="text-xs text-gray-400">Lightest (tone 50)</span>
-              <input type="number" class="input w-full" v-model.number="lightMin" min="85" max="99" />
-            </div>
-            <div>
-              <span class="text-xs text-gray-400">Darkest (tone 900)</span>
-              <input type="number" class="input w-full" v-model.number="lightMax" min="5" max="30" />
-            </div>
+          <div class="flex justify-between mb-1">
+            <span class="text-xs text-gray-400">Saturation Bias</span>
+            <span class="text-xs font-mono text-indigo-400">{{ satBias >= 0 ? '+' : ''}}{{ satBias }}</span>
           </div>
-          <div class="text-xs text-gray-400 mt-1">Higher Lightest = brighter 50; lower Darkest = deeper 900.</div>
+          <input type="range" min="-40" max="40" step="1" v-model.number="satBias" class="w-full accent-indigo-500" />
+        </div>
+
+        <div>
+          <label class="text-xs text-gray-400 block mb-1">Lightness Range (50 → 900)</label>
+          <div class="flex items-center gap-2">
+            <input type="number" class="input flex-1 !py-1 !text-xs" v-model.number="lightMin" min="85" max="99" placeholder="Lightest" />
+            <span class="text-gray-500">→</span>
+            <input type="number" class="input flex-1 !py-1 !text-xs" v-model.number="lightMax" min="5" max="30" placeholder="Darkest" />
+          </div>
         </div>
       </div>
 
-      <div class="card p-4 space-y-3">
-        <label class="block text-sm text-gray-300">Output</label>
-        <div class="bg-gray-950 rounded border border-gray-800 p-3 space-y-2 text-sm">
-          <div class="flex items-center justify-between gap-2">
-            <span class="text-gray-300">JSON palette</span>
-            <button class="btn" @click="copy(jsonExport)">Copy</button>
+      <!-- Export -->
+      <div class="card space-y-3 lg:col-span-2">
+        <label class="label">📦 Output Export</label>
+        <div class="grid md:grid-cols-2 gap-4">
+          <!-- JSON Export -->
+          <div class="relative">
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-xs text-gray-400">JSON</span>
+              <button class="text-[10px] text-indigo-400 hover:text-indigo-300 uppercase tracking-wide font-bold" @click="copy(jsonExport)">Copy</button>
+            </div>
+            <pre class="bg-black border border-gray-700 rounded p-2 text-[10px] text-green-300 font-mono h-32 overflow-y-auto">{{ jsonExport }}</pre>
           </div>
-          <pre class="text-green-300 font-mono whitespace-pre-wrap break-words text-xs">{{ jsonExport }}</pre>
-        </div>
-        <div class="bg-gray-950 rounded border border-gray-800 p-3 space-y-2 text-sm">
-          <div class="flex items-center justify-between gap-2">
-            <span class="text-gray-300">Tailwind config</span>
-            <button class="btn" @click="copy(twExport)">Copy</button>
+          
+          <!-- Tailwind Export -->
+          <div class="relative">
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-xs text-gray-400">Tailwind Config</span>
+              <button class="text-[10px] text-indigo-400 hover:text-indigo-300 uppercase tracking-wide font-bold" @click="copy(twExport)">Copy</button>
+            </div>
+            <pre class="bg-black border border-gray-700 rounded p-2 text-[10px] text-blue-300 font-mono h-32 overflow-y-auto">{{ twExport }}</pre>
           </div>
-          <pre class="text-blue-300 font-mono whitespace-pre-wrap break-words text-xs">{{ twExport }}</pre>
         </div>
       </div>
     </div>
 
-    <!-- Palette -->
-    <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
-      <div
-          v-for="t in TONES"
-          :key="t"
-          class="rounded-lg overflow-hidden border border-gray-800 group cursor-pointer"
-          @click="copy(palette[t])"
-      >
+    <!-- Info Bar -->
+    <div class="flex flex-wrap items-center gap-4 text-xs text-gray-400 bg-gray-900/50 px-4 py-2 rounded-lg border border-gray-700/50">
+      <span>Base HSL: <span class="font-mono text-white">{{ Math.round(hsl.h) }}°, {{ Math.round(hsl.s) }}%, {{ Math.round(hsl.l) }}%</span></span>
+      <span class="hidden sm:inline text-gray-600">|</span>
+      <span>Strategy: Interpolated Ramp</span>
+      <span class="ml-auto text-green-400 font-medium transition-opacity duration-300" :class="copiedMsg ? 'opacity-100' : 'opacity-0'">✓ {{ copiedMsg }}</span>
+    </div>
+
+    <!-- Palette Display -->
+    <div class="card space-y-4">
+      <h3 class="font-semibold text-indigo-400">🎨 Generated Palette</h3>
+      <div class="grid grid-cols-2 sm:grid-cols-5 lg:grid-cols-10 gap-3">
         <div
-            class="h-20 sm:h-24 grid place-items-center"
-            :style="{ backgroundColor: palette[t], color: swatchTextColor[t] }"
+            v-for="t in TONES"
+            :key="t"
+            class="group cursor-pointer flex flex-col"
+            @click="copy(palette[t])"
         >
-          <span class="text-sm font-medium opacity-90">{{ t }}</span>
-        </div>
-        <div class="bg-gray-950 px-3 py-2 flex items-center justify-between">
-          <code class="text-xs font-mono text-white">{{ palette[t] }}</code>
-          <span class="text-[10px] text-gray-400">contrast {{ contrastRatioText(t) }}</span>
+          <div
+              class="h-24 w-full rounded-t-lg flex items-center justify-center transition-transform group-hover:-translate-y-1 relative overflow-hidden ring-1 ring-white/10"
+              :style="{ backgroundColor: palette[t], color: swatchTextColor[t] }"
+          >
+            <span class="text-sm font-bold opacity-90">{{ t }}</span>
+            <!-- Hover overlay -->
+            <div class="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+              <span class="bg-black/50 px-2 py-1 rounded text-xs text-white backdrop-blur-sm">Copy</span>
+            </div>
+          </div>
+          
+          <div class="bg-gray-900 border-x border-b border-gray-700 rounded-b-lg p-2 space-y-1">
+            <code class="block text-[10px] text-center font-mono text-white">{{ palette[t] }}</code>
+            <div class="flex justify-between items-center text-[9px] text-gray-500">
+              <span>Contrast</span>
+              <span :class="contrastScore(t) >= 4.5 ? 'text-green-400' : 'text-yellow-500'">{{ contrastRatioText(t) }}</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Current numeric HSL -->
-    <div class="text-xs text-gray-400">
-      Base HSL: <span class="font-mono text-white">{{ Math.round(hsl.h) }}°, {{ Math.round(hsl.s) }}%, {{ Math.round(hsl.l) }}%</span>
-      • Strategy: HSL ramp with hue {{ lockHue ? 'locked' : 'kept' }} and saturation bias {{ satBias >= 0 ? '+' : ''}}{{ satBias }}
-    </div>
   </div>
 </template>
 
@@ -103,7 +130,7 @@
 import { computed, ref } from 'vue'
 
 /** ------------ state ------------ */
-const hex = ref('#0099ff')
+const hex = ref('#0099FF')
 const lockHue = ref(true)
 const satBias = ref(0)             // -40 .. +40
 const lightMin = ref(95)           // tone 50 lightness
@@ -233,9 +260,12 @@ const swatchTextColor = computed<Record<number, string>>(() =>
     Object.fromEntries(TONES.map(t => [t, bestTextOn(palette.value[t])])) as Record<number, string>
 )
 
+function contrastScore(tone: number) {
+  return contrastRatio(swatchTextColor.value[tone], palette.value[tone])
+}
+
 function contrastRatioText(tone: number) {
-  const ratio = contrastRatio(swatchTextColor.value[tone], palette.value[tone])
-  return ratio.toFixed(2) + ':1'
+  return contrastScore(tone).toFixed(2) + ':1'
 }
 
 /** ------------ exports + utils ------------ */
@@ -257,11 +287,31 @@ function copy(text: string) {
   copiedMsg.value = 'Copied!'
   setTimeout(() => (copiedMsg.value = ''), 1200)
 }
+
+function reset() {
+  hex.value = '#0099FF'
+  lockHue.value = true
+  satBias.value = 0
+  lightMin.value = 95
+  lightMax.value = 16
+}
 </script>
 
 <style scoped>
-.card { @apply bg-gray-800/60 rounded-xl border border-gray-800; }
-.input { @apply bg-gray-950 text-white border border-gray-700 rounded px-3 py-2; }
-.btn { @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded text-white text-sm; }
-.mono { @apply font-mono; }
+.label {
+  @apply text-sm font-medium text-gray-300 block;
+}
+.input {
+  @apply bg-black text-white border-2 border-gray-700 rounded-lg px-3 py-2 w-full;
+  @apply focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all;
+}
+.btn {
+  @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded-lg text-white text-sm transition-colors;
+}
+.btn-primary {
+  @apply bg-indigo-600 hover:bg-indigo-500 px-4 py-1.5 rounded-lg text-white text-sm font-medium transition-colors shadow-lg;
+}
+.card {
+  @apply bg-gray-900 rounded-xl p-5 border border-gray-700;
+}
 </style>

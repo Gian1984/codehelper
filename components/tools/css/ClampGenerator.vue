@@ -1,11 +1,11 @@
 <template>
   <div class="space-y-6 bg-gray-800 p-6 sm:p-8 rounded-2xl shadow text-white">
-    <div class="flex items-center justify-between gap-3 flex-wrap">
-      <h2 class="text-2xl font-semibold">Fluid Typography clamp() Generator</h2>
+    <div class="card flex items-center justify-between gap-3 flex-wrap">
+      <h2 class="text-2xl font-semibold">📏 Fluid Typography clamp generator</h2>
       <div class="flex items-center gap-2">
-        <button class="btn" @click="resetAll">reset</button>
-        <button class="btn-primary" @click="copyDeclaration" :disabled="!clampStr">copy CSS</button>
-        <button class="btn" @click="copyClamp" :disabled="!clampStr">copy clamp()</button>
+        <button class="btn" @click="resetAll">Reset</button>
+        <button class="btn-primary" @click="copyDeclaration" :disabled="!clampStr">Copy CSS</button>
+        <button class="btn" @click="copyClamp" :disabled="!clampStr">Copy clamp()</button>
       </div>
     </div>
 
@@ -14,29 +14,29 @@
       <div class="card space-y-4">
         <div class="grid grid-cols-2 gap-3">
           <div>
-            <span class="sub">min size (px)</span>
+            <span class="sub">Min Size (px)</span>
             <input type="number" min="0" v-model.number="minPx" class="input" />
           </div>
           <div>
-            <span class="sub">max size (px)</span>
+            <span class="sub">Max Size (px)</span>
             <input type="number" min="0" v-model.number="maxPx" class="input" />
           </div>
         </div>
 
         <div class="grid grid-cols-2 gap-3">
           <div>
-            <span class="sub">viewport min (px)</span>
+            <span class="sub">Viewport Min (px)</span>
             <input type="number" min="1" v-model.number="vpMin" class="input" />
           </div>
           <div>
-            <span class="sub">viewport max (px)</span>
+            <span class="sub">Viewport Max (px)</span>
             <input type="number" min="1" v-model.number="vpMax" class="input" />
           </div>
         </div>
 
         <div class="grid grid-cols-3 gap-3">
           <div>
-            <span class="sub">unit</span>
+            <span class="sub">Unit</span>
             <select v-model="unit" class="input">
               <option value="vw">vw</option>
               <option value="vh">vh</option>
@@ -45,11 +45,11 @@
             </select>
           </div>
           <div>
-            <span class="sub">decimals</span>
+            <span class="sub">Decimals</span>
             <input type="number" min="0" max="6" v-model.number="decimals" class="input" />
           </div>
           <div>
-            <span class="sub">property</span>
+            <span class="sub">Property</span>
             <select v-model="cssProp" class="input">
               <option>font-size</option>
               <option>line-height</option>
@@ -64,22 +64,22 @@
 
         <div class="grid grid-cols-2 gap-3">
           <div>
-            <span class="sub">presets</span>
+            <span class="sub">Presets</span>
             <select v-model="preset" class="input" @change="applyPreset">
               <option value="">— common —</option>
               <option v-for="p in PRESETS" :key="p.key" :value="p.key">{{ p.label }}</option>
             </select>
           </div>
           <div>
-            <span class="sub">helpers</span>
+            <span class="sub">Helpers</span>
             <div class="flex gap-2">
-              <button class="btn" @click="useCurrentWidth">use current width</button>
-              <button class="btn" @click="useCurrentHeight" :disabled="unit==='vw'">use current height</button>
+              <button class="btn" @click="useCurrentWidth">Use Current Width</button>
+              <button class="btn" @click="useCurrentHeight" :disabled="unit==='vw'">Use Current Height</button>
             </div>
           </div>
         </div>
 
-        <p v-if="error" class="text-sm text-red-400">{{ error }}</p>
+        <p v-if="error" class="warn">{{ error }}</p>
         <p class="text-xs text-gray-400">
           Formula: <code>clamp(min, calc(slope * 100{{unit}} + intercept), max)</code>
         </p>
@@ -87,12 +87,12 @@
 
       <!-- Output -->
       <div class="card space-y-3">
-        <p class="label">result</p>
+        <p class="label">Result</p>
         <div v-if="clampStr" class="mono-box">{{ cssProp }}: {{ clampStr }};</div>
         <div v-else class="warn">Enter valid values to generate clamp().</div>
 
         <details v-if="clampStr" class="mt-1">
-          <summary class="cursor-pointer text-sm text-gray-300">show pieces</summary>
+          <summary class="cursor-pointer text-sm text-gray-300">Show Pieces</summary>
           <div class="mt-2 text-sm grid sm:grid-cols-2 gap-2">
             <div class="mono-box">min: {{ fmt(minPx) }}px</div>
             <div class="mono-box">max: {{ fmt(maxPx) }}px</div>
@@ -106,11 +106,11 @@
     <!-- Preview (auto-fit) -->
     <div class="card space-y-4">
       <div class="flex items-center justify-between gap-3">
-        <h3 class="text-lg font-semibold">Live preview</h3>
+        <h3 class="label text-lg">👀 Live preview</h3>
         <div class="flex items-center gap-3">
-          <label class="inline-flex items-center gap-2 text-xs text-gray-300">
+          <label class="inline-flex items-center gap-2 text-xs text-gray-300 cursor-pointer">
             <input type="checkbox" v-model="simulateHeight" />
-            simulate height (for vh/vmin/vmax)
+            <span class="text-sm text-gray-300">Simulate height (for vh/vmin/vmax)</span>
           </label>
           <div class="text-sm text-gray-400">W: {{ simW }}px • H: {{ simH }}px</div>
         </div>
@@ -118,11 +118,11 @@
 
       <div class="grid sm:grid-cols-2 gap-4">
         <div>
-          <span class="sub">simulate width (px)</span>
+          <span class="sub">Simulate width (px)</span>
           <input type="range" :min="100" :max="2400" v-model.number="simW" class="w-full" />
         </div>
         <div v-if="simulateHeight">
-          <span class="sub">simulate height (px)</span>
+          <span class="sub">Simulate height (px)</span>
           <input type="range" :min="200" :max="1600" v-model.number="simH" class="w-full" />
         </div>
       </div>
@@ -142,7 +142,7 @@
 
         <!-- actual simulator -->
         <div
-            class="preview-sim border border-gray-800 bg-gray-950"
+            class="preview-sim border border-gray-700 bg-black"
             :style="{
             width: simW + 'px',
             height: simulateHeight ? simH + 'px' : 'auto',
@@ -151,7 +151,7 @@
         >
           <div class="p-5">
             <p class="text-gray-300 text-sm mb-2">Try resizing with the sliders above.</p>
-            <div class="bg-gray-800/50 rounded p-4 leading-snug" :style="previewInlineStyle">
+            <div class="bg-gray-800 rounded-lg p-4 leading-snug" :style="previewInlineStyle">
               <strong>Fluid sample:</strong>
               <span class="block mt-2">
                 The quick brown fox jumps over the lazy dog 0123456789 — AàÂБвÇçÊêĞğÎîÑñÖöŞşÜüŸ.
@@ -166,7 +166,7 @@
       </p>
     </div>
 
-    <p v-if="copiedMsg" class="text-green-400 text-sm">{{ copiedMsg }}</p>
+    <p v-if="copiedMsg" class="text-green-400 text-sm text-center font-medium">✓ {{ copiedMsg }}</p>
   </div>
 </template>
 
@@ -362,43 +362,75 @@ watch(unit, u => { simulateHeight.value = (u !== 'vw') })
 </script>
 
 <style scoped>
-/* existing styles… */
-.label { @apply text-sm text-gray-300; }
-.sub { @apply block text-xs text-gray-400 mb-1; }
-.input { @apply bg-gray-950 text-white border border-gray-800 rounded px-3 py-2 w-full; }
-.btn { @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded text-white text-sm; }
-.btn-primary { @apply bg-indigo-600 hover:bg-indigo-500 px-3 py-1.5 rounded text-white text-sm; }
-.card { @apply bg-gray-800/60 rounded-xl p-4 border border-gray-800; }
-.mono-box { @apply bg-gray-950 text-green-300 font-mono text-sm p-3 rounded border border-gray-800 overflow-x-auto; }
-.warn { @apply text-sm text-yellow-400; }
+.label {
+  @apply text-sm font-medium text-gray-300 block;
+}
+.sub {
+  @apply block text-[10px] text-gray-400 mb-1 uppercase tracking-wide;
+}
+.input {
+  @apply bg-black text-white border-2 border-gray-700 rounded-lg px-3 py-2 w-full;
+  @apply focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all;
+}
+.btn {
+  @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded-lg text-white text-sm transition-colors;
+}
+.btn-primary {
+  @apply bg-indigo-600 hover:bg-indigo-500 px-4 py-1.5 rounded-lg text-white text-sm font-medium transition-colors shadow-lg;
+}
+.card {
+  @apply bg-gray-900 rounded-xl p-5 border border-gray-700;
+}
 
-/* New: auto-fit preview container */
+/* Custom styles for ClampGenerator */
+.mono-box {
+  @apply bg-gray-800 text-green-300 font-mono text-sm p-3 rounded-lg border border-gray-700 overflow-x-auto;
+}
+.warn {
+  @apply text-sm text-red-400 bg-red-900/20 p-2 rounded-lg border border-red-700;
+}
+/* Slider styles */
+input[type="range"] {
+  @apply appearance-none h-2 rounded-full bg-gray-700;
+}
+input[type="range"]::-webkit-slider-thumb {
+  @apply appearance-none w-4 h-4 rounded-full bg-indigo-500 cursor-pointer;
+}
+input[type="range"]::-moz-range-thumb {
+  @apply w-4 h-4 rounded-full bg-indigo-500 cursor-pointer border-0;
+}
+/* Checkbox styles */
+input[type="checkbox"] {
+  @apply w-4 h-4 rounded border-gray-600 bg-gray-900 text-indigo-600 focus:ring-indigo-500;
+}
+/* Inline code style */
+code {
+  @apply bg-gray-800 px-1 py-0.5 rounded text-xs;
+}
+/* Preview styles */
 .preview-wrap {
   position: relative;
   width: 100%;
   max-width: 100%;
-  /* Give it some height so height-based scaling has a box to fit into */
   min-height: 220px;
   max-height: 70vh;
-  overflow: auto;           /* allow scroll if user forces huge sim */
-  background: rgba(31, 41, 55, 0.35);
-  border: 1px solid rgba(31, 41, 55, 0.6);
+  overflow: hidden; /* Changed from auto to hidden for cleaner look */
+  background: rgba(31, 41, 55, 0.5); /* Darker background */
+  border: 1px solid rgba(31, 41, 55, 0.8); /* Darker border */
   border-radius: 0.75rem;
   padding: 6px;
 }
-
-/* The actual simulator panel, scaled via transform */
 .preview-sim {
-  transform-origin: top left; /* scaling anchor */
+  transform-origin: top left;
   border-radius: 0.5rem;
   will-change: transform;
+  background: #0b1220; /* Darker background for simulator */
+  border: 1px solid #1f2937; /* Darker border */
 }
-
-/* Ghost occupies the scaled size’s footprint so layout doesn’t collapse */
 .preview-ghost {
   transform-origin: top left;
   visibility: hidden;
   pointer-events: none;
-  margin-bottom: -6px; /* snug alignment with padding */
+  margin-bottom: -6px;
 }
 </style>

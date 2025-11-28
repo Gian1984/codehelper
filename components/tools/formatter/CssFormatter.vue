@@ -1,35 +1,35 @@
 <template>
-  <div class="p-6 sm:p-8 bg-gray-800 rounded-2xl shadow-xl space-y-6 text-gray-100">
+    <div class="p-6 sm:p-8 bg-gray-800 rounded-2xl shadow-xl space-y-6 text-white">
     <!-- Header -->
-    <div class="flex items-center justify-between gap-3 flex-wrap">
-      <h2 class="text-2xl font-semibold text-white">CSS Formatter</h2>
+    <div class="card flex items-center justify-between gap-3 flex-wrap">
+      <h2 class="text-2xl font-semibold text-white">✨ CSS Formatter</h2>
       <div class="flex items-center gap-2 flex-wrap">
-        <button class="btn-secondary" @click="clearAll">Clear</button>
+        <button class="btn" @click="clearAll">Clear</button>
         <button class="btn-primary" @click="processCss">Format CSS</button>
         <button class="btn-primary" @click="copyOut" :disabled="!output">
           {{ copied ? 'Copied!' : 'Copy' }}
         </button>
-        <button class="btn-secondary" @click="downloadOutput" :disabled="!output">Download</button>
+        <button class="btn" @click="downloadOutput" :disabled="!output">Download</button>
       </div>
     </div>
 
     <!-- Input Section -->
-    <div class="bg-gray-900 rounded-xl p-5 border border-gray-700 space-y-3">
+    <div class="card space-y-3">
       <div class="flex items-center justify-between gap-3 flex-wrap">
-        <label class="text-sm font-medium text-gray-300">🎨 CSS Input</label>
+        <label class="label">🎨 CSS Input</label>
         <div class="flex items-center gap-2 flex-wrap">
           <label class="text-xs font-medium text-gray-400 uppercase tracking-wider">Mode:</label>
-          <select v-model="mode" class="select-input-sm">
+          <select v-model="mode" class="input">
             <option value="minify">Minify</option>
             <option value="beautify">Beautify</option>
           </select>
-          <label class="btn-secondary cursor-pointer text-sm ml-2">
+          <label class="btn cursor-pointer text-sm ml-2">
             Import .css
             <input type="file" class="hidden" accept=".css,text/css,text/plain" @change="onFile" />
           </label>
-          <label class="inline-flex items-center gap-2">
-            <input type="checkbox" v-model="autoRunOnPaste" class="w-4 h-4 accent-indigo-500" />
-            <span class="text-xs text-gray-400">Auto-run on paste</span>
+          <label class="inline-flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" v-model="autoRunOnPaste" />
+            <span class="text-sm text-gray-300">Auto-run on paste</span>
           </label>
         </div>
       </div>
@@ -37,7 +37,7 @@
       <textarea
           v-model="input"
           placeholder="Paste your CSS here…"
-          class="w-full min-h-48 p-4 rounded-lg border border-gray-700 bg-black text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent font-mono text-sm resize-y transition-all"
+          class="input font-mono resize-y min-h-[120px]"
           spellcheck="false"
           @paste="onPaste"
       ></textarea>
@@ -45,102 +45,96 @@
       <div class="flex items-center justify-between gap-3 text-xs">
         <span class="text-gray-400">{{ input.length.toLocaleString() }} characters</span>
         <div class="flex gap-3">
-          <span v-if="error" class="text-red-400">❌ {{ error }}</span>
-          <span v-if="copied && !error" class="text-green-400">✓ Copied to clipboard!</span>
+          <span v-if="error" class="warn">❌ {{ error }}</span>
+          <span v-if="copied && !error" class="text-green-400 font-medium">✓ Copied to clipboard!</span>
         </div>
       </div>
     </div>
 
     <!-- Options -->
-    <div class="bg-gray-900 rounded-xl p-5 border border-gray-700">
-      <h3 class="text-sm font-medium text-gray-300 mb-4">⚙️ Formatting Options</h3>
+    <div class="card">
+      <h3 class="label">⚙️ Formatting Options</h3>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
         <!-- Minify Options -->
         <div v-if="mode === 'minify'" class="space-y-3">
-          <p class="text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">Minify Options</p>
-          <label class="flex items-center gap-2">
-            <input type="checkbox" v-model="min.keepComments" class="w-4 h-4 accent-indigo-500" />
-            <span class="text-xs text-gray-300">Keep comments</span>
+          <p class="label mb-3">Minify Options</p>
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" v-model="min.keepComments" />
+            <span class="text-sm text-gray-300">Keep comments</span>
           </label>
-          <label class="flex items-center gap-2">
-            <input type="checkbox" v-model="min.hexShorten" class="w-4 h-4 accent-indigo-500" />
-            <span class="text-xs text-gray-300">Shorten hex colors</span>
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" v-model="min.hexShorten" />
+            <span class="text-sm text-gray-300">Shorten hex colors</span>
           </label>
-          <label class="flex items-center gap-2">
-            <input type="checkbox" v-model="min.zeroUnits" class="w-4 h-4 accent-indigo-500" />
-            <span class="text-xs text-gray-300">Drop units on zero</span>
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" v-model="min.zeroUnits" />
+            <span class="text-sm text-gray-300">Drop units on zero</span>
           </label>
-          <label class="flex items-center gap-2">
-            <input type="checkbox" v-model="min.leadingZero" class="w-4 h-4 accent-indigo-500" />
-            <span class="text-xs text-gray-300">Trim leading zero</span>
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" v-model="min.leadingZero" />
+            <span class="text-sm text-gray-300">Trim leading zero</span>
           </label>
-          <label class="flex items-center gap-2">
-            <input type="checkbox" v-model="min.shortenZeroLists" class="w-4 h-4 accent-indigo-500" />
-            <span class="text-xs text-gray-300">Collapse zero shorthands</span>
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" v-model="min.shortenZeroLists" />
+            <span class="text-sm text-gray-300">Collapse zero shorthands</span>
           </label>
         </div>
 
         <!-- Beautify Options -->
         <div v-else class="space-y-3">
-          <p class="text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">Beautify Options</p>
-          <label class="block">
-            <span class="text-xs font-medium text-gray-400 mb-1.5 block">Indent Type</span>
-            <select v-model="beaut.indentKind" class="select-input">
-              <option value="spaces">Spaces</option>
-              <option value="tabs">Tabs</option>
-            </select>
+          <p class="label mb-3">Beautify Options</p>
+          <label class="label">Indent Type</label>
+          <select v-model="beaut.indentKind" class="input">
+            <option value="spaces">Spaces</option>
+            <option value="tabs">Tabs</option>
+          </select>
+          <label v-if="beaut.indentKind === 'spaces'" class="label mt-3">Indent Width</label>
+          <select v-if="beaut.indentKind === 'spaces'" v-model.number="beaut.indentWidth" class="input">
+            <option v-for="n in [2, 3, 4, 6, 8]" :key="n" :value="n">{{ n }} spaces</option>
+          </select>
+          <label class="flex items-center gap-2 cursor-pointer mt-3">
+            <input type="checkbox" v-model="beaut.keepComments" />
+            <span class="text-sm text-gray-300">Keep comments</span>
           </label>
-          <label v-if="beaut.indentKind === 'spaces'" class="block">
-            <span class="text-xs font-medium text-gray-400 mb-1.5 block">Indent Width</span>
-            <select v-model.number="beaut.indentWidth" class="select-input">
-              <option v-for="n in [2, 3, 4, 6, 8]" :key="n" :value="n">{{ n }} spaces</option>
-            </select>
-          </label>
-          <label class="flex items-center gap-2">
-            <input type="checkbox" v-model="beaut.keepComments" class="w-4 h-4 accent-indigo-500" />
-            <span class="text-xs text-gray-300">Keep comments</span>
-          </label>
-          <label class="flex items-center gap-2">
-            <input type="checkbox" v-model="beaut.sortProperties" class="w-4 h-4 accent-indigo-500" />
-            <span class="text-xs text-gray-300">Sort properties alphabetically</span>
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" v-model="beaut.sortProperties" />
+            <span class="text-sm text-gray-300">Sort properties alphabetically</span>
           </label>
         </div>
 
         <!-- Output Settings -->
         <div class="space-y-3">
-          <p class="text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">Output Settings</p>
-          <label class="block">
-            <span class="text-xs font-medium text-gray-400 mb-1.5 block">Download Filename</span>
-            <input v-model="filename" class="text-input" placeholder="style.css" />
-          </label>
+          <p class="label mb-3">Output Settings</p>
+          <label class="label">Download Filename</label>
+          <input v-model="filename" class="input" placeholder="style.css" />
         </div>
       </div>
     </div>
 
     <!-- Output -->
-    <div v-if="output" class="bg-gray-900 rounded-xl border border-gray-700 overflow-hidden">
-      <div class="bg-gray-800/50 border-b border-gray-700 px-5 py-3 flex items-center justify-between gap-3">
-        <span class="text-sm font-medium text-gray-300">📄 CSS Output</span>
+    <div v-if="output" class="card overflow-hidden">
+      <div class="bg-gray-800 border-b border-gray-700 px-5 py-3 flex items-center justify-between gap-3">
+        <span class="label !mb-0">📄 CSS Output</span>
         <span class="text-xs text-gray-400">{{ mode === 'minify' ? 'Minified' : 'Beautified' }}</span>
       </div>
       <div class="p-5">
-        <pre class="bg-black p-4 rounded-lg border border-gray-700 overflow-auto max-h-[600px] text-sm font-mono"><code class="language-css" v-html="highlightedOutput"></code></pre>
+        <pre class="mono-box max-h-[600px]"><code class="language-css" v-html="highlightedOutput"></code></pre>
       </div>
     </div>
 
     <!-- Statistics -->
-    <div v-if="stats" class="bg-gray-900 rounded-xl p-5 border border-gray-700">
-      <h3 class="text-sm font-medium text-gray-300 mb-4">📊 Statistics</h3>
+    <div v-if="stats" class="card">
+      <h3 class="label">📊 Statistics</h3>
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div class="bg-black rounded-lg p-4 text-center border border-gray-800">
+        <div class="bg-gray-800 rounded-lg p-4 text-center border border-gray-700">
           <div class="text-2xl font-bold text-blue-400 mb-1">{{ stats.before }}</div>
           <div class="text-xs text-gray-400 uppercase tracking-wider">Original Size</div>
         </div>
-        <div class="bg-black rounded-lg p-4 text-center border border-gray-800">
+        <div class="bg-gray-800 rounded-lg p-4 text-center border border-gray-700">
           <div class="text-2xl font-bold text-green-400 mb-1">{{ stats.after }}</div>
           <div class="text-xs text-gray-400 uppercase tracking-wider">Output Size</div>
         </div>
-        <div class="bg-black rounded-lg p-4 text-center border border-gray-800">
+        <div class="bg-gray-800 rounded-lg p-4 text-center border border-gray-700">
           <div class="text-2xl font-bold text-yellow-400 mb-1">{{ stats.saved }}</div>
           <div class="text-xs text-gray-400 uppercase tracking-wider">Saved</div>
         </div>
@@ -537,34 +531,48 @@ function safeName(n: string): string {
 </script>
 
 <style scoped>
-.select-input {
-  @apply w-full px-3 py-2 rounded-lg border border-gray-700 bg-black text-white text-sm;
-  @apply focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent;
-  @apply transition-all;
+.label {
+  @apply text-sm font-medium text-gray-300 block mb-2;
 }
-
-.select-input-sm {
-  @apply px-2.5 py-1.5 rounded-lg border border-gray-700 bg-black text-white text-xs;
-  @apply focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent;
-  @apply transition-all;
+.sub {
+  @apply block text-[10px] text-gray-400 mb-1 uppercase tracking-wide;
 }
-
-.text-input {
-  @apply w-full px-3 py-2 rounded-lg border border-gray-700 bg-black text-white text-sm;
-  @apply focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent;
-  @apply font-mono transition-all;
+.input {
+  @apply bg-black text-white border-2 border-gray-700 rounded-lg px-3 py-2 w-full;
+  @apply focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all;
 }
-
+select.input { /* Specific override for select elements to ensure padding consistency */
+  @apply appearance-none;
+  padding-right: 2.5rem; /* Space for custom arrow if needed, or native arrow */
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+}
+textarea.input {
+  @apply resize-y;
+}
+/* Checkbox styles */
+input[type="checkbox"] {
+  @apply w-4 h-4 rounded border-gray-600 bg-gray-900 text-indigo-600 focus:ring-indigo-500;
+}
+code {
+  @apply bg-gray-800 px-1 py-0.5 rounded text-xs;
+}
+.btn {
+  @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded-lg text-white text-sm transition-colors;
+}
 .btn-primary {
-  @apply bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded-lg text-white text-sm font-medium;
-  @apply disabled:opacity-50 disabled:cursor-not-allowed;
-  @apply transition-all shadow-lg shadow-indigo-600/20 hover:shadow-indigo-600/40;
+  @apply bg-indigo-600 hover:bg-indigo-500 px-4 py-1.5 rounded-lg text-white text-sm font-medium transition-colors shadow-lg;
 }
-
-.btn-secondary {
-  @apply bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-lg text-white text-sm font-medium;
-  @apply disabled:opacity-50 disabled:cursor-not-allowed;
-  @apply transition-all;
+.card {
+  @apply bg-gray-900 rounded-xl p-5 border border-gray-700;
+}
+.mono-box {
+  @apply bg-gray-800 text-green-300 font-mono text-sm p-3 rounded-lg border border-gray-700 overflow-x-auto;
+}
+.warn {
+  @apply text-sm text-red-400 bg-red-900/20 p-2 rounded-lg border border-red-700;
 }
 </style>
 

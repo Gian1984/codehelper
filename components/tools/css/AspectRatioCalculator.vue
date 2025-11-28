@@ -1,7 +1,7 @@
 <template>
   <div class="space-y-6 bg-gray-800 p-6 sm:p-8 rounded-2xl shadow text-white">
-    <div class="flex items-center justify-between gap-3 flex-wrap">
-      <h2 class="text-2xl font-semibold">Aspect Ratio Calculator</h2>
+    <div class="card flex items-center justify-between gap-3 flex-wrap">
+      <h2 class="text-2xl font-semibold">📐 Aspect Ratio Calculator</h2>
       <div class="flex items-center gap-2">
         <button class="btn" @click="swap">swap</button>
         <button class="btn" @click="resetAll">reset</button>
@@ -32,7 +32,7 @@
     <!-- Results -->
     <div class="card space-y-3">
       <div class="flex items-center justify-between">
-        <p class="label">result</p>
+        <p class="label">Result</p>
         <div class="flex gap-2">
           <button class="btn" :disabled="!cssLine" @click="copy(cssLine)">copy CSS</button>
           <button class="btn" :disabled="!reduced" @click="copy(reduced)">copy W:H</button>
@@ -60,7 +60,7 @@
 
     <!-- Solve missing side from ratio -->
     <div class="card space-y-4">
-      <h3 class="text-lg font-semibold">Solve size from ratio</h3>
+      <h3 class="label text-lg">🧮 Solve size from ratio</h3>
       <div class="grid md:grid-cols-5 gap-3">
         <div class="md:col-span-2">
           <span class="sub">ratio (W:H)</span>
@@ -93,7 +93,7 @@
 
     <!-- Fit in a box (Cover removed) -->
     <div class="card space-y-4">
-      <h3 class="text-lg font-semibold">Fit calculator</h3>
+      <h3 class="label text-lg">📦 Fit calculator</h3>
       <div class="grid md:grid-cols-5 gap-3">
         <div>
           <span class="sub">box width (px)</span>
@@ -108,15 +108,15 @@
         </div>
       </div>
 
-      <div class="rounded border border-gray-800 bg-gray-950 p-4">
+      <div class="card !p-3 space-y-2">
         <p class="text-sm text-gray-300 mb-1">Fit preview</p>
-        <div class="preview" :style="{ width: boxW + 'px', height: boxH + 'px' }">
-          <div class="preview-item bg-blue-500/70" :style="{ width: fitSize.w + 'px', height: fitSize.h + 'px' }"></div>
+        <div class="preview" :style="previewStyles">
+          <div class="preview-item bg-blue-500/70" :style="{ width: (fitSize.w / boxW * 100) + '%', height: (fitSize.h / boxH * 100) + '%' }"></div>
         </div>
       </div>
     </div>
 
-    <p v-if="copiedMsg" class="text-green-400 text-sm">{{ copiedMsg }}</p>
+    <p v-if="copiedMsg" class="text-green-400 text-sm font-semibold">✓ {{ copiedMsg }}</p>
   </div>
 </template>
 
@@ -222,6 +222,11 @@ const fitSize = computed(() => {
   return { w: Math.round(width.value * s), h: Math.round(height.value * s) }
 })
 
+const previewStyles = computed(() => ({
+  '--box-width': `${boxW.value}`,
+  '--box-height': `${boxH.value}`,
+}));
+
 /* persistence */
 const KEY = 'aspect-ratio-tool'
 watch([width, height, decimals, presetKey, ratioW, ratioH, solveSide, givenValue, boxW, boxH], () => {
@@ -252,18 +257,38 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.label { @apply text-sm text-gray-300; }
-.sub { @apply block text-xs text-gray-400 mb-1; }
-.input { @apply bg-gray-950 text-white border border-gray-800 rounded px-3 py-2 w-full; }
-.btn { @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded text-white text-sm; }
-.btn-primary { @apply bg-indigo-600 hover:bg-indigo-500 px-3 py-1.5 rounded text-white text-sm; }
-.card { @apply bg-gray-800/60 rounded-xl p-4 border border-gray-800; }
-.mono-box { @apply bg-gray-950 text-green-300 font-mono text-sm p-3 rounded border border-gray-800 overflow-x-auto; }
-.warn { @apply text-sm text-yellow-400; }
+.label {
+  @apply text-sm font-medium text-gray-300 block;
+}
+.sub {
+  @apply block text-[10px] text-gray-400 mb-1 uppercase tracking-wide;
+}
+.input {
+  @apply bg-black text-white border-2 border-gray-700 rounded-lg px-3 py-2 w-full;
+  @apply focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all;
+}
+.btn {
+  @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded-lg text-white text-sm transition-colors;
+}
+.btn-primary {
+  @apply bg-indigo-600 hover:bg-indigo-500 px-4 py-1.5 rounded-lg text-white text-sm font-medium transition-colors shadow-lg;
+}
+.card {
+  @apply bg-gray-900 rounded-xl p-5 border border-gray-700;
+}
+
+/* Custom styles for AspectRatioCalculator */
+.mono-box {
+  @apply bg-gray-800 text-green-300 font-mono text-sm p-3 rounded-lg border border-gray-700 overflow-x-auto;
+}
+.warn {
+  @apply text-sm text-yellow-300 bg-yellow-900/20 p-2 rounded-lg border border-yellow-700;
+}
 
 .preview {
-  @apply relative rounded border border-gray-800 bg-gray-900 grid place-items-center;
+  @apply relative rounded-lg border border-gray-700 bg-gray-900 grid place-items-center max-w-full h-auto;
   min-height: 140px;
+  aspect-ratio: var(--box-width) / var(--box-height);
 }
 .preview::before,
 .preview::after {

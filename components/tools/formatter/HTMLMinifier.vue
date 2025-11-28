@@ -1,13 +1,14 @@
 <template>
-  <div class="bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-xl space-y-5 text-gray-100">
-    <div class="flex items-center justify-between gap-3 flex-wrap">
+  <div class="space-y-6 bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-xl text-white">
+    <!-- Header -->
+    <div class="card flex items-center justify-between gap-3 flex-wrap">
       <div>
-        <h2 class="text-2xl font-semibold">HTML Optimizer</h2>
+        <h2 class="text-2xl font-semibold">⚡ HTML Optimizer</h2>
         <p class="text-sm text-gray-400 mt-1">Minify, beautify, and optimize your HTML code</p>
       </div>
       <div class="flex items-center gap-2">
         <button class="btn" @click="clearAll">Clear</button>
-        <button class="btn-secondary" @click="beautifyHtml" :disabled="loading || !input.trim()">
+        <button class="btn" @click="beautifyHtml" :disabled="loading || !input.trim()">
           <span v-if="loading && mode === 'beautify'">Beautifying...</span>
           <span v-else>Beautify</span>
         </button>
@@ -21,14 +22,14 @@
     <!-- Input Section -->
     <div class="card space-y-3">
       <div class="flex items-center justify-between gap-3 flex-wrap">
-        <label class="label font-medium">Input HTML</label>
+        <label class="label">Input HTML</label>
         <div class="flex items-center gap-2 flex-wrap">
-          <label class="btn-file cursor-pointer">
+          <label class="btn cursor-pointer">
             Import File
             <input type="file" class="hidden" accept=".html,text/html,text/plain" @change="onFile" />
           </label>
-          <label class="inline-flex items-center gap-2">
-            <input type="checkbox" v-model="autoProcessOnPaste" class="w-4 h-4 accent-indigo-500" />
+          <label class="inline-flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" v-model="autoProcessOnPaste" />
             <span class="text-sm text-gray-300">Auto-process on paste</span>
           </label>
         </div>
@@ -37,7 +38,7 @@
       <textarea
           v-model="input"
           placeholder="Paste your HTML code here..."
-          class="w-full min-h-48 p-4 rounded-lg border-2 border-gray-700 bg-gray-950 text-white focus:outline-none focus:border-indigo-500 font-mono resize-y transition-colors"
+          class="input font-mono resize-y min-h-[120px]"
           @paste="onPaste"
           spellcheck="false"
       ></textarea>
@@ -48,7 +49,7 @@
           <span v-if="stats">Size: {{ stats.before }}</span>
         </div>
         <div class="flex gap-4">
-          <span v-if="error" class="text-red-400 font-medium">{{ error }}</span>
+          <span v-if="error" class="warn">{{ error }}</span>
           <span v-if="copied" class="text-green-400 font-medium">✓ Copied!</span>
         </div>
       </div>
@@ -56,15 +57,15 @@
 
     <!-- Options -->
     <div class="card">
-      <h3 class="label font-medium mb-3">Options</h3>
+      <h3 class="label">⚙️ Options</h3>
       <div class="flex flex-wrap gap-4">
-        <label class="checkbox-label">
-          <input type="checkbox" v-model="opts.removeComments" class="checkbox" />
-          <span>Remove HTML comments</span>
+        <label class="inline-flex items-center gap-2 cursor-pointer">
+          <input type="checkbox" v-model="opts.removeComments" />
+          <span class="text-sm text-gray-300">Remove HTML comments</span>
         </label>
-        <label class="checkbox-label">
-          <input type="checkbox" v-model="opts.collapseWhitespace" class="checkbox" />
-          <span>Collapse whitespace</span>
+        <label class="inline-flex items-center gap-2 cursor-pointer">
+          <input type="checkbox" v-model="opts.collapseWhitespace" />
+          <span class="text-sm text-gray-300">Collapse whitespace</span>
         </label>
       </div>
     </div>
@@ -73,23 +74,23 @@
     <div v-if="minified" class="card space-y-3">
       <div class="flex items-center justify-between gap-3 flex-wrap">
         <div class="flex items-center gap-3">
-          <label class="label font-medium">Output</label>
-          <span v-if="stats" class="text-xs px-2 py-1 bg-green-900/30 text-green-400 rounded-full font-medium">
+          <label class="label">Output</label>
+          <span v-if="stats" class="text-xs px-2 py-1 bg-green-800/30 text-green-400 rounded-full font-medium">
             Saved {{ stats.saved }}
           </span>
         </div>
         <div class="flex items-center gap-2">
-          <button class="btn-icon" @click="copyToClipboard" title="Copy to clipboard">
+          <button class="btn" @click="copyToClipboard" title="Copy to clipboard">
             📋 Copy
           </button>
-          <button class="btn-icon" @click="downloadHtml" title="Download file">
+          <button class="btn" @click="downloadHtml" title="Download file">
             💾 Download
           </button>
         </div>
       </div>
 
       <div class="relative">
-        <pre class="bg-gray-950 p-4 rounded-lg border-2 border-gray-700 overflow-auto max-h-96 text-sm text-emerald-300 font-mono whitespace-pre-wrap">{{ minified }}</pre>
+        <pre class="mono-box max-h-96">{{ minified }}</pre>
       </div>
 
       <div class="flex items-center justify-between text-xs text-gray-400">
@@ -100,7 +101,7 @@
         <div>
           <label class="inline-flex items-center gap-2">
             <span class="text-gray-400">Filename:</span>
-            <input v-model="filename" class="input-sm" placeholder="optimized.html" />
+            <input v-model="filename" class="input" placeholder="optimized.html" />
           </label>
         </div>
       </div>
@@ -380,34 +381,47 @@ function safeName(n: string): string {
 </script>
 
 <style scoped>
-.label { @apply text-sm text-gray-300; }
-.input { @apply text-white w-full px-3 py-2 rounded-md border border-gray-700 bg-gray-900; }
-.input-sm { @apply text-white px-2 py-1 rounded border border-gray-700 bg-gray-900 text-sm; }
-
+.label {
+  @apply text-sm font-medium text-gray-300 block mb-2;
+}
+.sub {
+  @apply block text-[10px] text-gray-400 mb-1 uppercase tracking-wide;
+}
+.input {
+  @apply bg-black text-white border-2 border-gray-700 rounded-lg px-3 py-2 w-full;
+  @apply focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all;
+}
+select.input {
+  @apply appearance-none;
+  padding-right: 2.5rem;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+}
+textarea.input {
+  @apply resize-y;
+}
+/* Checkbox styles */
+input[type="checkbox"] {
+  @apply w-4 h-4 rounded border-gray-600 bg-gray-900 text-indigo-600 focus:ring-indigo-500;
+}
+code {
+  @apply bg-gray-800 px-1 py-0.5 rounded text-xs;
+}
 .btn {
-  @apply bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-lg text-white text-sm font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed;
+  @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded-lg text-white text-sm transition-colors;
 }
 .btn-primary {
-  @apply bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded-lg text-white text-sm font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed;
+  @apply bg-indigo-600 hover:bg-indigo-500 px-4 py-1.5 rounded-lg text-white text-sm font-medium transition-colors shadow-lg;
 }
-.btn-secondary {
-  @apply bg-emerald-600 hover:bg-emerald-500 px-4 py-2 rounded-lg text-white text-sm font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed;
-}
-.btn-icon {
-  @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded-lg text-white text-xs font-medium transition-colors;
-}
-.btn-file {
-  @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded text-white text-sm transition-colors;
-}
-
 .card {
-  @apply bg-gray-800/60 rounded-xl p-5 border border-gray-700/50 shadow-lg;
+  @apply bg-gray-900 rounded-xl p-5 border border-gray-700;
 }
-
-.checkbox {
-  @apply w-4 h-4 accent-indigo-500 rounded;
+.mono-box {
+  @apply bg-gray-800 text-green-300 font-mono text-sm p-3 rounded-lg border border-gray-700 overflow-x-auto;
 }
-.checkbox-label {
-  @apply flex items-center gap-2 text-sm text-gray-300 hover:text-white transition-colors cursor-pointer;
+.warn {
+  @apply text-sm text-red-400 bg-red-900/20 p-2 rounded-lg border border-red-700;
 }
 </style>

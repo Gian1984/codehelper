@@ -1,11 +1,18 @@
 <template>
-  <div class="p-8 bg-gray-800 rounded-2xl shadow-xl space-y-6 text-gray-100">
-    <h2 class="text-2xl font-semibold">Regex Tester</h2>
+  <div class="space-y-6 bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-xl text-white">
+    <!-- Header -->
+    <div class="card flex items-center justify-between gap-3 flex-wrap">
+      <h2 class="text-2xl font-semibold">🧪 Regex Tester</h2>
+      <div class="flex items-center gap-2">
+        <button class="btn-primary" @click="run">Run Test</button>
+        <button class="btn" @click="clearAll">Clear All</button>
+      </div>
+    </div>
 
     <!-- Pattern + Flags -->
-    <div class="grid md:grid-cols-3 gap-4">
+    <div class="card grid md:grid-cols-3 gap-4">
       <div class="md:col-span-2 space-y-2">
-        <label class="block text-sm text-gray-300">pattern</label>
+        <label class="label">Pattern</label>
         <div class="flex gap-2">
           <input
               v-model="pattern"
@@ -14,29 +21,29 @@
               :class="['input font-mono flex-1', { 'border-red-500 border-2': error && pattern }]"
               @keydown.tab.prevent="insertAtCursor('\\t')"
           />
-          <button class="btn" @click="run">run</button>
-          <button class="btn" @click="clearAll">clear</button>
+          <button class="btn" @click="run">Run</button>
+          <button class="btn" @click="clearAll">Clear</button>
         </div>
         <p class="text-xs text-gray-400">JavaScript (ECMAScript) regular expressions.</p>
 
         <!-- Quick tokens -->
-        <div class="flex flex-wrap gap-2">
+        <div class="flex flex-wrap gap-2 pt-2">
           <button v-for="t in TOKENS" :key="t.label" class="chip" @click="insertAtCursor(t.snippet)" :title="t.title">{{ t.label }}</button>
         </div>
       </div>
 
       <div class="space-y-2">
-        <label class="block text-sm text-gray-300">flags</label>
+        <label class="label">Flags</label>
         <div class="flex flex-wrap gap-2 text-white">
-          <label class="flex items-center gap-1"><input type="checkbox" v-model="flags.g" /> g</label>
-          <label class="flex items-center gap-1"><input type="checkbox" v-model="flags.i" /> i</label>
-          <label class="flex items-center gap-1"><input type="checkbox" v-model="flags.m" /> m</label>
-          <label class="flex items-center gap-1"><input type="checkbox" v-model="flags.s" /> s</label>
-          <label class="flex items-center gap-1"><input type="checkbox" v-model="flags.u" /> u</label>
-          <label class="flex items-center gap-1"><input type="checkbox" v-model="flags.y" /> y</label>
+          <label class="inline-flex items-center gap-1 cursor-pointer"><input type="checkbox" v-model="flags.g" /> g</label>
+          <label class="inline-flex items-center gap-1 cursor-pointer"><input type="checkbox" v-model="flags.i" /> i</label>
+          <label class="inline-flex items-center gap-1 cursor-pointer"><input type="checkbox" v-model="flags.m" /> m</label>
+          <label class="inline-flex items-center gap-1 cursor-pointer"><input type="checkbox" v-model="flags.s" /> s</label>
+          <label class="inline-flex items-center gap-1 cursor-pointer"><input type="checkbox" v-model="flags.u" /> u</label>
+          <label class="inline-flex items-center gap-1 cursor-pointer"><input type="checkbox" v-model="flags.y" /> y</label>
         </div>
 
-        <label class="block text-sm text-gray-300 mt-2">highlight</label>
+        <label class="label mt-2">Highlight Mode</label>
         <select v-model="highlightMode" class="input">
           <option value="all">All matches</option>
           <option value="first">First match only</option>
@@ -45,18 +52,18 @@
     </div>
 
     <!-- Sample + Examples + Replace -->
-    <div class="grid md:grid-cols-2 gap-6">
+    <div class="card grid md:grid-cols-2 gap-6">
       <div class="space-y-2">
         <div class="flex items-center justify-between">
-          <label class="text-sm text-gray-300">sample input</label>
+          <label class="label">Sample Input</label>
           <div class="flex items-center gap-2">
             <select class="input" v-model="exampleKey" @change="applyExample">
               <option value="">— examples —</option>
               <option v-for="ex in EXAMPLES" :key="ex.key" :value="ex.key">{{ ex.label }}</option>
             </select>
-            <label class="inline-flex items-center gap-2 text-xs text-gray-300">
+            <label class="inline-flex items-center gap-2 cursor-pointer text-xs text-gray-300">
               <input type="checkbox" v-model="autoRun" />
-              auto-run
+              Auto-run
             </label>
           </div>
         </div>
@@ -66,19 +73,19 @@
             v-model="sample"
             spellcheck="false"
             rows="10"
-            class="input font-mono"
+            class="input font-mono resize-y"
             placeholder="Paste the text to test…"
             @input="maybeRun"
         ></textarea>
 
         <p class="text-xs text-gray-400">
-          Max processed: {{ MAX_INPUT.toLocaleString() }} characters. Matches capped at {{ MAX_MATCHES.toLocaleString() }}.
+          Max processed: <span class="font-mono text-white">{{ MAX_INPUT.toLocaleString() }}</span> characters. Matches capped at <span class="font-mono text-white">{{ MAX_MATCHES.toLocaleString() }}</span>.
         </p>
       </div>
 
       <div class="space-y-3">
         <div>
-          <label class="block text-sm text-gray-300 mb-1">replacement (optional)</label>
+          <label class="label mb-1">Replacement (optional)</label>
           <input
               v-model="replacement"
               spellcheck="false"
@@ -87,56 +94,56 @@
               @input="maybeRun"
           />
           <p class="text-xs text-gray-400">
-            Use <code>$1, $2…</code> for numbered groups, <code>$&</code> full match, <code>$&lt;name&gt;</code> for named groups.
+            Use <code class="bg-gray-800 px-1 rounded">$1, $2…</code> for numbered groups, <code class="bg-gray-800 px-1 rounded">$&amp;</code> full match, <code class="bg-gray-800 px-1 rounded">$&lt;name&gt;</code> for named groups.
           </p>
         </div>
 
-        <div class="bg-gray-950 rounded border border-gray-800 p-4">
+        <div class="mono-box !p-4">
           <div class="flex items-center justify-between mb-2">
-            <p class="text-gray-300 text-sm">replace output</p>
-            <button class="btn" @click="copy(replaceOutput)" :disabled="!replaceOutput">copy</button>
+            <p class="text-gray-300 text-sm">Replace Output</p>
+            <button class="btn" @click="copy(replaceOutput)" :disabled="!replaceOutput">Copy</button>
           </div>
           <pre class="text-white font-mono whitespace-pre-wrap break-words">{{ replaceOutput || '—' }}</pre>
         </div>
       </div>
     </div>
 
-    <!-- Errors / Info -->
-    <div>
-      <div v-if="error" class="bg-red-900/40 border border-red-700 text-red-200 rounded p-3">
-        <strong>error:</strong> {{ error }}
+    <!-- Errors / Info / Expanders -->
+    <div class="card space-y-3">
+      <div v-if="error" class="warn">
+        <strong>Error:</strong> {{ error }}
       </div>
       <div v-else class="text-gray-300 text-sm flex items-center justify-between flex-wrap gap-2">
         <div>
-          flags: <span class="font-mono text-white">/{{ flagsString }}/</span>
-          • matches: <span class="font-mono text-white">{{ matches.length }}</span>
-          <span v-if="trimmed" class="ml-2">• input truncated</span>
-          <span v-if="timedOut" class="ml-2 text-yellow-400">• stopped early (time limit)</span>
-          <span v-if="durationMs !== null" class="ml-2">• time: {{ durationMs }} ms</span>
+          Flags: <span class="font-mono text-white">/{{ flagsString }}/</span>
+          • Matches: <span class="font-mono text-white">{{ matches.length }}</span>
+          <span v-if="trimmed" class="ml-2">• Input Truncated</span>
+          <span v-if="timedOut" class="ml-2 warn-inline">• Stopped Early (time limit)</span>
+          <span v-if="durationMs !== null" class="ml-2">• Time: <span class="font-mono text-white">{{ durationMs }} ms</span></span>
         </div>
         <div class="flex gap-2 flex-wrap">
-          <button class="chip" @click="showExplainer = !showExplainer">
-            {{ showExplainer ? '▼' : '▶' }} Pattern Explainer
+          <button class="btn-small" @click="showExplainer = !showExplainer">
+            {{ showExplainer ? '▼' : '▶' }} Explainer
           </button>
-          <button class="chip" @click="showComplexity = !showComplexity">
+          <button class="btn-small" @click="showComplexity = !showComplexity">
             {{ showComplexity ? '▼' : '▶' }} Complexity
           </button>
-          <button class="chip" @click="showCheatSheet = !showCheatSheet">
+          <button class="btn-small" @click="showCheatSheet = !showCheatSheet">
             {{ showCheatSheet ? '▼' : '▶' }} Cheat Sheet
           </button>
-          <button class="chip" @click="showCodeGen = !showCodeGen">
-            {{ showCodeGen ? '▼' : '▶' }} Code Generator
+          <button class="btn-small" @click="showCodeGen = !showCodeGen">
+            {{ showCodeGen ? '▼' : '▶' }} Code
           </button>
         </div>
       </div>
     </div>
 
     <!-- Pattern Explainer -->
-    <div v-if="showExplainer && pattern" class="bg-gray-900 border border-gray-700 rounded p-4 space-y-3">
-      <h3 class="text-white font-semibold text-sm mb-3">🔍 Pattern Breakdown</h3>
+    <div v-if="showExplainer && pattern" class="card space-y-3">
+      <h3 class="label">🔍 Pattern Breakdown</h3>
       <div class="space-y-2">
         <div v-for="(part, idx) in explainedPattern" :key="idx"
-             class="bg-gray-800 border border-gray-700 rounded p-2 flex items-start gap-3">
+             class="bg-gray-800 border border-gray-700 rounded-lg p-3 flex items-start gap-3">
           <code class="text-yellow-300 font-mono text-sm font-bold min-w-[80px]">{{ part.text }}</code>
           <span class="text-gray-300 text-sm">{{ part.explanation }}</span>
         </div>
@@ -147,19 +154,19 @@
     </div>
 
     <!-- Complexity Analysis -->
-    <div v-if="showComplexity && pattern" class="bg-gray-900 border border-gray-700 rounded p-4 space-y-2">
-      <h3 class="text-white font-semibold text-sm mb-3">⚡ Complexity Analysis</h3>
+    <div v-if="showComplexity && pattern" class="card space-y-3">
+      <h3 class="label">⚡ Complexity Analysis</h3>
       <div v-if="complexityAnalysis.length === 0" class="text-green-400 text-sm">
         ✓ No major issues detected - pattern looks good!
       </div>
       <div v-else class="space-y-2">
         <div v-for="(issue, idx) in complexityAnalysis" :key="idx"
              :class="{
-               'bg-red-900/30 border-red-700 text-red-200': issue.level === 'danger',
-               'bg-yellow-900/30 border-yellow-700 text-yellow-200': issue.level === 'warning',
-               'bg-blue-900/30 border-blue-700 text-blue-200': issue.level === 'info'
+               'bg-red-900/40 border-red-700 text-red-200': issue.level === 'danger',
+               'bg-yellow-900/40 border-yellow-700 text-yellow-200': issue.level === 'warning',
+               'bg-blue-900/40 border-blue-700 text-blue-200': issue.level === 'info'
              }"
-             class="border rounded p-2 text-sm">
+             class="border rounded-lg p-3 text-sm">
           <span v-if="issue.level === 'danger'">🔴</span>
           <span v-else-if="issue.level === 'warning'">⚠️</span>
           <span v-else>ℹ️</span>
@@ -169,84 +176,26 @@
     </div>
 
     <!-- Regex Cheat Sheet -->
-    <div v-if="showCheatSheet" class="bg-gray-900 border border-gray-700 rounded p-4">
-      <h3 class="text-white font-semibold text-sm mb-3">📖 Regex Cheat Sheet</h3>
+    <div v-if="showCheatSheet" class="card space-y-3">
+      <h3 class="label">📖 Regex Cheat Sheet</h3>
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 text-xs">
-        <div>
-          <p class="text-gray-400 font-semibold mb-2">Character Classes</p>
+        <div v-for="(category, cIdx) in cheatSheetData" :key="cIdx">
+          <p class="label mb-2">{{ category.title }}</p>
           <ul class="space-y-1 text-gray-300 font-mono">
-            <li><code class="text-yellow-400">\d</code> - digit [0-9]</li>
-            <li><code class="text-yellow-400">\D</code> - not digit</li>
-            <li><code class="text-yellow-400">\w</code> - word [A-Za-z0-9_]</li>
-            <li><code class="text-yellow-400">\W</code> - not word</li>
-            <li><code class="text-yellow-400">\s</code> - whitespace</li>
-            <li><code class="text-yellow-400">\S</code> - not whitespace</li>
-            <li><code class="text-yellow-400">.</code> - any char (except \n)</li>
-            <li><code class="text-yellow-400">[abc]</code> - a, b, or c</li>
-            <li><code class="text-yellow-400">[^abc]</code> - not a, b, or c</li>
-          </ul>
-        </div>
-        <div>
-          <p class="text-gray-400 font-semibold mb-2">Quantifiers</p>
-          <ul class="space-y-1 text-gray-300 font-mono">
-            <li><code class="text-green-400">*</code> - 0 or more</li>
-            <li><code class="text-green-400">+</code> - 1 or more</li>
-            <li><code class="text-green-400">?</code> - 0 or 1</li>
-            <li><code class="text-green-400">{n}</code> - exactly n</li>
-            <li><code class="text-green-400">{n,}</code> - n or more</li>
-            <li><code class="text-green-400">{n,m}</code> - between n and m</li>
-            <li><code class="text-green-400">*?</code> - lazy (non-greedy)</li>
-            <li><code class="text-green-400">+?</code> - lazy</li>
-          </ul>
-        </div>
-        <div>
-          <p class="text-gray-400 font-semibold mb-2">Anchors & Boundaries</p>
-          <ul class="space-y-1 text-gray-300 font-mono">
-            <li><code class="text-blue-400">^</code> - start of string/line</li>
-            <li><code class="text-blue-400">$</code> - end of string/line</li>
-            <li><code class="text-blue-400">\b</code> - word boundary</li>
-            <li><code class="text-blue-400">\B</code> - not word boundary</li>
-          </ul>
-        </div>
-        <div>
-          <p class="text-gray-400 font-semibold mb-2">Groups & References</p>
-          <ul class="space-y-1 text-gray-300 font-mono">
-            <li><code class="text-purple-400">(abc)</code> - capturing group</li>
-            <li><code class="text-purple-400">(?:abc)</code> - non-capturing</li>
-            <li><code class="text-purple-400">(?&lt;name&gt;abc)</code> - named group</li>
-            <li><code class="text-purple-400">\1</code> - backreference to group 1</li>
-            <li><code class="text-purple-400">\k&lt;name&gt;</code> - named backreference</li>
-          </ul>
-        </div>
-        <div>
-          <p class="text-gray-400 font-semibold mb-2">Lookaround</p>
-          <ul class="space-y-1 text-gray-300 font-mono">
-            <li><code class="text-pink-400">(?=abc)</code> - positive lookahead</li>
-            <li><code class="text-pink-400">(?!abc)</code> - negative lookahead</li>
-            <li><code class="text-pink-400">(?&lt;=abc)</code> - positive lookbehind</li>
-            <li><code class="text-pink-400">(?&lt;!abc)</code> - negative lookbehind</li>
-          </ul>
-        </div>
-        <div>
-          <p class="text-gray-400 font-semibold mb-2">Flags</p>
-          <ul class="space-y-1 text-gray-300 font-mono">
-            <li><code class="text-orange-400">g</code> - global (all matches)</li>
-            <li><code class="text-orange-400">i</code> - case insensitive</li>
-            <li><code class="text-orange-400">m</code> - multiline (^ $ per line)</li>
-            <li><code class="text-orange-400">s</code> - dotall (. matches \n)</li>
-            <li><code class="text-orange-400">u</code> - unicode</li>
-            <li><code class="text-orange-400">y</code> - sticky</li>
+            <li v-for="(item, iIdx) in category.items" :key="iIdx">
+              <code :class="`text-${item.color}-400`">{{ item.code }}</code> - {{ item.description }}
+            </li>
           </ul>
         </div>
       </div>
     </div>
 
     <!-- Code Generator -->
-    <div v-if="showCodeGen" class="bg-gray-900 border border-gray-700 rounded p-4 space-y-3">
+    <div v-if="showCodeGen" class="card space-y-3">
       <div class="flex items-center justify-between">
-        <h3 class="text-white font-semibold text-sm">💻 Code Generator</h3>
+        <h3 class="label">💻 Code Generator</h3>
         <div class="flex items-center gap-2">
-          <select v-model="codeGenLang" class="input text-sm">
+          <select v-model="codeGenLang" class="input w-36">
             <option value="javascript">JavaScript</option>
             <option value="python">Python</option>
             <option value="php">PHP</option>
@@ -256,33 +205,33 @@
           <button class="btn" @click="copy(generatedCode)">Copy Code</button>
         </div>
       </div>
-      <pre class="bg-gray-950 rounded p-4 text-sm text-gray-100 font-mono overflow-x-auto border border-gray-800">{{ generatedCode }}</pre>
+      <pre class="mono-box">{{ generatedCode }}</pre>
     </div>
 
     <!-- Highlighted preview -->
-    <div class="space-y-2">
-      <p class="text-sm text-gray-300">highlight</p>
-      <div class="bg-gray-950 rounded border border-gray-800 p-4 min-h-24">
+    <div class="card space-y-2">
+      <p class="label">Highlighted Match</p>
+      <div class="bg-gray-900 rounded-lg border border-gray-700 p-4 min-h-[6rem]">
         <div class="text-white font-mono whitespace-pre-wrap break-words" v-html="highlightHtml"></div>
       </div>
     </div>
 
     <!-- Matches detail -->
-    <div class="space-y-2">
-      <p class="text-sm text-gray-300">matches & groups</p>
-      <div class="bg-gray-950 rounded border border-gray-800 p-4">
-        <div v-if="matches.length === 0" class="text-gray-400 text-sm">no match.</div>
+    <div class="card space-y-2">
+      <p class="label">Matches & Groups</p>
+      <div class="bg-gray-900 rounded-lg border border-gray-700 p-4">
+        <div v-if="matches.length === 0" class="text-gray-400 text-sm">No matches found.</div>
 
-        <div v-for="(m, idx) in matches" :key="idx" class="mb-4">
+        <div v-for="(m, idx) in matches" :key="idx" class="mb-4 bg-gray-800 rounded-lg p-3 border border-gray-700">
           <div class="flex items-center justify-between">
             <p class="text-white font-mono">
               #{{ idx + 1 }} [{{ m.index }}–{{ m.index + m[0].length }}): <span class="bg-yellow-600/30 px-1 rounded">{{ m[0] }}</span>
             </p>
-            <button class="btn" @click="copy(m[0])">copy</button>
+            <button class="btn text-xs" @click="copy(m[0])">Copy</button>
           </div>
           <div class="mt-2 grid sm:grid-cols-2 gap-3">
             <div>
-              <p class="text-gray-300 text-xs mb-1">positional groups</p>
+              <p class="text-gray-300 text-xs mb-1">Positional Groups</p>
               <ul class="text-white font-mono text-sm space-y-1">
                 <li v-if="m.length === 1" class="text-gray-400">—</li>
                 <li v-for="(g,gIdx) in m.slice(1)" :key="gIdx">
@@ -291,7 +240,7 @@
               </ul>
             </div>
             <div>
-              <p class="text-gray-300 text-xs mb-1">named groups</p>
+              <p class="text-gray-300 text-xs mb-1">Named Groups</p>
               <ul class="text-white font-mono text-sm space-y-1">
                 <li v-if="!m.groups || Object.keys(m.groups).length===0" class="text-gray-400">—</li>
                 <li v-for="(val, name) in (m.groups || {})" :key="name">
@@ -302,12 +251,12 @@
           </div>
         </div>
 
-        <div v-if="matches.length">
-          <div class="flex items-center justify-between mt-4">
-            <p class="text-gray-300 text-sm">matches (JSON)</p>
-            <button class="btn" @click="copy(matchesJson)">copy</button>
+        <div v-if="matches.length" class="mt-4 bg-gray-800 rounded-lg p-3 border border-gray-700">
+          <div class="flex items-center justify-between mb-2">
+            <p class="text-gray-300 text-sm">Matches (JSON)</p>
+            <button class="btn text-xs" @click="copy(matchesJson)">Copy</button>
           </div>
-          <pre class="text-white font-mono whitespace-pre-wrap break-words">{{ matchesJson }}</pre>
+          <pre class="mono-box">{{ matchesJson }}</pre>
         </div>
       </div>
     </div>
@@ -440,6 +389,75 @@ const EXAMPLES = [
     sample: `550e8400-e29b-41d4-a716-446655440000, 123e4567-e89b-12d3-a456-426614174000`,
   },
 ] as const
+
+const cheatSheetData = [
+  {
+    title: 'Character Classes',
+    items: [
+      { code: '\\d', description: 'digit [0-9]', color: 'yellow' },
+      { code: '\\D', description: 'not digit', color: 'yellow' },
+      { code: '\\w', description: 'word [A-Za-z0-9_]', color: 'yellow' },
+      { code: '\\W', description: 'not word', color: 'yellow' },
+      { code: '\\s', description: 'whitespace', color: 'yellow' },
+      { code: '\\S', description: 'not whitespace', color: 'yellow' },
+      { code: '.', description: 'any char (except \\n)', color: 'yellow' },
+      { code: '[abc]', description: 'a, b, or c', color: 'yellow' },
+      { code: '[^abc]', description: 'not a, b, or c', color: 'yellow' },
+    ]
+  },
+  {
+    title: 'Quantifiers',
+    items: [
+      { code: '*', description: '0 or more', color: 'green' },
+      { code: '+', description: '1 or more', color: 'green' },
+      { code: '?', description: '0 or 1', color: 'green' },
+      { code: '{n}', description: 'exactly n', color: 'green' },
+      { code: '{n,}', description: 'n or more', color: 'green' },
+      { code: '{n,m}', description: 'between n and m', color: 'green' },
+      { code: '*?', description: 'lazy (non-greedy)', color: 'green' },
+      { code: '+?', description: 'lazy', color: 'green' },
+    ]
+  },
+  {
+    title: 'Anchors & Boundaries',
+    items: [
+      { code: '^', description: 'start of string/line', color: 'blue' },
+      { code: '$', description: 'end of string/line', color: 'blue' },
+      { code: '\\b', description: 'word boundary', color: 'blue' },
+      { code: '\\B', description: 'not word boundary', color: 'blue' },
+    ]
+  },
+  {
+    title: 'Groups & References',
+    items: [
+      { code: '(abc)', description: 'capturing group', color: 'purple' },
+      { code: '(?:abc)', description: 'non-capturing', color: 'purple' },
+      { code: '(?<name>abc)', description: 'named group', color: 'purple' },
+      { code: '\\1', description: 'backreference to group 1', color: 'purple' },
+      { code: '\\k<name>', description: 'named backreference', color: 'purple' },
+    ]
+  },
+  {
+    title: 'Lookaround',
+    items: [
+      { code: '(?=abc)', description: 'positive lookahead', color: 'pink' },
+      { code: '(?!abc)', description: 'negative lookahead', color: 'pink' },
+      { code: '(?<=abc)', description: 'positive lookbehind', color: 'pink' },
+      { code: '(?<!abc)', description: 'negative lookbehind', color: 'pink' },
+    ]
+  },
+  {
+    title: 'Flags',
+    items: [
+      { code: 'g', description: 'global (all matches)', color: 'orange' },
+      { code: 'i', description: 'case insensitive', color: 'orange' },
+      { code: 'm', description: 'multiline (^ $ per line)', color: 'orange' },
+      { code: 's', description: 'dotall (. matches \\n)', color: 'orange' },
+      { code: 'u', description: 'unicode', color: 'orange' },
+      { code: 'y', description: 'sticky', color: 'orange' },
+    ]
+  },
+]
 
 /* ---------------------------------- helpers ---------------------------------- */
 const sampleArea = ref<HTMLTextAreaElement | null>(null)
@@ -883,7 +901,49 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.input { @apply bg-gray-950 text-white border border-gray-800 rounded px-3 py-2 w-full; }
-.btn { @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded text-white text-sm disabled:opacity-50 disabled:cursor-not-allowed; }
-.chip { @apply bg-gray-800 hover:bg-gray-700 px-2 py-1 rounded text-xs; }
+.label {
+  @apply text-sm font-medium text-gray-300 block;
+}
+.sub {
+  @apply block text-[10px] text-gray-400 mb-1 uppercase tracking-wide;
+}
+.input {
+  @apply bg-black text-white border-2 border-gray-700 rounded-lg px-3 py-2 w-full;
+  @apply focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all;
+}
+.btn {
+  @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded-lg text-white text-sm transition-colors;
+}
+.btn-primary {
+  @apply bg-indigo-600 hover:bg-indigo-500 px-4 py-1.5 rounded-lg text-white text-sm font-medium transition-colors shadow-lg;
+}
+.btn-small { /* For expand/collapse buttons */
+  @apply bg-gray-700 hover:bg-gray-600 px-2 py-1 rounded-lg text-xs text-white transition-colors;
+}
+.card {
+  @apply bg-gray-900 rounded-xl p-5 border border-gray-700;
+}
+.mono-box {
+  @apply bg-gray-800 text-green-300 font-mono text-sm p-3 rounded-lg border border-gray-700 overflow-x-auto;
+}
+.warn {
+  @apply text-sm text-red-400 bg-red-900/20 p-2 rounded-lg border border-red-700;
+}
+.warn-inline {
+  @apply text-red-400;
+}
+.chip { /* For quick tokens */
+  @apply bg-gray-800 hover:bg-gray-700 px-2.5 py-1.5 rounded-lg text-xs transition-colors cursor-pointer;
+}
+/* Checkbox styles */
+input[type="checkbox"] {
+  @apply w-4 h-4 rounded border-gray-600 bg-gray-900 text-indigo-600 focus:ring-indigo-500;
+}
+/* Textarea styles */
+textarea.input {
+  @apply resize-y;
+}
+code {
+  @apply bg-gray-800 px-1 py-0.5 rounded text-xs;
+}
 </style>

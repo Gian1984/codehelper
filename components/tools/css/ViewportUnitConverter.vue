@@ -1,17 +1,17 @@
 <template>
   <div class="space-y-5 bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-xl text-white">
     <!-- Header -->
-    <div class="flex items-center justify-between gap-3 flex-wrap">
+    <div class="card flex items-center justify-between gap-3 flex-wrap">
       <h2 class="text-2xl font-semibold">📐 Viewport Unit Converter</h2>
       <div class="flex items-center gap-2">
-        <button class="btn" @click="resetAll">🔄 reset</button>
+        <button class="btn" @click="resetAll">🔄 Reset</button>
       </div>
     </div>
 
     <!-- Mode, Unit, Decimals -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
       <div class="card space-y-2">
-        <h3 class="text-sm font-semibold text-indigo-400">🔀 Mode</h3>
+        <h3 class="label">🔀 Conversion Mode</h3>
         <select v-model="mode" class="input">
           <option value="px-to-unit">px → viewport unit</option>
           <option value="unit-to-px">viewport unit → px</option>
@@ -19,7 +19,7 @@
       </div>
 
       <div class="card space-y-2">
-        <h3 class="text-sm font-semibold text-indigo-400">📏 Unit Type</h3>
+        <h3 class="label">📏 Unit Type</h3>
         <select v-model="unitType" class="input">
           <optgroup label="Viewport Units">
             <option value="vw">vw (viewport width)</option>
@@ -58,11 +58,11 @@
       </div>
 
       <div class="card space-y-2">
-        <h3 class="text-sm font-semibold text-indigo-400">🔢 Decimals</h3>
+        <h3 class="label">🔢 Decimals</h3>
         <input type="number" min="0" max="6" v-model.number="decimals" class="input" />
-        <label class="inline-flex items-center gap-2">
-          <input type="checkbox" v-model="autoFromWindow" class="w-4 h-4" />
-          <span class="text-xs text-gray-300">auto-use current window</span>
+        <label class="inline-flex items-center gap-2 cursor-pointer">
+          <input type="checkbox" v-model="autoFromWindow" />
+          <span class="text-sm text-gray-300">Auto-use current window</span>
         </label>
       </div>
     </div>
@@ -70,24 +70,24 @@
     <!-- Viewport Dimensions -->
     <div class="card space-y-4">
       <div class="flex items-center justify-between gap-3 flex-wrap">
-        <h3 class="text-sm font-semibold text-indigo-400">🖥️ {{ isContainerUnit ? 'Container' : 'Viewport' }} Dimensions</h3>
+        <h3 class="label">🖥️ {{ isContainerUnit ? 'Container' : 'Viewport' }} Dimensions</h3>
         <div class="flex gap-2 flex-wrap">
           <select v-model="preset" class="input w-56" @change="applyPreset">
             <option value="">— device presets —</option>
             <option v-for="p in PRESETS" :key="p.w+'x'+p.h" :value="p.w+'x'+p.h">{{ p.label }}</option>
           </select>
-          <button class="btn" @click="swapDimensions">↔️ swap</button>
-          <button class="btn" @click="useCurrent" v-if="!isContainerUnit">📱 use current</button>
+          <button class="btn" @click="swapDimensions">↔️ Swap</button>
+          <button class="btn" @click="useCurrent" v-if="!isContainerUnit">📱 Use Current</button>
         </div>
       </div>
 
       <div class="grid grid-cols-2 gap-4">
         <div>
-          <span class="label">{{ isContainerUnit ? 'container' : 'viewport' }} width (px)</span>
+          <label class="label">{{ isContainerUnit ? 'Container' : 'Viewport' }} width (px)</label>
           <input type="number" min="1" v-model.number="vpW" class="input" />
         </div>
         <div>
-          <span class="label">{{ isContainerUnit ? 'container' : 'viewport' }} height (px)</span>
+          <label class="label">{{ isContainerUnit ? 'Container' : 'Viewport' }} height (px)</label>
           <input type="number" min="1" v-model.number="vpH" class="input" />
         </div>
       </div>
@@ -97,26 +97,26 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       <!-- Input -->
       <div class="card space-y-3">
-        <h3 class="text-sm font-semibold text-indigo-400">📝 Input</h3>
+        <h3 class="label">📝 Input Value</h3>
         <div v-if="mode === 'px-to-unit'">
-          <span class="label">size in pixels</span>
+          <label class="label">Size in Pixels</label>
           <input type="number" min="0" v-model.number="pxInput" class="input" />
         </div>
         <div v-else>
           <div class="grid grid-cols-2 gap-3">
             <div>
-              <span class="label">size in {{ unitType }}</span>
+              <label class="label">Size in {{ unitType }}</label>
               <input type="number" min="0" v-model.number="unitInput" class="input" />
             </div>
             <div>
-              <span class="label">unit (readonly)</span>
-              <input :value="unitType" readonly class="input bg-gray-800 text-gray-400" />
+              <label class="label">Unit (readonly)</label>
+              <input :value="unitType" readonly class="input !bg-gray-700 text-gray-400" />
             </div>
           </div>
         </div>
 
         <div>
-          <span class="label">CSS property</span>
+          <label class="label">CSS Property</label>
           <select v-model="cssProp" class="input">
             <option>width</option>
             <option>height</option>
@@ -133,22 +133,22 @@
       <!-- Output -->
       <div class="card space-y-3">
         <div class="flex items-center justify-between">
-          <h3 class="text-sm font-semibold text-indigo-400">✨ Result</h3>
+          <h3 class="label">✨ Result</h3>
           <div class="flex gap-2">
-            <button class="btn" @click="copyResult" :disabled="!resultSnippet">📋 copy</button>
-            <button class="btn" @click="copyNumber" :disabled="!resultNumber">🔢 copy number</button>
+            <button class="btn" @click="copyResult" :disabled="!resultSnippet">📋 Copy</button>
+            <button class="btn" @click="copyNumber" :disabled="!resultNumber">🔢 Copy Number</button>
           </div>
         </div>
 
-        <div v-if="validConversion" class="bg-black border border-gray-700 rounded p-4">
-          <div class="text-green-300 font-mono text-sm">{{ resultSnippet }}</div>
+        <div v-if="validConversion" class="mono-box">
+          {{ resultSnippet }}
         </div>
-        <div v-else class="text-yellow-400 text-sm">⚠️ Enter valid dimensions and value</div>
+        <div v-else class="warn">⚠️ Enter valid dimensions and value</div>
 
         <details v-if="validConversion">
-          <summary class="cursor-pointer text-sm text-gray-300 hover:text-white">💡 quick snippets</summary>
+          <summary class="cursor-pointer text-sm text-gray-300 hover:text-white">💡 Quick Snippets</summary>
           <div class="grid grid-cols-2 gap-2 mt-3">
-            <div v-for="prop in quickProps" :key="prop" class="bg-black border border-gray-700 rounded p-2 text-xs font-mono text-gray-300">
+            <div v-for="prop in quickProps" :key="prop" class="mono-box !p-2 !text-xs">
               {{ prop }}: {{ resultNumber }}{{ mode === 'px-to-unit' ? unitType : 'px' }};
             </div>
           </div>
@@ -158,20 +158,20 @@
 
     <!-- Batch Conversion -->
     <div class="card space-y-4">
-      <h3 class="text-sm font-semibold text-indigo-400">📦 Batch Conversion</h3>
-      <p class="text-sm text-gray-400">Enter multiple px values (one per line or comma-separated)</p>
+      <h3 class="label">📦 Batch Conversion</h3>
+      <p class="text-sm text-gray-400">Enter multiple values (one per line or comma-separated)</p>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <span class="label">input values ({{ mode === 'px-to-unit' ? 'px' : unitType }})</span>
-          <textarea v-model="batchInput" class="input min-h-[120px] font-mono text-sm" placeholder="16, 24, 32, 48, 64"></textarea>
+          <label class="label">Input values ({{ mode === 'px-to-unit' ? 'px' : unitType }})</label>
+          <textarea v-model="batchInput" class="input min-h-[120px] font-mono" placeholder="16, 24, 32, 48, 64"></textarea>
         </div>
         <div>
           <div class="flex items-center justify-between mb-2">
-            <span class="label">converted output</span>
-            <button class="btn text-xs" @click="copyBatchOutput" :disabled="!batchOutput">📋 copy all</button>
+            <label class="label !mb-0 !block">Converted Output</label>
+            <button class="btn text-xs" @click="copyBatchOutput" :disabled="!batchOutput">📋 Copy All</button>
           </div>
-          <div class="bg-black border border-gray-700 rounded p-3 min-h-[120px] overflow-y-auto font-mono text-sm text-green-300">
+          <div class="mono-box min-h-[120px] !text-xs !p-2">
             <div v-if="batchOutput">
               <div v-for="(line, i) in batchOutputLines" :key="i">{{ line }}</div>
             </div>
@@ -183,28 +183,28 @@
 
     <!-- Fluid Clamp Generator -->
     <div class="card space-y-4">
-      <h3 class="text-sm font-semibold text-indigo-400">🎯 Fluid clamp() Generator</h3>
+      <h3 class="label">🎯 Fluid clamp() Generator</h3>
       <p class="text-sm text-gray-400">Create responsive values that scale between breakpoints</p>
 
       <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
         <div>
-          <span class="label">min viewport (px)</span>
+          <label class="label">Min Viewport (px)</label>
           <input type="number" min="1" v-model.number="clampMinVp" class="input" />
         </div>
         <div>
-          <span class="label">max viewport (px)</span>
+          <label class="label">Max Viewport (px)</label>
           <input type="number" min="1" v-model.number="clampMaxVp" class="input" />
         </div>
         <div>
-          <span class="label">min size (px)</span>
+          <label class="label">Min Size (px)</label>
           <input type="number" min="0" v-model.number="clampMinSize" class="input" />
         </div>
         <div>
-          <span class="label">max size (px)</span>
+          <label class="label">Max Size (px)</label>
           <input type="number" min="0" v-model.number="clampMaxSize" class="input" />
         </div>
         <div>
-          <span class="label">property</span>
+          <label class="label">Property</label>
           <select v-model="clampProp" class="input">
             <option>width</option>
             <option>height</option>
@@ -216,24 +216,24 @@
         </div>
       </div>
 
-      <div v-if="clampSnippet" class="bg-black border border-gray-700 rounded p-4">
-        <div class="text-green-300 font-mono text-sm">{{ clampSnippet }}</div>
+      <div v-if="clampSnippet" class="mono-box">
+        {{ clampSnippet }}
       </div>
 
       <div class="flex gap-2 flex-wrap">
-        <button class="btn" @click="copyClamp" :disabled="!clampSnippet">📋 copy clamp</button>
-        <button class="btn" @click="useCurrentAsMax">📌 use current as max</button>
-        <button class="btn" @click="loadCommonBreakpoints('mobile-desktop')">📱 mobile → desktop</button>
-        <button class="btn" @click="loadCommonBreakpoints('tablet-desktop')">💻 tablet → desktop</button>
+        <button class="btn" @click="copyClamp" :disabled="!clampSnippet">📋 Copy Clamp</button>
+        <button class="btn" @click="useCurrentAsMax">📌 Use Current As Max</button>
+        <button class="btn" @click="loadCommonBreakpoints('mobile-desktop')">📱 Mobile → Desktop</button>
+        <button class="btn" @click="loadCommonBreakpoints('tablet-desktop')">💻 Tablet → Desktop</button>
       </div>
 
       <p class="text-xs text-gray-400">
-        Formula: <code class="bg-gray-800 px-1 rounded">clamp(min, calc(slope × 100vw + intercept), max)</code>
+        Formula: <code class="bg-gray-800 px-1 py-0.5 rounded">{{ `clamp(min, calc(slope × 100vw + intercept), max)` }}</code>
       </p>
     </div>
 
     <!-- Info Footer -->
-    <div class="bg-black/50 border border-gray-700 rounded-xl p-4 space-y-2 text-xs text-gray-400">
+    <div class="card space-y-2 text-xs text-gray-400">
       <p><strong class="text-indigo-400">💡 Tip:</strong> {{ currentTip }}</p>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-2 mt-2">
         <p><strong>Viewport units:</strong> Based on browser viewport (vw, vh, vmin, vmax)</p>
@@ -244,7 +244,7 @@
       </div>
     </div>
 
-    <p v-if="copiedMsg" class="text-green-400 text-sm text-center">✅ {{ copiedMsg }}</p>
+    <p v-if="copiedMsg" class="text-green-400 text-sm text-center font-medium">✅ {{ copiedMsg }}</p>
   </div>
 </template>
 
@@ -599,10 +599,49 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.label { @apply text-sm text-gray-300 block mb-1; }
-.input { @apply bg-black text-white w-full px-3 py-2 rounded-md border border-gray-700 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors; }
-.btn { @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded text-white text-sm disabled:opacity-50 disabled:cursor-not-allowed transition-colors; }
-.card { @apply bg-black rounded-xl p-4 border border-gray-700; }
-select.input { padding: 10px !important; }
-textarea.input { resize: vertical; }
+.label {
+  @apply text-sm font-medium text-gray-300 block mb-2;
+}
+.sub {
+  @apply block text-[10px] text-gray-400 mb-1 uppercase tracking-wide;
+}
+.input {
+  @apply bg-black text-white border-2 border-gray-700 rounded-lg px-3 py-2 w-full;
+  @apply focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all;
+}
+/* Specific override for select elements to ensure padding consistency */
+select.input {
+  @apply appearance-none;
+  padding-right: 2.5rem; /* Space for custom arrow if needed, or native arrow */
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+}
+.btn {
+  @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded-lg text-white text-sm transition-colors;
+}
+.btn-primary {
+  @apply bg-indigo-600 hover:bg-indigo-500 px-4 py-1.5 rounded-lg text-white text-sm font-medium transition-colors shadow-lg;
+}
+.card {
+  @apply bg-gray-900 rounded-xl p-5 border border-gray-700;
+}
+.mono-box {
+  @apply bg-gray-800 text-green-300 font-mono text-sm p-3 rounded-lg border border-gray-700 overflow-x-auto;
+}
+.warn {
+  @apply text-sm text-yellow-300 bg-yellow-900/20 p-2 rounded-lg border border-yellow-700;
+}
+/* Checkbox styles */
+input[type="checkbox"] {
+  @apply w-4 h-4 rounded border-gray-600 bg-gray-900 text-indigo-600 focus:ring-indigo-500;
+}
+/* Textarea resize */
+textarea.input {
+  @apply resize-y;
+}
+code {
+  @apply bg-gray-800 px-1 py-0.5 rounded text-xs;
+}
 </style>

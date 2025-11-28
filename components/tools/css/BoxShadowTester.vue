@@ -1,76 +1,78 @@
 <template>
   <div class="space-y-6 bg-gray-800 p-6 sm:p-8 rounded-2xl shadow text-white">
-    <div class="flex items-center justify-between gap-3 flex-wrap">
-      <h2 class="text-2xl font-semibold">Box Shadow Designer</h2>
-      <div class="flex gap-2">
-        <button class="btn" @click="addLayer()">+ layer</button>
-        <button class="btn" @click="applyPreset('soft')">soft preset</button>
-        <button class="btn" @click="applyPreset('material-3')">material 3</button>
-        <button class="btn" @click="resetAll">reset</button>
-        <button class="btn-primary" :disabled="!boxShadowValue" @click="copyCss">copy CSS</button>
+    <div class="card flex items-center justify-between gap-3 flex-wrap">
+      <h2 class="text-2xl font-semibold">✨ Box Shadow Designer</h2>
+      <div class="flex flex-wrap items-center gap-2">
+        <button class="btn" @click="addLayer()">+ Add Layer</button>
+        <button class="btn" @click="applyPreset('soft')">Soft Preset</button>
+        <button class="btn" @click="applyPreset('material-3')">Material 3 Preset</button>
+        <button class="btn" @click="resetAll">Reset</button>
+        <button class="btn-primary" :disabled="!boxShadowValue" @click="copyCss">Copy CSS</button>
       </div>
     </div>
 
     <!-- Global preview controls -->
     <div class="grid md:grid-cols-3 gap-4">
       <div class="card space-y-2">
-        <label class="label">preview background</label>
+        <label class="label">Background</label>
         <div class="flex items-center gap-2">
           <input type="color" v-model="previewBackground" class="color" />
-          <input class="input text-black" v-model="previewBackground" @blur="previewBackground = normalizeHex(previewBackground, '#ffffff')" maxlength="7" />
+          <input class="input" v-model="previewBackground" @blur="previewBackground = normalizeHex(previewBackground, '#ffffff')" maxlength="7" />
         </div>
-        <label class="inline-flex items-center gap-2">
-          <input type="checkbox" v-model="checker" /> checkerboard
+        <label class="inline-flex items-center gap-2 cursor-pointer">
+          <input type="checkbox" v-model="checker" />
+          <span class="text-sm text-gray-300">Checkerboard</span>
         </label>
       </div>
 
       <div class="card space-y-2">
-        <label class="label">preview size</label>
+        <label class="label">Size</label>
         <div class="grid grid-cols-2 gap-2">
           <div>
-            <span class="sub">box (px)</span>
+            <span class="sub">Box (px)</span>
             <input type="number" min="32" v-model.number="boxSize" class="input" />
           </div>
           <div>
-            <span class="sub">radius (px)</span>
+            <span class="sub">Radius (px)</span>
             <input type="number" min="0" v-model.number="radius" class="input" />
           </div>
         </div>
       </div>
 
       <div class="card space-y-2">
-        <label class="label">output format</label>
+        <label class="label">Format</label>
         <select v-model="format" class="input">
           <option value="css">CSS</option>
           <option value="tailwind">Tailwind (arbitrary)</option>
         </select>
-        <label class="label mt-2">filename</label>
+        <label class="label">Filename</label>
         <input v-model="filename" class="input" placeholder="shadow.css" />
-        <button class="btn mt-2" :disabled="!boxShadowValue" @click="downloadCss">download</button>
+        <button class="btn" :disabled="!boxShadowValue" @click="downloadCss">Download</button>
       </div>
     </div>
 
     <!-- Layers -->
     <div class="card space-y-4">
       <div class="flex items-center justify-between">
-        <h3 class="text-lg font-semibold">Layers</h3>
+        <h3 class="label text-lg">✨ Layers</h3>
         <span class="text-xs text-gray-400">order matters (top = first)</span>
       </div>
 
-      <div v-if="layers.length === 0" class="text-gray-400 text-sm">No layers. Add one with “+ layer”.</div>
+      <div v-if="layers.length === 0" class="text-gray-400 text-sm">No layers. Add one with “+ Add Layer”.</div>
 
       <div v-for="(l, idx) in layers" :key="l.id" class="layer">
         <div class="flex items-center justify-between gap-2 flex-wrap">
           <div class="flex items-center gap-2">
-            <button class="icon" title="move up" :disabled="idx===0" @click="move(idx, -1)">▲</button>
-            <button class="icon" title="move down" :disabled="idx===layers.length-1" @click="move(idx, +1)">▼</button>
-            <label class="inline-flex items-center gap-2 text-sm">
-              <input type="checkbox" v-model="l.inset" /> inset
+            <button class="icon" title="Move Up" :disabled="idx===0" @click="move(idx, -1)">▲</button>
+            <button class="icon" title="Move Down" :disabled="idx===layers.length-1" @click="move(idx, +1)">▼</button>
+            <label class="inline-flex items-center gap-2 cursor-pointer">
+              <input type="checkbox" v-model="l.inset" />
+              <span class="text-sm text-gray-300">Inset</span>
             </label>
           </div>
           <div class="flex items-center gap-2">
-            <button class="btn" @click="duplicate(idx)">duplicate</button>
-            <button class="btn danger" @click="remove(idx)">delete</button>
+            <button class="btn" @click="duplicate(idx)">Duplicate</button>
+            <button class="btn danger" @click="remove(idx)">Delete</button>
           </div>
         </div>
 
@@ -100,7 +102,7 @@
             <span class="sub">Color</span>
             <div class="flex items-center gap-2">
               <input type="color" v-model="l.hex" class="color" />
-              <input class="input text-black" v-model="l.hex" @blur="l.hex = normalizeHex(l.hex, '#000000')" maxlength="7" />
+              <input class="input" v-model="l.hex" @blur="l.hex = normalizeHex(l.hex, '#000000')" maxlength="7" />
             </div>
             <div class="flex items-center gap-2">
               <span class="sub">Opacity</span>
@@ -130,7 +132,7 @@
             height: boxSize + 'px',
             borderRadius: radius + 'px',
             boxShadow: boxShadowValue,
-            background: '#fff'
+            background: '#0b1220'
           }"
         />
       </div>
@@ -146,7 +148,7 @@
 
       <div v-else>
         <pre class="mono">class="shadow-[{{ tailwindShadow }}]"</pre>
-        <p class="text-xs text-gray-400">Tailwind arbitrary value escapes handled.</p>
+        <p class="text-xs text-gray-400 mt-2">Tailwind arbitrary value escapes handled.</p>
       </div>
     </div>
   </div>
@@ -203,7 +205,7 @@ const tailwindShadow = computed(() =>
 )
 
 /* checkerboard background */
-const checkerCss = `repeating-conic-gradient(#e5e7eb 0% 25%, #d1d5db 0% 50%) 0 / 16px 16px`
+const checkerCss = `repeating-conic-gradient(#1e2532 0% 25%, #0b1220 0% 50%) 0 / 16px 16px`
 
 /* ------- actions ------- */
 function addLayer() {
@@ -281,24 +283,64 @@ function resetAll() {
 </script>
 
 <style scoped>
-.label { @apply text-sm text-gray-300; }
-.sub { @apply block text-xs text-gray-400 mb-1; }
-.input { @apply bg-gray-100 text-gray-900 border border-gray-300 rounded px-2 py-1 w-full; }
-.color { @apply w-12 h-10 p-0 border border-gray-400 rounded; }
-.btn { @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded text-white text-sm disabled:opacity-50; }
-.btn-primary { @apply bg-indigo-600 hover:bg-indigo-500 px-3 py-1.5 rounded text-white text-sm; }
-.btn.danger { @apply bg-red-600 hover:bg-red-500; }
-.card { @apply bg-gray-800/60 rounded-xl p-4 border border-gray-800; }
-.icon { @apply bg-gray-700 hover:bg-gray-600 text-white text-xs rounded px-2 py-1 disabled:opacity-50; }
-
-.layer { @apply bg-gray-800/40 rounded-lg p-3 border border-gray-800; }
-.value { @apply text-xs text-gray-300; }
-.preview {
-  @apply rounded-lg p-8 border border-gray-800;
-  min-height: 220px;
-  display: grid;
-  place-items: center;
+.label {
+  @apply text-sm font-medium text-gray-300 block;
 }
-.box { @apply rounded; }
-.mono { @apply bg-gray-950 text-green-300 font-mono text-sm p-3 rounded border border-gray-800 overflow-x-auto; }
+.sub {
+  @apply block text-[10px] text-gray-400 mb-1 uppercase tracking-wide;
+}
+.input {
+  @apply bg-black text-white border-2 border-gray-700 rounded-lg px-3 py-2 w-full;
+  @apply focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all;
+}
+.btn {
+  @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded-lg text-white text-sm transition-colors;
+}
+.btn-primary {
+  @apply bg-indigo-600 hover:bg-indigo-500 px-4 py-1.5 rounded-lg text-white text-sm font-medium transition-colors shadow-lg;
+}
+.card {
+  @apply bg-gray-900 rounded-xl p-5 border border-gray-700;
+}
+
+/* Custom styles for BoxShadowTester */
+.color {
+  @apply w-12 h-10 p-0 border-2 border-gray-700 rounded-lg cursor-pointer bg-black;
+}
+.btn.danger {
+  @apply bg-red-600 hover:bg-red-500;
+}
+.icon { /* Small button for moving layers */
+  @apply bg-gray-700 hover:bg-gray-600 text-white text-xs rounded-lg px-2 py-1 transition-colors disabled:opacity-50 disabled:cursor-not-allowed;
+}
+.layer {
+  @apply bg-gray-800 rounded-lg p-4 border border-gray-700;
+}
+.value {
+  @apply text-sm font-mono text-gray-300;
+}
+.preview {
+  @apply rounded-xl p-8 border border-gray-700 bg-gray-900 grid place-items-center;
+  min-height: 220px;
+}
+.box {
+  @apply rounded-lg; /* Standardize default box rounding */
+}
+.mono {
+  @apply bg-gray-800 text-green-300 font-mono text-sm p-3 rounded-lg border border-gray-700 overflow-x-auto;
+}
+/* Slider styles from BorderRadiusGenerator */
+input[type="range"] {
+  @apply appearance-none h-2 rounded-full bg-gray-700;
+}
+input[type="range"]::-webkit-slider-thumb {
+  @apply appearance-none w-4 h-4 rounded-full bg-indigo-500 cursor-pointer;
+}
+input[type="range"]::-moz-range-thumb {
+  @apply w-4 h-4 rounded-full bg-indigo-500 cursor-pointer border-0;
+}
+/* Checkbox styles */
+input[type="checkbox"] {
+  @apply w-4 h-4 rounded border-gray-600 bg-gray-900 text-indigo-600 focus:ring-indigo-500;
+}
 </style>

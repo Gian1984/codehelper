@@ -1,198 +1,167 @@
 <template>
-  <div class="bg-gray-800 text-gray-100 p-6 sm:p-8 rounded-2xl shadow-xl space-y-6">
-    <div class="flex items-center justify-between flex-wrap gap-3">
-      <div>
-        <h2 class="text-2xl font-semibold">Aspect Ratio Matte Generator</h2>
-      </div>
-      <div class="flex items-center gap-2">
-        <button
-            class="px-3 py-1.5 rounded-lg bg-gray-700 hover:bg-gray-600 text-sm"
-            @click="swapWH"
-            aria-label="swap width and height"
-        >
-          swap w/h
-        </button>
-        <button
-            class="px-3 py-1.5 rounded-lg bg-gray-700 hover:bg-gray-600 text-sm"
-            @click="resetDefaults"
-        >
-          reset
-        </button>
+  <div class="space-y-6 bg-gray-800 p-6 sm:p-8 rounded-2xl shadow text-white">
+    <!-- Header -->
+    <div class="bg-gray-900 rounded-xl p-5 border border-gray-700">
+      <div class="flex items-center justify-between gap-3 flex-wrap">
+        <h2 class="text-2xl font-semibold">🖼️ Aspect Frame Generator</h2>
+        <div class="flex items-center gap-2">
+          <button class="btn" @click="swapWH">🔄 swap w/h</button>
+          <button class="btn" @click="resetDefaults">↺ reset</button>
+          <button class="btn-primary" @click="downloadImage">⬇ download png</button>
+        </div>
       </div>
     </div>
 
-    <!-- grid inputs -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-      <!-- width -->
-      <label class="block">
-        <span class="text-gray-300">width (px)</span>
-        <input
-            v-model.number="width"
-            type="number"
-            :min="MIN_W"
-            :max="MAX_W"
-            step="1"
-            class="mt-1 text-black w-full px-3 py-2 rounded-md border border-gray-300"
-            @blur="clampDims"
-        />
-      </label>
-
-      <!-- height -->
-      <label class="block">
-        <span class="text-gray-300">height (px)</span>
-        <input
-            v-model.number="height"
-            type="number"
-            :min="MIN_H"
-            :max="MAX_H"
-            step="1"
-            class="mt-1 text-black w-full px-3 py-2 rounded-md border border-gray-300"
-            @blur="clampDims"
-        />
-      </label>
-
-      <!-- ratio preset + custom -->
-      <div class="sm:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
-        <label class="block">
-          <span class="text-gray-300">target aspect ratio</span>
-          <div class="mt-1 grid grid-cols-[1fr,auto] gap-2">
+    <!-- Controls Grid -->
+    <div class="grid md:grid-cols-3 gap-4">
+      
+      <!-- Dimensions -->
+      <div class="card space-y-3">
+        <label class="label">📏 Dimensions (px)</label>
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="text-xs text-gray-400 mb-1 block">Width</label>
             <input
-                v-model.number="targetRatio"
-                type="number"
-                step="0.01"
-                class="text-black w-full px-3 py-2 rounded-md border border-gray-300"
-                @blur="clampRatio"
+              v-model.number="width"
+              type="number"
+              :min="MIN_W"
+              :max="MAX_W"
+              step="1"
+              class="input"
+              @blur="clampDims"
             />
-            <select
-                class="text-black px-3 py-2 rounded-md border border-gray-300"
-                v-model="presetKey"
-                @change="applyPreset"
-            >
-              <option disabled value="">presets</option>
-              <option v-for="p in ratioPresets" :key="p.key" :value="p.key">
-                {{ p.label }} ({{ p.value }})
-              </option>
+          </div>
+          <div>
+            <label class="text-xs text-gray-400 mb-1 block">Height</label>
+            <input
+              v-model.number="height"
+              type="number"
+              :min="MIN_H"
+              :max="MAX_H"
+              step="1"
+              class="input"
+              @blur="clampDims"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Aspect Ratio -->
+      <div class="card space-y-3">
+        <label class="label">⚖️ Target Ratio</label>
+        <div class="space-y-2">
+          <input
+            v-model.number="targetRatio"
+            type="number"
+            step="0.01"
+            class="input"
+            placeholder="2.35"
+            @blur="clampRatio"
+          />
+          <select
+            class="input"
+            v-model="presetKey"
+            @change="applyPreset"
+          >
+            <option disabled value="">Select a preset...</option>
+            <option v-for="p in ratioPresets" :key="p.key" :value="p.key">
+              {{ p.label }} ({{ p.value }})
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Appearance -->
+      <div class="card space-y-3">
+        <label class="label">🎨 Style & Colors</label>
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="text-xs text-gray-400 mb-1 block">Mode</label>
+            <select v-model="renderMode" class="input">
+              <option value="hole">Hole (Matte)</option>
+              <option value="solid">Solid Frame</option>
             </select>
           </div>
-        </label>
-
-        <!-- mode -->
-        <label class="block">
-          <span class="text-gray-300">render mode</span>
-          <select
-              v-model="renderMode"
-              class="mt-1 text-black w-full px-3 py-2 rounded-md border border-gray-300"
-          >
-            <option value="hole">transparent center + opaque bars</option>
-            <option value="solid">opaque full frame</option>
-          </select>
-        </label>
+          <div>
+            <label class="text-xs text-gray-400 mb-1 block">Background</label>
+            <div class="flex items-center gap-2">
+              <input v-model="bgColor" type="color" class="w-8 h-8 p-0 border border-gray-600 rounded bg-black cursor-pointer" />
+              <input
+                v-model="bgColor"
+                type="text"
+                maxlength="7"
+                class="input !px-2"
+                @blur="normalizeHex('bg')"
+              />
+            </div>
+          </div>
+        </div>
       </div>
+    </div>
 
-      <!-- bg color -->
-      <label class="block">
-        <span class="text-gray-300">bar/background color</span>
-        <div class="mt-1 flex items-center gap-2">
-          <input v-model="bgColor" type="color" class="w-12 h-10 p-0 border border-gray-400 rounded" />
-          <input
-              v-model="bgColor"
-              type="text"
-              maxlength="7"
-              class="text-black px-3 py-2 rounded-md border border-gray-300 w-36"
-              @blur="normalizeHex('bg')"
-          />
+    <!-- Labeling & Stats -->
+    <div class="grid md:grid-cols-3 gap-4">
+      <!-- Labeling -->
+      <div class="card space-y-3 md:col-span-2">
+        <div class="flex items-center justify-between">
+          <label class="label">🏷️ Overlay Label</label>
+          <label class="inline-flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" v-model="showLabel" class="w-4 h-4 rounded border-gray-600 bg-gray-900 text-indigo-600 focus:ring-indigo-500" />
+            <span class="text-sm text-gray-400">Show Label</span>
+          </label>
         </div>
-      </label>
-
-      <!-- text color -->
-      <label class="block">
-        <span class="text-gray-300">text color</span>
-        <div class="mt-1 flex items-center gap-2">
-          <input v-model="textColor" type="color" class="w-12 h-10 p-0 border border-gray-400 rounded" />
-          <input
-              v-model="textColor"
-              type="text"
-              maxlength="7"
-              class="text-black px-3 py-2 rounded-md border border-gray-300 w-36"
-              @blur="normalizeHex('text')"
-          />
-        </div>
-      </label>
-
-      <!-- watermark & filename -->
-      <div class="sm:col-span-2 grid grid-cols-1 md:grid-cols-[1fr,auto] gap-4 items-end">
-        <label class="block">
-          <span class="text-gray-300">center label (optional)</span>
-          <input
+        <div class="flex gap-2">
+          <div class="relative flex-1">
+             <input
               v-model="centerLabel"
               type="text"
-              placeholder="es. 1920x1080 • 2.35:1"
-              class="mt-1 text-black w-full px-3 py-2 rounded-md border border-gray-300"
-          />
-        </label>
+              placeholder="Optional custom text (e.g. 2.35:1)"
+              class="input"
+            />
+          </div>
+          <div class="flex items-center gap-2">
+            <input v-model="textColor" type="color" class="w-10 h-10 p-1 border border-gray-600 rounded bg-black cursor-pointer" title="Text Color" />
+             <button class="btn" @click="copyLabel" title="Copy label text">📋</button>
+          </div>
+        </div>
+      </div>
 
-        <div class="flex items-center gap-3">
-          <label class="inline-flex items-center gap-2">
-            <input type="checkbox" v-model="showLabel" class="w-4 h-4" />
-            <span class="text-gray-300">show label</span>
-          </label>
-          <button
-              class="px-3 py-1.5 rounded-lg bg-gray-700 hover:bg-gray-600 text-sm"
-              @click="copyLabel"
-          >
-            copy label
-          </button>
+      <!-- Stats -->
+      <div class="card space-y-2 text-sm">
+        <label class="label">📊 Stats</label>
+        <div class="flex justify-between border-b border-gray-800 pb-1">
+          <span class="text-gray-400">Current Ratio</span>
+          <span class="font-mono text-indigo-400">{{ computedRatio.toFixed(3) }}:1</span>
+        </div>
+        <div class="flex justify-between border-b border-gray-800 pb-1">
+          <span class="text-gray-400">Transparent H</span>
+          <span class="font-mono text-indigo-400">{{ targetHeight | 0 }}px</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-gray-400">Bar Height</span>
+          <span class="font-mono text-indigo-400">{{ topBar | 0 }}px</span>
         </div>
       </div>
     </div>
 
-    <!-- live facts -->
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
-      <div class="bg-gray-800/70 rounded-xl p-3">
-        <div class="text-gray-400">computed ratio</div>
-        <div class="font-medium">{{ computedRatio.toFixed(3) }} : 1</div>
+    <!-- Preview -->
+    <div class="card space-y-4">
+      <div class="flex items-center justify-between">
+        <h3 class="font-semibold text-indigo-400">👁️ Preview</h3>
+        <span class="text-xs text-gray-500 font-mono">{{ suggestedFilename }}</span>
       </div>
-      <div class="bg-gray-800/70 rounded-xl p-3">
-        <div class="text-gray-400">usable (transparent) height</div>
-        <div class="font-medium">{{ targetHeight | 0 }} px</div>
-      </div>
-      <div class="bg-gray-800/70 rounded-xl p-3">
-        <div class="text-gray-400">bar thickness (each)</div>
-        <div class="font-medium">{{ topBar | 0 }} px</div>
-      </div>
-    </div>
-
-    <!-- preview -->
-    <section>
-      <h3 class="text-lg font-medium mb-2">preview</h3>
-      <div class="relative rounded-xl overflow-hidden ring-1 ring-gray-800 bg-[conic-gradient(at_0_0,transparent_25%,#111_0)_,conic-gradient(at_10px_10px,transparent_25%,#111_0)] [background-position:0_0,10px_10px] [background-size:20px_20px] p-4">
+      
+      <div class="relative rounded-lg overflow-hidden ring-1 ring-gray-700 bg-[conic-gradient(at_0_0,transparent_25%,#111_0)_,conic-gradient(at_10px_10px,transparent_25%,#111_0)] [background-position:0_0,10px_10px] [background-size:20px_20px] p-4 sm:p-8 min-h-[200px] flex items-center justify-center">
         <img
             v-if="preview"
             :src="preview"
             :alt="`matte ${width}x${height}`"
-            class="mx-auto block max-h-[60vh] rounded-lg shadow"
+            class="block max-h-[60vh] max-w-full rounded shadow-2xl ring-1 ring-white/10"
             loading="lazy"
             decoding="async"
         />
-        <div v-else class="text-center text-gray-400 py-10">nessuna anteprima ancora…</div>
+        <div v-else class="text-gray-500 italic">Generating preview...</div>
       </div>
-    </section>
-
-    <!-- actions -->
-    <div class="flex flex-wrap items-center gap-3">
-      <button
-          class="bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded-lg text-white"
-          @click="downloadImage"
-      >
-        download png
-      </button>
-      <button
-          class="bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-lg text-white"
-          @click="renderNow"
-      >
-        refresh preview
-      </button>
-      <span class="text-xs text-gray-400">filename: {{ suggestedFilename }}</span>
     </div>
 
     <canvas ref="canvas" class="hidden"></canvas>
@@ -220,13 +189,13 @@ const canvas = ref(null)
 
 /* presets */
 const ratioPresets = [
-  { key: 'academy', label: 'academy (4:3)', value: 4/3 },
-  { key: 'europe',  label: '1.66:1',        value: 1.66 },
-  { key: 'flat',    label: 'flat (1.85:1)', value: 1.85 },
-  { key: 'hdtv',    label: '16:9',          value: 16/9 },
-  { key: '2.00',    label: 'univisium (2.00:1)', value: 2.0 },
-  { key: 'scope',   label: 'scope (2.35:1)', value: 2.35 },
-  { key: '239',     label: 'scope (2.39:1)', value: 2.39 },
+  { key: 'academy', label: 'Academy (4:3)', value: 4/3 },
+  { key: 'europe',  label: 'European (1.66:1)', value: 1.66 },
+  { key: 'flat',    label: 'Flat (1.85:1)', value: 1.85 },
+  { key: 'hdtv',    label: 'HDTV (16:9)',   value: 16/9 },
+  { key: '2.00',    label: 'Univisium (2.00:1)', value: 2.0 },
+  { key: 'scope',   label: 'Scope (2.35:1)', value: 2.35 },
+  { key: '239',     label: 'Scope (2.39:1)', value: 2.39 },
 ]
 const presetKey = ref('')
 
@@ -368,8 +337,21 @@ onMounted(() => {
 </script>
 
 <style scoped>
+.label {
+  @apply text-sm font-medium text-gray-300 block;
+}
+.input {
+  @apply bg-black text-white border-2 border-gray-700 rounded-lg px-3 py-2 w-full;
+  @apply focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all;
+}
+.btn {
+  @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded-lg text-white text-sm transition-colors;
+}
+.btn-primary {
+  @apply bg-indigo-600 hover:bg-indigo-500 px-4 py-1.5 rounded-lg text-white text-sm font-medium transition-colors shadow-lg;
+}
+.card {
+  @apply bg-gray-900 rounded-xl p-5 border border-gray-700;
+}
 canvas.hidden { display: none; }
-
-/* checkerboard bg handled inline; no extra styles here */
 </style>
-

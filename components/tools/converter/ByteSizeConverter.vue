@@ -1,28 +1,28 @@
 <template>
-  <div class="space-y-5 bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-xl text-white">
+  <div class="space-y-6 bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-xl text-white">
     <!-- Header -->
-    <div class="flex items-center justify-between gap-3 flex-wrap">
+    <div class="card flex items-center justify-between gap-3 flex-wrap">
       <h2 class="text-2xl font-semibold">💾 Byte Size Converter</h2>
       <div class="flex items-center gap-2">
-        <button class="btn" @click="clearAll">🗑️ clear</button>
+        <button class="btn" @click="clearAll">🗑️ Clear</button>
       </div>
     </div>
 
     <!-- Unit Type & Decimals -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       <div class="card space-y-2">
-        <h3 class="text-sm font-semibold text-indigo-400">📊 Unit Type</h3>
+        <h3 class="label">📊 Unit Type</h3>
         <div class="flex gap-2">
           <button
-            class="flex-1 px-3 py-2 rounded text-sm transition-colors"
-            :class="unitType === 'byte' ? 'bg-indigo-600 hover:bg-indigo-500' : 'bg-gray-700 hover:bg-gray-600'"
+            class="flex-1 px-3 py-2 rounded-lg text-sm transition-colors border border-transparent"
+            :class="unitType === 'byte' ? 'bg-indigo-600 hover:bg-indigo-500 border-indigo-500' : 'bg-gray-700 hover:bg-gray-600 border-gray-600'"
             @click="unitType = 'byte'"
           >
             📦 Bytes (B, KB, MB...)
           </button>
           <button
-            class="flex-1 px-3 py-2 rounded text-sm transition-colors"
-            :class="unitType === 'bit' ? 'bg-indigo-600 hover:bg-indigo-500' : 'bg-gray-700 hover:bg-gray-600'"
+            class="flex-1 px-3 py-2 rounded-lg text-sm transition-colors border border-transparent"
+            :class="unitType === 'bit' ? 'bg-indigo-600 hover:bg-indigo-500 border-indigo-500' : 'bg-gray-700 hover:bg-gray-600 border-gray-600'"
             @click="unitType = 'bit'"
           >
             ⚡ Bits (b, Kb, Mb...)
@@ -32,7 +32,7 @@
       </div>
 
       <div class="card space-y-2">
-        <h3 class="text-sm font-semibold text-indigo-400">🔢 Decimals</h3>
+        <h3 class="label">🔢 Decimals</h3>
         <input type="number" min="0" max="6" v-model.number="decimals" class="input" />
         <p class="text-xs text-gray-400">Precision for converted values</p>
       </div>
@@ -40,9 +40,9 @@
 
     <!-- Input -->
     <div class="card space-y-3">
-      <h3 class="text-sm font-semibold text-indigo-400">📝 Input</h3>
+      <h3 class="label">📝 Input</h3>
       <div>
-        <span class="label">Enter value (supports: 1024, 1.5 GB, 2 MiB, 1_000_000)</span>
+        <span class="text-xs text-gray-400 block mb-1">Enter value (supports: 1024, 1.5 GB, 2 MiB, 1_000_000)</span>
         <input
           v-model.trim="inputStr"
           @input="parseInput"
@@ -51,13 +51,13 @@
         />
         <p v-if="parseError" class="text-red-400 text-xs mt-1">{{ parseError }}</p>
       </div>
-      <div v-if="humanized" class="bg-black border border-indigo-500/30 rounded p-3">
+      <div v-if="humanized" class="bg-gray-800 border border-indigo-500/30 rounded-lg p-3">
         <div class="flex items-center justify-between">
           <div>
             <span class="text-xs text-gray-400">Best Representation:</span>
             <div class="text-green-300 font-mono text-lg">{{ humanized }}</div>
           </div>
-          <button class="btn" @click="copy(humanized)">📋 copy</button>
+          <button class="btn text-xs" @click="copy(humanized)">📋 Copy</button>
         </div>
       </div>
     </div>
@@ -66,22 +66,22 @@
     <div class="space-y-3">
       <div class="flex gap-2 border-b border-gray-700">
         <button
-          class="px-4 py-2 text-sm font-medium transition-colors"
-          :class="activeTab === 'iec' ? 'text-indigo-400 border-b-2 border-indigo-400' : 'text-gray-400 hover:text-white'"
+          class="px-4 py-2 text-sm font-medium transition-colors border-b-2"
+          :class="activeTab === 'iec' ? 'text-indigo-400 border-indigo-400' : 'text-gray-400 border-transparent hover:text-white'"
           @click="activeTab = 'iec'"
         >
           🔷 IEC (Binary × 1024)
         </button>
         <button
-          class="px-4 py-2 text-sm font-medium transition-colors"
-          :class="activeTab === 'si' ? 'text-indigo-400 border-b-2 border-indigo-400' : 'text-gray-400 hover:text-white'"
+          class="px-4 py-2 text-sm font-medium transition-colors border-b-2"
+          :class="activeTab === 'si' ? 'text-indigo-400 border-indigo-400' : 'text-gray-400 border-transparent hover:text-white'"
           @click="activeTab = 'si'"
         >
           🔶 SI (Decimal × 1000)
         </button>
         <button
-          class="px-4 py-2 text-sm font-medium transition-colors"
-          :class="activeTab === 'both' ? 'text-indigo-400 border-b-2 border-indigo-400' : 'text-gray-400 hover:text-white'"
+          class="px-4 py-2 text-sm font-medium transition-colors border-b-2"
+          :class="activeTab === 'both' ? 'text-indigo-400 border-indigo-400' : 'text-gray-400 border-transparent hover:text-white'"
           @click="activeTab = 'both'"
         >
           ⚖️ Both Systems
@@ -90,12 +90,12 @@
 
       <!-- IEC Tab -->
       <div v-if="activeTab === 'iec' || activeTab === 'both'" class="card">
-        <h3 class="text-sm font-semibold text-indigo-400 mb-3">🔷 IEC Binary (1024-based)</h3>
+        <h3 class="label mb-3">🔷 IEC Binary (1024-based)</h3>
         <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
-          <div v-for="unit in iecUnits" :key="unit.key" class="bg-black border border-gray-700 rounded p-3">
+          <div v-for="unit in iecUnits" :key="unit.key" class="bg-black border border-gray-700 rounded-lg p-3">
             <div class="flex items-center justify-between mb-1">
               <span class="text-xs text-gray-400">{{ unit.label }}</span>
-              <button class="text-xs text-indigo-400 hover:text-indigo-300" @click="copy(unit.value)" :disabled="!unit.value">📋</button>
+              <button class="text-xs text-indigo-400 hover:text-indigo-300 opacity-70 hover:opacity-100" @click="copy(unit.value)" :disabled="!unit.value">📋</button>
             </div>
             <div class="font-mono text-sm text-white">{{ unit.value || '—' }}</div>
           </div>
@@ -104,12 +104,12 @@
 
       <!-- SI Tab -->
       <div v-if="activeTab === 'si' || activeTab === 'both'" class="card">
-        <h3 class="text-sm font-semibold text-indigo-400 mb-3">🔶 SI Decimal (1000-based)</h3>
+        <h3 class="label mb-3">🔶 SI Decimal (1000-based)</h3>
         <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
-          <div v-for="unit in siUnits" :key="unit.key" class="bg-black border border-gray-700 rounded p-3">
+          <div v-for="unit in siUnits" :key="unit.key" class="bg-black border border-gray-700 rounded-lg p-3">
             <div class="flex items-center justify-between mb-1">
               <span class="text-xs text-gray-400">{{ unit.label }}</span>
-              <button class="text-xs text-indigo-400 hover:text-indigo-300" @click="copy(unit.value)" :disabled="!unit.value">📋</button>
+              <button class="text-xs text-indigo-400 hover:text-indigo-300 opacity-70 hover:opacity-100" @click="copy(unit.value)" :disabled="!unit.value">📋</button>
             </div>
             <div class="font-mono text-sm text-white">{{ unit.value || '—' }}</div>
           </div>
@@ -119,9 +119,9 @@
 
     <!-- Common File Size Presets -->
     <div class="card space-y-3">
-      <h3 class="text-sm font-semibold text-indigo-400">🎯 Common File Sizes</h3>
+      <h3 class="label">🎯 Common File Sizes</h3>
       <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2">
-        <button v-for="p in presets" :key="p.label" @click="setPreset(p.bytes)" class="btn-preset">
+        <button v-for="p in presets" :key="p.label" @click="setPreset(p.bytes)" class="btn text-xs py-2">
           {{ p.icon }} {{ p.label }}
         </button>
       </div>
@@ -129,36 +129,38 @@
 
     <!-- Network Speed Calculator -->
     <div class="card space-y-4">
-      <h3 class="text-sm font-semibold text-indigo-400">🌐 Network Speed Calculator</h3>
-      <p class="text-sm text-gray-400">Calculate download/upload time or speed</p>
+      <div>
+        <h3 class="label">🌐 Network Speed Calculator</h3>
+        <p class="text-xs text-gray-400">Calculate download/upload time based on size & speed.</p>
+      </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div>
-          <span class="label">File Size ({{ unitType === 'byte' ? 'MB' : 'Mbit' }})</span>
+          <span class="text-xs text-gray-400 block mb-1">File Size ({{ unitType === 'byte' ? 'MB' : 'Mbit' }})</span>
           <input type="number" v-model.number="netFileSize" min="0" step="0.1" class="input" />
         </div>
         <div>
-          <span class="label">Connection Speed ({{ unitType === 'byte' ? 'MB/s' : 'Mbit/s' }})</span>
+          <span class="text-xs text-gray-400 block mb-1">Connection Speed ({{ unitType === 'byte' ? 'MB/s' : 'Mbit/s' }})</span>
           <input type="number" v-model.number="netSpeed" min="0" step="0.1" class="input" />
         </div>
         <div>
-          <span class="label">Download Time</span>
-          <div class="bg-black border border-gray-700 rounded px-3 py-2 font-mono text-sm text-green-300">
+          <span class="text-xs text-gray-400 block mb-1">Estimated Time</span>
+          <div class="bg-black border border-gray-700 rounded-lg px-3 py-2 font-mono text-sm text-green-300 h-[42px] flex items-center">
             {{ downloadTime }}
           </div>
         </div>
       </div>
 
       <div class="flex gap-2 flex-wrap">
-        <button class="btn" @click="loadNetPreset('fiber')">🚀 Fiber (100 MB/s)</button>
-        <button class="btn" @click="loadNetPreset('cable')">📡 Cable (10 MB/s)</button>
-        <button class="btn" @click="loadNetPreset('dsl')">📞 DSL (1 MB/s)</button>
-        <button class="btn" @click="loadNetPreset('4g')">📱 4G (5 MB/s)</button>
-        <button class="btn" @click="loadNetPreset('5g')">📡 5G (50 MB/s)</button>
+        <button class="btn text-xs" @click="loadNetPreset('fiber')">🚀 Fiber (100 MB/s)</button>
+        <button class="btn text-xs" @click="loadNetPreset('cable')">📡 Cable (10 MB/s)</button>
+        <button class="btn text-xs" @click="loadNetPreset('dsl')">📞 DSL (1 MB/s)</button>
+        <button class="btn text-xs" @click="loadNetPreset('4g')">📱 4G (5 MB/s)</button>
+        <button class="btn text-xs" @click="loadNetPreset('5g')">📡 5G (50 MB/s)</button>
       </div>
     </div>
 
-    <p v-if="copiedMsg" class="text-green-400 text-sm text-center">✅ {{ copiedMsg }}</p>
+    <p v-if="copiedMsg" class="text-green-400 text-sm text-center font-medium">✅ {{ copiedMsg }}</p>
   </div>
 </template>
 
@@ -419,9 +421,20 @@ watch(decimals, () => {
 </script>
 
 <style scoped>
-.label { @apply text-sm text-gray-300 block mb-1; }
-.input { @apply bg-black text-white w-full px-3 py-2 rounded-md border border-gray-700 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors; }
-.btn { @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded text-white text-sm disabled:opacity-50 disabled:cursor-not-allowed transition-colors; }
-.btn-preset { @apply bg-gray-700 hover:bg-gray-600 px-2 py-1.5 rounded text-white text-xs transition-colors; }
-.card { @apply bg-black rounded-xl p-4 border border-gray-700; }
+.label {
+  @apply text-sm font-medium text-gray-300 font-semibold block mb-2;
+}
+.input {
+  @apply bg-black text-white border-2 border-gray-700 rounded-lg px-3 py-2 w-full;
+  @apply focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all;
+}
+.btn {
+  @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded-lg text-white text-sm transition-colors;
+}
+.btn-primary {
+  @apply bg-indigo-600 hover:bg-indigo-500 px-4 py-1.5 rounded-lg text-white text-sm font-medium transition-colors shadow-lg;
+}
+.card {
+  @apply bg-gray-900 rounded-xl p-5 border border-gray-700;
+}
 </style>

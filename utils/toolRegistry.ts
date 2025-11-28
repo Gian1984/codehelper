@@ -553,7 +553,7 @@ export const tools: Record<string, Tool> = {
     },
 
     'box-shadow-tester': {
-        title: 'Box Shadow Tester',
+        title: 'Box Shadow Designer',
         description: 'Visualize and fine-tune CSS box shadows easily.',
         category: 'css',
         component: () =>
@@ -568,7 +568,7 @@ export const tools: Record<string, Tool> = {
             structuredData: {
                 '@context': 'https://schema.org',
                 '@type': 'SoftwareApplication',
-                name: 'Box Shadow Tester',
+                name: 'Box Shadow Designer',
                 applicationCategory: 'DeveloperApplication',
                 operatingSystem: 'All',
                 offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },

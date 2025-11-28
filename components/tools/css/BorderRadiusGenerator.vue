@@ -1,14 +1,15 @@
 <template>
-  <div class="space-y-6 bg-gray-800 p-6 sm:p-8 rounded-2xl shadow text-white">
-    <div class="flex items-center justify-between gap-3 flex-wrap">
-      <h2 class="text-2xl font-semibold">Border Radius Studio</h2>
-      <div class="flex gap-2">
-        <button class="btn" @click="preset('pill')">pill</button>
-        <button class="btn" @click="preset('circle')">circle</button>
-        <button class="btn" @click="randomBlob">random blob</button>
-        <button class="btn" @click="resetAll">reset</button>
-        <button class="btn-primary" @click="copy(cssLine)">copy CSS</button>
-        <button class="btn" @click="downloadCss">download</button>
+  <div class="space-y-6 bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-xl text-white">
+    <!-- Header -->
+    <div class="card flex items-center justify-between gap-3 flex-wrap">
+      <h2 class="text-2xl font-semibold">🔲 Border Radius Generator</h2>
+      <div class="flex flex-wrap items-center gap-2">
+        <button class="btn" @click="preset('pill')">Pill</button>
+        <button class="btn" @click="preset('circle')">Circle</button>
+        <button class="btn" @click="randomBlob">Random Blob</button>
+        <button class="btn" @click="resetAll">Reset</button>
+        <button class="btn-primary" @click="copy(cssLine)">Copy CSS</button>
+        <button class="btn" @click="downloadCss">Download</button>
       </div>
     </div>
 
@@ -16,17 +17,17 @@
     <div class="card flex flex-wrap items-center gap-3">
       <div class="flex gap-2">
         <button
-            class="tab"
-            :class="mode==='simple' ? 'tab-active' : ''"
-            @click="mode='simple'">Simple</button>
+            class="btn"
+            :class="mode==='simple' ? '!bg-indigo-600' : ''"
+            @click="mode='simple'">Simple Mode</button>
         <button
-            class="tab"
-            :class="mode==='advanced' ? 'tab-active' : ''"
-            @click="mode='advanced'">Advanced</button>
+            class="btn"
+            :class="mode==='advanced' ? '!bg-indigo-600' : ''"
+            @click="mode='advanced'">Advanced Mode</button>
       </div>
 
       <div class="ml-auto flex items-center gap-2">
-        <span class="label">unit</span>
+        <label class="label !mb-0 !block">Unit</label>
         <select v-model="unit" class="input w-24">
           <option value="px">px</option>
           <option value="%">%</option>
@@ -35,96 +36,94 @@
     </div>
 
     <!-- SIMPLE -->
-    <div v-if="mode==='simple'" class="grid md:grid-cols-2 gap-6">
+    <div v-if="mode==='simple'" class="grid md:grid-cols-2 gap-4">
       <div class="card space-y-4">
-        <div>
-          <label class="label">radius</label>
-          <input type="range" :min="0" :max="unitMax" step="1" v-model.number="simple.radius" class="w-full" />
-          <p class="mono-small mt-1">{{ simple.radius }}{{ unit }}</p>
-        </div>
+        <label class="label">Radius</label>
+        <input type="range" :min="0" :max="unitMax" step="1" v-model.number="simple.radius" class="w-full slider" />
+        <p class="font-mono text-sm text-gray-300 mt-1">{{ simple.radius }}{{ unit }}</p>
 
-        <label class="inline-flex items-center gap-2">
-          <input type="checkbox" v-model="simple.ellipse" />
-          <span class="text-sm">elliptical (different horizontal/vertical)</span>
+        <label class="inline-flex items-center gap-2 cursor-pointer">
+          <input type="checkbox" v-model="simple.ellipse" class="w-4 h-4 rounded border-gray-600 bg-gray-900 text-indigo-600 focus:ring-indigo-500" />
+          <span class="text-sm text-gray-300">Elliptical (different horizontal/vertical)</span>
         </label>
 
         <div v-if="simple.ellipse" class="grid grid-cols-2 gap-4">
           <div>
-            <label class="label">horizontal</label>
-            <input type="range" :min="0" :max="unitMax" step="1" v-model.number="simple.h" class="w-full" />
-            <p class="mono-small mt-1">{{ simple.h }}{{ unit }}</p>
+            <label class="label">Horizontal</label>
+            <input type="range" :min="0" :max="unitMax" step="1" v-model.number="simple.h" class="w-full slider" />
+            <p class="font-mono text-sm text-gray-300 mt-1">{{ simple.h }}{{ unit }}</p>
           </div>
           <div>
-            <label class="label">vertical</label>
-            <input type="range" :min="0" :max="unitMax" step="1" v-model.number="simple.v" class="w-full" />
-            <p class="mono-small mt-1">{{ simple.v }}{{ unit }}</p>
+            <label class="label">Vertical</label>
+            <input type="range" :min="0" :max="unitMax" step="1" v-model.number="simple.v" class="w-full slider" />
+            <p class="font-mono text-sm text-gray-300 mt-1">{{ simple.v }}{{ unit }}</p>
           </div>
         </div>
       </div>
 
       <!-- Preview -->
       <div class="card space-y-3">
-        <div class="flex items-center justify-between">
-          <p class="label">preview</p>
+        <div class="flex items-center justify-between mb-3">
+          <label class="label !mb-0 !block">Preview</label>
           <div class="flex items-center gap-2">
-            <span class="text-sm">size</span>
+            <span class="text-sm text-gray-300">Size</span>
             <input type="number" min="50" v-model.number="preview.w" class="input w-20" />
-            <span class="opacity-75">×</span>
+            <span class="text-gray-400">×</span>
             <input type="number" min="50" v-model.number="preview.h" class="input w-20" />
-            <label class="inline-flex items-center gap-2 ml-2">
-              <input type="checkbox" v-model="checker" />
-              <span class="text-sm">checker</span>
+            <label class="inline-flex items-center gap-2 ml-2 cursor-pointer">
+              <input type="checkbox" v-model="checker" class="w-4 h-4 rounded border-gray-600 bg-gray-900 text-indigo-600 focus:ring-indigo-500" />
+              <span class="text-sm text-gray-300">Checkerboard</span>
             </label>
           </div>
         </div>
 
-        <div class="preview" :style="{ background: checker ? checkerCss : '#0b1220' }">
+        <div class="preview" :style="{ background: checker ? checkerCss : 'transparent' }">
           <div class="box" :style="previewStyle"></div>
         </div>
       </div>
     </div>
 
     <!-- ADVANCED -->
-    <div v-else class="grid xl:grid-cols-2 gap-6">
+    <div v-else class="grid xl:grid-cols-2 gap-4">
       <div class="card space-y-4">
         <div class="flex flex-wrap items-center gap-4">
-          <label class="inline-flex items-center gap-2">
-            <input type="checkbox" v-model="linkAllCorners" />
-            <span class="text-sm">link all corners</span>
+          <label class="inline-flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" v-model="linkAllCorners" class="w-4 h-4 rounded border-gray-600 bg-gray-900 text-indigo-600 focus:ring-indigo-500" />
+            <span class="text-sm text-gray-300">Link all corners</span>
           </label>
-          <label class="inline-flex items-center gap-2">
-            <input type="checkbox" v-model="linkHV" :disabled="linkAllCorners" />
-            <span class="text-sm">link H/V per corner</span>
+          <label class="inline-flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" v-model="linkHV" :disabled="linkAllCorners" class="w-4 h-4 rounded border-gray-600 bg-gray-900 text-indigo-600 focus:ring-indigo-500" />
+            <span class="text-sm text-gray-300">Link H/V per corner</span>
           </label>
         </div>
 
         <!-- all corners linked -->
         <div v-if="linkAllCorners" class="grid md:grid-cols-2 gap-4">
-          <div>
-            <label class="label">radius (all corners)</label>
-            <input type="range" :min="0" :max="unitMax" v-model.number="all.h" class="w-full" />
+          <div class="space-y-2">
+            <label class="label">Radius (all corners)</label>
+            <input type="range" :min="0" :max="unitMax" v-model.number="all.h" class="w-full slider" />
             <input type="number" :min="0" :max="unitMax" v-model.number="all.h" class="input mt-1" />
           </div>
-          <div v-if="!linkHV">
-            <label class="label">vertical (all corners)</label>
-            <input type="range" :min="0" :max="unitMax" v-model.number="all.v" class="w-full" />
+          <div v-if="!linkHV" class="space-y-2">
+            <label class="label">Vertical (all corners)</label>
+            <input type="range" :min="0" :max="unitMax" v-model.number="all.v" class="w-full slider" />
             <input type="number" :min="0" :max="unitMax" v-model.number="all.v" class="input mt-1" />
           </div>
         </div>
 
         <!-- per-corner -->
         <div v-else class="grid sm:grid-cols-2 gap-4">
-          <div v-for="(c, key) in corners" :key="key" class="corner">
-            <p class="text-sm mb-2">{{ labelMap[key] }}</p>
+          <div v-for="(c, key) in corners" :key="key" class="card !p-3 space-y-2">
+            <p class="text-sm font-medium text-indigo-400 mb-2">{{ labelMap[key] }}</p>
             <div class="space-y-2">
               <div>
-                <label class="label">horizontal</label>
-                <input type="range" :min="0" :max="unitMax" v-model.number="c.h" class="w-full" />
+                <label class="label">Horizontal</label>
+                <input type="range" :min="0" :max="unitMax" v-model.number="c.h" class="w-full slider" />
                 <input type="number" :min="0" :max="unitMax" v-model.number="c.h" class="input mt-1" />
               </div>
               <div v-if="!linkHV">
-                <label class="label">vertical</label>
-                <input type="range" :min="0" :max="unitMax" v-model.number="c.v" class="w-full" />
+                <label class="label">Vertical</label>
+                <input type="range" :min="0" :max="unitMax" v-model.number="c.v" class="w-full slider" />
                 <input type="number" :min="0" :max="unitMax" v-model.number="c.v" class="input mt-1" />
               </div>
             </div>
@@ -135,50 +134,50 @@
       <!-- Preview + Code -->
       <div class="space-y-4">
         <div class="card space-y-3">
-          <div class="flex items-center justify-between">
-            <p class="label">preview</p>
+          <div class="flex items-center justify-between mb-3">
+            <label class="label !mb-0 !block">Preview</label>
             <div class="flex items-center gap-2">
-              <span class="text-sm">size</span>
+              <span class="text-sm text-gray-300">Size</span>
               <input type="number" min="50" v-model.number="preview.w" class="input w-20" />
-              <span class="opacity-75">×</span>
+              <span class="text-gray-400">×</span>
               <input type="number" min="50" v-model.number="preview.h" class="input w-20" />
-              <label class="inline-flex items-center gap-2 ml-2">
-                <input type="checkbox" v-model="checker" />
-                <span class="text-sm">checker</span>
+              <label class="inline-flex items-center gap-2 ml-2 cursor-pointer">
+                <input type="checkbox" v-model="checker" class="w-4 h-4 rounded border-gray-600 bg-gray-900 text-indigo-600 focus:ring-indigo-500" />
+                <span class="text-sm text-gray-300">Checkerboard</span>
               </label>
             </div>
           </div>
 
-          <div class="preview" :style="{ background: checker ? checkerCss : '#0b1220' }">
+          <div class="preview" :style="{ background: checker ? checkerCss : 'transparent' }">
             <div class="box" :style="previewStyle"></div>
           </div>
         </div>
 
-        <div class="card">
-          <div class="flex items-center justify-between mb-2">
-            <p class="label">output</p>
+        <div class="card space-y-3">
+          <div class="flex items-center justify-between">
+            <label class="label !mb-0 !block">Output</label>
             <div class="flex gap-2">
-              <button class="btn" @click="copy(cssLine)">copy CSS</button>
-              <button class="btn" @click="copy(twLine)">copy Tailwind</button>
+              <button class="btn text-xs" @click="copy(cssLine)">Copy CSS</button>
+              <button class="btn text-xs" @click="copy(twLine)">Copy Tailwind</button>
             </div>
           </div>
           <pre class="mono">border-radius: {{ borderRadiusValue }};</pre>
-          <p class="text-xs text-gray-400 mt-2">Tailwind (arbitrary): <code>{{ twLine }}</code></p>
+          <p class="text-xs text-gray-400 mt-2">Tailwind (arbitrary): <code class="bg-gray-800 px-1 py-0.5 rounded">{{ twLine }}</code></p>
         </div>
       </div>
     </div>
 
     <!-- Simple mode output mirrored below -->
-    <div v-if="mode==='simple'" class="card">
-      <div class="flex items-center justify-between mb-2">
-        <p class="label">output</p>
-        <button class="btn" @click="copy(cssLine)">copy CSS</button>
+    <div v-if="mode==='simple'" class="card space-y-3">
+      <div class="flex items-center justify-between">
+        <label class="label !mb-0 !block">Output</label>
+        <button class="btn text-xs" @click="copy(cssLine)">Copy CSS</button>
       </div>
       <pre class="mono">border-radius: {{ borderRadiusValue }};</pre>
-      <p class="text-xs text-gray-400 mt-2">Tailwind: <code>{{ twLine }}</code></p>
+      <p class="text-xs text-gray-400 mt-2">Tailwind: <code class="bg-gray-800 px-1 py-0.5 rounded">{{ twLine }}</code></p>
     </div>
 
-    <p v-if="copiedMsg" class="text-green-400 text-sm">{{ copiedMsg }}</p>
+    <p v-if="copiedMsg" class="text-green-400 text-sm text-center font-medium">✓ {{ copiedMsg }}</p>
   </div>
 </template>
 
@@ -194,7 +193,7 @@ const unitMax = computed(() => (unit.value === '%' ? 100 : 300))
 // preview box
 const preview = reactive({ w: 280, h: 220 })
 const checker = ref(true)
-const checkerCss = `repeating-conic-gradient(#2b3343 0% 25%, #1e2532 0% 50%) 0 / 16px 16px`
+const checkerCss = `repeating-conic-gradient(#1e2532 0% 25%, #0b1220 0% 50%) 0 / 16px 16px` /* Darkened checker */
 
 /** SIMPLE */
 const simple = reactive({ radius: 16, ellipse: false, h: 32, v: 20 })
@@ -259,9 +258,9 @@ function compressFour(arr: number[]): number[] {
 const previewStyle = computed(() => ({
   width: `${preview.w}px`,
   height: `${preview.h}px`,
-  background: 'linear-gradient(135deg, rgba(59,130,246,.45), rgba(16,185,129,.55))',
+  background: 'linear-gradient(135deg, rgba(79,70,229,.7), rgba(236,72,153,.7))', /* Updated gradient */
   borderRadius: borderRadiusValue.value,
-  boxShadow: '0 10px 25px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.04)'
+  boxShadow: '0 10px 25px rgba(0,0,0,.5), inset 0 0 0 1px rgba(255,255,255,.08)' /* Darker shadow, subtle inner border */
 } as Record<string, string>))
 
 /** outputs */
@@ -354,17 +353,48 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.label { @apply text-sm text-gray-300; }
-.input { @apply bg-gray-950 text-white border border-gray-800 rounded px-3 py-2; }
-.tab { @apply px-3 py-1.5 rounded bg-gray-800 hover:bg-gray-700 text-white text-sm; }
-.tab-active { @apply bg-blue-600; }
-.btn { @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded text-white text-sm; }
-.btn-primary { @apply bg-indigo-600 hover:bg-indigo-500 px-3 py-1.5 rounded text-white text-sm; }
-.card { @apply bg-gray-800/60 rounded-xl p-4 border border-gray-800; }
-.corner { @apply border border-gray-700 rounded p-3 bg-gray-900; }
-.preview { @apply rounded-lg p-8 border border-gray-800 grid place-items-center; min-height: 220px; }
-.box { @apply rounded; }
-.mono { @apply bg-gray-950 text-green-300 font-mono text-sm p-3 rounded border border-gray-800 overflow-x-auto; }
-.mono-small { @apply font-mono text-xs text-gray-300; }
-</style>
+.label {
+  @apply text-sm font-medium text-gray-300 block;
+}
+.input {
+  @apply bg-black text-white border-2 border-gray-700 rounded-lg px-3 py-2 w-full;
+  @apply focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all;
+}
+.btn {
+  @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded-lg text-white text-sm transition-colors;
+}
+.btn-primary {
+  @apply bg-indigo-600 hover:bg-indigo-500 px-4 py-1.5 rounded-lg text-white text-sm font-medium transition-colors shadow-lg;
+}
+.card {
+  @apply bg-gray-900 rounded-xl p-5 border border-gray-700;
+}
 
+/* Custom styles for BorderRadiusGenerator */
+.corner { /* Card style for individual corners in advanced mode */
+  @apply bg-gray-900 rounded-xl p-4 border border-gray-700;
+}
+.preview {
+  @apply rounded-lg p-8 border border-gray-700 grid place-items-center bg-black; /* Darkened bg */
+  min-height: 220px;
+}
+.box {
+  @apply rounded-lg; /* Rounded for consistency */
+}
+.mono {
+  @apply bg-gray-800 text-green-300 font-mono text-sm p-3 rounded-lg border border-gray-700 overflow-x-auto; /* New mono style */
+}
+.mono-small {
+  @apply font-mono text-xs text-gray-400; /* New mono small style */
+}
+.slider {
+  @apply appearance-none h-2 rounded-full bg-gray-700;
+}
+.slider::-webkit-slider-thumb {
+  @apply appearance-none w-4 h-4 rounded-full bg-indigo-500 cursor-pointer;
+}
+.slider::-moz-range-thumb {
+  @apply w-4 h-4 rounded-full bg-indigo-500 cursor-pointer border-0;
+}
+
+</style>

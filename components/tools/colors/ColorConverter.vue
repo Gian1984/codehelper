@@ -1,13 +1,13 @@
 <template>
   <div class="space-y-6 bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-xl text-white">
     <!-- Header -->
-    <div class="flex items-center justify-between gap-3 flex-wrap">
+    <div class="card flex items-center justify-between gap-3 flex-wrap">
       <div>
-        <h2 class="text-2xl font-semibold">Color Converter & Analyzer</h2>
+        <h2 class="text-2xl font-semibold">🎨 Color Converter & Analyzer</h2>
         <p class="text-sm text-gray-400 mt-1">Professional color conversion, accessibility checker, and harmony generator</p>
       </div>
       <div class="flex items-center gap-2">
-        <button v-if="supportsEyeDropper" class="btn-icon" @click="pickColor" title="Pick color from screen">
+        <button v-if="supportsEyeDropper" class="btn-primary" @click="pickColor" title="Pick color from screen">
           👁️ Eyedropper
         </button>
         <button class="btn" @click="randomize">🎲 Random</button>
@@ -16,7 +16,7 @@
     </div>
 
     <!-- Main Preview with WCAG -->
-    <div class="card p-6 space-y-4">
+    <div class="card space-y-4">
       <div class="flex items-start gap-6 flex-wrap">
         <!-- Color Square -->
         <div class="relative">
@@ -32,24 +32,24 @@
         <!-- Info Grid -->
         <div class="flex-1 space-y-3">
           <!-- Current Color -->
-          <div class="bg-gray-900/60 rounded-lg p-3">
+          <div class="bg-gray-800 rounded-lg p-3">
             <p class="text-xs text-gray-400 uppercase tracking-wide mb-2">Current Color</p>
             <div class="grid sm:grid-cols-2 gap-2 text-sm font-mono">
               <div class="flex items-center gap-2">
                 <span class="text-gray-400">HEX:</span>
                 <span class="text-white">{{ hexUpper }}</span>
-                <button @click="copy(hexUpper)" class="copy-btn">📋</button>
+                <button @click="copy(hexUpper)" class="copy-btn text-white">📋</button>
               </div>
               <div class="flex items-center gap-2">
                 <span class="text-gray-400">RGB:</span>
                 <span class="text-white">{{ rgbCss }}</span>
-                <button @click="copy(rgbCss)" class="copy-btn">📋</button>
+                <button @click="copy(rgbCss)" class="copy-btn text-white">📋</button>
               </div>
             </div>
           </div>
 
           <!-- WCAG Contrast Badges -->
-          <div class="bg-gray-900/60 rounded-lg p-3">
+          <div class="bg-gray-800 rounded-lg p-3">
             <p class="text-xs text-gray-400 uppercase tracking-wide mb-2">WCAG Accessibility</p>
             <div class="grid sm:grid-cols-2 gap-3">
               <!-- Against White -->
@@ -91,7 +91,7 @@
           </div>
 
           <!-- Alpha Slider -->
-          <div class="bg-gray-900/60 rounded-lg p-3">
+          <div class="bg-gray-800 rounded-lg p-3">
             <div class="flex items-center justify-between mb-2">
               <label class="text-xs text-gray-400 uppercase tracking-wide">Opacity</label>
               <span class="text-sm text-white font-mono">{{ (alpha * 100).toFixed(0) }}%</span>
@@ -104,59 +104,59 @@
     </div>
 
     <!-- Format Inputs -->
-    <div class="grid lg:grid-cols-4 md:grid-cols-2 gap-4">
+    <div class="grid lg:grid-cols-2 md:grid-cols-2 gap-4">
       <!-- HEX -->
       <div class="card space-y-2">
-        <label class="label font-semibold">HEX</label>
+        <label class="label">HEX</label>
         <div class="flex items-center gap-2">
           <input v-model="hex" type="color" class="color-picker" @input="onHexInput" />
           <input v-model.trim="hex" maxlength="9" placeholder="#3498DB"
-                 class="input font-mono text-sm" @blur="onHexInput" />
+                 class="input font-mono" @blur="onHexInput" />
         </div>
-        <button class="btn-sm w-full" @click="copy(hexUpper)">Copy</button>
+        <button class="btn w-full" @click="copy(hexUpper)">Copy</button>
         <p v-if="hexError" class="text-xs text-red-400">{{ hexError }}</p>
       </div>
 
       <!-- RGB(A) -->
       <div class="card space-y-2">
-        <label class="label font-semibold">RGB(A)</label>
-        <input v-model.trim="rgbText" class="input font-mono text-sm"
+        <label class="label">RGB(A)</label>
+        <input v-model.trim="rgbText" class="input font-mono"
                placeholder="52, 152, 219" @blur="onRgbInput" />
-        <div class="grid grid-cols-4 gap-1 text-xs">
+        <div class="grid grid-cols-4 gap-1">
           <div><span class="sub">R</span><input type="number" min="0" max="255" v-model.number="r" class="mini-input" /></div>
           <div><span class="sub">G</span><input type="number" min="0" max="255" v-model.number="g" class="mini-input" /></div>
           <div><span class="sub">B</span><input type="number" min="0" max="255" v-model.number="b" class="mini-input" /></div>
           <div><span class="sub">A</span><input type="number" min="0" max="1" step="0.01" v-model.number="alpha" class="mini-input" /></div>
         </div>
-        <button class="btn-sm w-full" @click="copy(rgbCss)">Copy</button>
+        <button class="btn w-full" @click="copy(rgbCss)">Copy</button>
       </div>
 
       <!-- HSL(A) -->
       <div class="card space-y-2">
-        <label class="label font-semibold">HSL(A)</label>
-        <input v-model.trim="hslText" class="input font-mono text-sm"
+        <label class="label">HSL(A)</label>
+        <input v-model.trim="hslText" class="input font-mono"
                placeholder="204, 70%, 53%" @blur="onHslInput" />
-        <div class="grid grid-cols-4 gap-1 text-xs">
+        <div class="grid grid-cols-4 gap-1">
           <div><span class="sub">H</span><input type="number" min="0" max="360" v-model.number="h" class="mini-input" /></div>
           <div><span class="sub">S%</span><input type="number" min="0" max="100" v-model.number="s" class="mini-input" /></div>
           <div><span class="sub">L%</span><input type="number" min="0" max="100" v-model.number="l" class="mini-input" /></div>
           <div><span class="sub">A</span><input type="number" min="0" max="1" step="0.01" v-model.number="alpha" class="mini-input" /></div>
         </div>
-        <button class="btn-sm w-full" @click="copy(hslCss)">Copy</button>
+        <button class="btn w-full" @click="copy(hslCss)">Copy</button>
       </div>
 
       <!-- CMYK -->
       <div class="card space-y-2">
-        <label class="label font-semibold">CMYK</label>
-        <input v-model.trim="cmykText" class="input font-mono text-sm"
+        <label class="label">CMYK</label>
+        <input v-model.trim="cmykText" class="input font-mono"
                placeholder="76, 31, 0, 14" @blur="onCmykInput" />
-        <div class="grid grid-cols-4 gap-1 text-xs">
+        <div class="grid grid-cols-4 gap-1">
           <div><span class="sub">C%</span><input type="number" min="0" max="100" v-model.number="c" class="mini-input" /></div>
           <div><span class="sub">M%</span><input type="number" min="0" max="100" v-model.number="m" class="mini-input" /></div>
           <div><span class="sub">Y%</span><input type="number" min="0" max="100" v-model.number="y" class="mini-input" /></div>
           <div><span class="sub">K%</span><input type="number" min="0" max="100" v-model.number="k" class="mini-input" /></div>
         </div>
-        <button class="btn-sm w-full" @click="applyCmykFields">Apply</button>
+        <button class="btn w-full" @click="applyCmykFields">Apply</button>
       </div>
     </div>
 
@@ -164,13 +164,13 @@
     <div class="space-y-4">
       <!-- Color Harmony Generator -->
       <div class="card">
-        <button @click="showHarmony = !showHarmony" class="w-full flex items-center justify-between text-left">
-          <span class="font-semibold">🎨 Color Harmony Generator</span>
+        <button @click="showHarmony = !showHarmony" class="btn w-full flex items-center justify-between text-left !px-0 !py-0 !bg-transparent !hover:bg-transparent">
+          <span class="font-semibold text-white">🎨 Color Harmony Generator</span>
           <span class="text-gray-400">{{ showHarmony ? '▼' : '▶' }}</span>
         </button>
         <div v-if="showHarmony" class="mt-4 space-y-4">
           <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
-            <div v-for="(harmony, idx) in colorHarmonies" :key="idx" class="bg-gray-900/60 rounded-lg p-3">
+            <div v-for="(harmony, idx) in colorHarmonies" :key="idx" class="bg-gray-800 rounded-lg p-3">
               <p class="text-xs text-gray-400 uppercase tracking-wide mb-2">{{ harmony.name }}</p>
               <div class="flex gap-2 mb-2">
                 <div v-for="(color, cidx) in harmony.colors" :key="cidx"
@@ -182,7 +182,7 @@
               <div class="flex gap-1">
                 <button v-for="(color, cidx) in harmony.colors" :key="cidx"
                         @click="setColor(color)"
-                        class="flex-1 text-xs btn-sm">
+                        class="btn text-xs flex-1">
                   Use
                 </button>
               </div>
@@ -193,19 +193,19 @@
 
       <!-- Color Blindness Simulator -->
       <div class="card">
-        <button @click="showBlindness = !showBlindness" class="w-full flex items-center justify-between text-left">
-          <span class="font-semibold">👁️ Color Blindness Simulator</span>
+        <button @click="showBlindness = !showBlindness" class="btn w-full flex items-center justify-between text-left !px-0 !py-0 !bg-transparent !hover:bg-transparent">
+          <span class="font-semibold text-white">👁️ Color Blindness Simulator</span>
           <span class="text-gray-400">{{ showBlindness ? '▼' : '▶' }}</span>
         </button>
         <div v-if="showBlindness" class="mt-4">
           <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
-            <div class="bg-gray-900/60 rounded-lg p-3">
+            <div class="bg-gray-800 rounded-lg p-3">
               <p class="text-xs text-gray-400 uppercase tracking-wide mb-2">Normal Vision</p>
               <div :style="{ backgroundColor: previewCss }"
                    class="h-20 rounded border border-white/10 mb-2"></div>
               <p class="text-xs text-center font-mono text-white">{{ hexUpper }}</p>
             </div>
-            <div v-for="sim in colorBlindnessSimulations" :key="sim.name" class="bg-gray-900/60 rounded-lg p-3">
+            <div v-for="sim in colorBlindnessSimulations" :key="sim.name" class="bg-gray-800 rounded-lg p-3">
               <p class="text-xs text-gray-400 uppercase tracking-wide mb-2">
                 {{ sim.name }}
                 <span class="text-[10px]">({{ sim.type }})</span>
@@ -223,32 +223,32 @@
 
       <!-- Export Options -->
       <div class="card">
-        <button @click="showExport = !showExport" class="w-full flex items-center justify-between text-left">
-          <span class="font-semibold">💾 Export & Code</span>
+        <button @click="showExport = !showExport" class="btn w-full flex items-center justify-between text-left !px-0 !py-0 !bg-transparent !hover:bg-transparent">
+          <span class="font-semibold text-white">💾 Export & Code</span>
           <span class="text-gray-400">{{ showExport ? '▼' : '▶' }}</span>
         </button>
         <div v-if="showExport" class="mt-4 space-y-3">
-          <div class="bg-gray-900/60 rounded-lg p-3">
+          <div class="bg-gray-800 rounded-lg p-3">
             <div class="flex items-center justify-between mb-2">
               <p class="text-xs text-gray-400 uppercase tracking-wide">CSS Custom Properties</p>
-              <button @click="copy(cssVariables)" class="btn-sm">Copy</button>
+              <button @click="copy(cssVariables)" class="btn text-xs">Copy</button>
             </div>
             <pre class="text-xs font-mono text-green-300 whitespace-pre-wrap">{{ cssVariables }}</pre>
           </div>
 
           <div class="grid sm:grid-cols-2 gap-3">
-            <div class="bg-gray-900/60 rounded-lg p-3">
+            <div class="bg-gray-800 rounded-lg p-3">
               <div class="flex items-center justify-between mb-2">
                 <p class="text-xs text-gray-400 uppercase tracking-wide">Tailwind Config</p>
-                <button @click="copy(tailwindConfig)" class="btn-sm">Copy</button>
+                <button @click="copy(tailwindConfig)" class="btn text-xs">Copy</button>
               </div>
               <pre class="text-xs font-mono text-blue-300">{{ tailwindConfig }}</pre>
             </div>
 
-            <div class="bg-gray-900/60 rounded-lg p-3">
+            <div class="bg-gray-800 rounded-lg p-3">
               <div class="flex items-center justify-between mb-2">
                 <p class="text-xs text-gray-400 uppercase tracking-wide">SCSS Variable</p>
-                <button @click="copy(scssVariable)" class="btn-sm">Copy</button>
+                <button @click="copy(scssVariable)" class="btn text-xs">Copy</button>
               </div>
               <pre class="text-xs font-mono text-pink-300">{{ scssVariable }}</pre>
             </div>
@@ -784,19 +784,33 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.label { @apply text-sm text-gray-300; }
-.sub { @apply block text-[10px] text-gray-400 mb-1 uppercase tracking-wide; }
-.input { @apply bg-gray-900 text-white border border-gray-700 rounded-lg px-3 py-2 w-full focus:outline-none focus:border-indigo-500 transition-colors; }
-.mini-input { @apply bg-gray-900 text-white border border-gray-700 rounded px-2 py-1 w-full text-xs focus:outline-none focus:border-indigo-500 transition-colors; }
-.btn { @apply bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-lg text-white text-sm font-medium transition-colors; }
-.btn-sm { @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded text-white text-xs font-medium transition-colors; }
-.btn-icon { @apply bg-indigo-600 hover:bg-indigo-500 px-3 py-2 rounded-lg text-white text-sm font-medium transition-colors; }
-.card { @apply bg-gray-800/60 rounded-xl p-4 border border-gray-700/50 shadow-lg; }
-.copy-btn { @apply text-xs hover:bg-gray-700 px-1.5 py-0.5 rounded transition-colors; }
+.label {
+  @apply text-sm font-medium text-gray-300 block;
+}
+.input {
+  @apply bg-black text-white border-2 border-gray-700 rounded-lg px-3 py-2 w-full;
+  @apply focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all;
+}
+.mini-input {
+  @apply bg-black text-white border-2 border-gray-700 rounded-lg px-2 py-1 w-full text-xs;
+  @apply focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all;
+}
+.btn {
+  @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded-lg text-white text-sm transition-colors;
+}
+.btn-primary {
+  @apply bg-indigo-600 hover:bg-indigo-500 px-4 py-1.5 rounded-lg text-white text-sm font-medium transition-colors shadow-lg;
+}
+.card {
+  @apply bg-gray-900 rounded-xl p-5 border border-gray-700;
+}
 
 .color-picker {
-  @apply w-12 h-10 p-0 border-2 border-gray-600 rounded-lg cursor-pointer;
+  @apply w-12 h-10 p-0 border-2 border-gray-700 rounded-lg cursor-pointer bg-black; /* Matched input bg */
 }
+
+.copy-btn { @apply text-xs hover:bg-gray-700 px-1.5 py-0.5 rounded transition-colors; }
+.sub { @apply block text-[10px] text-gray-400 mb-1 uppercase tracking-wide; }
 
 .slider {
   @apply appearance-none h-2 rounded-full bg-gray-700;
@@ -809,11 +823,11 @@ onMounted(() => {
 }
 
 .badge-success {
-  @apply inline-block px-2 py-0.5 rounded-full text-[10px] font-bold bg-green-900/40 text-green-400 border border-green-700;
+  @apply inline-block px-2 py-0.5 rounded-full text-[10px] font-bold bg-green-800/40 text-green-400 border border-green-700;
 }
 
 .badge-fail {
-  @apply inline-block px-2 py-0.5 rounded-full text-[10px] font-bold bg-red-900/40 text-red-400 border border-red-700;
+  @apply inline-block px-2 py-0.5 rounded-full text-[10px] font-bold bg-red-800/40 text-red-400 border border-red-700;
 }
 
 .checker {
