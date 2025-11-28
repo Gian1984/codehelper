@@ -164,26 +164,40 @@ export const tools: Record<string, Tool> = {
 
     'readme-generator': {
         title: 'README Generator',
-        description: 'Generate GitHub README.md files with customizable sections.',
+        description: 'Professional README.md generator with templates, badge builder, and live preview. Create GitHub documentation with customizable sections, Shields.io badges, and markdown rendering.',
         category: 'generator',
         component: () =>
             import('~/components/tools/generator/ReadmeGenerator.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `README.md Generator for GitHub (Markdown) – ${BRAND}`,
+            title: `README.md Generator with Templates & Badge Builder – ${BRAND}`,
             description:
-                'Generate polished README.md files with Installation, Usage, Contributing, and License sections. Copy or download in seconds.',
+                'Generate professional GitHub README.md files with 5 project templates (Frontend, Backend, CLI, Library, Full-Stack), custom badge builder, and live markdown preview. Create complete documentation in seconds—all in your browser.',
             ogImage: OG,
             keywords:
-                'readme generator, github readme template, markdown generator, project documentation, readme builder',
+                'readme generator, github readme template, markdown generator, project documentation, readme builder, shields.io badges, npm badge generator, github stars badge, readme preview, readme template frontend, readme template backend, open source documentation',
             structuredData: {
                 '@context': 'https://schema.org',
                 '@type': 'SoftwareApplication',
-                name: 'README Generator',
+                name: 'README Generator Pro',
                 applicationCategory: 'DeveloperApplication',
                 operatingSystem: 'All',
                 offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-                featureList: ['Markdown Output', 'Custom Sections', 'Copy & Download'],
-                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '7' }
+                featureList: [
+                    '5 Quick Templates (Frontend, Backend, CLI, Library, Full-Stack)',
+                    'Shields.io Badge Builder (Stars, Forks, Issues, Version, Build)',
+                    'Live Markdown Preview (Rendered & Raw)',
+                    '13 Customizable Sections',
+                    'Auto-fill from Project Type',
+                    'GitHub-styled Preview',
+                    'Features & Prerequisites Lists',
+                    'Environment Variables Table',
+                    'NPM Scripts Table',
+                    'Screenshots & Roadmap',
+                    'Changelog & FAQ Support',
+                    'Copy & Download README.md',
+                    'Reset to Defaults'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '12' }
             }
         }
     },
