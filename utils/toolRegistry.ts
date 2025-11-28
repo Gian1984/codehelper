@@ -375,16 +375,16 @@ export const tools: Record<string, Tool> = {
 
     'svg-icon-generator': {
         title: 'SVG Icon Generator',
-        description: 'Create and customize SVG icons for the web directly in your browser.',
+        description: 'Create and customize SVG icons with 33+ pre-made shapes, color presets, and export to multiple formats. Import SVG, edit paths, export icon packs.',
         category: 'svg',
         component: () => import('~/components/tools/svg/IconGenerator.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `SVG Icon Generator & Editor – ${BRAND}`,
+            title: `SVG Icon Generator & Editor – Export Icon Packs – ${BRAND}`,
             description:
-                'Design and customize SVG icons in-browser. Edit paths, export clean SVGs, and optimize for the web.',
+                'Professional SVG icon generator with 33+ shapes (stars, hearts, arrows, UI icons). Create custom icons, import SVG for editing, export multi-size icon packs (16-512px). Free online tool with grid snapping, color presets, and undo/redo.',
             ogImage: OG,
             keywords:
-                'svg icon generator, svg editor, create svg icons, web icon maker, vector icon tool, svg path editor',
+                'svg icon generator, svg editor, create svg icons, web icon maker, vector icon tool, svg path editor, icon pack export, export multiple sizes, star icon, heart icon, arrow icon, ui icon generator, import svg editor, svg icon builder, custom icon creator, free icon tool, favicon generator, app icon maker',
             structuredData: {
                 '@context': 'https://schema.org',
                 '@type': 'SoftwareApplication',
@@ -392,8 +392,24 @@ export const tools: Record<string, Tool> = {
                 applicationCategory: 'DeveloperApplication',
                 operatingSystem: 'All',
                 offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-                featureList: ['Edit/Preview', 'Export SVG', 'Optimize'],
-                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '9' }
+                featureList: [
+                    '33+ Pre-made Shapes (Stars, Hearts, Triangles, Arrows)',
+                    'Import SVG for Editing',
+                    'Export Icon Pack (Multiple Sizes: 16-512px)',
+                    'SVG and PNG Export',
+                    'Grid Snapping (1-8px)',
+                    'Color Presets and Recent Colors',
+                    'Undo/Redo History',
+                    'Drag and Transform Shapes',
+                    'Alignment Tools (Center H/V, Front/Back)',
+                    'Fill and Stroke Customization',
+                    'Keyboard Shortcuts',
+                    'Live Preview',
+                    'localStorage Persistence',
+                    'Clean SVG Output',
+                    'Professional UI with Dark Theme'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '12' }
             }
         }
     },

@@ -194,7 +194,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watch } from 'vue'
+import { ref, computed, watch, onMounted } from 'vue'
 
 type Scheme = 'mono' | 'material' | 'analogous' | 'complementary' | 'triadic' | 'split-complementary'
 
@@ -612,7 +612,8 @@ watch([base, scheme, steps], () => {
   }, 500)
 }, { deep: true })
 
-if (typeof window !== 'undefined') {
+// Load settings from localStorage on mount (client-only)
+onMounted(() => {
   try {
     const raw = localStorage.getItem('palette-settings')
     if (raw) {
@@ -623,9 +624,9 @@ if (typeof window !== 'undefined') {
     }
   } catch {}
 
-  // Initialize history with first state
+  // Initialize history with first state after loading settings
   saveToHistory()
-}
+})
 
 /* ---------- helpers ---------- */
 function resetAll() {

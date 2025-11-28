@@ -1,18 +1,176 @@
 <template>
-  <div class="bg-gray-800 text-gray-100 p-6 sm:p-8 rounded-2xl shadow-xl space-y-6 mx-auto">
+  <div class="bg-gray-800 text-white p-6 sm:p-8 rounded-2xl shadow-xl space-y-6 mx-auto">
     <div class="flex items-center justify-between gap-3 flex-wrap">
-      <h2 class="text-2xl font-semibold">SVG Icon Generator</h2>
+      <h2 class="text-2xl font-semibold">✨ SVG Icon Generator</h2>
       <div class="flex items-center gap-2">
-        <button class="btn" @click="undo" :disabled="!canUndo" title="Undo (Ctrl/⌘+Z)">undo</button>
-        <button class="btn" @click="redo" :disabled="!canRedo" title="Redo (Ctrl/⌘+Y)">redo</button>
-        <button class="btn-warning" @click="clearCanvas" title="Clear canvas">clear</button>
+        <button class="btn" @click="undo" :disabled="!canUndo" title="Undo (Ctrl/⌘+Z)">↶ undo</button>
+        <button class="btn" @click="redo" :disabled="!canRedo" title="Redo (Ctrl/⌘+Y)">↷ redo</button>
+        <button class="btn-warning" @click="clearCanvas" title="Clear canvas">🗑️ clear</button>
       </div>
     </div>
+
+    <!-- toolbar -->
+    <section class="card">
+      <h3 class="text-sm font-semibold text-indigo-400 mb-3">🔧 Shapes</h3>
+      <div class="space-y-3">
+        <!-- base shapes -->
+        <div class="flex flex-wrap gap-2">
+          <div class="text-xs text-gray-400 w-full">basic</div>
+          <button class="icon-btn" @click="drawCircle" title="Circle">●</button>
+          <button class="icon-btn" @click="drawRect" title="Square">■</button>
+          <button class="icon-btn" @click="drawSmallCircle" title="Small Dot">◦</button>
+          <button class="icon-btn" @click="drawSmallRect" title="Small Square">▫︎</button>
+          <button class="icon-btn" @click="drawTriangle" title="Triangle">▲</button>
+          <button class="icon-btn" @click="drawStar" title="Star">★</button>
+          <button class="icon-btn" @click="drawHeart" title="Heart">♥</button>
+          <button class="icon-btn" @click="drawDiamond" title="Diamond">◆</button>
+          <button class="icon-btn" @click="drawPentagon" title="Pentagon">⬟</button>
+          <button class="icon-btn" @click="drawHexagon" title="Hexagon">⬡</button>
+          <button class="icon-btn" @click="drawOctagon" title="Octagon">⯄</button>
+          <button class="icon-btn" @click="drawCross" title="Cross">✚</button>
+          <button class="icon-btn" @click="drawMoon" title="Moon">☾</button>
+          <button class="icon-btn" @click="drawCloud" title="Cloud">☁</button>
+        </div>
+
+        <!-- arrows -->
+        <div class="flex flex-wrap gap-2">
+          <div class="text-xs text-gray-400 w-full">arrows</div>
+          <button class="icon-btn" @click="drawArrowRight" title="Arrow Right">→</button>
+          <button class="icon-btn" @click="drawArrowLeft" title="Arrow Left">←</button>
+          <button class="icon-btn" @click="drawArrowUp" title="Arrow Up">↑</button>
+          <button class="icon-btn" @click="drawArrowDown" title="Arrow Down">↓</button>
+          <button class="icon-btn" @click="drawChevronRight" title="Chevron Right">›</button>
+          <button class="icon-btn" @click="drawChevronLeft" title="Chevron Left">‹</button>
+          <button class="icon-btn" @click="drawChevronUp" title="Chevron Up">˄</button>
+          <button class="icon-btn" @click="drawChevronDown" title="Chevron Down">˅</button>
+          <button class="icon-btn" @click="drawAngleRight" title="Angle Right">&gt;</button>
+          <button class="icon-btn" @click="drawAngleLeft" title="Angle Left">&lt;</button>
+          <button class="icon-btn" @click="drawDoubleAngleRight" title="Double Right">»</button>
+          <button class="icon-btn" @click="drawDoubleAngleLeft" title="Double Left">«</button>
+        </div>
+
+        <!-- menu / dots -->
+        <div class="flex flex-wrap gap-2">
+          <div class="text-xs text-gray-400 w-full">menu</div>
+          <button class="icon-btn" @click="drawVerticalDots" title="Dots Vertical">⋮</button>
+          <button class="icon-btn" @click="drawHorizontalDots" title="Dots Horizontal">⋯</button>
+          <button class="icon-btn" @click="drawBurgerClassic" title="Burger">☰</button>
+          <button class="icon-btn" @click="drawBurgerThin" title="Burger Thin">≡</button>
+          <button class="icon-btn" @click="drawBurgerOffset" title="Burger Offset">☱</button>
+        </div>
+
+        <!-- ui icons -->
+        <div class="flex flex-wrap gap-2">
+          <div class="text-xs text-gray-400 w-full">ui basic</div>
+          <button class="icon-btn" @click="drawCloseIcon" title="Close">✕</button>
+          <button class="icon-btn" @click="drawCheckIcon" title="Check">✔︎</button>
+          <button class="icon-btn" @click="drawTrashIcon" title="Trash">🗑</button>
+          <button class="icon-btn" @click="drawSearchIcon" title="Search">🔍</button>
+          <button class="icon-btn" @click="drawHomeIcon" title="Home">🏠</button>
+          <button class="icon-btn" @click="drawUserIcon" title="User">👤</button>
+          <button class="icon-btn" @click="drawSettingsIcon" title="Settings">⚙</button>
+          <button class="icon-btn" @click="drawBellIcon" title="Bell">🔔</button>
+          <button class="icon-btn" @click="drawPlusIcon" title="Plus">+</button>
+          <button class="icon-btn" @click="drawMinusIcon" title="Minus">−</button>
+          <button class="icon-btn" @click="drawMailIcon" title="Mail">✉</button>
+          <button class="icon-btn" @click="drawLinkIcon" title="Link">🔗</button>
+          <button class="icon-btn" @click="drawDownloadIcon" title="Download">⬇</button>
+          <button class="icon-btn" @click="drawUploadIcon" title="Upload">⬆</button>
+        </div>
+
+        <!-- arrow variations -->
+        <div class="flex flex-wrap gap-2">
+          <div class="text-xs text-gray-400 w-full">arrow variations</div>
+          <button class="icon-btn" @click="drawArrowCircleUp" title="Arrow Circle Up">⇧</button>
+          <button class="icon-btn" @click="drawArrowCircleDown" title="Arrow Circle Down">⇩</button>
+          <button class="icon-btn" @click="drawArrowCircleLeft" title="Arrow Circle Left">⇦</button>
+          <button class="icon-btn" @click="drawArrowCircleRight" title="Arrow Circle Right">⇨</button>
+          <button class="icon-btn" @click="drawCaretUp" title="Caret Up">▴</button>
+          <button class="icon-btn" @click="drawCaretDown" title="Caret Down">▾</button>
+          <button class="icon-btn" @click="drawCaretLeft" title="Caret Left">◂</button>
+          <button class="icon-btn" @click="drawCaretRight" title="Caret Right">▸</button>
+          <button class="icon-btn" @click="drawRefresh" title="Refresh">↻</button>
+          <button class="icon-btn" @click="drawSync" title="Sync">⟳</button>
+          <button class="icon-btn" @click="drawExpand" title="Expand">⤢</button>
+          <button class="icon-btn" @click="drawCompress" title="Compress">⤡</button>
+        </div>
+
+        <!-- status & info -->
+        <div class="flex flex-wrap gap-2">
+          <div class="text-xs text-gray-400 w-full">status & info</div>
+          <button class="icon-btn" @click="drawInfoCircle" title="Info">ⓘ</button>
+          <button class="icon-btn" @click="drawWarning" title="Warning">⚠</button>
+          <button class="icon-btn" @click="drawError" title="Error">⊗</button>
+          <button class="icon-btn" @click="drawSuccess" title="Success">✓</button>
+          <button class="icon-btn" @click="drawQuestion" title="Question">?</button>
+          <button class="icon-btn" @click="drawExclamation" title="Exclamation">!</button>
+        </div>
+
+        <!-- files & folders -->
+        <div class="flex flex-wrap gap-2">
+          <div class="text-xs text-gray-400 w-full">files & folders</div>
+          <button class="icon-btn" @click="drawFile" title="File">📄</button>
+          <button class="icon-btn" @click="drawFolder" title="Folder">📁</button>
+          <button class="icon-btn" @click="drawFolderOpen" title="Folder Open">📂</button>
+          <button class="icon-btn" @click="drawEdit" title="Edit">✎</button>
+          <button class="icon-btn" @click="drawCopy" title="Copy">⎘</button>
+          <button class="icon-btn" @click="drawSave" title="Save">💾</button>
+        </div>
+
+        <!-- media & time -->
+        <div class="flex flex-wrap gap-2">
+          <div class="text-xs text-gray-400 w-full">media & time</div>
+          <button class="icon-btn" @click="drawPlay" title="Play">▶</button>
+          <button class="icon-btn" @click="drawPause" title="Pause">⏸</button>
+          <button class="icon-btn" @click="drawStop" title="Stop">⏹</button>
+          <button class="icon-btn" @click="drawClock" title="Clock">🕐</button>
+          <button class="icon-btn" @click="drawCalendar" title="Calendar">📅</button>
+          <button class="icon-btn" @click="drawBookmark" title="Bookmark">🔖</button>
+          <button class="icon-btn" @click="drawTag" title="Tag">🏷</button>
+          <button class="icon-btn" @click="drawLock" title="Lock">🔒</button>
+          <button class="icon-btn" @click="drawUnlock" title="Unlock">🔓</button>
+        </div>
+
+        <!-- selection tools -->
+        <div class="flex flex-wrap gap-2 pt-2 border-t border-gray-700">
+          <div class="text-xs text-gray-400 w-full">tools</div>
+          <button class="btn" @click="centerH" title="Align Horizontal Center">⬌ align H</button>
+          <button class="btn" @click="centerV" title="Align Vertical Center">⬍ align V</button>
+          <button class="btn" @click="bringToFront" title="Bring to Front">⬆ front</button>
+          <button class="btn" @click="sendToBack" title="Send to Back">⬇ back</button>
+          <button class="btn" @click="duplicateSelected" title="Duplicate (Ctrl/⌘+D)">⎘ duplicate</button>
+          <button class="btn-danger" @click="deleteSelected" :disabled="!selectedShape" title="Delete (Backspace)">🗑️ delete</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- canvas -->
+    <section class="grid grid-cols-1 md:grid-cols-[auto,220px] gap-4">
+      <div class="border border-gray-700 rounded bg-white overflow-hidden">
+        <svg
+            id="svgCanvas"
+            :viewBox="`0 0 ${box} ${box}`"
+            :width="Math.min(384, box*4)"
+            :height="Math.min(384, box*4)"
+            class="block mx-auto"
+            xmlns="http://www.w3.org/2000/svg"
+        />
+        <div class="text-xs text-center text-gray-400 py-1 bg-black">Output: {{ box }}x{{ box }} viewBox</div>
+      </div>
+
+      <div class="space-y-2">
+        <h3 class="font-medium text-indigo-400">👁️ preview (1:1)</h3>
+        <div class="border border-gray-700 bg-white rounded p-2 w-[220px]">
+          <svg id="svgPreview" :viewBox="`0 0 ${box} ${box}`" :width="box" :height="box" />
+        </div>
+      </div>
+    </section>
 
     <!-- controls -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
       <!-- size/grid -->
       <div class="card space-y-3">
+        <h3 class="text-sm font-semibold text-indigo-400 mb-2">📐 Canvas</h3>
         <div class="grid grid-cols-2 gap-2 items-end">
           <label class="block">
             <span class="text-sm text-gray-300">viewBox</span>
@@ -35,7 +193,7 @@
           </label>
           <label class="inline-flex items-center gap-2">
             <span class="text-sm text-gray-300">color</span>
-            <input v-model="gridColor" type="color" class="w-9 h-7 p-0 border border-gray-500 rounded" />
+            <input v-model="gridColor" type="color" class="w-9 h-7 p-0 border border-gray-700 bg-black rounded" />
           </label>
           <label class="inline-flex items-center gap-2">
             <span class="text-sm text-gray-300">opacity</span>
@@ -46,11 +204,12 @@
 
       <!-- paint -->
       <div class="card space-y-3">
+        <h3 class="text-sm font-semibold text-indigo-400 mb-2">🎨 Paint</h3>
         <div class="grid grid-cols-2 gap-3">
           <label class="block">
             <span class="text-sm text-gray-300">fill</span>
             <div class="flex items-center gap-2 mt-1">
-              <input v-model="fillColor" type="color" class="w-10 h-8 p-0 border border-gray-500 rounded" />
+              <input v-model="fillColor" type="color" class="w-10 h-8 p-0 border border-gray-700 bg-black rounded" />
               <input v-model="fillColor" maxlength="7" class="input" @blur="normalizeHex('fill')" />
             </div>
           </label>
@@ -58,10 +217,36 @@
           <label class="block">
             <span class="text-sm text-gray-300">stroke</span>
             <div class="flex items-center gap-2 mt-1">
-              <input v-model="strokeColor" type="color" class="w-10 h-8 p-0 border border-gray-500 rounded" />
+              <input v-model="strokeColor" type="color" class="w-10 h-8 p-0 border border-gray-700 bg-black rounded" />
               <input v-model="strokeColor" maxlength="7" class="input" @blur="normalizeHex('stroke')" />
             </div>
           </label>
+        </div>
+
+        <!-- color presets -->
+        <div class="space-y-2">
+          <div class="text-xs text-gray-400">quick colors</div>
+          <div class="flex flex-wrap gap-1">
+            <button v-for="c in colorPresets" :key="c"
+              @click="applyColorPreset(c)"
+              :style="{backgroundColor: c}"
+              class="w-7 h-7 rounded border border-gray-700 hover:scale-110 transition-transform"
+              :title="c"
+            />
+          </div>
+        </div>
+
+        <!-- recent colors -->
+        <div v-if="recentColors.length" class="space-y-2">
+          <div class="text-xs text-gray-400">recent</div>
+          <div class="flex flex-wrap gap-1">
+            <button v-for="(c, i) in recentColors" :key="i"
+              @click="applyColorPreset(c)"
+              :style="{backgroundColor: c}"
+              class="w-7 h-7 rounded border border-gray-700 hover:scale-110 transition-transform"
+              :title="c"
+            />
+          </div>
         </div>
 
         <div class="grid grid-cols-3 gap-2 items-end">
@@ -91,96 +276,63 @@
 
       <!-- export -->
       <div class="card space-y-3">
-        <div class="grid grid-cols-2 gap-2 items-end">
-          <label class="block">
-            <span class="text-sm text-gray-300">PNG size</span>
-            <select v-model.number="exportPx" class="input">
-              <option v-for="n in [64,128,256,512,1024]" :key="n" :value="n">{{ n }} px</option>
-            </select>
-          </label>
-          <label class="block">
-            <span class="text-sm text-gray-300">filename</span>
-            <input v-model="filename" class="input" />
-          </label>
-        </div>
+        <h3 class="text-sm font-semibold text-indigo-400 mb-2">📦 Export</h3>
+        <label class="block">
+          <span class="text-sm text-gray-300">filename</span>
+          <input v-model="filename" class="input" />
+        </label>
         <div class="flex flex-wrap gap-2">
-          <button class="btn-primary" @click="exportSvg" title="Scarica .svg">download svg</button>
-          <button class="btn" @click="copySvg" title="Copia codice SVG">copy svg</button>
-          <button class="btn" @click="exportPng" title="Scarica .png">export png</button>
+          <button class="btn-primary" @click="exportSvg" title="Download .svg">⬇️ SVG</button>
+          <button class="btn" @click="copySvg" title="Copy SVG code">📋 copy</button>
+          <button class="btn" @click="showExportModal = true" title="Export icon pack">📦 icon pack</button>
+          <label class="btn cursor-pointer" title="Import SVG">
+            📥 import
+            <input type="file" accept=".svg,image/svg+xml" @change="importSvg" class="hidden" ref="importInput" />
+          </label>
         </div>
       </div>
     </div>
 
-    <!-- toolbar -->
-    <section class="card">
-      <div class="flex flex-wrap gap-2">
-        <!-- base shapes -->
-        <button class="icon-btn" @click="drawCircle" title="Circle">●</button>
-        <button class="icon-btn" @click="drawRect" title="Square">■</button>
-        <button class="icon-btn" @click="drawSmallCircle" title="Small Dot">◦</button>
-        <button class="icon-btn" @click="drawSmallRect" title="Small Square">▫︎</button>
+    <!-- Export Modal -->
+    <div v-if="showExportModal" class="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4" @click.self="showExportModal = false">
+      <div class="bg-gray-900 border border-gray-700 rounded-xl p-6 max-w-md w-full space-y-4">
+        <div class="flex items-center justify-between">
+          <h3 class="text-lg font-semibold text-white">📦 Export Icon Pack</h3>
+          <button @click="showExportModal = false" class="text-gray-400 hover:text-white">✕</button>
+        </div>
 
-        <!-- chevrons / angles -->
-        <button class="icon-btn" @click="drawChevronRight" title="Chevron Right">›</button>
-        <button class="icon-btn" @click="drawChevronLeft" title="Chevron Left">‹</button>
-        <button class="icon-btn" @click="drawChevronUp" title="Chevron Up">˄</button>
-        <button class="icon-btn" @click="drawChevronDown" title="Chevron Down">˅</button>
-        <button class="icon-btn" @click="drawAngleRight" title="Angle Right">&gt;</button>
-        <button class="icon-btn" @click="drawAngleLeft" title="Angle Left">&lt;</button>
-        <button class="icon-btn" @click="drawDoubleAngleRight" title="Double Right">»</button>
-        <button class="icon-btn" @click="drawDoubleAngleLeft" title="Double Left">«</button>
+        <p class="text-sm text-gray-400">Export your icon in multiple sizes as PNG files in a ZIP archive.</p>
 
-        <!-- dots / burgers -->
-        <button class="icon-btn" @click="drawVerticalDots" title="Dots Vertical">⋮</button>
-        <button class="icon-btn" @click="drawHorizontalDots" title="Dots Horizontal">⋯</button>
-        <button class="icon-btn" @click="drawBurgerClassic" title="Burger">☰</button>
-        <button class="icon-btn" @click="drawBurgerThin" title="Burger Thin">≡</button>
-        <button class="icon-btn" @click="drawBurgerOffset" title="Burger Offset">☱</button>
+        <div class="space-y-3">
+          <label class="block">
+            <span class="text-sm text-gray-300">Select sizes</span>
+            <div class="grid grid-cols-3 gap-2 mt-2">
+              <label v-for="size in [16, 24, 32, 48, 64, 96, 128, 256, 512]" :key="size"
+                class="flex items-center gap-2 text-sm">
+                <input type="checkbox" :value="size" v-model="selectedSizes" class="w-4 h-4" />
+                <span>{{ size }}px</span>
+              </label>
+            </div>
+          </label>
 
-        <!-- ui -->
-        <button class="icon-btn" @click="drawCloseIcon" title="Close">✕</button>
-        <button class="icon-btn" @click="drawTrashIcon" title="Trash">🗑</button>
-        <button class="icon-btn" @click="drawSearchIcon" title="Search">🔍</button>
-        <button class="icon-btn" @click="drawCheckIcon" title="Check">✔︎</button>
+          <label class="flex items-center gap-2 text-sm">
+            <input type="checkbox" v-model="includeSvgInPack" class="w-4 h-4" />
+            <span>Include SVG file</span>
+          </label>
+        </div>
 
-        <!-- selection tools -->
-        <div class="ml-auto flex gap-2">
-          <button class="btn" @click="centerH" title="Align Horizontal Center">align H</button>
-          <button class="btn" @click="centerV" title="Align Vertical Center">align V</button>
-          <button class="btn" @click="bringToFront" title="Bring to Front">front</button>
-          <button class="btn" @click="sendToBack" title="Send to Back">back</button>
-          <button class="btn" @click="duplicateSelected" title="Duplicate (Ctrl/⌘+D)">duplicate</button>
-          <button class="btn-danger" @click="deleteSelected" :disabled="!selectedShape" title="Delete (Backspace)">delete</button>
+        <div class="flex gap-2">
+          <button @click="exportIconPack" class="btn-primary flex-1">⬇️ Download Pack</button>
+          <button @click="showExportModal = false" class="btn">cancel</button>
         </div>
       </div>
-    </section>
-
-    <!-- canvas -->
-    <section class="grid grid-cols-1 md:grid-cols-[auto,220px] gap-4">
-      <div class="border border-gray-700 rounded bg-white overflow-hidden">
-        <svg
-            id="svgCanvas"
-            :viewBox="`0 0 ${box} ${box}`"
-            :width="Math.min(384, box*4)"
-            :height="Math.min(384, box*4)"
-            class="block mx-auto"
-            xmlns="http://www.w3.org/2000/svg"
-        />
-        <div class="text-xs text-center text-gray-400 py-1">Output: {{ box }}x{{ box }} viewBox</div>
-      </div>
-
-      <div class="space-y-2">
-        <h3 class="font-medium">preview (1:1)</h3>
-        <div class="border bg-white rounded p-2 w-[220px]">
-          <svg id="svgPreview" :viewBox="`0 0 ${box} ${box}`" :width="box" :height="box" />
-        </div>
-      </div>
-    </section>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { onMounted, ref, watch, computed, onBeforeUnmount } from 'vue'
+import JSZip from 'jszip'
 
 type SnapType = any
 let SnapLib: SnapType
@@ -202,10 +354,22 @@ const showGrid = ref(true)
 const gridColor = ref('#eeeeee')
 const gridOpacity = ref(0.4)
 
-const exportPx = ref(256)
 const filename = ref('icon')
 
 const selectedShape = ref<any>(null)
+
+/* color presets */
+const colorPresets = [
+  '#000000', '#FFFFFF', '#EF4444', '#F59E0B', '#10B981', '#3B82F6', '#8B5CF6', '#EC4899',
+  '#6366F1', '#14B8A6', '#F97316', '#84CC16'
+]
+const recentColors = ref<string[]>([])
+
+/* export modal */
+const showExportModal = ref(false)
+const selectedSizes = ref([16, 24, 32, 64, 128, 256])
+const includeSvgInPack = ref(true)
+const importInput = ref<HTMLInputElement | null>(null)
 
 /* history */
 const history: string[] = []
@@ -221,6 +385,25 @@ function normalizeHex(which: 'fill'|'stroke'){
   const refVal = which === 'fill' ? fillColor : strokeColor
   if (!re.test(refVal.value)) refVal.value = which === 'fill' ? '#000000' : '#000000'
   if (refVal.value[0] !== '#') refVal.value = '#' + refVal.value
+}
+
+/* color presets */
+function applyColorPreset(color: string) {
+  if (strokeOnly.value) {
+    strokeColor.value = color
+  } else {
+    fillColor.value = color
+  }
+  addToRecentColors(color)
+}
+
+function addToRecentColors(color: string) {
+  const upper = color.toUpperCase()
+  if (!recentColors.value.includes(upper)) {
+    recentColors.value.unshift(upper)
+    if (recentColors.value.length > 8) recentColors.value.pop()
+    localStorage.setItem('iconGenRecentColors', JSON.stringify(recentColors.value))
+  }
 }
 
 /* ---------- grid ---------- */
@@ -381,6 +564,79 @@ const drawTrashIcon  = () => drawPath(P('M20 24 H44 L40 48 H24 Z M28 24 V20 H36 
 const drawSearchIcon = () => drawPath(P('M40 40 L48 48 M28 40 A12 12 0 1 1 40 28 12 12 0 0 1 28 40 Z'), true)
 const drawCheckIcon  = () => drawPath(P('M20 34 L28 42 L44 24'), true)
 
+/* new shapes */
+const drawTriangle = () => drawPath(P('M32 16 L48 48 L16 48 Z'), strokeOnly.value)
+const drawStar = () => drawPath(P('M32 16 L36 28 L48 28 L38 36 L42 48 L32 40 L22 48 L26 36 L16 28 L28 28 Z'), strokeOnly.value)
+const drawHeart = () => drawPath(P('M32 44 C32 44 16 32 16 24 C16 20 18 16 22 16 C26 16 32 20 32 20 C32 20 38 16 42 16 C46 16 48 20 48 24 C48 32 32 44 32 44 Z'), strokeOnly.value)
+
+/* geometric shapes */
+const drawDiamond = () => drawPath(P('M32 16 L48 32 L32 48 L16 32 Z'), strokeOnly.value)
+const drawPentagon = () => drawPath(P('M32 16 L48 26 L42 46 L22 46 L16 26 Z'), strokeOnly.value)
+const drawHexagon = () => drawPath(P('M32 16 L46 24 L46 40 L32 48 L18 40 L18 24 Z'), strokeOnly.value)
+const drawOctagon = () => drawPath(P('M24 16 L40 16 L48 24 L48 40 L40 48 L24 48 L16 40 L16 24 Z'), strokeOnly.value)
+const drawCross = () => drawPath(P('M32 16 V48 M16 32 H48'), true)
+const drawMoon = () => drawPath(P('M40 16 A16 16 0 1 0 40 48 A12 12 0 1 1 40 16 Z'), strokeOnly.value)
+const drawCloud = () => drawPath(P('M20 36 C16 36 14 33 14 30 C14 27 16 24 20 24 C20 20 24 16 30 16 C36 16 40 20 40 24 C44 24 48 27 48 32 C48 36 44 40 40 40 H20 C20 40 20 38 20 36 Z'), strokeOnly.value)
+
+/* arrows */
+const drawArrowRight = () => drawPath(P('M16 32 H44 M36 24 L44 32 L36 40'), true)
+const drawArrowLeft  = () => drawPath(P('M48 32 H20 M28 24 L20 32 L28 40'), true)
+const drawArrowUp    = () => drawPath(P('M32 48 V20 M24 28 L32 20 L40 28'), true)
+const drawArrowDown  = () => drawPath(P('M32 16 V44 M24 36 L32 44 L40 36'), true)
+
+/* more ui icons */
+const drawHomeIcon     = () => drawPath(P('M16 32 L32 16 L48 32 V48 H36 V36 H28 V48 H16 Z'), strokeOnly.value)
+const drawUserIcon     = () => drawPath(P('M32 28 A8 8 0 1 1 32 28.1 M44 48 C44 40 38 36 32 36 C26 36 20 40 20 48'), true)
+const drawSettingsIcon = () => drawPath(P('M32 24 A8 8 0 1 0 32 40 A8 8 0 1 0 32 24 M32 16 V20 M32 44 V48 M44 32 H48 M16 32 H20 M40 40 L43 43 M21 21 L24 24 M40 24 L43 21 M21 43 L24 40'), true)
+const drawBellIcon     = () => drawPath(P('M28 16 C28 16 28 14 32 14 C36 14 36 16 36 16 C36 16 42 18 42 28 V36 L44 40 H20 L22 36 V28 C22 18 28 16 28 16 M28 44 C28 46 30 48 32 48 C34 48 36 46 36 44'), true)
+const drawPlusIcon     = () => drawPath(P('M32 16 V48 M16 32 H48'), true)
+const drawMinusIcon    = () => drawPath(P('M16 32 H48'), true)
+const drawMailIcon     = () => drawPath(P('M16 20 H48 V44 H16 Z M16 20 L32 32 L48 20'), true)
+const drawLinkIcon     = () => drawPath(P('M28 36 L36 28 M24 28 L28 24 A8 8 0 0 1 40 24 L44 28 M40 36 L36 40 A8 8 0 0 1 24 40 L20 36'), true)
+const drawDownloadIcon = () => drawPath(P('M32 16 V40 M24 32 L32 40 L40 32 M20 44 H44'), true)
+const drawUploadIcon   = () => drawPath(P('M32 40 V16 M24 24 L32 16 L40 24 M20 44 H44'), true)
+
+/* arrow variations */
+const drawArrowCircleUp = () => drawPath(P('M32 16 A16 16 0 1 0 32 48 A16 16 0 1 0 32 16 M32 36 V24 M28 28 L32 24 L36 28'), true)
+const drawArrowCircleDown = () => drawPath(P('M32 16 A16 16 0 1 0 32 48 A16 16 0 1 0 32 16 M32 24 V36 M28 32 L32 36 L36 32'), true)
+const drawArrowCircleLeft = () => drawPath(P('M32 16 A16 16 0 1 0 32 48 A16 16 0 1 0 32 16 M36 32 H24 M28 28 L24 32 L28 36'), true)
+const drawArrowCircleRight = () => drawPath(P('M32 16 A16 16 0 1 0 32 48 A16 16 0 1 0 32 16 M24 32 H36 M32 28 L36 32 L32 36'), true)
+const drawCaretUp = () => drawPath(P('M16 36 L32 20 L48 36 Z'), false)
+const drawCaretDown = () => drawPath(P('M16 28 L32 44 L48 28 Z'), false)
+const drawCaretLeft = () => drawPath(P('M36 16 L20 32 L36 48 Z'), false)
+const drawCaretRight = () => drawPath(P('M28 16 L44 32 L28 48 Z'), false)
+const drawRefresh = () => drawPath(P('M40 20 A12 12 0 1 0 40 44 M40 20 L44 16 M40 20 L36 16 M40 44 L44 48 M40 44 L36 48'), true)
+const drawSync = () => drawPath(P('M24 20 A12 12 0 0 1 40 24 M40 24 L44 20 M40 24 L40 28 M40 44 A12 12 0 0 1 24 40 M24 40 L20 44 M24 40 L24 36'), true)
+const drawExpand = () => drawPath(P('M16 16 L28 16 L28 20 L20 20 L20 28 L16 28 Z M48 16 L36 16 L36 20 L44 20 L44 28 L48 28 Z M16 48 L28 48 L28 44 L20 44 L20 36 L16 36 Z M48 48 L36 48 L36 44 L44 44 L44 36 L48 36 Z'), strokeOnly.value)
+const drawCompress = () => drawPath(P('M28 28 L16 16 M28 28 L28 20 M28 28 L20 28 M36 28 L48 16 M36 28 L36 20 M36 28 L44 28 M28 36 L16 48 M28 36 L28 44 M28 36 L20 36 M36 36 L48 48 M36 36 L36 44 M36 36 L44 36'), true)
+
+/* status & info icons */
+const drawInfoCircle = () => drawPath(P('M32 16 A16 16 0 1 0 32 48 A16 16 0 1 0 32 16 M32 28 V40 M32 22 V24'), true)
+const drawWarning = () => drawPath(P('M32 16 L48 46 H16 Z M32 28 V36 M32 40 V42'), true)
+const drawError = () => drawPath(P('M32 16 A16 16 0 1 0 32 48 A16 16 0 1 0 32 16 M24 24 L40 40 M40 24 L24 40'), true)
+const drawSuccess = () => drawPath(P('M32 16 A16 16 0 1 0 32 48 A16 16 0 1 0 32 16 M24 32 L30 38 L42 26'), true)
+const drawQuestion = () => drawPath(P('M32 16 A16 16 0 1 0 32 48 A16 16 0 1 0 32 16 M26 26 C26 22 28 20 32 20 C36 20 38 22 38 26 C38 30 32 30 32 34 M32 40 V42'), true)
+const drawExclamation = () => drawPath(P('M32 16 A16 16 0 1 0 32 48 A16 16 0 1 0 32 16 M32 24 V34 M32 38 V40'), true)
+
+/* files & folders */
+const drawFile = () => drawPath(P('M24 16 H36 L42 22 V48 H24 Z M36 16 V22 H42'), strokeOnly.value)
+const drawFolder = () => drawPath(P('M16 22 V46 H48 V26 H32 L28 22 Z'), strokeOnly.value)
+const drawFolderOpen = () => drawPath(P('M16 22 V40 L20 46 H48 L44 26 H32 L28 22 Z M16 22 H28'), strokeOnly.value)
+const drawEdit = () => drawPath(P('M38 18 L42 22 L28 36 L24 38 L26 34 L40 20 M40 20 L44 24 L30 38 L26 40 L28 36 Z M20 44 H44'), true)
+const drawCopy = () => drawPath(P('M28 20 H40 V32 H44 V16 H28 Z M24 24 H36 L40 28 V48 H24 Z'), strokeOnly.value)
+const drawSave = () => drawPath(P('M20 16 V48 H44 V20 L40 16 Z M28 16 V24 H36 V16 M28 34 H36'), strokeOnly.value)
+
+/* media & time */
+const drawPlay = () => drawPath(P('M24 16 L24 48 L44 32 Z'), strokeOnly.value)
+const drawPause = () => drawPath(P('M24 16 V48 M40 16 V48'), true)
+const drawStop = () => drawPath(P('M20 20 H44 V44 H20 Z'), strokeOnly.value)
+const drawClock = () => drawPath(P('M32 16 A16 16 0 1 0 32 48 A16 16 0 1 0 32 16 M32 24 V32 L38 38'), true)
+const drawCalendar = () => drawPath(P('M18 22 H46 V46 H18 Z M18 28 H46 M26 18 V24 M38 18 V24'), strokeOnly.value)
+const drawBookmark = () => drawPath(P('M24 16 H40 V48 L32 42 L24 48 Z'), strokeOnly.value)
+const drawTag = () => drawPath(P('M16 16 V32 L32 48 L48 32 L32 16 Z M26 26 A2 2 0 1 0 26 26.1'), strokeOnly.value)
+const drawLock = () => drawPath(P('M24 28 V24 C24 20 27 16 32 16 C37 16 40 20 40 24 V28 M20 28 H44 V48 H20 Z'), strokeOnly.value)
+const drawUnlock = () => drawPath(P('M24 28 V24 C24 20 27 16 32 16 C37 16 40 20 40 24 M20 28 H44 V48 H20 Z'), strokeOnly.value)
+
 /* ---------- preview & export ---------- */
 function refreshPreview(){
   // clone everything except grid
@@ -416,23 +672,105 @@ async function copySvg(){
   if (showGrid.value) drawGrid()
   refreshPreview()
 }
-function exportPng(){
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${box.value} ${box.value}">${snap.toString().replace(/filter="[^"]*"/g,'')}</svg>`
-  const img = new Image()
-  const svgBlob = new Blob([svg], {type: 'image/svg+xml'})
-  const url = URL.createObjectURL(svgBlob)
-  img.onload = () => {
-    const cvs = document.createElement('canvas')
-    cvs.width = exportPx.value; cvs.height = exportPx.value
-    const ctx = cvs.getContext('2d')!
-    ctx.drawImage(img, 0, 0, cvs.width, cvs.height)
-    URL.revokeObjectURL(url)
-    const a = document.createElement('a')
-    a.href = cvs.toDataURL('image/png')
-    a.download = `${filename.value || 'icon'}.png`
-    a.click()
+
+/* export icon pack */
+async function exportIconPack() {
+  if (selectedSizes.value.length === 0 && !includeSvgInPack.value) {
+    alert('Please select at least one size or include SVG')
+    return
   }
-  img.src = url
+
+  const zip = new JSZip()
+  const grid = snap.select('#grid')
+  grid?.remove()
+
+  const svgContent = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${box.value} ${box.value}">${snap.toString().replace(/filter="[^"]*"/g,'')}</svg>`
+
+  // Add SVG if requested
+  if (includeSvgInPack.value) {
+    zip.file(`${filename.value}.svg`, svgContent)
+  }
+
+  // Generate PNGs for each size
+  for (const size of selectedSizes.value) {
+    const pngData = await generatePng(svgContent, size)
+    zip.file(`${filename.value}-${size}px.png`, pngData, { base64: true })
+  }
+
+  // Generate and download ZIP
+  const blob = await zip.generateAsync({ type: 'blob' })
+  const url = URL.createObjectURL(blob)
+  const a = document.createElement('a')
+  a.href = url
+  a.download = `${filename.value}-pack.zip`
+  a.click()
+  URL.revokeObjectURL(url)
+
+  if (showGrid.value) drawGrid()
+  showExportModal.value = false
+}
+
+function generatePng(svgContent: string, size: number): Promise<string> {
+  return new Promise((resolve) => {
+    const img = new Image()
+    const svgBlob = new Blob([svgContent], { type: 'image/svg+xml' })
+    const url = URL.createObjectURL(svgBlob)
+
+    img.onload = () => {
+      const cvs = document.createElement('canvas')
+      cvs.width = size
+      cvs.height = size
+      const ctx = cvs.getContext('2d')!
+      ctx.drawImage(img, 0, 0, size, size)
+      URL.revokeObjectURL(url)
+
+      // Extract base64 data without prefix
+      const base64 = cvs.toDataURL('image/png').split(',')[1]
+      resolve(base64)
+    }
+
+    img.src = url
+  })
+}
+
+/* import SVG */
+async function importSvg(event: Event) {
+  const input = event.target as HTMLInputElement
+  const file = input.files?.[0]
+  if (!file) return
+
+  const text = await file.text()
+  const parser = new DOMParser()
+  const doc = parser.parseFromString(text, 'image/svg+xml')
+  const svgEl = doc.querySelector('svg')
+
+  if (!svgEl) {
+    alert('Invalid SVG file')
+    return
+  }
+
+  pushHistory()
+
+  // Extract inner content and append to canvas
+  const children = Array.from(svgEl.children)
+  children.forEach((child) => {
+    if (child.tagName !== 'defs' && child.id !== 'grid') {
+      const imported = SnapLib.parse(child.outerHTML)
+      snap.append(imported)
+
+      // Setup click handlers for imported elements
+      if (imported.type) {
+        setupElement(imported, false)
+      } else if (imported.selectAll) {
+        imported.selectAll('*').forEach((el: any) => setupElement(el, false))
+      }
+    }
+  })
+
+  refreshPreview()
+
+  // Reset input
+  input.value = ''
 }
 
 /* ---------- keyboard ---------- */
@@ -484,6 +822,14 @@ onMounted(async () => {
     gridOpacity.value = p.gridOpacity ?? gridOpacity.value
     filename.value = p.filename ?? filename.value
   }
+
+  // restore recent colors
+  const colors = localStorage.getItem('iconGenRecentColors')
+  if (colors) {
+    try {
+      recentColors.value = JSON.parse(colors)
+    } catch {}
+  }
 })
 onBeforeUnmount(()=> window.removeEventListener('keydown', onKey))
 
@@ -522,13 +868,13 @@ function clearCanvas(){
 </script>
 
 <style scoped>
-.input { @apply text-black w-full px-3 py-2 rounded-md border border-gray-300; }
-.btn { @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded text-white disabled:opacity-50 disabled:cursor-not-allowed; }
-.btn-primary { @apply bg-indigo-600 hover:bg-indigo-500 px-3 py-1.5 rounded text-white; }
-.btn-warning { @apply bg-yellow-600 hover:bg-yellow-500 px-3 py-1.5 rounded text-white; }
-.btn-danger { @apply bg-red-600 hover:bg-red-500 px-3 py-1.5 rounded text-white disabled:opacity-50; }
-.card { @apply bg-gray-800/60 rounded-xl p-4 border border-gray-800; }
-.icon-btn { @apply bg-indigo-600 px-3 py-2 rounded hover:bg-indigo-500 text-white; }
+.input { @apply bg-black text-white w-full px-3 py-2 rounded-md border border-gray-700; }
+.btn { @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded text-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors; }
+.btn-primary { @apply bg-indigo-600 hover:bg-indigo-500 px-3 py-1.5 rounded text-white transition-colors; }
+.btn-warning { @apply bg-yellow-600 hover:bg-yellow-500 px-3 py-1.5 rounded text-white transition-colors; }
+.btn-danger { @apply bg-red-600 hover:bg-red-500 px-3 py-1.5 rounded text-white disabled:opacity-50 transition-colors; }
+.card { @apply bg-black rounded-xl p-4 border border-gray-700; }
+.icon-btn { @apply bg-indigo-600 px-3 py-2 rounded hover:bg-indigo-500 text-white transition-colors; }
 </style>
 
 
