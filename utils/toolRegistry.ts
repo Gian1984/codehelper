@@ -129,17 +129,17 @@ export const tools: Record<string, Tool> = {
 
     'number-base-converter': {
         title: 'Number Base Converter',
-        description: 'Convert numbers between Binary, Octal, Decimal, and Hex.',
+        description: 'Convert numbers between Binary, Octal, Decimal, and Hex with visual binary representation.',
         category: 'converter',
         component: () =>
             import('~/components/tools/converter/NumberBaseConverter.vue') as Promise<{ default: DefineComponent }>,
         seo: {
             title: `Number Base Converter (Binary, Octal, Decimal, Hex) – ${BRAND}`,
             description:
-                'Convert between decimal, binary, octal, and hexadecimal instantly. Supports copy, validation, and large values.',
+                'Convert between decimal, binary, octal, and hexadecimal with visual binary representation. Supports BigInt for unlimited size, byte grouping, negative numbers, and copy to clipboard.',
             ogImage: OG,
             keywords:
-                'base converter, decimal to binary, binary to hex, octal converter, hex converter, numeral system, number converter',
+                'base converter, decimal to binary, binary to hex, octal converter, hex converter, numeral system, number converter, binary visualizer, byte grouping, nibble display, bigint converter, negative number converter, visual binary',
             structuredData: {
                 '@context': 'https://schema.org',
                 '@type': 'SoftwareApplication',
@@ -147,7 +147,16 @@ export const tools: Record<string, Tool> = {
                 applicationCategory: 'DeveloperApplication',
                 operatingSystem: 'All',
                 offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-                featureList: ['Dec ⇄ Bin', 'Dec ⇄ Oct', 'Dec ⇄ Hex', 'Copy & Paste'],
+                featureList: [
+                    'Bin ⇄ Oct ⇄ Dec ⇄ Hex',
+                    'Visual binary with byte grouping',
+                    'BigInt support (unlimited size)',
+                    'Negative number handling',
+                    'Bit width padding (8/16/32/64)',
+                    'Digit grouping options',
+                    'Copy to clipboard',
+                    'Quick examples'
+                ],
                 aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '26' }
             }
         }
@@ -780,17 +789,17 @@ export const tools: Record<string, Tool> = {
 
     'time-converter': {
         title: 'Time Converter',
-        description: 'Convert between time zones, UNIX timestamps, and human-readable dates.',
+        description: 'Convert between time zones, UNIX timestamps, human-readable dates, and calculate durations.',
         category: 'converter',
         component: () =>
             import('~/components/tools/converter/TimeConverter.vue') as Promise<{ default: DefineComponent }>,
         seo: {
             title: `Time & UNIX Timestamp Converter (Time Zones) – ${BRAND}`,
             description:
-                'Convert UNIX timestamps to readable dates and back. View in UTC, local, or any time zone and copy ISO 8601.',
+                'Convert UNIX timestamps to readable dates with timezone support. Calculate duration between dates. Human-readable time differences. View in UTC, local, or any time zone. ISO 8601 output.',
             ogImage: OG,
             keywords:
-                'unix timestamp converter, epoch time, convert timestamp to date, timezone converter, iso 8601, utc time',
+                'unix timestamp converter, epoch time, convert timestamp to date, timezone converter, iso 8601, utc time, duration calculator, time difference calculator, human readable time, time zone converter, DST safe conversion',
             structuredData: {
                 '@context': 'https://schema.org',
                 '@type': 'SoftwareApplication',
@@ -798,7 +807,16 @@ export const tools: Record<string, Tool> = {
                 applicationCategory: 'UtilityApplication',
                 operatingSystem: 'All',
                 offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-                featureList: ['UNIX ⇄ Date', 'Time Zones', 'ISO 8601'],
+                featureList: [
+                    'UNIX Timestamp ⇄ Date',
+                    'Duration Calculator',
+                    'Timezone Converter (DST-safe)',
+                    'Human-readable time format',
+                    'ISO 8601 output',
+                    'Quick timestamp examples',
+                    'Auto-detect unit (s/ms/ns)',
+                    'Copy to clipboard'
+                ],
                 aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '3' }
             }
         }

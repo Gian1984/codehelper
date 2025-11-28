@@ -1,137 +1,222 @@
 <template>
-  <div class="bg-gray-800 p-6 sm:p-8 rounded-xl shadow space-y-6 text-white">
+  <div class="bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-xl space-y-6 text-white">
+    <!-- Header -->
     <div class="flex items-center justify-between gap-3 flex-wrap">
-      <h2 class="text-2xl font-semibold">Number Base Converter</h2>
-      <span v-if="copiedMsg" class="text-green-400 text-sm">{{ copiedMsg }}</span>
+      <h2 class="text-2xl font-semibold text-white">Number Base Converter</h2>
+      <div class="flex items-center gap-2">
+        <button @click="clearAll" class="btn-secondary">Clear All</button>
+        <button @click="negate" class="btn-secondary">Toggle Sign (±)</button>
+      </div>
+    </div>
+
+    <!-- Quick Examples -->
+    <div class="bg-gray-900 rounded-xl p-5 border border-gray-700">
+      <h3 class="text-sm font-medium text-gray-300 mb-3">🔢 Quick Examples</h3>
+      <div class="flex flex-wrap gap-2">
+        <button class="example-btn" @click="setFromDecimal('255')">255</button>
+        <button class="example-btn" @click="setFromDecimal('1024')">1024</button>
+        <button class="example-btn" @click="setFromDecimal('65535')">65535 (2^16-1)</button>
+        <button class="example-btn" @click="setFromDecimal('-42')">-42</button>
+        <button class="example-btn" @click="setFromDecimal('18446744073709551615')">2^64-1</button>
+      </div>
     </div>
 
     <!-- Options -->
-    <div class="grid sm:grid-cols-3 gap-4">
-      <label class="flex items-center gap-2 card p-3">
-        <input type="checkbox" v-model="opts.showPrefix" />
-        <span class="text-sm text-gray-300">Show prefixes (0b / 0o / 0x)</span>
-      </label>
-      <label class="flex items-center gap-2 card p-3">
-        <input type="checkbox" v-model="opts.upperHex" />
-        <span class="text-sm text-gray-300">Uppercase hex</span>
-      </label>
-      <div class="card p-3">
-        <label class="label">Group digits</label>
-        <select v-model.number="opts.groupSize" class="input">
-          <option :value="0">None</option>
-          <option :value="2">2</option>
-          <option :value="3">3</option>
-          <option :value="4">4</option>
-        </select>
-        <p class="note mt-1">Applied per-base (bin/hex usually 4, oct 3, dec 3).</p>
-      </div>
-      <div class="card p-3 sm:col-span-2">
-        <label class="label">Pad to bit width</label>
-        <div class="flex flex-wrap gap-2">
-          <button
-              v-for="b in bitOptions"
-              :key="b"
-              class="px-2 py-1 rounded text-sm"
-              :class="opts.padBits === b ? 'bg-indigo-600' : 'bg-gray-700 hover:bg-gray-600'"
-              @click="opts.padBits = (opts.padBits === b ? 0 : b)"
-          >
-            {{ b }}-bit
-          </button>
-          <button
-              class="px-2 py-1 rounded text-sm bg-gray-700 hover:bg-gray-600"
-              @click="opts.padBits = 0"
-          >
-            No pad
-          </button>
+    <div class="bg-gray-900 rounded-xl p-5 border border-gray-700">
+      <h3 class="text-sm font-medium text-gray-300 mb-4">⚙️ Display Options</h3>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- Checkboxes -->
+        <div class="space-y-3">
+          <label class="flex items-center gap-2">
+            <input type="checkbox" v-model="opts.showPrefix" class="w-4 h-4 accent-indigo-500" />
+            <span class="text-xs text-gray-300">Show prefixes (0b / 0o / 0x)</span>
+          </label>
+          <label class="flex items-center gap-2">
+            <input type="checkbox" v-model="opts.upperHex" class="w-4 h-4 accent-indigo-500" />
+            <span class="text-xs text-gray-300">Uppercase hex</span>
+          </label>
         </div>
-        <p class="note mt-1">Padding applies to non-negative values.</p>
-      </div>
-      <div class="card p-3">
-        <label class="label">Quick examples</label>
-        <div class="flex flex-wrap gap-2">
-          <button class="btn" @click="setFromDecimal('255')">255</button>
-          <button class="btn" @click="setFromDecimal('1024')">1024</button>
-          <button class="btn" @click="setFromDecimal('18446744073709551615')">2^64-1</button>
-          <button class="btn" @click="setFromDecimal('-42')">-42</button>
+
+        <!-- Group Size -->
+        <div>
+          <label class="text-xs font-medium text-gray-400 mb-2 block">Group Digits</label>
+          <select v-model.number="opts.groupSize" class="select-input-sm">
+            <option :value="0">None</option>
+            <option :value="2">2 digits</option>
+            <option :value="3">3 digits</option>
+            <option :value="4">4 digits</option>
+          </select>
+          <p class="text-xs text-gray-400 mt-1">Per-base grouping</p>
+        </div>
+
+        <!-- Bit Width Padding -->
+        <div class="sm:col-span-2 lg:col-span-1">
+          <label class="text-xs font-medium text-gray-400 mb-2 block">Pad to Bit Width</label>
+          <div class="flex flex-wrap gap-2">
+            <button
+                v-for="b in bitOptions"
+                :key="b"
+                class="px-3 py-1.5 rounded-lg text-xs font-medium transition-all"
+                :class="opts.padBits === b ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-600/30' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'"
+                @click="opts.padBits = (opts.padBits === b ? 0 : b)"
+            >
+              {{ b }}-bit
+            </button>
+            <button
+                class="px-3 py-1.5 rounded-lg text-xs font-medium bg-gray-700 text-gray-300 hover:bg-gray-600 transition-all"
+                @click="opts.padBits = 0"
+            >
+              No pad
+            </button>
+          </div>
+          <p class="text-xs text-gray-400 mt-1">For non-negative values</p>
         </div>
       </div>
     </div>
 
     <!-- Inputs -->
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-      <div class="card space-y-2">
+      <!-- Binary -->
+      <div class="bg-gray-900 rounded-xl p-5 border border-gray-700 space-y-3">
         <div class="flex items-center justify-between">
-          <label class="label">Binary</label>
-          <button class="btn" @click="copy(binary)">Copy</button>
+          <label class="text-sm font-medium text-gray-300">Binary</label>
+          <button
+            @click="copy(binary, 'bin')"
+            class="px-3 py-1.5 rounded-lg text-xs font-medium bg-gray-700 hover:bg-gray-600 text-white transition-all"
+            :disabled="!binary"
+          >
+            {{ copiedMsg && lastCopied === 'bin' ? 'Copied!' : 'Copy' }}
+          </button>
         </div>
         <input
-            v-model.trim="binary"
-            @input="onEdit('bin')"
-            class="input mono"
-            placeholder="0b1010 or 1010"
+          v-model.trim="binary"
+          @input="onEdit('bin')"
+          class="w-full px-3 py-2 rounded-lg border border-gray-700 bg-black text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent font-mono text-sm transition-all"
+          placeholder="0b1010 or 1010"
         />
-        <p v-if="errors.bin" class="text-red-400 text-xs">{{ errors.bin }}</p>
+        <p v-if="errors.bin" class="text-red-400 text-xs flex items-center gap-1">
+          <span>⚠️</span>
+          <span>{{ errors.bin }}</span>
+        </p>
       </div>
 
-      <div class="card space-y-2">
+      <!-- Octal -->
+      <div class="bg-gray-900 rounded-xl p-5 border border-gray-700 space-y-3">
         <div class="flex items-center justify-between">
-          <label class="label">Octal</label>
-          <button class="btn" @click="copy(octal)">Copy</button>
+          <label class="text-sm font-medium text-gray-300">Octal</label>
+          <button
+            @click="copy(octal, 'oct')"
+            class="px-3 py-1.5 rounded-lg text-xs font-medium bg-gray-700 hover:bg-gray-600 text-white transition-all"
+            :disabled="!octal"
+          >
+            {{ copiedMsg && lastCopied === 'oct' ? 'Copied!' : 'Copy' }}
+          </button>
         </div>
         <input
-            v-model.trim="octal"
-            @input="onEdit('oct')"
-            class="input mono"
-            placeholder="0o755 or 755"
+          v-model.trim="octal"
+          @input="onEdit('oct')"
+          class="w-full px-3 py-2 rounded-lg border border-gray-700 bg-black text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent font-mono text-sm transition-all"
+          placeholder="0o755 or 755"
         />
-        <p v-if="errors.oct" class="text-red-400 text-xs">{{ errors.oct }}</p>
+        <p v-if="errors.oct" class="text-red-400 text-xs flex items-center gap-1">
+          <span>⚠️</span>
+          <span>{{ errors.oct }}</span>
+        </p>
       </div>
 
-      <div class="card space-y-2">
+      <!-- Decimal -->
+      <div class="bg-gray-900 rounded-xl p-5 border border-gray-700 space-y-3">
         <div class="flex items-center justify-between">
-          <label class="label">Decimal</label>
-          <button class="btn" @click="copy(decimal)">Copy</button>
+          <label class="text-sm font-medium text-gray-300">Decimal</label>
+          <button
+            @click="copy(decimal, 'dec')"
+            class="px-3 py-1.5 rounded-lg text-xs font-medium bg-gray-700 hover:bg-gray-600 text-white transition-all"
+            :disabled="!decimal"
+          >
+            {{ copiedMsg && lastCopied === 'dec' ? 'Copied!' : 'Copy' }}
+          </button>
         </div>
         <input
-            v-model.trim="decimal"
-            @input="onEdit('dec')"
-            class="input mono"
-            placeholder="e.g. 123456 or -42"
+          v-model.trim="decimal"
+          @input="onEdit('dec')"
+          class="w-full px-3 py-2 rounded-lg border border-gray-700 bg-black text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent font-mono text-sm transition-all"
+          placeholder="e.g. 123456 or -42"
         />
-        <p v-if="errors.dec" class="text-red-400 text-xs">{{ errors.dec }}</p>
+        <p v-if="errors.dec" class="text-red-400 text-xs flex items-center gap-1">
+          <span>⚠️</span>
+          <span>{{ errors.dec }}</span>
+        </p>
       </div>
 
-      <div class="card space-y-2">
+      <!-- Hexadecimal -->
+      <div class="bg-gray-900 rounded-xl p-5 border border-gray-700 space-y-3">
         <div class="flex items-center justify-between">
-          <label class="label">Hexadecimal</label>
-          <button class="btn" @click="copy(hex)">Copy</button>
+          <label class="text-sm font-medium text-gray-300">Hexadecimal</label>
+          <button
+            @click="copy(hex, 'hex')"
+            class="px-3 py-1.5 rounded-lg text-xs font-medium bg-gray-700 hover:bg-gray-600 text-white transition-all"
+            :disabled="!hex"
+          >
+            {{ copiedMsg && lastCopied === 'hex' ? 'Copied!' : 'Copy' }}
+          </button>
         </div>
         <input
-            v-model.trim="hex"
-            @input="onEdit('hex')"
-            class="input mono"
-            placeholder="0xFF or ff"
+          v-model.trim="hex"
+          @input="onEdit('hex')"
+          class="w-full px-3 py-2 rounded-lg border border-gray-700 bg-black text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent font-mono text-sm transition-all"
+          placeholder="0xFF or ff"
         />
-        <p v-if="errors.hex" class="text-red-400 text-xs">{{ errors.hex }}</p>
+        <p v-if="errors.hex" class="text-red-400 text-xs flex items-center gap-1">
+          <span>⚠️</span>
+          <span>{{ errors.hex }}</span>
+        </p>
       </div>
     </div>
 
-    <!-- Actions -->
-    <div class="pt-2 flex flex-wrap gap-2">
-      <button @click="clearAll" class="btn">Clear All</button>
-      <button @click="negate" class="btn">Toggle Sign (±)</button>
+    <!-- Visual Binary Representation -->
+    <div v-if="value !== null && !errors.bin" class="bg-gray-900 rounded-xl p-5 border border-gray-700 space-y-3">
+      <h3 class="text-sm font-medium text-gray-300">🔍 Binary Visualization</h3>
+      <div class="bg-black rounded-lg p-4 overflow-x-auto">
+        <div class="flex flex-wrap gap-2 font-mono text-xs">
+          <div v-for="(byte, idx) in visualBytes" :key="idx" class="flex gap-1">
+            <div v-for="(nibble, nidx) in byte" :key="nidx" class="flex gap-0.5">
+              <span
+                v-for="(bit, bidx) in nibble"
+                :key="bidx"
+                :class="[
+                  'px-2 py-1 rounded',
+                  bit === '1' ? 'bg-indigo-600 text-white' : 'bg-gray-700 text-gray-400'
+                ]"
+              >
+                {{ bit }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-wrap gap-4 text-xs text-gray-400">
+        <span>📊 Bits: {{ binaryDigits }}</span>
+        <span>📦 Bytes: {{ Math.ceil(binaryDigits / 8) }}</span>
+        <span v-if="value < 0n">⚠️ Negative values shown in magnitude</span>
+      </div>
     </div>
 
     <!-- Info -->
-    <div class="card">
-      <p class="note">Tips: inputs accept underscores (<code class="mono">1_000_000</code>) and optional prefixes
-        (<code class="mono">0b</code>, <code class="mono">0o</code>, <code class="mono">0x</code>). Conversion uses <code class="mono">BigInt</code> for virtually unlimited size.</p>
+    <div class="bg-gray-900 rounded-xl p-5 border border-gray-700">
+      <p class="text-xs text-gray-400">
+        💡 <strong class="text-gray-300">Tips:</strong> Inputs accept underscores
+        (<code class="font-mono text-indigo-400">1_000_000</code>) and optional prefixes
+        (<code class="font-mono text-indigo-400">0b</code>,
+        <code class="font-mono text-indigo-400">0o</code>,
+        <code class="font-mono text-indigo-400">0x</code>).
+        Conversion uses <code class="font-mono text-indigo-400">BigInt</code> for virtually unlimited size.
+      </p>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, watch } from 'vue'
+import { ref, reactive, watch, computed } from 'vue'
 
 type Edited = 'bin' | 'oct' | 'dec' | 'hex'
 
@@ -153,7 +238,44 @@ const opts = reactive({
 })
 const bitOptions: Array<0 | 8 | 16 | 32 | 64> = [8, 16, 32, 64]
 
-const copiedMsg = ref('')
+const copiedMsg = ref(false)
+const lastCopied = ref<'bin' | 'oct' | 'dec' | 'hex' | ''>('')
+
+/* ---------------- Computed Properties ---------------- */
+const binaryDigits = computed(() => {
+  if (value.value === null) return 0
+  const abs = value.value < 0n ? -value.value : value.value
+  return abs.toString(2).length
+})
+
+const visualBytes = computed<string[][][]>(() => {
+  if (value.value === null) return []
+  const abs = value.value < 0n ? -value.value : value.value
+  let bin = abs.toString(2)
+
+  // Pad to nearest nibble (4 bits)
+  const remainder = bin.length % 4
+  if (remainder !== 0) {
+    bin = '0'.repeat(4 - remainder) + bin
+  }
+
+  const bytes: string[][][] = []
+  // Process in groups of 8 bits (1 byte = 2 nibbles)
+  for (let i = 0; i < bin.length; i += 8) {
+    const byte = bin.slice(i, i + 8)
+    const nibbles: string[][] = []
+
+    // Split byte into two nibbles (4 bits each)
+    for (let j = 0; j < byte.length; j += 4) {
+      const nibble = byte.slice(j, j + 4)
+      nibbles.push(nibble.split(''))
+    }
+
+    bytes.push(nibbles)
+  }
+
+  return bytes
+})
 
 /* ---------------- Parsing & Formatting ---------------- */
 function normalize(str: string) {
@@ -306,11 +428,15 @@ function negate() {
   value.value = -value.value
   formatAll(value.value)
 }
-function copy(text: string) {
+function copy(text: string, field?: 'bin' | 'oct' | 'dec' | 'hex') {
   if (!text) return
   navigator.clipboard.writeText(text)
-  copiedMsg.value = 'Copied!'
-  setTimeout(() => (copiedMsg.value = ''), 1200)
+  if (field) lastCopied.value = field
+  copiedMsg.value = true
+  setTimeout(() => {
+    copiedMsg.value = false
+    lastCopied.value = ''
+  }, 1500)
 }
 
 /* keep other fields in sync when options change and we have a value */
@@ -320,12 +446,22 @@ watch([() => opts.showPrefix, () => opts.upperHex, () => opts.groupSize, () => o
 </script>
 
 <style scoped>
-.label { @apply block text-sm text-gray-300 mb-1; }
-.note  { @apply text-xs text-gray-400; }
-.input { @apply bg-gray-950 text-white border border-gray-700 rounded px-3 py-2 w-full; }
-.btn   { @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded text-white text-sm; }
-.card  { @apply bg-gray-800/60 rounded-lg border border-gray-700; }
-.mono  { @apply font-mono; }
+.btn-secondary {
+  @apply bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-lg text-white text-sm font-medium;
+  @apply disabled:opacity-50 disabled:cursor-not-allowed;
+  @apply transition-all;
+}
+
+.example-btn {
+  @apply px-3 py-1.5 rounded-lg text-xs font-medium bg-gray-700 hover:bg-gray-600 text-white;
+  @apply transition-all;
+}
+
+.select-input-sm {
+  @apply bg-gray-700 text-white border border-gray-600 rounded-lg px-3 py-2 text-xs;
+  @apply focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent;
+  @apply transition-all;
+}
 </style>
 
 
