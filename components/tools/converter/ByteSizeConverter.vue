@@ -1,305 +1,427 @@
 <template>
-  <div class="bg-gray-800 p-6 sm:p-8 rounded-xl shadow space-y-6 text-white">
+  <div class="space-y-5 bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-xl text-white">
+    <!-- Header -->
     <div class="flex items-center justify-between gap-3 flex-wrap">
-      <h2 class="text-2xl font-semibold">Byte Size Converter</h2>
-      <span v-if="copiedMsg" class="text-green-400 text-sm">{{ copiedMsg }}</span>
+      <h2 class="text-2xl font-semibold">💾 Byte Size Converter</h2>
+      <div class="flex items-center gap-2">
+        <button class="btn" @click="clearAll">🗑️ clear</button>
+      </div>
     </div>
 
-    <!-- Options -->
-    <div class="grid sm:grid-cols-3 gap-4">
-      <div class="card p-3">
-        <label class="label mb-1">System</label>
+    <!-- Unit Type & Decimals -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="card space-y-2">
+        <h3 class="text-sm font-semibold text-indigo-400">📊 Unit Type</h3>
         <div class="flex gap-2">
           <button
-              class="px-3 py-1.5 rounded text-sm"
-              :class="system==='IEC' ? 'bg-indigo-600' : 'bg-gray-700 hover:bg-gray-600'"
-              @click="setSystem('IEC')"
-          >IEC (KiB)</button>
+            class="flex-1 px-3 py-2 rounded text-sm transition-colors"
+            :class="unitType === 'byte' ? 'bg-indigo-600 hover:bg-indigo-500' : 'bg-gray-700 hover:bg-gray-600'"
+            @click="unitType = 'byte'"
+          >
+            📦 Bytes (B, KB, MB...)
+          </button>
           <button
-              class="px-3 py-1.5 rounded text-sm"
-              :class="system==='SI' ? 'bg-indigo-600' : 'bg-gray-700 hover:bg-gray-600'"
-              @click="setSystem('SI')"
-          >SI (KB)</button>
+            class="flex-1 px-3 py-2 rounded text-sm transition-colors"
+            :class="unitType === 'bit' ? 'bg-indigo-600 hover:bg-indigo-500' : 'bg-gray-700 hover:bg-gray-600'"
+            @click="unitType = 'bit'"
+          >
+            ⚡ Bits (b, Kb, Mb...)
+          </button>
         </div>
-        <p class="note mt-2">IEC = ×1024 • SI = ×1000</p>
+        <p class="text-xs text-gray-400">1 Byte = 8 bits</p>
       </div>
-      <div class="card p-3">
-        <label class="label mb-1">Decimals</label>
-        <input type="number" min="0" max="6" v-model.number="decimals" class="input w-28" />
-        <p class="note mt-2">Used for derived units &amp; humanize.</p>
+
+      <div class="card space-y-2">
+        <h3 class="text-sm font-semibold text-indigo-400">🔢 Decimals</h3>
+        <input type="number" min="0" max="6" v-model.number="decimals" class="input" />
+        <p class="text-xs text-gray-400">Precision for converted values</p>
       </div>
-      <div class="card p-3">
-        <label class="label mb-1">Humanized</label>
-        <div class="flex items-center justify-between gap-2">
-          <p class="mono text-lg">{{ humanized }}</p>
-          <button class="btn" :disabled="!humanized" @click="copy(humanized)">Copy</button>
+    </div>
+
+    <!-- Input -->
+    <div class="card space-y-3">
+      <h3 class="text-sm font-semibold text-indigo-400">📝 Input</h3>
+      <div>
+        <span class="label">Enter value (supports: 1024, 1.5 GB, 2 MiB, 1_000_000)</span>
+        <input
+          v-model.trim="inputStr"
+          @input="parseInput"
+          class="input font-mono"
+          :placeholder="unitType === 'byte' ? 'e.g. 1048576 or 1 MiB or 1.5 GB' : 'e.g. 8388608 or 8 Mibit or 12 Gbit'"
+        />
+        <p v-if="parseError" class="text-red-400 text-xs mt-1">{{ parseError }}</p>
+      </div>
+      <div v-if="humanized" class="bg-black border border-indigo-500/30 rounded p-3">
+        <div class="flex items-center justify-between">
+          <div>
+            <span class="text-xs text-gray-400">Best Representation:</span>
+            <div class="text-green-300 font-mono text-lg">{{ humanized }}</div>
+          </div>
+          <button class="btn" @click="copy(humanized)">📋 copy</button>
         </div>
       </div>
     </div>
 
-    <!-- Inputs -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-      <div class="card p-3 space-y-2">
-        <div class="flex items-center justify-between">
-          <label class="label">Bytes</label>
-          <button class="btn" :disabled="!bytesStr" @click="copy(bytesStr)">Copy</button>
-        </div>
-        <input
-            v-model.trim="bytesStr"
-            @input="updateFrom('bytes')"
-            class="input mono"
-            placeholder="e.g. 1048576 or 1 MiB or 1,048,576"
-        />
-        <p v-if="errors.bytes" class="text-red-400 text-xs">{{ errors.bytes }}</p>
+    <!-- Conversions Tabs -->
+    <div class="space-y-3">
+      <div class="flex gap-2 border-b border-gray-700">
+        <button
+          class="px-4 py-2 text-sm font-medium transition-colors"
+          :class="activeTab === 'iec' ? 'text-indigo-400 border-b-2 border-indigo-400' : 'text-gray-400 hover:text-white'"
+          @click="activeTab = 'iec'"
+        >
+          🔷 IEC (Binary × 1024)
+        </button>
+        <button
+          class="px-4 py-2 text-sm font-medium transition-colors"
+          :class="activeTab === 'si' ? 'text-indigo-400 border-b-2 border-indigo-400' : 'text-gray-400 hover:text-white'"
+          @click="activeTab = 'si'"
+        >
+          🔶 SI (Decimal × 1000)
+        </button>
+        <button
+          class="px-4 py-2 text-sm font-medium transition-colors"
+          :class="activeTab === 'both' ? 'text-indigo-400 border-b-2 border-indigo-400' : 'text-gray-400 hover:text-white'"
+          @click="activeTab = 'both'"
+        >
+          ⚖️ Both Systems
+        </button>
       </div>
 
-      <div class="card p-3 space-y-2">
-        <div class="flex items-center justify-between">
-          <label class="label">{{ unitLabel('KB') }}</label>
-          <button class="btn" :disabled="!kbStr" @click="copy(kbStr)">Copy</button>
+      <!-- IEC Tab -->
+      <div v-if="activeTab === 'iec' || activeTab === 'both'" class="card">
+        <h3 class="text-sm font-semibold text-indigo-400 mb-3">🔷 IEC Binary (1024-based)</h3>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+          <div v-for="unit in iecUnits" :key="unit.key" class="bg-black border border-gray-700 rounded p-3">
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-xs text-gray-400">{{ unit.label }}</span>
+              <button class="text-xs text-indigo-400 hover:text-indigo-300" @click="copy(unit.value)" :disabled="!unit.value">📋</button>
+            </div>
+            <div class="font-mono text-sm text-white">{{ unit.value || '—' }}</div>
+          </div>
         </div>
-        <input
-            v-model.trim="kbStr"
-            @input="updateFrom('kb')"
-            class="input mono"
-            :placeholder="`e.g. 1024`"
-        />
-        <p v-if="errors.kb" class="text-red-400 text-xs">{{ errors.kb }}</p>
       </div>
 
-      <div class="card p-3 space-y-2">
-        <div class="flex items-center justify-between">
-          <label class="label">{{ unitLabel('MB') }}</label>
-          <button class="btn" :disabled="!mbStr" @click="copy(mbStr)">Copy</button>
+      <!-- SI Tab -->
+      <div v-if="activeTab === 'si' || activeTab === 'both'" class="card">
+        <h3 class="text-sm font-semibold text-indigo-400 mb-3">🔶 SI Decimal (1000-based)</h3>
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+          <div v-for="unit in siUnits" :key="unit.key" class="bg-black border border-gray-700 rounded p-3">
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-xs text-gray-400">{{ unit.label }}</span>
+              <button class="text-xs text-indigo-400 hover:text-indigo-300" @click="copy(unit.value)" :disabled="!unit.value">📋</button>
+            </div>
+            <div class="font-mono text-sm text-white">{{ unit.value || '—' }}</div>
+          </div>
         </div>
-        <input
-            v-model.trim="mbStr"
-            @input="updateFrom('mb')"
-            class="input mono"
-            :placeholder="`e.g. 1.5`"
-        />
-        <p v-if="errors.mb" class="text-red-400 text-xs">{{ errors.mb }}</p>
-      </div>
-
-      <div class="card p-3 space-y-2">
-        <div class="flex items-center justify-between">
-          <label class="label">{{ unitLabel('GB') }}</label>
-          <button class="btn" :disabled="!gbStr" @click="copy(gbStr)">Copy</button>
-        </div>
-        <input
-            v-model.trim="gbStr"
-            @input="updateFrom('gb')"
-            class="input mono"
-            :placeholder="`e.g. 0.25`"
-        />
-        <p v-if="errors.gb" class="text-red-400 text-xs">{{ errors.gb }}</p>
-      </div>
-
-      <div class="card p-3 space-y-2 sm:col-span-2">
-        <div class="flex items-center justify-between">
-          <label class="label">{{ unitLabel('TB') }}</label>
-          <button class="btn" :disabled="!tbStr" @click="copy(tbStr)">Copy</button>
-        </div>
-        <input
-            v-model.trim="tbStr"
-            @input="updateFrom('tb')"
-            class="input mono"
-            :placeholder="`e.g. 0.001`"
-        />
-        <p v-if="errors.tb" class="text-red-400 text-xs">{{ errors.tb }}</p>
       </div>
     </div>
 
-    <div class="pt-2 flex flex-wrap gap-2">
-      <button @click="clearAll" class="btn">Clear All</button>
-      <button @click="preset(1024**2)" class="btn">Preset: 1 MiB</button>
-      <button @click="preset(1_000_000)" class="btn">Preset: 1 MB</button>
+    <!-- Common File Size Presets -->
+    <div class="card space-y-3">
+      <h3 class="text-sm font-semibold text-indigo-400">🎯 Common File Sizes</h3>
+      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-2">
+        <button v-for="p in presets" :key="p.label" @click="setPreset(p.bytes)" class="btn-preset">
+          {{ p.icon }} {{ p.label }}
+        </button>
+      </div>
     </div>
+
+    <!-- Network Speed Calculator -->
+    <div class="card space-y-4">
+      <h3 class="text-sm font-semibold text-indigo-400">🌐 Network Speed Calculator</h3>
+      <p class="text-sm text-gray-400">Calculate download/upload time or speed</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div>
+          <span class="label">File Size ({{ unitType === 'byte' ? 'MB' : 'Mbit' }})</span>
+          <input type="number" v-model.number="netFileSize" min="0" step="0.1" class="input" />
+        </div>
+        <div>
+          <span class="label">Connection Speed ({{ unitType === 'byte' ? 'MB/s' : 'Mbit/s' }})</span>
+          <input type="number" v-model.number="netSpeed" min="0" step="0.1" class="input" />
+        </div>
+        <div>
+          <span class="label">Download Time</span>
+          <div class="bg-black border border-gray-700 rounded px-3 py-2 font-mono text-sm text-green-300">
+            {{ downloadTime }}
+          </div>
+        </div>
+      </div>
+
+      <div class="flex gap-2 flex-wrap">
+        <button class="btn" @click="loadNetPreset('fiber')">🚀 Fiber (100 MB/s)</button>
+        <button class="btn" @click="loadNetPreset('cable')">📡 Cable (10 MB/s)</button>
+        <button class="btn" @click="loadNetPreset('dsl')">📞 DSL (1 MB/s)</button>
+        <button class="btn" @click="loadNetPreset('4g')">📱 4G (5 MB/s)</button>
+        <button class="btn" @click="loadNetPreset('5g')">📡 5G (50 MB/s)</button>
+      </div>
+    </div>
+
+    <p v-if="copiedMsg" class="text-green-400 text-sm text-center">✅ {{ copiedMsg }}</p>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed, watch } from 'vue'
+import { ref, computed, watch } from 'vue'
 
-type System = 'IEC' | 'SI'
-type Field = 'bytes' | 'kb' | 'mb' | 'gb' | 'tb'
+type UnitType = 'byte' | 'bit'
+type Tab = 'iec' | 'si' | 'both'
 
-/* ---------- state ---------- */
-const system = ref<System>('IEC')    // IEC: 1024 • SI: 1000
+/* -------------------- State -------------------- */
+const unitType = ref<UnitType>('byte')
 const decimals = ref<number>(2)
+const activeTab = ref<Tab>('iec')
 
-const bytesStr = ref('')             // canonical source (parsed to bytesNum)
-const kbStr = ref('')
-const mbStr = ref('')
-const gbStr = ref('')
-const tbStr = ref('')
+const inputStr = ref<string>('')
+const baseValue = ref<number>(NaN) // in bytes or bits depending on unitType
+const parseError = ref<string>('')
 
-const errors = reactive<Record<Field, string | undefined>>({
-  bytes: undefined, kb: undefined, mb: undefined, gb: undefined, tb: undefined
-})
+const copiedMsg = ref<string>('')
 
-const copiedMsg = ref('')
+// Network calculator
+const netFileSize = ref<number>(100)
+const netSpeed = ref<number>(10)
 
-/* ---------- helpers ---------- */
-const base = computed(() => (system.value === 'IEC' ? 1024 : 1000))
-const labels = computed(() => system.value === 'IEC'
-    ? { KB: 'KiB', MB: 'MiB', GB: 'GiB', TB: 'TiB' }
-    : { KB: 'KB',  MB: 'MB',  GB: 'GB',  TB: 'TB' }
-)
+/* -------------------- Presets -------------------- */
+const presets = [
+  { icon: '💾', label: 'Floppy', bytes: 1_440_000 },
+  { icon: '💿', label: 'CD (700MB)', bytes: 700_000_000 },
+  { icon: '📀', label: 'DVD', bytes: 4_700_000_000 },
+  { icon: '💿', label: 'Blu-ray', bytes: 25_000_000_000 },
+  { icon: '🖼️', label: 'HD Photo', bytes: 5_000_000 },
+  { icon: '🎵', label: 'MP3 (3min)', bytes: 3_000_000 },
+  { icon: '🎬', label: '4K/min', bytes: 100_000_000 },
+  { icon: '📱', label: 'App (~50MB)', bytes: 50_000_000 },
+  { icon: '🎮', label: 'Game (50GB)', bytes: 50_000_000_000 },
+  { icon: '📚', label: 'eBook', bytes: 1_000_000 },
+  { icon: '📄', label: 'PDF (10pg)', bytes: 500_000 },
+  { icon: '🗂️', label: 'ZIP (10MB)', bytes: 10_000_000 },
+]
 
-function unitLabel(k: keyof typeof labels.value) { return labels.value[k] }
-
-function copy(text: string) {
-  navigator.clipboard.writeText(text)
-  copiedMsg.value = 'Copied!'
-  setTimeout(() => (copiedMsg.value = ''), 1200)
+/* -------------------- Helpers -------------------- */
+function fmt(n: number, d = decimals.value): string {
+  if (!Number.isFinite(n)) return ''
+  const fixed = n.toFixed(d)
+  // Strip trailing zeros
+  return fixed.indexOf('.') >= 0 ? fixed.replace(/\.?0+$/, '') : fixed
 }
 
-function fmt(n: number, d = decimals.value) {
-  if (!Number.isFinite(n)) return '—'
-  const s = n.toFixed(d)
-  // strip trailing zeros
-  return (s.indexOf('.') >= 0) ? s.replace(/\.?0+$/, '') : s
-}
-
-function formatInt(n: number) {
+function formatInt(n: number): string {
   if (!Number.isFinite(n)) return ''
   return Math.round(n).toLocaleString()
 }
 
-/**
- * Parse flexible size input:
- * - plain number => interpreted as bytes (in bytes field) or as the unit of the edited field
- * - supports underscores & commas
- * - supports suffixes: b, kb/mb/gb/tb, kib/mib/gib/tib (case-insensitive)
- *   e.g. "1.5 gb", "2MiB", "1_024", "1,024"
- */
-function parseFlexible(input: string): { value: number, suffix?: string } {
+/* -------------------- Parsing -------------------- */
+function parseFlexible(input: string): { value: number; suffix?: string } {
   const s = input.replace(/_/g, '').replace(/,/g, '').trim()
   if (!s) return { value: NaN }
-  const m = s.match(/^([-+]?\d+(\.\d+)?)(?:\s*([a-zA-Z]{1,3}))?$/)
+
+  // Match: number + optional unit suffix
+  const m = s.match(/^([-+]?\d+(\.\d+)?)(?:\s*([a-zA-Z]+))?$/)
   if (!m) return { value: NaN }
+
   const num = Number(m[1])
   const suf = m[3]?.toLowerCase()
   return { value: num, suffix: suf }
 }
 
-function factorForSuffix(suf?: string): { mult: number, ok: boolean } {
-  if (!suf) return { mult: 1, ok: true } // default = bytes
-  const b = 1000, i = 1024
-  const map: Record<string, number> = {
-    b: 1,
-    kb: b, mb: b**2, gb: b**3, tb: b**4,
-    kib: i, mib: i**2, gib: i**3, tib: i**4
+function suffixToMultiplier(suffix: string | undefined, type: UnitType): number {
+  if (!suffix) return 1
+
+  const base1000 = 1000
+  const base1024 = 1024
+
+  if (type === 'byte') {
+    const byteMap: Record<string, number> = {
+      b: 1,
+      kb: base1000, mb: base1000 ** 2, gb: base1000 ** 3, tb: base1000 ** 4, pb: base1000 ** 5,
+      kib: base1024, mib: base1024 ** 2, gib: base1024 ** 3, tib: base1024 ** 4, pib: base1024 ** 5,
+    }
+    return byteMap[suffix] ?? NaN
+  } else {
+    const bitMap: Record<string, number> = {
+      b: 1, bit: 1, bits: 1,
+      kb: base1000, kbit: base1000, mb: base1000 ** 2, mbit: base1000 ** 2,
+      gb: base1000 ** 3, gbit: base1000 ** 3, tb: base1000 ** 4, tbit: base1000 ** 4,
+      kib: base1024, kibit: base1024, mib: base1024 ** 2, mibit: base1024 ** 2,
+      gib: base1024 ** 3, gibit: base1024 ** 3, tib: base1024 ** 4, tibit: base1024 ** 4,
+    }
+    return bitMap[suffix] ?? NaN
   }
-  const mult = map[suf]
-  return { mult, ok: Number.isFinite(mult) }
 }
 
-/* ---------- core update logic ---------- */
-function setSystem(next: System) {
-  if (system.value === next) return
-  system.value = next
-  // Re-derive from current bytes
-  updateFrom('bytes', false)
-}
-
-function preset(n: number) {
-  bytesNum.value = n
-  reflectFromBytes()
-}
-
-const bytesNum = ref<number>(NaN) // canonical numeric bytes
-
-function updateFrom(field: Field, reparse = true) {
-  // clear error
-  errors[field] = undefined
-
-  let nBytes = NaN
-  const k = base.value
+function parseInput() {
+  parseError.value = ''
 
   try {
-    if (field === 'bytes') {
-      const { value, suffix } = reparse ? parseFlexible(bytesStr.value) : { value: bytesNum.value, suffix: undefined }
-      if (!Number.isFinite(value)) throw new Error('Invalid number')
-      let v = value
-      if (suffix) {
-        const { mult, ok } = factorForSuffix(suffix)
-        if (!ok) throw new Error(`Unknown unit "${suffix}"`)
-        v *= mult
-      }
-      nBytes = v
-    } else {
-      // other fields interpret as that unit (no suffix)
-      const raw =
-          field === 'kb' ? kbStr.value :
-              field === 'mb' ? mbStr.value :
-                  field === 'gb' ? gbStr.value : tbStr.value
-      const v = Number(raw.replace(/_/g, '').replace(/,/g, ''))
-      if (!Number.isFinite(v)) throw new Error('Invalid number')
-      const power = field === 'kb' ? 1 : field === 'mb' ? 2 : field === 'gb' ? 3 : 4
-      nBytes = v * Math.pow(k, power)
+    const { value, suffix } = parseFlexible(inputStr.value)
+    if (!Number.isFinite(value)) {
+      throw new Error('Invalid number format')
     }
+
+    const multiplier = suffixToMultiplier(suffix, unitType.value)
+    if (!Number.isFinite(multiplier)) {
+      throw new Error(`Unknown unit "${suffix}"`)
+    }
+
+    baseValue.value = value * multiplier
   } catch (e: any) {
-    errors[field] = e?.message ?? 'Invalid input'
-    return
+    parseError.value = e?.message ?? 'Parse error'
+    baseValue.value = NaN
   }
-
-  bytesNum.value = nBytes
-  reflectFromBytes()
 }
 
-function reflectFromBytes() {
-  const k = base.value
-  const b = bytesNum.value
+/* -------------------- Conversions -------------------- */
+const iecUnits = computed(() => {
+  const base = baseValue.value
+  if (!Number.isFinite(base)) return getEmptyUnits('iec')
 
-  if (!Number.isFinite(b)) {
-    kbStr.value = mbStr.value = gbStr.value = tbStr.value = ''
-    return
-  }
-  // bytes field: show as formatted integer (no decimals)
-  bytesStr.value = formatInt(b)
-  // derived
-  kbStr.value = fmt(b / Math.pow(k, 1))
-  mbStr.value = fmt(b / Math.pow(k, 2))
-  gbStr.value = fmt(b / Math.pow(k, 3))
-  tbStr.value = fmt(b / Math.pow(k, 4), Math.max(decimals.value, 4)) // TB often needs more precision
+  const factor = unitType.value === 'bit' ? 1 : 1
+  const suffix = unitType.value === 'bit' ? 'ibit' : 'iB'
+  const baseName = unitType.value === 'bit' ? 'bits' : 'Bytes'
+
+  const k = 1024
+  return [
+    { key: 'base', label: baseName, value: formatInt(base) },
+    { key: 'ki', label: `K${suffix}`, value: fmt(base / k) },
+    { key: 'mi', label: `M${suffix}`, value: fmt(base / k ** 2) },
+    { key: 'gi', label: `G${suffix}`, value: fmt(base / k ** 3) },
+    { key: 'ti', label: `T${suffix}`, value: fmt(base / k ** 4) },
+    { key: 'pi', label: `P${suffix}`, value: fmt(base / k ** 5) },
+  ]
+})
+
+const siUnits = computed(() => {
+  const base = baseValue.value
+  if (!Number.isFinite(base)) return getEmptyUnits('si')
+
+  const suffix = unitType.value === 'bit' ? 'bit' : 'B'
+  const baseName = unitType.value === 'bit' ? 'bits' : 'Bytes'
+
+  const k = 1000
+  return [
+    { key: 'base', label: baseName, value: formatInt(base) },
+    { key: 'k', label: `K${suffix}`, value: fmt(base / k) },
+    { key: 'm', label: `M${suffix}`, value: fmt(base / k ** 2) },
+    { key: 'g', label: `G${suffix}`, value: fmt(base / k ** 3) },
+    { key: 't', label: `T${suffix}`, value: fmt(base / k ** 4) },
+    { key: 'p', label: `P${suffix}`, value: fmt(base / k ** 5) },
+  ]
+})
+
+function getEmptyUnits(system: 'iec' | 'si') {
+  const suffix = system === 'iec'
+    ? (unitType.value === 'bit' ? 'ibit' : 'iB')
+    : (unitType.value === 'bit' ? 'bit' : 'B')
+  const baseName = unitType.value === 'bit' ? 'bits' : 'Bytes'
+
+  return [
+    { key: 'base', label: baseName, value: '' },
+    { key: 'k', label: `K${suffix}`, value: '' },
+    { key: 'm', label: `M${suffix}`, value: '' },
+    { key: 'g', label: `G${suffix}`, value: '' },
+    { key: 't', label: `T${suffix}`, value: '' },
+    { key: 'p', label: `P${suffix}`, value: '' },
+  ]
 }
 
-/* ---------- humanize ---------- */
+/* -------------------- Humanized -------------------- */
 const humanized = computed(() => {
-  const b = bytesNum.value
-  if (!Number.isFinite(b)) return ''
-  const k = base.value
-  const u = system.value === 'IEC'
-      ? ['B','KiB','MiB','GiB','TiB','PiB']
-      : ['B','KB','MB','GB','TB','PB']
-  if (Math.abs(b) < k) return `${formatInt(b)} B`
-  let idx = Math.floor(Math.log(Math.abs(b)) / Math.log(k))
-  idx = Math.min(idx, u.length - 1)
-  const val = b / Math.pow(k, idx)
-  return `${fmt(val)} ${u[idx]}`
+  const base = baseValue.value
+  if (!Number.isFinite(base)) return ''
+
+  // Auto-select best unit (IEC preferred)
+  const k = 1024
+  const suffix = unitType.value === 'bit' ? 'ibit' : 'iB'
+  const baseName = unitType.value === 'bit' ? 'bits' : 'B'
+  const units = [baseName, `K${suffix}`, `M${suffix}`, `G${suffix}`, `T${suffix}`, `P${suffix}`]
+
+  if (Math.abs(base) < k) return `${formatInt(base)} ${baseName}`
+
+  let idx = Math.floor(Math.log(Math.abs(base)) / Math.log(k))
+  idx = Math.min(idx, units.length - 1)
+  const val = base / Math.pow(k, idx)
+
+  return `${fmt(val)} ${units[idx]}`
 })
 
-/* ---------- watchers ---------- */
+/* -------------------- Network Speed Calculator -------------------- */
+const downloadTime = computed(() => {
+  if (!Number.isFinite(netFileSize.value) || !Number.isFinite(netSpeed.value) || netSpeed.value <= 0) {
+    return '—'
+  }
+
+  const seconds = netFileSize.value / netSpeed.value
+
+  if (seconds < 60) return `${fmt(seconds, 1)}s`
+  if (seconds < 3600) {
+    const mins = Math.floor(seconds / 60)
+    const secs = Math.round(seconds % 60)
+    return `${mins}m ${secs}s`
+  }
+
+  const hours = Math.floor(seconds / 3600)
+  const mins = Math.round((seconds % 3600) / 60)
+  return `${hours}h ${mins}m`
+})
+
+function loadNetPreset(type: 'fiber' | 'cable' | 'dsl' | '4g' | '5g') {
+  const speeds: Record<typeof type, number> = {
+    fiber: 100,
+    cable: 10,
+    dsl: 1,
+    '4g': 5,
+    '5g': 50,
+  }
+  netSpeed.value = speeds[type]
+}
+
+/* -------------------- Actions -------------------- */
+function setPreset(bytes: number) {
+  if (unitType.value === 'bit') {
+    baseValue.value = bytes * 8
+  } else {
+    baseValue.value = bytes
+  }
+  inputStr.value = formatInt(baseValue.value)
+  parseError.value = ''
+}
+
+function copy(text: string) {
+  navigator.clipboard.writeText(text)
+  copiedMsg.value = 'Copied!'
+  setTimeout(() => (copiedMsg.value = ''), 1500)
+}
+
+function clearAll() {
+  inputStr.value = ''
+  baseValue.value = NaN
+  parseError.value = ''
+  netFileSize.value = 100
+  netSpeed.value = 10
+}
+
+/* -------------------- Watchers -------------------- */
+watch(unitType, () => {
+  // Re-parse when switching between byte/bit
+  if (inputStr.value) {
+    parseInput()
+  }
+})
+
 watch(decimals, () => {
-  if (Number.isFinite(bytesNum.value)) reflectFromBytes()
-})
-
-/* Initialize */
-watch(system, () => {
-  // Recompute derived values when toggling system
-  if (Number.isFinite(bytesNum.value)) reflectFromBytes()
+  // Trigger re-render of conversions
+  if (Number.isFinite(baseValue.value)) {
+    baseValue.value = baseValue.value
+  }
 })
 </script>
 
 <style scoped>
-.label { @apply block text-sm text-gray-300; }
-.note  { @apply text-xs text-gray-400; }
-.input { @apply bg-gray-950 text-white border border-gray-700 rounded px-3 py-2 w-full; }
-.btn   { @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded text-white text-sm; }
-.card  { @apply bg-gray-800/60 rounded-lg border border-gray-700; }
-.mono  { @apply font-mono; }
+.label { @apply text-sm text-gray-300 block mb-1; }
+.input { @apply bg-black text-white w-full px-3 py-2 rounded-md border border-gray-700 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors; }
+.btn { @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded text-white text-sm disabled:opacity-50 disabled:cursor-not-allowed transition-colors; }
+.btn-preset { @apply bg-gray-700 hover:bg-gray-600 px-2 py-1.5 rounded text-white text-xs transition-colors; }
+.card { @apply bg-black rounded-xl p-4 border border-gray-700; }
 </style>
-
-

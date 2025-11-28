@@ -321,54 +321,38 @@ export const tools: Record<string, Tool> = {
         }
     },
 
-    'px-to-vh-converter': {
-        title: 'PX to VH Converter',
-        description: 'Convert pixel values to responsive vh units based on viewport height.',
+    'viewport-unit-converter': {
+        title: 'Viewport Unit Converter',
+        description: 'Convert between px and viewport units (vw, vh, vmin, vmax, dvh, svh, lvh, container query units). Includes batch conversion and fluid clamp() generator.',
         category: 'css',
         component: () =>
-            import('~/components/tools/css/PxToVhConverter.vue') as Promise<{ default: DefineComponent }>,
+            import('~/components/tools/css/ViewportUnitConverter.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `PX to VH Converter (Viewport Height) – ${BRAND}`,
+            title: `Viewport Unit Converter – PX to VW, VH, VMIN, VMAX, DVH, CQ Units – ${BRAND}`,
             description:
-                'Convert px to vh for fluid layouts. Enter element height and viewport height to get accurate CSS values.',
+                'Convert px to viewport units (vw, vh, vmin, vmax) and modern units (dvh, svh, lvh, container queries). Includes batch conversion, fluid clamp() generator, and 18 device presets. All conversions happen client-side.',
             ogImage: OG,
             keywords:
-                'px to vh, convert px vh, viewport height units, responsive css units, css vh calculator',
+                'px to vw, px to vh, viewport units, dvh converter, svh lvh, container query units, cqw cqh, responsive css, fluid clamp, viewport calculator, vmin vmax converter',
             structuredData: {
                 '@context': 'https://schema.org',
                 '@type': 'SoftwareApplication',
-                name: 'PX to VH Converter',
+                name: 'Viewport Unit Converter',
                 applicationCategory: 'DeveloperApplication',
                 operatingSystem: 'All',
                 offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-                featureList: ['PX → VH', 'Copy CSS', 'Client-side'],
-                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '17' }
-            }
-        }
-    },
-
-    'px-to-vw-converter': {
-        title: 'PX to VW Converter',
-        description: 'Convert pixel values to responsive vw units based on viewport width.',
-        category: 'css',
-        component: () =>
-            import('~/components/tools/css/PxToVwConverter.vue') as Promise<{ default: DefineComponent }>,
-        seo: {
-            title: `PX to VW Converter (Viewport Width) – ${BRAND}`,
-            description:
-                'Convert px to vw for responsive widths. Precise calculations with copy-ready CSS output.',
-            ogImage: OG,
-            keywords:
-                'px to vw, convert px vw, viewport width units, responsive css, css vw calculator',
-            structuredData: {
-                '@context': 'https://schema.org',
-                '@type': 'SoftwareApplication',
-                name: 'PX to VW Converter',
-                applicationCategory: 'DeveloperApplication',
-                operatingSystem: 'All',
-                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-                featureList: ['PX → VW', 'Copy CSS', 'Client-side'],
-                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '19' }
+                featureList: [
+                    'PX ↔ Viewport Units (vw, vh, vmin, vmax)',
+                    'Modern Units (dvh, svh, lvh, dvw, svw, lvw)',
+                    'Container Query Units (cqw, cqh, cqi, cqb, cqmin, cqmax)',
+                    'Batch Conversion',
+                    'Fluid clamp() Generator',
+                    '18 Device Presets (iPhone, iPad, MacBook, Desktop)',
+                    'Bidirectional Conversion',
+                    'Copy CSS Output',
+                    'Client-side Processing'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '36' }
             }
         }
     },
@@ -722,25 +706,36 @@ export const tools: Record<string, Tool> = {
 
     'dev-notepad': {
         title: 'Dev Notepad',
-        description: 'A minimalist developer notepad with local storage and export to TXT.',
+        description: 'Advanced developer notepad with Markdown & HTML support, multi-tabs, version history, regex search, and local autosave.',
         category: 'textes',
         component: () => import('~/components/tools/textes/DevNotepad.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `Developer Notepad (Local Only) – ${BRAND}`,
+            title: `Dev Notepad - Markdown & HTML Editor with Version History – ${BRAND}`,
             description:
-                'Lightweight in-browser notepad for developers. Autosave to localStorage and export notes as .txt—no login.',
+                'Feature-rich in-browser notepad for developers. Supports Markdown with live preview, HTML WYSIWYG, multi-tabs, regex search/replace, and version snapshots. 100% local and privacy-friendly.',
             ogImage: OG,
             keywords:
-                'developer notepad, code notes, online notepad, local storage notes, txt export, quick notes tool',
+                'developer notepad, markdown editor online, html scratchpad, browser text editor, regex search replace, version history notes, local storage notepad, distraction free writing, syntax highlighting, dev tools',
             structuredData: {
                 '@context': 'https://schema.org',
                 '@type': 'SoftwareApplication',
-                name: 'Dev Notepad',
+                name: 'Dev Notepad Pro',
                 applicationCategory: 'DeveloperApplication',
                 operatingSystem: 'All',
                 offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-                featureList: ['Local Autosave', 'TXT Export', 'Privacy-friendly'],
-                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '4' }
+                featureList: [
+                    'Markdown Editor with Live Preview',
+                    'HTML WYSIWYG Editor',
+                    'Multi-tab Support',
+                    'Version History (Snapshots)',
+                    'Regex Search & Replace',
+                    'Syntax Highlighting (Prism.js)',
+                    'Distraction-free Mode',
+                    'Local Autosave (Privacy Focused)',
+                    'Export to MD/HTML/TXT',
+                    'Word, Char & Line Statistics'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '42' }
             }
         }
     },
@@ -891,7 +886,7 @@ export const tools: Record<string, Tool> = {
             'Quick image editor: crop, resize, rotate, flip, and apply 13 filters (including Instagram-style presets). Global filter intensity control, undo/redo, and export to PNG/JPEG/WebP. Everything stays local in your browser.',
         category: 'imaging',
         component: () =>
-            import('~/components/tools/imaging/MiniImageEditor.vue') as Promise<{ default: DefineComponent }>,
+            import('~/components/tools/imaging/MiniImageEditor.vue') as unknown as Promise<{ default: DefineComponent }>,
         seo: {
             title: `Mini Image Editor with Instagram Filters (Crop, Resize, Filters) – ${BRAND}`,
             description:

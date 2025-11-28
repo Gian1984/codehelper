@@ -1,11 +1,11 @@
 <template>
-  <div class="space-y-5 bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-xl text-gray-100">
+  <div class="space-y-5 bg-gray-900 p-6 sm:p-8 rounded-2xl shadow-xl text-white">
     <div class="flex items-center justify-between gap-3 flex-wrap">
-      <h2 class="text-2xl font-semibold">CSS Clip-Path Maker</h2>
+      <h2 class="text-2xl font-semibold">✂️ CSS Clip-Path Maker</h2>
       <div class="flex items-center gap-2">
-        <button class="btn" @click="undo" :disabled="!canUndo" title="Undo (Ctrl/⌘+Z)">undo</button>
-        <button class="btn" @click="redo" :disabled="!canRedo" title="Redo (Ctrl/⌘+Y)">redo</button>
-        <button class="btn-warning" @click="resetAll">reset</button>
+        <button class="btn" @click="undo" :disabled="!canUndo" title="Undo (Ctrl/⌘+Z)">↶ undo</button>
+        <button class="btn" @click="redo" :disabled="!canRedo" title="Redo (Ctrl/⌘+Y)">↷ redo</button>
+        <button class="btn-warning" @click="resetAll">🗑️ reset</button>
       </div>
     </div>
 
@@ -13,35 +13,65 @@
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
       <!-- shape / points -->
       <div class="card space-y-3">
+        <h3 class="text-sm font-semibold text-indigo-400 mb-2">🔷 Shape</h3>
         <div class="grid grid-cols-2 gap-2 items-end">
           <label class="block">
+            <span class="label">type</span>
+            <select v-model="shapeType" @change="onShapeTypeChange" class="input">
+              <option value="polygon">polygon</option>
+              <option value="circle">circle</option>
+              <option value="ellipse">ellipse</option>
+            </select>
+          </label>
+          <label class="block" v-if="shapeType === 'polygon'">
             <span class="label">preset</span>
             <select v-model="presetKey" @change="applyPreset" class="input">
               <option value="custom">custom</option>
               <option v-for="p in presets" :key="p.key" :value="p.key">{{ p.label }}</option>
             </select>
           </label>
+          <label class="block" v-else-if="shapeType === 'circle'">
+            <span class="label">radius</span>
+            <input v-model.number="circleRadius" type="range" min="10" max="50" step="1" class="input" />
+          </label>
+          <label class="block" v-else>
+            <span class="label">rx / ry</span>
+            <div class="text-xs text-gray-400">{{ ellipseRx }}% / {{ ellipseRy }}%</div>
+          </label>
+        </div>
+
+        <div v-if="shapeType === 'polygon'" class="grid grid-cols-2 gap-2 items-end">
           <label class="block">
             <span class="label">points</span>
             <input v-model.number="pointCount" @change="generateRegular(pointCount)" type="number" min="3" max="20" class="input" />
           </label>
+          <label class="block">
+            <span class="label">roundness</span>
+            <input v-model.number="roundness" type="range" min="0" max="20" step="1" class="w-full" />
+          </label>
         </div>
 
-        <div class="flex flex-wrap gap-2">
-          <button class="btn" @click="addPointMid">add point</button>
-          <button class="btn" @click="removeSelected" :disabled="selectedIndex===null">remove selected</button>
-          <button class="btn" @click="reversePoints" :disabled="points.length<3">reverse order</button>
+        <div v-if="shapeType === 'ellipse'" class="space-y-2">
+          <label class="block">
+            <span class="label">radius X</span>
+            <input v-model.number="ellipseRx" type="range" min="10" max="50" step="1" class="w-full" />
+          </label>
+          <label class="block">
+            <span class="label">radius Y</span>
+            <input v-model.number="ellipseRy" type="range" min="10" max="50" step="1" class="w-full" />
+          </label>
         </div>
 
-        <label class="block">
-          <span class="label">roundness</span>
-          <input v-model.number="roundness" type="range" min="0" max="20" step="1" class="w-full" />
-          <div class="text-xs text-gray-400">{{ roundness }}%</div>
-        </label>
+        <div v-if="shapeType === 'polygon'" class="flex flex-wrap gap-2">
+          <button class="btn" @click="addPointMid">➕ add point</button>
+          <button class="btn" @click="removeSelected" :disabled="selectedIndex===null">➖ remove</button>
+          <button class="btn" @click="reversePoints" :disabled="points.length<3">🔄 reverse</button>
+        </div>
       </div>
 
       <!-- canvas options -->
       <div class="card space-y-3">
+        <h3 class="text-sm font-semibold text-indigo-400 mb-2">🖼️ Canvas</h3>
         <div class="grid grid-cols-2 gap-2 items-end">
           <label class="block">
             <span class="label">image url</span>
@@ -69,12 +99,18 @@
           </label>
         </div>
 
-        <div class="flex flex-wrap gap-3">
-          <label class="inline-flex items-center gap-2"><input type="checkbox" v-model="showGrid" class="w-4 h-4" /><span class="text-sm">grid</span></label>
-          <label class="inline-flex items-center gap-2"><input type="checkbox" v-model="snapToGrid" class="w-4 h-4" /><span class="text-sm">snap</span></label>
-          <label class="inline-flex items-center gap-2"><input type="checkbox" v-model="showMask" class="w-4 h-4" /><span class="text-sm">darken outside</span></label>
+        <div class="space-y-2">
+          <div class="flex flex-wrap gap-3">
+            <label class="inline-flex items-center gap-2"><input type="checkbox" v-model="showGrid" class="w-4 h-4" /><span class="text-sm">grid</span></label>
+            <label class="inline-flex items-center gap-2"><input type="checkbox" v-model="snapToGrid" class="w-4 h-4" /><span class="text-sm">snap</span></label>
+            <label class="inline-flex items-center gap-2"><input type="checkbox" v-model="showMask" class="w-4 h-4" /><span class="text-sm">darken outside</span></label>
+          </div>
+          <div class="flex flex-wrap gap-3">
+            <label class="inline-flex items-center gap-2"><input type="checkbox" v-model="showRuleOfThirds" class="w-4 h-4" /><span class="text-sm">rule of thirds</span></label>
+            <label class="inline-flex items-center gap-2"><input type="checkbox" v-model="showGoldenRatio" class="w-4 h-4" /><span class="text-sm">golden ratio</span></label>
+          </div>
           <div class="flex items-center gap-2">
-            <span class="text-sm text-gray-300">step</span>
+            <span class="text-sm text-gray-300">grid step</span>
             <select v-model.number="gridStep" class="input w-24">
               <option v-for="n in [2,4,5,10]" :key="n" :value="n">{{ n }}%</option>
             </select>
@@ -84,6 +120,7 @@
 
       <!-- export / import -->
       <div class="card space-y-3">
+        <h3 class="text-sm font-semibold text-indigo-400 mb-2">📦 Export</h3>
         <div class="grid grid-cols-2 gap-2 items-end">
           <label class="block">
             <span class="label">units</span>
@@ -92,28 +129,20 @@
               <option value="px">px</option>
             </select>
           </label>
-          <label class="block">
-            <span class="label">copy</span>
-            <button class="btn-primary w-full" @click="copyCss">copy css</button>
-          </label>
+          <button class="btn-primary w-full" @click="copyCss">📋 copy CSS</button>
         </div>
 
         <div class="text-xs text-gray-400">
-          <div class="font-mono bg-gray-950 border border-gray-800 rounded p-2 overflow-x-auto">
+          <div class="font-mono bg-black border border-gray-700 rounded p-2 overflow-x-auto">
             <div>clip-path: {{ cssValue }};</div>
             <div>-webkit-clip-path: {{ cssValue }};</div>
           </div>
         </div>
 
-        <div class="space-y-2">
-          <label class="block">
-            <span class="label">import clip-path</span>
-            <input v-model="importString" class="input" placeholder="clip-path: polygon(…);" />
-          </label>
-          <div class="flex gap-2">
-            <button class="btn" @click="importClipPath">import</button>
-            <span v-if="copiedMessage" class="text-green-400 text-xs self-center">{{ copiedMessage }}</span>
-          </div>
+        <div class="flex flex-wrap gap-2">
+          <button class="btn" @click="showExportModal = true">📦 export formats</button>
+          <button class="btn" @click="showImportModal = true">📥 import</button>
+          <span v-if="copiedMessage" class="text-green-400 text-xs self-center">{{ copiedMessage }}</span>
         </div>
       </div>
     </div>
@@ -155,13 +184,40 @@
         <rect x="0" y="0" width="100%" height="100%" fill="url(#grid)" />
       </svg>
 
+      <!-- rule of thirds -->
+      <svg v-if="showRuleOfThirds" class="absolute inset-0 w-full h-full pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="33.33%" y1="0%" x2="33.33%" y2="100%" stroke="rgba(59,130,246,0.4)" stroke-width="1.5" stroke-dasharray="4,4"/>
+        <line x1="66.67%" y1="0%" x2="66.67%" y2="100%" stroke="rgba(59,130,246,0.4)" stroke-width="1.5" stroke-dasharray="4,4"/>
+        <line x1="0%" y1="33.33%" x2="100%" y2="33.33%" stroke="rgba(59,130,246,0.4)" stroke-width="1.5" stroke-dasharray="4,4"/>
+        <line x1="0%" y1="66.67%" x2="100%" y2="66.67%" stroke="rgba(59,130,246,0.4)" stroke-width="1.5" stroke-dasharray="4,4"/>
+      </svg>
+
+      <!-- golden ratio -->
+      <svg v-if="showGoldenRatio" class="absolute inset-0 w-full h-full pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="38.2%" y1="0%" x2="38.2%" y2="100%" stroke="rgba(251,191,36,0.4)" stroke-width="1.5" stroke-dasharray="6,3"/>
+        <line x1="61.8%" y1="0%" x2="61.8%" y2="100%" stroke="rgba(251,191,36,0.4)" stroke-width="1.5" stroke-dasharray="6,3"/>
+        <line x1="0%" y1="38.2%" x2="100%" y2="38.2%" stroke="rgba(251,191,36,0.4)" stroke-width="1.5" stroke-dasharray="6,3"/>
+        <line x1="0%" y1="61.8%" x2="100%" y2="61.8%" stroke="rgba(251,191,36,0.4)" stroke-width="1.5" stroke-dasharray="6,3"/>
+      </svg>
+
       <!-- segments -->
-      <svg class="absolute inset-0 w-full h-full pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+      <svg v-if="shapeType === 'polygon'" class="absolute inset-0 w-full h-full pointer-events-none" xmlns="http://www.w3.org/2000/svg">
         <polyline :points="pointsSvg" fill="none" stroke="rgba(16,185,129,0.65)" stroke-width="2" />
       </svg>
 
-      <!-- draggable points -->
+      <!-- circle preview -->
+      <svg v-if="shapeType === 'circle'" class="absolute inset-0 w-full h-full pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50%" cy="50%" :r="`${circleRadius}%`" fill="none" stroke="rgba(16,185,129,0.65)" stroke-width="2" />
+      </svg>
+
+      <!-- ellipse preview -->
+      <svg v-if="shapeType === 'ellipse'" class="absolute inset-0 w-full h-full pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="50%" cy="50%" :rx="`${ellipseRx}%`" :ry="`${ellipseRy}%`" fill="none" stroke="rgba(16,185,129,0.65)" stroke-width="2" />
+      </svg>
+
+      <!-- draggable points (polygon mode only) -->
       <button
+          v-if="shapeType === 'polygon'"
           v-for="(p, i) in points"
           :key="i"
           class="handle"
@@ -172,8 +228,9 @@
       />
     </div>
 
-    <!-- Points table -->
-    <div class="card">
+    <!-- Points table (polygon mode only) -->
+    <div v-if="shapeType === 'polygon'" class="card">
+      <h3 class="text-sm font-semibold text-indigo-400 mb-3">📍 Points</h3>
       <div class="overflow-x-auto">
         <table class="w-full text-sm">
           <thead class="text-gray-400">
@@ -196,8 +253,61 @@
     </div>
 
     <p class="text-xs text-gray-500">
-      tips: drag points, use arrows to nudge (hold Shift = ×10), Delete removes selected. polygon supports <code>round &lt;length-percentage&gt;</code> in modern browsers.
+      💡 tips: {{ shapeType === 'polygon' ? 'drag points, use arrows to nudge (hold Shift = ×10), Delete removes selected. polygon supports round &lt;length-percentage&gt; in modern browsers.' : 'adjust radius values to customize your ' + shapeType + ' shape.' }}
     </p>
+
+    <!-- Export Modal -->
+    <div v-if="showExportModal" class="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4" @click.self="showExportModal = false">
+      <div class="bg-gray-900 border border-gray-700 rounded-xl p-6 max-w-xl w-full space-y-4">
+        <div class="flex items-center justify-between">
+          <h3 class="text-lg font-semibold text-white">📦 Export Clip-Path</h3>
+          <button @click="showExportModal = false" class="text-gray-400 hover:text-white">✕</button>
+        </div>
+
+        <div class="space-y-3">
+          <label class="block">
+            <span class="text-sm text-gray-300 mb-2 block">Format</span>
+            <select v-model="exportFormat" class="input">
+              <option value="CSS">CSS</option>
+              <option value="SCSS">SCSS</option>
+              <option value="JSON">JSON</option>
+              <option value="Tailwind">Tailwind Config</option>
+            </select>
+          </label>
+
+          <div class="bg-black border border-gray-700 rounded p-3">
+            <pre class="text-xs text-gray-300 overflow-x-auto font-mono">{{ exportOutput }}</pre>
+          </div>
+        </div>
+
+        <div class="flex gap-2">
+          <button @click="copyExport" class="btn-primary flex-1">📋 Copy to Clipboard</button>
+          <button @click="showExportModal = false" class="btn">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Import Modal -->
+    <div v-if="showImportModal" class="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4" @click.self="showImportModal = false">
+      <div class="bg-gray-900 border border-gray-700 rounded-xl p-6 max-w-xl w-full space-y-4">
+        <div class="flex items-center justify-between">
+          <h3 class="text-lg font-semibold text-white">📥 Import Clip-Path</h3>
+          <button @click="showImportModal = false" class="text-gray-400 hover:text-white">✕</button>
+        </div>
+
+        <div class="space-y-3">
+          <label class="block">
+            <span class="text-sm text-gray-300 mb-2 block">Paste clip-path CSS</span>
+            <textarea v-model="importString" class="input min-h-[100px]" placeholder="clip-path: polygon(50% 0%, ...);" />
+          </label>
+        </div>
+
+        <div class="flex gap-2">
+          <button @click="importClipPath(); showImportModal = false" class="btn-primary flex-1">📥 Import</button>
+          <button @click="showImportModal = false" class="btn">Cancel</button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -216,10 +326,24 @@ const canvasClass = computed(() => ({
   'max-w-4xl': true,
 }))
 
+/* shape type */
+const shapeType = ref<'polygon' | 'circle' | 'ellipse'>('polygon')
+const circleRadius = ref<number>(40)
+const ellipseRx = ref<number>(45)
+const ellipseRy = ref<number>(30)
+
+function onShapeTypeChange() {
+  pushHistory()
+}
+
 /* grid & snapping */
 const showGrid = ref<boolean>(true)
 const snapToGrid = ref<boolean>(true)
 const gridStep = ref<number>(5) // percent
+const showRuleOfThirds = ref<boolean>(false)
+const showGoldenRatio = ref<boolean>(false)
+const showMask = ref<boolean>(false)
+
 const gridPx = computed(() => {
   // grid in pixels — approximate: stage width / (100 / step)
   const w = stage.value?.clientWidth ?? 800
@@ -240,7 +364,13 @@ const presets = [
   { key: 'tri', label: 'triangle' },
   { key: 'pent', label: 'pentagon' },
   { key: 'hex', label: 'hexagon' },
-  { key: 'star', label: 'star (5)' },
+  { key: 'star', label: 'star' },
+  { key: 'heart', label: 'heart' },
+  { key: 'arrow-right', label: 'arrow right' },
+  { key: 'arrow-left', label: 'arrow left' },
+  { key: 'chevron-right', label: 'chevron right' },
+  { key: 'message', label: 'speech bubble' },
+  { key: 'shield', label: 'shield' },
   { key: 'blob', label: 'random blob' },
 ] as const
 const presetKey = ref<'custom' | typeof presets[number]['key']>('custom')
@@ -253,6 +383,12 @@ function applyPreset(){
   if (k === 'pent') { setPoints(regularPolygon(5)); return }
   if (k === 'hex')  { setPoints(regularPolygon(6)); return }
   if (k === 'star') { setPoints(starPoints(5)); return }
+  if (k === 'heart') { setPoints(heartShape()); return }
+  if (k === 'arrow-right') { setPoints(arrowRight()); return }
+  if (k === 'arrow-left') { setPoints(arrowLeft()); return }
+  if (k === 'chevron-right') { setPoints(chevronRight()); return }
+  if (k === 'message') { setPoints(messageBubble()); return }
+  if (k === 'shield') { setPoints(shieldShape()); return }
   if (k === 'blob') { setPoints(randomBlob(8)); return }
 }
 
@@ -297,6 +433,46 @@ function randomBlob(n:number): Pt[]{
   }
   return pts
 }
+
+/* new preset shapes */
+function heartShape(): Pt[]{
+  return [
+    {x: 50, y: 25}, {x: 30, y: 10}, {x: 10, y: 20}, {x: 5, y: 35},
+    {x: 10, y: 50}, {x: 30, y: 70}, {x: 50, y: 90}, {x: 70, y: 70},
+    {x: 90, y: 50}, {x: 95, y: 35}, {x: 90, y: 20}, {x: 70, y: 10}
+  ]
+}
+function arrowRight(): Pt[]{
+  return [
+    {x: 5, y: 35}, {x: 60, y: 35}, {x: 60, y: 15}, {x: 95, y: 50},
+    {x: 60, y: 85}, {x: 60, y: 65}, {x: 5, y: 65}
+  ]
+}
+function arrowLeft(): Pt[]{
+  return [
+    {x: 95, y: 35}, {x: 40, y: 35}, {x: 40, y: 15}, {x: 5, y: 50},
+    {x: 40, y: 85}, {x: 40, y: 65}, {x: 95, y: 65}
+  ]
+}
+function chevronRight(): Pt[]{
+  return [
+    {x: 30, y: 10}, {x: 70, y: 50}, {x: 30, y: 90}, {x: 40, y: 90},
+    {x: 80, y: 50}, {x: 40, y: 10}
+  ]
+}
+function messageBubble(): Pt[]{
+  return [
+    {x: 10, y: 10}, {x: 90, y: 10}, {x: 90, y: 70}, {x: 60, y: 70},
+    {x: 50, y: 90}, {x: 45, y: 70}, {x: 10, y: 70}
+  ]
+}
+function shieldShape(): Pt[]{
+  return [
+    {x: 50, y: 5}, {x: 90, y: 20}, {x: 90, y: 50}, {x: 50, y: 95},
+    {x: 10, y: 50}, {x: 10, y: 20}
+  ]
+}
+
 function reversePoints(){
   points.reverse()
   pushHistory()
@@ -386,14 +562,20 @@ function snap(p: Pt): Pt{
 
 /* ---------- export / import ---------- */
 const exportUnit = ref<'%'|'px'>('%')
+const exportFormat = ref<'CSS'|'SCSS'|'JSON'|'Tailwind'>('CSS')
+const showExportModal = ref(false)
+const showImportModal = ref(false)
 
 const polygonCss = (invertMask: boolean) => {
-  // Main polygon string with optional roundness
+  if (shapeType.value === 'circle') {
+    return `circle(${circleRadius.value}% at 50% 50%)`
+  }
+  if (shapeType.value === 'ellipse') {
+    return `ellipse(${ellipseRx.value}% ${ellipseRy.value}% at 50% 50%)`
+  }
+  // polygon
   const poly = `${formattedPoints.value}${roundness.value>0 ? ` round ${roundness.value}%` : ''}`
   if (!invertMask) return `polygon(${poly})`
-  // For mask overlay: show outside area by inverting with even-odd winding (via two polygons)
-  // Not all browsers support evenodd on clip-path; we mimic with full rect minus polygon using "path()" where supported.
-  // Fallback: just apply same polygon (no true invert). Here we keep it simple:
   return `polygon(${poly})`
 }
 
@@ -406,7 +588,30 @@ const formattedPoints = computed(() => {
   return points.map(p => `${round1((p.x/100)*w)}px ${round1((p.y/100)*h)}px`).join(', ')
 })
 
-const cssValue = computed(() => `polygon(${formattedPoints.value}${roundness.value>0 ? `, round ${roundness.value}%` : ''})`)
+const cssValue = computed(() => {
+  if (shapeType.value === 'circle') return `circle(${circleRadius.value}% at 50% 50%)`
+  if (shapeType.value === 'ellipse') return `ellipse(${ellipseRx.value}% ${ellipseRy.value}% at 50% 50%)`
+  return `polygon(${formattedPoints.value}${roundness.value>0 ? `, round ${roundness.value}%` : ''})`
+})
+
+const exportOutput = computed(() => {
+  const val = cssValue.value
+  if (exportFormat.value === 'CSS') {
+    return `.element {\n  clip-path: ${val};\n  -webkit-clip-path: ${val};\n}`
+  } else if (exportFormat.value === 'SCSS') {
+    return `$clip-path: ${val};\n\n.element {\n  clip-path: $clip-path;\n  -webkit-clip-path: $clip-path;\n}`
+  } else if (exportFormat.value === 'JSON') {
+    return JSON.stringify({ clipPath: val, webkitClipPath: val }, null, 2)
+  } else {
+    // Tailwind
+    return `module.exports = {\n  theme: {\n    extend: {\n      clipPath: {\n        'custom': '${val}',\n      }\n    }\n  }\n}`
+  }
+})
+
+async function copyExport() {
+  await navigator.clipboard.writeText(exportOutput.value)
+  flash('copied to clipboard')
+}
 
 async function copyCss(){
   const css = `clip-path: ${cssValue.value};\n-webkit-clip-path: ${cssValue.value};`
@@ -516,12 +721,13 @@ function resetAll(){
 
 <style scoped>
 .label { @apply text-sm text-gray-300; }
-.input { @apply text-black w-full px-3 py-2 rounded-md border border-gray-300; }
-.btn { @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded text-white text-sm disabled:opacity-50 disabled:cursor-not-allowed; }
-.btn-primary { @apply bg-indigo-600 hover:bg-indigo-500 px-3 py-2.5 rounded text-white text-sm; }
-.btn-warning { @apply bg-red-600 hover:bg-red-500 px-3 py-1.5 rounded text-white text-sm; }
-.card { @apply bg-gray-800/60 rounded-xl p-4 border border-gray-800; }
+.input { @apply bg-black text-white w-full px-3 py-2 rounded-md border border-gray-700; }
+.btn { @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded text-white text-sm disabled:opacity-50 disabled:cursor-not-allowed transition-colors; }
+.btn-primary { @apply bg-indigo-600 hover:bg-indigo-500 px-3 py-2.5 rounded text-white text-sm transition-colors; }
+.btn-warning { @apply bg-yellow-600 hover:bg-yellow-500 px-3 py-1.5 rounded text-white text-sm transition-colors; }
+.card { @apply bg-black rounded-xl p-4 border border-gray-700; }
 select{padding: 10px !important;}
+textarea.input { @apply min-h-[100px]; }
 .handle {
   @apply absolute w-4 h-4 rounded-full border-2 border-white bg-emerald-500 cursor-grab active:cursor-grabbing transition-transform;
 }
