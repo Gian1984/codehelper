@@ -647,26 +647,42 @@ export const tools: Record<string, Tool> = {
 
     'image-color-picker': {
         title: 'Image Color Picker',
-        description: 'Pick any color from an uploaded image and get HEX/RGB instantly.',
+        description: 'Pick colors from images with k-means palette extraction. Get HEX/RGB/HSL, extract dominant colors, and export to CSS/JSON/Tailwind—all client-side with magnifier.',
         category: 'colors',
         component: () =>
             import('~/components/tools/colors/ImageColorPicker.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `Image Color Picker (HEX/RGB from Picture) – ${BRAND}`,
+            title: `Image Color Picker with Palette Extractor & K-Means – ${BRAND}`,
             description:
-                'Upload an image and click to sample any pixel’s color. Get HEX/RGB/HSL with a zoomed magnifier—fully client-side.',
+                'Upload an image to pick colors with precision magnifier and extract dominant color palette using k-means clustering. Export to CSS, JSON, Tailwind, or SCSS. Get HEX/RGB/HSL instantly—fully client-side with no uploads.',
             ogImage: OG,
             keywords:
-                'image color picker, pick color from image, hex from image, eyedropper online, rgb sampler, color from photo',
+                'image color picker, pick color from image, hex from image, eyedropper online, rgb sampler, color from photo, dominant colors, k-means clustering, color palette extractor, export to css, export to tailwind, color palette from image',
             structuredData: {
                 '@context': 'https://schema.org',
                 '@type': 'SoftwareApplication',
-                name: 'Image Color Picker',
+                name: 'Image Color Picker Pro',
                 applicationCategory: 'DeveloperApplication',
                 operatingSystem: 'All',
                 offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-                featureList: ['Pixel Sampling', 'Magnifier', 'HEX/RGB/HSL', 'Copy'],
-                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '5' }
+                featureList: [
+                    'Pixel Color Sampling with Magnifier',
+                    'Dominant Colors Extraction (K-Means)',
+                    'Extract 6-Color Palette',
+                    'HEX/RGB/RGBA/HSL Output',
+                    'Export to CSS Variables',
+                    'Export to SCSS',
+                    'Export to JSON',
+                    'Export to Tailwind Config',
+                    'Color Percentage Display',
+                    'Native Eyedropper Support',
+                    'Zoom Control (3×-12×)',
+                    'Average Mode Sampling',
+                    'Color History (Last 10)',
+                    'Click to Copy',
+                    'Fully Client-Side'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '8' }
             }
         }
     },

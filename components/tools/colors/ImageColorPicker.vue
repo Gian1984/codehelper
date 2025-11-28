@@ -1,51 +1,63 @@
 <template>
   <div class="space-y-6 bg-gray-800 p-6 sm:p-8 rounded-2xl shadow text-white">
-    <div class="flex items-center justify-between gap-3 flex-wrap">
-      <h2 class="text-2xl font-semibold">Image Color Picker</h2>
-      <div class="flex items-center gap-2">
-        <button class="btn" :disabled="!imageSrc" @click="clearImage">clear</button>
-        <button class="btn" :disabled="!pickedColor" @click="copyAll">copy all</button>
+    <!-- Header -->
+    <div class="bg-gray-900 rounded-xl p-5 border border-gray-700">
+      <div class="flex items-center justify-between gap-3 flex-wrap">
+        <h2 class="text-2xl font-semibold">🎨 Image Color Picker</h2>
+        <div class="flex items-center gap-2">
+          <button class="btn" :disabled="!imageSrc" @click="clearImage">clear</button>
+          <button class="btn-primary" :disabled="!pickedColor && !dominantColors.length" @click="exportColors">export</button>
+        </div>
       </div>
     </div>
 
-    <!-- Upload -->
-    <div
-        class="card p-4 flex flex-wrap items-center gap-3"
-        @dragover.prevent
-        @drop.prevent="onDrop"
-    >
-      <label
-          class="relative cursor-pointer inline-flex items-center justify-center px-4 py-2 bg-blue-600 hover:bg-blue-500 rounded shadow"
-      >
-        <span>Upload image</span>
-        <input type="file" accept="image/*" @change="handleFileChange" class="absolute inset-0 opacity-0 cursor-pointer" />
-      </label>
+    <!-- Upload & Controls -->
+    <div class="card space-y-4">
+      <div class="flex flex-wrap items-center gap-3">
+        <label class="relative cursor-pointer inline-flex items-center justify-center px-4 py-2 bg-indigo-600 hover:bg-indigo-500 rounded-lg shadow transition-colors">
+          <span>📁 Upload Image</span>
+          <input type="file" accept="image/*" @change="handleFileChange" class="absolute inset-0 opacity-0 cursor-pointer" />
+        </label>
 
-      <button
-          v-if="canUseEyeDropper"
-          @click="openEyeDropper"
-          class="btn"
-          title="Use system eyedropper (if supported)"
-      >
-        Eyedropper
-      </button>
+        <button
+            v-if="canUseEyeDropper"
+            @click="openEyeDropper"
+            class="btn"
+            title="Use system eyedropper (if supported)"
+        >
+          💧 Eyedropper
+        </button>
 
-      <div class="ml-auto flex items-center gap-4">
+        <button
+            v-if="imageSrc"
+            @click="extractDominantColors"
+            :disabled="isExtracting"
+            class="btn-primary"
+        >
+          {{ isExtracting ? '⏳ Extracting...' : '🎨 Extract Palette' }}
+        </button>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-4 text-sm" v-if="imageSrc">
         <div class="flex items-center gap-2">
-          <label class="text-sm text-gray-300">Zoom</label>
-          <input type="range" min="3" max="12" step="1" v-model.number="zoom" />
-          <span class="text-xs text-gray-400">{{ zoom }}×</span>
+          <label class="text-gray-300">🔍 Zoom</label>
+          <input type="range" min="3" max="12" step="1" v-model.number="zoom" class="slider" />
+          <span class="text-xs text-gray-400 w-8">{{ zoom }}×</span>
         </div>
         <div class="flex items-center gap-2">
-          <label class="text-sm text-gray-300">Sample</label>
-          <input type="range" min="3" max="25" step="2" v-model.number="sampleSize" />
-          <span class="text-xs text-gray-400">{{ sampleSize }} px</span>
+          <label class="text-gray-300">📏 Sample</label>
+          <input type="range" min="3" max="25" step="2" v-model.number="sampleSize" class="slider" />
+          <span class="text-xs text-gray-400 w-12">{{ sampleSize }}px</span>
         </div>
-        <label class="inline-flex items-center gap-2 text-sm">
-          <input type="checkbox" v-model="averageMode" />
-          average
+        <label class="inline-flex items-center gap-2">
+          <input type="checkbox" v-model="averageMode" class="w-4 h-4" />
+          <span class="text-gray-300">Average mode</span>
         </label>
       </div>
+
+      <p class="text-xs text-gray-400" v-if="!imageSrc">
+        💡 Drag and drop an image or click Upload to get started
+      </p>
     </div>
 
     <!-- Canvas -->
@@ -75,10 +87,39 @@
       />
     </div>
 
-    <!-- Output -->
-    <div v-if="pickedColor" class="card p-4 space-y-3">
+    <!-- Dominant Colors Palette -->
+    <div v-if="dominantColors.length" class="card space-y-4">
+      <div class="flex items-center justify-between">
+        <h3 class="font-semibold text-indigo-400">🎨 Dominant Colors Palette</h3>
+        <button class="btn" @click="clearPalette">clear</button>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+        <div
+            v-for="(color, i) in dominantColors"
+            :key="i"
+            class="group relative cursor-pointer"
+            @click="copyDominantColor(color)"
+        >
+          <div
+              :style="{ backgroundColor: color.hex }"
+              class="h-24 rounded-lg border-2 border-gray-700 hover:border-indigo-500 transition-all hover:scale-105"
+          ></div>
+          <div class="mt-2 text-center space-y-1">
+            <p class="font-mono text-xs text-gray-300">{{ color.hex }}</p>
+            <p class="text-xs text-gray-500">{{ color.percentage }}%</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Picked Color Output -->
+    <div v-if="pickedColor" class="card space-y-4">
+      <h3 class="font-semibold text-indigo-400">🎯 Picked Color</h3>
       <div class="flex items-center gap-4">
-        <div :style="{ backgroundColor: pickedColor.hex }" class="w-12 h-12 rounded border border-white"></div>
+        <div
+            :style="{ backgroundColor: pickedColor.hex }"
+            class="w-20 h-20 rounded-lg border-2 border-gray-700 shadow-lg"
+        ></div>
         <div class="grid sm:grid-cols-2 gap-2 w-full">
           <ColorRow label="HEX" :value="pickedColor.hex" @copy="copy" />
           <ColorRow label="RGB" :value="pickedColor.rgb" @copy="copy" />
@@ -88,22 +129,59 @@
       </div>
     </div>
 
-    <!-- Recent swatches -->
-    <div v-if="recent.length" class="card p-4 space-y-3">
+    <!-- Picked Colors History -->
+    <div v-if="recent.length" class="card space-y-4">
       <div class="flex items-center justify-between">
-        <p class="text-sm text-gray-300">Recent colors</p>
+        <h3 class="font-semibold text-indigo-400">🕒 Picked Colors History</h3>
         <button class="btn" @click="clearRecent">clear</button>
       </div>
-      <div class="flex flex-wrap gap-2">
-        <button
+      <div class="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-8 gap-2">
+        <div
             v-for="c in recent"
             :key="c"
-            class="flex items-center gap-2 px-2 py-1 rounded border border-gray-700 bg-gray-900 hover:bg-gray-800"
+            class="group cursor-pointer"
             @click="copy(c)"
+            :title="c"
         >
-          <span :style="{ backgroundColor: c }" class="w-5 h-5 rounded border border-white/60"></span>
-          <span class="font-mono text-xs">{{ c }}</span>
-        </button>
+          <div
+              :style="{ backgroundColor: c }"
+              class="w-full aspect-square rounded-lg border-2 border-gray-700 hover:border-indigo-500 transition-all hover:scale-110"
+          ></div>
+          <p class="mt-1 font-mono text-[10px] text-center text-gray-400 truncate">{{ c }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Export Modal -->
+    <div v-if="showExportModal" class="fixed inset-0 bg-black/70 flex items-center justify-center z-50 p-4" @click.self="showExportModal = false">
+      <div class="bg-gray-900 rounded-xl border border-gray-700 max-w-2xl w-full max-h-[80vh] overflow-auto shadow-2xl" @click.stop>
+        <div class="p-6 space-y-4">
+          <div class="flex items-center justify-between">
+            <h3 class="text-xl font-semibold text-indigo-400">📦 Export Colors</h3>
+            <button class="btn" @click="showExportModal = false">✕ close</button>
+          </div>
+
+          <!-- Export Format Tabs -->
+          <div class="flex gap-2 border-b border-gray-700 pb-2">
+            <button
+                v-for="format in exportFormats"
+                :key="format"
+                @click="exportFormat = format"
+                class="px-4 py-2 rounded-t transition-colors text-sm"
+                :class="exportFormat === format ? 'bg-indigo-600 text-white' : 'bg-gray-800 text-gray-300 hover:bg-gray-700'"
+            >
+              {{ format }}
+            </button>
+          </div>
+
+          <!-- Export Output -->
+          <div class="relative">
+            <pre class="bg-black border border-gray-700 rounded-lg p-4 overflow-auto max-h-96 text-sm text-green-300 font-mono">{{ exportOutput }}</pre>
+            <button class="absolute top-2 right-2 btn-primary" @click="copyExport">
+              {{ exportCopied ? '✓ Copied!' : '📋 Copy' }}
+            </button>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -128,6 +206,17 @@ const recent = ref<string[]>([])
 
 const magPx = 120 // magnifier canvas square size in px
 const magnifier = ref({ visible: false, x: 0, y: 0 })
+
+/* ---------- dominant colors ---------- */
+type DominantColor = { hex: string; rgb: { r: number; g: number; b: number }; percentage: number }
+const dominantColors = ref<DominantColor[]>([])
+const isExtracting = ref(false)
+
+/* ---------- export ---------- */
+const showExportModal = ref(false)
+const exportFormat = ref<'CSS' | 'JSON' | 'Tailwind' | 'SCSS'>('CSS')
+const exportFormats: ('CSS' | 'JSON' | 'Tailwind' | 'SCSS')[] = ['CSS', 'JSON', 'Tailwind', 'SCSS']
+const exportCopied = ref(false)
 
 /* ---------- feature detection ---------- */
 const canUseEyeDropper = typeof (globalThis as any).EyeDropper === 'function'
@@ -295,6 +384,162 @@ function rgbToHslString(r: number, g: number, b: number) {
   return `hsl(${Math.round(h*360)}, ${Math.round(s*100)}%, ${Math.round(l*100)}%)`
 }
 
+/* ---------- k-means clustering for dominant colors ---------- */
+async function extractDominantColors() {
+  if (!canvasRef.value || isExtracting.value) return
+  isExtracting.value = true
+
+  try {
+    const canvas = canvasRef.value
+    const ctx = canvas.getContext('2d')!
+    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height)
+    const pixels = imageData.data
+
+    // Sample pixels (every 10th pixel for performance)
+    const samples: Array<{ r: number; g: number; b: number }> = []
+    for (let i = 0; i < pixels.length; i += 40) {
+      const r = pixels[i]
+      const g = pixels[i + 1]
+      const b = pixels[i + 2]
+      const a = pixels[i + 3]
+      // Skip transparent pixels
+      if (a > 128) {
+        samples.push({ r, g, b })
+      }
+    }
+
+    // K-means clustering with k=6 colors
+    const k = 6
+    const clusters = kMeans(samples, k)
+
+    // Sort by cluster size (most dominant first)
+    clusters.sort((a, b) => b.count - a.count)
+
+    // Calculate percentages
+    const total = samples.length
+    dominantColors.value = clusters.map(cluster => ({
+      hex: rgbToHex(cluster.r, cluster.g, cluster.b),
+      rgb: { r: cluster.r, g: cluster.g, b: cluster.b },
+      percentage: Math.round((cluster.count / total) * 100)
+    }))
+  } finally {
+    isExtracting.value = false
+  }
+}
+
+function kMeans(samples: Array<{ r: number; g: number; b: number }>, k: number) {
+  if (samples.length === 0) return []
+
+  // Initialize centroids randomly from samples
+  const centroids = samples.slice(0, k).map(s => ({ ...s }))
+  const maxIterations = 20
+
+  for (let iter = 0; iter < maxIterations; iter++) {
+    // Assign each sample to nearest centroid
+    const assignments: number[] = []
+    for (const sample of samples) {
+      let minDist = Infinity
+      let nearest = 0
+      for (let i = 0; i < k; i++) {
+        const dist = colorDistance(sample, centroids[i])
+        if (dist < minDist) {
+          minDist = dist
+          nearest = i
+        }
+      }
+      assignments.push(nearest)
+    }
+
+    // Update centroids
+    const newCentroids: Array<{ r: number; g: number; b: number; count: number }> = []
+    for (let i = 0; i < k; i++) {
+      const members = samples.filter((_, idx) => assignments[idx] === i)
+      if (members.length === 0) {
+        newCentroids.push({ ...centroids[i], count: 0 })
+        continue
+      }
+      const sum = members.reduce((acc, m) => ({
+        r: acc.r + m.r,
+        g: acc.g + m.g,
+        b: acc.b + m.b
+      }), { r: 0, g: 0, b: 0 })
+      newCentroids.push({
+        r: Math.round(sum.r / members.length),
+        g: Math.round(sum.g / members.length),
+        b: Math.round(sum.b / members.length),
+        count: members.length
+      })
+    }
+
+    // Check convergence
+    let converged = true
+    for (let i = 0; i < k; i++) {
+      if (colorDistance(centroids[i], newCentroids[i]) > 1) {
+        converged = false
+        break
+      }
+    }
+
+    centroids.splice(0, k, ...newCentroids)
+    if (converged) break
+  }
+
+  return centroids.filter(c => c.count > 0)
+}
+
+function colorDistance(c1: { r: number; g: number; b: number }, c2: { r: number; g: number; b: number }) {
+  // Euclidean distance in RGB space
+  return Math.sqrt(
+    Math.pow(c1.r - c2.r, 2) +
+    Math.pow(c1.g - c2.g, 2) +
+    Math.pow(c1.b - c2.b, 2)
+  )
+}
+
+function copyDominantColor(color: DominantColor) {
+  copy(color.hex)
+  pushRecent(color.hex)
+}
+
+function clearPalette() {
+  dominantColors.value = []
+}
+
+/* ---------- export functionality ---------- */
+function exportColors() {
+  showExportModal.value = true
+}
+
+const exportOutput = computed(() => {
+  const colors = dominantColors.value.length ? dominantColors.value : (pickedColor.value ? [{ hex: pickedColor.value.hex, percentage: 100 }] : [])
+  if (colors.length === 0) return 'No colors to export'
+
+  if (exportFormat.value === 'CSS') {
+    return `:root {\n${colors.map((c, i) => `  --color-${i + 1}: ${c.hex};`).join('\n')}\n}`
+  } else if (exportFormat.value === 'SCSS') {
+    return colors.map((c, i) => `$color-${i + 1}: ${c.hex};`).join('\n')
+  } else if (exportFormat.value === 'JSON') {
+    return JSON.stringify(
+      colors.map((c, i) => ({ name: `color-${i + 1}`, hex: c.hex, percentage: c.percentage || 0 })),
+      null,
+      2
+    )
+  } else if (exportFormat.value === 'Tailwind') {
+    const obj = colors.reduce((acc, c, i) => {
+      acc[`color-${i + 1}`] = c.hex
+      return acc
+    }, {} as Record<string, string>)
+    return `module.exports = {\n  theme: {\n    extend: {\n      colors: ${JSON.stringify(obj, null, 8).replace(/^/gm, '        ').trim()}\n    }\n  }\n}`
+  }
+  return ''
+})
+
+function copyExport() {
+  navigator.clipboard.writeText(exportOutput.value)
+  exportCopied.value = true
+  setTimeout(() => (exportCopied.value = false), 1500)
+}
+
 /* ---------- clipboard & recent ---------- */
 function copy(text: string) {
   navigator.clipboard.writeText(text)
@@ -320,6 +565,7 @@ function clearRecent() {
 function clearImage() {
   imageSrc.value = null
   pickedColor.value = null
+  dominantColors.value = []
   const c = canvasRef.value
   if (c) {
     const ctx = c.getContext('2d')
@@ -345,8 +591,8 @@ export default {
         <div class="flex items-center gap-2">
           <span class="text-gray-300 text-sm w-14">{{ label }}</span>
           <input readonly :value="value"
-                 class="bg-gray-900 text-white px-2 py-1 rounded border border-gray-700 w-full font-mono text-xs"/>
-          <button class="btn" @click="$emit('copy', value)">copy</button>
+                 class="bg-black text-white px-3 py-2 rounded-lg border border-gray-700 focus:ring-2 focus:ring-indigo-500 w-full font-mono text-xs"/>
+          <button class="btn" @click="$emit('copy', value)">📋</button>
         </div>
       `
     }
@@ -355,7 +601,23 @@ export default {
 </script>
 
 <style scoped>
-.card { @apply bg-gray-800/60 rounded-xl border border-gray-800; }
-.btn  { @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded text-white text-sm; }
+.card {
+  @apply bg-gray-900 rounded-xl border border-gray-700 p-5;
+}
+.btn {
+  @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded-lg text-white text-sm transition-colors;
+}
+.btn:disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
+.btn-primary {
+  @apply bg-indigo-600 hover:bg-indigo-500 px-3 py-1.5 rounded-lg text-white text-sm transition-colors;
+}
+.btn-primary:disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
+.slider {
+  @apply accent-indigo-500;
+}
 </style>
 
