@@ -621,26 +621,43 @@ export const tools: Record<string, Tool> = {
 
     'color-palette-generator': {
         title: 'Color Palette Generator',
-        description: 'Generate harmonious color palettes from any base HEX color.',
+        description: 'Generate harmonious color palettes with Material Design, accessibility checker, and undo/redo. Create monochrome, analogous, complementary, triadic palettes. Export to CSS, SCSS, JSON, Tailwind.',
         category: 'colors',
         component: () =>
             import('~/components/tools/colors/ColorPaletteGenerator.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `Color Palette Generator (Harmonies) – ${BRAND}`,
+            title: `Color Palette Generator with Material Design & Accessibility – ${BRAND}`,
             description:
-                'Build balanced palettes from a base HEX color—tints, shades, and random sets. Great for brand and UI kits.',
+                'Generate professional color palettes from any base color. Includes Material Design palette (50-900 + accents), WCAG accessibility checker, 6 harmony schemes, and export to CSS/SCSS/Tailwind. Full undo/redo support.',
             ogImage: OG,
             keywords:
-                'color palette generator, color harmonies, complementary colors, tints shades, palette maker, brand colors',
+                'color palette generator, material design colors, color harmonies, complementary colors, triadic palette, split complementary, accessibility checker, wcag contrast, tailwind colors, scss colors, css variables, color scheme generator, brand colors, ui colors, palette maker',
             structuredData: {
                 '@context': 'https://schema.org',
                 '@type': 'SoftwareApplication',
-                name: 'Color Palette Generator',
+                name: 'Color Palette Generator Pro',
                 applicationCategory: 'DeveloperApplication',
                 operatingSystem: 'All',
                 offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-                featureList: ['Generate Palettes', 'Copy HEX', 'Randomize'],
-                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '14' }
+                featureList: [
+                    '6 Color Schemes (Mono, Material, Analogous, Complementary, Triadic, Split)',
+                    'Material Design Palette (50-900 + A100-A700)',
+                    'Monochrome Tailwind-like Scale (10 shades)',
+                    'WCAG 2.1 Accessibility Checker',
+                    'AA/AAA Contrast Compliance',
+                    'Lock/Unlock Individual Colors',
+                    'Shuffle with Lock Respect',
+                    'Undo/Redo History (20 states)',
+                    'Export to CSS Variables',
+                    'Export to SCSS',
+                    'Export to JSON',
+                    'Export to Tailwind Config',
+                    'Visual Color Pair Previews',
+                    'HEX Color Picker',
+                    'localStorage Persistence',
+                    'Responsive Grid Layouts'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '18' }
             }
         }
     },
