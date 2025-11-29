@@ -1,28 +1,33 @@
 <template>
-  <div class="bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-xl space-y-6 text-white">
+  <div class="space-y-6 bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-xl text-white">
     <!-- Header -->
-    <div class="flex items-center justify-between gap-3 flex-wrap">
-      <h2 class="text-2xl font-semibold text-white">Number Base Converter</h2>
-      <div class="flex items-center gap-2">
-        <button @click="clearAll" class="btn-secondary">Clear All</button>
-        <button @click="negate" class="btn-secondary">Toggle Sign (±)</button>
+    <div class="card">
+      <div class="flex items-center justify-between gap-3 flex-wrap">
+        <div>
+          <h2 class="text-2xl font-semibold">🔢 Number Base Converter</h2>
+          <p class="text-sm text-gray-400 mt-1">Convert between binary, octal, decimal, and hexadecimal with BigInt support</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button @click="clearAll" class="btn">🗑️ Clear All</button>
+          <button @click="negate" class="btn">± Toggle Sign</button>
+        </div>
       </div>
     </div>
 
     <!-- Quick Examples -->
-    <div class="bg-gray-900 rounded-xl p-5 border border-gray-700">
+    <div class="card">
       <h3 class="text-sm font-medium text-gray-300 mb-3">🔢 Quick Examples</h3>
       <div class="flex flex-wrap gap-2">
-        <button class="example-btn" @click="setFromDecimal('255')">255</button>
-        <button class="example-btn" @click="setFromDecimal('1024')">1024</button>
-        <button class="example-btn" @click="setFromDecimal('65535')">65535 (2^16-1)</button>
-        <button class="example-btn" @click="setFromDecimal('-42')">-42</button>
-        <button class="example-btn" @click="setFromDecimal('18446744073709551615')">2^64-1</button>
+        <button class="btn-example" @click="setFromDecimal('255')">255</button>
+        <button class="btn-example" @click="setFromDecimal('1024')">1024</button>
+        <button class="btn-example" @click="setFromDecimal('65535')">65535 (2^16-1)</button>
+        <button class="btn-example" @click="setFromDecimal('-42')">-42</button>
+        <button class="btn-example" @click="setFromDecimal('18446744073709551615')">2^64-1</button>
       </div>
     </div>
 
     <!-- Options -->
-    <div class="bg-gray-900 rounded-xl p-5 border border-gray-700">
+    <div class="card">
       <h3 class="text-sm font-medium text-gray-300 mb-4">⚙️ Display Options</h3>
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
         <!-- Checkboxes -->
@@ -40,7 +45,7 @@
         <!-- Group Size -->
         <div>
           <label class="text-xs font-medium text-gray-400 mb-2 block">Group Digits</label>
-          <select v-model.number="opts.groupSize" class="select-input-sm">
+          <select v-model.number="opts.groupSize" class="input text-sm">
             <option :value="0">None</option>
             <option :value="2">2 digits</option>
             <option :value="3">3 digits</option>
@@ -77,21 +82,21 @@
     <!-- Inputs -->
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
       <!-- Binary -->
-      <div class="bg-gray-900 rounded-xl p-5 border border-gray-700 space-y-3">
+      <div class="card space-y-3">
         <div class="flex items-center justify-between">
-          <label class="text-sm font-medium text-gray-300">Binary</label>
+          <label class="label">Binary</label>
           <button
             @click="copy(binary, 'bin')"
-            class="px-3 py-1.5 rounded-lg text-xs font-medium bg-gray-700 hover:bg-gray-600 text-white transition-all"
+            class="btn text-xs"
             :disabled="!binary"
           >
-            {{ copiedMsg && lastCopied === 'bin' ? 'Copied!' : 'Copy' }}
+            {{ copiedMsg && lastCopied === 'bin' ? '✓ Copied!' : '📋 Copy' }}
           </button>
         </div>
         <input
           v-model.trim="binary"
           @input="onEdit('bin')"
-          class="w-full px-3 py-2 rounded-lg border border-gray-700 bg-black text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent font-mono text-sm transition-all"
+          class="input font-mono"
           placeholder="0b1010 or 1010"
         />
         <p v-if="errors.bin" class="text-red-400 text-xs flex items-center gap-1">
@@ -101,21 +106,21 @@
       </div>
 
       <!-- Octal -->
-      <div class="bg-gray-900 rounded-xl p-5 border border-gray-700 space-y-3">
+      <div class="card space-y-3">
         <div class="flex items-center justify-between">
-          <label class="text-sm font-medium text-gray-300">Octal</label>
+          <label class="label">Octal</label>
           <button
             @click="copy(octal, 'oct')"
-            class="px-3 py-1.5 rounded-lg text-xs font-medium bg-gray-700 hover:bg-gray-600 text-white transition-all"
+            class="btn text-xs"
             :disabled="!octal"
           >
-            {{ copiedMsg && lastCopied === 'oct' ? 'Copied!' : 'Copy' }}
+            {{ copiedMsg && lastCopied === 'oct' ? '✓ Copied!' : '📋 Copy' }}
           </button>
         </div>
         <input
           v-model.trim="octal"
           @input="onEdit('oct')"
-          class="w-full px-3 py-2 rounded-lg border border-gray-700 bg-black text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent font-mono text-sm transition-all"
+          class="input font-mono"
           placeholder="0o755 or 755"
         />
         <p v-if="errors.oct" class="text-red-400 text-xs flex items-center gap-1">
@@ -125,21 +130,21 @@
       </div>
 
       <!-- Decimal -->
-      <div class="bg-gray-900 rounded-xl p-5 border border-gray-700 space-y-3">
+      <div class="card space-y-3">
         <div class="flex items-center justify-between">
-          <label class="text-sm font-medium text-gray-300">Decimal</label>
+          <label class="label">Decimal</label>
           <button
             @click="copy(decimal, 'dec')"
-            class="px-3 py-1.5 rounded-lg text-xs font-medium bg-gray-700 hover:bg-gray-600 text-white transition-all"
+            class="btn text-xs"
             :disabled="!decimal"
           >
-            {{ copiedMsg && lastCopied === 'dec' ? 'Copied!' : 'Copy' }}
+            {{ copiedMsg && lastCopied === 'dec' ? '✓ Copied!' : '📋 Copy' }}
           </button>
         </div>
         <input
           v-model.trim="decimal"
           @input="onEdit('dec')"
-          class="w-full px-3 py-2 rounded-lg border border-gray-700 bg-black text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent font-mono text-sm transition-all"
+          class="input font-mono"
           placeholder="e.g. 123456 or -42"
         />
         <p v-if="errors.dec" class="text-red-400 text-xs flex items-center gap-1">
@@ -149,21 +154,21 @@
       </div>
 
       <!-- Hexadecimal -->
-      <div class="bg-gray-900 rounded-xl p-5 border border-gray-700 space-y-3">
+      <div class="card space-y-3">
         <div class="flex items-center justify-between">
-          <label class="text-sm font-medium text-gray-300">Hexadecimal</label>
+          <label class="label">Hexadecimal</label>
           <button
             @click="copy(hex, 'hex')"
-            class="px-3 py-1.5 rounded-lg text-xs font-medium bg-gray-700 hover:bg-gray-600 text-white transition-all"
+            class="btn text-xs"
             :disabled="!hex"
           >
-            {{ copiedMsg && lastCopied === 'hex' ? 'Copied!' : 'Copy' }}
+            {{ copiedMsg && lastCopied === 'hex' ? '✓ Copied!' : '📋 Copy' }}
           </button>
         </div>
         <input
           v-model.trim="hex"
           @input="onEdit('hex')"
-          class="w-full px-3 py-2 rounded-lg border border-gray-700 bg-black text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent font-mono text-sm transition-all"
+          class="input font-mono"
           placeholder="0xFF or ff"
         />
         <p v-if="errors.hex" class="text-red-400 text-xs flex items-center gap-1">
@@ -174,9 +179,9 @@
     </div>
 
     <!-- Visual Binary Representation -->
-    <div v-if="value !== null && !errors.bin" class="bg-gray-900 rounded-xl p-5 border border-gray-700 space-y-3">
+    <div v-if="value !== null && !errors.bin" class="card space-y-3">
       <h3 class="text-sm font-medium text-gray-300">🔍 Binary Visualization</h3>
-      <div class="bg-black rounded-lg p-4 overflow-x-auto">
+      <div class="mono-box overflow-x-auto">
         <div class="flex flex-wrap gap-2 font-mono text-xs">
           <div v-for="(byte, idx) in visualBytes" :key="idx" class="flex gap-1">
             <div v-for="(nibble, nidx) in byte" :key="nidx" class="flex gap-0.5">
@@ -202,8 +207,8 @@
     </div>
 
     <!-- Info -->
-    <div class="bg-gray-900 rounded-xl p-5 border border-gray-700">
-      <p class="text-xs text-gray-400">
+    <div class="card">
+      <p class="text-sm text-gray-400">
         💡 <strong class="text-gray-300">Tips:</strong> Inputs accept underscores
         (<code class="font-mono text-indigo-400">1_000_000</code>) and optional prefixes
         (<code class="font-mono text-indigo-400">0b</code>,
@@ -446,21 +451,31 @@ watch([() => opts.showPrefix, () => opts.upperHex, () => opts.groupSize, () => o
 </script>
 
 <style scoped>
-.btn-secondary {
-  @apply bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-lg text-white text-sm font-medium;
-  @apply disabled:opacity-50 disabled:cursor-not-allowed;
-  @apply transition-all;
+.label {
+  @apply text-sm font-medium text-gray-300 block mb-2;
 }
 
-.example-btn {
+.input {
+  @apply bg-black text-white border-2 border-gray-700 rounded-lg px-3 py-2 w-full;
+  @apply focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all;
+}
+
+.btn {
+  @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded-lg text-white text-sm transition-colors;
+  @apply disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+.btn-example {
   @apply px-3 py-1.5 rounded-lg text-xs font-medium bg-gray-700 hover:bg-gray-600 text-white;
   @apply transition-all;
 }
 
-.select-input-sm {
-  @apply bg-gray-700 text-white border border-gray-600 rounded-lg px-3 py-2 text-xs;
-  @apply focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent;
-  @apply transition-all;
+.card {
+  @apply bg-gray-900 rounded-xl p-5 border border-gray-700;
+}
+
+.mono-box {
+  @apply bg-gray-800 text-green-300 font-mono text-sm p-3 rounded-lg border border-gray-700 overflow-x-auto;
 }
 </style>
 

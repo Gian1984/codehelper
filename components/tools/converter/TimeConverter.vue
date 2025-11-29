@@ -1,21 +1,26 @@
 <template>
-  <div class="p-6 sm:p-8 bg-gray-800 rounded-xl shadow-xl space-y-6 text-white">
+  <div class="space-y-6 bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-xl text-white">
     <!-- Header -->
-    <div class="flex items-center justify-between gap-3 flex-wrap">
-      <h2 class="text-2xl font-semibold text-white">Time Converter</h2>
-      <button @click="setAllNow" class="btn-secondary">Set All to Now</button>
+    <div class="card">
+      <div class="flex items-center justify-between gap-3 flex-wrap">
+        <div>
+          <h2 class="text-2xl font-semibold">⏰ Time Converter</h2>
+          <p class="text-sm text-gray-400 mt-1">Convert between timestamps and dates, calculate durations across time zones</p>
+        </div>
+        <button @click="setAllNow" class="btn-primary">🕐 Set All to Now</button>
+      </div>
     </div>
 
     <!-- Quick Examples -->
-    <div class="bg-gray-900 rounded-xl p-5 border border-gray-700">
+    <div class="card">
       <h3 class="text-sm font-medium text-gray-300 mb-3">⏱️ Quick Examples</h3>
       <div class="flex flex-wrap gap-2">
-        <button class="example-btn" @click="setExample('now')">Now</button>
-        <button class="example-btn" @click="setExample('1hour')">1 Hour Ago</button>
-        <button class="example-btn" @click="setExample('1day')">1 Day Ago</button>
-        <button class="example-btn" @click="setExample('1week')">1 Week Ago</button>
-        <button class="example-btn" @click="setExample('epoch')">Unix Epoch (1970)</button>
-        <button class="example-btn" @click="setExample('y2k')">Y2K (2000)</button>
+        <button class="btn-example" @click="setExample('now')">Now</button>
+        <button class="btn-example" @click="setExample('1hour')">1 Hour Ago</button>
+        <button class="btn-example" @click="setExample('1day')">1 Day Ago</button>
+        <button class="btn-example" @click="setExample('1week')">1 Week Ago</button>
+        <button class="btn-example" @click="setExample('epoch')">Unix Epoch (1970)</button>
+        <button class="btn-example" @click="setExample('y2k')">Y2K (2000)</button>
       </div>
     </div>
 
@@ -609,14 +614,35 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.btn-secondary {
-  @apply bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-lg text-white text-sm font-medium;
+.label {
+  @apply text-sm font-medium text-gray-300 block mb-2;
+}
+
+.input {
+  @apply bg-black text-white border-2 border-gray-700 rounded-lg px-3 py-2 w-full;
+  @apply focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all;
+}
+
+.btn {
+  @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded-lg text-white text-sm transition-colors;
   @apply disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+.btn-primary {
+  @apply bg-indigo-600 hover:bg-indigo-500 px-4 py-1.5 rounded-lg text-white text-sm font-medium transition-colors shadow-lg;
+  @apply disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+.btn-example {
+  @apply px-3 py-1.5 rounded-lg text-xs font-medium bg-gray-700 hover:bg-gray-600 text-white;
   @apply transition-all;
 }
 
-.example-btn {
-  @apply px-3 py-1.5 rounded-lg text-xs font-medium bg-gray-700 hover:bg-gray-600 text-white;
-  @apply transition-all;
+.card {
+  @apply bg-gray-900 rounded-xl p-5 border border-gray-700;
+}
+
+.output-box {
+  @apply bg-gray-900 rounded-xl p-5 border border-gray-700;
 }
 </style>

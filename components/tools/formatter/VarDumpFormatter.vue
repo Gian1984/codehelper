@@ -1,92 +1,122 @@
 <template>
-  <div class="bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-xl space-y-5 text-gray-100">
-    <div class="flex items-center justify-between gap-3 flex-wrap">
-      <h2 class="text-2xl font-semibold">Var Dump Formatter</h2>
-      <div class="flex items-center gap-2">
-        <button class="btn" @click="clearAll">clear</button>
-        <button class="btn" @click="formatDump">format</button>
-        <button class="btn-primary" @click="copyToClipboard" :disabled="!formatted">copy</button>
-        <button class="btn" @click="downloadDump" :disabled="!formatted">download</button>
+  <div class="space-y-6 bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-xl text-white">
+    <!-- Header -->
+    <div class="card flex items-center justify-between gap-3 flex-wrap">
+      <div>
+        <h2 class="text-2xl font-semibold">🐘 Var Dump Formatter</h2>
+        <p class="text-sm text-gray-400 mt-1">Format, beautify, and analyze PHP var_dump and print_r outputs</p>
+      </div>
+      <div class="flex items-center gap-2 flex-wrap">
+        <button class="btn-primary" @click="formatDump" title="Format Output">
+          ✨ Format
+        </button>
+        <button class="btn" @click="clearAll" title="Clear all">
+          🗑️ Clear
+        </button>
       </div>
     </div>
 
-    <!-- input -->
-    <div class="space-y-2">
-      <div class="flex items-center gap-3 flex-wrap">
-        <label class="label">input</label>
-        <label class="btn cursor-pointer">
-          import .txt
-          <input type="file" class="hidden" accept=".txt,text/plain" @change="onFile" />
-        </label>
-        <label class="inline-flex items-center gap-2 ml-auto">
-          <input type="checkbox" v-model="autoFormatOnPaste" class="w-4 h-4" />
-          <span class="text-sm">auto-format on paste</span>
-        </label>
+    <!-- Input Section -->
+    <div class="card space-y-3">
+      <div class="flex items-center justify-between gap-3 flex-wrap">
+        <label class="label">📝 Input Dump</label>
+        <div class="flex items-center gap-2 flex-wrap">
+          <label class="btn cursor-pointer">
+            📁 Import File
+            <input type="file" class="hidden" accept=".txt,text/plain" @change="onFile" />
+          </label>
+          <label class="inline-flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" v-model="autoFormatOnPaste" />
+            <span class="text-sm text-gray-300">Auto-format on paste</span>
+          </label>
+        </div>
       </div>
 
       <textarea
           v-model="input"
           placeholder="Paste your var_dump()/print_r() or JSON here…"
-          class="w-full min-h-48 p-4 rounded border border-gray-800 bg-gray-950 text-white focus:outline-none focus:ring focus:ring-indigo-500 font-mono resize-y"
-          @paste="onPaste"
+          class="input font-mono resize-y min-h-[120px]"
           spellcheck="false"
+          @paste="onPaste"
       ></textarea>
 
-      <div class="text-xs text-gray-400 flex gap-4">
-        <span>chars: {{ input.length }}</span>
-        <span v-if="detected" class="text-gray-500">detected: {{ detected }}</span>
-        <span v-if="error" class="text-red-400">{{ error }}</span>
-        <span v-if="copied" class="text-green-400">copied!</span>
-      </div>
-    </div>
-
-    <!-- options -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-      <div class="card space-y-3">
-        <label class="block">
-          <span class="label">indent type</span>
-          <select v-model="indentKind" class="input">
-            <option value="spaces">spaces</option>
-            <option value="tabs">tabs</option>
-          </select>
-        </label>
-        <label v-if="indentKind==='spaces'" class="block">
-          <span class="label">indent width</span>
-          <select v-model.number="indentWidth" class="input">
-            <option v-for="n in [2,3,4,6,8]" :key="n" :value="n">{{ n }}</option>
-          </select>
-        </label>
-        <label class="inline-flex items-center gap-2">
-          <input type="checkbox" v-model="collapseBlankLines" class="w-4 h-4" />
-          <span class="text-sm">collapse blank lines</span>
-        </label>
-      </div>
-
-      <div class="card space-y-3">
-        <label class="inline-flex items-center gap-2">
-          <input type="checkbox" v-model="lineNumbers" class="w-4 h-4" />
-          <span class="text-sm">show line numbers</span>
-        </label>
-        <label class="block">
-          <span class="label">download filename</span>
-          <input v-model="filename" class="input" placeholder="vardump.txt" />
-        </label>
-      </div>
-
-      <div class="card space-y-2">
-        <button class="btn" @click="formatDump">apply formatting</button>
-        <div class="text-xs text-gray-400">
-          understands common <code>var_dump</code>, <code>print_r</code>, and JSON. it won’t change your data—just whitespace/spacing.
+      <div class="flex items-center justify-between text-xs">
+        <div class="flex gap-4 text-gray-400">
+          <span>Characters: {{ input.length.toLocaleString() }}</span>
+          <span v-if="detected">Detected: <span class="text-indigo-400 uppercase">{{ detected }}</span></span>
+        </div>
+        <div class="flex gap-4">
+          <span v-if="error" class="warn">❌ {{ error }}</span>
+          <span v-if="copied" class="text-green-400 font-medium">✅ Copied!</span>
         </div>
       </div>
     </div>
 
-    <!-- output -->
-    <div v-if="formatted" class="space-y-2">
-      <label class="label">output</label>
-      <pre
-          class="bg-gray-950 p-4 rounded border border-gray-800 overflow-auto text-sm text-green-300 font-mono whitespace-pre"
-      >{{ numbered }}</pre>
+    <!-- Options -->
+    <details class="card" open>
+      <summary class="label font-semibold cursor-pointer select-none hover:text-indigo-400 transition-colors mb-4">
+        ⚙️ Format Options
+      </summary>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- Indentation -->
+        <div class="space-y-2">
+          <label class="label">Indent Type</label>
+          <select v-model="indentKind" class="input">
+            <option value="spaces">Spaces</option>
+            <option value="tabs">Tabs</option>
+          </select>
+          <label v-if="indentKind==='spaces'" class="label mt-3">Width</label>
+          <select v-if="indentKind==='spaces'" v-model.number="indentWidth" class="input">
+            <option v-for="n in [2,3,4,6,8]" :key="n" :value="n">{{ n }}</option>
+          </select>
+        </div>
+
+        <!-- Toggles -->
+        <div class="space-y-2">
+          <label class="inline-flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" v-model="collapseBlankLines" />
+            <span class="text-sm text-gray-300">Collapse blank lines</span>
+          </label>
+          <label class="inline-flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" v-model="lineNumbers" />
+            <span class="text-sm text-gray-300">Show line numbers</span>
+          </label>
+        </div>
+
+        <!-- Download -->
+        <div class="space-y-2">
+          <label class="label">Download Filename</label>
+          <input v-model="filename" class="input" placeholder="vardump.txt" />
+        </div>
+      </div>
+      
+      <div class="mt-4 text-xs text-gray-500 border-t border-gray-800 pt-2">
+        ℹ️ Supports common <code>var_dump</code>, <code>print_r</code>, and JSON formats. It adjusts whitespace/indentation without altering data.
+      </div>
+    </details>
+
+    <!-- Output Section -->
+    <div class="card">
+      <div class="flex items-center justify-between mb-2">
+        <label class="label !mb-0">📄 Formatted Output</label>
+        <div v-if="formatted" class="flex items-center gap-2">
+          <button class="btn" @click="copyToClipboard" title="Copy formatted">
+            📋 Copy
+          </button>
+          <button class="btn" @click="downloadDump" title="Download result">
+            💾 Download
+          </button>
+        </div>
+      </div>
+
+      <div v-if="formatted">
+        <pre class="mono-box max-h-[600px]">{{ numbered }}</pre>
+      </div>
+      <div v-else class="text-center py-16 text-gray-500">
+        <div class="text-4xl mb-4">📝</div>
+        <p>Paste a dump above and click "Format" to see the output here</p>
+      </div>
     </div>
   </div>
 </template>
@@ -194,24 +224,6 @@ function tryFormatJson(src: string): string | null {
 }
 
 /* ----- var_dump style formatter (brace-based) ----- */
-/*
-  typical inputs:
-  array(2) {
-    ["foo"]=>
-    string(3) "bar"
-    [0]=>
-    int(42)
-  }
-  object(Foo)#1 (2) {
-    ["a"]=>
-    int(1)
-    ["b"]=>
-    array(1) {
-      [0]=>
-      string(3) "x"
-    }
-  }
-*/
 function formatVarDump(src: string): string {
   const unit = indentKind.value === 'tabs' ? '\t' : ' '.repeat(indentWidth.value)
   const lines = normalizeEol(src).split('\n')
@@ -243,8 +255,6 @@ function formatVarDump(src: string): string {
     // some dumps show key => type(...) { on same line (rare); handle it
     const openInline = trimmed.match(/\{\s*$/)
     if (openInline) depth++
-
-    // collapse extra blank lines
   }
 
   let result = out.join('\n')
@@ -255,16 +265,6 @@ function formatVarDump(src: string): string {
 }
 
 /* ----- print_r style (parentheses-based) ----- */
-/*
-  Array
-  (
-      [foo] => bar
-      [arr] => Array
-          (
-              [0] => 1
-          )
-  )
-*/
 function formatPrintR(src: string): string {
   const unit = indentKind.value === 'tabs' ? '\t' : ' '.repeat(indentWidth.value)
   const lines = normalizeEol(src).split('\n')
@@ -325,10 +325,45 @@ function safeName(n: string): string {
 </script>
 
 <style scoped>
-.label { @apply text-sm text-gray-300; }
-.input { @apply text-black w-full px-3 py-2 rounded-md border border-gray-300; }
-.btn { @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded text-white text-sm disabled:opacity-50 disabled:cursor-not-allowed; }
-.btn-primary { @apply bg-indigo-600 hover:bg-indigo-500 px-3 py-1.5 rounded text-white text-sm; }
-.card { @apply bg-gray-800/60 rounded-xl p-4 border border-gray-800; }
+.label {
+  @apply text-sm font-medium text-gray-300 block mb-2;
+}
+.input {
+  @apply bg-black text-white border-2 border-gray-700 rounded-lg px-3 py-2 w-full;
+  @apply focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all;
+}
+select.input {
+  @apply appearance-none;
+  padding-right: 2.5rem;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+}
+textarea.input {
+  @apply resize-y;
+}
+/* Checkbox styles */
+input[type="checkbox"] {
+  @apply w-4 h-4 rounded border-gray-600 bg-gray-900 text-indigo-600 focus:ring-indigo-500;
+}
+code {
+  @apply bg-gray-800 px-1 py-0.5 rounded text-xs;
+}
+.btn {
+  @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded-lg text-white text-sm transition-colors;
+}
+.btn-primary {
+  @apply bg-indigo-600 hover:bg-indigo-500 px-4 py-1.5 rounded-lg text-white text-sm font-medium transition-colors shadow-lg;
+}
+.card {
+  @apply bg-gray-900 rounded-xl p-5 border border-gray-700;
+}
+.mono-box {
+  @apply bg-gray-800 text-green-300 font-mono text-sm p-3 rounded-lg border border-gray-700 overflow-x-auto;
+}
+.warn {
+  @apply text-sm text-red-400 bg-red-900/20 p-2 rounded-lg border border-red-700;
+}
 </style>
 

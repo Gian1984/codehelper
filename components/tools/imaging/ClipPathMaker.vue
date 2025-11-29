@@ -1,11 +1,17 @@
 <template>
-  <div class="space-y-5 bg-gray-900 p-6 sm:p-8 rounded-2xl shadow-xl text-white">
-    <div class="flex items-center justify-between gap-3 flex-wrap">
-      <h2 class="text-2xl font-semibold">✂️ CSS Clip-Path Maker</h2>
-      <div class="flex items-center gap-2">
-        <button class="btn" @click="undo" :disabled="!canUndo" title="Undo (Ctrl/⌘+Z)">↶ undo</button>
-        <button class="btn" @click="redo" :disabled="!canRedo" title="Redo (Ctrl/⌘+Y)">↷ redo</button>
-        <button class="btn-warning" @click="resetAll">🗑️ reset</button>
+  <div class="space-y-6 bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-xl text-white">
+    <!-- Header -->
+    <div class="card">
+      <div class="flex items-center justify-between gap-3 flex-wrap">
+        <div>
+          <h2 class="text-2xl font-semibold">✂️ CSS Clip-Path Maker</h2>
+          <p class="text-sm text-gray-400 mt-1">Create custom clip-path shapes visually with polygon, circle, and ellipse support</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button class="btn" @click="undo" :disabled="!canUndo" title="Undo (Ctrl/⌘+Z)">↶ undo</button>
+          <button class="btn" @click="redo" :disabled="!canRedo" title="Redo (Ctrl/⌘+Y)">↷ redo</button>
+          <button class="btn-warning" @click="resetAll">🗑️ reset</button>
+        </div>
       </div>
     </div>
 
@@ -132,11 +138,9 @@
           <button class="btn-primary w-full" @click="copyCss">📋 copy CSS</button>
         </div>
 
-        <div class="text-xs text-gray-400">
-          <div class="font-mono bg-black border border-gray-700 rounded p-2 overflow-x-auto">
-            <div>clip-path: {{ cssValue }};</div>
-            <div>-webkit-clip-path: {{ cssValue }};</div>
-          </div>
+        <div class="mono-box">
+          <div>clip-path: {{ cssValue }};</div>
+          <div>-webkit-clip-path: {{ cssValue }};</div>
         </div>
 
         <div class="flex flex-wrap gap-2">
@@ -275,8 +279,8 @@
             </select>
           </label>
 
-          <div class="bg-black border border-gray-700 rounded p-3">
-            <pre class="text-xs text-gray-300 overflow-x-auto font-mono">{{ exportOutput }}</pre>
+          <div class="mono-box">
+            <pre class="text-xs">{{ exportOutput }}</pre>
           </div>
         </div>
 
@@ -720,14 +724,35 @@ function resetAll(){
 </script>
 
 <style scoped>
-.label { @apply text-sm text-gray-300; }
-.input { @apply bg-black text-white w-full px-3 py-2 rounded-md border border-gray-700; }
-.btn { @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded text-white text-sm disabled:opacity-50 disabled:cursor-not-allowed transition-colors; }
-.btn-primary { @apply bg-indigo-600 hover:bg-indigo-500 px-3 py-2.5 rounded text-white text-sm transition-colors; }
-.btn-warning { @apply bg-yellow-600 hover:bg-yellow-500 px-3 py-1.5 rounded text-white text-sm transition-colors; }
-.card { @apply bg-black rounded-xl p-4 border border-gray-700; }
-select{padding: 10px !important;}
-textarea.input { @apply min-h-[100px]; }
+.label {
+  @apply text-sm font-medium text-gray-300 block mb-2;
+}
+.input {
+  @apply bg-black text-white border-2 border-gray-700 rounded-lg px-3 py-2 w-full;
+  @apply focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all;
+}
+.btn {
+  @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded-lg text-white text-sm transition-colors;
+  @apply disabled:opacity-50 disabled:cursor-not-allowed;
+}
+.btn-primary {
+  @apply bg-indigo-600 hover:bg-indigo-500 px-4 py-1.5 rounded-lg text-white text-sm font-medium transition-colors shadow-lg;
+}
+.btn-warning {
+  @apply bg-yellow-600 hover:bg-yellow-500 px-3 py-1.5 rounded-lg text-white text-sm transition-colors;
+}
+.card {
+  @apply bg-gray-900 rounded-xl p-5 border border-gray-700;
+}
+.mono-box {
+  @apply bg-gray-800 text-green-300 font-mono text-sm p-3 rounded-lg border border-gray-700 overflow-x-auto;
+}
+select {
+  padding: 10px !important;
+}
+textarea.input {
+  @apply min-h-[100px];
+}
 .handle {
   @apply absolute w-4 h-4 rounded-full border-2 border-white bg-emerald-500 cursor-grab active:cursor-grabbing transition-transform;
 }

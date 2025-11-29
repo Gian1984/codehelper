@@ -1,10 +1,16 @@
 <template>
-  <div class="space-y-5 bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-xl text-gray-100">
-    <div class="flex items-center justify-between gap-3 flex-wrap">
-      <h2 class="text-2xl font-semibold">Lorem ipsum generator</h2>
-      <div class="flex items-center gap-2">
-        <button class="btn" @click="randomizeSeed">randomize</button>
-        <button class="btn-warning" @click="clearAll">clear</button>
+  <div class="space-y-6 bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-xl text-white">
+    <!-- Header -->
+    <div class="card">
+      <div class="flex items-center justify-between gap-3 flex-wrap">
+        <div>
+          <h2 class="text-2xl font-semibold">📝 Lorem Ipsum Generator</h2>
+          <p class="text-sm text-gray-400 mt-1">Generate placeholder text in multiple variants and formats</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button class="btn" @click="randomizeSeed">🔀 randomize</button>
+          <button class="btn-danger" @click="clearAll">🗑️ clear</button>
+        </div>
       </div>
     </div>
 
@@ -120,9 +126,12 @@
     </div>
 
     <!-- output -->
-    <div v-if="output" class="bg-gray-800/70 p-4 rounded border border-gray-800">
-      <pre class="whitespace-pre-wrap break-words text-gray-50">{{ output }}</pre>
-      <div class="text-right text-xs text-gray-400 mt-2">
+    <div v-if="output" class="card">
+      <h3 class="font-semibold text-indigo-400 mb-3">📄 Generated Text</h3>
+      <div class="mono-box">
+        <pre class="whitespace-pre-wrap break-words">{{ output }}</pre>
+      </div>
+      <div class="text-right text-xs text-gray-400 mt-3">
         {{ stats.chars }} chars • {{ stats.words }} words • {{ stats.sentences }} sentences • {{ stats.paragraphs }} paragraphs
       </div>
     </div>
@@ -386,10 +395,34 @@ function safeName(name: string, forceExt: 'txt'|'html') {
 </script>
 
 <style scoped>
-.label { @apply text-sm text-gray-300; }
-.input { @apply text-black w-full px-3 py-2 rounded-md border border-gray-300; }
-.btn { @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded text-white text-sm; }
-.btn-primary { @apply bg-indigo-600 hover:bg-indigo-500 px-3 py-1.5 rounded text-white text-sm; }
-.btn-warning { @apply bg-red-600 hover:bg-red-500 px-3 py-1.5 rounded text-white text-sm; }
-.card { @apply bg-gray-800/60 rounded-xl p-4 border border-gray-800; }
+.label {
+  @apply text-sm font-medium text-gray-300 block mb-2;
+}
+
+.input {
+  @apply bg-black text-white border-2 border-gray-700 rounded-lg px-3 py-2 w-full;
+  @apply focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all;
+}
+
+.btn {
+  @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded-lg text-white text-sm transition-colors;
+  @apply disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+.btn-primary {
+  @apply bg-indigo-600 hover:bg-indigo-500 px-4 py-1.5 rounded-lg text-white text-sm font-medium transition-colors shadow-lg;
+  @apply disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+.btn-danger {
+  @apply bg-red-600 hover:bg-red-700 px-3 py-1.5 rounded-lg text-white text-sm transition-colors;
+}
+
+.card {
+  @apply bg-gray-900 rounded-xl p-5 border border-gray-700;
+}
+
+.mono-box {
+  @apply bg-gray-800 text-green-300 font-mono text-sm p-3 rounded-lg border border-gray-700 overflow-x-auto;
+}
 </style>

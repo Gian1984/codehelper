@@ -32,8 +32,8 @@
 
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <div>
-          <label class="text-white text-sm font-medium mb-2 block">Output Format</label>
-          <select v-model="options.format" class="input-sm w-full">
+          <label class="label">Output Format</label>
+          <select v-model="options.format" class="input">
             <option value="image/jpeg">JPEG (universal)</option>
             <option value="image/png">PNG (lossless)</option>
             <option value="image/webp" :disabled="!webpSupported">WebP{{ !webpSupported ? ' (not supported)' : ' (recommended)' }}</option>
@@ -42,28 +42,28 @@
         </div>
 
         <div>
-          <label class="text-white text-sm font-medium mb-2 block">Quality: {{ Math.round(options.quality*100) }}%</label>
+          <label class="label">Quality: {{ Math.round(options.quality*100) }}%</label>
           <input
               type="range"
               min="0.1"
               max="1"
               step="0.01"
               v-model.number="options.quality"
-              class="w-full mt-2"
+              class="w-full"
               :disabled="options.format === 'image/png'"
           />
         </div>
 
         <div>
-          <label class="text-white text-sm font-medium mb-2 block">Max Width (px)</label>
+          <label class="label">Max Width (px)</label>
           <input type="number" min="1" v-model.number="options.maxWidth"
-                 class="input-sm w-full" />
+                 class="input" />
         </div>
 
         <div>
-          <label class="text-white text-sm font-medium mb-2 block">Max Height (px)</label>
+          <label class="label">Max Height (px)</label>
           <input type="number" min="1" v-model.number="options.maxHeight"
-                 class="input-sm w-full" />
+                 class="input" />
         </div>
       </div>
 
@@ -87,7 +87,7 @@
           <button
               @click="compress"
               :disabled="processing"
-              class="btn-action"
+              class="btn-primary"
           >
             <span v-if="processing">⏳ Compressing...</span>
             <span v-else>✨ Compress All ({{ images.length }})</span>
@@ -95,7 +95,7 @@
           <button
               v-if="images.some(img => img.optimized)"
               @click="downloadAll"
-              class="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg text-sm font-medium transition-colors"
+              class="btn-success"
           >
             💾 Download All
           </button>
@@ -104,13 +104,13 @@
 
       <!-- Target File Size -->
       <div v-if="options.targetFileSize > 0 || images.length > 0" class="flex items-center gap-3">
-        <label class="text-white text-sm font-medium">Target file size (KB):</label>
+        <label class="text-sm font-medium text-gray-300">Target file size (KB):</label>
         <input
             type="number"
             v-model.number="options.targetFileSize"
             min="0"
             placeholder="0 = disabled"
-            class="input-sm w-32"
+            class="input w-32"
         />
         <span class="text-xs text-gray-400">(0 = disabled, auto-adjusts quality)</span>
       </div>
@@ -215,7 +215,7 @@
             <button
                 v-if="image.optimized"
                 @click="currentImageIndex = index; download()"
-                class="flex-1 px-3 py-1.5 bg-green-600 hover:bg-green-700 text-white rounded text-xs font-medium transition-colors"
+                class="flex-1 btn-success text-xs"
             >
               💾 Download
             </button>
@@ -684,19 +684,30 @@ function reset() {
 </script>
 
 <style scoped>
-.card {
-  @apply bg-gray-800/60 rounded-xl p-5 border border-gray-700/50 shadow-lg;
+.label {
+  @apply text-sm font-medium text-gray-300 block mb-2;
+}
+
+.input {
+  @apply bg-black text-white border-2 border-gray-700 rounded-lg px-3 py-2 w-full;
+  @apply focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all;
 }
 
 .btn {
-  @apply bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-lg text-white text-sm font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed;
+  @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded-lg text-white text-sm transition-colors;
+  @apply disabled:opacity-50 disabled:cursor-not-allowed;
 }
 
-.btn-action {
-  @apply bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded-lg text-white text-sm font-medium transition-colors flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed;
+.btn-primary {
+  @apply bg-indigo-600 hover:bg-indigo-500 px-4 py-1.5 rounded-lg text-white text-sm font-medium transition-colors shadow-lg;
+  @apply disabled:opacity-50 disabled:cursor-not-allowed;
 }
 
-.input-sm {
-  @apply text-white px-3 py-2 rounded-lg border border-gray-700 bg-gray-900 text-sm;
+.btn-success {
+  @apply bg-green-600 hover:bg-green-700 px-3 py-1.5 rounded-lg text-white text-sm font-medium transition-colors;
+}
+
+.card {
+  @apply bg-gray-900 rounded-xl p-5 border border-gray-700;
 }
 </style>

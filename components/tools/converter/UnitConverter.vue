@@ -1,8 +1,11 @@
 <template>
-  <div class="p-6 sm:p-8 bg-gray-800 rounded-xl shadow-xl space-y-6 text-white">
+  <div class="space-y-6 bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-xl text-white">
     <!-- Header -->
-    <div class="flex items-center justify-between gap-3 flex-wrap">
-      <h2 class="text-2xl font-semibold text-white">Unit Converter</h2>
+    <div class="card">
+      <div>
+        <h2 class="text-2xl font-semibold">📐 Unit Converter</h2>
+        <p class="text-sm text-gray-400 mt-1">Convert between length, weight, temperature, speed, area, volume, and CSS units</p>
+      </div>
     </div>
 
     <!-- Category Tabs -->
@@ -393,16 +396,41 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.btn-primary {
-  @apply bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded-lg text-white text-sm font-medium;
+.label {
+  @apply text-sm font-medium text-gray-300 block mb-2;
+}
+
+.input {
+  @apply bg-black text-white border-2 border-gray-700 rounded-lg px-3 py-2 w-full;
+  @apply focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all;
+}
+
+.btn {
+  @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded-lg text-white text-sm transition-colors;
   @apply disabled:opacity-50 disabled:cursor-not-allowed;
-  @apply transition-all shadow-lg shadow-indigo-600/20 hover:shadow-indigo-600/40;
+}
+
+.btn-primary {
+  @apply bg-indigo-600 hover:bg-indigo-500 px-4 py-1.5 rounded-lg text-white text-sm font-medium transition-colors shadow-lg;
+  @apply disabled:opacity-50 disabled:cursor-not-allowed;
 }
 
 .btn-secondary {
-  @apply bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-lg text-white text-sm font-medium;
+  @apply bg-gray-700 hover:bg-gray-600 px-4 py-1.5 rounded-lg text-white text-sm font-medium;
   @apply disabled:opacity-50 disabled:cursor-not-allowed;
   @apply transition-all;
+}
+
+.card {
+  @apply bg-gray-900 rounded-xl p-5 border border-gray-700;
+}
+
+.mono {
+  @apply font-mono text-green-400;
+}
+
+.note {
+  @apply text-xs text-gray-400 mt-1;
 }
 </style>
 

@@ -1,27 +1,32 @@
 <template>
-  <div class="bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-xl space-y-6 text-white">
+  <div class="space-y-6 bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-xl text-white">
     <!-- Header -->
-    <div class="flex items-center justify-between flex-wrap gap-3">
-      <h2 class="text-2xl font-semibold text-white">JSON ↔ YAML Converter</h2>
-      <div class="flex items-center gap-2 flex-wrap">
-        <button @click="clearAll" class="btn-secondary">Clear</button>
-        <button @click="autoConvert" class="btn-primary">Auto Convert</button>
-        <button v-if="output" @click="copy(output)" class="btn-primary">
-          {{ copiedMsg ? 'Copied!' : 'Copy Output' }}
-        </button>
+    <div class="card">
+      <div class="flex items-center justify-between flex-wrap gap-3">
+        <div>
+          <h2 class="text-2xl font-semibold">🔄 JSON ↔ YAML Converter</h2>
+          <p class="text-sm text-gray-400 mt-1">Convert between JSON and YAML formats with syntax highlighting</p>
+        </div>
+        <div class="flex items-center gap-2 flex-wrap">
+          <button @click="clearAll" class="btn">🗑️ Clear</button>
+          <button @click="autoConvert" class="btn-primary">✨ Auto Convert</button>
+          <button v-if="output" @click="copy(output)" class="btn-success">
+            {{ copiedMsg ? '✓ Copied!' : '📋 Copy Output' }}
+          </button>
+        </div>
       </div>
     </div>
 
     <!-- Input Section -->
-    <div class="bg-gray-900 rounded-xl p-5 border border-gray-700 space-y-3">
+    <div class="card space-y-3">
       <div class="flex items-center justify-between gap-3 flex-wrap">
-        <label class="text-sm font-medium text-gray-300">📝 Input (JSON or YAML)</label>
+        <label class="label">📝 Input (JSON or YAML)</label>
         <div class="flex items-center gap-3 flex-wrap">
-          <button @click="convertToYaml" class="px-3 py-1.5 text-xs bg-yellow-600 hover:bg-yellow-500 rounded-lg text-white transition-colors">
-            To YAML
+          <button @click="convertToYaml" class="btn-warning text-xs">
+            → YAML
           </button>
-          <button @click="convertToJson" class="px-3 py-1.5 text-xs bg-blue-600 hover:bg-blue-500 rounded-lg text-white transition-colors">
-            To JSON
+          <button @click="convertToJson" class="btn-info text-xs">
+            → JSON
           </button>
         </div>
       </div>
@@ -29,7 +34,7 @@
       <textarea
           v-model="input"
           placeholder="Paste JSON or YAML here..."
-          class="w-full min-h-48 p-4 rounded-lg border border-gray-700 bg-black text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent font-mono text-sm resize-y transition-all"
+          class="input min-h-48 resize-y font-mono"
           spellcheck="false"
       ></textarea>
 
@@ -42,16 +47,16 @@
     </div>
 
     <!-- Options -->
-    <div class="bg-gray-900 rounded-xl p-5 border border-gray-700">
+    <div class="card">
       <h3 class="text-sm font-medium text-gray-300 mb-4">⚙️ Conversion Options</h3>
       <div class="flex flex-wrap items-center gap-4">
         <label class="flex items-center gap-2">
           <input type="checkbox" v-model="prettyJson" class="w-4 h-4 accent-indigo-500" />
-          <span class="text-xs text-gray-300">Prettify JSON output</span>
+          <span class="text-sm text-gray-300">Prettify JSON output</span>
         </label>
         <label class="flex items-center gap-2">
           <input type="checkbox" v-model="sortKeys" class="w-4 h-4 accent-indigo-500" />
-          <span class="text-xs text-gray-300">Sort keys alphabetically</span>
+          <span class="text-sm text-gray-300">Sort keys alphabetically</span>
         </label>
       </div>
     </div>
@@ -65,11 +70,10 @@
     </div>
 
     <!-- Output -->
-    <div v-if="output" class="bg-gray-900 rounded-xl border border-gray-700 overflow-hidden">
-      <!-- Header with direction indicator -->
-      <div class="bg-gray-800/50 border-b border-gray-700 px-5 py-3 flex items-center justify-between gap-3">
+    <div v-if="output" class="card space-y-3">
+      <div class="flex items-center justify-between gap-3 flex-wrap">
         <div class="flex items-center gap-2">
-          <span class="text-sm font-medium text-gray-300">📄 Output</span>
+          <span class="label">📄 Output</span>
           <span v-if="conversionDirection !== 'none'" class="text-xs px-2 py-1 rounded bg-indigo-600/20 text-indigo-300 border border-indigo-500/30">
             {{ conversionDirection === 'json-to-yaml' ? 'JSON → YAML' : 'YAML → JSON' }}
           </span>
@@ -79,8 +83,8 @@
         </span>
       </div>
 
-      <div class="p-5">
-        <pre class="bg-black p-4 rounded-lg border border-gray-700 overflow-auto max-h-[600px] text-sm font-mono"><code :class="`language-${conversionDirection === 'json-to-yaml' ? 'yaml' : 'json'}`" v-html="highlightedOutput"></code></pre>
+      <div class="mono-box max-h-[600px] overflow-auto">
+        <pre><code :class="`language-${conversionDirection === 'json-to-yaml' ? 'yaml' : 'json'}`" v-html="highlightedOutput"></code></pre>
       </div>
     </div>
   </div>
@@ -201,15 +205,42 @@ function sortObject(obj: any): any {
 </script>
 
 <style scoped>
-.btn-primary {
-  @apply bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded-lg text-white text-sm font-medium;
-  @apply disabled:opacity-50 disabled:cursor-not-allowed;
-  @apply transition-all shadow-lg shadow-indigo-600/20 hover:shadow-indigo-600/40;
+.label {
+  @apply text-sm font-medium text-gray-300 block mb-2;
 }
 
-.btn-secondary {
-  @apply bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded-lg text-white text-sm font-medium;
+.input {
+  @apply bg-black text-white border-2 border-gray-700 rounded-lg px-3 py-2 w-full;
+  @apply focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all;
+}
+
+.btn {
+  @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded-lg text-white text-sm transition-colors;
   @apply disabled:opacity-50 disabled:cursor-not-allowed;
-  @apply transition-all;
+}
+
+.btn-primary {
+  @apply bg-indigo-600 hover:bg-indigo-500 px-4 py-1.5 rounded-lg text-white text-sm font-medium transition-colors shadow-lg;
+  @apply disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+.btn-success {
+  @apply bg-green-600 hover:bg-green-700 px-3 py-1.5 rounded-lg text-white text-sm font-medium transition-colors;
+}
+
+.btn-warning {
+  @apply bg-yellow-600 hover:bg-yellow-700 px-3 py-1.5 rounded-lg text-white text-sm transition-colors;
+}
+
+.btn-info {
+  @apply bg-blue-600 hover:bg-blue-700 px-3 py-1.5 rounded-lg text-white text-sm transition-colors;
+}
+
+.card {
+  @apply bg-gray-900 rounded-xl p-5 border border-gray-700;
+}
+
+.mono-box {
+  @apply bg-gray-800 text-green-300 font-mono text-sm p-3 rounded-lg border border-gray-700 overflow-x-auto;
 }
 </style>

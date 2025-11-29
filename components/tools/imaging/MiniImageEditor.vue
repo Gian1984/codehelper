@@ -1,16 +1,21 @@
 <template>
-  <div class="p-8 bg-gray-800 rounded shadow space-y-6">
-    <h2 class="text-xl text-white font-semibold">Mini Image Editor</h2>
+  <div class="space-y-6 bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-xl text-white">
+    <!-- Header -->
+    <div class="card">
+      <h2 class="text-2xl font-semibold">🖼️ Mini Image Editor</h2>
+      <p class="text-sm text-gray-400 mt-1">Edit images with filters, crop, rotate, and export in multiple formats</p>
+    </div>
 
     <!-- Dropzone -->
     <div
-        class="border-2 border-dashed border-gray-600 rounded p-6 text-center bg-gray-900 text-gray-300 cursor-pointer"
+        class="card border-2 border-dashed border-gray-600 hover:border-indigo-500 transition-colors text-center cursor-pointer"
         @dragover.prevent
         @drop.prevent="onDrop"
         @click="fileInput?.click()"
     >
-      <p class="mb-2">Drag & drop an image here, or click to select.</p>
-      <p class="text-xs text-gray-400">PNG / JPEG / WebP, up to ~20MB.</p>
+      <div class="text-6xl mb-4">🖼️</div>
+      <p class="mb-2 text-lg text-gray-200">Drag & drop an image here, or click to select</p>
+      <p class="text-sm text-gray-400">PNG / JPEG / WebP, up to ~20MB</p>
       <input ref="fileInput" type="file" accept="image/*" class="hidden" @change="onFileChange" />
     </div>
 
@@ -18,7 +23,7 @@
     <div v-show="img.loaded" class="space-y-6">
 
       <!-- TOP ROW: Editing Controls (Filters & Presets) -->
-      <div class="bg-gray-900 border border-gray-700 rounded p-4">
+      <div class="card">
         <p class="text-white font-medium text-sm mb-4">✨ Editing Controls</p>
 
         <div class="grid md:grid-cols-2 gap-6">
@@ -41,24 +46,24 @@
               <div class="space-y-2">
                 <!-- Basic Presets -->
                 <div class="flex flex-wrap gap-1.5">
-                  <button class="px-2 py-1 bg-gray-700 hover:bg-gray-600 text-white rounded text-xs" @click="preset('none')">none</button>
-                  <button class="px-2 py-1 bg-gray-700 hover:bg-gray-600 text-white rounded text-xs" @click="preset('bw')">b&w</button>
-                  <button class="px-2 py-1 bg-gray-700 hover:bg-gray-600 text-white rounded text-xs" @click="preset('punch')">punch</button>
-                  <button class="px-2 py-1 bg-gray-700 hover:bg-gray-600 text-white rounded text-xs" @click="preset('warm')">warm</button>
-                  <button class="px-2 py-1 bg-gray-700 hover:bg-gray-600 text-white rounded text-xs" @click="preset('cool')">cool</button>
+                  <button class="btn btn-xs" @click="preset('none')">none</button>
+                  <button class="btn btn-xs" @click="preset('bw')">b&w</button>
+                  <button class="btn btn-xs" @click="preset('punch')">punch</button>
+                  <button class="btn btn-xs" @click="preset('warm')">warm</button>
+                  <button class="btn btn-xs" @click="preset('cool')">cool</button>
                 </div>
                 <!-- Instagram-style Presets -->
                 <div class="pt-1 border-t border-gray-700">
                   <p class="text-gray-500 text-xs mb-1.5 italic">Instagram-inspired</p>
                   <div class="flex flex-wrap gap-1.5">
-                    <button class="px-2 py-1 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white rounded text-xs" @click="preset('clarendon')">clarendon</button>
-                    <button class="px-2 py-1 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white rounded text-xs" @click="preset('gingham')">gingham</button>
-                    <button class="px-2 py-1 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white rounded text-xs" @click="preset('juno')">juno</button>
-                    <button class="px-2 py-1 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white rounded text-xs" @click="preset('lark')">lark</button>
-                    <button class="px-2 py-1 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white rounded text-xs" @click="preset('ludwig')">ludwig</button>
-                    <button class="px-2 py-1 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white rounded text-xs" @click="preset('valencia')">valencia</button>
-                    <button class="px-2 py-1 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white rounded text-xs" @click="preset('hudson')">hudson</button>
-                    <button class="px-2 py-1 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white rounded text-xs" @click="preset('toaster')">toaster</button>
+                    <button class="btn-preset" @click="preset('clarendon')">clarendon</button>
+                    <button class="btn-preset" @click="preset('gingham')">gingham</button>
+                    <button class="btn-preset" @click="preset('juno')">juno</button>
+                    <button class="btn-preset" @click="preset('lark')">lark</button>
+                    <button class="btn-preset" @click="preset('ludwig')">ludwig</button>
+                    <button class="btn-preset" @click="preset('valencia')">valencia</button>
+                    <button class="btn-preset" @click="preset('hudson')">hudson</button>
+                    <button class="btn-preset" @click="preset('toaster')">toaster</button>
                   </div>
                 </div>
               </div>
@@ -110,18 +115,18 @@
         </div>
 
         <!-- Zoom Controls -->
-        <div class="flex flex-wrap items-center justify-center gap-3 bg-gray-900 border border-gray-700 rounded p-3">
+        <div class="card flex flex-wrap items-center justify-center gap-3">
           <span class="text-xs text-gray-400">Zoom:</span>
-          <button class="px-2 py-1 bg-gray-700 hover:bg-gray-600 text-white rounded text-sm" @click="nudgeZoom(-0.1)">−</button>
+          <button class="btn btn-xs" @click="nudgeZoom(-0.1)">−</button>
           <input type="range" min="0.25" max="3" step="0.05" v-model.number="zoom.value" class="w-48" />
-          <button class="px-2 py-1 bg-gray-700 hover:bg-gray-600 text-white rounded text-sm" @click="nudgeZoom(0.1)">+</button>
-          <button class="px-2 py-1 bg-gray-700 hover:bg-gray-600 text-white rounded text-sm" @click="setZoom(1)">100%</button>
+          <button class="btn btn-xs" @click="nudgeZoom(0.1)">+</button>
+          <button class="btn btn-xs" @click="setZoom(1)">100%</button>
           <span class="text-xs text-gray-300 font-mono">{{ Math.round(zoom.value * 100) }}%</span>
         </div>
       </div>
 
       <!-- BOTTOM ROW: Output Controls (Transform, Crop Actions, Export) -->
-      <div class="bg-gray-900 border border-gray-700 rounded p-4">
+      <div class="card">
         <p class="text-white font-medium text-sm mb-4">💾 Output Controls</p>
 
         <div class="grid md:grid-cols-3 gap-6">
@@ -130,27 +135,22 @@
             <p class="text-white text-xs font-medium">Transform & Size</p>
             <div class="space-y-2">
               <div>
-                <label class="block text-gray-400 text-xs mb-1">rotate (°)</label>
-                <input type="number" v-model.number="state.rotate"
-                       class="w-full bg-gray-800 text-white border border-gray-600 rounded px-2 py-1 text-sm" />
+                <label class="label">rotate (°)</label>
+                <input type="number" v-model.number="state.rotate" class="input" />
               </div>
               <div class="flex items-center gap-2">
                 <label class="text-gray-400 text-xs">flip</label>
-                <button class="px-2 py-1 bg-gray-700 hover:bg-gray-600 text-white rounded text-xs"
-                        @click="state.flipX = !state.flipX">H</button>
-                <button class="px-2 py-1 bg-gray-700 hover:bg-gray-600 text-white rounded text-xs"
-                        @click="state.flipY = !state.flipY">V</button>
+                <button class="btn btn-xs" @click="state.flipX = !state.flipX">H</button>
+                <button class="btn btn-xs" @click="state.flipY = !state.flipY">V</button>
               </div>
               <div class="grid grid-cols-2 gap-2">
                 <div>
-                  <label class="block text-gray-400 text-xs mb-1">width</label>
-                  <input type="number" min="1" v-model.number="state.outW"
-                         class="w-full bg-gray-800 text-white border border-gray-600 rounded px-2 py-1 text-sm" />
+                  <label class="label">width</label>
+                  <input type="number" min="1" v-model.number="state.outW" class="input" />
                 </div>
                 <div>
-                  <label class="block text-gray-400 text-xs mb-1">height</label>
-                  <input type="number" min="1" v-model.number="state.outH"
-                         class="w-full bg-gray-800 text-white border border-gray-600 rounded px-2 py-1 text-sm" />
+                  <label class="label">height</label>
+                  <input type="number" min="1" v-model.number="state.outH" class="input" />
                 </div>
               </div>
               <div class="flex items-center gap-2">
@@ -164,18 +164,16 @@
           <div class="space-y-3">
             <p class="text-white text-xs font-medium">Crop & History</p>
             <div class="flex flex-col gap-2">
-              <button class="px-3 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded text-sm" @click="toggleCrop">
+              <button class="btn" @click="toggleCrop">
                 {{ crop.visible ? '✕ hide crop' : '✂️ show crop' }}
               </button>
-              <button class="px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded text-sm disabled:opacity-50"
-                      :disabled="!crop.visible" @click="applyCrop">
+              <button class="btn-info" :disabled="!crop.visible" @click="applyCrop">
                 ✓ apply crop
               </button>
-              <button class="px-3 py-2 bg-yellow-600 hover:bg-yellow-700 text-white rounded text-sm disabled:opacity-50"
-                      :disabled="!history.length" @click="undo">
+              <button class="btn-warning" :disabled="!history.length" @click="undo">
                 ↶ undo
               </button>
-              <button class="px-3 py-2 bg-red-600 hover:bg-red-700 text-white rounded text-sm" @click="resetAll">
+              <button class="btn-danger" @click="resetAll">
                 ⟲ reset all
               </button>
             </div>
@@ -186,14 +184,12 @@
             <p class="text-white text-xs font-medium">Export Settings</p>
             <div class="space-y-2">
               <div>
-                <label class="block text-gray-400 text-xs mb-1">file name</label>
-                <input type="text" v-model="exp.name" placeholder="edited-image"
-                       class="w-full bg-gray-800 text-white border border-gray-600 rounded px-2 py-1 text-sm" />
+                <label class="label">file name</label>
+                <input type="text" v-model="exp.name" placeholder="edited-image" class="input" />
               </div>
               <div>
-                <label class="block text-gray-400 text-xs mb-1">format</label>
-                <select v-model="exp.format"
-                        class="w-full bg-gray-800 text-white border border-gray-600 rounded px-2 py-1 text-sm">
+                <label class="label">format</label>
+                <select v-model="exp.format" class="input">
                   <option value="image/png">PNG (lossless)</option>
                   <option value="image/jpeg">JPEG</option>
                   <option :disabled="!exp.webpSupported" value="image/webp">WebP</option>
@@ -212,12 +208,10 @@
                 <span class="font-mono">{{ exp.size ? prettySize(exp.size) : '—' }}</span>
               </div>
               <div class="flex gap-2 pt-2">
-                <button class="flex-1 px-3 py-2 bg-green-600 hover:bg-green-700 text-white rounded text-sm disabled:opacity-50"
-                        :disabled="!exp.url" @click="download">
+                <button class="flex-1 btn-success" :disabled="!exp.url" @click="download">
                   ⬇ download
                 </button>
-                <button class="px-3 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded text-sm"
-                        @click="refreshEncoded()">⟳</button>
+                <button class="btn" @click="refreshEncoded()">⟳</button>
               </div>
             </div>
           </div>
@@ -677,6 +671,56 @@ defineExpose({ stageStyle, cropBoxStyle, handleStyle })
 </script>
 
 <style scoped>
+.label {
+  @apply text-sm font-medium text-gray-300 block mb-2;
+}
+
+.input {
+  @apply bg-black text-white border-2 border-gray-700 rounded-lg px-3 py-2 w-full;
+  @apply focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all;
+}
+
+.btn {
+  @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded-lg text-white text-sm transition-colors;
+  @apply disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+.btn-primary {
+  @apply bg-indigo-600 hover:bg-indigo-500 px-4 py-1.5 rounded-lg text-white text-sm font-medium transition-colors shadow-lg;
+  @apply disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+.btn-success {
+  @apply bg-green-600 hover:bg-green-700 px-3 py-1.5 rounded-lg text-white text-sm font-medium transition-colors;
+}
+
+.btn-warning {
+  @apply bg-yellow-600 hover:bg-yellow-700 px-3 py-1.5 rounded-lg text-white text-sm transition-colors;
+  @apply disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+.btn-danger {
+  @apply bg-red-600 hover:bg-red-700 px-3 py-1.5 rounded-lg text-white text-sm transition-colors;
+}
+
+.btn-info {
+  @apply bg-blue-600 hover:bg-blue-700 px-3 py-1.5 rounded-lg text-white text-sm transition-colors;
+  @apply disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+.btn-xs {
+  @apply px-2 py-1 text-xs;
+}
+
+.btn-preset {
+  @apply bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500;
+  @apply px-2 py-1 rounded-lg text-white text-xs transition-colors;
+}
+
+.card {
+  @apply bg-gray-900 rounded-xl p-5 border border-gray-700;
+}
+
 /* Bigger resize handles for easier grabbing */
 [style*="cursor:nwse-resize"], [style*="cursor:nesw-resize"],
 [style*="cursor:ew-resize"], [style*="cursor:ns-resize"] {

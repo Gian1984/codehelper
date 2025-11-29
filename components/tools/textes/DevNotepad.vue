@@ -1,18 +1,23 @@
 <template>
-  <div class="space-y-4 bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-xl text-white" :class="{ 'fixed inset-4 z-50': distractionFree }">
+  <div class="space-y-6 bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-xl text-white" :class="{ 'fixed inset-4 z-50': distractionFree }">
     <!-- Header -->
-    <div class="flex items-center justify-between gap-3 flex-wrap">
-      <h2 class="text-2xl font-semibold">📝 Dev Notepad</h2>
-      <div class="flex items-center gap-2">
-        <button class="btn text-xs" @click="showHistory = !showHistory" title="Version History">
-          🕒 {{ snapshots.length }}
-        </button>
-        <button class="btn text-xs" @click="showSearch = !showSearch" title="Search & Replace">
-          🔍 search
-        </button>
-        <button class="btn text-xs" @click="distractionFree = !distractionFree" title="Distraction-free Mode">
-          {{ distractionFree ? '📐' : '🎯' }}
-        </button>
+    <div class="card">
+      <div class="flex items-center justify-between gap-3 flex-wrap">
+        <div>
+          <h2 class="text-2xl font-semibold">📝 Dev Notepad</h2>
+          <p class="text-sm text-gray-400 mt-1">Advanced notepad with Markdown & HTML support, multi-tabs, version history, and search</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button class="btn text-xs" @click="showHistory = !showHistory" title="Version History">
+            🕒 {{ snapshots.length }}
+          </button>
+          <button class="btn text-xs" @click="showSearch = !showSearch" title="Search & Replace">
+            🔍 search
+          </button>
+          <button class="btn text-xs" @click="distractionFree = !distractionFree" title="Distraction-free Mode">
+            {{ distractionFree ? '📐' : '🎯' }}
+          </button>
+        </div>
       </div>
     </div>
 
@@ -713,12 +718,31 @@ watch(mode, () => {
 </script>
 
 <style scoped>
-.label { @apply text-sm text-gray-300 block mb-1; }
-.input { @apply bg-black text-white w-full px-3 py-2 rounded-md border border-gray-700 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors; }
-.btn { @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded text-white text-sm disabled:opacity-50 disabled:cursor-not-allowed transition-colors; }
-.btn-sm { @apply bg-gray-700 hover:bg-gray-600 px-2 py-1 rounded text-white text-xs transition-colors; }
-.btn-warning { @apply bg-red-600 hover:bg-red-500 px-3 py-1.5 rounded text-white text-sm transition-colors; }
-.card { @apply bg-black rounded-xl p-4 border border-gray-700; }
+.label {
+  @apply text-sm font-medium text-gray-300 block mb-2;
+}
+
+.input {
+  @apply bg-black text-white border-2 border-gray-700 rounded-lg px-3 py-2 w-full;
+  @apply focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all;
+}
+
+.btn {
+  @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded-lg text-white text-sm transition-colors;
+  @apply disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+.btn-sm {
+  @apply bg-gray-700 hover:bg-gray-600 px-2 py-1 rounded-lg text-white text-xs transition-colors;
+}
+
+.btn-warning {
+  @apply bg-red-600 hover:bg-red-700 px-3 py-1.5 rounded-lg text-white text-sm transition-colors;
+}
+
+.card {
+  @apply bg-gray-900 rounded-xl p-5 border border-gray-700;
+}
 
 .editor-content {
   @apply w-full transition-all;
