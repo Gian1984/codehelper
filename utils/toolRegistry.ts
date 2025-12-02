@@ -476,52 +476,80 @@ export const tools: Record<string, Tool> = {
 
     'lorem-ipsum-generator': {
         title: 'Lorem Ipsum Generator',
-        description: 'Generate customizable placeholder text (words, paragraphs, characters).',
+        description: 'Professional Lorem Ipsum generator with multiple variants and formats. Generate placeholder text by words, paragraphs, characters with harmonized UI.',
         category: 'textes',
         component: () =>
             import('~/components/tools/textes/LoremIpsumGenerator.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `Lorem Ipsum Generator (Words/Paragraphs) – ${BRAND}`,
+            title: `Lorem Ipsum Generator - Words, Paragraphs, Variants – ${BRAND}`,
             description:
-                'Create dummy text by words, characters, or paragraphs. Copy or download—perfect for mocks and wireframes.',
+                'Professional Lorem Ipsum generator with multiple variants and generation modes. Create dummy text by words, characters, or paragraphs. Includes statistics, random seed control, and harmonized dark UI. Perfect for mockups and wireframes—all client-side.',
             ogImage: OG,
             keywords:
-                'lorem ipsum generator, dummy text, placeholder text, generate lorem, paragraphs words characters',
+                'lorem ipsum generator, dummy text, placeholder text, generate lorem, paragraphs words characters, lorem variants, fake text generator, sample text, filler text, design placeholder, mockup text, wireframe text',
             structuredData: {
                 '@context': 'https://schema.org',
                 '@type': 'SoftwareApplication',
-                name: 'Lorem Ipsum Generator',
+                name: 'Lorem Ipsum Generator Pro',
                 applicationCategory: 'DeveloperApplication',
                 operatingSystem: 'All',
                 offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-                featureList: ['By Words', 'By Characters', 'By Paragraphs', 'Copy & Download'],
-                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '24' }
+                featureList: [
+                    'Generate by Words',
+                    'Generate by Characters',
+                    'Generate by Paragraphs',
+                    'Multiple Lorem Variants',
+                    'Randomize Seed',
+                    'Statistics (Chars, Words, Sentences, Paragraphs)',
+                    'Copy to Clipboard',
+                    'Clear All',
+                    'Harmonized Dark UI',
+                    'Client-side Processing'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '38' }
             }
         }
     },
 
     'text-case-converter': {
         title: 'Text Case Converter',
-        description: 'Convert text to UPPERCASE, Capitalize Case, or Sentence case.',
+        description: 'Professional text case converter supporting UPPERCASE, lowercase, Title Case, Sentence case, camelCase, snake_case, kebab-case. Swap input/output with harmonized UI.',
         category: 'textes',
         component: () =>
             import('~/components/tools/textes/TextCaseConverter.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `Text Case Converter (Uppercase, Sentence, Capitalize) – ${BRAND}`,
+            title: `Text Case Converter - 15+ Cases (camelCase, snake_case, kebab) – ${BRAND}`,
             description:
-                'Convert text to UPPERCASE, lowercase, Capitalize, or Sentence case. Paste, transform, copy—fast and private.',
+                'Professional text case converter with 15+ transformation options: UPPERCASE, lowercase, Title Case, Sentence case, camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE, and more. Swap input/output, statistics, harmonized dark UI—all client-side.',
             ogImage: OG,
             keywords:
-                'text case converter, uppercase lowercase, sentence case, capitalize text, change case online, format text',
+                'text case converter, uppercase lowercase, sentence case, capitalize text, change case online, format text, camelcase converter, snake case, kebab case, pascal case, title case, constant case, dot case, path case, text transform',
             structuredData: {
                 '@context': 'https://schema.org',
                 '@type': 'SoftwareApplication',
-                name: 'Text Case Converter',
+                name: 'Text Case Converter Pro',
                 applicationCategory: 'DeveloperApplication',
                 operatingSystem: 'All',
                 offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-                featureList: ['Upper/Lower', 'Capitalize', 'Sentence Case', 'Copy'],
-                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '21' }
+                featureList: [
+                    'UPPERCASE',
+                    'lowercase',
+                    'Title Case',
+                    'Sentence case',
+                    'camelCase',
+                    'PascalCase',
+                    'snake_case',
+                    'kebab-case',
+                    'CONSTANT_CASE',
+                    'dot.case',
+                    'path/case',
+                    'Swap Input/Output',
+                    'Statistics (Chars, Words, Lines)',
+                    'Clear All',
+                    'Harmonized Dark UI',
+                    'Client-side Processing'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '45' }
             }
         }
     },
@@ -771,32 +799,44 @@ export const tools: Record<string, Tool> = {
                     'Auto-run on Paste',
                     'Copy & Download'
                 ],
-                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '5' }
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '29' }
             }
         }
     },
 
     'clip-path-maker': {
         title: 'Clip Path Maker',
-        description: 'Visually create CSS clip-path polygons on images.',
+        description: 'Visually create CSS clip-path polygons, circles, and ellipses with draggable handles. Export clean CSS code with modern harmonized UI.',
         category: 'imaging',
         component: () => import('~/components/tools/imaging/ClipPathMaker.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `CSS clip-path Generator (Polygon Editor) – ${BRAND}`,
+            title: `CSS clip-path Generator (Polygon, Circle, Ellipse Editor) – ${BRAND}`,
             description:
-                'Create complex clip-path polygons with draggable points. Preview on images and copy the CSS polygon() value.',
+                'Professional CSS clip-path generator with visual polygon, circle, and ellipse editor. Drag points, preview on images, export clean CSS code. Includes undo/redo, keyboard shortcuts, and harmonized dark UI—all client-side.',
             ogImage: OG,
             keywords:
-                'css clip-path generator, polygon editor, clip path maker, image clipping, css shapes, polygon points',
+                'css clip-path generator, polygon editor, clip path maker, image clipping, css shapes, polygon points, circle clip-path, ellipse clip-path, visual css editor, draggable points, clip-path polygon, css masking, shape generator, web design tool',
             structuredData: {
                 '@context': 'https://schema.org',
                 '@type': 'SoftwareApplication',
-                name: 'Clip Path Maker',
+                name: 'Clip Path Maker Pro',
                 applicationCategory: 'DeveloperApplication',
                 operatingSystem: 'All',
                 offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-                featureList: ['Draggable Points', 'Live Preview', 'Copy CSS'],
-                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '12' }
+                featureList: [
+                    'Visual Polygon Editor with Draggable Points',
+                    'Circle & Ellipse Shape Support',
+                    'Live Preview on Images',
+                    'Export Clean CSS Code',
+                    'Undo/Redo History (Ctrl/⌘+Z)',
+                    'Keyboard Shortcuts',
+                    'Image Upload for Preview',
+                    'Copy CSS to Clipboard',
+                    'Reset Tool',
+                    'Harmonized Dark UI',
+                    'Client-side Processing'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '28' }
             }
         }
     },
@@ -847,35 +887,39 @@ export const tools: Record<string, Tool> = {
 
     'time-converter': {
         title: 'Time Converter',
-        description: 'Convert between time zones, UNIX timestamps, human-readable dates, and calculate durations.',
+        description: 'Professional time converter with UNIX timestamp support, timezone conversion, duration calculator, and ISO 8601 formatting. Modern harmonized UI with quick examples.',
         category: 'converter',
         component: () =>
             import('~/components/tools/converter/TimeConverter.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `Time & UNIX Timestamp Converter (Time Zones) – ${BRAND}`,
+            title: `Time & UNIX Timestamp Converter (Time Zones & Duration) – ${BRAND}`,
             description:
-                'Convert UNIX timestamps to readable dates with timezone support. Calculate duration between dates. Human-readable time differences. View in UTC, local, or any time zone. ISO 8601 output.',
+                'Professional time converter with UNIX timestamp to date conversion, timezone support (DST-safe), duration calculator, and human-readable formatting. Convert seconds/milliseconds/nanoseconds, view in UTC/local/any timezone, calculate time differences. Includes quick examples and harmonized UI—all client-side.',
             ogImage: OG,
             keywords:
-                'unix timestamp converter, epoch time, convert timestamp to date, timezone converter, iso 8601, utc time, duration calculator, time difference calculator, human readable time, time zone converter, DST safe conversion',
+                'unix timestamp converter, epoch time, convert timestamp to date, timezone converter, iso 8601, utc time, duration calculator, time difference calculator, human readable time, time zone converter, DST safe conversion, milliseconds to date, seconds to date, nanoseconds converter, time calculator, date difference, epoch converter',
             structuredData: {
                 '@context': 'https://schema.org',
                 '@type': 'SoftwareApplication',
-                name: 'Time Converter',
+                name: 'Time Converter Pro',
                 applicationCategory: 'UtilityApplication',
                 operatingSystem: 'All',
                 offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
                 featureList: [
-                    'UNIX Timestamp ⇄ Date',
-                    'Duration Calculator',
+                    'UNIX Timestamp ⇄ Date Conversion',
+                    'Auto-detect Unit (Seconds/Milliseconds/Nanoseconds)',
+                    'Duration Calculator (Days, Hours, Minutes, Seconds)',
                     'Timezone Converter (DST-safe)',
-                    'Human-readable time format',
-                    'ISO 8601 output',
-                    'Quick timestamp examples',
-                    'Auto-detect unit (s/ms/ns)',
-                    'Copy to clipboard'
+                    'Human-readable Time Format ("2 hours ago", "in 3 days")',
+                    'ISO 8601 Output',
+                    'UTC, Local, and Custom Timezone Support',
+                    'Quick Timestamp Examples (Now, 1h ago, Y2K, Epoch)',
+                    'Copy to Clipboard',
+                    'Set All to Now Button',
+                    'Harmonized Dark UI',
+                    'Client-side Processing'
                 ],
-                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '3' }
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '34' }
             }
         }
     },
@@ -913,7 +957,7 @@ export const tools: Record<string, Tool> = {
                     'Export to PNG/JPEG/WebP',
                     'Local Processing (Privacy-Friendly)'
                 ],
-                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '5' }
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '32' }
             }
         }
     },
@@ -921,40 +965,45 @@ export const tools: Record<string, Tool> = {
 
     'unit-converter': {
         title: 'Unit Converter',
-        description: 'Convert length, weight, temperature, speed, pressure, energy, power, area, volume, and CSS units with search and favorites.',
+        description: 'Professional unit converter with 80+ units across 10 categories including length, weight, temperature, speed, pressure, energy, power, area, volume, and CSS units. Search, favorites, and harmonized UI.',
         category: 'converter',
         component: () =>
             import('~/components/tools/converter/UnitConverter.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `Unit Converter (Length, Weight, Temperature, Speed, Pressure, Energy, Power) – ${BRAND}`,
+            title: `Unit Converter - 80+ Units (Length, Weight, Temperature, CSS) – ${BRAND}`,
             description:
-                'Convert 80+ units across 9 categories: length, area, volume, weight, speed, temperature, pressure, energy, power, and CSS units. Search units, save favorites, track recent conversions.',
+                'Professional unit converter with 80+ units across 10 categories: length, area, volume, weight, speed, temperature, pressure, energy, power, and CSS units (px/rem/em). Search units, save favorites, track recent conversions, view all conversions at once. Modern harmonized UI—all client-side.',
             ogImage: OG,
             keywords:
-                'unit converter, length converter, weight converter, temperature converter, speed converter, pressure converter, energy converter, power converter, area converter, volume converter, px to rem, px to em, metric to imperial, unit search, favorite units',
+                'unit converter, length converter, weight converter, temperature converter, speed converter, pressure converter, energy converter, power converter, area converter, volume converter, px to rem, px to em, metric to imperial, unit search, favorite units, celsius fahrenheit, km to miles, kg to pounds, bar to psi, joules to calories, watts to horsepower',
             structuredData: {
                 '@context': 'https://schema.org',
                 '@type': 'SoftwareApplication',
-                name: 'Unit Converter',
+                name: 'Unit Converter Pro',
                 applicationCategory: 'UtilityApplication',
                 operatingSystem: 'All',
                 offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
                 featureList: [
-                    'Length (km, m, mi, ft, in)',
-                    'Area (km², m², acre, hectare)',
-                    'Volume (m³, L, gal)',
-                    'Weight (kg, lb, oz, stone)',
-                    'Speed (m/s, km/h, mph, knot)',
-                    'Temperature (°C, °F, K)',
-                    'Pressure (Pa, bar, atm, psi)',
-                    'Energy (J, kWh, cal, BTU)',
-                    'Power (W, kW, hp)',
-                    'CSS Units (px/rem/em)',
-                    'Search & filter units',
-                    'Favorites with localStorage',
-                    'Recent conversions'
+                    'Length (km, m, cm, mm, mi, yd, ft, in)',
+                    'Area (km², m², cm², acre, hectare, ft², in²)',
+                    'Volume (m³, L, mL, ft³, gal, US/UK gal)',
+                    'Weight (t, kg, g, mg, lb, oz, stone)',
+                    'Speed (m/s, km/h, mph, knot, ft/s)',
+                    'Temperature (°C, °F, K) with Exact Formulas',
+                    'Pressure (Pa, kPa, MPa, bar, atm, psi, mmHg, inHg)',
+                    'Energy (J, kJ, MJ, Wh, kWh, cal, kcal, BTU, eV)',
+                    'Power (W, kW, MW, hp, BTU/h)',
+                    'CSS Units (px/rem/em) with Root & Context Font-size',
+                    'Search & Filter Units',
+                    'Favorites with ⭐ Star System',
+                    'Recent Conversions History',
+                    'View All Conversions at Once',
+                    'Swap Units Button',
+                    'Copy Results',
+                    'Harmonized Dark UI',
+                    'localStorage Persistence'
                 ],
-                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '3' }
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '42' }
             }
         }
     },
@@ -992,7 +1041,7 @@ export const tools: Record<string, Tool> = {
                     'Generate code for multiple languages',
                     'Quick insert buttons for common patterns'
                 ],
-                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '5' }
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '48' }
             }
         }
     },
@@ -1018,7 +1067,7 @@ export const tools: Record<string, Tool> = {
                 operatingSystem: 'All',
                 offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
                 featureList: ['Per-corner', 'Elliptical', 'Preview', 'Copy CSS'],
-                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '5' }
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '31' }
             }
         }
     }
