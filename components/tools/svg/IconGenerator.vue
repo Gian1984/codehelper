@@ -1,11 +1,17 @@
 <template>
-  <div class="bg-gray-800 text-white p-6 sm:p-8 rounded-2xl shadow-xl space-y-6 mx-auto">
-    <div class="flex items-center justify-between gap-3 flex-wrap">
-      <h2 class="text-2xl font-semibold">✨ SVG Icon Generator</h2>
-      <div class="flex items-center gap-2">
-        <button class="btn" @click="undo" :disabled="!canUndo" title="Undo (Ctrl/⌘+Z)">↶ undo</button>
-        <button class="btn" @click="redo" :disabled="!canRedo" title="Redo (Ctrl/⌘+Y)">↷ redo</button>
-        <button class="btn-warning" @click="clearCanvas" title="Clear canvas">🗑️ clear</button>
+  <div class="space-y-6 bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-xl text-white mx-auto">
+    <!-- Header -->
+    <div class="card">
+      <div class="flex items-center justify-between gap-3 flex-wrap">
+        <div>
+          <h2 class="text-2xl font-semibold">✨ SVG Icon Generator</h2>
+          <p class="text-sm text-gray-400 mt-1">Create custom SVG icons with 33+ shapes and export as multi-size icon packs</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button class="btn" @click="undo" :disabled="!canUndo" title="Undo (Ctrl/⌘+Z)">↶ undo</button>
+          <button class="btn" @click="redo" :disabled="!canRedo" title="Redo (Ctrl/⌘+Y)">↷ redo</button>
+          <button class="btn-warning" @click="clearCanvas" title="Clear canvas">🗑️ clear</button>
+        </div>
       </div>
     </div>
 
@@ -868,13 +874,41 @@ function clearCanvas(){
 </script>
 
 <style scoped>
-.input { @apply bg-black text-white w-full px-3 py-2 rounded-md border border-gray-700; }
-.btn { @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded text-white disabled:opacity-50 disabled:cursor-not-allowed transition-colors; }
-.btn-primary { @apply bg-indigo-600 hover:bg-indigo-500 px-3 py-1.5 rounded text-white transition-colors; }
-.btn-warning { @apply bg-yellow-600 hover:bg-yellow-500 px-3 py-1.5 rounded text-white transition-colors; }
-.btn-danger { @apply bg-red-600 hover:bg-red-500 px-3 py-1.5 rounded text-white disabled:opacity-50 transition-colors; }
-.card { @apply bg-black rounded-xl p-4 border border-gray-700; }
-.icon-btn { @apply bg-indigo-600 px-3 py-2 rounded hover:bg-indigo-500 text-white transition-colors; }
+.label {
+  @apply text-sm font-medium text-gray-300 block mb-2;
+}
+
+.input {
+  @apply bg-black text-white border-2 border-gray-700 rounded-lg px-3 py-2 w-full;
+  @apply focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all;
+}
+
+.btn {
+  @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded-lg text-white text-sm transition-colors;
+  @apply disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+.btn-primary {
+  @apply bg-indigo-600 hover:bg-indigo-500 px-4 py-1.5 rounded-lg text-white text-sm font-medium transition-colors shadow-lg;
+  @apply disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+.btn-warning {
+  @apply bg-yellow-600 hover:bg-yellow-700 px-3 py-1.5 rounded-lg text-white text-sm transition-colors;
+}
+
+.btn-danger {
+  @apply bg-red-600 hover:bg-red-700 px-3 py-1.5 rounded-lg text-white text-sm transition-colors;
+  @apply disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+.card {
+  @apply bg-gray-900 rounded-xl p-5 border border-gray-700;
+}
+
+.icon-btn {
+  @apply bg-indigo-600 hover:bg-indigo-500 px-3 py-2 rounded-lg text-white transition-colors;
+}
 </style>
 
 

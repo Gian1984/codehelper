@@ -1,10 +1,16 @@
 <template>
-  <div class="p-6 sm:p-8 bg-gray-800 rounded-2xl shadow-xl space-y-6 text-gray-100">
-    <div class="flex items-center justify-between gap-3 flex-wrap">
-      <h2 class="text-2xl font-semibold">svg wave generator</h2>
-      <div class="flex items-center gap-2">
-        <button class="btn" @click="randomizeSeed">randomize</button>
-        <button class="btn-warning" @click="resetAll">reset</button>
+  <div class="space-y-6 bg-gray-800 p-6 sm:p-8 rounded-2xl shadow-xl text-white">
+    <!-- Header -->
+    <div class="card">
+      <div class="flex items-center justify-between gap-3 flex-wrap">
+        <div>
+          <h2 class="text-2xl font-semibold">🌊 SVG Wave Generator</h2>
+          <p class="text-sm text-gray-400 mt-1">Create customizable SVG wave shapes with amplitude, frequency, gradient, and mirror effects</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button class="btn" @click="randomizeSeed">🎲 randomize</button>
+          <button class="btn-warning" @click="resetAll">🗑️ reset</button>
+        </div>
       </div>
     </div>
 
@@ -408,13 +414,30 @@ function safeName(name: string, ext: 'svg' | 'png'): string {
 </script>
 
 <style scoped>
-.label { @apply text-sm text-gray-300; }
-.input { @apply text-black w-full px-3 py-2 rounded-md border border-gray-300; }
-.swatch { @apply w-10 h-8 p-0 border border-gray-500 rounded; }
-.btn { @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded text-white; }
-.btn-primary { @apply bg-indigo-600 hover:bg-indigo-500 px-3 py-1.5 rounded text-white; }
-.btn-warning { @apply bg-yellow-600 hover:bg-yellow-500 px-3 py-1.5 rounded text-white; }
-.card { @apply bg-gray-800/60 rounded-xl p-4 border border-gray-800; }
+.label {
+  @apply text-sm font-medium text-gray-300 block mb-2;
+}
+.input {
+  @apply bg-black text-white border-2 border-gray-700 rounded-lg px-3 py-2 w-full;
+  @apply focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all;
+}
+.swatch {
+  @apply w-10 h-8 p-0 border border-gray-500 rounded;
+}
+.btn {
+  @apply bg-gray-700 hover:bg-gray-600 px-3 py-1.5 rounded-lg text-white text-sm transition-colors;
+  @apply disabled:opacity-50 disabled:cursor-not-allowed;
+}
+.btn-primary {
+  @apply bg-indigo-600 hover:bg-indigo-500 px-4 py-1.5 rounded-lg text-white text-sm font-medium transition-colors shadow-lg;
+  @apply disabled:opacity-50 disabled:cursor-not-allowed;
+}
+.btn-warning {
+  @apply bg-yellow-600 hover:bg-yellow-700 px-3 py-1.5 rounded-lg text-white text-sm transition-colors;
+}
+.card {
+  @apply bg-gray-900 rounded-xl p-5 border border-gray-700;
+}
 </style>
 
 
