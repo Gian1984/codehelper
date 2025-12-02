@@ -24,7 +24,7 @@
 
     <!-- what it means -->
     <section class="mt-7 sm:mt-9 space-y-3">
-      <h2 class="text-base sm:text-lg font-semibold text-white">🔥 what it means for Pornainen</h2>
+      <h2 class="text-base sm:text-lg font-semibold text-white">🔥 What It Means for Pornainen</h2>
       <p class="text-[15.5px] sm:text-base leading-7 text-gray-200">
         Using sand as a heat store lets Loviisan Lämpö cut emissions by nearly
         <strong class="text-white">70%</strong>, eliminate oil entirely, and reduce wood-chip use by 60%.
@@ -41,13 +41,13 @@
       >
         “The Sand Battery allows us to drastically reduce emissions and improve reliability.
         It’s a major step toward our climate-neutral 2035 goal.”
-        <span class="block mt-2 text-sm text-gray-400 not-italic">— Mikko Paajanen, CEO of Loviisan Lämpö</span>
+        <span class="block mt-2 text-sm text-gray-400 not-italic">Mikko Paajanen, CEO of Loviisan Lämpö</span>
       </blockquote>
     </section>
 
     <!-- how it works -->
     <section class="mt-7 sm:mt-9 space-y-3">
-      <h2 class="text-base sm:text-lg font-semibold text-white">⚡ how it works</h2>
+      <h2 class="text-base sm:text-lg font-semibold text-white">⚡ How It Works</h2>
       <p class="text-[15.5px] sm:text-base leading-7 text-gray-200">
         The Sand Battery converts renewable electricity into high-temperature heat stored in granular media.
         That heat is later fed to <strong class="text-white">district heating</strong> or
@@ -58,7 +58,7 @@
 
     <!-- collaboration -->
     <section class="mt-7 sm:mt-9 space-y-3">
-      <h2 class="text-base sm:text-lg font-semibold text-white">🏗 a collaborative effort</h2>
+      <h2 class="text-base sm:text-lg font-semibold text-white">🏗 A Collaborative Effort</h2>
       <p class="text-[15.5px] sm:text-base leading-7 text-gray-200">
         The build involved <strong class="text-white">40 subcontractors</strong> and
         <strong class="text-white">100+ workers</strong> over a year. <strong class="text-white">Business Finland</strong>
@@ -70,11 +70,11 @@
 
     <!-- circular economy -->
     <section class="mt-7 sm:mt-9 space-y-3">
-      <h2 class="text-base sm:text-lg font-semibold text-white">🔄 circular economy in action</h2>
+      <h2 class="text-base sm:text-lg font-semibold text-white">🔄 Circular Economy In Action</h2>
       <p class="text-[15.5px] sm:text-base leading-7 text-gray-200">
         Unlike lithium batteries, the Sand Battery relies on abundant, recyclable
         <strong class="text-white">soapstone waste</strong>. It showcases how industrial side streams can be
-        repurposed into climate solutions—accelerating the <strong class="text-white">circular economy</strong> and
+        repurposed into climate solutions, accelerating the <strong class="text-white">circular economy</strong> and
         reducing dependence on scarce materials.
       </p>
     </section>

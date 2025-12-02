@@ -14,18 +14,18 @@
 
     <!-- growth -->
     <section class="mt-7 sm:mt-9 space-y-3">
-      <h2 class="text-base sm:text-lg font-semibold text-white">📈 the growth of ai-driven cybercrime</h2>
+      <h2 class="text-base sm:text-lg font-semibold text-white">📈 The Growth of AI-Driven Cybercrime</h2>
       <p class="text-[15.5px] sm:text-base leading-7 text-gray-200">
         the economics of cybercrime are shifting as off-the-shelf models and cheap cloud compute reduce
         the cost of personalized attacks. ibm’s <em>cost of a data breach 2025</em> pegs the global average breach
-        at about <strong class="text-white">$4.4m</strong>—down year over year but still substantial—warning that an
+        at about <strong class="text-white">$4.4m</strong>. Down year over year but still substantial, warning that an
         <em>ai oversight gap</em> raises risk where ai is adopted without governance.
         <a class="underline underline-offset-2 decoration-indigo-400 hover:decoration-indigo-300"
            href="https://www.ibm.com/reports/data-breach" target="_blank" rel="noopener noreferrer">(ibm 2025)</a>
       </p>
       <p class="text-[15.5px] sm:text-base leading-7 text-gray-200">
         fresh research by mit sloan &amp; safe security finds as much as
-        <strong class="text-white">80%</strong> of recent ransomware operations incorporate ai—from reconnaissance and
+        <strong class="text-white">80%</strong> of recent ransomware operations incorporate AI, from reconnaissance and
         target scoring to automated phishing and negotiation playbooks.
         <a class="underline underline-offset-2 decoration-indigo-400 hover:decoration-indigo-300"
            href="https://mitsloan.mit.edu/ideas-made-to-matter/80-ransomware-attacks-now-use-artificial-intelligence"
@@ -41,7 +41,7 @@
       </p>
       <p class="text-[15.5px] sm:text-base leading-7 text-gray-200">
         law enforcement sees the same trend: europol warns that organized crime now leverages ai to scale multilingual
-        fraud, impersonation, and automated workflows—anticipating even more autonomous, ai-enabled criminal networks.
+        fraud, impersonation, and automated workflows, anticipating even more autonomous AI-enabled criminal networks.
         <a class="underline underline-offset-2 decoration-indigo-400 hover:decoration-indigo-300"
            href="https://www.reuters.com/world/europe/europol-warns-ai-driven-crime-threats-2025-03-18/"
            target="_blank" rel="noopener noreferrer">(reuters: europol 2025)</a>
@@ -50,7 +50,7 @@
 
     <!-- types -->
     <section class="mt-7 sm:mt-9 space-y-3">
-      <h2 class="text-base sm:text-lg font-semibold text-white">🤖 types of ai-powered attacks</h2>
+      <h2 class="text-base sm:text-lg font-semibold text-white">🤖 Types of AI-Powered Attacks</h2>
       <p class="text-[15.5px] sm:text-base leading-7 text-gray-200">
         the modern attacker’s toolkit blends classic tactics with generative automation. four patterns dominate:
       </p>
@@ -64,14 +64,14 @@
         </li>
         <li>
           <strong>deepfakes &amp; voice cloning.</strong>
-          deepfakes now account for ~<strong>6.5%</strong> of fraud attacks globally—a surge of &gt; <strong>2,000%</strong> since 2022;
+          deepfakes now account for ~<strong>6.5%</strong> of fraud attacks globally, a surge of &gt; <strong>2,000%</strong> since 2022;
           many enterprises plan near-term investment in detection/response.
           <a class="underline underline-offset-2 decoration-indigo-400 hover:decoration-indigo-300"
              href="https://zerothreat.ai/blog/deepfake-and-ai-phishing-statistics" target="_blank" rel="noopener noreferrer">(zerothreat 2025)</a>
         </li>
         <li>
           <strong>adaptive / polymorphic malware.</strong>
-          attackers use ai to bypass captchas, morph payloads, and tune operations to live-off-the-land—evading signature-based controls.
+          attackers use AI to bypass captchas, morph payloads, and tune operations to live-off-the-land, evading signature-based controls.
           <a class="underline underline-offset-2 decoration-indigo-400 hover:decoration-indigo-300"
              href="https://mitsloan.mit.edu/ideas-made-to-matter/80-ransomware-attacks-now-use-artificial-intelligence"
              target="_blank" rel="noopener noreferrer">(mit sloan 2025)</a>
@@ -88,7 +88,7 @@
 
     <!-- defenses -->
     <section class="mt-7 sm:mt-9 space-y-3">
-      <h2 class="text-base sm:text-lg font-semibold text-white">🛡 defenses need to catch up</h2>
+      <h2 class="text-base sm:text-lg font-semibold text-white">🛡 Defenses Need to Catch Up</h2>
       <p class="text-[15.5px] sm:text-base leading-7 text-gray-200">
         point solutions won’t cut it. leading guidance emphasizes a layered program: automated security hygiene (patching,
         hardening, attack-surface reduction), <strong class="text-white">autonomous detection &amp; response</strong>
@@ -108,17 +108,17 @@
 
     <!-- global impact -->
     <section class="mt-7 sm:mt-9 space-y-3">
-      <h2 class="text-base sm:text-lg font-semibold text-white">🌍 global impact</h2>
+      <h2 class="text-base sm:text-lg font-semibold text-white">🌍 Global Impact</h2>
       <p class="text-[15.5px] sm:text-base leading-7 text-gray-200">
         ai-enhanced incidents have moved beyond the screen. in september 2025, jaguar land rover extended a production
-        shutdown for weeks after a cyberattack disrupted manufacturing systems—impacting tens of thousands of workers and suppliers.
+        shutdown for weeks after a cyberattack disrupted manufacturing systems, impacting tens of thousands of workers and suppliers.
         <a class="underline underline-offset-2 decoration-indigo-400 hover:decoration-indigo-300"
            href="https://www.reuters.com/en/britains-jlr-extends-production-halt-after-cybersecurity-incident-2025-09-16/"
            target="_blank" rel="noopener noreferrer">(reuters: jlr 2025)</a>
       </p>
       <p class="text-[15.5px] sm:text-base leading-7 text-gray-200">
         intelligence reports also document state-aligned groups using ai to forge documents and résumés to gain footholds via
-        remote jobs and supply-chain roles—blurring boundaries between cyber and fraud.
+        remote jobs and supply-chain roles, blurring boundaries between cyber and fraud.
         <a class="underline underline-offset-2 decoration-indigo-400 hover:decoration-indigo-300"
            href="https://www.businessinsider.com/north-korea-china-hackers-infiltrate-companies-ai-resumes-military-id-2025-9"
            target="_blank" rel="noopener noreferrer">(business insider 2025)</a>
@@ -127,7 +127,7 @@
 
     <!-- future -->
     <section class="mt-7 sm:mt-9 space-y-3">
-      <h2 class="text-base sm:text-lg font-semibold text-white">🔮 the future: toward autonomous attacks</h2>
+      <h2 class="text-base sm:text-lg font-semibold text-white">🔮 The Future: Toward Autonomous Attacks</h2>
       <p class="text-[15.5px] sm:text-base leading-7 text-gray-200">
         researchers and law-enforcement foresee <strong class="text-white">autonomous ai agents</strong> that can
         continuously scan, exploit, and exfiltrate with minimal human oversight. containment will require stronger model
@@ -140,7 +140,7 @@
 
     <!-- final thoughts -->
     <section class="mt-7 sm:mt-9 space-y-3">
-      <h2 class="text-base sm:text-lg font-semibold text-white">🧑‍💻 final thoughts</h2>
+      <h2 class="text-base sm:text-lg font-semibold text-white">🧑‍💻 Final Thoughts</h2>
       <p class="text-[15.5px] sm:text-base leading-7 text-gray-200">
         ai is a force multiplier for both attackers and defenders. treat models and agents as
         <strong class="text-white">untrusted inputs</strong> with powerful side effects.
@@ -151,18 +151,18 @@
 
     <!-- sources -->
     <section class="mt-7 sm:mt-9 space-y-3">
-      <h2 class="text-base sm:text-lg font-semibold text-white">📚 sources & further reading</h2>
+      <h2 class="text-base sm:text-lg font-semibold text-white">📚 Sources & Further Reading</h2>
       <ul class="list-disc pl-5 grid gap-2.5 text-[15.5px] sm:text-base leading-7 text-gray-200">
-        <li><a href="https://www.ibm.com/reports/data-breach" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 decoration-indigo-400 hover:decoration-indigo-300">ibm — cost of a data breach 2025</a></li>
-        <li><a href="https://mitsloan.mit.edu/ideas-made-to-matter/80-ransomware-attacks-now-use-artificial-intelligence" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 decoration-indigo-400 hover:decoration-indigo-300">mit sloan & safe — 80% of ransomware uses ai (2025)</a></li>
-        <li><a href="https://www.acronis.com/en/pr/2025/acronis-report-finds-ai-powered-phishing-and-social-engineering-fueling-surge-in-ransomware/" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 decoration-indigo-400 hover:decoration-indigo-300">acronis — cyberthreats report h1 2025</a></li>
-        <li><a href="https://www.acronis.com/en/tru/posts/acronis-cyberthreats-update-september-2025/" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 decoration-indigo-400 hover:decoration-indigo-300">acronis — monthly threat update (sep 2025)</a></li>
-        <li><a href="https://arxiv.org/abs/2412.00586" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 decoration-indigo-400 hover:decoration-indigo-300">arxiv — automated spear phishing (2024)</a></li>
-        <li><a href="https://zerothreat.ai/blog/deepfake-and-ai-phishing-statistics" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 decoration-indigo-400 hover:decoration-indigo-300">zerothreat — deepfake & ai phishing stats (2025)</a></li>
-        <li><a href="https://arxiv.org/abs/2506.06825" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 decoration-indigo-400 hover:decoration-indigo-300">arxiv — identity deepfake threats to biometrics (2025)</a></li>
-        <li><a href="https://www.reuters.com/en/britains-jlr-extends-production-halt-after-cybersecurity-incident-2025-09-16/" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 decoration-indigo-400 hover:decoration-indigo-300">reuters — jlr production halt after cyberattack (2025)</a></li>
-        <li><a href="https://www.reuters.com/world/europe/europol-warns-ai-driven-crime-threats-2025-03-18/" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 decoration-indigo-400 hover:decoration-indigo-300">reuters — europol on ai-driven crime (2025)</a></li>
-        <li><a href="https://www.businessinsider.com/north-korea-china-hackers-infiltrate-companies-ai-resumes-military-id-2025-9" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 decoration-indigo-400 hover:decoration-indigo-300">business insider — ai-assisted infiltration (2025)</a></li>
+        <li><a href="https://www.ibm.com/reports/data-breach" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 decoration-indigo-400 hover:decoration-indigo-300">IBM: Cost of a Data Breach 2025</a></li>
+        <li><a href="https://mitsloan.mit.edu/ideas-made-to-matter/80-ransomware-attacks-now-use-artificial-intelligence" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 decoration-indigo-400 hover:decoration-indigo-300">MIT Sloan & Safe: 80% of Ransomware Uses AI (2025)</a></li>
+        <li><a href="https://www.acronis.com/en/pr/2025/acronis-report-finds-ai-powered-phishing-and-social-engineering-fueling-surge-in-ransomware/" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 decoration-indigo-400 hover:decoration-indigo-300">Acronis: Cyberthreats Report H1 2025</a></li>
+        <li><a href="https://www.acronis.com/en/tru/posts/acronis-cyberthreats-update-september-2025/" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 decoration-indigo-400 hover:decoration-indigo-300">Acronis: Monthly Threat Update (Sep 2025)</a></li>
+        <li><a href="https://arxiv.org/abs/2412.00586" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 decoration-indigo-400 hover:decoration-indigo-300">arXiv: Automated Spear Phishing (2024)</a></li>
+        <li><a href="https://zerothreat.ai/blog/deepfake-and-ai-phishing-statistics" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 decoration-indigo-400 hover:decoration-indigo-300">ZeroThreat: Deepfake & AI Phishing Stats (2025)</a></li>
+        <li><a href="https://arxiv.org/abs/2506.06825" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 decoration-indigo-400 hover:decoration-indigo-300">arXiv: Identity Deepfake Threats to Biometrics (2025)</a></li>
+        <li><a href="https://www.reuters.com/en/britains-jlr-extends-production-halt-after-cybersecurity-incident-2025-09-16/" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 decoration-indigo-400 hover:decoration-indigo-300">Reuters: JLR Production Halt After Cyberattack (2025)</a></li>
+        <li><a href="https://www.reuters.com/world/europe/europol-warns-ai-driven-crime-threats-2025-03-18/" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 decoration-indigo-400 hover:decoration-indigo-300">Reuters: Europol on AI-Driven Crime (2025)</a></li>
+        <li><a href="https://www.businessinsider.com/north-korea-china-hackers-infiltrate-companies-ai-resumes-military-id-2025-9" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 decoration-indigo-400 hover:decoration-indigo-300">Business Insider: AI-Assisted Infiltration (2025)</a></li>
       </ul>
     </section>
   </article>

@@ -13,7 +13,7 @@
         learning platforms, it helps you learn and ship software like a pro.
       </p>
       <p class="text-[15.5px] sm:text-base leading-7 text-gray-200">
-        Even if many schools don’t promote it, applying is worth it—the opportunities inside
+        Even if many schools don't promote it, applying is worth it. The opportunities inside
         the Pack are <strong class="text-white">enormous</strong> and can move your projects,
         skills, and career forward.
       </p>
@@ -38,7 +38,7 @@
         Curated “Experiences” bundle tools and tutorials into paths like
         <strong class="text-white">Intro to GitHub</strong>,
         <strong class="text-white">Markdown</strong>, and
-        <strong class="text-white">Open Source</strong>—great for guided, practical projects.
+        <strong class="text-white">Open Source</strong>, great for guided, practical projects.
       </p>
     </section>
 
@@ -57,7 +57,7 @@
     <blockquote
         class="mt-7 sm:mt-9 border-l-4 border-indigo-500/70 pl-4 sm:pl-5 py-1 text-gray-100/90 italic text-[15.5px] sm:text-base leading-7"
     >
-      “with just a school email, i got copilot pro, jetbrains, and $200 in cloud credits—enough to build and deploy real projects without spending a dime.”
+      "with just a school email, i got copilot pro, jetbrains, and $200 in cloud credits. Enough to build and deploy real projects without spending a dime."
     </blockquote>
 
     <!-- link -->

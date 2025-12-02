@@ -27,28 +27,27 @@ export const tools: Record<string, Tool> = {
         seo: {
             title: `JSON Formatter, Validator & Diff Tool (Free) – ${BRAND}`,
             description:
-                'Advanced JSON formatter with syntax highlighting, tree view, diff comparison, and JSON Schema validation. Format, validate, compare, and minify JSON—all in your browser with complete privacy.',
+                'Advanced JSON formatter with syntax highlighting, tree view, and diff comparison. Format, validate, and compare JSON files instantly in your browser.',
             ogImage: OG,
             keywords:
-                'json formatter, json validator, json schema validator, json diff, json compare, json tree view, pretty print json, json beautifier, json minify, format json online, jsonc support, json linter',
+                'JSON formatter, JSON validator, JSON schema, JSON diff, JSON compare, tree view, pretty print, beautifier, minify, JSONC support, linter',
             structuredData: {
                 '@context': 'https://schema.org',
                 '@type': 'SoftwareApplication',
-                name: 'JSON Formatter & Validator Pro',
+                name: 'JSON Formatter & Validator',
                 applicationCategory: 'DeveloperApplication',
                 operatingSystem: 'All',
                 offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
                 featureList: [
-                    'Format & Beautify JSON',
-                    'Syntax Highlighting',
-                    'Tree View (Collapsible)',
-                    'JSON Diff & Compare',
-                    'JSON Schema Validation',
-                    'Minify JSON',
-                    'JSONC Support (Comments)',
-                    'Deep Sort Keys',
-                    'Enhanced Statistics',
-                    'Copy & Download'
+                    'Format and beautify JSON',
+                    'Syntax highlighting',
+                    'Collapsible tree view',
+                    'Compare two JSON documents',
+                    'JSON Schema validation',
+                    'Minify and compress',
+                    'JSONC with comments',
+                    'Sort keys recursively',
+                    'Statistics and metrics'
                 ],
                 aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '142' }
             }
@@ -57,34 +56,33 @@ export const tools: Record<string, Tool> = {
 
     'xml-formatter': {
         title: 'XML Formatter',
-        description: 'Professional XML formatter with syntax highlighting, statistics, XML to JSON conversion, and XPath query tester. Format, analyze, and convert XML—all client-side.',
+        description: 'Professional XML formatter with syntax highlighting, statistics, XML to JSON conversion, and XPath query tester.',
         category: 'formatter',
         component: () => import('~/components/tools/formatter/XmlFormatter.vue') as Promise<{ default: DefineComponent }>,
         seo: {
             title: `XML Formatter with JSON Converter & XPath Tester – ${BRAND}`,
             description:
-                'Advanced XML formatter with syntax highlighting, XML to JSON conversion, statistics, and XPath query tester. Format, minify, convert, and analyze XML—all in your browser with complete privacy.',
+                'Advanced XML formatter with syntax highlighting and XPath testing. Convert XML to JSON, validate structure, and analyze your documents.',
             ogImage: OG,
             keywords:
-                'xml formatter, xml to json converter, xpath tester, xml validator online, pretty print xml, xml beautifier, format xml, xml lint, tidy xml, xml statistics, xml minify, xml parser',
+                'XML formatter, XML to JSON, XPath tester, XML validator, pretty print, beautifier, lint, tidy, statistics, minify, parser',
             structuredData: {
                 '@context': 'https://schema.org',
                 '@type': 'SoftwareApplication',
-                name: 'XML Formatter & Converter Pro',
+                name: 'XML Formatter & Converter',
                 applicationCategory: 'DeveloperApplication',
                 operatingSystem: 'All',
                 offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
                 featureList: [
-                    'Format & Beautify XML',
-                    'Syntax Highlighting',
-                    'XML to JSON Conversion',
-                    'XPath Query Tester',
-                    'XML Statistics Dashboard',
-                    'Minify XML',
-                    'Validate XML',
-                    'Auto-format on Paste',
-                    'Custom Indentation',
-                    'Copy & Download (XML or JSON)'
+                    'Format and beautify XML',
+                    'Syntax highlighting',
+                    'Convert XML to JSON',
+                    'Test XPath queries',
+                    'Document statistics',
+                    'Minify XML files',
+                    'Validate structure',
+                    'Custom indentation',
+                    'Auto-format on paste'
                 ],
                 aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '20' }
             }
@@ -93,34 +91,32 @@ export const tools: Record<string, Tool> = {
 
     'json-yaml-converter': {
         title: 'JSON ↔ YAML Converter',
-        description: 'Convert JSON to YAML and YAML to JSON with auto-detection, syntax highlighting, and format indicators. Fast, accurate conversion—all client-side.',
+        description: 'Convert JSON to YAML and YAML to JSON with auto-detection, syntax highlighting, and format indicators.',
         category: 'converter',
         component: () =>
             import('~/components/tools/converter/JsonYamlConverter.vue') as Promise<{ default: DefineComponent }>,
         seo: {
             title: `JSON to YAML & YAML to JSON Converter with Auto-Detection – ${BRAND}`,
             description:
-                'Fast JSON ↔ YAML converter with auto format detection, syntax highlighting, and conversion direction indicators. Prettify JSON, sort keys alphabetically—all in your browser with complete privacy.',
+                'Fast bidirectional converter between JSON and YAML formats. Auto-detects input format, highlights syntax, and prettifies output.',
             ogImage: OG,
             keywords:
-                'json to yaml, yaml to json, convert yaml json, yaml converter, json converter, auto detect format, syntax highlighting, online converter, dev tools, json formatter, yaml formatter',
+                'JSON to YAML, YAML to JSON, convert YAML, JSON converter, auto detect, syntax highlighting, prettify, sort keys',
             structuredData: {
                 '@context': 'https://schema.org',
                 '@type': 'SoftwareApplication',
-                name: 'JSON ↔ YAML Converter Pro',
+                name: 'JSON ↔ YAML Converter',
                 applicationCategory: 'DeveloperApplication',
                 operatingSystem: 'All',
                 offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
                 featureList: [
-                    'Auto Format Detection',
-                    'JSON → YAML Conversion',
-                    'YAML → JSON Conversion',
-                    'Syntax Highlighting',
-                    'Direction Indicator',
-                    'Prettify JSON',
-                    'Sort Keys Alphabetically',
-                    'Copy Output',
-                    'Error Validation'
+                    'Auto-detect input format',
+                    'Convert JSON to YAML',
+                    'Convert YAML to JSON',
+                    'Syntax highlighting',
+                    'Prettify and format',
+                    'Sort keys alphabetically',
+                    'Error validation'
                 ],
                 aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '16' }
             }
@@ -136,10 +132,10 @@ export const tools: Record<string, Tool> = {
         seo: {
             title: `Number Base Converter (Binary, Octal, Decimal, Hex) – ${BRAND}`,
             description:
-                'Convert between decimal, binary, octal, and hexadecimal with visual binary representation. Supports BigInt for unlimited size, byte grouping, negative numbers, and copy to clipboard.',
+                'Convert between decimal, binary, octal, and hexadecimal. Visual binary display with byte grouping, BigInt support, and negative number handling.',
             ogImage: OG,
             keywords:
-                'base converter, decimal to binary, binary to hex, octal converter, hex converter, numeral system, number converter, binary visualizer, byte grouping, nibble display, bigint converter, negative number converter, visual binary',
+                'base converter, decimal to binary, binary to hex, octal, hexadecimal, numeral system, BigInt, byte grouping, negative numbers, visual binary',
             structuredData: {
                 '@context': 'https://schema.org',
                 '@type': 'SoftwareApplication',
@@ -148,14 +144,12 @@ export const tools: Record<string, Tool> = {
                 operatingSystem: 'All',
                 offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
                 featureList: [
-                    'Bin ⇄ Oct ⇄ Dec ⇄ Hex',
+                    'Binary, Octal, Decimal, Hex conversion',
                     'Visual binary with byte grouping',
-                    'BigInt support (unlimited size)',
+                    'BigInt support for large numbers',
                     'Negative number handling',
-                    'Bit width padding (8/16/32/64)',
-                    'Digit grouping options',
-                    'Copy to clipboard',
-                    'Quick examples'
+                    'Bit width padding options',
+                    'Quick example values'
                 ],
                 aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '26' }
             }
@@ -209,12 +203,12 @@ export const tools: Record<string, Tool> = {
         component: () =>
             import('~/components/tools/converter/ByteSizeConverter.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `Bytes to KB, MB, GB, TB (Converter) – ${BRAND}`,
+            title: `Bytes to KB, MB, GB, TB Converter – ${BRAND}`,
             description:
-                'Convert data sizes accurately between bytes, KB, MB, GB, and TB. Supports binary (1024) units and rounding.',
+                'Convert data sizes between bytes, KB, MB, GB, and TB. Supports both binary and decimal units with accurate calculations.',
             ogImage: OG,
             keywords:
-                'byte converter, bytes to kb, mb to gb, data size calculator, storage converter, kib mib gib, file size',
+                'byte converter, bytes to KB, MB to GB, data size, storage converter, KiB MiB GiB, file size calculator',
             structuredData: {
                 '@context': 'https://schema.org',
                 '@type': 'SoftwareApplication',
@@ -222,7 +216,7 @@ export const tools: Record<string, Tool> = {
                 applicationCategory: 'DeveloperApplication',
                 operatingSystem: 'All',
                 offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-                featureList: ['Bytes ⇄ KB/MB/GB/TB', 'Binary Units', 'Rounding'],
+                featureList: ['Convert between all byte units', 'Binary and decimal units', 'Precision rounding'],
                 aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '18' }
             }
         }
@@ -234,12 +228,12 @@ export const tools: Record<string, Tool> = {
         category: 'css',
         component: () => import('~/components/tools/css/ClampGenerator.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `CSS clamp() Generator (Fluid Typography) – ${BRAND}`,
+            title: `CSS clamp() Generator for Fluid Typography – ${BRAND}`,
             description:
-                'Generate responsive font-size with clamp(). Set min/max size and viewport range; copy CSS instantly.',
+                'Generate responsive font-size with CSS clamp() function. Set minimum and maximum sizes with viewport ranges for fluid typography.',
             ogImage: OG,
             keywords:
-                'css clamp generator, fluid typography, responsive font size, clamp css, fluid type scale, css utilities',
+                'CSS clamp, fluid typography, responsive font size, clamp generator, fluid type scale, viewport units',
             structuredData: {
                 '@context': 'https://schema.org',
                 '@type': 'SoftwareApplication',
@@ -247,7 +241,7 @@ export const tools: Record<string, Tool> = {
                 applicationCategory: 'DeveloperApplication',
                 operatingSystem: 'All',
                 offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-                featureList: ['Generate clamp()', 'Preview', 'Copy CSS'],
+                featureList: ['Generate clamp() values', 'Live preview', 'Copy CSS code'],
                 aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '22' }
             }
         }
@@ -260,12 +254,12 @@ export const tools: Record<string, Tool> = {
         component: () =>
             import('~/components/tools/formatter/VarDumpFormatter.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `PHP var_dump() Formatter (Pretty Print) – ${BRAND}`,
+            title: `PHP var_dump() Formatter and Pretty Printer – ${BRAND}`,
             description:
-                'Clean up messy var_dump() output. Pretty print arrays/objects for quick debugging—no uploads or servers.',
+                'Clean up messy var_dump() output from PHP. Format arrays and objects into readable structures for easier debugging.',
             ogImage: OG,
             keywords:
-                'php var_dump formatter, pretty print php arrays, dump viewer, format var_dump, php debug tool',
+                'PHP var_dump, formatter, pretty print, PHP arrays, dump viewer, debug tool, PHP debugging',
             structuredData: {
                 '@context': 'https://schema.org',
                 '@type': 'SoftwareApplication',
@@ -273,7 +267,7 @@ export const tools: Record<string, Tool> = {
                 applicationCategory: 'DeveloperApplication',
                 operatingSystem: 'All',
                 offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-                featureList: ['Format var_dump()', 'Readable Structure', 'Copy'],
+                featureList: ['Format var_dump() output', 'Readable structure', 'Copy formatted text'],
                 aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '12' }
             }
         }

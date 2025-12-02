@@ -15,7 +15,7 @@
 
     <!-- real-world performance -->
     <section class="mt-7 sm:mt-9 space-y-3">
-      <h2 class="text-base sm:text-lg font-semibold text-white">⚡ real-world performance</h2>
+      <h2 class="text-base sm:text-lg font-semibold text-white">⚡ Real-World Performance</h2>
       <p class="text-[15.5px] sm:text-base leading-7 text-gray-200">
         independent reviews place the 9100 pro at the top of gen5 drives.
         <a
@@ -26,19 +26,19 @@
             class="underline underline-offset-2 decoration-indigo-400 hover:decoration-indigo-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 rounded"
         >tom’s hardware</a>
         highlights the 8&nbsp;tb model with endurance up to <strong class="text-white">4,800&nbsp;tbw</strong>.
-        in mixed real-world tests, reads commonly land around <strong class="text-white">~12.4&nbsp;gb/s</strong>—still more than
+        in mixed real-world tests, reads commonly land around <strong class="text-white">~12.4&nbsp;gb/s</strong>, still more than
         2× the fastest pcie&nbsp;4.0 ssds.
       </p>
     </section>
 
     <!-- why it matters for ai/llms -->
     <section class="mt-7 sm:mt-9 space-y-3">
-      <h2 class="text-base sm:text-lg font-semibold text-white">🔍 why it matters for ai & llms</h2>
+      <h2 class="text-base sm:text-lg font-semibold text-white">🔍 Why It Matters For AI & LLMs</h2>
       <ul class="list-disc pl-5 grid gap-2.5 text-[15.5px] sm:text-base leading-7 text-gray-200">
         <li><strong>gpu offloading / oversubscription:</strong> when vram is exhausted, model weights and kv caches spill to disk; gen5 bandwidth reduces stalls and keeps tensor cores busier.</li>
         <li><strong>high-throughput dataset streaming:</strong> ingest multi-gb shards (images, parquet, text) at gen5 speeds to minimize input bottlenecks.</li>
         <li><strong>fast checkpointing:</strong> save/resume multi-gigabyte training states quickly to shrink downtime between runs.</li>
-        <li><strong>concurrent i/o:</strong> sustains parallel reads/writes while the gpu computes—useful for data loaders and multi-process training.</li>
+        <li><strong>concurrent i/o:</strong> sustains parallel reads/writes while the gpu computes. Useful for data loaders and multi-process training.</li>
       </ul>
     </section>
 
@@ -48,17 +48,17 @@
           class="border-l-4 border-indigo-500/70 pl-4 sm:pl-5 py-1 text-gray-100/90 italic text-[15.5px] sm:text-base leading-7"
       >
         “when i moved it to a pcie slot not shared with the gpu, speeds rose by 10–20%.”
-        <span class="block mt-2 text-sm text-gray-400 not-italic">— community report (slot/lanes layout can impact gen5 throughput)</span>
+        <span class="block mt-2 text-sm text-gray-400 not-italic">Community report: slot/lanes layout can impact gen5 throughput</span>
       </blockquote>
     </section>
 
     <!-- specs table (responsive) -->
     <section class="mt-7 sm:mt-9 space-y-3">
-      <h2 class="text-base sm:text-lg font-semibold text-white">📊 specs at a glance</h2>
+      <h2 class="text-base sm:text-lg font-semibold text-white">📊 Specs At A Glance</h2>
       <div class="overflow-x-auto -mx-5 sm:mx-0">
         <table class="min-w-full table-auto text-[15px] sm:text-base text-gray-200">
           <caption class="text-left text-sm text-gray-400 mb-2">
-            samsung 9100 pro — key specifications relevant to gen5 nvme and ai/llm workflows.
+            Samsung 9100 Pro: key specifications relevant to gen5 nvme and ai/llm workflows.
           </caption>
           <thead>
           <tr class="border-b border-gray-600/60">
@@ -81,18 +81,18 @@
 
     <!-- scalability & limits -->
     <section class="mt-7 sm:mt-9 space-y-3">
-      <h2 class="text-base sm:text-lg font-semibold text-white">🏗 scalability, compatibility & limits</h2>
+      <h2 class="text-base sm:text-lg font-semibold text-white">🏗 Scalability, Compatibility & Limits</h2>
       <p class="text-[15.5px] sm:text-base leading-7 text-gray-200">
         to reach peak numbers you need a motherboard with true <strong class="text-white">pcie&nbsp;5.0 x4</strong> wired lanes,
         adequate cooling (heatsink + airflow), and a slot not sharing bandwidth with a gpu. consoles like ps5 and many
         mid-range desktops won’t fully leverage gen5 bandwidth yet. thermal limits or shared lanes can pull sustained speeds
-        closer to <strong class="text-white">~12&nbsp;gb/s</strong>—still class-leading.
+        closer to <strong class="text-white">~12&nbsp;gb/s</strong>, still class-leading.
       </p>
     </section>
 
     <!-- video -->
     <section class="mt-7 sm:mt-9 space-y-3">
-      <h2 class="text-base sm:text-lg font-semibold text-white">🎥 benchmarks & thermals (video)</h2>
+      <h2 class="text-base sm:text-lg font-semibold text-white">🎥 Benchmarks & Thermals (Video)</h2>
       <p class="text-[15.5px] sm:text-base leading-7 text-gray-200">
         watch
         <a
@@ -108,7 +108,7 @@
 
     <!-- learn more / buy -->
     <section class="mt-7 sm:mt-9 space-y-3">
-      <h2 class="text-base sm:text-lg font-semibold text-white">🌐 learn more & where to buy</h2>
+      <h2 class="text-base sm:text-lg font-semibold text-white">🌐 Learn More & Where To Buy</h2>
       <p class="text-[15.5px] sm:text-base leading-7 text-gray-200">
         read more at
         <a
@@ -133,7 +133,7 @@
         >buy the samsung&nbsp;9100&nbsp;pro on amazon</a>.
       </p>
       <p id="affiliate-note" class="text-xs text-gray-400">
-        as an amazon associate i may earn from qualifying purchases — at no extra cost to you.
+        As an Amazon Associate I may earn from qualifying purchases at no extra cost to you.
       </p>
     </section>
   </article>

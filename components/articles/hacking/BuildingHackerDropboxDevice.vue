@@ -9,13 +9,13 @@
         whether you’re an <strong class="text-white">ethical hacker</strong>, sysadmin, or the unofficial it support
         for your family, there’s one project that can save you time:
         <strong class="text-white">the hacker dropbox</strong>. drop a raspberry pi into any network and gain secure,
-        instant remote access — <strong class="text-white">without traditional vpn headaches</strong>.
+        instant remote access without traditional VPN headaches.
       </p>
     </section>
 
     <!-- what is it -->
     <section class="mt-7 sm:mt-9 space-y-3">
-      <h2 class="text-base sm:text-lg font-semibold text-white">🚀 what is a hacker dropbox?</h2>
+      <h2 class="text-base sm:text-lg font-semibold text-white">🚀 What Is A Hacker Dropbox?</h2>
       <p class="text-[15.5px] sm:text-base leading-7 text-gray-200">
         a hacker dropbox is a small <strong class="text-white">raspberry pi device</strong> pre-configured to
         automatically connect to a secure external tunnel at boot. once powered, it grants you seamless access to the
@@ -30,7 +30,7 @@
 
     <!-- why not vpn -->
     <section class="mt-7 sm:mt-9 space-y-3">
-      <h2 class="text-base sm:text-lg font-semibold text-white">🔐 why not just use a vpn?</h2>
+      <h2 class="text-base sm:text-lg font-semibold text-white">🔐 Why Not Just Use A VPN?</h2>
       <p class="text-[15.5px] sm:text-base leading-7 text-gray-200">
         vpns often require port forwarding and router tweaks. instead, this setup uses
         <strong class="text-white">ztna (zero trust network access)</strong> via
@@ -51,7 +51,7 @@
 
     <!-- what you'll need -->
     <section class="mt-7 sm:mt-9 space-y-3">
-      <h2 class="text-base sm:text-lg font-semibold text-white">🧰 what you’ll need</h2>
+      <h2 class="text-base sm:text-lg font-semibold text-white">🧰 What You'll Need</h2>
       <ul class="list-disc pl-5 grid gap-2.5 text-[15.5px] sm:text-base leading-7 text-gray-200">
         <li>
           <a
@@ -86,13 +86,13 @@
         </li>
       </ul>
       <p class="text-xs text-gray-400" id="affiliate-note">
-        as an amazon associate i may earn from qualifying purchases — at no extra cost to you.
+        As an Amazon Associate I may earn from qualifying purchases at no extra cost to you.
       </p>
     </section>
 
     <!-- setup -->
     <section class="mt-7 sm:mt-9 space-y-3">
-      <h2 class="text-base sm:text-lg font-semibold text-white">⚙️ setup in a nutshell</h2>
+      <h2 class="text-base sm:text-lg font-semibold text-white">⚙️ Setup In A Nutshell</h2>
       <ol class="list-decimal pl-5 space-y-2 text-[15.5px] sm:text-base leading-7 text-gray-200">
         <li>
           flash raspberry pi os with the
@@ -105,13 +105,13 @@
         </li>
         <li>install the twingate connector package on the pi.</li>
         <li>authenticate and connect the pi to your twingate network.</li>
-        <li>ship it or plug it in — it auto-connects every boot.</li>
+        <li>ship it or plug it in. It auto-connects every boot.</li>
       </ol>
     </section>
 
     <!-- use cases -->
     <section class="mt-7 sm:mt-9 space-y-3">
-      <h2 class="text-base sm:text-lg font-semibold text-white">🧑‍💻 practical use cases</h2>
+      <h2 class="text-base sm:text-lg font-semibold text-white">🧑‍💻 Practical Use Cases</h2>
       <ul class="list-disc pl-5 grid gap-2.5 text-[15.5px] sm:text-base leading-7 text-gray-200">
         <li>remote troubleshooting (e.g., fixing grandma’s printer… again)</li>
         <li>drop into a client’s site to monitor logs or troubleshoot securely</li>
@@ -121,7 +121,7 @@
 
     <!-- resources -->
     <section class="mt-7 sm:mt-9 space-y-3">
-      <h2 class="text-base sm:text-lg font-semibold text-white">🔗 helpful resources</h2>
+      <h2 class="text-base sm:text-lg font-semibold text-white">🔗 Helpful Resources</h2>
       <ul class="list-disc pl-5 grid gap-2.5 text-[15.5px] sm:text-base leading-7 text-gray-200">
         <li>
           📝 full guide:
@@ -146,7 +146,7 @@
 
     <!-- ethics -->
     <section class="mt-7 sm:mt-9 space-y-3">
-      <h2 class="text-base sm:text-lg font-semibold text-white">🔒 ethical hacking reminder</h2>
+      <h2 class="text-base sm:text-lg font-semibold text-white">🔒 Ethical Hacking Reminder</h2>
       <p class="text-[15.5px] sm:text-base leading-7 text-gray-200">
         this project is for <strong class="text-white">legitimate and authorized use only</strong>.
         always get explicit permission before deploying, especially in corporate or client environments.
@@ -155,7 +155,7 @@
 
     <!-- closing -->
     <section class="mt-7 sm:mt-9 space-y-3">
-      <h2 class="text-base sm:text-lg font-semibold text-white">✅ final thoughts</h2>
+      <h2 class="text-base sm:text-lg font-semibold text-white">✅ Final Thoughts</h2>
       <p class="text-[15.5px] sm:text-base leading-7 text-gray-200">
         a <strong class="text-white">hacker dropbox</strong> is a game-changer for sysadmins, freelancers, and security pros.
         with <strong class="text-white">twingate ztna</strong>, setup time drops from hours to minutes. from helping grandma

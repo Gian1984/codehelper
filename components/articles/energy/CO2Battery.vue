@@ -17,13 +17,13 @@
             aria-label="Energy Dome official website (opens in a new tab)"
         >Energy Dome</a>.
         It stores electricity by cycling carbon dioxide between high-pressure liquid and gaseous
-        phases, then converts expansion into electricity—without emissions, cryogenics, or rare materials.
+        phases, then converts expansion into electricity without emissions, cryogenics, or rare materials.
       </p>
     </section>
 
     <!-- how it works -->
     <section class="mt-7 sm:mt-9 space-y-3">
-      <h2 class="text-base sm:text-lg font-semibold text-white">🔄 how it works (charge & discharge)</h2>
+      <h2 class="text-base sm:text-lg font-semibold text-white">🔄 How It Works (Charge & Discharge)</h2>
       <ul class="list-disc pl-5 grid gap-2.5 text-[15.5px] sm:text-base leading-7 text-gray-200">
         <li><strong>Charging:</strong> CO₂ is compressed into liquid form and stored in a dome-style gasholder at ambient temperature.</li>
         <li><strong>Discharging:</strong> Liquid CO₂ evaporates and expands, driving a turbine to generate electricity, then returns to the dome.</li>
@@ -32,7 +32,7 @@
 
     <!-- storage characteristics -->
     <section class="mt-7 sm:mt-9 space-y-3">
-      <h2 class="text-base sm:text-lg font-semibold text-white">⏳ storage characteristics</h2>
+      <h2 class="text-base sm:text-lg font-semibold text-white">⏳ Storage Characteristics</h2>
       <p class="text-[15.5px] sm:text-base leading-7 text-gray-200">
         Designed for <strong class="text-white">long-duration energy storage</strong>, the CO₂ Battery performs
         best between <strong class="text-white">8–24 hours</strong>, ideal for renewable integration, peak shaving,
@@ -42,18 +42,18 @@
 
     <!-- carbon neutral & cost -->
     <section class="mt-7 sm:mt-9 space-y-3">
-      <h2 class="text-base sm:text-lg font-semibold text-white">🌱 carbon-neutral & cost-efficient</h2>
+      <h2 class="text-base sm:text-lg font-semibold text-white">🌱 Carbon-Neutral & Cost-Efficient</h2>
       <p class="text-[15.5px] sm:text-base leading-7 text-gray-200">
         During operation, <strong class="text-white">no CO₂ is released</strong> into the atmosphere.
         Unlike compressed air storage or lithium-ion batteries, it works at ambient temperature,
         avoiding cryogenic cooling and critical minerals. It uses only
-        <strong class="text-white">water, steel, and CO₂</strong>—readily available from Tier-1 suppliers.
+        <strong class="text-white">water, steel, and CO₂</strong>, readily available from Tier-1 suppliers.
       </p>
     </section>
 
     <!-- comparison table (responsive) -->
     <section class="mt-7 sm:mt-9 space-y-3">
-      <h2 class="text-base sm:text-lg font-semibold text-white">🏆 CO₂ vs. lithium-ion batteries</h2>
+      <h2 class="text-base sm:text-lg font-semibold text-white">🏆 CO₂ Vs. Lithium-Ion Batteries</h2>
       <div class="overflow-x-auto -mx-5 sm:mx-0">
         <table class="min-w-full table-auto text-[15px] sm:text-base text-gray-200">
           <thead>
@@ -77,7 +77,7 @@
 
     <!-- grid services -->
     <section class="mt-7 sm:mt-9 space-y-3">
-      <h2 class="text-base sm:text-lg font-semibold text-white">🔧 scalable & grid-compatible</h2>
+      <h2 class="text-base sm:text-lg font-semibold text-white">🔧 Scalable & Grid-Compatible</h2>
       <p class="text-[15.5px] sm:text-base leading-7 text-gray-200">
         Built from <strong class="text-white">standard industrial components</strong>, the CO₂ Battery is modular,
         scalable, and deployable worldwide. It supports grid services such as:
