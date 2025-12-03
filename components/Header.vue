@@ -1,7 +1,7 @@
 <template>
   <header>
     <!-- Added itemscope/itemtype for SiteNavigationElement -->
-    <Disclosure as="nav" class="bg-gray-800" v-slot="{ open, close }" itemscope itemtype="https://schema.org/SiteNavigationElement" aria-label="Primary">
+    <Disclosure as="nav" class="bg-gray-900" v-slot="{ open, close }" itemscope itemtype="https://schema.org/SiteNavigationElement" aria-label="Primary">
       <div class="mx-auto max-w-7xl px-2 sm:px-4 lg:px-8">
         <div class="relative flex h-16 items-center justify-between">
           <div class="flex items-center px-2 lg:px-0">
@@ -64,7 +64,7 @@
                     :aria-activedescendant="null"
                     @focus="showSuggestions = true"
                     @blur="() => setTimeout(() => (showSuggestions = false), 200)"
-                    class="block w-full rounded-md bg-gray-700 py-1.5 pr-3 pl-10 text-base text-white outline-none placeholder:text-gray-400 focus:bg-white focus:text-gray-900 focus:ring-2 focus:ring-indigo-400 sm:text-sm"
+                    class="block w-full rounded-md bg-gray-800 border-2 border-gray-700 py-1.5 pr-3 pl-10 text-base text-white outline-none placeholder:text-gray-400 focus:bg-white focus:text-gray-900 focus:ring-2 focus:ring-indigo-400 focus:border-transparent sm:text-sm transition-colors"
                     placeholder="Search tools or articles..."
                 />
                 <MagnifyingGlassIcon class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 size-5 text-gray-400" aria-hidden="true" />
@@ -97,7 +97,7 @@
           <div class="flex lg:hidden">
             <!-- Added aria-controls, aria-expanded, title -->
             <DisclosureButton
-                class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-200 hover:bg-gray-700 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-gray-800"
+                class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-200 hover:bg-gray-800 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900"
                 aria-controls="mobile-primary-nav"
                 :aria-expanded="open ? 'true' : 'false'"
                 title="Toggle navigation"
@@ -167,13 +167,13 @@ watch(() => route.path, () => {
 
 const navClass = (path) => [
   // Added stronger focus styles for accessibility
-  'rounded-md px-3 py-2 text-sm font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-800',
-  route.path === path ? 'bg-gray-900 text-white' : 'text-gray-200 hover:bg-gray-700 hover:text-white'
+  'rounded-md px-3 py-2 text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900',
+  route.path === path ? 'bg-indigo-600 text-white' : 'text-gray-200 hover:bg-gray-800 hover:text-white'
 ]
 
 const mobileNavClass = (path) => [
-  'block rounded-md px-3 py-2 text-base font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-800',
-  route.path === path ? 'bg-gray-900 text-white' : 'text-gray-200 hover:bg-gray-700 hover:text-white'
+  'block rounded-md px-3 py-2 text-base font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900',
+  route.path === path ? 'bg-indigo-600 text-white' : 'text-gray-200 hover:bg-gray-800 hover:text-white'
 ]
 </script>
 
