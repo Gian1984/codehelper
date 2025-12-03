@@ -6,10 +6,14 @@
     aria-label="Sidebar: resources"
     @scroll="handleScroll">
     <div class="flex h-16 shrink-0 items-center">
-      <span class="flex items-center gap-x-1 text-white font-semibold">
+      <NuxtLink
+        :to="sectionLink"
+        class="flex items-center gap-x-1 text-white font-semibold hover:text-indigo-400 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900 rounded-md px-2 py-1 -ml-2"
+        :title="`Go to ${sectionTitle}`"
+      >
         {{ sectionTitle }}
-        <component :is="sectionIcon" class="size-5" aria-hidden="true" />
-      </span>
+        <component :is="sectionIcon" class="size-5 transition-colors" aria-hidden="true" />
+      </NuxtLink>
     </div>
 
     <!-- Search Input -->
@@ -201,6 +205,13 @@ const sectionIcon = computed(() => {
   if (currentSection.value === 'tools') return WrenchScrewdriverIcon
   if (currentSection.value === 'articles') return NewspaperIcon
   return WrenchScrewdriverIcon // default
+})
+
+// Section link based on context
+const sectionLink = computed(() => {
+  if (currentSection.value === 'tools') return '/tools'
+  if (currentSection.value === 'articles') return '/articles'
+  return '/' // default to home
 })
 
 // Search input ref for focus management
