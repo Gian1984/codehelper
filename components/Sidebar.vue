@@ -1,8 +1,8 @@
 <template>
   <div>
-    <!-- Mobile Sidebar -->
+    <!-- Mobile Overlay & Backdrop (Dialog without content duplication) -->
     <TransitionRoot as="template" :show="sidebarOpen">
-      <Dialog class="relative z-50 xl:hidden" @close="sidebarOpen = false">
+      <Dialog class="relative z-50 xl:hidden" @close="close">
         <TransitionChild
             as="template"
             enter="transition-opacity ease-linear duration-300"
@@ -12,7 +12,7 @@
             leave-from="opacity-100"
             leave-to="opacity-0"
         >
-          <div class="fixed inset-0 bg-gray-900" />
+          <div class="fixed inset-0 bg-gray-900/80" />
         </TransitionChild>
 
         <div class="fixed inset-0 flex">
@@ -39,7 +39,7 @@
                   <button
                       type="button"
                       class="-m-2.5 p-2.5"
-                      @click="sidebarOpen = false"
+                      @click="close"
                   >
                     <span class="sr-only">Close sidebar</span>
                     <XMarkIcon class="size-6 text-white" aria-hidden="true" />
@@ -47,6 +47,7 @@
                 </div>
               </TransitionChild>
 
+              <!-- Single SidebarContent instance (rendered only on mobile when open) -->
               <SidebarContent class="custom-scrollbar" />
             </DialogPanel>
           </TransitionChild>
@@ -54,25 +55,34 @@
       </Dialog>
     </TransitionRoot>
 
-    <!-- Desktop Sidebar -->
-    <div class="hidden xl:fixed xl:top-16 xl:bottom-0 xl:z-50 xl:flex xl:w-72 xl:flex-col">
+    <!-- Desktop Sidebar (toggleable on desktop, hidden on mobile) -->
+    <div :class="[
+      'hidden xl:fixed xl:top-16 xl:bottom-0 xl:z-50 xl:w-72 xl:flex-col',
+      isDesktopCollapsed ? 'xl:hidden' : 'xl:flex'
+    ]">
+      <!-- Toggle collapse button (desktop only) -->
       <button
-          type="button"
-          class="-m-2.5 p-2.5 text-white xl:hidden"
-          @click="sidebarOpen = true"
+        @click="toggleDesktopCollapse"
+        class="absolute top-4 right-4 p-2 rounded-md bg-gray-800 hover:bg-gray-700 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors z-10"
+        title="Collapse sidebar"
+        aria-label="Collapse sidebar"
       >
-        <span class="flex items-center gap-x-1 font-semibold">
-          Resources
-          <BookmarkIcon class="size-5" aria-hidden="true" />
-          <ChevronRightIcon
-              class="size-5 text-gray-400 animate-wiggle"
-              aria-hidden="true"
-          />
-        </span>
+        <ChevronLeftIcon class="size-5" aria-hidden="true" />
       </button>
 
       <SidebarContent class="custom-scrollbar" />
     </div>
+
+    <!-- Floating button to expand sidebar when collapsed (desktop only) -->
+    <button
+      v-if="isDesktopCollapsed"
+      @click="toggleDesktopCollapse"
+      class="hidden xl:block fixed left-4 top-20 z-50 p-3 rounded-full bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition-all"
+      title="Expand sidebar"
+      aria-label="Expand sidebar"
+    >
+      <Bars3Icon class="size-6" aria-hidden="true" />
+    </button>
 
     <!-- Topbar -->
     <div
@@ -81,11 +91,11 @@
       <button
           type="button"
           class="-m-2.5 p-2.5 text-white xl:hidden"
-          @click="sidebarOpen = true"
+          @click="open"
       >
         <span class="flex items-center gap-x-1 font-semibold">
-          Resources
-          <BookmarkIcon class="size-5" aria-hidden="true" />
+          {{ sectionTitle }}
+          <component :is="sectionIcon" class="size-5" aria-hidden="true" />
           <ChevronRightIcon
               class="size-5 text-gray-400 animate-wiggle"
               aria-hidden="true"
@@ -97,12 +107,48 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, onUnmounted, computed } from 'vue'
 import SidebarContent from './SidebarContent.vue'
 import { Dialog, DialogPanel, TransitionChild, TransitionRoot } from '@headlessui/vue'
-import { Bars3Icon, BookmarkIcon, XMarkIcon, ChevronRightIcon } from '@heroicons/vue/20/solid'
+import { Bars3Icon, BookmarkIcon, XMarkIcon, ChevronRightIcon, ChevronLeftIcon } from '@heroicons/vue/20/solid'
+import { WrenchScrewdriverIcon, NewspaperIcon } from '@heroicons/vue/24/outline'
 
-const sidebarOpen = ref(false)
+const { isOpen: sidebarOpen, isDesktopCollapsed, close, open, restoreState, searchQuery, toggleDesktopCollapse } = useSidebarState()
+
+// Dynamic title based on current route
+const route = useRoute()
+const sectionTitle = computed(() => {
+  const path = route.path
+  if (path.startsWith('/tools')) return 'Tools'
+  if (path.startsWith('/articles')) return 'Articles'
+  return 'Resources'
+})
+
+// Dynamic icon based on current route
+const sectionIcon = computed(() => {
+  const path = route.path
+  if (path.startsWith('/tools')) return WrenchScrewdriverIcon
+  if (path.startsWith('/articles')) return NewspaperIcon
+  return WrenchScrewdriverIcon // default
+})
+
+// Keyboard shortcut for ESC to close mobile sidebar
+const handleKeydown = (event: KeyboardEvent) => {
+  if (event.key === 'Escape' && sidebarOpen.value && !searchQuery.value) {
+    close()
+  }
+}
+
+// Restore state from localStorage on mount and setup keyboard shortcuts
+onMounted(() => {
+  restoreState()
+  window.addEventListener('keydown', handleKeydown)
+})
+
+// Clean up keyboard shortcuts
+onUnmounted(() => {
+  window.removeEventListener('keydown', handleKeydown)
+})
 </script>
 
 <style scoped>
@@ -113,7 +159,15 @@ const sidebarOpen = ref(false)
 }
 
 .animate-wiggle {
-  animation: wiggle 0.6s ease-in-out infinite;
+  /* Run animation 3 times instead of infinite to reduce distraction */
+  animation: wiggle 0.6s ease-in-out 3;
+}
+
+/* Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .animate-wiggle {
+    animation: none;
+  }
 }
 
 /* Custom scrollbar styling */

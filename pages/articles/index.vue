@@ -1,53 +1,51 @@
 <template>
-  <div class="bg-gray-900 text-white">
-    <Sidebar />
+  <div class="p-8 min-h-screen">
+    <div class="flex items-center justify-between mb-6">
+      <h1 class="text-3xl font-semibold tracking-tight text-white sm:text-5xl">
+        Articles
+        <span v-if="selectedCategory" class="text-indigo-400 text-2xl ml-2">
+          /&nbsp;&nbsp;&nbsp;{{ capitalize(selectedCategory) }}
+        </span>
+      </h1>
 
-    <div class="xl:pl-72">
-      <div class="p-8 min-h-screen">
-        <div class="flex items-center justify-between mb-6">
-          <h1 class="text-3xl font-semibold tracking-tight text-white sm:text-5xl">
-            Articles
-            <span v-if="selectedCategory" class="text-indigo-400 text-2xl ml-2">
-              /&nbsp;&nbsp;&nbsp;{{ capitalize(selectedCategory) }}
-            </span>
-          </h1>
-
-          <NuxtLink
-              v-if="selectedCategory"
-              to="/articles"
-              class="inline-block text-sm font-medium bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded transition"
-          >
-            Reset Filter
-          </NuxtLink>
-        </div>
-
-        <ul class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-          <li
-              v-for="[slug, article] in filteredArticles"
-              :key="slug"
-              class="rounded-lg bg-gray-800 p-4 shadow hover:shadow-md transition"
-          >
-            <NuxtLink :to="`/articles/${slug}/`" class="block">
-              <h2 class="text-xl font-semibold">{{ article.title }}</h2>
-              <p class="text-gray-400 text-sm mt-1">{{ article.description }}</p>
-              <div class="mt-2 text-gray-500 text-xs">
-                <p v-if="article.seo?.structuredData?.datePublished">📅 {{ formatDate(article.seo.structuredData.datePublished) }}</p>
-                <p v-if="article.seo?.structuredData?.author?.name">✍️ {{ article.seo.structuredData.author.name }}</p>
-              </div>
-            </NuxtLink>
-          </li>
-        </ul>
-      </div>
+      <NuxtLink
+          v-if="selectedCategory"
+          to="/articles"
+          class="inline-block text-sm font-medium bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded transition"
+      >
+        Reset Filter
+      </NuxtLink>
     </div>
+
+    <ul class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+      <li
+          v-for="[slug, article] in filteredArticles"
+          :key="slug"
+          class="rounded-lg bg-gray-800 p-4 shadow hover:shadow-md transition"
+      >
+        <NuxtLink :to="`/articles/${slug}/`" class="block">
+          <h2 class="text-xl font-semibold">{{ article.title }}</h2>
+          <p class="text-gray-400 text-sm mt-1">{{ article.description }}</p>
+          <div class="mt-2 text-gray-500 text-xs">
+            <p v-if="article.seo?.structuredData?.datePublished">📅 {{ formatDate(article.seo.structuredData.datePublished) }}</p>
+            <p v-if="article.seo?.structuredData?.author?.name">✍️ {{ article.seo.structuredData.author.name }}</p>
+          </div>
+        </NuxtLink>
+      </li>
+    </ul>
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import Sidebar from '~/components/Sidebar.vue'
 import { articles } from '~/utils/articlesRegistry'
 import { useSeoMeta, useHead } from '#imports'
 import { useRoute } from 'vue-router'
+
+// Use shared layout with sidebar
+definePageMeta({
+  layout: 'with-sidebar'
+})
 
 // SEO Meta
 useSeoMeta({

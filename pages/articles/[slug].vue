@@ -1,53 +1,47 @@
 <template>
-  <div class="min-h-screen bg-gray-900 text-white">
-    <Sidebar />
+  <!-- contenitore più leggibile: riga max 72ch -->
+  <div class="p-5 sm:p-8 min-h-screen mx-auto w-full max-w-[72ch]">
+    <!-- Breadcrumb navigation -->
+    <Breadcrumb
+      :items="[
+        { title: 'Home', url: '/' },
+        { title: 'Articles', url: '/articles' },
+        { title: articleData.title, url: `/articles/${slug}/` }
+      ]"
+    />
 
-    <div class="xl:pl-72">
-      <!-- contenitore più leggibile: riga max 72ch -->
-      <div class="p-5 sm:p-8 min-h-screen mx-auto w-full max-w-[72ch]">
-        <!-- Breadcrumb navigation -->
-        <Breadcrumb
-          :items="[
-            { title: 'Home', url: '/' },
-            { title: 'Articles', url: '/articles' },
-            { title: articleData.title, url: `/articles/${slug}/` }
-          ]"
-        />
+    <h1 class="text-[26px] leading-[1.2] sm:text-3xl md:text-4xl font-extrabold tracking-tight mb-3 [text-wrap:balance]">
+      {{ articleData.title }}
+    </h1>
 
-        <h1 class="text-[26px] leading-[1.2] sm:text-3xl md:text-4xl font-extrabold tracking-tight mb-3 [text-wrap:balance]">
-          {{ articleData.title }}
-        </h1>
+    <p class="text-gray-400 mb-6 text-[15.5px] sm:text-base leading-7">
+      {{ articleData.description }}
+    </p>
 
-        <p class="text-gray-400 mb-6 text-[15.5px] sm:text-base leading-7">
-          {{ articleData.description }}
-        </p>
+    <!-- byline -->
+    <div class="mt-2 mb-8 text-gray-400 text-xs sm:text-sm flex flex-wrap items-center gap-x-3 gap-y-1">
+      <p v-if="publishedISO">
+        📅
+        <!-- usa il componente stabile SSR/CSR -->
+        <DateBadge :iso="publishedISO" />
+      </p>
 
-        <!-- byline -->
-        <div class="mt-2 mb-8 text-gray-400 text-xs sm:text-sm flex flex-wrap items-center gap-x-3 gap-y-1">
-          <p v-if="publishedISO">
-            📅
-            <!-- usa il componente stabile SSR/CSR -->
-            <DateBadge :iso="publishedISO" />
-          </p>
-
-          <p v-if="authorName">
-            ✍️
-            <a
-                v-if="authorUrl"
-                :href="authorUrl"
-                target="_blank"
-                rel="author noopener noreferrer"
-                class="underline underline-offset-2 decoration-indigo-400 hover:decoration-indigo-300 focus-visible:ring-2 focus-visible:ring-indigo-400 rounded-sm"
-            >
-              {{ authorName }}
-            </a>
-            <span v-else>{{ authorName }}</span>
-          </p>
-        </div>
-
-        <component :is="ArticleComponent" />
-      </div>
+      <p v-if="authorName">
+        ✍️
+        <a
+            v-if="authorUrl"
+            :href="authorUrl"
+            target="_blank"
+            rel="author noopener noreferrer"
+            class="underline underline-offset-2 decoration-indigo-400 hover:decoration-indigo-300 focus-visible:ring-2 focus-visible:ring-indigo-400 rounded-sm"
+        >
+          {{ authorName }}
+        </a>
+        <span v-else>{{ authorName }}</span>
+      </p>
     </div>
+
+    <component :is="ArticleComponent" />
   </div>
 </template>
 
@@ -55,11 +49,15 @@
 import { useRoute } from 'vue-router'
 import { defineAsyncComponent, computed } from 'vue'
 import { useHead, createError } from '#imports'
-import Sidebar from '~/components/Sidebar.vue'
 import Breadcrumb from '~/components/Breadcrumb.vue'
 import DateBadge from '~/components/DateBadge.vue'
 import { articles } from '~/utils/articlesRegistry'
 import { useBreadcrumb } from '~/composables/useBreadcrumb'
+
+// Use shared layout with sidebar
+definePageMeta({
+  layout: 'with-sidebar'
+})
 
 // slug sanificato (evita () o altri char)
 const route = useRoute()

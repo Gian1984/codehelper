@@ -1,23 +1,17 @@
 <template>
-  <div class="min-h-screen bg-gray-900 text-white">
-    <Sidebar />
+  <div class="p-8 min-h-screen">
+    <!-- Breadcrumb navigation -->
+    <Breadcrumb
+      :items="[
+        { title: 'Home', url: '/' },
+        { title: 'Tools', url: '/tools' },
+        { title: toolData.title, url: `/tools/${slug}` }
+      ]"
+    />
 
-    <div class="xl:pl-72">
-      <div class="p-8 min-h-screen">
-        <!-- Breadcrumb navigation -->
-        <Breadcrumb
-          :items="[
-            { title: 'Home', url: '/' },
-            { title: 'Tools', url: '/tools' },
-            { title: toolData.title, url: `/tools/${slug}` }
-          ]"
-        />
-
-        <h1 class="text-3xl font-bold mb-4">{{ toolData.title }}</h1>
-        <p class="text-gray-400 mb-6">{{ toolData.description }}</p>
-        <component :is="ToolComponent" />
-      </div>
-    </div>
+    <h1 class="text-3xl font-bold mb-4">{{ toolData.title }}</h1>
+    <p class="text-gray-400 mb-6">{{ toolData.description }}</p>
+    <component :is="ToolComponent" />
   </div>
 </template>
 
@@ -25,10 +19,14 @@
 import { useRoute } from 'vue-router'
 import { defineAsyncComponent, onMounted } from 'vue'
 import { useHead, createError } from '#imports'
-import Sidebar from '~/components/Sidebar.vue'
 import Breadcrumb from '~/components/Breadcrumb.vue'
 import { tools } from '~/utils/toolRegistry'
 import { useBreadcrumb } from '~/composables/useBreadcrumb'
+
+// Use shared layout with sidebar
+definePageMeta({
+  layout: 'with-sidebar'
+})
 
 const route = useRoute()
 const slug = route.params.slug as string
