@@ -196,6 +196,49 @@ export const tools: Record<string, Tool> = {
         }
     },
 
+    'gitignore-generator': {
+        title: '.gitignore Generator',
+        description: 'Generate .gitignore files for your projects with 40+ pre-built templates. Select from languages, frameworks, OS, IDEs, and build tools. Combine multiple templates and add custom rules.',
+        category: 'generator',
+        component: () =>
+            import('~/components/tools/generator/GitignoreGenerator.vue') as Promise<{ default: DefineComponent }>,
+        seo: {
+            title: `Gitignore Generator - 40+ Templates (Node, Python, Java, React) – ${BRAND}`,
+            description:
+                'Professional .gitignore generator with 40+ templates for popular languages, frameworks, OS, and IDEs. Combine Node.js, Python, Java, React, Vue, macOS, Windows, VSCode, and more. Add custom rules, preview in real-time, and download instantly. Perfect for bootstrapping any project.',
+            ogImage: OG,
+            keywords:
+                'gitignore generator, generate gitignore, .gitignore creator, node gitignore, python gitignore, java gitignore, react gitignore, gitignore template, gitignore maker, git ignore file generator, gitignore node_modules, create gitignore online, gitignore builder, vscode gitignore, macos gitignore',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: '.gitignore Generator Pro',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    '40+ Pre-built Templates',
+                    'Languages (Node, Python, Java, Go, Rust, PHP, Ruby, C++)',
+                    'Frameworks (React, Vue, Next.js, Django, Laravel)',
+                    'Build Tools (npm, Yarn, Maven, Gradle, Webpack, Vite)',
+                    'Operating Systems (macOS, Windows, Linux)',
+                    'IDEs (VSCode, JetBrains, Sublime, Vim)',
+                    'Popular Presets (Node.js, Python, Java, React, Vue, Go, Rust, Full Stack)',
+                    'Multi-select Template Combination',
+                    'Search & Filter Templates',
+                    'Custom Rules Support',
+                    'Real-time Preview',
+                    'Pattern Statistics',
+                    'Copy to Clipboard',
+                    'Download .gitignore File',
+                    'Select All / Deselect All',
+                    'Quick Start Presets'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '28' }
+            }
+        }
+    },
+
     'byte-size-converter': {
         title: 'Byte Size Converter',
         description: 'Convert between Bytes, KB, MB, GB, and TB easily.',
