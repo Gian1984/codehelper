@@ -8,12 +8,14 @@
       </div>
       <div class="flex items-center gap-2">
         <button class="btn" @click="clearAll">Clear</button>
-        <button class="btn" @click="beautifyHtml" :disabled="loading || !input.trim()">
+        <button class="btn" @click="beautifyHtml" :disabled="loading || minifierLoading || !input.trim()">
           <span v-if="loading && mode === 'beautify'">Beautifying...</span>
+          <span v-else-if="minifierLoading">Loading...</span>
           <span v-else>Beautify</span>
         </button>
-        <button class="btn-primary" @click="minifyHtml" :disabled="loading || !input.trim()">
+        <button class="btn-primary" @click="minifyHtml" :disabled="loading || minifierLoading || !input.trim()">
           <span v-if="loading && mode === 'minify'">Minifying...</span>
+          <span v-else-if="minifierLoading">Loading...</span>
           <span v-else>Minify</span>
         </button>
       </div>
@@ -37,7 +39,7 @@
 
       <textarea
           v-model="input"
-          placeholder="Paste your HTML code here..."
+          placeholder="Paste your HTML code here (full documents, fragments, or HTML with PHP/template tags are all supported)..."
           class="input font-mono resize-y min-h-[120px]"
           @paste="onPaste"
           spellcheck="false"
@@ -49,7 +51,9 @@
           <span v-if="stats">Size: {{ stats.before }}</span>
         </div>
         <div class="flex gap-4">
-          <span v-if="error" class="warn">{{ error }}</span>
+          <span v-if="minifierLoading" class="text-blue-400">⏳ Loading optimizer...</span>
+          <span v-else-if="minifierError" class="warn">{{ minifierError }}</span>
+          <span v-else-if="error" class="warn">{{ error }}</span>
           <span v-if="copied" class="text-green-400 font-medium">✓ Copied!</span>
         </div>
       </div>
@@ -115,13 +119,37 @@ import { ref, onMounted } from 'vue'
 /* ---------- html-minifier-terser ---------- */
 // Lazy load html-minifier-terser only on client side
 let htmlMinifier: any = null
+const minifierLoading = ref<boolean>(false)
+const minifierError = ref<string>('')
 
 onMounted(async () => {
-  if (typeof window !== 'undefined') {
+  await loadMinifier()
+})
+
+async function loadMinifier(retryCount = 0): Promise<void> {
+  if (htmlMinifier) return // Already loaded
+  if (typeof window === 'undefined') return
+
+  minifierLoading.value = true
+  minifierError.value = ''
+
+  try {
     const module = await import('html-minifier-terser')
     htmlMinifier = module
+  } catch (err) {
+    console.error('Failed to load html-minifier-terser:', err)
+
+    // Retry up to 2 times
+    if (retryCount < 2) {
+      await new Promise(resolve => setTimeout(resolve, 500))
+      return loadMinifier(retryCount + 1)
+    }
+
+    minifierError.value = 'Failed to load HTML optimizer. Please refresh the page.'
+  } finally {
+    minifierLoading.value = false
   }
-})
+}
 
 /* ---------- state ---------- */
 const input = ref<string>('')
@@ -190,12 +218,26 @@ async function minifyHtml(): Promise<void> {
   loading.value = true
   mode.value = 'minify'
 
+  // Wait for minifier to load if still loading
+  if (minifierLoading.value) {
+    let waited = 0
+    while (minifierLoading.value && waited < 5000) {
+      await new Promise(resolve => setTimeout(resolve, 100))
+      waited += 100
+    }
+  }
+
   // Check if html-minifier-terser is loaded
   if (!htmlMinifier) {
-    error.value = '⚠️ HTML Optimizer not initialized. Please refresh the page.'
-    loading.value = false
-    mode.value = null
-    return
+    // Try to load it one more time
+    await loadMinifier()
+
+    if (!htmlMinifier) {
+      error.value = minifierError.value || '⚠️ HTML Optimizer not initialized. Please refresh the page.'
+      loading.value = false
+      mode.value = null
+      return
+    }
   }
 
   // Check if input is empty
@@ -210,21 +252,32 @@ async function minifyHtml(): Promise<void> {
   const beforeBytes = bytes(src.length)
 
   try {
-    // Simple minification options that work reliably
+    // Flexible minification options that work with HTML fragments and PHP
     const minifierOptions: any = {
       removeComments: opts.value.removeComments,
       collapseWhitespace: opts.value.collapseWhitespace,
 
-      // Safe defaults
+      // More permissive settings for fragments and mixed content
       removeAttributeQuotes: false,
       minifyCSS: false,
       minifyJS: false,
       caseSensitive: false,
+
+      // Allow fragments (no DOCTYPE required)
+      html5: true,
+
+      // Preserve PHP tags and other server-side code
+      ignoreCustomFragments: [
+        /<\?[\s\S]*?\?>/,  // PHP tags
+        /<%[\s\S]*?%>/,     // ASP/JSP tags
+        /<\{[\s\S]*?\}>/    // Template tags
+      ],
+
+      // Don't fail on invalid HTML - try to parse it anyway
+      continueOnParseError: true,
     }
 
     // Minify using html-minifier-terser
-    // Note: htmlMinifier.minify can be sync or async depending on options
-    // Always await to handle both cases safely
     const result = await Promise.resolve(htmlMinifier.minify(src, minifierOptions))
 
     minified.value = result
@@ -239,11 +292,15 @@ async function minifyHtml(): Promise<void> {
 
     // Provide helpful error messages
     if (errorMsg.includes('Parse Error')) {
-      error.value = `❌ HTML Parse Error: ${errorMsg}. Please check your HTML syntax.`
+      error.value = `⚠️ Parse error in HTML. The optimizer processed what it could. Check output carefully.`
+      // Still try to show something if possible
+      minified.value = src
     } else if (errorMsg.includes('Unexpected token')) {
-      error.value = `❌ Syntax Error: ${errorMsg}. There may be an issue with inline JS/CSS.`
+      error.value = `⚠️ Unexpected token found. The HTML may contain syntax issues or server-side code.`
+      minified.value = src
     } else {
-      error.value = `❌ Error while minifying: ${errorMsg}`
+      error.value = `⚠️ ${errorMsg}. Original HTML shown below.`
+      minified.value = src
     }
   } finally {
     loading.value = false
@@ -259,12 +316,26 @@ async function beautifyHtml(): Promise<void> {
   loading.value = true
   mode.value = 'beautify'
 
+  // Wait for minifier to load if still loading
+  if (minifierLoading.value) {
+    let waited = 0
+    while (minifierLoading.value && waited < 5000) {
+      await new Promise(resolve => setTimeout(resolve, 100))
+      waited += 100
+    }
+  }
+
   // Check if html-minifier-terser is loaded
   if (!htmlMinifier) {
-    error.value = '⚠️ HTML Optimizer not initialized. Please refresh the page.'
-    loading.value = false
-    mode.value = null
-    return
+    // Try to load it one more time
+    await loadMinifier()
+
+    if (!htmlMinifier) {
+      error.value = minifierError.value || '⚠️ HTML Optimizer not initialized. Please refresh the page.'
+      loading.value = false
+      mode.value = null
+      return
+    }
   }
 
   // Check if input is empty
@@ -289,6 +360,19 @@ async function beautifyHtml(): Promise<void> {
       minifyCSS: false,
       minifyJS: false,
       caseSensitive: false,
+
+      // Allow fragments (no DOCTYPE required)
+      html5: true,
+
+      // Preserve PHP tags and other server-side code
+      ignoreCustomFragments: [
+        /<\?[\s\S]*?\?>/,  // PHP tags
+        /<%[\s\S]*?%>/,     // ASP/JSP tags
+        /<\{[\s\S]*?\}>/    // Template tags
+      ],
+
+      // Don't fail on invalid HTML - try to parse it anyway
+      continueOnParseError: true,
     }
 
     // Use html-minifier-terser for basic normalization
@@ -307,12 +391,16 @@ async function beautifyHtml(): Promise<void> {
   } catch (err) {
     const errorMsg = (err as Error).message || 'Unknown error'
 
+    // More graceful error handling - try to format anyway
     if (errorMsg.includes('Parse Error')) {
-      error.value = `❌ HTML Parse Error: ${errorMsg}. Please check your HTML syntax.`
+      error.value = `⚠️ Parse error in HTML. Attempting basic formatting...`
+      minified.value = formatHtml(src)
     } else if (errorMsg.includes('Unexpected token')) {
-      error.value = `❌ Syntax Error: ${errorMsg}. There may be an issue with inline JS/CSS.`
+      error.value = `⚠️ Unexpected token found. Attempting basic formatting...`
+      minified.value = formatHtml(src)
     } else {
-      error.value = `❌ Error while beautifying: ${errorMsg}`
+      error.value = `⚠️ ${errorMsg}. Attempting basic formatting...`
+      minified.value = formatHtml(src)
     }
   } finally {
     loading.value = false
@@ -326,8 +414,27 @@ function formatHtml(html: string): string {
   let indent = 0
   const tab = '  '
 
+  // Preserve PHP and server-side code blocks
+  const preservedBlocks: string[] = []
+  let blockIndex = 0
+
+  // Replace PHP and server-side code with placeholders
+  let processed = html
+    .replace(/<\?[\s\S]*?\?>/g, (match) => {
+      const placeholder = `__PRESERVED_BLOCK_${blockIndex}__`
+      preservedBlocks[blockIndex] = match
+      blockIndex++
+      return placeholder
+    })
+    .replace(/<%[\s\S]*?%>/g, (match) => {
+      const placeholder = `__PRESERVED_BLOCK_${blockIndex}__`
+      preservedBlocks[blockIndex] = match
+      blockIndex++
+      return placeholder
+    })
+
   // Simple HTML formatter
-  html.split(/(<[^>]+>)/g).forEach(part => {
+  processed.split(/(<[^>]+>)/g).forEach(part => {
     if (!part.trim()) return
 
     // Check if it's a tag
@@ -349,7 +456,7 @@ function formatHtml(html: string): string {
         }
       }
     }
-    // Text content
+    // Text content or preserved blocks
     else {
       const trimmed = part.trim()
       if (trimmed) {
@@ -358,7 +465,13 @@ function formatHtml(html: string): string {
     }
   })
 
-  return formatted.trim()
+  // Restore preserved blocks
+  let result = formatted.trim()
+  preservedBlocks.forEach((block, index) => {
+    result = result.replace(`__PRESERVED_BLOCK_${index}__`, block)
+  })
+
+  return result
 }
 
 /* ---------- helpers ---------- */
