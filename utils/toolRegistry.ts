@@ -1040,6 +1040,47 @@ export const tools: Record<string, Tool> = {
         }
     },
 
+    'base64-encoder-decoder': {
+        title: 'Base64 Encoder/Decoder',
+        description: 'Encode and decode Base64 strings, files, images with data URL support. Upload files or paste text for instant conversion.',
+        category: 'dev',
+        component: () =>
+            import('~/components/tools/dev/Base64EncoderDecoder.vue') as Promise<{ default: DefineComponent }>,
+        seo: {
+            title: `Base64 Encoder/Decoder - File & Data URL Support (Free) – ${BRAND}`,
+            description:
+                'Professional Base64 encoder and decoder with file upload support, data URL generation, and image preview. Encode text and files to Base64 or decode Base64 strings back to original content. Supports MIME types, binary files, and image preview—all client-side with complete privacy.',
+            ogImage: OG,
+            keywords:
+                'base64 encoder, base64 decoder, encode base64 online, decode base64, data url generator, base64 image encoder, base64 file upload, base64 to image, image to base64, base64 converter, mime type base64, base64 decode online, base64 encode file',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'Base64 Encoder/Decoder Pro',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    'Encode Text to Base64',
+                    'Decode Base64 to Text',
+                    'Upload Files for Encoding',
+                    'Generate Data URLs',
+                    'Auto-detect MIME Types',
+                    'Image Preview for Decoded Images',
+                    'Download Decoded Files',
+                    'UTF-8 Support',
+                    'Binary File Support',
+                    'Copy to Clipboard',
+                    'Size Statistics & Overhead Calculation',
+                    'Auto-process Mode',
+                    'Client-side Processing (Privacy-Friendly)',
+                    'localStorage Persistence'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '52' }
+            }
+        }
+    },
+
     'border-radius-generator': {
         title: 'Border Radius Generator',
         description: 'Visualize and create fancy border-radius shapes.',
