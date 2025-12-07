@@ -118,6 +118,9 @@
         <p>Paste a dump above and click "Format" to see the output here</p>
       </div>
     </div>
+
+    <!-- Related Tools -->
+    <RelatedTools />
   </div>
 </template>
 

@@ -178,6 +178,8 @@
     </div>
 
     <p v-if="copiedMsg" class="text-green-400 text-sm text-center font-medium">✓ {{ copiedMsg }}</p>
+    <!-- Related Tools -->
+    <RelatedTools />
   </div>
 </template>
 

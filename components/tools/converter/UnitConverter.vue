@@ -214,6 +214,9 @@
     <p class="note">
       Note: temperature uses exact formulas; other categories use SI base unit factors.
     </p>
+
+    <!-- Related Tools -->
+    <RelatedTools />
   </div>
 </template>
 

@@ -161,6 +161,8 @@
     </div>
 
     <p v-if="copiedMsg" class="text-green-400 text-sm">{{ copiedMsg }}</p>
+    <!-- Related Tools -->
+    <RelatedTools />
   </div>
 </template>
 

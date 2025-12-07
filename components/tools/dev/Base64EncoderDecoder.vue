@@ -179,6 +179,9 @@
         <p class="mt-3"><strong>Note:</strong> Base64 encoding increases size by ~33% compared to the original binary data.</p>
       </div>
     </div>
+
+    <!-- Related Tools -->
+    <RelatedTools />
   </div>
 </template>
 

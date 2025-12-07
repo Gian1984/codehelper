@@ -135,6 +135,8 @@
         {{ stats.chars }} chars • {{ stats.words }} words • {{ stats.sentences }} sentences • {{ stats.paragraphs }} paragraphs
       </div>
     </div>
+    <!-- Related Tools -->
+    <RelatedTools />
   </div>
 </template>
 

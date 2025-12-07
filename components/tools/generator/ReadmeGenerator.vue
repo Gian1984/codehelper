@@ -275,6 +275,8 @@
       <!-- Raw Markdown -->
       <pre v-else class="bg-black text-green-300 p-4 rounded-lg border border-gray-700 overflow-auto max-h-[600px] whitespace-pre-wrap text-sm font-mono">{{ markdown }}</pre>
     </div>
+    <!-- Related Tools -->
+    <RelatedTools />
   </div>
 </template>
 

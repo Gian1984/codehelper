@@ -182,6 +182,8 @@
       </svg>
       <div class="text-center text-xs text-gray-400 py-1">viewBox: {{ svgWidth }} × {{ svgHeightWithMirror }}</div>
     </div>
+    <!-- Related Tools -->
+    <RelatedTools />
   </div>
 </template>
 

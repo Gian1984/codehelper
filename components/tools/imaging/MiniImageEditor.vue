@@ -228,6 +228,8 @@
     </div>
 
     <p v-show="!img.loaded" class="text-xs text-gray-400">Tip: click-drag on the image to show a crop box.</p>
+    <!-- Related Tools -->
+    <RelatedTools />
   </div>
 </template>
 

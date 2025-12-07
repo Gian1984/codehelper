@@ -151,6 +151,8 @@
         <p class="text-xs text-gray-400 mt-2">Tailwind arbitrary value escapes handled.</p>
       </div>
     </div>
+    <!-- Related Tools -->
+    <RelatedTools />
   </div>
 </template>
 

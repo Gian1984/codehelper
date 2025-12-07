@@ -98,6 +98,8 @@
         <span>lines: {{ stats.out.lines }}</span>
       </div>
     </div>
+    <!-- Related Tools -->
+    <RelatedTools />
   </div>
 </template>
 

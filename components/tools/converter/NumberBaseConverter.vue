@@ -217,6 +217,9 @@
         Conversion uses <code class="font-mono text-indigo-400">BigInt</code> for virtually unlimited size.
       </p>
     </div>
+
+    <!-- Related Tools -->
+    <RelatedTools />
   </div>
 </template>
 

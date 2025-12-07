@@ -165,6 +165,8 @@
     </div>
 
     <canvas ref="canvas" class="hidden"></canvas>
+    <!-- Related Tools -->
+    <RelatedTools />
   </div>
 </template>
 

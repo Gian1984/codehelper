@@ -209,6 +209,8 @@ const code = 'with syntax highlighting';
     </div>
 
     <div v-if="message" class="text-center text-sm text-green-400">{{ message }}</div>
+    <!-- Related Tools -->
+    <RelatedTools />
   </div>
 </template>
 

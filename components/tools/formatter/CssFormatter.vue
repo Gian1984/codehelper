@@ -140,6 +140,9 @@
         </div>
       </div>
     </div>
+
+    <!-- Related Tools -->
+    <RelatedTools />
   </div>
 </template>
 

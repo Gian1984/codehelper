@@ -237,6 +237,8 @@
         💡 Tip: WebP or JPEG with 80-85% quality yields the best size reduction for photos while maintaining visual quality.
       </p>
     </div>
+    <!-- Related Tools -->
+    <RelatedTools />
   </div>
 </template>
 

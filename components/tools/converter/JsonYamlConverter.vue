@@ -87,6 +87,9 @@
         <pre><code :class="`language-${conversionDirection === 'json-to-yaml' ? 'yaml' : 'json'}`" v-html="highlightedOutput"></code></pre>
       </div>
     </div>
+
+    <!-- Related Tools -->
+    <RelatedTools />
   </div>
 </template>
 
