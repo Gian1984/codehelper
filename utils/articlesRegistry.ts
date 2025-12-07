@@ -417,14 +417,14 @@ export const articles: Record<string, Article> = {
     'github-student-pack': {
         title: 'GitHub Student Developer Pack — Free Tools & Resources for Students',
         description:
-            'A complete overview of GitHub’s Student Developer Pack: free IDEs, cloud credits, domains, and pro tools to help students learn and ship real projects.',
+            'A complete overview of GitHub\'s Student Developer Pack: free IDEs, cloud credits, domains, and pro tools to help students learn and ship real projects.',
         category: 'education',
         component: () =>
             import('~/components/articles/education/GitHubStudentPack.vue') as Promise<{ default: DefineComponent }>,
         seo: {
             title: `GitHub Student Developer Pack — Free Tools & Resources – ${BRAND}`,
             description:
-                'Discover everything included in GitHub’s Student Developer Pack: Copilot Pro, JetBrains IDEs, cloud credits, domains, and learning platforms—all free for verified students.',
+                'Discover everything included in GitHub\'s Student Developer Pack: Copilot Pro, JetBrains IDEs, cloud credits, domains, and learning platforms—all free for verified students.',
             ogImage: OG,
             keywords:
                 'GitHub Student Pack, free developer tools students, GitHub Education benefits, JetBrains free student license, GitHub Copilot free, student cloud credits',
@@ -433,7 +433,7 @@ export const articles: Record<string, Article> = {
                 '@type': 'TechArticle',
                 headline: 'GitHub Student Developer Pack — Free Tools & Resources for Students',
                 description:
-                    'Guide to GitHub’s Student Developer Pack, including Copilot, JetBrains, cloud credits, domains, and learning resources. Learn how to apply and maximize your benefits.',
+                    'Guide to GitHub\'s Student Developer Pack, including Copilot, JetBrains, cloud credits, domains, and learning resources. Learn how to apply and maximize your benefits.',
                 author: { '@type': 'Person', name: 'Gianluca' },
                 publisher: {
                     '@type': 'Organization',
@@ -465,6 +465,64 @@ export const articles: Record<string, Article> = {
         }
     },
 
+    'mlx-terminal-code': {
+        title: 'MLX-CODE: 100% Local AI Coding Assistant for macOS',
+        description:
+            'Discover MLX-CODE, a privacy-focused local AI coding assistant that runs entirely on your Mac using Apple\'s MLX framework. Free, offline, and powerful with 20+ AI models.',
+        category: 'ai',
+        component: () =>
+            import('~/components/articles/ai/MlxTerminalCode.vue') as Promise<{ default: DefineComponent }>,
+        seo: {
+            title: `MLX-CODE: Local AI Coding Assistant for Apple Silicon (Free) – ${BRAND}`,
+            description:
+                'Complete guide to MLX-CODE: 100% local AI coding assistant for macOS with Apple MLX framework. Features 20+ models (Qwen, DeepSeek, Llama 3), intelligent file context, auto-backup, and GPU acceleration. Free alternative to GitHub Copilot.',
+            ogImage: OG,
+            keywords:
+                'mlx code, local ai coding assistant, apple silicon ai, mlx framework mac, qwen coder, deepseek coder, private ai assistant, offline coding ai, mac ai coding tool, github copilot alternative, apple mlx lm, m1 m2 m3 m4 coding ai',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'TechArticle',
+                headline: 'MLX-CODE: 100% Local AI Coding Assistant for macOS',
+                description:
+                    'In-depth guide to MLX-CODE, a local AI coding assistant running on Apple Silicon with MLX framework. Covers installation, models (Qwen 1.5B-32B, DeepSeek V2), features, performance, and privacy.',
+                author: { '@type': 'Person', name: 'Gianluca' },
+                publisher: {
+                    '@type': 'Organization',
+                    name: 'CodeHelper',
+                    logo: { '@type': 'ImageObject', url: OG }
+                },
+                image: OG,
+                datePublished: '2025-12-07',
+                dateModified: '2025-12-07',
+                mainEntityOfPage: {
+                    '@type': 'WebPage',
+                    '@id': 'https://codehelper.me/articles/mlx-terminal-code'
+                },
+                articleSection: 'Artificial Intelligence',
+                about: [
+                    'Local AI',
+                    'Coding Assistant',
+                    'Apple MLX Framework',
+                    'Privacy-Focused Development',
+                    'Apple Silicon'
+                ],
+                keywords: [
+                    'MLX-CODE',
+                    'Apple MLX',
+                    'Qwen Coder',
+                    'DeepSeek V2',
+                    'local AI coding',
+                    'Apple Silicon',
+                    'M1 M2 M3 M4',
+                    'GPU acceleration',
+                    'offline AI',
+                    'GitHub Copilot alternative',
+                    'privacy coding assistant'
+                ],
+                proficiencyLevel: 'Intermediate'
+            }
+        }
+    },
 
 
 
