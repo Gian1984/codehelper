@@ -29,12 +29,12 @@
             format="webp"
           />
           <h1 class="mt-10 text-5xl font-semibold tracking-tight text-pretty text-white sm:text-7xl">
-            Tools & Articles for Modern Developers
+            The Complete Developer Toolkit
           </h1>
           <p class="mt-8 text-lg font-medium text-pretty text-gray-400 sm:text-xl/8">
-            CodeHelper is an <strong class="text-white">open-source developer toolbox</strong>
-            lightweight, fast, and privacy-friendly. Use it to format, convert, generate,
-            and optimize your code directly in the browser. No logins. No tracking. Just productivity.
+            CodeHelper is an <strong class="text-white">open-source developer platform</strong>
+            with 100+ privacy-first tools, 800+ curated resources, and 400+ public APIs.
+            Everything runs in your browser — <strong class="text-white">fast, private, and free forever</strong>.
           </p>
           <div class="mt-10 flex items-center justify-center lg:justify-start gap-x-6">
             <NuxtLink to="/tools" class="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400">
@@ -43,6 +43,117 @@
             <NuxtLink to="/about" class="text-sm/6 font-semibold text-white">Learn more <span aria-hidden="true">→</span></NuxtLink>
           </div>
         </div>
+      </div>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:px-8">
+      <div class="mx-auto max-w-2xl lg:max-w-none">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+            By the Numbers
+          </h2>
+          <p class="mt-4 text-lg text-gray-400">
+            A comprehensive platform built for developers, by developers
+          </p>
+        </div>
+        <dl class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div v-for="(stat, statIdx) in stats" :key="statIdx" class="rounded-lg bg-gray-800 border border-gray-700 p-8 text-center hover:shadow-lg transition">
+            <dt class="text-sm text-gray-400 mb-3">{{ stat.label }}</dt>
+            <dd class="text-4xl font-bold" :class="stat.color">{{ stat.value }}</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+
+    <!-- What We Offer -->
+    <div class="mx-auto max-w-7xl px-6 pb-24 lg:px-8">
+      <div class="mx-auto max-w-2xl lg:mx-0 mb-12">
+        <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+          Everything You Need in One Place
+        </h2>
+        <p class="mt-4 text-lg text-gray-400">
+          Three powerful features working together to accelerate your development workflow
+        </p>
+      </div>
+      <div class="grid gap-8 lg:grid-cols-3">
+        <!-- Privacy-First Tools -->
+        <NuxtLink to="/tools" class="block rounded-lg bg-gradient-to-br from-indigo-900/20 to-indigo-800/10 border border-indigo-500/30 p-8 hover:shadow-lg hover:border-indigo-500 transition">
+          <h3 class="text-xl font-semibold text-white mb-4">Privacy-First Tools</h3>
+          <p class="text-gray-300 mb-4">
+            100+ developer utilities running entirely in your browser. Format code, convert data,
+            generate content — all client-side with zero server uploads.
+          </p>
+          <ul class="space-y-2 text-sm text-gray-300 mb-6">
+            <li class="flex items-start gap-2">
+              <span class="text-indigo-400 mt-1">•</span>
+              <span>Code formatters & validators</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-indigo-400 mt-1">•</span>
+              <span>Data converters & generators</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-indigo-400 mt-1">•</span>
+              <span>Image & text utilities</span>
+            </li>
+          </ul>
+          <span class="text-sm font-semibold text-indigo-400">
+            Browse tools →
+          </span>
+        </NuxtLink>
+
+        <!-- Curated Resources -->
+        <NuxtLink to="/resources" class="block rounded-lg bg-gradient-to-br from-purple-900/20 to-purple-800/10 border border-purple-500/30 p-8 hover:shadow-lg hover:border-purple-500 transition">
+          <h3 class="text-xl font-semibold text-white mb-4">Curated Resources</h3>
+          <p class="text-gray-300 mb-4">
+            800+ hand-picked external tools and resources. Discover the best UI libraries,
+            design tools, fonts, icons, and more — all organized by category.
+          </p>
+          <ul class="space-y-2 text-sm text-gray-300 mb-6">
+            <li class="flex items-start gap-2">
+              <span class="text-purple-400 mt-1">•</span>
+              <span>UI libraries & frameworks</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-purple-400 mt-1">•</span>
+              <span>Design assets & tools</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-purple-400 mt-1">•</span>
+              <span>Developer utilities</span>
+            </li>
+          </ul>
+          <span class="text-sm font-semibold text-purple-400">
+            Explore resources →
+          </span>
+        </NuxtLink>
+
+        <!-- Public APIs -->
+        <NuxtLink to="/resources/apis" class="block rounded-lg bg-gradient-to-br from-pink-900/20 to-pink-800/10 border border-pink-500/30 p-8 hover:shadow-lg hover:border-pink-500 transition">
+          <h3 class="text-xl font-semibold text-white mb-4">Public APIs Directory</h3>
+          <p class="text-gray-300 mb-4">
+            400+ public APIs across 40+ categories. Find APIs for weather, finance, AI, social media,
+            and more — with filtering by auth type, HTTPS, and CORS support.
+          </p>
+          <ul class="space-y-2 text-sm text-gray-300 mb-6">
+            <li class="flex items-start gap-2">
+              <span class="text-pink-400 mt-1">•</span>
+              <span>40+ categories</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-pink-400 mt-1">•</span>
+              <span>Advanced filtering</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-pink-400 mt-1">•</span>
+              <span>Direct documentation links</span>
+            </li>
+          </ul>
+          <span class="text-sm font-semibold text-pink-400">
+            Browse APIs →
+          </span>
+        </NuxtLink>
       </div>
     </div>
 
@@ -60,11 +171,11 @@
         <li
             v-for="([category, toolsInCategory], i) in toolsByCategory"
             :key="category"
-            class="rounded-lg bg-gray-800 p-6 shadow hover:shadow-md transition"
+            class="rounded-lg bg-gray-800 border border-gray-700 p-6 hover:border-indigo-500 hover:shadow-lg transition"
         >
           <NuxtLink
               :to="`/tools?category=${category}`"
-              class="block text-lg font-semibold capitalize text-white hover:text-indigo-400"
+              class="block text-lg font-semibold capitalize text-white"
           >
             {{ category }}
           </NuxtLink>
@@ -123,9 +234,9 @@
       </div>
       <div class="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
         <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          <li v-for="([slug, article], i) in latestArticles" :key="slug" class="rounded-lg bg-gray-800 p-6 shadow hover:shadow-md transition">
+          <li v-for="([slug, article], i) in latestArticles" :key="slug" class="rounded-lg bg-gray-800 border border-gray-700 p-6 hover:border-indigo-500 hover:shadow-lg transition">
             <NuxtLink :to="`/articles/${slug}/`" class="block">
-              <h3 class="text-xl font-semibold text-white hover:text-indigo-400">
+              <h3 class="text-xl font-semibold text-white">
                 {{ article.title }}
               </h3>
               <p class="mt-2 text-gray-400 text-sm">{{ article.description }}</p>
@@ -148,6 +259,8 @@ import { ref, onMounted, computed } from 'vue'
 import { useSeoMeta, useHead } from '#imports'
 import { tools } from '~/utils/toolRegistry'
 import { articles } from '~/utils/articlesRegistry'
+import { getTotalResourcesCount } from '~/utils/externalRegistry'
+import { getTotalAPIsCount } from '~/utils/apiRegistry'
 
 interface Tool {
   title: string
@@ -160,16 +273,40 @@ interface Article {
   category?: string
 }
 
+// Real stats from registries
+const stats = computed(() => [
+  {
+    label: 'Developer Tools',
+    value: `${Object.keys(tools).length}+`,
+    color: 'text-indigo-400'
+  },
+  {
+    label: 'External Resources',
+    value: `${getTotalResourcesCount()}+`,
+    color: 'text-purple-400'
+  },
+  {
+    label: 'Public APIs',
+    value: `${getTotalAPIsCount()}+`,
+    color: 'text-pink-400'
+  },
+  {
+    label: 'Articles & Guides',
+    value: `${Object.keys(articles).length}+`,
+    color: 'text-indigo-400'
+  }
+])
+
 useSeoMeta({
-  title: 'CodeHelper Project — Free Developer Tools & Articles',
-  description: 'CodeHelper is an open-source developer toolbox offering free online tools and guides. Format, convert, and optimize your code in the browser — no tracking, no sign-up.',
-  ogTitle: 'CodeHelper Project — Free Developer Tools & Guides',
-  ogDescription: 'Discover how CodeHelper helps developers ship faster with lightweight tools and practical articles. 100% free, browser-based, and open source.',
+  title: 'CodeHelper Project — Complete Developer Platform with Tools, Resources & APIs',
+  description: 'CodeHelper is an open-source developer platform with 100+ privacy-first tools, 800+ curated resources, and 400+ public APIs. Everything runs in your browser — fast, private, and free forever.',
+  ogTitle: 'CodeHelper Project — Complete Developer Platform',
+  ogDescription: 'Discover CodeHelper: 100+ tools, 800+ resources, 400+ APIs. Privacy-first, open-source, and built for developers.',
   ogImage: '/images/codehelper_OGIMAGE.webp',
   ogUrl: 'https://codehelper.me/project',
   twitterCard: 'summary_large_image',
-  twitterTitle: 'CodeHelper Project — Free Developer Tools',
-  twitterDescription: 'Explore CodeHelper: a privacy-friendly, open-source toolbox for developers. Try tools, read guides, and optimize your workflow.',
+  twitterTitle: 'CodeHelper Project — Your Complete Developer Toolkit',
+  twitterDescription: 'Privacy-first tools, curated resources, and public APIs — all in one open-source platform for developers.',
   twitterImage: '/images/codehelper_OGIMAGE.webp'
 })
 
@@ -183,7 +320,7 @@ useHead({
         '@type': 'WebPage',
         name: 'CodeHelper Project',
         url: 'https://codehelper.me/project',
-        description: 'CodeHelper is a free, open-source toolbox for developers with practical web tools and guides to speed up coding tasks.',
+        description: 'CodeHelper is an open-source developer platform with 100+ privacy-first tools, 800+ curated resources, and 400+ public APIs. Everything runs in your browser — fast, private, and free forever.',
         image: 'https://codehelper.me/images/codehelper_OGIMAGE.webp'
       })
     }

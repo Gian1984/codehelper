@@ -13,97 +13,205 @@
             About CodeHelper
           </h1>
           <p class="mt-8 text-lg font-medium text-pretty text-gray-400 sm:text-xl/8">
-            CodeHelper is a <strong class="text-white">privacy-first, open-source</strong> toolbox for developers.
-            Every tool runs <strong class="text-white">entirely in your browser</strong> fast, lightweight, and sustainable, so you can format, convert, and prototype without sending data anywhere.
+            CodeHelper is your <strong class="text-white">complete developer toolkit</strong> —
+            100+ privacy-first tools, 800+ curated resources, and 400+ public APIs.
+            Everything runs <strong class="text-white">entirely in your browser</strong>, fast and sustainable.
           </p>
         </div>
       </div>
 
-      <!-- Content section -->
-      <div class="mx-auto mt-20 max-w-7xl px-6 lg:px-8">
+      <!-- Stats -->
+      <div class="mx-auto mt-16 max-w-7xl px-6 lg:px-8">
+        <dl class="grid grid-cols-2 gap-4 sm:grid-cols-4">
+          <div v-for="(stat, statIdx) in stats" :key="statIdx" class="rounded-lg bg-gray-800 border border-gray-700 p-6 text-center  hover:shadow-lg transition">
+            <dt class="text-sm text-gray-400 mb-2">{{ stat.label }}</dt>
+            <dd class="text-3xl font-bold" :class="stat.color">{{ stat.value }}</dd>
+          </div>
+        </dl>
+      </div>
+
+      <!-- Mission Section -->
+      <div class="mx-auto mt-24 max-w-7xl px-6 lg:px-8">
         <div class="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
-          <div class="grid max-w-xl grid-cols-1 gap-8 text-base/7 text-gray-300 lg:max-w-none lg:grid-cols-2">
-            <div>
-              <p>
-                CodeHelper was created to remove friction from everyday development. Instead of spinning up heavy stacks
-                or cloud services, these <strong class="text-white">single-purpose, client-side utilities</strong> help you format JSON, minify assets, test regex, convert units, and more in second, no sign-ups, no tracking, no noise.
+          <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl mb-8">
+            Our Mission
+          </h2>
+          <div class="grid gap-8 lg:grid-cols-2">
+            <!-- CodeHelper Tools -->
+            <div class="rounded-lg bg-gradient-to-br from-indigo-900/20 to-indigo-800/10 border border-indigo-500/30 p-8  hover:shadow-lg transition">
+              <h3 class="text-xl font-semibold text-white mb-4">Privacy-First Tools</h3>
+              <p class="text-gray-300 mb-4">
+                CodeHelper was created to remove friction from everyday development. Instead of cloud services,
+                our <strong class="text-white">client-side utilities</strong> help you format JSON, minify assets,
+                test regex, and more—in seconds.
               </p>
-              <p class="mt-8">
-                Because everything runs locally, your data stays with you. That means <strong class="text-white">zero server uploads</strong> and less energy use compared to remote tools or AI pipelines, better for privacy and the planet.
+              <p class="text-gray-300">
+                Because everything runs locally, your data stays with you. <strong class="text-white">Zero server uploads</strong>,
+                better for privacy and the planet.
               </p>
             </div>
-            <div>
-              <p>
-                Open source is how CodeHelper grows. Clear code, small dependencies, and pragmatic UX make each tool easy to
-                understand and easy to improve. Contributions new tools, bug fixes, docs are always welcome.
+
+            <!-- Resources & APIs -->
+            <div class="rounded-lg bg-gradient-to-br from-purple-900/20 to-purple-800/10 border border-purple-500/30 p-8  hover:shadow-lg transition">
+              <h3 class="text-xl font-semibold text-white mb-4">Curated Knowledge Base</h3>
+              <p class="text-gray-300 mb-4">
+                Beyond tools, CodeHelper is a <strong class="text-white">comprehensive directory</strong> of
+                developer resources. Discover hand-picked UI libraries, color tools, icon sets, and public APIs.
               </p>
-              <p class="mt-8">
-                If you’re a designer, dev, or student, CodeHelper aims to be the <strong class="text-white">fastest way from idea to output</strong>.
-                Less setup. Fewer tabs. Cleaner results.
+              <p class="text-gray-300">
+                Everything organized by category, making it <strong class="text-white">easy to find</strong> exactly
+                what you need for your project.
               </p>
             </div>
           </div>
-
-          <!-- Stats -->
-          <dl class="mt-16 grid grid-cols-1 gap-x-8 gap-y-12 sm:mt-20 sm:grid-cols-2 sm:gap-y-16 lg:mt-28 lg:grid-cols-4">
-            <!-- Update these values with real numbers when available -->
-            <div v-for="(stat, statIdx) in stats" :key="statIdx" class="flex flex-col-reverse gap-y-3 border-l border-white/20 pl-6">
-              <dt class="text-base/7 text-gray-300">{{ stat.label }}</dt>
-              <dd class="text-3xl font-semibold tracking-tight text-white">{{ stat.value }}</dd>
-            </div>
-          </dl>
         </div>
       </div>
 
       <!-- Values section -->
       <div class="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
-        <div class="mx-auto max-w-2xl lg:mx-0">
-          <h2 class="text-4xl font-semibold tracking-tight text-pretty text-white sm:text-5xl">Principles I build by</h2>
+        <div class="mx-auto max-w-2xl lg:mx-0 mb-12">
+          <h2 class="text-4xl font-semibold tracking-tight text-pretty text-white sm:text-5xl">
+            Guiding Principles
+          </h2>
           <p class="mt-6 text-lg/8 text-gray-300">
-            CodeHelper is guided by simple rules: <strong class="text-white">ship small, respect privacy,</strong> and make tools anyone can use, and learn from.
+            CodeHelper is guided by simple rules: <strong class="text-white">ship small, respect privacy</strong>,
+            and make tools anyone can use and learn from.
           </p>
         </div>
-        <dl class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 text-base/7 text-gray-300 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-x-16">
-          <div v-for="value in values" :key="value.name" class="relative pl-9">
-            <dt class="inline font-semibold text-white">
-              <component :is="value.icon" class="absolute top-1 left-1 size-5 text-indigo-500" aria-hidden="true" />
-              {{ value.name }}
-            </dt>
-            {{ ' ' }}
-            <dd class="inline">{{ value.description }}</dd>
+        <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <div v-for="value in values" :key="value.name" class="rounded-lg bg-gray-800 border border-gray-700 p-6  hover:shadow-lg transition">
+            <div class="flex items-start gap-4">
+              <div class="flex-shrink-0">
+                <div class="w-10 h-10 rounded-lg bg-indigo-600 flex items-center justify-center">
+                  <component :is="value.icon" class="w-5 h-5 text-white" aria-hidden="true" />
+                </div>
+              </div>
+              <div>
+                <h3 class="text-lg font-semibold text-white mb-2">{{ value.name }}</h3>
+                <p class="text-gray-300 text-sm">{{ value.description }}</p>
+              </div>
+            </div>
           </div>
-        </dl>
+        </div>
       </div>
 
-      <!-- About Me section -->
-      <div class="mx-auto max-w-2xl py-24 text-center sm:py-40">
-        <div class="mx-auto max-w-2xl lg:mx-0 text-center">
-          <h2 class="text-4xl font-semibold tracking-tight text-pretty text-white sm:text-5xl mx-auto">About Gianluca</h2>
-          <p class="mt-6 text-lg/8 text-gray-300">
-            I’m <strong class="text-white">Gianluca Tiengo</strong>, a web developer who enjoys crafting <strong class="text-white">small, fast, and useful</strong> tools.
-            CodeHelper is my way to give back to the developer community fully open source, transparent, and focused on real world workflows.
-          </p>
+      <!-- What Makes Us Different -->
+      <div class="mx-auto mt-32 max-w-7xl px-6 lg:px-8">
+        <div class="mx-auto max-w-2xl lg:mx-0 mb-12">
+          <h2 class="text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+            What Makes Us Different
+          </h2>
         </div>
+        <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div class="rounded-lg bg-gray-800 border border-gray-700 p-6  hover:shadow-lg transition">
+            <h3 class="text-lg font-semibold text-white mb-3">100% Client-Side</h3>
+            <ul class="space-y-2 text-sm text-gray-300">
+              <li class="flex items-start gap-2">
+                <span class="text-indigo-400 mt-1">•</span>
+                <span>No data sent to servers</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-indigo-400 mt-1">•</span>
+                <span>Works offline</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-indigo-400 mt-1">•</span>
+                <span>Instant results</span>
+              </li>
+            </ul>
+          </div>
 
-        <div class="mx-auto mt-16 max-w-sm text-center">
-          <NuxtImg
-            class="aspect-square w-full rounded-2xl"
-            src="/images/codehelper_logo_500_500_no_bg.webp"
-            alt="Logo placeholder for CodeHelper by Gianluca Tiengo"
-            width="500"
-            height="500"
-            loading="lazy"
-            format="webp"
-          />
-          <h3 class="mt-10 text-lg font-semibold tracking-tight text-white">
-            <a href="https://gianlucatiengo.com/" target="_blank" rel="noopener" class="hover:text-indigo-400">
-              Gianluca Tiengo
-            </a>
-          </h3>
-          <p class="text-base text-gray-300">Web Developer &amp; Open-Source Maker</p>
-          <p class="text-sm text-gray-500">Based in Europe</p>
+          <div class="rounded-lg bg-gray-800 border border-gray-700 p-6  hover:shadow-lg transition">
+            <h3 class="text-lg font-semibold text-white mb-3">Open Source</h3>
+            <ul class="space-y-2 text-sm text-gray-300">
+              <li class="flex items-start gap-2">
+                <span class="text-purple-400 mt-1">•</span>
+                <span>Transparent codebase</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-purple-400 mt-1">•</span>
+                <span>Community contributions welcome</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-purple-400 mt-1">•</span>
+                <span>Free forever</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="rounded-lg bg-gray-800 border border-gray-700 p-6  hover:shadow-lg transition">
+            <h3 class="text-lg font-semibold text-white mb-3">Comprehensive</h3>
+            <ul class="space-y-2 text-sm text-gray-300">
+              <li class="flex items-start gap-2">
+                <span class="text-pink-400 mt-1">•</span>
+                <span>Tools + Resources + APIs</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-pink-400 mt-1">•</span>
+                <span>All in one place</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-pink-400 mt-1">•</span>
+                <span>Constantly growing</span>
+              </li>
+            </ul>
+          </div>
         </div>
+      </div>
 
+      <!-- About Gianluca section -->
+      <div class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
+        <div class="mx-auto max-w-4xl">
+          <div class="rounded-2xl bg-gray-800 border border-gray-700 p-8 lg:p-12  hover:shadow-lg transition">
+            <div class="lg:grid lg:grid-cols-3 lg:gap-8">
+              <div class="lg:col-span-1">
+                <NuxtImg
+                  class="aspect-square w-full rounded-2xl object-cover"
+                  src="/images/codehelper_logo_500_500_no_bg.webp"
+                  alt="Gianluca Tiengo - CodeHelper Creator"
+                  width="500"
+                  height="500"
+                  loading="lazy"
+                  format="webp"
+                />
+              </div>
+              <div class="mt-8 lg:mt-0 lg:col-span-2">
+                <h2 class="text-3xl font-semibold text-white mb-4">About the Creator</h2>
+                <p class="text-gray-300 mb-4">
+                  I'm <strong class="text-white">Gianluca Tiengo</strong>, a web developer who enjoys crafting
+                  <strong class="text-white">small, fast, and useful</strong> tools.
+                </p>
+                <p class="text-gray-300 mb-4">
+                  CodeHelper started as a personal collection of utilities I built for my own workflow.
+                  It grew into a comprehensive toolkit because I believe developers deserve
+                  <strong class="text-white">privacy-respecting, free tools</strong> that just work.
+                </p>
+                <p class="text-gray-300 mb-6">
+                  Every tool, every resource, every API listing is carefully curated to help you ship faster
+                  without compromising on privacy or quality.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                  <a
+                    href="https://gianlucatiengo.com/"
+                    target="_blank"
+                    rel="noopener"
+                    class="inline-block bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg transition font-medium text-center"
+                  >
+                    Visit My Website
+                  </a>
+                  <a
+                    href="https://github.com/Gian1984/codehelper"
+                    target="_blank"
+                    rel="noopener"
+                    class="inline-block bg-gray-700 hover:bg-gray-600 text-white px-6 py-3 rounded-lg transition font-medium text-center"
+                  >
+                    View on GitHub
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -111,40 +219,42 @@
 </template>
 
 <script setup>
+import { computed } from 'vue'
 import {
-  AcademicCapIcon,
-  HandRaisedIcon,
   RocketLaunchIcon,
+  HandRaisedIcon,
+  UserGroupIcon,
+  AcademicCapIcon,
   SparklesIcon,
-  SunIcon,
-  UserGroupIcon
+  SunIcon
 } from '@heroicons/vue/20/solid'
 import { useSeoMeta, useHead } from '#imports'
+import { tools } from '~/utils/toolRegistry'
+import { getTotalResourcesCount } from '~/utils/externalRegistry'
+import { getTotalAPIsCount } from '~/utils/apiRegistry'
+import { articles } from '~/utils/articlesRegistry'
 
 useSeoMeta({
-  title: 'About CodeHelper & Gianluca Tiengo — Open-Source, Privacy-First Developer Tools',
-  description: 'Learn about CodeHelper’s mission, values, and the maker behind it. Open-source, privacy-first, and fully client-side tools for developers.',
+  title: 'About CodeHelper — Privacy-First Developer Tools, Resources & APIs',
+  description: 'Learn about CodeHelper: 100+ privacy-first tools, 800+ curated resources, 400+ public APIs. Open-source, client-side, and built for developers.',
   ogTitle: 'About CodeHelper & Gianluca Tiengo',
-  ogDescription: 'The story, principles, and mission behind CodeHelper—lightweight, client-side tools that respect privacy.',
+  ogDescription: 'The story, principles, and mission behind CodeHelper—your complete developer toolkit.',
   ogImage: '/images/codehelper_OGIMAGE.webp',
-  ogType: 'profile', // about a person & project
+  ogType: 'profile',
   ogUrl: 'https://codehelper.me/about',
   twitterCard: 'summary_large_image',
   twitterTitle: 'About CodeHelper & Gianluca Tiengo',
-  twitterDescription: 'Open-source, privacy-first tools for developers—learn the why behind CodeHelper.',
+  twitterDescription: 'Open-source, privacy-first toolkit for developers—learn the why behind CodeHelper.',
   twitterImage: '/images/codehelper_OGIMAGE.webp',
   robots: 'index,follow',
-  // Helpful extra metas
   keywords: 'about codehelper, gianluca tiengo, open source developer tools, client-side tools, privacy-first, web development utilities'
 })
 
-// Add Organization + AboutPage + BreadcrumbList schema
 useHead({
   link: [
     { rel: 'canonical', href: 'https://codehelper.me/about' }
   ],
   script: [
-    // AboutPage
     {
       type: 'application/ld+json',
       key: 'aboutpage',
@@ -153,10 +263,9 @@ useHead({
         '@type': 'AboutPage',
         name: 'About CodeHelper',
         url: 'https://codehelper.me/about',
-        description: 'About CodeHelper and Gianluca Tiengo open-source, privacy-first tools for developers.'
+        description: 'About CodeHelper and Gianluca Tiengo - open-source, privacy-first tools for developers.'
       })
     },
-    // Person
     {
       type: 'application/ld+json',
       key: 'person',
@@ -178,7 +287,6 @@ useHead({
         }
       })
     },
-    // Organization
     {
       type: 'application/ld+json',
       key: 'org',
@@ -191,7 +299,6 @@ useHead({
         sameAs: ['https://github.com/Gian1984/codehelper']
       })
     },
-    // Breadcrumbs
     {
       type: 'application/ld+json',
       key: 'breadcrumbs',
@@ -207,47 +314,60 @@ useHead({
   ]
 })
 
-// ---- Content data (update counts with real values) ----
-const stats = [
-  { label: 'Open-source tools', value: '20+' },        // ← update
-  { label: 'Lines of code shipped', value: '50k+' },   // ← update or remove
-  { label: 'GitHub stars', value: '100+' },            // ← update
-  { label: 'Community contributors', value: '10+' }    // ← update
-]
+// Real stats from registries
+const stats = computed(() => [
+  {
+    label: 'Developer Tools',
+    value: `${Object.keys(tools).length}+`,
+    color: 'text-indigo-400'
+  },
+  {
+    label: 'External Resources',
+    value: `${getTotalResourcesCount()}+`,
+    color: 'text-purple-400'
+  },
+  {
+    label: 'Public APIs',
+    value: `${getTotalAPIsCount()}+`,
+    color: 'text-pink-400'
+  },
+  {
+    label: 'Articles & Guides',
+    value: `${Object.keys(articles).length}+`,
+    color: 'text-indigo-400'
+  }
+])
 
 const values = [
   {
-    name: 'Ship small & fast.',
-    description: 'Each tool is focused, fast, and dependency light, so you get results in seconds.',
+    name: 'Ship Small & Fast',
+    description: 'Each tool is focused, fast, and dependency-light, so you get results in seconds.',
     icon: RocketLaunchIcon,
   },
   {
-    name: 'Respect privacy.',
+    name: 'Respect Privacy',
     description: 'Everything runs client-side. Your data never leaves the browser.',
     icon: HandRaisedIcon,
   },
   {
-    name: 'Help each other grow.',
+    name: 'Help Each Other',
     description: 'Clear code, clear docs, and friendly issues to welcome contributors.',
     icon: UserGroupIcon,
   },
   {
-    name: 'Learn constantly.',
+    name: 'Learn Constantly',
     description: 'Keep iterating. Favor clarity over cleverness and polish over bloat.',
     icon: AcademicCapIcon,
   },
   {
-    name: 'Share knowledge.',
+    name: 'Share Knowledge',
     description: 'Publish what you build: articles, examples, and transparent roadmaps.',
     icon: SparklesIcon,
   },
   {
-    name: 'Protect the craft.',
+    name: 'Sustainable Craft',
     description: 'Prefer sustainable tools and UX that respect users and their time.',
     icon: SunIcon,
   },
 ]
 </script>
-
-
-

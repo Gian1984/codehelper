@@ -32,6 +32,9 @@
                 <NuxtLink to="/articles" :class="navClass('/articles')"
                           itemprop="url"
                           title="Technical Articles">Articles</NuxtLink>
+                <NuxtLink to="/resources" :class="navClass('/resources')"
+                          itemprop="url"
+                          title="External Resources">Resources</NuxtLink>
                 <NuxtLink to="/project" :class="navClass('/project')"
                           itemprop="url"
                           title="Project Overview">Project</NuxtLink>
@@ -116,6 +119,7 @@
           <NuxtLink to="/" @click="close()" :class="mobileNavClass('/')" role="menuitem" itemprop="url" title="CodeHelper Home">Home</NuxtLink>
           <NuxtLink to="/tools" @click="close()" :class="mobileNavClass('/tools')" role="menuitem" itemprop="url" title="Developer Tools">Tools</NuxtLink>
           <NuxtLink to="/articles" @click="close()" :class="mobileNavClass('/articles')" role="menuitem" itemprop="url" title="Technical Articles">Articles</NuxtLink>
+          <NuxtLink to="/resources" @click="close()" :class="mobileNavClass('/resources')" role="menuitem" itemprop="url" title="External Resources">Resources</NuxtLink>
           <NuxtLink to="/project" @click="close()" :class="mobileNavClass('/project')" role="menuitem" itemprop="url" title="Project Overview">Project</NuxtLink>
           <NuxtLink to="/about" @click="close()" :class="mobileNavClass('/about')" role="menuitem" itemprop="url" title="About CodeHelper">About</NuxtLink>
         </div>
@@ -165,15 +169,22 @@ watch(() => route.path, () => {
   showSuggestions.value = false
 })
 
+const isActiveLink = (path) => {
+  // For home, exact match only
+  if (path === '/') return route.path === '/'
+  // For other pages, match if starts with the path
+  return route.path.startsWith(path)
+}
+
 const navClass = (path) => [
   // Added stronger focus styles for accessibility
   'rounded-md px-3 py-2 text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900',
-  route.path === path ? 'bg-indigo-600 text-white' : 'text-gray-200 hover:bg-gray-800 hover:text-white'
+  isActiveLink(path) ? 'bg-indigo-600 text-white' : 'text-gray-200 hover:bg-gray-800 hover:text-white'
 ]
 
 const mobileNavClass = (path) => [
   'block rounded-md px-3 py-2 text-base font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900',
-  route.path === path ? 'bg-indigo-600 text-white' : 'text-gray-200 hover:bg-gray-800 hover:text-white'
+  isActiveLink(path) ? 'bg-indigo-600 text-white' : 'text-gray-200 hover:bg-gray-800 hover:text-white'
 ]
 </script>
 

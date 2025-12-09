@@ -111,7 +111,7 @@ import { onMounted, onUnmounted, computed } from 'vue'
 import SidebarContent from './SidebarContent.vue'
 import { Dialog, DialogPanel, TransitionChild, TransitionRoot } from '@headlessui/vue'
 import { Bars3Icon, BookmarkIcon, XMarkIcon, ChevronRightIcon, ChevronLeftIcon } from '@heroicons/vue/20/solid'
-import { WrenchScrewdriverIcon, NewspaperIcon } from '@heroicons/vue/24/outline'
+import { WrenchScrewdriverIcon, NewspaperIcon, LinkIcon } from '@heroicons/vue/24/outline'
 
 const { isOpen: sidebarOpen, isDesktopCollapsed, close, open, restoreState, searchQuery, toggleDesktopCollapse } = useSidebarState()
 
@@ -129,7 +129,7 @@ const sectionIcon = computed(() => {
   const path = route.path
   if (path.startsWith('/tools')) return WrenchScrewdriverIcon
   if (path.startsWith('/articles')) return NewspaperIcon
-  return WrenchScrewdriverIcon // default
+  return LinkIcon // default - represents external resources
 })
 
 // Keyboard shortcut for ESC to close mobile sidebar

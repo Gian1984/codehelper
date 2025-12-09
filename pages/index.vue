@@ -21,9 +21,9 @@
     </div>
 
     <!-- Hero Content -->
-    <div class="mx-auto max-w-2xl text-center">
+    <div class="mx-auto max-w-3xl text-center">
       <NuxtImg
-        class="aspect-square w-36 rounded-2xl mx-auto mb-4"
+        class="aspect-square w-36 rounded-2xl mx-auto mb-6"
         src="/images/codehelper_logo_500_500_no_bg.webp"
         alt="CodeHelper logo"
         width="500"
@@ -32,141 +32,256 @@
         format="webp"
       />
       <h1 class="text-5xl font-semibold tracking-tight text-white sm:text-7xl">
-        CodeHelper <br> Free Online Tools for Developers
+        CodeHelper
       </h1>
-      <p class="mt-6 text-lg font-medium text-gray-300 sm:text-xl">
-        Supercharge your workflow with <strong class="text-white">lightweight, browser-based utilities</strong> for coding, design, and productivity.
-        Format JSON, convert units, generate colors, and optimize code. All <strong class="text-white">fast, free, and private</strong>.
-        No sign-up. No clutter. Just the tools you need.
+      <p class="mt-4 text-2xl font-medium text-indigo-400">
+        Your Complete Developer Toolkit
       </p>
-    </div>
-  </div>
+      <p class="mt-6 text-lg text-gray-300 sm:text-xl max-w-2xl mx-auto">
+        <strong class="text-white">100+ privacy-first tools</strong>,
+        <strong class="text-white">800+ curated resources</strong>, and
+        <strong class="text-white">400+ public APIs</strong>.
+        All fast, free, and built for developers who value their privacy.
+      </p>
 
-
-  <!-- Philosophy Section -->
-  <div class="bg-gray-900 text-white px-6 py-24 sm:py-32 lg:px-8">
-    <div class="mx-auto max-w-6xl pt-12 ">
-      <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl mb-6">
-        Build Smarter with Lightweight, Sustainable Tools
-      </h2>
-      <div class="rounded-lg bg-gray-800 p-8 shadow hover:shadow-md transition">
-        <p class="text-lg text-gray-300">
-          CodeHelper is built around <strong>focused, single-purpose utilities</strong> that run
-          directly in your browser. Instead of relying on bloated frameworks or cloud APIs,
-          you get instant results for tasks like <strong>formatting JSON</strong>, <strong>converting units</strong>,
-          or <strong>generating a README</strong>—all with <strong>zero setup</strong>.
-        </p>
-        <p class="mt-4 text-lg text-gray-300">
-          This approach makes every tool <strong>fast, privacy-friendly, and energy-efficient</strong>.
-          No unnecessary dependencies, no tracking, just clean output and a smoother workflow
-          that helps you <strong>ship faster while keeping things sustainable</strong>.
-        </p>
+      <!-- Quick Stats -->
+      <div class="mt-10 grid grid-cols-3 gap-4 max-w-2xl mx-auto">
+        <div class="rounded-lg bg-gray-800/80 backdrop-blur p-4">
+          <div class="text-3xl font-bold text-indigo-400">{{ toolsCount }}+</div>
+          <div class="text-sm text-gray-300 mt-1">Tools</div>
+        </div>
+        <div class="rounded-lg bg-gray-800/80 backdrop-blur p-4">
+          <div class="text-3xl font-bold text-purple-400">{{ resourcesCount }}+</div>
+          <div class="text-sm text-gray-300 mt-1">Resources</div>
+        </div>
+        <div class="rounded-lg bg-gray-800/80 backdrop-blur p-4">
+          <div class="text-3xl font-bold text-pink-400">{{ apisCount }}+</div>
+          <div class="text-sm text-gray-300 mt-1">APIs</div>
+        </div>
       </div>
     </div>
   </div>
 
+  <!-- What's Inside Section -->
+  <div class="bg-gray-900 text-white px-6 py-24 sm:py-32 lg:px-8">
+    <div class="mx-auto max-w-7xl">
+      <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl mb-12 text-center">
+        Everything You Need in One Place
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- CodeHelper Tools -->
+        <NuxtLink to="/tools" class="block rounded-lg bg-gradient-to-br from-indigo-900/30 to-indigo-800/20 border border-indigo-500/30 p-8 hover:border-indigo-500 hover:shadow-lg transition">
+          <div class="w-12 h-12 rounded-lg bg-indigo-600 flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+          </div>
+          <h3 class="text-2xl font-semibold text-white mb-3">CodeHelper Tools</h3>
+          <p class="text-gray-300 mb-6">
+            100+ privacy-first utilities that run entirely in your browser. Format, convert, generate, and optimize—no account required.
+          </p>
+          <ul class="text-sm text-gray-300 space-y-2 mb-6">
+            <li class="flex items-start gap-2">
+              <span class="text-indigo-400 mt-0.5">•</span>
+              <span>Client-side processing only</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-indigo-400 mt-0.5">•</span>
+              <span>No data leaves your device</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-indigo-400 mt-0.5">•</span>
+              <span>Lightning-fast performance</span>
+            </li>
+          </ul>
+          <span class="inline-block text-indigo-400 font-medium text-sm">
+            Browse Tools →
+          </span>
+        </NuxtLink>
+
+        <!-- External Resources -->
+        <NuxtLink to="/resources" class="block rounded-lg bg-gradient-to-br from-purple-900/30 to-purple-800/20 border border-purple-500/30 p-8 hover:border-purple-500 hover:shadow-lg transition">
+          <div class="w-12 h-12 rounded-lg bg-purple-600 flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+            </svg>
+          </div>
+          <h3 class="text-2xl font-semibold text-white mb-3">External Resources</h3>
+          <p class="text-gray-300 mb-6">
+            800+ curated developer resources across 31 categories. Find the perfect tools for colors, icons, fonts, UI libraries, and more.
+          </p>
+          <ul class="text-sm text-gray-300 space-y-2 mb-6">
+            <li class="flex items-start gap-2">
+              <span class="text-purple-400 mt-0.5">•</span>
+              <span>Hand-picked quality resources</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-purple-400 mt-0.5">•</span>
+              <span>Organized by category</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-purple-400 mt-0.5">•</span>
+              <span>Free and open-source focused</span>
+            </li>
+          </ul>
+          <span class="inline-block text-purple-400 font-medium text-sm">
+            Browse Resources →
+          </span>
+        </NuxtLink>
+
+        <!-- Public APIs -->
+        <NuxtLink to="/resources/apis" class="block rounded-lg bg-gradient-to-br from-pink-900/30 to-pink-800/20 border border-pink-500/30 p-8 hover:border-pink-500 hover:shadow-lg transition">
+          <div class="w-12 h-12 rounded-lg bg-pink-600 flex items-center justify-center mb-4">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <h3 class="text-2xl font-semibold text-white mb-3">Public APIs</h3>
+          <p class="text-gray-300 mb-6">
+            400+ free public APIs across 40 categories. Filter by authentication, HTTPS support, and CORS availability.
+          </p>
+          <ul class="text-sm text-gray-300 space-y-2 mb-6">
+            <li class="flex items-start gap-2">
+              <span class="text-pink-400 mt-0.5">•</span>
+              <span>Development, music, finance & more</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-pink-400 mt-0.5">•</span>
+              <span>Advanced filtering options</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-pink-400 mt-0.5">•</span>
+              <span>Detailed API specifications</span>
+            </li>
+          </ul>
+          <span class="inline-block text-pink-400 font-medium text-sm">
+            Browse APIs →
+          </span>
+        </NuxtLink>
+      </div>
+    </div>
+  </div>
 
   <!-- Popular Tools -->
-  <div class="bg-gray-900 text-white px-6 pb-24 sm:pb-32 lg:px-8">
-    <div class="mx-auto max-w-6xl pt-12">
-      <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl mb-6">
-        Popular Developer Tools
-      </h2>
+  <div class="bg-gray-900 text-white px-6 py-24 sm:py-32 lg:px-8">
+    <div class="mx-auto max-w-7xl">
+      <div class="flex items-center justify-between mb-8">
+        <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+          Popular Developer Tools
+        </h2>
+        <NuxtLink to="/tools" class="text-indigo-400 hover:text-indigo-300 text-sm font-medium hidden sm:block">
+          View all →
+        </NuxtLink>
+      </div>
       <ul class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6" aria-label="Popular tools">
-        <li v-for="([slug, tool], i) in topTools" :key="slug" class="rounded-lg bg-gray-800 p-4 shadow hover:shadow-md transition">
+        <li v-for="([slug, tool]) in topTools" :key="slug" class="rounded-lg bg-gray-800 border border-gray-700 p-5 hover:border-indigo-500 hover:shadow-lg transition">
           <NuxtLink :to="`/tools/${slug}/`" class="block" :aria-label="`Open ${tool.title}`">
-            <h3 class="text-xl font-semibold hover:text-indigo-400">{{ tool.title }}</h3>
-            <p class="text-gray-400 text-sm mt-1">{{ tool.description }}</p>
+            <h3 class="text-xl font-semibold text-white">{{ tool.title }}</h3>
+            <p class="text-gray-400 text-sm mt-2">{{ tool.description }}</p>
           </NuxtLink>
         </li>
       </ul>
-      <div class="text-center mt-10">
-        <NuxtLink to="/tools" class="bg-indigo-600 px-5 py-3 rounded hover:bg-indigo-500 text-white text-lg" aria-label="Explore all developer tools">
+      <div class="text-center mt-10 sm:hidden">
+        <NuxtLink to="/tools" class="bg-indigo-600 px-5 py-3 rounded-lg hover:bg-indigo-500 text-white font-medium inline-block" aria-label="Explore all developer tools">
           Explore all tools
         </NuxtLink>
       </div>
     </div>
   </div>
 
-  <!-- Tool Categories -->
-  <div class="bg-gray-900 text-white px-6 pb-24 sm:pb-32 lg:px-8">
-    <div class="mx-auto max-w-6xl pt-12">
-      <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl mb-6">Tool Categories</h2>
-      <ul class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6" aria-label="Tool categories">
-        <li v-for="(toolsInCategory, category) in toolsByCategory" :key="category" class="rounded-lg bg-gray-800 p-6 shadow hover:shadow-md transition text-center">
-          <NuxtLink :to="`/tools?category=${category}`" class="block text-lg font-semibold capitalize text-white hover:text-indigo-400" :aria-label="`View ${category} tools`">
-            {{ category }}
-          </NuxtLink>
-          <p class="mt-2 text-gray-400 text-sm">{{ toolsInCategory.length }} tool{{ toolsInCategory.length > 1 ? 's' : '' }}</p>
-        </li>
-      </ul>
-    </div>
-  </div>
-
-
-  <!-- Articles Intro Section -->
+  <!-- Featured Resources Preview -->
   <div class="bg-gray-900 text-white px-6 py-24 sm:py-32 lg:px-8">
-    <div class="mx-auto max-w-6xl pt-12">
-      <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl mb-6">
-        Insights, Tutorials, and Developer Guides
-      </h2>
-      <div class="rounded-lg bg-gray-800 p-8 shadow hover:shadow-md transition">
-        <p class="text-lg text-gray-300">
-          CodeHelper isn’t just about tools, it’s also about <strong>sharing knowledge</strong>.
-          Our articles cover <strong>JavaScript tips</strong>, <strong>AI security</strong>, <strong>ethical hacking</strong>,
-          and practical <strong>how-to guides</strong> to help you level up as a developer.
-        </p>
-        <p class="mt-4 text-lg text-gray-300">
-          Whether you’re exploring <strong>new coding techniques</strong>, looking for
-          <strong>productivity hacks</strong>, or diving into <strong>real-world security challenges</strong>,
-          the Articles section is designed to give you actionable insights you can use right away.
-        </p>
+    <div class="mx-auto max-w-7xl">
+      <div class="flex items-center justify-between mb-8">
+        <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+          Featured Resources
+        </h2>
+        <NuxtLink to="/resources" class="text-purple-400 hover:text-purple-300 text-sm font-medium hidden sm:block">
+          View all →
+        </NuxtLink>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+        <NuxtLink
+          v-for="category in featuredResourceCategories"
+          :key="category.slug"
+          :to="`/resources/${category.slug}`"
+          class="rounded-lg bg-gray-800 border border-gray-700 p-6 hover:border-purple-500 hover:shadow-lg transition"
+        >
+          <h3 class="text-xl font-semibold text-white mb-2">{{ category.title }}</h3>
+          <p class="text-gray-400 text-sm mb-3">{{ category.description }}</p>
+          <span class="text-purple-400 text-sm font-medium">{{ category.count }} resources</span>
+        </NuxtLink>
+      </div>
+      <div class="text-center mt-10 sm:hidden">
+        <NuxtLink to="/resources" class="bg-purple-600 px-5 py-3 rounded-lg hover:bg-purple-500 text-white font-medium inline-block">
+          Explore all resources
+        </NuxtLink>
       </div>
     </div>
   </div>
 
-
   <!-- Latest Articles -->
-  <div class="bg-gray-900 text-white px-6 pb-24 sm:pb-32 lg:px-8">
-    <div class="mx-auto max-w-6xl pt-12">
-      <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl mb-6">Latest Articles & Tutorials</h2>
+  <div class="bg-gray-900 text-white px-6 py-24 sm:py-32 lg:px-8">
+    <div class="mx-auto max-w-7xl">
+      <div class="flex items-center justify-between mb-8">
+        <div>
+          <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl mb-2">
+            Latest Articles & Tutorials
+          </h2>
+          <p class="text-gray-400">Insights, guides, and best practices for developers</p>
+        </div>
+        <NuxtLink to="/articles" class="text-indigo-400 hover:text-indigo-300 text-sm font-medium hidden sm:block">
+          View all →
+        </NuxtLink>
+      </div>
       <ul class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6" aria-label="Latest articles">
-        <li v-for="article in latestArticles" :key="article.slug" class="rounded-lg bg-gray-800 p-6 shadow hover:shadow-md transition">
+        <li v-for="article in latestArticles" :key="article.slug" class="rounded-lg bg-gray-800 border border-gray-700 p-6 hover:border-indigo-500 hover:shadow-lg transition">
           <NuxtLink :to="`/articles/${article.slug}/`" class="block" :aria-label="`Read ${article.title}`">
-            <h3 class="text-xl font-semibold hover:text-indigo-400">{{ article.title }}</h3>
-            <p class="text-gray-400 text-sm mt-2">{{ article.description }}</p>
+            <h3 class="text-xl font-semibold text-white mb-3">{{ article.title }}</h3>
+            <p class="text-gray-400 text-sm">{{ article.description }}</p>
           </NuxtLink>
         </li>
       </ul>
-      <div class="text-center mt-10">
-        <NuxtLink to="/articles" class="bg-indigo-600 px-5 py-3 rounded hover:bg-indigo-500 text-white text-lg" aria-label="Explore articles and tutorials">
+      <div class="text-center mt-10 sm:hidden">
+        <NuxtLink to="/articles" class="bg-indigo-600 px-5 py-3 rounded-lg hover:bg-indigo-500 text-white font-medium inline-block" aria-label="Explore articles and tutorials">
           Explore Articles
         </NuxtLink>
       </div>
     </div>
   </div>
 
-  <!-- Community Section -->
+  <!-- Philosophy & Community -->
   <div class="bg-gray-900 text-white px-6 pb-24 sm:pb-32 lg:px-8">
-    <div class="mx-auto max-w-6xl pt-12">
-      <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl mb-6">
-        Open Source, Performance-First, Community-Powered
-      </h2>
-      <div class="rounded-lg bg-gray-800 p-8 shadow hover:shadow-md transition">
-        <p class="text-lg text-gray-300">
-          CodeHelper is a collection of <strong>client-side, privacy-friendly developer tools</strong>.
-           No accounts, no servers, just fast utilities that run in your browser. If you care about
-          <strong>speed</strong>, <strong>accessibility</strong>, and <strong>sustainable engineering</strong>,
-          you’re in the right place. Help us refine existing tools, suggest new ones, or improve docs and UX.
-        </p>
-        <p class="mt-4 text-lg text-gray-300">
-          Start with a pull request or open an issue on
-          <a href="https://github.com/Gian1984/codehelper" class="text-white hover:text-indigo-300 transition-colors" target="_blank" rel="noopener">
-            GitHub
-          </a>.
-          Whether it’s adding a formatter, polishing a converter, fixing an edge case, or proposing a brand-new idea,
-          your contributions make this <strong>privacy-first developer toolbox</strong> better for everyone.
-        </p>
+    <div class="mx-auto max-w-7xl">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Philosophy -->
+        <div class="rounded-lg bg-gray-800 p-8 border border-gray-700">
+          <h2 class="text-2xl font-semibold text-white mb-4">Privacy-First Philosophy</h2>
+          <p class="text-gray-300 mb-4">
+            CodeHelper is built around <strong class="text-white">client-side, privacy-friendly utilities</strong>
+            that run directly in your browser. No accounts, no tracking, no data collection.
+          </p>
+          <p class="text-gray-300">
+            Every tool processes your data locally, ensuring <strong class="text-white">complete privacy</strong>
+            while delivering <strong class="text-white">instant results</strong>.
+          </p>
+        </div>
+
+        <!-- Community -->
+        <div class="rounded-lg bg-gray-800 p-8 border border-gray-700">
+          <h2 class="text-2xl font-semibold text-white mb-4">Open Source & Community-Powered</h2>
+          <p class="text-gray-300 mb-4">
+            CodeHelper is <strong class="text-white">open source</strong> and welcomes contributions.
+            Help us refine existing tools, suggest new ones, or improve documentation.
+          </p>
+          <p class="text-gray-300 mb-4">
+            Start with a pull request or open an issue on{' '}
+            <a href="https://github.com/Gian1984/codehelper" class="text-indigo-400 hover:text-indigo-300 transition-colors" target="_blank" rel="noopener">
+              GitHub
+            </a>.
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -177,26 +292,28 @@
 import { ref, onMounted, computed } from 'vue'
 import { tools } from '~/utils/toolRegistry'
 import { articles } from '~/utils/articlesRegistry'
+import { resourceCategoryMeta, externalResources, getTotalResourcesCount } from '~/utils/externalRegistry'
+import { getTotalAPIsCount } from '~/utils/apiRegistry'
 import { useSeoMeta, useHead } from '#imports'
 
 useSeoMeta({
-  title: 'CodeHelper — Free Developer Tools (Format, Convert, Generate)',
-  description: 'Instant, privacy-friendly tools for developers: JSON formatter, CSS minifier, unit converters, color utilities, image tooling, and more — all client-side.',
-  ogTitle: 'CodeHelper — Free Developer Tools',
-  ogDescription: 'Format, convert, generate, and optimize code in your browser. Fast, free, and open source.',
+  title: 'CodeHelper — Free Developer Tools, Resources & APIs',
+  description: '100+ privacy-first tools, 800+ curated resources, and 400+ public APIs. Format JSON, browse UI libraries, discover APIs—all fast, free, and built for developers.',
+  ogTitle: 'CodeHelper — Complete Developer Toolkit',
+  ogDescription: 'Privacy-first tools, curated resources, and public APIs directory. Everything developers need in one place.',
   ogImage: '/images/codehelper_OGIMAGE.webp',
   ogUrl: 'https://codehelper.me',
   ogSiteName: 'CodeHelper',
   ogType: 'website',
   twitterCard: 'summary_large_image',
-  twitterTitle: 'CodeHelper — Free Developer Tools',
-  twitterDescription: 'Lightweight, client-side tools for busy developers. No sign-up. No tracking.',
+  twitterTitle: 'CodeHelper — Free Developer Tools, Resources & APIs',
+  twitterDescription: '100+ tools, 800+ resources, 400+ APIs. All free, fast, and privacy-focused.',
   twitterImage: '/images/codehelper_OGIMAGE.webp',
   robots: 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1',
   author: 'CodeHelper',
   themeColor: '#111827',
   canonical: 'https://codehelper.me',
-  keywords: 'developer tools, online code tools, json formatter, css minifier, regex tester, unit converter, color tools, open source'
+  keywords: 'developer tools, online code tools, json formatter, css minifier, ui libraries, public apis, free resources, open source'
 })
 
 useHead({
@@ -213,7 +330,7 @@ useHead({
           '@type': 'WebSite',
           name: 'CodeHelper',
           url: 'https://codehelper.me',
-          description: 'Free, client-side developer tools to format, convert, generate, and optimize code.',
+          description: 'Free developer tools, curated resources, and public APIs directory',
           image: 'https://codehelper.me/images/codehelper_OGIMAGE.webp',
           potentialAction: {
             '@type': 'SearchAction',
@@ -231,23 +348,6 @@ useHead({
             url: 'https://codehelper.me/images/codehelper_logo_500_500_no_bg.webp'
           },
           sameAs: ['https://github.com/Gian1984/codehelper']
-        },
-        {
-          '@context': 'https://schema.org',
-          '@type': 'CollectionPage',
-          name: 'CodeHelper — Free Developer Tools',
-          url: 'https://codehelper.me',
-          isPartOf: { '@type': 'WebSite', name: 'CodeHelper', url: 'https://codehelper.me' },
-          about: ['Developer tools', 'Code formatting', 'CSS utilities', 'Image tools', 'Regex testing'],
-          mainEntity: {
-            '@type': 'ItemList',
-            itemListElement: Object.entries(tools).slice(0, 8).map(([slug, tool], i) => ({
-              '@type': 'ListItem',
-              position: i + 1,
-              url: `https://codehelper.me/tools/${slug}`,
-              name: tool.title
-            }))
-          }
         }
       ])
     }
@@ -263,6 +363,12 @@ useHead({
   }
 } as any)
 
+// Stats
+const toolsCount = computed(() => Object.keys(tools).length)
+const resourcesCount = computed(() => getTotalResourcesCount())
+const apisCount = computed(() => getTotalAPIsCount())
+
+// Popular Tools
 type ToolEntry = [string, typeof tools[string]]
 const topTools = ref<ToolEntry[]>([])
 
@@ -275,23 +381,19 @@ onMounted(() => {
   topTools.value = shuffled.slice(0, 8)
 })
 
-const toolsByCategory = computed(() => {
-  const grouped: Record<string, typeof tools[string][]> = {}
-  for (const [slug, tool] of Object.entries(tools)) {
-    const category = tool.category || 'Uncategorized'
-    if (!grouped[category]) grouped[category] = []
-    grouped[category].push(tool)
-  }
-  const sorted = Object.keys(grouped).sort()
-  const ordered: Record<string, typeof tools[string][]> = {}
-  for (const category of sorted) {
-    ordered[category] = grouped[category]
-  }
-  return ordered
+// Featured Resource Categories
+const featuredResourceCategories = computed(() => {
+  const featured = ['colors', 'icons', 'react-ui-libraries', 'css-frameworks']
+  return featured.map(slug => ({
+    slug,
+    title: resourceCategoryMeta[slug as keyof typeof resourceCategoryMeta].title,
+    description: resourceCategoryMeta[slug as keyof typeof resourceCategoryMeta].description,
+    count: externalResources[slug as keyof typeof externalResources]?.length || 0
+  }))
 })
 
+// Latest Articles
 const latestArticles = computed(() => {
-  // keep your existing logic; ensure article objects expose a date field if you want stable ordering
   return Object.entries(articles)
       .sort(([, a], [, b]) => new Date((b as any).date).getTime() - new Date((a as any).date).getTime())
       .slice(0, 6)

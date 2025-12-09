@@ -152,7 +152,7 @@
 import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { FolderIcon, ChevronRightIcon } from '@heroicons/vue/24/outline'
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue'
-import { WrenchScrewdriverIcon, NewspaperIcon } from '@heroicons/vue/24/outline'
+import { WrenchScrewdriverIcon, NewspaperIcon, LinkIcon } from '@heroicons/vue/24/outline'
 import { tools } from '~/utils/toolRegistry'
 import { articles } from '~/utils/articlesRegistry'
 
@@ -204,14 +204,14 @@ const sectionTitle = computed(() => {
 const sectionIcon = computed(() => {
   if (currentSection.value === 'tools') return WrenchScrewdriverIcon
   if (currentSection.value === 'articles') return NewspaperIcon
-  return WrenchScrewdriverIcon // default
+  return LinkIcon // default - represents external resources
 })
 
 // Section link based on context
 const sectionLink = computed(() => {
   if (currentSection.value === 'tools') return '/tools'
   if (currentSection.value === 'articles') return '/articles'
-  return '/' // default to home
+  return '/resources' // default to resources page
 })
 
 // Search input ref for focus management

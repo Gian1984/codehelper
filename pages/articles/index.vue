@@ -21,10 +21,10 @@
       <li
           v-for="[slug, article] in filteredArticles"
           :key="slug"
-          class="rounded-lg bg-gray-800 p-4 shadow hover:shadow-md transition"
+          class="rounded-lg bg-gray-800 border border-gray-700 p-4 hover:border-indigo-500 hover:shadow-lg transition"
       >
         <NuxtLink :to="`/articles/${slug}/`" class="block">
-          <h2 class="text-xl font-semibold">{{ article.title }}</h2>
+          <h2 class="text-xl font-semibold text-white">{{ article.title }}</h2>
           <p class="text-gray-400 text-sm mt-1">{{ article.description }}</p>
           <div class="mt-2 text-gray-500 text-xs">
             <p v-if="article.seo?.structuredData?.datePublished">📅 {{ formatDate(article.seo.structuredData.datePublished) }}</p>
