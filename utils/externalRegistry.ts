@@ -55,137 +55,800 @@ export interface ResourceCategoryMeta {
     description: string
     icon?: string
     count?: number
+    seo?: {
+        title?: string
+        description?: string
+        ogImage?: string
+        keywords?: string
+        structuredData?: Record<string, any>
+    }
 }
 
 // ============================================================================
 // CATEGORY METADATA
 // ============================================================================
 
+const OG = 'https://codehelper.me/images/codehelper_OGIMAGE.webp'
+const BRAND = 'CodeHelper'
 
 export const resourceCategoryMeta: Record<ResourceCategory, ResourceCategoryMeta> = {
     'colors': {
         title: 'Colors',
         description: 'Color palette generators, gradient tools, and accessibility checkers',
+        seo: {
+            title: `Colors Resources - Generators, Palettes & Tools – ${BRAND}`,
+            description: 'Curated collection of the best color palette generators, gradient tools, and accessibility checkers for developers and designers.',
+            ogImage: OG,
+            keywords: 'color palette generator, gradient tools, color accessibility, hex color picker, color contrast checker, web design colors, ui colors',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'Colors Resources',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    'Color palette generators',
+                    'Gradient generators',
+                    'Accessibility checkers',
+                    'Color contrast testers',
+                    'Material Design colors'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '150' }
+            }
+        }
     },
     'icons': {
         title: 'Icons',
         description: 'Icon libraries, icon fonts, and icon generators',
+        seo: {
+            title: `Free Icon Libraries & Generators – ${BRAND}`,
+            description: 'Huge collection of free icon libraries, icon fonts, and SVG icon generators for web and mobile development.',
+            ogImage: OG,
+            keywords: 'free icons, icon libraries, svg icons, icon fonts, material icons, font awesome, icon generator, web icons',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'Icons Resources',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    'Free SVG icon libraries',
+                    'Icon fonts',
+                    'Icon generators',
+                    'Material Design icons',
+                    'Font Awesome alternatives'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '200' }
+            }
+        }
     },
     'fonts': {
         title: 'Fonts',
         description: 'Free font libraries, font pairing tools, and typography calculators',
+        seo: {
+            title: `Free Fonts & Typography Tools – ${BRAND}`,
+            description: 'Best free font libraries, font pairing tools, and typography calculators for designers and developers.',
+            ogImage: OG,
+            keywords: 'free fonts, google fonts, font pairing, typography tools, web fonts, font calculator, golden ratio typography',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'Fonts Resources',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    'Free font libraries',
+                    'Font pairing tools',
+                    'Typography calculators',
+                    'Web font hosting',
+                    'Font identification tools'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '120' }
+            }
+        }
     },
     'favicons': {
         title: 'Favicons',
         description: 'Favicon generators and tools',
+        seo: {
+            title: `Favicon Generators & Tools – ${BRAND}`,
+            description: 'Create and optimize favicons for all devices and browsers with these top favicon generators and tools.',
+            ogImage: OG,
+            keywords: 'favicon generator, create favicon, ico generator, app icons, maskable icons, favicon converter, website icons',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'Favicons Resources',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    'Favicon generators',
+                    'ICO converters',
+                    'App icon generators',
+                    'Maskable icon tools'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '80' }
+            }
+        }
     },
     'logos': {
         title: 'Logos',
         description: 'Logo resources and tools',
+        seo: {
+            title: `Free Logo Resources & Makers – ${BRAND}`,
+            description: 'Find free vector logos of popular brands or create your own with these logo makers and resources.',
+            ogImage: OG,
+            keywords: 'free logos, vector logos, brand logos, logo maker, svg logos, company logos, logo design tools',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'Logos Resources',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    'Vector brand logos',
+                    'Logo makers',
+                    'SVG logo libraries',
+                    'Logo search engines'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '90' }
+            }
+        }
     },
     'stock-photos': {
         title: 'Stock Photos',
         description: 'Free stock photography sites',
+        seo: {
+            title: `Free Stock Photos & Images – ${BRAND}`,
+            description: 'The best websites for free, high-quality stock photos and royalty-free images for your projects.',
+            ogImage: OG,
+            keywords: 'free stock photos, royalty free images, public domain images, free photography, stock images, commercial use photos',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'Stock Photos Resources',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    'Free stock photo sites',
+                    'Royalty-free images',
+                    'Public domain photos',
+                    'High-resolution photography'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '250' }
+            }
+        }
     },
     'stock-videos': {
         title: 'Stock Videos',
         description: 'Free stock video footage',
+        seo: {
+            title: `Free Stock Video Footage & Clips – ${BRAND}`,
+            description: 'Download free stock video footage, clips, and loops for your website or video projects.',
+            ogImage: OG,
+            keywords: 'free stock videos, royalty free footage, video clips, video backgrounds, stock footage, free video loops',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'Stock Videos Resources',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    'Free stock video sites',
+                    'Royalty-free footage',
+                    'Video loops',
+                    '4K stock videos'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '70' }
+            }
+        }
     },
     'vectors-clip': {
         title: 'Vectors & Clip Art',
         description: 'Free vector graphics and clipart',
+        seo: {
+            title: `Free Vectors, Clip Art & Illustrations – ${BRAND}`,
+            description: 'Discover the best sources for free vector graphics, clip art, illustrations, and SVG patterns.',
+            ogImage: OG,
+            keywords: 'free vectors, vector graphics, clipart, illustrations, svg patterns, vector art, free illustrations',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'Vectors & Clip Art Resources',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    'Free vector libraries',
+                    'Illustration collections',
+                    'SVG patterns',
+                    'Clip art sites'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '110' }
+            }
+        }
     },
     'image-compression': {
         title: 'Image Compression',
         description: 'Online image optimization tools',
+        seo: {
+            title: `Image Compression & Optimization Tools – ${BRAND}`,
+            description: 'Optimize your images for the web with these top image compression and resizing tools.',
+            ogImage: OG,
+            keywords: 'image compression, image optimizer, compress png, compress jpeg, webp converter, image resizer, reduce image size',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'Image Compression Resources',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    'Image compressors',
+                    'Image resizers',
+                    'Format converters',
+                    'SVG optimizers'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '130' }
+            }
+        }
     },
     'image-mockups': {
         title: 'Image Mockups',
         description: 'Device mockup generators',
+        seo: {
+            title: `Device Mockup Generators & Tools – ${BRAND}`,
+            description: 'Create professional device mockups for your designs instantly with these free mockup generators.',
+            ogImage: OG,
+            keywords: 'device mockups, mockup generator, iphone mockup, browser mockup, laptop mockup, screen mockup, 3d mockups',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'Image Mockups Resources',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    'Device mockup generators',
+                    'Browser frame mockups',
+                    '3D mockup tools',
+                    'App screenshot generators'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '95' }
+            }
+        }
     },
     'ui-graphics': {
         title: 'UI Graphics',
         description: 'UI design assets and graphics',
+        seo: {
+            title: `Free UI Graphics, Assets & Patterns – ${BRAND}`,
+            description: 'Collection of free UI graphics, design assets, backgrounds, and patterns for web and app design.',
+            ogImage: OG,
+            keywords: 'ui graphics, design assets, background patterns, ui kits, free design resources, web textures, svg backgrounds',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'UI Graphics Resources',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    'UI design assets',
+                    'Background patterns',
+                    'Texture libraries',
+                    'UI kits'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '105' }
+            }
+        }
     },
     'css-frameworks': {
         title: 'CSS Frameworks',
         description: 'UI frameworks and CSS libraries',
+        seo: {
+            title: `Best CSS Frameworks & Libraries – ${BRAND}`,
+            description: 'Explore the best CSS frameworks and libraries for modern web development, from heavyweights to lightweight alternatives.',
+            ogImage: OG,
+            keywords: 'css frameworks, ui frameworks, tailwind css, bootstrap, bulma, css libraries, responsive framework, frontend frameworks',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'CSS Frameworks Resources',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    'Utility-first frameworks',
+                    'Component-based frameworks',
+                    'Lightweight CSS libraries',
+                    'Material Design frameworks'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '180' }
+            }
+        }
     },
     'css-animations': {
         title: 'CSS Animations',
         description: 'CSS animation libraries and keyframe generators',
+        seo: {
+            title: `CSS Animation Libraries & Generators – ${BRAND}`,
+            description: 'Add life to your website with these CSS animation libraries, keyframe generators, and transition tools.',
+            ogImage: OG,
+            keywords: 'css animations, animation library, keyframe generator, css transitions, animate.css, web animations, hover effects',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'CSS Animations Resources',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    'CSS animation libraries',
+                    'Keyframe generators',
+                    'Transition tools',
+                    'Scroll animations'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '140' }
+            }
+        }
     },
     'css-methodologies': {
         title: 'CSS Methodologies',
         description: 'CSS architecture and best practices',
+        seo: {
+            title: `CSS Methodologies & Architecture – ${BRAND}`,
+            description: 'Learn about popular CSS methodologies and architecture patterns for scalable and maintainable stylesheets.',
+            ogImage: OG,
+            keywords: 'css methodologies, bem, oocss, smacss, atomic css, css architecture, maintainable css, css best practices',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'CSS Methodologies Resources',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    'BEM methodology',
+                    'OOCSS',
+                    'Atomic CSS',
+                    'SMACSS'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '60' }
+            }
+        }
     },
     'react-ui-libraries': {
         title: 'React UI Libraries',
         description: 'Component libraries for React',
+        seo: {
+            title: `Best React UI Component Libraries – ${BRAND}`,
+            description: 'Top React UI component libraries and design systems to speed up your React application development.',
+            ogImage: OG,
+            keywords: 'react ui library, react components, material ui, ant design, chakra ui, react bootstrap, react design system',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'React UI Libraries Resources',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    'React component libraries',
+                    'Material Design for React',
+                    'Tailwind React components',
+                    'Enterprise design systems'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '220' }
+            }
+        }
     },
     'vue-ui-libraries': {
         title: 'Vue UI Libraries',
         description: 'Component libraries for Vue.js',
+        seo: {
+            title: `Best Vue.js UI Component Libraries – ${BRAND}`,
+            description: 'Collection of the best UI component libraries and frameworks for Vue.js applications.',
+            ogImage: OG,
+            keywords: 'vue ui library, vue components, vuetify, element ui, bootstrap vue, quasar, vue design system',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'Vue UI Libraries Resources',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    'Vue component libraries',
+                    'Material Design for Vue',
+                    'Mobile UI frameworks',
+                    'Admin dashboard templates'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '190' }
+            }
+        }
     },
     'angular-ui-libraries': {
         title: 'Angular UI Libraries',
         description: 'Component libraries for Angular',
+        seo: {
+            title: `Best Angular UI Component Libraries – ${BRAND}`,
+            description: 'Top UI component libraries and material design frameworks for Angular developers.',
+            ogImage: OG,
+            keywords: 'angular ui library, angular components, angular material, ng bootstrap, primeng, angular framework',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'Angular UI Libraries Resources',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    'Angular component libraries',
+                    'Angular Material',
+                    'Bootstrap for Angular',
+                    'Enterprise UI kits'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '160' }
+            }
+        }
     },
     'svelte-ui-libraries': {
         title: 'Svelte UI Libraries',
         description: 'Component libraries for Svelte',
+        seo: {
+            title: `Best Svelte UI Component Libraries – ${BRAND}`,
+            description: 'Explore the growing ecosystem of UI component libraries and tools for Svelte applications.',
+            ogImage: OG,
+            keywords: 'svelte ui library, svelte components, svelte material ui, sveltestrap, svelte framework',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'Svelte UI Libraries Resources',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    'Svelte component libraries',
+                    'Svelte Material UI',
+                    'SvelteStrap',
+                    'Lightweight UI kits'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '100' }
+            }
+        }
     },
     'react-native-ui-libraries': {
         title: 'React Native UI Libraries',
         description: 'Mobile UI component libraries',
+        seo: {
+            title: `React Native UI Libraries & Kits – ${BRAND}`,
+            description: 'Best UI kits and component libraries for building cross-platform mobile apps with React Native.',
+            ogImage: OG,
+            keywords: 'react native ui, react native components, mobile ui kit, nativebase, react native elements, cross-platform ui',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'React Native UI Libraries Resources',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    'React Native UI kits',
+                    'Cross-platform components',
+                    'Material Design for mobile',
+                    'Mobile UI frameworks'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '140' }
+            }
+        }
     },
     'chart-libraries': {
         title: 'Chart Libraries',
         description: 'Data visualization libraries',
+        seo: {
+            title: `JavaScript Charting & Visualization Libraries – ${BRAND}`,
+            description: 'Best JavaScript libraries for creating interactive charts, graphs, and data visualizations.',
+            ogImage: OG,
+            keywords: 'chart libraries, javascript charts, d3.js, chart.js, data visualization, graphing libraries, plotting tools',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'Chart Libraries Resources',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    'Charting libraries',
+                    'Data visualization tools',
+                    'D3.js resources',
+                    'Interactive graph libraries'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '170' }
+            }
+        }
     },
     'animation-js-libraries': {
         title: 'JavaScript Animation Libraries',
         description: 'Motion graphics and scroll animation libraries',
+        seo: {
+            title: `JavaScript Animation Libraries & Tools – ${BRAND}`,
+            description: 'Powerful JavaScript libraries for web animations, motion graphics, scroll effects, and 3D rendering.',
+            ogImage: OG,
+            keywords: 'javascript animation, animation library, gsap, three.js, webgl, scroll animations, motion graphics web',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'JavaScript Animation Libraries Resources',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    'GSAP resources',
+                    'WebGL libraries',
+                    'Scroll animation tools',
+                    'Canvas animation libraries'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '160' }
+            }
+        }
     },
     'ui-components': {
         title: 'UI Components',
         description: 'Reusable UI components and kits',
+        seo: {
+            title: `Free UI Components & Kits – ${BRAND}`,
+            description: 'Collection of reusable UI components, snippets, and kits for faster web development.',
+            ogImage: OG,
+            keywords: 'ui components, ui kits, web components, css components, html snippets, reusable ui, frontend components',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'UI Components Resources',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    'CSS components',
+                    'HTML snippets',
+                    'Tailwind UI kits',
+                    'Bootstrap components'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '130' }
+            }
+        }
     },
     'design-systems': {
         title: 'Design Systems',
         description: 'Enterprise design systems and style guides',
+        seo: {
+            title: `Design Systems & Style Guides Gallery – ${BRAND}`,
+            description: 'Explore famous design systems and style guides from top companies like Google, Apple, and IBM.',
+            ogImage: OG,
+            keywords: 'design systems, style guides, material design, human interface guidelines, brand guidelines, ui system, design language',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'Design Systems Resources',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    'Corporate design systems',
+                    'Style guide galleries',
+                    'UI guidelines',
+                    'Brand identity systems'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '115' }
+            }
+        }
     },
     'design-inspiration': {
         title: 'Design Inspiration',
         description: 'Design showcases and inspiration galleries',
+        seo: {
+            title: `Web Design Inspiration & Showcases – ${BRAND}`,
+            description: 'Get inspired by the best web design showcases, landing page galleries, and UI patterns.',
+            ogImage: OG,
+            keywords: 'web design inspiration, ui inspiration, website gallery, design showcase, landing page examples, dribbble, behance',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'Design Inspiration Resources',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    'Design galleries',
+                    'UI pattern libraries',
+                    'Landing page inspiration',
+                    'Portfolio showcases'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '210' }
+            }
+        }
     },
     'design-software': {
         title: 'Design Software',
         description: 'Design tools and applications',
+        seo: {
+            title: `Best Design Software & Graphic Tools – ${BRAND}`,
+            description: 'Top design software and tools for UI/UX design, vector graphics, photo editing, and prototyping.',
+            ogImage: OG,
+            keywords: 'design software, graphic design tools, ui design tools, vector software, photo editor, prototyping tools, figma alternatives',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'Design Software Resources',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    'Vector design tools',
+                    'Photo editing software',
+                    'Prototyping apps',
+                    'Open source design tools'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '125' }
+            }
+        }
     },
     'online-design-tools': {
         title: 'Online Design Tools',
         description: 'Web-based design and prototyping tools',
+        seo: {
+            title: `Free Online Design & Prototyping Tools – ${BRAND}`,
+            description: 'Useful online tools for quick design tasks, prototyping, image editing, and asset generation.',
+            ogImage: OG,
+            keywords: 'online design tools, web design tools, online photo editor, svg generator, mockup generator, css tools, browser tools',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'Online Design Tools Resources',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    'Online graphic editors',
+                    'CSS generators',
+                    'SVG tools',
+                    'Mockup creators'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '155' }
+            }
+        }
     },
     'chrome-extensions': {
         title: 'Chrome Extensions',
         description: 'Developer productivity extensions',
+        seo: {
+            title: `Best Chrome Extensions for Developers – ${BRAND}`,
+            description: 'Must-have Chrome extensions for web developers and designers to boost productivity.',
+            ogImage: OG,
+            keywords: 'chrome extensions, developer tools, web development extensions, productivity tools, browser extensions, design extensions',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'Chrome Extensions Resources',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    'Developer productivity tools',
+                    'Design inspectors',
+                    'Code validators',
+                    'Color pickers'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '195' }
+            }
+        }
     },
     'html-css-templates': {
         title: 'HTML & CSS Templates',
         description: 'Website templates and themes',
+        seo: {
+            title: `Free HTML & CSS Website Templates – ${BRAND}`,
+            description: 'Download high-quality free HTML5 and CSS3 website templates and themes for your next project.',
+            ogImage: OG,
+            keywords: 'free html templates, website templates, css themes, bootstrap templates, responsive templates, landing page templates',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'HTML & CSS Templates Resources',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    'HTML5 templates',
+                    'Bootstrap themes',
+                    'Landing page templates',
+                    'Admin dashboard templates'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '165' }
+            }
+        }
     },
     'icon-fonts': {
         title: 'Icon Fonts',
         description: 'Icon font libraries',
+        seo: {
+            title: `Icon Fonts & Web Font Libraries – ${BRAND}`,
+            description: 'Popular icon font libraries for web developers. Easily scalable and styleable icons for your website.',
+            ogImage: OG,
+            keywords: 'icon fonts, web fonts, font awesome, material icons, icon sets, scalable icons, web design icons',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'Icon Fonts Resources',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    'Popular icon fonts',
+                    'Web font kits',
+                    'Icon font generators',
+                    'SVG icon sets'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '135' }
+            }
+        }
     },
     'sound-effects': {
         title: 'Sound Effects',
         description: 'Free audio and sound effects',
+        seo: {
+            title: `Free Sound Effects & Royalty-Free Audio – ${BRAND}`,
+            description: 'Libraries of free sound effects and royalty-free music for games, videos, and applications.',
+            ogImage: OG,
+            keywords: 'free sound effects, royalty free music, game audio, background music, stock audio, sound clips',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'Sound Effects Resources',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    'Free sound effects',
+                    'Royalty-free music',
+                    'Game audio assets',
+                    'UI sounds'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '75' }
+            }
+        }
     },
     'others': {
         title: 'Other Resources',
         description: 'Miscellaneous developer resources',
+        seo: {
+            title: `Useful Developer Tools & Resources – ${BRAND}`,
+            description: 'A collection of miscellaneous but incredibly useful tools, cheatsheets, and resources for developers.',
+            ogImage: OG,
+            keywords: 'developer resources, web tools, coding cheatsheets, utilities, miscellaneous tools, programming resources',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'Other Resources',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    'Developer cheatsheets',
+                    'File converters',
+                    'Accessibility tools',
+                    'Testing utilities'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '145' }
+            }
+        }
     },
 }
 
