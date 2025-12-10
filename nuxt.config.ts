@@ -123,6 +123,21 @@ export default defineNuxtConfig({
                 changefreq: 'weekly'
             }
         ]
+    },
+
+    // Vite configuration to suppress some build warnings
+    vite: {
+        build: {
+            rollupOptions: {
+                onwarn(warning, warn) {
+                    // Suppress terser/rollup comment annotation warnings
+                    if (warning.message && warning.message.includes('annotation that Rollup cannot interpret')) {
+                        return
+                    }
+                    warn(warning)
+                }
+            }
+        }
     }
 })
 
