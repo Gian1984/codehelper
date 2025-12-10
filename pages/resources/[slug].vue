@@ -165,40 +165,58 @@ const slug = route.params.slug as string
 const categoryMeta = computed(() => resourceCategoryMeta[slug as ResourceCategory])
 const resources = computed(() => getResourcesByCategory(slug as ResourceCategory))
 
-// SEO Meta
+// SEO Meta - Use registry SEO data if available
 useSeoMeta({
-  title: () => categoryMeta.value ? `${categoryMeta.value.title} - External Resources - CodeHelper` : 'Category Not Found',
-  description: () => categoryMeta.value ? `${categoryMeta.value.description}. Browse ${resources.value.length} curated tools and resources.` : 'Category not found',
-  ogTitle: () => categoryMeta.value ? `${categoryMeta.value.title} - CodeHelper` : 'Category Not Found',
-  ogDescription: () => categoryMeta.value?.description || 'Category not found',
-  ogImage: '/images/codehelper_OGIMAGE.webp',
+  title: () => {
+    if (!categoryMeta.value) return 'Category Not Found'
+    return categoryMeta.value.seo?.title || `${categoryMeta.value.title} - External Resources - CodeHelper`
+  },
+  description: () => {
+    if (!categoryMeta.value) return 'Category not found'
+    return categoryMeta.value.seo?.description || `${categoryMeta.value.description}. Browse ${resources.value.length} curated tools and resources.`
+  },
+  ogTitle: () => {
+    if (!categoryMeta.value) return 'Category Not Found'
+    return categoryMeta.value.seo?.title || `${categoryMeta.value.title} - CodeHelper`
+  },
+  ogDescription: () => {
+    if (!categoryMeta.value) return 'Category not found'
+    return categoryMeta.value.seo?.description || categoryMeta.value.description
+  },
+  ogImage: () => categoryMeta.value?.seo?.ogImage || '/images/codehelper_OGIMAGE.webp',
   ogUrl: () => `https://codehelper.me/resources/${slug}`,
-  twitterCard: 'summary_large_image'
+  twitterCard: 'summary_large_image',
+  keywords: () => categoryMeta.value?.seo?.keywords
 })
 
-// Structured Data
+// Structured Data - Use registry structured data if available
 useHead({
   script: [
     {
       type: 'application/ld+json',
-      innerHTML: () => JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'CollectionPage',
-        name: categoryMeta.value?.title,
-        description: categoryMeta.value?.description,
-        url: `https://codehelper.me/resources/${slug}`,
-        mainEntity: {
-          '@type': 'ItemList',
-          numberOfItems: resources.value.length,
-          itemListElement: resources.value.slice(0, 10).map((resource, index) => ({
-            '@type': 'ListItem',
-            position: index + 1,
-            name: resource.name,
-            description: resource.desc,
-            url: resource.href
-          }))
+      innerHTML: () => {
+        if (categoryMeta.value?.seo?.structuredData) {
+          return JSON.stringify(categoryMeta.value.seo.structuredData)
         }
-      })
+        return JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'CollectionPage',
+          name: categoryMeta.value?.title,
+          description: categoryMeta.value?.description,
+          url: `https://codehelper.me/resources/${slug}`,
+          mainEntity: {
+            '@type': 'ItemList',
+            numberOfItems: resources.value.length,
+            itemListElement: resources.value.slice(0, 10).map((resource, index) => ({
+              '@type': 'ListItem',
+              position: index + 1,
+              name: resource.name,
+              description: resource.desc,
+              url: resource.href
+            }))
+          }
+        })
+      }
     }
   ],
   __dangerouslyDisableSanitizers: ['script']
@@ -247,11 +265,11 @@ const relatedCategories = computed(() => {
   const otherCategories = Object.keys(resourceCategoryMeta)
     .filter(cat => !currentGroup.includes(cat as ResourceCategory) && cat !== slug) as ResourceCategory[]
 
-  // Shuffle for variety
-  const shuffled = [...sameGroupCategories, ...otherCategories].sort(() => Math.random() - 0.5)
+  // Combine same group categories first, then others (deterministic for SSR)
+  const combined = [...sameGroupCategories, ...otherCategories]
 
   // Take first 3
-  return shuffled.slice(0, 3).map(catSlug => ({
+  return combined.slice(0, 3).map(catSlug => ({
     slug: catSlug,
     title: resourceCategoryMeta[catSlug].title,
     count: externalResources[catSlug]?.length || 0

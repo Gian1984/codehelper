@@ -219,40 +219,58 @@ const slug = route.params.slug as string
 const categoryMeta = computed(() => apiCategoryMeta[slug as APICategory])
 const apis = computed(() => getAPIsByCategory(slug as APICategory))
 
-// SEO Meta
+// SEO Meta - Use registry SEO data if available
 useSeoMeta({
-  title: () => categoryMeta.value ? `${categoryMeta.value.title} - Public APIs - CodeHelper` : 'Category Not Found',
-  description: () => categoryMeta.value ? `${categoryMeta.value.description}. Browse ${apis.value.length} curated public APIs.` : 'Category not found',
-  ogTitle: () => categoryMeta.value ? `${categoryMeta.value.title} - CodeHelper` : 'Category Not Found',
-  ogDescription: () => categoryMeta.value?.description || 'Category not found',
-  ogImage: '/images/codehelper_OGIMAGE.webp',
+  title: () => {
+    if (!categoryMeta.value) return 'Category Not Found'
+    return categoryMeta.value.seo?.title || `${categoryMeta.value.title} - Public APIs - CodeHelper`
+  },
+  description: () => {
+    if (!categoryMeta.value) return 'Category not found'
+    return categoryMeta.value.seo?.description || `${categoryMeta.value.description}. Browse ${apis.value.length} curated public APIs.`
+  },
+  ogTitle: () => {
+    if (!categoryMeta.value) return 'Category Not Found'
+    return categoryMeta.value.seo?.title || `${categoryMeta.value.title} - CodeHelper`
+  },
+  ogDescription: () => {
+    if (!categoryMeta.value) return 'Category not found'
+    return categoryMeta.value.seo?.description || categoryMeta.value.description
+  },
+  ogImage: () => categoryMeta.value?.seo?.ogImage || '/images/codehelper_OGIMAGE.webp',
   ogUrl: () => `https://codehelper.me/resources/apis/${slug}`,
-  twitterCard: 'summary_large_image'
+  twitterCard: 'summary_large_image',
+  keywords: () => categoryMeta.value?.seo?.keywords
 })
 
-// Structured Data
+// Structured Data - Use registry structured data if available
 useHead({
   script: [
     {
       type: 'application/ld+json',
-      innerHTML: () => JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'CollectionPage',
-        name: categoryMeta.value?.title,
-        description: categoryMeta.value?.description,
-        url: `https://codehelper.me/resources/apis/${slug}`,
-        mainEntity: {
-          '@type': 'ItemList',
-          numberOfItems: apis.value.length,
-          itemListElement: apis.value.slice(0, 10).map((api, index) => ({
-            '@type': 'ListItem',
-            position: index + 1,
-            name: api.api,
-            description: api.desc,
-            url: api.href
-          }))
+      innerHTML: () => {
+        if (categoryMeta.value?.seo?.structuredData) {
+          return JSON.stringify(categoryMeta.value.seo.structuredData)
         }
-      })
+        return JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'CollectionPage',
+          name: categoryMeta.value?.title,
+          description: categoryMeta.value?.description,
+          url: `https://codehelper.me/resources/apis/${slug}`,
+          mainEntity: {
+            '@type': 'ItemList',
+            numberOfItems: apis.value.length,
+            itemListElement: apis.value.slice(0, 10).map((api, index) => ({
+              '@type': 'ListItem',
+              position: index + 1,
+              name: api.api,
+              description: api.desc,
+              url: api.href
+            }))
+          }
+        })
+      }
     }
   ],
   __dangerouslyDisableSanitizers: ['script']
@@ -328,11 +346,11 @@ const relatedCategories = computed(() => {
   const otherCategories = Object.keys(apiCategoryMeta)
     .filter(cat => !currentGroup.includes(cat as APICategory) && cat !== slug) as APICategory[]
 
-  // Prioritize same group, then shuffle for variety
-  const shuffled = [...sameGroupCategories, ...otherCategories].sort(() => Math.random() - 0.5)
+  // Prioritize same group, then others (deterministic for SSR)
+  const combined = [...sameGroupCategories, ...otherCategories]
 
   // Take first 3
-  return shuffled.slice(0, 3).map(catSlug => ({
+  return combined.slice(0, 3).map(catSlug => ({
     slug: catSlug,
     title: apiCategoryMeta[catSlug].title,
     count: externalAPIs[catSlug]?.length || 0

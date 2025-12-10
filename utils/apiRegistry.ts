@@ -64,168 +64,685 @@ export interface APICategoryMeta {
     description: string
     icon?: string
     count?: number
+    seo?: {
+        title?: string
+        description?: string
+        ogImage?: string
+        keywords?: string
+        structuredData?: Record<string, any>
+    }
 }
 
 // ============================================================================
 // CATEGORY METADATA
 // ============================================================================
 
+const OG = 'https://codehelper.me/images/codehelper_OGIMAGE.webp'
+const BRAND = 'CodeHelper'
+
 export const apiCategoryMeta: Record<APICategory, APICategoryMeta> = {
     'development': {
         title: 'Development APIs',
         description: 'APIs for development tools and services',
+        seo: {
+            title: `Development APIs Directory – ${BRAND}`,
+            description: 'Curated collection of free APIs for development tools, DevOps, CI/CD, testing, and developer services.',
+            ogImage: OG,
+            keywords: 'development apis, devops apis, ci/cd apis, testing apis, developer tools apis, github api, gitlab api, build automation',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'CollectionPage',
+                name: 'Development APIs',
+                description: 'APIs for development tools and services',
+                url: 'https://codehelper.me/resources/apis/development'
+            }
+        }
     },
     'animals': {
         title: 'Animals APIs',
         description: 'APIs about animals and pets',
+        seo: {
+            title: `Animals & Pets APIs Directory – ${BRAND}`,
+            description: 'Free APIs for animal facts, pet adoption, wildlife data, cat and dog pictures, and animal information.',
+            ogImage: OG,
+            keywords: 'animal apis, pet apis, dog api, cat api, wildlife api, pet adoption api, animal facts, animal pictures',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'CollectionPage',
+                name: 'Animals APIs',
+                description: 'APIs about animals and pets',
+                url: 'https://codehelper.me/resources/apis/animals'
+            }
+        }
     },
     'anime': {
         title: 'Anime APIs',
         description: 'Anime and manga information APIs',
+        seo: {
+            title: `Anime & Manga APIs Directory – ${BRAND}`,
+            description: 'Free APIs for anime and manga databases, character information, episode guides, and streaming data.',
+            ogImage: OG,
+            keywords: 'anime api, manga api, anime database, myanimelist api, anilist api, anime characters, manga chapters',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'CollectionPage',
+                name: 'Anime APIs',
+                description: 'Anime and manga information APIs',
+                url: 'https://codehelper.me/resources/apis/anime'
+            }
+        }
     },
     'anti-malware': {
         title: 'Anti-Malware APIs',
         description: 'Security and malware detection APIs',
+        seo: {
+            title: `Anti-Malware & Virus Detection APIs – ${BRAND}`,
+            description: 'Free APIs for malware detection, virus scanning, threat intelligence, and security analysis.',
+            ogImage: OG,
+            keywords: 'anti-malware api, virus detection api, malware scanner, threat intelligence, security apis, virus total api',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'CollectionPage',
+                name: 'Anti-Malware APIs',
+                description: 'Security and malware detection APIs',
+                url: 'https://codehelper.me/resources/apis/anti-malware'
+            }
+        }
     },
     'art-design': {
         title: 'Art & Design APIs',
         description: 'Art and design resource APIs',
+        seo: {
+            title: `Art & Design APIs Directory – ${BRAND}`,
+            description: 'Free APIs for art museums, design inspiration, color palettes, fonts, and creative resources.',
+            ogImage: OG,
+            keywords: 'art api, design api, museum api, color palette api, font api, creative commons, artwork database',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'CollectionPage',
+                name: 'Art & Design APIs',
+                description: 'Art and design resource APIs',
+                url: 'https://codehelper.me/resources/apis/art-design'
+            }
+        }
     },
     'auth': {
         title: 'Authentication APIs',
         description: 'Authentication and authorization services',
+        seo: {
+            title: `Authentication & OAuth APIs Directory – ${BRAND}`,
+            description: 'Free APIs for authentication, OAuth, SSO, identity management, and authorization services.',
+            ogImage: OG,
+            keywords: 'authentication api, oauth api, sso api, identity api, auth0, okta, login api, jwt authentication',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'CollectionPage',
+                name: 'Authentication APIs',
+                description: 'Authentication and authorization services',
+                url: 'https://codehelper.me/resources/apis/auth'
+            }
+        }
     },
     'blockchain': {
         title: 'Blockchain APIs',
         description: 'Blockchain and cryptocurrency APIs',
+        seo: {
+            title: `Blockchain & Crypto APIs Directory – ${BRAND}`,
+            description: 'Free APIs for blockchain data, cryptocurrency tracking, NFTs, smart contracts, and decentralized applications.',
+            ogImage: OG,
+            keywords: 'blockchain api, crypto api, bitcoin api, ethereum api, nft api, smart contracts, web3 api, defi apis',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'CollectionPage',
+                name: 'Blockchain APIs',
+                description: 'Blockchain and cryptocurrency APIs',
+                url: 'https://codehelper.me/resources/apis/blockchain'
+            }
+        }
     },
     'books': {
         title: 'Books APIs',
         description: 'Book information and library APIs',
+        seo: {
+            title: `Books & Library APIs Directory – ${BRAND}`,
+            description: 'Free APIs for book information, ISBNs, library catalogs, author data, and reading lists.',
+            ogImage: OG,
+            keywords: 'book api, isbn api, library api, goodreads api, open library, book database, author api, reading lists',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'CollectionPage',
+                name: 'Books APIs',
+                description: 'Book information and library APIs',
+                url: 'https://codehelper.me/resources/apis/books'
+            }
+        }
     },
     'business': {
         title: 'Business APIs',
         description: 'Business data and services',
+        seo: {
+            title: `Business & Company Data APIs – ${BRAND}`,
+            description: 'Free APIs for company information, business data, corporate registries, and commercial services.',
+            ogImage: OG,
+            keywords: 'business api, company data api, corporate registry, business lookup, company information, commercial apis',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'CollectionPage',
+                name: 'Business APIs',
+                description: 'Business data and services',
+                url: 'https://codehelper.me/resources/apis/business'
+            }
+        }
     },
     'calendar': {
         title: 'Calendar APIs',
         description: 'Calendar and scheduling services',
+        seo: {
+            title: `Calendar & Scheduling APIs Directory – ${BRAND}`,
+            description: 'Free APIs for calendars, events, holidays, scheduling, and date calculations.',
+            ogImage: OG,
+            keywords: 'calendar api, scheduling api, holidays api, events calendar, date api, ical api, google calendar',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'CollectionPage',
+                name: 'Calendar APIs',
+                description: 'Calendar and scheduling services',
+                url: 'https://codehelper.me/resources/apis/calendar'
+            }
+        }
     },
     'cloud': {
         title: 'Cloud Storage APIs',
         description: 'Cloud storage and file sharing',
+        seo: {
+            title: `Cloud Storage & File Sharing APIs – ${BRAND}`,
+            description: 'Free APIs for cloud storage, file hosting, document sharing, and backup services.',
+            ogImage: OG,
+            keywords: 'cloud storage api, file sharing api, dropbox api, google drive api, file hosting, backup api, document storage',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'CollectionPage',
+                name: 'Cloud Storage APIs',
+                description: 'Cloud storage and file sharing',
+                url: 'https://codehelper.me/resources/apis/cloud'
+            }
+        }
     },
     'continuous-integration': {
         title: 'CI/CD APIs',
         description: 'Continuous integration and deployment',
+        seo: {
+            title: `CI/CD & DevOps Pipeline APIs – ${BRAND}`,
+            description: 'Free APIs for continuous integration, deployment pipelines, build automation, and DevOps tools.',
+            ogImage: OG,
+            keywords: 'ci/cd api, continuous integration, deployment api, jenkins api, github actions, gitlab ci, build automation, devops apis',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'CollectionPage',
+                name: 'CI/CD APIs',
+                description: 'Continuous integration and deployment',
+                url: 'https://codehelper.me/resources/apis/continuous-integration'
+            }
+        }
     },
     'cryptocurrency': {
         title: 'Cryptocurrency APIs',
         description: 'Cryptocurrency data and trading',
+        seo: {
+            title: `Cryptocurrency & Trading APIs Directory – ${BRAND}`,
+            description: 'Free APIs for cryptocurrency prices, market data, trading, wallets, and crypto exchanges.',
+            ogImage: OG,
+            keywords: 'cryptocurrency api, bitcoin price api, crypto trading api, coinmarketcap api, binance api, crypto wallet api, market data',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'CollectionPage',
+                name: 'Cryptocurrency APIs',
+                description: 'Cryptocurrency data and trading',
+                url: 'https://codehelper.me/resources/apis/cryptocurrency'
+            }
+        }
     },
     'currency-exchange': {
         title: 'Currency Exchange APIs',
         description: 'Currency rates and conversion',
+        seo: {
+            title: `Currency Exchange & Conversion APIs – ${BRAND}`,
+            description: 'Free APIs for currency exchange rates, forex data, money conversion, and historical rates.',
+            ogImage: OG,
+            keywords: 'currency api, exchange rate api, forex api, currency converter, usd eur conversion, fixer api, historical rates',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'CollectionPage',
+                name: 'Currency Exchange APIs',
+                description: 'Currency rates and conversion',
+                url: 'https://codehelper.me/resources/apis/currency-exchange'
+            }
+        }
     },
     'data-validation': {
         title: 'Data Validation APIs',
         description: 'Data validation and verification',
+        seo: {
+            title: `Data Validation & Verification APIs – ${BRAND}`,
+            description: 'Free APIs for email validation, address verification, phone number validation, and data quality checks.',
+            ogImage: OG,
+            keywords: 'data validation api, email validation, phone validation, address verification, data quality, input validation',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'CollectionPage',
+                name: 'Data Validation APIs',
+                description: 'Data validation and verification',
+                url: 'https://codehelper.me/resources/apis/data-validation'
+            }
+        }
     },
     'dictionaries': {
         title: 'Dictionaries APIs',
         description: 'Language dictionaries and translations',
+        seo: {
+            title: `Dictionary & Translation APIs Directory – ${BRAND}`,
+            description: 'Free APIs for dictionaries, translations, language definitions, thesaurus, and multilingual text processing.',
+            ogImage: OG,
+            keywords: 'dictionary api, translation api, thesaurus api, language api, word definitions, multilingual, oxford dictionary',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'CollectionPage',
+                name: 'Dictionaries APIs',
+                description: 'Language dictionaries and translations',
+                url: 'https://codehelper.me/resources/apis/dictionaries'
+            }
+        }
     },
     'productivity': {
         title: 'Productivity APIs',
         description: 'Productivity and workflow tools',
+        seo: {
+            title: `Productivity & Workflow APIs Directory – ${BRAND}`,
+            description: 'Free APIs for task management, note-taking, time tracking, project management, and productivity tools.',
+            ogImage: OG,
+            keywords: 'productivity api, task management, todo api, time tracking api, workflow automation, project management api, trello api',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'CollectionPage',
+                name: 'Productivity APIs',
+                description: 'Productivity and workflow tools',
+                url: 'https://codehelper.me/resources/apis/productivity'
+            }
+        }
     },
     'email': {
         title: 'Email APIs',
         description: 'Email services and validation',
+        seo: {
+            title: `Email Service & Validation APIs – ${BRAND}`,
+            description: 'Free APIs for email sending, validation, verification, temporary email, and transactional email services.',
+            ogImage: OG,
+            keywords: 'email api, sendgrid api, mailgun api, email validation, smtp api, transactional email, temp email, email verification',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'CollectionPage',
+                name: 'Email APIs',
+                description: 'Email services and validation',
+                url: 'https://codehelper.me/resources/apis/email'
+            }
+        }
     },
     'entertainment': {
         title: 'Entertainment APIs',
         description: 'Movies, TV, and entertainment data',
+        seo: {
+            title: `Movies, TV Shows & Entertainment APIs – ${BRAND}`,
+            description: 'Free APIs for movies, TV shows, streaming data, IMDb information, trailers, and entertainment content.',
+            ogImage: OG,
+            keywords: 'movie api, tv show api, imdb api, tmdb api, entertainment api, streaming api, trailers api, netflix api',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'CollectionPage',
+                name: 'Entertainment APIs',
+                description: 'Movies, TV, and entertainment data',
+                url: 'https://codehelper.me/resources/apis/entertainment'
+            }
+        }
     },
     'environment': {
         title: 'Environment APIs',
         description: 'Environmental data and weather',
+        seo: {
+            title: `Weather & Environmental Data APIs – ${BRAND}`,
+            description: 'Free APIs for weather forecasts, climate data, air quality, natural disasters, and environmental monitoring.',
+            ogImage: OG,
+            keywords: 'weather api, climate api, air quality api, environmental data, forecast api, openweather, weather forecast',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'CollectionPage',
+                name: 'Environment APIs',
+                description: 'Environmental data and weather',
+                url: 'https://codehelper.me/resources/apis/environment'
+            }
+        }
     },
     'events': {
         title: 'Events APIs',
         description: 'Event listings and tickets',
+        seo: {
+            title: `Events & Ticketing APIs Directory – ${BRAND}`,
+            description: 'Free APIs for event listings, tickets, concerts, conferences, meetups, and event management.',
+            ogImage: OG,
+            keywords: 'events api, ticketing api, eventbrite api, concerts api, meetup api, conference api, event listings',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'CollectionPage',
+                name: 'Events APIs',
+                description: 'Event listings and tickets',
+                url: 'https://codehelper.me/resources/apis/events'
+            }
+        }
     },
     'finance': {
         title: 'Finance APIs',
         description: 'Financial data and services',
+        seo: {
+            title: `Finance & Stock Market APIs Directory – ${BRAND}`,
+            description: 'Free APIs for stock prices, financial data, banking services, investment tracking, and market analysis.',
+            ogImage: OG,
+            keywords: 'finance api, stock api, stock market data, banking api, investment api, yahoo finance api, financial data',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'CollectionPage',
+                name: 'Finance APIs',
+                description: 'Financial data and services',
+                url: 'https://codehelper.me/resources/apis/finance'
+            }
+        }
     },
     'food-drink': {
         title: 'Food & Drink APIs',
         description: 'Recipes and nutrition information',
+        seo: {
+            title: `Food, Recipes & Nutrition APIs Directory – ${BRAND}`,
+            description: 'Free APIs for recipes, nutrition data, restaurant information, food databases, and dietary information.',
+            ogImage: OG,
+            keywords: 'food api, recipe api, nutrition api, restaurant api, meal planning, ingredients api, diet api, cooking api',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'CollectionPage',
+                name: 'Food & Drink APIs',
+                description: 'Recipes and nutrition information',
+                url: 'https://codehelper.me/resources/apis/food-drink'
+            }
+        }
     },
     'games-comics': {
         title: 'Games & Comics APIs',
         description: 'Gaming and comic book data',
+        seo: {
+            title: `Games & Comics APIs Directory – ${BRAND}`,
+            description: 'Free APIs for video games, board games, comic books, gaming stats, and player profiles.',
+            ogImage: OG,
+            keywords: 'games api, gaming api, video games api, steam api, xbox api, playstation api, comics api, board games api',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'CollectionPage',
+                name: 'Games & Comics APIs',
+                description: 'Gaming and comic book data',
+                url: 'https://codehelper.me/resources/apis/games-comics'
+            }
+        }
     },
     'geocoding': {
         title: 'Geocoding APIs',
         description: 'Location and mapping services',
+        seo: {
+            title: `Geocoding & Maps APIs Directory – ${BRAND}`,
+            description: 'Free APIs for geocoding, reverse geocoding, maps, location services, and geographical data.',
+            ogImage: OG,
+            keywords: 'geocoding api, maps api, google maps api, location api, coordinates, reverse geocoding, geolocation, gps api',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'CollectionPage',
+                name: 'Geocoding APIs',
+                description: 'Location and mapping services',
+                url: 'https://codehelper.me/resources/apis/geocoding'
+            }
+        }
     },
     'government': {
         title: 'Government APIs',
         description: 'Government data and services',
+        seo: {
+            title: `Government & Open Data APIs Directory – ${BRAND}`,
+            description: 'Free APIs for government data, public records, legislative information, census data, and civic services.',
+            ogImage: OG,
+            keywords: 'government api, open government data, census api, legislative api, public records, civic data, gov api',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'CollectionPage',
+                name: 'Government APIs',
+                description: 'Government data and services',
+                url: 'https://codehelper.me/resources/apis/government'
+            }
+        }
     },
     'health': {
         title: 'Health APIs',
         description: 'Health and fitness data',
+        seo: {
+            title: `Health & Fitness APIs Directory – ${BRAND}`,
+            description: 'Free APIs for health data, fitness tracking, medical information, nutrition, and wellness services.',
+            ogImage: OG,
+            keywords: 'health api, fitness api, medical api, nutrition api, wellness api, fitbit api, healthcare data, workout api',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'CollectionPage',
+                name: 'Health APIs',
+                description: 'Health and fitness data',
+                url: 'https://codehelper.me/resources/apis/health'
+            }
+        }
     },
     'jobs': {
         title: 'Jobs APIs',
         description: 'Job listings and career data',
+        seo: {
+            title: `Jobs & Career APIs Directory – ${BRAND}`,
+            description: 'Free APIs for job listings, career information, salary data, recruitment, and employment services.',
+            ogImage: OG,
+            keywords: 'jobs api, job search api, career api, recruitment api, linkedin jobs api, indeed api, salary api, employment data',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'CollectionPage',
+                name: 'Jobs APIs',
+                description: 'Job listings and career data',
+                url: 'https://codehelper.me/resources/apis/jobs'
+            }
+        }
     },
     'music': {
         title: 'Music APIs',
         description: 'Music streaming and metadata',
+        seo: {
+            title: `Music & Streaming APIs Directory – ${BRAND}`,
+            description: 'Free APIs for music streaming, lyrics, artist information, album data, and audio analysis.',
+            ogImage: OG,
+            keywords: 'music api, spotify api, lyrics api, artist api, album api, music streaming, audio api, song database',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'CollectionPage',
+                name: 'Music APIs',
+                description: 'Music streaming and metadata',
+                url: 'https://codehelper.me/resources/apis/music'
+            }
+        }
     },
     'news': {
         title: 'News APIs',
         description: 'News articles and media',
+        seo: {
+            title: `News & Media APIs Directory – ${BRAND}`,
+            description: 'Free APIs for news articles, headlines, media content, press releases, and journalism data.',
+            ogImage: OG,
+            keywords: 'news api, headlines api, media api, newsapi, rss feed, press releases, journalism api, breaking news',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'CollectionPage',
+                name: 'News APIs',
+                description: 'News articles and media',
+                url: 'https://codehelper.me/resources/apis/news'
+            }
+        }
     },
     'open-data': {
         title: 'Open Data APIs',
         description: 'Open datasets and statistics',
+        seo: {
+            title: `Open Data & Statistics APIs Directory – ${BRAND}`,
+            description: 'Free APIs for open datasets, public statistics, data portals, and research data.',
+            ogImage: OG,
+            keywords: 'open data api, statistics api, public datasets, data portal, research data, open government data, data.gov',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'CollectionPage',
+                name: 'Open Data APIs',
+                description: 'Open datasets and statistics',
+                url: 'https://codehelper.me/resources/apis/open-data'
+            }
+        }
     },
     'open-source': {
         title: 'Open Source APIs',
         description: 'Open source project data',
+        seo: {
+            title: `Open Source & GitHub APIs Directory – ${BRAND}`,
+            description: 'Free APIs for open source projects, GitHub repositories, GitLab data, and code hosting platforms.',
+            ogImage: OG,
+            keywords: 'open source api, github api, gitlab api, repository api, git api, code hosting, open source projects',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'CollectionPage',
+                name: 'Open Source APIs',
+                description: 'Open source project data',
+                url: 'https://codehelper.me/resources/apis/open-source'
+            }
+        }
     },
     'patents': {
         title: 'Patent APIs',
         description: 'Patent information and search',
+        seo: {
+            title: `Patent Search & Information APIs – ${BRAND}`,
+            description: 'Free APIs for patent search, patent data, intellectual property information, and trademark databases.',
+            ogImage: OG,
+            keywords: 'patent api, patent search, intellectual property api, uspto api, trademark api, patent database',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'CollectionPage',
+                name: 'Patent APIs',
+                description: 'Patent information and search',
+                url: 'https://codehelper.me/resources/apis/patents'
+            }
+        }
     },
     'personality': {
         title: 'Personality APIs',
         description: 'Personality tests and quizzes',
+        seo: {
+            title: `Personality Tests & Quizzes APIs – ${BRAND}`,
+            description: 'Free APIs for personality tests, quizzes, horoscopes, fun facts, and entertainment content.',
+            ogImage: OG,
+            keywords: 'personality api, quiz api, personality test, horoscope api, fun facts api, entertainment quiz',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'CollectionPage',
+                name: 'Personality APIs',
+                description: 'Personality tests and quizzes',
+                url: 'https://codehelper.me/resources/apis/personality'
+            }
+        }
     },
     'phone': {
         title: 'Phone APIs',
         description: 'Phone number validation and lookup',
+        seo: {
+            title: `Phone Number Validation & Lookup APIs – ${BRAND}`,
+            description: 'Free APIs for phone number validation, carrier lookup, SMS sending, and telecommunications data.',
+            ogImage: OG,
+            keywords: 'phone api, phone validation, carrier lookup, sms api, twilio api, phone number verification, telecom api',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'CollectionPage',
+                name: 'Phone APIs',
+                description: 'Phone number validation and lookup',
+                url: 'https://codehelper.me/resources/apis/phone'
+            }
+        }
     },
     'photography': {
         title: 'Photography APIs',
         description: 'Photo sharing and stock images',
+        seo: {
+            title: `Photography & Stock Image APIs Directory – ${BRAND}`,
+            description: 'Free APIs for stock photos, image galleries, photo metadata, camera information, and photography platforms.',
+            ogImage: OG,
+            keywords: 'photography api, stock photos api, unsplash api, pexels api, flickr api, image gallery, photo metadata',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'CollectionPage',
+                name: 'Photography APIs',
+                description: 'Photo sharing and stock images',
+                url: 'https://codehelper.me/resources/apis/photography'
+            }
+        }
     },
     'programming': {
         title: 'Programming APIs',
         description: 'Programming languages and tools',
+        seo: {
+            title: `Programming Languages & Tools APIs – ${BRAND}`,
+            description: 'Free APIs for programming languages, code execution, syntax highlighting, code analysis, and development tools.',
+            ogImage: OG,
+            keywords: 'programming api, code execution api, compiler api, syntax api, code analysis, language api, programming tools',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'CollectionPage',
+                name: 'Programming APIs',
+                description: 'Programming languages and tools',
+                url: 'https://codehelper.me/resources/apis/programming'
+            }
+        }
     },
     'science-math': {
         title: 'Science & Math APIs',
         description: 'Scientific and mathematical data',
+        seo: {
+            title: `Science & Mathematics APIs Directory – ${BRAND}`,
+            description: 'Free APIs for scientific data, mathematical calculations, astronomy, chemistry, physics, and research databases.',
+            ogImage: OG,
+            keywords: 'science api, math api, astronomy api, chemistry api, physics api, scientific data, wolfram alpha, nasa api',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'CollectionPage',
+                name: 'Science & Math APIs',
+                description: 'Scientific and mathematical data',
+                url: 'https://codehelper.me/resources/apis/science-math'
+            }
+        }
     },
     'security': {
         title: 'Security APIs',
         description: 'Security and vulnerability data',
+        seo: {
+            title: `Security & Vulnerability APIs Directory – ${BRAND}`,
+            description: 'Free APIs for security scanning, vulnerability databases, threat intelligence, SSL certificates, and cybersecurity tools.',
+            ogImage: OG,
+            keywords: 'security api, vulnerability api, threat intelligence, ssl api, cyber security, cve database, security scanning',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'CollectionPage',
+                name: 'Security APIs',
+                description: 'Security and vulnerability data',
+                url: 'https://codehelper.me/resources/apis/security'
+            }
+        }
     },
 }
 
