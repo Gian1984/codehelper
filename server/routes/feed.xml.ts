@@ -116,6 +116,28 @@ const articlesData: Record<string, Omit<Article, 'component'>> = {
         dateModified: '2025-09-08'
       }
     }
+  },
+  'mlx-terminal-code': {
+    title: 'MLX-CODE: 100% Local AI Coding Assistant for macOS',
+    description: 'Discover MLX-CODE, a privacy-focused local AI coding assistant that runs entirely on your Mac using Apple\'s MLX framework. Free, offline, and powerful with 20+ AI models.',
+    category: 'ai',
+    seo: {
+      structuredData: {
+        datePublished: '2025-12-07',
+        dateModified: '2025-12-07'
+      }
+    }
+  },
+  'codehelper-resources-apis-update': {
+    title: 'CodeHelper Expands: 800+ Resources & 400+ Public APIs Now Available',
+    description: 'CodeHelper adds two major features: 800+ curated developer resources across 31 categories and 400+ public APIs with advanced filtering. Discover the complete developer hub.',
+    category: 'updates',
+    seo: {
+      structuredData: {
+        datePublished: '2025-12-10',
+        dateModified: '2025-12-10'
+      }
+    }
   }
 }
 

@@ -339,7 +339,17 @@ const toolsByCategory = computed<[string, Tool[]][]>(() => {
 })
 
 const randomTools = ref<[string, Tool][]>([])
-const latestArticles = computed<[string, Article][]>(() => Object.entries(articles).slice(0, 6))
+
+// Latest Articles - sorted by datePublished (newest first)
+const latestArticles = computed<[string, Article][]>(() => {
+  return Object.entries(articles)
+    .sort(([, a], [, b]) => {
+      const dateA = (a as any).seo?.structuredData?.datePublished || '2025-01-01'
+      const dateB = (b as any).seo?.structuredData?.datePublished || '2025-01-01'
+      return new Date(dateB).getTime() - new Date(dateA).getTime()
+    })
+    .slice(0, 6)
+})
 
 onMounted(() => {
   const shuffled = Object.entries(tools).sort(() => 0.5 - Math.random())

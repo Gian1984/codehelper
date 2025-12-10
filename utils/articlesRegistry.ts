@@ -524,6 +524,64 @@ export const articles: Record<string, Article> = {
         }
     },
 
+    'codehelper-resources-apis-update': {
+        title: 'CodeHelper Expands: 800+ Resources & 400+ Public APIs Now Available',
+        description:
+            'CodeHelper adds two major features: 800+ curated developer resources across 31 categories and 400+ public APIs with advanced filtering. Discover the complete developer hub.',
+        category: 'updates',
+        component: () =>
+            import('~/components/articles/updates/CodehelperResourcesApis.vue') as Promise<{ default: DefineComponent }>,
+        seo: {
+            title: `CodeHelper Now Includes 800+ Resources & 400+ Public APIs – ${BRAND}`,
+            description:
+                'Major CodeHelper update: Browse 800+ curated developer resources (colors, icons, UI libraries, design tools) and discover 400+ public APIs across 40 categories. All with smart search and filtering.',
+            ogImage: OG,
+            keywords:
+                'codehelper update, developer resources directory, public apis directory, ui libraries, react resources, vue resources, design tools, color tools, icon libraries, developer toolkit, free resources',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'TechArticle',
+                headline: 'CodeHelper Expands: 800+ Resources & 400+ Public APIs Now Available',
+                description:
+                    'Announcing CodeHelper\'s major expansion: 800+ curated external resources and 400+ public APIs. Complete guide to the new directories, filtering options, and smart search features.',
+                author: { '@type': 'Person', name: 'Gianluca' },
+                publisher: {
+                    '@type': 'Organization',
+                    name: 'CodeHelper',
+                    logo: { '@type': 'ImageObject', url: OG }
+                },
+                image: OG,
+                datePublished: '2025-12-10',
+                dateModified: '2025-12-10',
+                mainEntityOfPage: {
+                    '@type': 'WebPage',
+                    '@id': 'https://codehelper.me/articles/codehelper-resources-apis-update'
+                },
+                articleSection: 'Product Updates',
+                about: [
+                    'CodeHelper',
+                    'Developer Resources',
+                    'Public APIs',
+                    'Developer Tools',
+                    'UI Libraries'
+                ],
+                keywords: [
+                    'CodeHelper update',
+                    'external resources',
+                    'public APIs',
+                    'developer directory',
+                    'UI libraries',
+                    'design tools',
+                    'React resources',
+                    'Vue resources',
+                    'API directory',
+                    'developer hub'
+                ],
+                proficiencyLevel: 'General'
+            }
+        }
+    },
+
 
 
 }

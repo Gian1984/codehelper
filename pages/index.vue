@@ -392,10 +392,14 @@ const featuredResourceCategories = computed(() => {
   }))
 })
 
-// Latest Articles
+// Latest Articles - sorted by datePublished
 const latestArticles = computed(() => {
   return Object.entries(articles)
-      .sort(([, a], [, b]) => new Date((b as any).date).getTime() - new Date((a as any).date).getTime())
+      .sort(([, a], [, b]) => {
+        const dateA = (a as any).seo?.structuredData?.datePublished || '2025-01-01'
+        const dateB = (b as any).seo?.structuredData?.datePublished || '2025-01-01'
+        return new Date(dateB).getTime() - new Date(dateA).getTime()
+      })
       .slice(0, 6)
       .map(([slug, article]) => ({ slug, ...article }))
 })
