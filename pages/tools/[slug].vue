@@ -11,15 +11,29 @@
 
     <h1 class="text-3xl font-bold mb-4">{{ toolData.title }}</h1>
     <p class="text-gray-400 mb-6">{{ toolData.description }}</p>
+
+    <!-- Share buttons -->
+    <div class="mb-8">
+      <ShareButtons
+        :url="`https://codehelper.me/tools/${slug}/`"
+        :title="toolData.title"
+        :description="toolData.description"
+        :hashtags="toolHashtags"
+        type="tool"
+        variant="full"
+      />
+    </div>
+
     <component :is="ToolComponent" />
   </div>
 </template>
 
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
-import { defineAsyncComponent, onMounted } from 'vue'
+import { defineAsyncComponent, computed, onMounted } from 'vue'
 import { useHead, createError } from '#imports'
 import Breadcrumb from '~/components/Breadcrumb.vue'
+import ShareButtons from '~/components/ShareButtons.vue'
 import { tools } from '~/utils/toolRegistry'
 import { useBreadcrumb } from '~/composables/useBreadcrumb'
 
@@ -49,6 +63,33 @@ const breadcrumbSchema = useBreadcrumb(
     parentUrl: 'https://codehelper.me/tools/'
   }
 )
+
+// Generate hashtags for social sharing
+const toolHashtags = computed<string[]>(() => {
+  const tags: string[] = []
+
+  // Add category as hashtag
+  if (toolData.category) {
+    tags.push(toolData.category)
+  }
+
+  // Extract first 2-3 keywords from SEO keywords
+  if (toolData.seo?.keywords) {
+    const keywords = toolData.seo.keywords
+      .split(',')
+      .map(k => k.trim())
+      .filter(k => k.length > 0 && k.length < 20) // avoid long phrases
+      .slice(0, 2)
+      .map(k => k.replace(/\s+/g, '')) // remove spaces for hashtags
+
+    tags.push(...keywords)
+  }
+
+  // Always add CodeHelper and webdev
+  tags.push('webdev', 'CodeHelper')
+
+  return tags
+})
 
 // Meta / SEO
 useHead({

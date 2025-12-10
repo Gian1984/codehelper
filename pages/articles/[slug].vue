@@ -41,6 +41,18 @@
       </p>
     </div>
 
+    <!-- Share buttons -->
+    <div class="mb-8">
+      <ShareButtons
+        :url="`https://codehelper.me/articles/${slug}/`"
+        :title="articleData.title"
+        :description="articleData.description"
+        :hashtags="articleHashtags"
+        type="article"
+        variant="full"
+      />
+    </div>
+
     <component :is="ArticleComponent" />
   </div>
 </template>
@@ -51,6 +63,7 @@ import { defineAsyncComponent, computed } from 'vue'
 import { useHead, createError } from '#imports'
 import Breadcrumb from '~/components/Breadcrumb.vue'
 import DateBadge from '~/components/DateBadge.vue'
+import ShareButtons from '~/components/ShareButtons.vue'
 import { articles } from '~/utils/articlesRegistry'
 import { useBreadcrumb } from '~/composables/useBreadcrumb'
 
@@ -105,6 +118,33 @@ const authorUrl = computed<string | ''>(() => {
   if (sd?.author?.url) return sd.author.url
   if (Array.isArray(sd?.sameAs) && sd.sameAs.length) return sd.sameAs[0]
   return ''
+})
+
+// Generate hashtags for social sharing
+const articleHashtags = computed<string[]>(() => {
+  const tags: string[] = []
+
+  // Add category as hashtag
+  if (articleData.category) {
+    tags.push(articleData.category)
+  }
+
+  // Extract first 2-3 keywords from SEO keywords
+  if (articleData.seo?.keywords) {
+    const keywords = articleData.seo.keywords
+      .split(',')
+      .map(k => k.trim())
+      .filter(k => k.length > 0 && k.length < 20) // avoid long phrases
+      .slice(0, 2)
+      .map(k => k.replace(/\s+/g, '')) // remove spaces for hashtags
+
+    tags.push(...keywords)
+  }
+
+  // Always add CodeHelper
+  tags.push('CodeHelper')
+
+  return tags
 })
 
 // SEO
