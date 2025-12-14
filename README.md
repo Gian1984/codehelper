@@ -77,9 +77,26 @@ npx serve .output/public
 ### Text & Dev Utilities
 - [Regex Tester](/tools/regex-tester) - Test and analyze regular expressions.
 - [README Generator](/tools/readme-generator) - Create GitHub project documentation.
+- [.gitignore Generator](/tools/gitignore-generator) - Generate .gitignore files with 40+ templates.
+- [Base64 Encoder/Decoder](/tools/base64-encoder-decoder) - Encode and decode Base64 with file support.
 - [Dev Notepad](/tools/dev-notepad) - Local storage text editor with export.
 - [Text Case Converter](/tools/text-case-converter) - Uppercase, lowercase, title case, etc.
 - [Lorem Ipsum Generator](/tools/lorem-ipsum-generator) - Generate placeholder text.
+
+## External Resources
+
+### Developer Resources
+- [Browse 800+ Resources](/resources) - Curated collection across 31 categories:
+  - Colors, Icons, Fonts, UI Libraries (React, Vue, Angular, Svelte)
+  - CSS Frameworks, Design Systems, Design Tools
+  - Stock Photos/Videos, Image Tools, Mockups
+  - Chrome Extensions, Templates, and more
+
+### Public APIs
+- [Browse 400+ Public APIs](/resources/apis) - Comprehensive API directory across 40 categories:
+  - Development, Music, Animals, News, Finance
+  - Blockchain, Security, Cloud, Games, Health
+  - And many more with auth/HTTPS/CORS metadata
 
 ## Articles
 
@@ -97,6 +114,10 @@ npx serve .output/public
 - [Samsung 9100 Pro NVMe Deep Dive](/articles/samsung-9100-pro-nvme)
 - [Polar Night Sand Battery](/articles/polar-night-sand-battery)
 - [CO₂ Battery Explained](/articles/co2-battery)
+
+### AI & Updates
+- [MLX-CODE: Local AI Coding Assistant](/articles/mlx-terminal-code)
+- [CodeHelper Resources & APIs Update](/articles/codehelper-resources-apis-update)
 
 ## Technologies & Libraries
 
