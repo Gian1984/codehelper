@@ -1,7 +1,7 @@
 # CodeHelper - Comprehensive Project Analysis & Growth Strategy
 
-**Date:** December 14, 2025
-**Status:** Production-ready with 33+ tools, 11+ articles, 800+ external resources, 400+ APIs
+**Date:** December 16, 2025 (Updated)
+**Status:** Production-ready with 39+ tools, 11+ articles, 800+ external resources, 400+ APIs
 
 ---
 
@@ -9,7 +9,7 @@
 
 **CodeHelper** is a comprehensive, privacy-first developer tools platform built with Nuxt 4, featuring:
 
-- ✅ **33+ professional tools** (formatters, converters, CSS, colors, imaging, text, dev, generators)
+- ✅ **39+ professional tools** (formatters, converters, CSS, colors, imaging, text, dev, generators)
 - ✅ **11+ technical articles** (JavaScript, security, AI, hardware, energy, education)
 - ✅ **800+ curated external resources** (31 categories: UI libraries, design tools, icons, colors)
 - ✅ **400+ public APIs** (40 categories: development, music, finance, security)
@@ -33,7 +33,7 @@
 - Static site generation (SSG) with pre-rendering
 - SEO-optimized with rich structured data
 
-#### **2. 33+ Professional Tools** (All with modern UI)
+#### **2. 39+ Professional Tools** (All with modern UI)
 **Formatters (5):**
 - JSON Formatter ⭐ (tree view, diff, schema validation, syntax highlighting)
 - XML Formatter ⭐ (XML to JSON, XPath tester, statistics)
@@ -49,9 +49,11 @@
 - Unit Converter ⭐ (80+ units, 10 categories, search, favorites)
 - Viewport Unit Converter ⭐ (24 units, container queries, fluid clamp)
 
-**Generators (2):**
+**Generators (4):**
 - README Generator ⭐ (templates, badge builder, live preview)
 - Gitignore Generator ⭐ (40+ templates, multi-select)
+- Password Generator ⭐ (strength meter, entropy calculation, bulk generation, presets) 🆕
+- QR Code Generator ⭐ (URL, WiFi, vCard, custom colors, PNG/SVG export) 🆕
 
 **CSS Tools (5):**
 - Clamp Generator
@@ -81,9 +83,13 @@
 - Text Case Converter ⭐ (15+ cases, swap input/output)
 - Dev Notepad ⭐ (Markdown, HTML WYSIWYG, multi-tabs, version history, regex search)
 
-**Dev (2):**
+**Dev (6):**
 - Regex Tester ⭐ (complexity analyzer, pattern explainer, cheat sheet)
 - Base64 Encoder/Decoder ⭐ (file upload, data URL, image preview)
+- JWT Decoder & Validator ⭐ (HMAC signature verification, claims inspector, expiration checker) 🆕
+- Hash Generator ⭐ (MD5, SHA-1/256/384/512, HMAC, file hashing) 🆕
+- URL Encoder/Decoder ⭐ (encodeURIComponent/URI, query parser, quick actions) 🆕
+- UUID/GUID Generator ⭐ (v4, v1, Nil, Max, bulk generation, validator) 🆕
 
 #### **3. External Resources Integration**
 - **800+ resources** across 31 categories (colors, icons, frameworks, UI libraries)
@@ -104,39 +110,37 @@
 
 ### **Priority 1: Expand Developer Tools Category** 🔴
 
-The **dev** category currently has only **2 tools** (Regex Tester, Base64). This is the weakest category with the highest SEO opportunity.
+**Status Update (December 2025):**
+- **dev** category expanded from 2 to **6 tools** ✅ (+300%)
+- **generator** category expanded from 2 to **4 tools** ✅ (+100%)
+- **Total tools**: 33 → **39 tools** (+18%)
 
-#### **Top 10 Tools to Add (by priority):**
+**Recently Added Tools (December 2025):**
+- ✅ **JWT Decoder & Validator** (dev) - Decode/validate JWT tokens with HMAC signature verification
+- ✅ **Hash Generator** (dev) - MD5, SHA-1, SHA-256, SHA-384, SHA-512, HMAC for text and files
+- ✅ **URL Encoder/Decoder** (dev) - encodeURIComponent/encodeURI with query parameter parser
+- ✅ **UUID/GUID Generator** (dev) - v4, v1, Nil, Max UUID with bulk generation and validator
+- ✅ **Password Generator** (generator) - Secure passwords with strength meter, entropy calculation
+- ✅ **QR Code Generator** (generator) - URLs, WiFi, vCards with customizable colors and formats
+
+#### **Remaining High-Priority Tools to Add:**
 
 | Tool | Category | SEO Value | Difficulty | Impact |
 |------|----------|-----------|------------|--------|
-| **JWT Decoder & Validator** | dev | 🔥🔥🔥 Very High | Medium | High-volume searches, developer essential |
-| **Hash Generator** (MD5, SHA-256, SHA-512, bcrypt) | dev | 🔥🔥🔥 Very High | Low | File hashing + text hashing |
-| **URL Encoder/Decoder** | dev | 🔥🔥🔥 Very High | Low | encodeURIComponent, query params |
-| **QR Code Generator** | generator | 🔥🔥🔥 Very High | Low | Visual appeal + high SEO |
-| **Password Generator** | generator | 🔥🔥🔥 Very High | Low | Strength meter + security focus |
 | **SQL Formatter** | formatter | 🔥🔥🔥 Very High | Medium | Backend developers, high demand |
 | **Diff Checker** (Text/JSON/Code) | textes | 🔥🔥🔥 Very High | Medium | Side-by-side diff viewer |
-| **UUID/GUID Generator** | dev | 🔥🔥 High | Low | v4, v5, bulk generation |
 | **Cron Expression Builder** | dev | 🔥🔥 High | Medium | Visual cron builder + parser |
 | **Favicon Generator** | generator | 🔥🔥 High | Medium | All sizes (16x16, apple-touch-icon) |
 
 **Suggested Implementation Order:**
-1. **Week 1-2:** JWT Decoder, Hash Generator, URL Encoder/Decoder
-2. **Week 3-4:** QR Code Generator, Password Generator, SQL Formatter
-3. **Week 5-6:** Diff Checker, UUID Generator, Cron Builder, Favicon Generator
+1. **Next 2 weeks:** SQL Formatter, Diff Checker
+2. **Following 2 weeks:** Cron Expression Builder, Favicon Generator
 
 **Libraries needed:**
-- JWT: `jsonwebtoken`
-- Hash: `crypto` (built-in)
-- URL: Native JavaScript
-- QR Code: `qrcode`
-- Password: `zxcvbn` (strength meter)
 - SQL: `sql-formatter`
-- Diff: `diff`
-- UUID: `uuid`
+- Diff: `diff` or `diff-match-patch`
 - Cron: `cronstrue`
-- Favicon: `sharp`
+- Favicon: `sharp` or client-side canvas
 
 ---
 
@@ -377,22 +381,24 @@ Write 5 SEO-focused comparison articles:
 
 ---
 
-## 💡 TOOL GAP ANALYSIS
+## 💡 TOOL GAP ANALYSIS (Updated December 2025)
 
 ### **Strong Categories (Well-covered):**
 - ✅ **Converters (6 tools)** - Comprehensive coverage
-- ✅ **Formatters (5 tools)** - Missing SQL only
+- ✅ **Dev (6 tools)** - Excellent expansion, well-rounded ✅ **UPDATED**
+- ✅ **Formatters (5 tools)** - Missing SQL Formatter only
 - ✅ **Colors (4 tools)** - Excellent, feature-complete
 - ✅ **Imaging (4 tools)** - Strong selection
+- ✅ **Generators (4 tools)** - Good variety ✅ **UPDATED**
 
-### **Weak Categories (Need Expansion):**
-- 🔴 **Dev (2 tools)** → Add 6 tools (JWT, Hash, URL, UUID, Cron, HTTP Status)
-- 🔴 **Generators (2 tools)** → Add 4 tools (QR, Password, Favicon, SQL)
+### **Categories Needing Expansion:**
+- 🟡 **Formatters (5 tools)** → Add SQL Formatter for backend developers
 - 🟡 **Text (3 tools)** → Add Diff Checker, Word Counter
 - 🟡 **SVG (2 tools)** → Complete for now
+- 🟡 **Generators (4 tools)** → Could add Favicon Generator, Cron Expression Builder
 
 ### **New Category Opportunity:**
-- 🆕 **Security** (0 tools) → Add: Bcrypt Hash, Password Strength Checker, Security Headers Analyzer
+- 🆕 **Security** (0 tools) → Add: Security Headers Analyzer, SSL Certificate Checker
 
 ---
 
@@ -431,7 +437,7 @@ Write 5 SEO-focused comparison articles:
 - ✅ 100% privacy-first (no data collection)
 - ✅ Zero ads, zero paywalls
 - ✅ Fast, responsive (Nuxt SSG + CDN)
-- ✅ Comprehensive (33+ tools + 800+ resources + 400+ APIs)
+- ✅ Comprehensive (39+ tools + 800+ resources + 400+ APIs)
 - ✅ Excellent SEO (structured data, rich snippets)
 
 ### **Areas for Improvement vs Competitors:**
