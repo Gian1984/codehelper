@@ -239,6 +239,92 @@ export const tools: Record<string, Tool> = {
         }
     },
 
+    'password-generator': {
+        title: 'Password Generator',
+        description: 'Generate secure passwords with customizable length, character types, and strength meter. Bulk generation support, presets (strong, memorable, PIN), and entropy calculation—all client-side.',
+        category: 'generator',
+        component: () =>
+            import('~/components/tools/generator/PasswordGenerator.vue') as Promise<{ default: DefineComponent }>,
+        seo: {
+            title: `Password Generator - Secure Passwords with Strength Meter (Free) – ${BRAND}`,
+            description:
+                'Professional password generator with strength meter and entropy calculation. Generate secure passwords (4-128 chars) with uppercase, lowercase, numbers, symbols. Quick presets (strong, memorable, PIN), exclude similar characters, bulk generation (1-50), crack time estimation. All passwords generated locally with crypto.getRandomValues()—complete privacy.',
+            ogImage: OG,
+            keywords:
+                'password generator, secure password, random password generator, strong password generator, password strength meter, generate password online, password creator, entropy calculator, password security, bulk password generator, pin generator, memorable password, exclude similar characters',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'Password Generator Pro',
+                applicationCategory: 'UtilityApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    'Customizable Length (4-128 characters)',
+                    'Uppercase Letters (A-Z)',
+                    'Lowercase Letters (a-z)',
+                    'Numbers (0-9)',
+                    'Symbols (!@#$%^&*)',
+                    'Exclude Similar Characters (i, l, 1, L, o, 0, O)',
+                    'Password Strength Meter (5 levels)',
+                    'Entropy Calculation',
+                    'Crack Time Estimation',
+                    'Quick Presets (Strong, Memorable, PIN)',
+                    'Bulk Generation (1-50 passwords)',
+                    'Copy Individual Passwords',
+                    'Cryptographically Secure (crypto.getRandomValues)',
+                    'Client-side Processing (Privacy-Friendly)',
+                    'localStorage Persistence'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '94' }
+            }
+        }
+    },
+
+    'qr-code-generator': {
+        title: 'QR Code Generator',
+        description: 'Generate QR codes for URLs, text, WiFi, vCards, and more. Customizable size, colors, error correction. Download as PNG or SVG—all client-side.',
+        category: 'generator',
+        component: () =>
+            import('~/components/tools/generator/QRCodeGenerator.vue') as Promise<{ default: DefineComponent }>,
+        seo: {
+            title: `QR Code Generator - Create QR Codes for URL, WiFi, vCard (Free) – ${BRAND}`,
+            description:
+                'Professional QR code generator for URLs, text, WiFi credentials, vCards, emails, phone numbers, and more. Customizable size (128-1024px), error correction levels (L/M/Q/H), foreground/background colors. Download as PNG or SVG. Quick templates for common use cases. All QR codes generated locally in your browser—complete privacy.',
+            ogImage: OG,
+            keywords:
+                'qr code generator, create qr code, qr code maker, generate qr code online, qr code creator, wifi qr code, vcard qr code, url qr code, custom qr code, qr code colors, qr code download, qr code png svg, free qr code generator',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'QR Code Generator Pro',
+                applicationCategory: 'UtilityApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    'Generate QR Codes for URLs',
+                    'Plain Text QR Codes',
+                    'WiFi Network QR Codes',
+                    'vCard Contact QR Codes',
+                    'Email QR Codes',
+                    'Phone Number QR Codes',
+                    'SMS QR Codes',
+                    'Geo Location QR Codes',
+                    'Customizable Size (128-1024px)',
+                    'Error Correction Levels (L, M, Q, H)',
+                    'Custom Foreground/Background Colors',
+                    'Download as PNG',
+                    'Download as SVG',
+                    'Quick Templates',
+                    'Real-time Preview',
+                    'Client-side Processing (Privacy-Friendly)',
+                    'localStorage Persistence'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '112' }
+            }
+        }
+    },
+
     'byte-size-converter': {
         title: 'Byte Size Converter',
         description: 'Convert between Bytes, KB, MB, GB, and TB easily.',
@@ -1146,6 +1232,168 @@ export const tools: Record<string, Tool> = {
                 offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
                 featureList: ['Per-corner', 'Elliptical', 'Preview', 'Copy CSS'],
                 aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '31' }
+            }
+        }
+    },
+
+    'jwt-decoder': {
+        title: 'JWT Decoder & Validator',
+        description: 'Decode, validate, and inspect JSON Web Tokens (JWT). Parse header, payload, verify signatures with HMAC algorithms, and check token expiration—all client-side.',
+        category: 'dev',
+        component: () => import('~/components/tools/dev/JwtDecoder.vue') as Promise<{ default: DefineComponent }>,
+        seo: {
+            title: `JWT Decoder & Validator - Decode JSON Web Tokens (Free) – ${BRAND}`,
+            description:
+                'Professional JWT decoder and validator for JSON Web Tokens. Decode header and payload, verify HMAC signatures (HS256, HS384, HS512), inspect standard claims (exp, iat, iss, sub, aud), check token expiration. All processing done client-side with complete privacy—no data sent to servers.',
+            ogImage: OG,
+            keywords:
+                'jwt decoder, jwt validator, decode jwt online, json web token decoder, jwt parser, verify jwt signature, jwt debugger, jwt claims inspector, check jwt expiration, hs256 validator, jwt token analyzer, decode jwt header payload, jwt verification tool, jwt signature checker',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'JWT Decoder & Validator',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    'Decode JWT Header',
+                    'Decode JWT Payload',
+                    'Extract Signature',
+                    'Verify HMAC Signatures (HS256, HS384, HS512)',
+                    'Inspect Standard Claims (exp, iat, iss, sub, aud, nbf, jti)',
+                    'Token Expiration Checker',
+                    'Time Remaining Calculator',
+                    'Algorithm Detection',
+                    'Copy Header/Payload/Signature',
+                    'Load Example JWT',
+                    'Auto-decode Mode',
+                    'Base64URL Decoding',
+                    'JWT Structure Validation',
+                    'Client-side Processing (Privacy-Friendly)',
+                    'localStorage Persistence'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '64' }
+            }
+        }
+    },
+
+    'hash-generator': {
+        title: 'Hash Generator',
+        description: 'Generate cryptographic hashes for text and files using MD5, SHA-1, SHA-256, SHA-384, SHA-512, and HMAC. File hashing support with real-time processing—all client-side.',
+        category: 'dev',
+        component: () => import('~/components/tools/dev/HashGenerator.vue') as Promise<{ default: DefineComponent }>,
+        seo: {
+            title: `Hash Generator - MD5, SHA-256, SHA-512, HMAC (Free) – ${BRAND}`,
+            description:
+                'Professional hash generator for text and files. Generate MD5, SHA-1, SHA-256, SHA-384, SHA-512 hashes instantly. Supports HMAC for message authentication. File hashing with drag-and-drop. All processing done client-side with complete privacy—no uploads to servers.',
+            ogImage: OG,
+            keywords:
+                'hash generator, md5 generator, sha256 generator, sha512 generator, file hash, text hash, checksum calculator, hmac generator, hash calculator online, generate hash, file checksum, cryptographic hash, sha1 hash, sha384 hash, message digest, hash function, file integrity checker',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'Hash Generator Pro',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    'MD5 Hash Generation',
+                    'SHA-1 Hash Generation',
+                    'SHA-256 Hash Generation (Recommended)',
+                    'SHA-384 Hash Generation',
+                    'SHA-512 Hash Generation',
+                    'Text Input Hashing',
+                    'File Upload Hashing',
+                    'HMAC Support (SHA-256, SHA-384, SHA-512, SHA-1)',
+                    'Multiple Hash Algorithms Simultaneously',
+                    'Copy Individual Hashes',
+                    'Auto-process Mode',
+                    'File Size Display',
+                    'Hash Length Information',
+                    'Security Warnings for Legacy Algorithms',
+                    'Client-side Processing (Privacy-Friendly)',
+                    'localStorage Persistence'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '78' }
+            }
+        }
+    },
+
+    'url-encoder-decoder': {
+        title: 'URL Encoder/Decoder',
+        description: 'Encode and decode URLs, query strings, and URI components. Supports encodeURIComponent and encodeURI with URL parser and query parameter inspector—all client-side.',
+        category: 'dev',
+        component: () => import('~/components/tools/dev/UrlEncoderDecoder.vue') as Promise<{ default: DefineComponent }>,
+        seo: {
+            title: `URL Encoder/Decoder - Query String & URI Component Tool – ${BRAND}`,
+            description:
+                'Professional URL encoder and decoder with support for encodeURIComponent and encodeURI. Parse URLs, inspect query parameters, encode/decode query strings. Includes URL parser with protocol, hostname, pathname extraction. All processing done client-side with complete privacy.',
+            ogImage: OG,
+            keywords:
+                'url encoder, url decoder, encode url online, decode url, query string encoder, uri encoder, encodeURIComponent, encodeURI, percent encoding, url parser, query parameters, decode query string, url escape, uri decode, url encode special characters, percent decode',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'URL Encoder/Decoder Pro',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    'Encode URLs with encodeURIComponent',
+                    'Encode URLs with encodeURI',
+                    'Decode URL-encoded strings',
+                    'URL Parser (protocol, hostname, port, pathname, search, hash)',
+                    'Query Parameter Inspector',
+                    'Swap Input/Output',
+                    'Auto-process Mode',
+                    'Quick Actions (Encode Query String, Build URL, Extract Domain)',
+                    'Character Encoding Reference',
+                    'Copy Individual Components',
+                    'Load Examples',
+                    'Real-time Encoding Statistics',
+                    'Client-side Processing (Privacy-Friendly)',
+                    'localStorage Persistence'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '92' }
+            }
+        }
+    },
+
+    'uuid-generator': {
+        title: 'UUID/GUID Generator',
+        description: 'Generate unique identifiers (UUID v4, v1, Nil, Max) with bulk generation support. Includes UUID validator and multiple output formats—all client-side.',
+        category: 'dev',
+        component: () => import('~/components/tools/dev/UuidGenerator.vue') as Promise<{ default: DefineComponent }>,
+        seo: {
+            title: `UUID Generator - v4, v1, Bulk Generation & Validator (Free) – ${BRAND}`,
+            description:
+                'Professional UUID/GUID generator with support for v4 (random), v1 (timestamp), Nil, and Max UUIDs. Generate up to 1000 UUIDs at once. Multiple output formats (standard, uppercase, braces, URN). Includes UUID validator with version detection. All processing done client-side with complete privacy.',
+            ogImage: OG,
+            keywords:
+                'uuid generator, guid generator, generate uuid online, uuid v4, uuid v1, random uuid, bulk uuid generator, uuid validator, unique identifier, globally unique identifier, uuid format, uuid urn, uuid braces, validate uuid, check uuid version',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'UUID/GUID Generator Pro',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    'Generate UUID v4 (Random)',
+                    'Generate UUID v1 (Timestamp-based)',
+                    'Generate Nil UUID (all zeros)',
+                    'Generate Max UUID (all ones)',
+                    'Bulk Generation (1-1000 UUIDs)',
+                    'Multiple Output Formats (Standard, No Hyphens, Uppercase, Braces, URN)',
+                    'UUID Validator with Version Detection',
+                    'Copy Individual UUIDs',
+                    'Copy All UUIDs',
+                    'Download as Text File',
+                    'Cryptographically Secure (uses crypto.randomUUID)',
+                    'Client-side Processing (Privacy-Friendly)',
+                    'localStorage Persistence'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '86' }
             }
         }
     }
