@@ -188,7 +188,7 @@
           </div>
           <div class="bg-gray-800 p-2 rounded">
             <span class="text-gray-400">Entropy:</span>
-            <span class="text-white ml-1 font-medium">{{ pwd.strength.entropy.toFixed(1)} bits</span>
+            <span class="text-white ml-1 font-medium">{{ pwd.strength.entropy.toFixed(1) }} bits</span>
           </div>
           <div class="bg-gray-800 p-2 rounded">
             <span class="text-gray-400">Charset:</span>
