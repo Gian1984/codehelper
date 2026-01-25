@@ -361,6 +361,62 @@ export const articles: Record<string, Article> = {
         }
     },
 
+    'ram-prices-surge-2026': {
+        title: 'Why RAM Prices Are Surging in 2026',
+        description:
+            'Understand why DDR4 and DDR5 memory prices have skyrocketed: AI demand, wafer shortages, HBM production shifts, and what consumers and businesses can do about it.',
+        category: 'hardware',
+        component: () =>
+            import('~/components/articles/hardware/RamPricesSurge2026.vue') as Promise<{ default: DefineComponent }>,
+        seo: {
+            title: `Why RAM Prices Are Surging in 2026: The Complete Breakdown – ${BRAND}`,
+            description:
+                'RAM prices have increased 120-200% in 2026. Learn why DDR4 and DDR5 costs are rising due to AI demand, HBM production, wafer shortages, and when prices might stabilize.',
+            ogImage: OG,
+            keywords:
+                'ram prices 2026, ddr5 price increase, dram shortage, hbm memory, ai memory demand, ddr4 prices rising, memory market, semiconductor shortage, wafer supply',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'TechArticle',
+                headline: 'Why RAM Prices Are Surging in 2026',
+                description:
+                    'Comprehensive analysis of the 2026 memory market: AI-driven HBM demand, wafer constraints, DDR4 phase-out, and strategies for consumers and businesses.',
+                author: { '@type': 'Person', name: 'Gianluca' },
+                publisher: {
+                    '@type': 'Organization',
+                    name: 'CodeHelper',
+                    logo: { '@type': 'ImageObject', url: OG }
+                },
+                image: OG,
+                datePublished: '2026-01-25',
+                dateModified: '2026-01-25',
+                mainEntityOfPage: {
+                    '@type': 'WebPage',
+                    '@id': 'https://codehelper.me/articles/ram-prices-surge-2026'
+                },
+                articleSection: 'Hardware',
+                about: [
+                    'RAM Prices',
+                    'DRAM Shortage',
+                    'HBM Memory',
+                    'DDR5',
+                    'Semiconductor Industry'
+                ],
+                keywords: [
+                    'RAM prices',
+                    'DDR5',
+                    'DDR4',
+                    'HBM',
+                    'AI memory demand',
+                    'DRAM shortage',
+                    'wafer supply',
+                    'memory market 2026'
+                ],
+                proficiencyLevel: 'General'
+            }
+        }
+    },
+
     'samsung-9100-pro-nvme': {
         title: 'Samsung 9100 Pro NVMe — 14 GB/s Gen5 Storage & LLM Workflow Acceleration',
         description:
@@ -461,6 +517,62 @@ export const articles: Record<string, Article> = {
                     'GitHub Education benefits'
                 ],
                 proficiencyLevel: 'Beginner'
+            }
+        }
+    },
+
+    'claude-code-self-coding': {
+        title: 'Can an AI Really Code Itself? Inside Anthropic\'s Claude Code Phenomenon',
+        description:
+            'Explore the bold claim that Claude Code wrote 80% of its own code. Understand what it really means, how the agentic AI tool works, and its implications for software development.',
+        category: 'ai',
+        component: () =>
+            import('~/components/articles/ai/ClaudeCodeSelfCoding.vue') as Promise<{ default: DefineComponent }>,
+        seo: {
+            title: `Can AI Code Itself? Claude Code's 80% Self-Coding Claim Explained – ${BRAND}`,
+            description:
+                'Deep dive into Anthropic\'s Claude Code: the agentic AI that allegedly wrote 80% of its own code. Understand what this means for developers, businesses, and the future of software.',
+            ogImage: OG,
+            keywords:
+                'claude code, anthropic ai, ai self coding, agentic ai, claude 3.7 sonnet, ai coding assistant, claude code 80 percent, ai software development, latent space podcast',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'TechArticle',
+                headline: 'Can an AI Really Code Itself? Inside Anthropic\'s Claude Code Phenomenon',
+                description:
+                    'Analysis of Claude Code\'s 80% self-coding claim: what it means, how the agentic AI works, and implications for software development.',
+                author: { '@type': 'Person', name: 'Gianluca' },
+                publisher: {
+                    '@type': 'Organization',
+                    name: 'CodeHelper',
+                    logo: { '@type': 'ImageObject', url: OG }
+                },
+                image: OG,
+                datePublished: '2026-01-25',
+                dateModified: '2026-01-25',
+                mainEntityOfPage: {
+                    '@type': 'WebPage',
+                    '@id': 'https://codehelper.me/articles/claude-code-self-coding'
+                },
+                articleSection: 'Artificial Intelligence',
+                about: [
+                    'Claude Code',
+                    'Anthropic',
+                    'Agentic AI',
+                    'AI Software Development',
+                    'Self-Coding AI'
+                ],
+                keywords: [
+                    'Claude Code',
+                    'Anthropic',
+                    'agentic AI',
+                    'self-coding',
+                    'Claude 3.7 Sonnet',
+                    'AI coding assistant',
+                    'software automation',
+                    'Latent Space podcast'
+                ],
+                proficiencyLevel: 'Intermediate'
             }
         }
     },

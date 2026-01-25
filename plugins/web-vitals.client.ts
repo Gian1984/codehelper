@@ -2,12 +2,10 @@ import { defineNuxtPlugin } from '#app'
 
 /**
  * Web Vitals Monitoring Plugin
- * Tracks Core Web Vitals (CLS, LCP, FID/INP, TTFB, FCP) and sends to Google Analytics
+ * Tracks Core Web Vitals (CLS, LCP, FID/INP, TTFB, FCP) and sends to GTM/GA4
  */
 
 export default defineNuxtPlugin(() => {
-  if (typeof window === 'undefined') return
-
   // Type for Web Vitals metric
   interface Metric {
     name: string
@@ -17,20 +15,17 @@ export default defineNuxtPlugin(() => {
     id: string
   }
 
-  // Send metric to Google Analytics
+  // Send metric to GTM via dataLayer
   function sendToAnalytics(metric: Metric) {
-    // Check if gtag is available
-    if (typeof window.gtag === 'function') {
-      window.gtag('event', metric.name, {
-        event_category: 'Web Vitals',
-        event_label: metric.id,
-        value: Math.round(metric.name === 'CLS' ? metric.value * 1000 : metric.value),
-        non_interaction: true,
-        metric_value: metric.value,
-        metric_delta: metric.delta,
-        metric_rating: metric.rating
-      })
-    }
+    // Push to dataLayer for GTM
+    window.dataLayer?.push({
+      event: 'web_vitals',
+      metric_name: metric.name,
+      metric_value: Math.round(metric.name === 'CLS' ? metric.value * 1000 : metric.value),
+      metric_rating: metric.rating,
+      metric_delta: metric.delta,
+      metric_id: metric.id
+    })
 
     // Also log to console in development
     if (import.meta.env.DEV) {
@@ -64,11 +59,3 @@ export default defineNuxtPlugin(() => {
         console.error('[Web Vitals] Failed to load module:', error)
     })
 })
-
-// Type augmentation for gtag
-declare global {
-  interface Window {
-    gtag?: (...args: any[]) => void
-    dataLayer?: any[]
-  }
-}

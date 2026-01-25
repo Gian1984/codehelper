@@ -1,6 +1,13 @@
 // plugins/gtm.client.ts
 import { defineNuxtPlugin, useRouter } from '#app'
 
+// Type augmentation for dataLayer
+declare global {
+    interface Window {
+        dataLayer?: any[]
+    }
+}
+
 export default defineNuxtPlugin(() => {
     if (!import.meta.client) return
 

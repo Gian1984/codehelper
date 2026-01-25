@@ -138,6 +138,28 @@ const articlesData: Record<string, Omit<Article, 'component'>> = {
         dateModified: '2025-12-10'
       }
     }
+  },
+  'claude-code-self-coding': {
+    title: 'Can an AI Really Code Itself? Inside Anthropic\'s Claude Code Phenomenon',
+    description: 'Explore the bold claim that Claude Code wrote 80% of its own code. Understand what it really means, how the agentic AI tool works, and its implications for software development.',
+    category: 'ai',
+    seo: {
+      structuredData: {
+        datePublished: '2026-01-25',
+        dateModified: '2026-01-25'
+      }
+    }
+  },
+  'ram-prices-surge-2026': {
+    title: 'Why RAM Prices Are Surging in 2026',
+    description: 'Understand why DDR4 and DDR5 memory prices have skyrocketed: AI demand, wafer shortages, HBM production shifts, and what consumers and businesses can do about it.',
+    category: 'hardware',
+    seo: {
+      structuredData: {
+        datePublished: '2026-01-25',
+        dateModified: '2026-01-25'
+      }
+    }
   }
 }
 
