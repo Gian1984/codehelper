@@ -159,6 +159,28 @@ const articlesData: Record<string, Omit<Article, 'component'>> = {
         dateModified: '2026-01-25'
       }
     }
+  },
+  'intel-core-ultra-series-3': {
+    title: 'Intel Core Ultra Series 3: First Processors Built on Intel 18A in the United States',
+    description: 'Intel unveils the Core Ultra Series 3 at CES 2026, the first computing platform manufactured using Intel 18A process entirely in the United States. Featuring up to 16 cores, 50 TOPS NPU, and Arc B390 integrated graphics.',
+    category: 'hardware',
+    seo: {
+      structuredData: {
+        datePublished: '2026-01-27',
+        dateModified: '2026-01-27'
+      }
+    }
+  },
+  'nft-market-2026': {
+    title: 'NFT Market in 2026: Signs of Recovery or Final Gasps?',
+    description: 'The NFT market shows unexpected signs of recovery in early 2026, but liquidity remains critically low. Analysis of where capital is moving and which NFT categories still attract investment.',
+    category: 'crypto',
+    seo: {
+      structuredData: {
+        datePublished: '2026-01-27',
+        dateModified: '2026-01-27'
+      }
+    }
   }
 }
 

@@ -694,6 +694,118 @@ export const articles: Record<string, Article> = {
         }
     },
 
+    'intel-core-ultra-series-3': {
+        title: 'Intel Core Ultra Series 3: First Processors Built on Intel 18A in the United States',
+        description:
+            'Intel unveils the Core Ultra Series 3 at CES 2026, the first computing platform manufactured using Intel 18A process entirely in the United States. Featuring up to 16 cores, 50 TOPS NPU, and Arc B390 integrated graphics.',
+        category: 'hardware',
+        component: () =>
+            import('~/components/articles/hardware/IntelCoreUltraSeries3.vue') as Promise<{ default: DefineComponent }>,
+        seo: {
+            title: `Intel Core Ultra Series 3: Intel 18A Processors Made in USA – ${BRAND}`,
+            description:
+                'Intel Core Ultra Series 3 processors built on Intel 18A: up to 16 cores, 50 TOPS NPU, Arc B390 graphics, 27-hour battery life. First advanced semiconductors manufactured entirely in the United States.',
+            ogImage: OG,
+            keywords:
+                'intel core ultra series 3, intel 18a, ces 2026, intel arc b390, 50 tops npu, american semiconductors, intel processors 2026, ai pc, edge computing intel',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'TechArticle',
+                headline: 'Intel Core Ultra Series 3: First Processors Built on Intel 18A in the United States',
+                description:
+                    'Analysis of Intel Core Ultra Series 3 processors unveiled at CES 2026, featuring Intel 18A manufacturing process, Arc B390 integrated graphics, and expanded edge computing certification.',
+                author: { '@type': 'Person', name: 'Gianluca' },
+                publisher: {
+                    '@type': 'Organization',
+                    name: 'CodeHelper',
+                    logo: { '@type': 'ImageObject', url: OG }
+                },
+                image: OG,
+                datePublished: '2026-01-27',
+                dateModified: '2026-01-27',
+                mainEntityOfPage: {
+                    '@type': 'WebPage',
+                    '@id': 'https://codehelper.me/articles/intel-core-ultra-series-3'
+                },
+                articleSection: 'Hardware',
+                about: [
+                    'Intel Core Ultra',
+                    'Intel 18A',
+                    'Semiconductor Manufacturing',
+                    'AI PC',
+                    'Edge Computing'
+                ],
+                keywords: [
+                    'Intel Core Ultra Series 3',
+                    'Intel 18A',
+                    'CES 2026',
+                    'Arc B390',
+                    'NPU',
+                    'AI PC',
+                    'American semiconductors',
+                    'edge computing',
+                    'x86 processors'
+                ],
+                proficiencyLevel: 'General'
+            }
+        }
+    },
 
+    'nft-market-2026': {
+        title: 'NFT Market in 2026: Signs of Recovery or Final Gasps?',
+        description:
+            'The NFT market shows unexpected signs of recovery in early 2026, but liquidity remains critically low. Analysis of where capital is moving and which NFT categories still attract investment.',
+        category: 'crypto',
+        component: () =>
+            import('~/components/articles/crypto/NftMarket2026.vue') as Promise<{ default: DefineComponent }>,
+        seo: {
+            title: `NFT Market 2026: Recovery Signs, Liquidity Crisis & Investment Trends – ${BRAND}`,
+            description:
+                'NFT market analysis for 2026: $220M weekly cap increase, but extreme liquidity constraints persist. Discover which NFT categories attract capital and where collectors are moving their money.',
+            ogImage: OG,
+            keywords:
+                'nft market 2026, nft liquidity, nft recovery, opensea, cryptopunks, pudgy penguins, nft airdrops, real world assets nft, utility nft, nft trading volume',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'TechArticle',
+                headline: 'NFT Market in 2026: Signs of Recovery or Final Gasps?',
+                description:
+                    'Comprehensive analysis of the NFT market in early 2026, covering liquidity challenges, industry pivots, capital migration to physical collectibles, and NFT categories that still attract investment.',
+                author: { '@type': 'Person', name: 'Gianluca' },
+                publisher: {
+                    '@type': 'Organization',
+                    name: 'CodeHelper',
+                    logo: { '@type': 'ImageObject', url: OG }
+                },
+                image: OG,
+                datePublished: '2026-01-27',
+                dateModified: '2026-01-27',
+                mainEntityOfPage: {
+                    '@type': 'WebPage',
+                    '@id': 'https://codehelper.me/articles/nft-market-2026'
+                },
+                articleSection: 'Crypto',
+                about: [
+                    'NFT Market',
+                    'Cryptocurrency',
+                    'Digital Collectibles',
+                    'Web3',
+                    'Blockchain'
+                ],
+                keywords: [
+                    'NFT market',
+                    'NFT 2026',
+                    'NFT liquidity',
+                    'OpenSea',
+                    'CryptoPunks',
+                    'utility NFT',
+                    'RWA NFT',
+                    'NFT trading',
+                    'digital collectibles'
+                ],
+                proficiencyLevel: 'General'
+            }
+        }
+    },
 
 }
