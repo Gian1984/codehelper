@@ -181,6 +181,17 @@ const articlesData: Record<string, Omit<Article, 'component'>> = {
         dateModified: '2026-01-27'
       }
     }
+  },
+  'ai-energy-nexus': {
+    title: 'The AI Energy Nexus: Are We Building the Future or Burning It?',
+    description: 'AI spending will exceed $2 trillion by 2026, but at what environmental cost? A developer perspective on the AI-energy nexus, resource consumption, and the problem of frivolous AI usage.',
+    category: 'sustainability',
+    seo: {
+      structuredData: {
+        datePublished: '2026-01-28',
+        dateModified: '2026-01-28'
+      }
+    }
   }
 }
 

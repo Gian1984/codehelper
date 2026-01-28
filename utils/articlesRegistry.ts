@@ -808,4 +808,60 @@ export const articles: Record<string, Article> = {
         }
     },
 
+    'ai-energy-nexus': {
+        title: 'The AI Energy Nexus: Are We Building the Future or Burning It?',
+        description:
+            'AI spending will exceed $2 trillion by 2026, but at what environmental cost? A developer perspective on the AI-energy nexus, resource consumption, and the problem of frivolous AI usage.',
+        category: 'sustainability',
+        component: () =>
+            import('~/components/articles/sustainability/AiEnergyNexus.vue') as Promise<{ default: DefineComponent }>,
+        seo: {
+            title: `AI Energy Nexus: Environmental Cost of AI from a Developer Perspective – ${BRAND}`,
+            description:
+                'Data centers will consume 945 TWh by 2030. AI demands electricity, water and critical minerals at unprecedented scale. A developer analysis of the AI-energy nexus and why model selection matters.',
+            ogImage: OG,
+            keywords:
+                'ai energy consumption, ai environmental impact, data center electricity, ai water usage, ai carbon footprint, sustainable ai, green ai, ai infrastructure, developer sustainability',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'TechArticle',
+                headline: 'The AI Energy Nexus: Are We Building the Future or Burning It?',
+                description:
+                    'Analysis of AI environmental impact covering energy, water and mineral consumption. Includes developer perspective on sustainable AI practices and criticism of frivolous AI usage.',
+                author: { '@type': 'Person', name: 'Gianluca' },
+                publisher: {
+                    '@type': 'Organization',
+                    name: 'CodeHelper',
+                    logo: { '@type': 'ImageObject', url: OG }
+                },
+                image: OG,
+                datePublished: '2026-01-28',
+                dateModified: '2026-01-28',
+                mainEntityOfPage: {
+                    '@type': 'WebPage',
+                    '@id': 'https://codehelper.me/articles/ai-energy-nexus'
+                },
+                articleSection: 'Sustainability',
+                about: [
+                    'AI Environmental Impact',
+                    'Data Center Energy',
+                    'Sustainable Technology',
+                    'Green Computing',
+                    'Resource Consumption'
+                ],
+                keywords: [
+                    'AI energy nexus',
+                    'data center consumption',
+                    'AI water usage',
+                    'critical minerals',
+                    'sustainable AI',
+                    'green computing',
+                    'carbon footprint',
+                    'developer responsibility'
+                ],
+                proficiencyLevel: 'Intermediate'
+            }
+        }
+    },
+
 }
