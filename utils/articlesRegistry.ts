@@ -864,4 +864,119 @@ export const articles: Record<string, Article> = {
         }
     },
 
+    'ai-jobs-tsunami-youth': {
+        title: 'AI and the Future of Work: What Young People Must Understand Now',
+        description:
+            'IMF warns AI will hit labor markets like a tsunami, with 60% of jobs affected and entry-level roles at highest risk. A reflection on human adaptability, education reform, and why imagination remains irreplaceable.',
+        category: 'ai',
+        component: () =>
+            import('~/components/articles/ai/AiJobsTsunamiYouth.vue') as Promise<{ default: DefineComponent }>,
+        seo: {
+            title: `AI Jobs Tsunami: What Young People Must Do to Survive the Shift – ${BRAND}`,
+            description:
+                'IMF predicts 60% of jobs in advanced economies will be affected by AI. Analysis of why entry-level workers face the highest risk and how education must change to prepare the next generation.',
+            ogImage: OG,
+            keywords:
+                'ai jobs, ai employment, imf ai warning, davos 2026, ai labor market, youth unemployment ai, ai education, future of work, ai skills, human creativity ai',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'TechArticle',
+                headline: 'AI and the Future of Work: What Young People Must Understand Now',
+                description:
+                    'Reflection on the IMF warning about AI impact on employment, focusing on what young people can do to adapt, the role of education, and why human creativity and imagination remain irreplaceable.',
+                author: { '@type': 'Person', name: 'Gianluca' },
+                publisher: {
+                    '@type': 'Organization',
+                    name: 'CodeHelper',
+                    logo: { '@type': 'ImageObject', url: OG }
+                },
+                image: OG,
+                datePublished: '2026-01-29',
+                dateModified: '2026-01-29',
+                mainEntityOfPage: {
+                    '@type': 'WebPage',
+                    '@id': 'https://codehelper.me/articles/ai-jobs-tsunami-youth'
+                },
+                articleSection: 'Artificial Intelligence',
+                about: [
+                    'AI Employment Impact',
+                    'Future of Work',
+                    'Youth Employment',
+                    'Education Reform',
+                    'Human Adaptability'
+                ],
+                keywords: [
+                    'AI jobs',
+                    'IMF AI warning',
+                    'Davos 2026',
+                    'labor market',
+                    'entry-level jobs',
+                    'education AI',
+                    'human creativity',
+                    'adaptability',
+                    'future of work'
+                ],
+                proficiencyLevel: 'General'
+            }
+        }
+    },
+
+    'space-data-centers-hype': {
+        title: 'AI Data Centers in Space: Sustainability Vision or Financial Engineering?',
+        description:
+            'SpaceX and Blue Origin promote space-based AI data centers as sustainable. But with 165 rocket launches per year, 9,400 Starlink satellites, and daily debris reentries, is this green tech or green marketing?',
+        category: 'sustainability',
+        component: () =>
+            import('~/components/articles/sustainability/SpaceDataCentersHype.vue') as Promise<{ default: DefineComponent }>,
+        seo: {
+            title: `Space AI Data Centers: Sustainability or Hype? A Critical Analysis – ${BRAND}`,
+            description:
+                'Critical examination of space-based AI data center proposals from SpaceX, Blue Origin and others. Analysis of launch emissions, Starlink pollution, solar panel efficiency limits, and why nuclear investments are more concrete.',
+            ogImage: OG,
+            keywords:
+                'space data centers, spacex ai, starlink pollution, rocket emissions, space sustainability, nuclear data centers, blue origin, elon musk ai, satellite debris, space solar power',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'TechArticle',
+                headline: 'AI Data Centers in Space: Sustainability Vision or Financial Engineering?',
+                description:
+                    'Critical analysis of space-based AI data center proposals, examining launch emissions, satellite debris, solar panel efficiency, and comparing with concrete nuclear power investments by Big Tech.',
+                author: { '@type': 'Person', name: 'Gianluca' },
+                publisher: {
+                    '@type': 'Organization',
+                    name: 'CodeHelper',
+                    logo: { '@type': 'ImageObject', url: OG }
+                },
+                image: OG,
+                datePublished: '2026-01-30',
+                dateModified: '2026-01-30',
+                mainEntityOfPage: {
+                    '@type': 'WebPage',
+                    '@id': 'https://codehelper.me/articles/space-data-centers-hype'
+                },
+                articleSection: 'Sustainability',
+                about: [
+                    'Space Data Centers',
+                    'SpaceX',
+                    'Starlink',
+                    'Launch Emissions',
+                    'Nuclear Power AI',
+                    'Space Debris'
+                ],
+                keywords: [
+                    'space data centers',
+                    'SpaceX xAI',
+                    'Starlink satellites',
+                    'rocket emissions',
+                    'space sustainability',
+                    'nuclear AI',
+                    'satellite debris',
+                    'Blue Origin',
+                    'solar efficiency space'
+                ],
+                proficiencyLevel: 'General'
+            }
+        }
+    },
+
 }

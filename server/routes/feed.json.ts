@@ -192,6 +192,28 @@ const articlesData: Record<string, Omit<Article, 'component'>> = {
         dateModified: '2026-01-28'
       }
     }
+  },
+  'ai-jobs-tsunami-youth': {
+    title: 'AI and the Future of Work: What Young People Must Understand Now',
+    description: 'IMF warns AI will hit labor markets like a tsunami, with 60% of jobs affected and entry-level roles at highest risk. A reflection on human adaptability, education reform, and why imagination remains irreplaceable.',
+    category: 'ai',
+    seo: {
+      structuredData: {
+        datePublished: '2026-01-29',
+        dateModified: '2026-01-29'
+      }
+    }
+  },
+  'space-data-centers-hype': {
+    title: 'AI Data Centers in Space: Sustainability Vision or Financial Engineering?',
+    description: 'SpaceX and Blue Origin promote space-based AI data centers as sustainable. But with 165 rocket launches per year, 9,400 Starlink satellites, and daily debris reentries, is this green tech or green marketing?',
+    category: 'sustainability',
+    seo: {
+      structuredData: {
+        datePublished: '2026-01-30',
+        dateModified: '2026-01-30'
+      }
+    }
   }
 }
 
