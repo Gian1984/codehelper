@@ -60,6 +60,17 @@ const categoryLabel = computed(() => {
   return categoryLabels[currentCategory.value] || currentCategory.value
 })
 
+// Simple hash function to create a deterministic seed from a string
+const hashString = (str: string): number => {
+  let hash = 0
+  for (let i = 0; i < str.length; i++) {
+    const char = str.charCodeAt(i)
+    hash = ((hash << 5) - hash) + char
+    hash = hash & hash // Convert to 32bit integer
+  }
+  return Math.abs(hash)
+}
+
 // Get related tools from the same category, excluding current tool
 const relatedTools = computed(() => {
   if (!currentCategory.value) return []
@@ -75,15 +86,17 @@ const relatedTools = computed(() => {
       description: tool.description,
     }))
 
-  // Shuffle array for randomness (different order on each render)
-  const shuffled = [...toolsInCategory].sort(() => Math.random() - 0.5)
+  // Sort deterministically based on current slug hash (consistent between server/client)
+  const seed = hashString(currentToolSlug.value)
+  const sorted = [...toolsInCategory].sort((a, b) => {
+    const hashA = hashString(a.slug + seed.toString())
+    const hashB = hashString(b.slug + seed.toString())
+    return hashA - hashB
+  })
 
   // Return 1-3 tools based on availability
-  // If only 1 available, show 1
-  // If 2 available, show 2
-  // If 3+ available, show 3
   const maxToShow = Math.min(toolsInCategory.length, 3)
-  return shuffled.slice(0, maxToShow)
+  return sorted.slice(0, maxToShow)
 })
 
 // Dynamic grid class based on number of tools

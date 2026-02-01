@@ -17,7 +17,8 @@
       </NuxtLink>
     </div>
 
-    <ul class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+    <!-- Filtered view: show all tools in selected category -->
+    <ul v-if="selectedCategory" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
       <li
           v-for="[slug, tool] in filteredTools"
           :key="slug"
@@ -29,6 +30,43 @@
         </NuxtLink>
       </li>
     </ul>
+
+    <!-- Default view: Popular tools + Categories -->
+    <template v-else>
+      <!-- Popular Tools Section -->
+      <section class="mb-12">
+        <h2 class="text-2xl font-semibold text-white mb-6">Popular Tools</h2>
+        <ul class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+          <li
+              v-for="[slug, tool] in popularTools"
+              :key="slug"
+              class="rounded-lg bg-gray-800 border border-gray-700 p-4 hover:border-indigo-500 hover:shadow-lg transition"
+          >
+            <NuxtLink :to="`/tools/${slug}/`" class="block">
+              <h3 class="text-xl font-semibold text-white">{{ tool.title }}</h3>
+              <p class="text-gray-400 text-sm mt-1">{{ tool.description }}</p>
+            </NuxtLink>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Browse by Category Section -->
+      <section>
+        <h2 class="text-2xl font-semibold text-white mb-6">Browse by Category</h2>
+        <ul class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
+          <li
+              v-for="cat in categories"
+              :key="cat.name"
+              class="rounded-lg bg-gray-800 border border-gray-700 p-4 hover:border-indigo-500 hover:shadow-lg transition"
+          >
+            <NuxtLink :to="`/tools?category=${cat.name}`" class="block">
+              <h3 class="text-lg font-semibold text-white">{{ capitalize(cat.name) }}</h3>
+              <p class="text-gray-500 text-sm mt-1">{{ cat.count }} {{ cat.count === 1 ? 'tool' : 'tools' }}</p>
+            </NuxtLink>
+          </li>
+        </ul>
+      </section>
+    </template>
   </div>
 </template>
 
@@ -84,6 +122,7 @@ const selectedCategory = computed(() => route.query.category || null)
 
 const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1)
 
+// Filtered tools for category view
 const filteredTools = computed(() => {
   if (!selectedCategory.value) return Object.entries(tools)
 
@@ -92,9 +131,32 @@ const filteredTools = computed(() => {
   })
 })
 
-const sortedTools = computed(() =>
-    Object.entries(tools).sort(([, a], [, b]) => a.title.localeCompare(b.title))
-)
+// Popular tools (top 3 by rating count)
+const popularTools = computed(() => {
+  return Object.entries(tools)
+      .sort(([, a], [, b]) => {
+        const ratingA = a.seo?.structuredData?.aggregateRating?.ratingCount || 0
+        const ratingB = b.seo?.structuredData?.aggregateRating?.ratingCount || 0
+        return Number(ratingB) - Number(ratingA)
+      })
+      .slice(0, 3)
+})
+
+// Extract unique categories with tool count
+const categories = computed(() => {
+  const categoryMap = new Map<string, number>()
+
+  for (const [, tool] of Object.entries(tools)) {
+    const cat = tool.category?.toLowerCase()
+    if (cat) {
+      categoryMap.set(cat, (categoryMap.get(cat) || 0) + 1)
+    }
+  }
+
+  return Array.from(categoryMap.entries())
+      .map(([name, count]) => ({ name, count }))
+      .sort((a, b) => b.count - a.count)
+})
 </script>
 
 
