@@ -25,9 +25,9 @@ export const tools: Record<string, Tool> = {
         component: () =>
             import('~/components/tools/formatter/JsonFormatter.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `JSON Formatter, Validator & Diff Tool (Free) – ${BRAND}`,
+            title: `Free JSON Formatter & Validator Online - Beautify JSON Instantly – ${BRAND}`,
             description:
-                'Advanced JSON formatter with syntax highlighting, tree view, and diff comparison. Format, validate, and compare JSON files instantly in your browser.',
+                'Format, validate & compare JSON in one click! Tree view, syntax highlighting, diff tool, schema validation. Free online, no signup. Try it now!',
             ogImage: OG,
             keywords:
                 'JSON formatter, JSON validator, JSON schema, JSON diff, JSON compare, tree view, pretty print, beautifier, minify, JSONC support, linter',
@@ -60,9 +60,9 @@ export const tools: Record<string, Tool> = {
         category: 'formatter',
         component: () => import('~/components/tools/formatter/XmlFormatter.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `XML Formatter with JSON Converter & XPath Tester – ${BRAND}`,
+            title: `Free XML Formatter Online - Beautify, Validate & Convert to JSON – ${BRAND}`,
             description:
-                'Advanced XML formatter with syntax highlighting and XPath testing. Convert XML to JSON, validate structure, and analyze your documents.',
+                'Format & beautify XML instantly! Convert XML to JSON, test XPath queries, validate structure. Free online tool, works in browser. No upload needed.',
             ogImage: OG,
             keywords:
                 'XML formatter, XML to JSON, XPath tester, XML validator, pretty print, beautifier, lint, tidy, statistics, minify, parser',
@@ -203,9 +203,9 @@ export const tools: Record<string, Tool> = {
         component: () =>
             import('~/components/tools/generator/GitignoreGenerator.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `Gitignore Generator - 40+ Templates (Node, Python, Java, React) – ${BRAND}`,
+            title: `Free .gitignore Generator - 40+ Templates (Node, Python, React) – ${BRAND}`,
             description:
-                'Professional .gitignore generator with 40+ templates for popular languages, frameworks, OS, and IDEs. Combine Node.js, Python, Java, React, Vue, macOS, Windows, VSCode, and more. Add custom rules, preview in real-time, and download instantly. Perfect for bootstrapping any project.',
+                'Create perfect .gitignore files in seconds! 40+ templates for Node.js, Python, React, Java & more. Combine templates, add custom rules. Free download.',
             ogImage: OG,
             keywords:
                 'gitignore generator, generate gitignore, .gitignore creator, node gitignore, python gitignore, java gitignore, react gitignore, gitignore template, gitignore maker, git ignore file generator, gitignore node_modules, create gitignore online, gitignore builder, vscode gitignore, macos gitignore',
@@ -246,9 +246,9 @@ export const tools: Record<string, Tool> = {
         component: () =>
             import('~/components/tools/generator/PasswordGenerator.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `Password Generator - Secure Passwords with Strength Meter (Free) – ${BRAND}`,
+            title: `Free Secure Password Generator - Strong Passwords with Strength Meter – ${BRAND}`,
             description:
-                'Professional password generator with strength meter and entropy calculation. Generate secure passwords (4-128 chars) with uppercase, lowercase, numbers, symbols. Quick presets (strong, memorable, PIN), exclude similar characters, bulk generation (1-50), crack time estimation. All passwords generated locally with crypto.getRandomValues()—complete privacy.',
+                'Generate uncrackable passwords instantly! Strength meter, bulk generation (up to 50), PIN mode. 100% private - nothing stored. Free, no signup needed.',
             ogImage: OG,
             keywords:
                 'password generator, secure password, random password generator, strong password generator, password strength meter, generate password online, password creator, entropy calculator, password security, bulk password generator, pin generator, memorable password, exclude similar characters',
@@ -288,9 +288,9 @@ export const tools: Record<string, Tool> = {
         component: () =>
             import('~/components/tools/generator/QRCodeGenerator.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `QR Code Generator - Create QR Codes for URL, WiFi, vCard (Free) – ${BRAND}`,
+            title: `Free QR Code Generator - Create QR for URL, WiFi, vCard Online – ${BRAND}`,
             description:
-                'Professional QR code generator for URLs, text, WiFi credentials, vCards, emails, phone numbers, and more. Customizable size (128-1024px), error correction levels (L/M/Q/H), foreground/background colors. Download as PNG or SVG. Quick templates for common use cases. All QR codes generated locally in your browser—complete privacy.',
+                'Create QR codes in seconds! URLs, WiFi, vCards, emails & more. Custom colors, download PNG/SVG. 100% free, no watermark, no signup. Try it now!',
             ogImage: OG,
             keywords:
                 'qr code generator, create qr code, qr code maker, generate qr code online, qr code creator, wifi qr code, vcard qr code, url qr code, custom qr code, qr code colors, qr code download, qr code png svg, free qr code generator',
@@ -332,9 +332,9 @@ export const tools: Record<string, Tool> = {
         component: () =>
             import('~/components/tools/converter/ByteSizeConverter.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `Bytes to KB, MB, GB, TB Converter – ${BRAND}`,
+            title: `Bytes to KB/MB/GB Converter - Free File Size Calculator – ${BRAND}`,
             description:
-                'Convert data sizes between bytes, KB, MB, GB, and TB. Supports both binary and decimal units with accurate calculations.',
+                'Instantly convert bytes to KB, MB, GB, TB and back. Supports binary (KiB, MiB) & decimal units. Perfect for developers. Free, fast, no signup.',
             ogImage: OG,
             keywords:
                 'byte converter, bytes to KB, MB to GB, data size, storage converter, KiB MiB GiB, file size calculator',
@@ -357,9 +357,9 @@ export const tools: Record<string, Tool> = {
         category: 'css',
         component: () => import('~/components/tools/css/ClampGenerator.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `CSS clamp() Generator for Fluid Typography – ${BRAND}`,
+            title: `CSS clamp() Generator - Fluid Typography Made Easy (Free) – ${BRAND}`,
             description:
-                'Generate responsive font-size with CSS clamp() function. Set minimum and maximum sizes with viewport ranges for fluid typography.',
+                'Create perfect responsive font sizes with CSS clamp() in seconds. Set min/max sizes, preview live, copy CSS. The easiest fluid typography tool online.',
             ogImage: OG,
             keywords:
                 'CSS clamp, fluid typography, responsive font size, clamp generator, fluid type scale, viewport units',
@@ -383,9 +383,9 @@ export const tools: Record<string, Tool> = {
         component: () =>
             import('~/components/tools/formatter/VarDumpFormatter.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `PHP var_dump() Formatter and Pretty Printer – ${BRAND}`,
+            title: `Free PHP var_dump() Formatter - Beautify Output Online – ${BRAND}`,
             description:
-                'Clean up messy var_dump() output from PHP. Format arrays and objects into readable structures for easier debugging.',
+                'Clean up messy PHP var_dump() output instantly! Format arrays & objects into readable code. Perfect for debugging. Free, paste & format. No signup.',
             ogImage: OG,
             keywords:
                 'PHP var_dump, formatter, pretty print, PHP arrays, dump viewer, debug tool, PHP debugging',
@@ -409,9 +409,9 @@ export const tools: Record<string, Tool> = {
         component: () =>
             import('~/components/tools/formatter/HTMLMinifier.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `HTML Optimizer - Minify & Beautify (Free) – ${BRAND}`,
+            title: `HTML Minifier & Beautifier - Compress HTML Online Free – ${BRAND}`,
             description:
-                'Professional HTML optimizer powered by html-minifier-terser. Minify or beautify HTML code with advanced options. Remove comments, collapse whitespace, normalize attributes, and format HTML—all in your browser with complete privacy.',
+                'Reduce HTML file size by up to 70%! Minify or beautify HTML instantly. Remove comments, whitespace & optimize code. Free online tool, no upload needed.',
             ogImage: OG,
             keywords:
                 'html optimizer, html minifier, html beautifier, compress html, format html, reduce html size, minify html online, beautify html, html formatter, remove comments, collapse whitespace, html-minifier-terser, html optimization, html prettifier, optimize html',
@@ -451,9 +451,9 @@ export const tools: Record<string, Tool> = {
         component: () =>
             import('~/components/tools/css/ViewportUnitConverter.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `Viewport Unit Converter – PX to VW, VH, VMIN, VMAX, DVH, CQ Units – ${BRAND}`,
+            title: `PX to VW/VH Converter - Free Viewport Unit Calculator (2026) – ${BRAND}`,
             description:
-                'Convert px to viewport units (vw, vh, vmin, vmax) and modern units (dvh, svh, lvh, container queries). Includes batch conversion, fluid clamp() generator, and 18 device presets. All conversions happen client-side.',
+                'Instantly convert px to vw, vh, vmin, vmax & modern CSS units (dvh, svh, cqw). 18 device presets included. Batch convert multiple values. Free, no signup required.',
             ogImage: OG,
             keywords:
                 'px to vw, px to vh, viewport units, dvh converter, svh lvh, container query units, cqw cqh, responsive css, fluid clamp, viewport calculator, vmin vmax converter',
@@ -486,9 +486,9 @@ export const tools: Record<string, Tool> = {
         category: 'svg',
         component: () => import('~/components/tools/svg/IconGenerator.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `SVG Icon Generator & Editor – Export Icon Packs – ${BRAND}`,
+            title: `Free SVG Icon Generator - Create Custom Icons Online (33+ Shapes) – ${BRAND}`,
             description:
-                'Professional SVG icon generator with 33+ shapes (stars, hearts, arrows, UI icons). Create custom icons, import SVG for editing, export multi-size icon packs (16-512px). Free online tool with grid snapping, color presets, and undo/redo.',
+                'Create custom SVG icons in minutes! 33+ shapes, color presets, export icon packs (16-512px). Import & edit existing SVGs. Free, no account needed.',
             ogImage: OG,
             keywords:
                 'svg icon generator, svg editor, create svg icons, web icon maker, vector icon tool, svg path editor, icon pack export, export multiple sizes, star icon, heart icon, arrow icon, ui icon generator, import svg editor, svg icon builder, custom icon creator, free icon tool, favicon generator, app icon maker',
@@ -527,9 +527,9 @@ export const tools: Record<string, Tool> = {
         category: 'svg',
         component: () => import('~/components/tools/svg/WaveGenerator.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `SVG Wave Generator (Hero Backgrounds) – ${BRAND}`,
+            title: `Free SVG Wave Generator - Create Hero Backgrounds Instantly – ${BRAND}`,
             description:
-                'Generate animated-ready SVG wave shapes for headers and backgrounds. Tweak amplitude, smoothness, and export.',
+                'Generate beautiful SVG waves for website headers & backgrounds. Customize colors, amplitude, layers. Download SVG or copy code. 100% free, no signup.',
             ogImage: OG,
             keywords:
                 'svg wave generator, wave svg, background wave, hero wave, svg shape generator, web design assets',
@@ -604,9 +604,9 @@ export const tools: Record<string, Tool> = {
         component: () =>
             import('~/components/tools/textes/LoremIpsumGenerator.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `Lorem Ipsum Generator - Words, Paragraphs, Variants – ${BRAND}`,
+            title: `Free Lorem Ipsum Generator - Create Dummy Text Online – ${BRAND}`,
             description:
-                'Professional Lorem Ipsum generator with multiple variants and generation modes. Create dummy text by words, characters, or paragraphs. Includes statistics, random seed control, and harmonized dark UI. Perfect for mockups and wireframes—all client-side.',
+                'Generate Lorem Ipsum text instantly! By words, paragraphs or characters. Multiple variants included. Perfect for mockups & wireframes. Free, no signup.',
             ogImage: OG,
             keywords:
                 'lorem ipsum generator, dummy text, placeholder text, generate lorem, paragraphs words characters, lorem variants, fake text generator, sample text, filler text, design placeholder, mockup text, wireframe text',
@@ -641,9 +641,9 @@ export const tools: Record<string, Tool> = {
         component: () =>
             import('~/components/tools/textes/TextCaseConverter.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `Text Case Converter - 15+ Cases (camelCase, snake_case, kebab) – ${BRAND}`,
+            title: `Free Text Case Converter - UPPERCASE, camelCase, snake_case Online – ${BRAND}`,
             description:
-                'Professional text case converter with 15+ transformation options: UPPERCASE, lowercase, Title Case, Sentence case, camelCase, PascalCase, snake_case, kebab-case, CONSTANT_CASE, and more. Swap input/output, statistics, harmonized dark UI—all client-side.',
+                'Convert text to any case instantly! UPPERCASE, lowercase, Title Case, camelCase, snake_case, kebab-case & more. 15+ options. Free, works offline.',
             ogImage: OG,
             keywords:
                 'text case converter, uppercase lowercase, sentence case, capitalize text, change case online, format text, camelcase converter, snake case, kebab case, pascal case, title case, constant case, dot case, path case, text transform',
@@ -684,9 +684,9 @@ export const tools: Record<string, Tool> = {
         component: () =>
             import('~/components/tools/colors/ColorShadesGenerator.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `Color Shades & Tints Generator – ${BRAND}`,
+            title: `Color Shades Generator - Create Tints & Shades Free Online – ${BRAND}`,
             description:
-                'Generate smooth tints and shades from any HEX color. Copy values for design systems and Tailwind arbitrary colors.',
+                'Generate 10+ tints and shades from any color instantly. Perfect for design systems & Tailwind. Copy HEX codes with one click. Free, no signup.',
             ogImage: OG,
             keywords:
                 'color shades generator, tints and shades, hex shades, color scale, palette generator, ui colors',
@@ -735,9 +735,9 @@ export const tools: Record<string, Tool> = {
         category: 'colors',
         component: () => import('~/components/tools/colors/ColorConverter.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `Color Converter - HEX/RGB/HSL/CMYK + WCAG & Accessibility – ${BRAND}`,
+            title: `Free Color Converter - HEX to RGB, HSL, CMYK + WCAG Checker – ${BRAND}`,
             description:
-                'Professional color converter with HEX, RGB, HSL, CMYK formats. WCAG AAA/AA checker, color blindness simulator (protanopia, deuteranopia, tritanopia), harmony generator, CSS export, eyedropper tool. Perfect for designers & developers.',
+                'Convert colors between HEX, RGB, HSL, CMYK instantly! WCAG contrast checker, color blindness simulator, harmony generator. Free tool for designers.',
             ogImage: OG,
             keywords:
                 'color converter, hex to rgb, rgb to hsl, cmyk converter, wcag contrast checker, color blindness simulator, protanopia deuteranopia tritanopia, color harmony generator, complementary colors, triadic colors, analogous colors, eyedropper tool, css color picker, color accessibility, color naming, css custom properties, tailwind colors, scss variables',
@@ -897,9 +897,9 @@ export const tools: Record<string, Tool> = {
         category: 'formatter',
         component: () => import('~/components/tools/formatter/CssFormatter.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `CSS Formatter & Minifier with Property Sorting – ${BRAND}`,
+            title: `Free CSS Formatter & Minifier Online - Beautify CSS Instantly – ${BRAND}`,
             description:
-                'Advanced CSS formatter with syntax highlighting, property sorting, and smart minification. Beautify or compress CSS with hex color shortening, zero unit removal, and more—all in your browser.',
+                'Format or minify CSS in one click! Sort properties, shorten colors, remove whitespace. Reduce file size up to 50%. Free online tool, no signup.',
             ogImage: OG,
             keywords:
                 'css minifier, format css, css beautifier, compress css online, tidy css, css formatter tool, sort css properties, css syntax highlighting, optimize css',
@@ -933,9 +933,9 @@ export const tools: Record<string, Tool> = {
         category: 'imaging',
         component: () => import('~/components/tools/imaging/ClipPathMaker.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `CSS clip-path Generator (Polygon, Circle, Ellipse Editor) – ${BRAND}`,
+            title: `Free CSS clip-path Generator - Create Shapes Visually Online – ${BRAND}`,
             description:
-                'Professional CSS clip-path generator with visual polygon, circle, and ellipse editor. Drag points, preview on images, export clean CSS code. Includes undo/redo, keyboard shortcuts, and harmonized dark UI—all client-side.',
+                'Create stunning CSS clip-path shapes in seconds! Drag points to build polygons, circles & ellipses. Preview on images, copy CSS instantly. No signup, 100% free.',
             ogImage: OG,
             keywords:
                 'css clip-path generator, polygon editor, clip path maker, image clipping, css shapes, polygon points, circle clip-path, ellipse clip-path, visual css editor, draggable points, clip-path polygon, css masking, shape generator, web design tool',
@@ -971,9 +971,9 @@ export const tools: Record<string, Tool> = {
         component: () =>
             import('~/components/tools/imaging/ImageCompressor.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `Image Compressor (PNG/JPEG/WebP/AVIF) - Smart Compression & EXIF Viewer – ${BRAND}`,
+            title: `Free Image Compressor - Reduce PNG/JPEG/WebP Size Online (No Upload) – ${BRAND}`,
             description:
-                'Advanced AI-powered image compressor with smart compression, EXIF metadata viewer, and target file size mode. Supports JPEG, PNG, WebP, and AVIF formats. Compress multiple images in batch, view camera settings and GPS data, auto-optimize quality, and download as ZIP archive. All processing done client-side with complete privacy—no upload to server required.',
+                'Compress images up to 80% smaller! Supports PNG, JPEG, WebP, AVIF. Batch compress, view EXIF data, download as ZIP. 100% private - files never leave your browser.',
             ogImage: OG,
             keywords:
                 'image compressor, smart compression, exif viewer, batch image compression, compress png, compress jpeg, convert to webp, avif compressor, resize image online, optimize images, zip download images, bulk image optimization, image quality reducer, webp converter, avif converter, exif data, camera metadata, gps photo location, target file size, auto quality adjustment',
@@ -1015,9 +1015,9 @@ export const tools: Record<string, Tool> = {
         component: () =>
             import('~/components/tools/converter/TimeConverter.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `Time & UNIX Timestamp Converter (Time Zones & Duration) – ${BRAND}`,
+            title: `Free UNIX Timestamp Converter - Epoch to Date Online – ${BRAND}`,
             description:
-                'Professional time converter with UNIX timestamp to date conversion, timezone support (DST-safe), duration calculator, and human-readable formatting. Convert seconds/milliseconds/nanoseconds, view in UTC/local/any timezone, calculate time differences. Includes quick examples and harmonized UI—all client-side.',
+                'Convert UNIX timestamps to dates instantly! Timezone support, duration calculator, human-readable format. Seconds, milliseconds, nanoseconds. Free, fast.',
             ogImage: OG,
             keywords:
                 'unix timestamp converter, epoch time, convert timestamp to date, timezone converter, iso 8601, utc time, duration calculator, time difference calculator, human readable time, time zone converter, DST safe conversion, milliseconds to date, seconds to date, nanoseconds converter, time calculator, date difference, epoch converter',
@@ -1138,9 +1138,9 @@ export const tools: Record<string, Tool> = {
         component: () =>
             import('~/components/tools/dev/RegexTester.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `Regex Tester (JS RegExp with Flags, Groups) – ${BRAND}`,
+            title: `Free Regex Tester Online - Test Regular Expressions Instantly – ${BRAND}`,
             description:
-                'Test JavaScript regular expressions. Toggle flags, highlight matches, inspect named groups, and preview replacements.',
+                'Test regex patterns in real-time! Highlight matches, view groups, test replacements. Includes cheat sheet & common patterns library. Free, works offline.',
             ogImage: OG,
             keywords:
                 'regex tester, javascript regexp, named groups, regex replace, test regex online, regex flags g i m s u y',
@@ -1176,9 +1176,9 @@ export const tools: Record<string, Tool> = {
         component: () =>
             import('~/components/tools/dev/Base64EncoderDecoder.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `Base64 Encoder/Decoder - File & Data URL Support (Free) – ${BRAND}`,
+            title: `Free Base64 Encoder & Decoder Online - Encode Images & Files – ${BRAND}`,
             description:
-                'Professional Base64 encoder and decoder with file upload support, data URL generation, and image preview. Encode text and files to Base64 or decode Base64 strings back to original content. Supports MIME types, binary files, and image preview—all client-side with complete privacy.',
+                'Encode or decode Base64 instantly! Supports text, images & files. Generate data URLs, preview images. Free, private, works offline. No signup required.',
             ogImage: OG,
             keywords:
                 'base64 encoder, base64 decoder, encode base64 online, decode base64, data url generator, base64 image encoder, base64 file upload, base64 to image, image to base64, base64 converter, mime type base64, base64 decode online, base64 encode file',
@@ -1217,9 +1217,9 @@ export const tools: Record<string, Tool> = {
         component: () =>
             import('~/components/tools/css/BorderRadiusGenerator.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `Border-Radius Generator (Elliptical & Per-Corner) – ${BRAND}`,
+            title: `CSS Border Radius Generator - Create Rounded Corners Free – ${BRAND}`,
             description:
-                'Design rounded corners and blob shapes with per-corner and elliptical controls. Live preview and copy CSS.',
+                'Design perfect rounded corners & blob shapes visually. Control each corner, create elliptical curves, copy CSS instantly. Free online tool.',
             ogImage: OG,
             keywords:
                 'border radius generator, elliptical border radius, rounded corners css, blob border-radius, css shapes',
@@ -1242,9 +1242,9 @@ export const tools: Record<string, Tool> = {
         category: 'dev',
         component: () => import('~/components/tools/dev/JwtDecoder.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `JWT Decoder & Validator - Decode JSON Web Tokens (Free) – ${BRAND}`,
+            title: `Free JWT Decoder Online - Decode & Validate JSON Web Tokens – ${BRAND}`,
             description:
-                'Professional JWT decoder and validator for JSON Web Tokens. Decode header and payload, verify HMAC signatures (HS256, HS384, HS512), inspect standard claims (exp, iat, iss, sub, aud), check token expiration. All processing done client-side with complete privacy—no data sent to servers.',
+                'Decode JWT tokens instantly! View header, payload, verify signatures (HS256/384/512), check expiration. 100% private - tokens never leave your browser.',
             ogImage: OG,
             keywords:
                 'jwt decoder, jwt validator, decode jwt online, json web token decoder, jwt parser, verify jwt signature, jwt debugger, jwt claims inspector, check jwt expiration, hs256 validator, jwt token analyzer, decode jwt header payload, jwt verification tool, jwt signature checker',
@@ -1283,9 +1283,9 @@ export const tools: Record<string, Tool> = {
         category: 'dev',
         component: () => import('~/components/tools/dev/HashGenerator.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `Hash Generator - MD5, SHA-256, SHA-512, HMAC (Free) – ${BRAND}`,
+            title: `Free Hash Generator - MD5, SHA-256, SHA-512 Online (Text & Files) – ${BRAND}`,
             description:
-                'Professional hash generator for text and files. Generate MD5, SHA-1, SHA-256, SHA-384, SHA-512 hashes instantly. Supports HMAC for message authentication. File hashing with drag-and-drop. All processing done client-side with complete privacy—no uploads to servers.',
+                'Generate MD5, SHA-256, SHA-512 hashes instantly! Hash text or files, HMAC support. Verify file integrity. Free, private, works offline. No upload needed.',
             ogImage: OG,
             keywords:
                 'hash generator, md5 generator, sha256 generator, sha512 generator, file hash, text hash, checksum calculator, hmac generator, hash calculator online, generate hash, file checksum, cryptographic hash, sha1 hash, sha384 hash, message digest, hash function, file integrity checker',
@@ -1325,9 +1325,9 @@ export const tools: Record<string, Tool> = {
         category: 'dev',
         component: () => import('~/components/tools/dev/UrlEncoderDecoder.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `URL Encoder/Decoder - Query String & URI Component Tool – ${BRAND}`,
+            title: `Free URL Encoder & Decoder Online - Encode Query Strings Instantly – ${BRAND}`,
             description:
-                'Professional URL encoder and decoder with support for encodeURIComponent and encodeURI. Parse URLs, inspect query parameters, encode/decode query strings. Includes URL parser with protocol, hostname, pathname extraction. All processing done client-side with complete privacy.',
+                'Encode or decode URLs & query strings in one click! Parse URLs, inspect parameters, percent-encode special chars. Free tool, no signup. Works offline.',
             ogImage: OG,
             keywords:
                 'url encoder, url decoder, encode url online, decode url, query string encoder, uri encoder, encodeURIComponent, encodeURI, percent encoding, url parser, query parameters, decode query string, url escape, uri decode, url encode special characters, percent decode',
@@ -1365,9 +1365,9 @@ export const tools: Record<string, Tool> = {
         category: 'dev',
         component: () => import('~/components/tools/dev/UuidGenerator.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `UUID Generator - v4, v1, Bulk Generation & Validator (Free) – ${BRAND}`,
+            title: `Free UUID Generator Online - Generate v4, v1 & Bulk UUIDs – ${BRAND}`,
             description:
-                'Professional UUID/GUID generator with support for v4 (random), v1 (timestamp), Nil, and Max UUIDs. Generate up to 1000 UUIDs at once. Multiple output formats (standard, uppercase, braces, URN). Includes UUID validator with version detection. All processing done client-side with complete privacy.',
+                'Generate UUIDs/GUIDs instantly! v4 random, v1 timestamp, bulk up to 1000. Validate existing UUIDs. Free online tool, cryptographically secure. No signup.',
             ogImage: OG,
             keywords:
                 'uuid generator, guid generator, generate uuid online, uuid v4, uuid v1, random uuid, bulk uuid generator, uuid validator, unique identifier, globally unique identifier, uuid format, uuid urn, uuid braces, validate uuid, check uuid version',

@@ -215,6 +215,17 @@ const articlesData: Record<string, Omit<Article, 'component'>> = {
         dateModified: '2026-01-30'
       }
     }
+  },
+  'big-bang-echo-discovery': {
+    title: 'The Echo of the Big Bang: How a Mysterious Noise Proved the Origin of the Universe',
+    description: 'The remarkable story of how Penzias and Wilson accidentally discovered the Cosmic Microwave Background radiation while trying to eliminate noise from their antenna—proving the Big Bang theory.',
+    category: 'science',
+    seo: {
+      structuredData: {
+        datePublished: '2026-02-08',
+        dateModified: '2026-02-08'
+      }
+    }
   }
 }
 

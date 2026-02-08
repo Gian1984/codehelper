@@ -979,4 +979,61 @@ export const articles: Record<string, Article> = {
         }
     },
 
+    'big-bang-echo-discovery': {
+        title: 'The Echo of the Big Bang: How a Mysterious Noise Proved the Origin of the Universe',
+        description:
+            'The remarkable story of how Penzias and Wilson accidentally discovered the Cosmic Microwave Background radiation while trying to eliminate noise from their antenna—proving the Big Bang theory.',
+        category: 'science',
+        component: () =>
+            import('~/components/articles/science/BigBangEchoDiscovery.vue') as Promise<{ default: DefineComponent }>,
+        seo: {
+            title: `The Echo of the Big Bang: Penzias, Wilson & the CMB Discovery – ${BRAND}`,
+            description:
+                'How Arno Penzias and Robert Wilson accidentally discovered the Cosmic Microwave Background radiation in 1964, proving the Big Bang theory. A story of serendipity and Nobel Prize-winning science.',
+            ogImage: OG,
+            keywords:
+                'cosmic microwave background, cmb discovery, penzias wilson, big bang proof, bell laboratories, serendipity science, nobel prize physics 1978, radio astronomy, holmdel horn antenna',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'TechArticle',
+                headline: 'The Echo of the Big Bang: How a Mysterious Noise Proved the Origin of the Universe',
+                description:
+                    'The story of how Arno Penzias and Robert Wilson accidentally discovered the Cosmic Microwave Background radiation while trying to eliminate antenna noise, providing definitive proof of the Big Bang.',
+                author: { '@type': 'Person', name: 'Gianluca' },
+                publisher: {
+                    '@type': 'Organization',
+                    name: 'CodeHelper',
+                    logo: { '@type': 'ImageObject', url: OG }
+                },
+                image: OG,
+                datePublished: '2026-02-08',
+                dateModified: '2026-02-08',
+                mainEntityOfPage: {
+                    '@type': 'WebPage',
+                    '@id': 'https://codehelper.me/articles/big-bang-echo-discovery'
+                },
+                articleSection: 'Science',
+                about: [
+                    'Cosmic Microwave Background',
+                    'Big Bang Theory',
+                    'Radio Astronomy',
+                    'History of Science',
+                    'Serendipity'
+                ],
+                keywords: [
+                    'Cosmic Microwave Background',
+                    'CMB',
+                    'Penzias Wilson',
+                    'Big Bang proof',
+                    'Bell Laboratories',
+                    'serendipity',
+                    'Nobel Prize 1978',
+                    'radio astronomy',
+                    'cosmology'
+                ],
+                proficiencyLevel: 'General'
+            }
+        }
+    },
+
 }
