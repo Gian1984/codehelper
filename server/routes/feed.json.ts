@@ -225,6 +225,17 @@ const articlesData: Record<string, Omit<Article, 'component'>> = {
         dateModified: '2026-02-08'
       }
     }
+  },
+  'osmotic-power-coastal-cities': {
+    title: 'Blue Energy: Why Coastal Cities Are Betting on Osmotic Power',
+    description: 'Osmotic power harvests electricity from the natural mixing of freshwater and saltwater. With 15,000 TWh of untapped potential yearly, coastal cities and desalination plants are turning waste into energy.',
+    category: 'energy',
+    seo: {
+      structuredData: {
+        datePublished: '2026-02-09',
+        dateModified: '2026-02-09'
+      }
+    }
   }
 }
 
