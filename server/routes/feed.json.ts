@@ -226,6 +226,17 @@ const articlesData: Record<string, Omit<Article, 'component'>> = {
       }
     }
   },
+  'ollama-opencode-setup': {
+    title: 'Local AI Coding Setup: Ollama + OpenCode on macOS Terminal',
+    description: 'Step-by-step guide to setting up a fully local AI coding agent with Ollama and OpenCode on macOS. Agentic tool use, multi-model support, zero cloud dependencies — all running on Apple Silicon.',
+    category: 'ai',
+    seo: {
+      structuredData: {
+        datePublished: '2026-02-12',
+        dateModified: '2026-02-12'
+      }
+    }
+  },
   'osmotic-power-coastal-cities': {
     title: 'Blue Energy: Why Coastal Cities Are Betting on Osmotic Power',
     description: 'Osmotic power harvests electricity from the natural mixing of freshwater and saltwater. With 15,000 TWh of untapped potential yearly, coastal cities and desalination plants are turning waste into energy.',

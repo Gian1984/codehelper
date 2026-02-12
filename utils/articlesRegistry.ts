@@ -1036,6 +1036,65 @@ export const articles: Record<string, Article> = {
         }
     },
 
+    'ollama-opencode-setup': {
+        title: 'Local AI Coding Setup: Ollama + OpenCode on macOS Terminal',
+        description:
+            'Step-by-step guide to setting up a fully local AI coding agent with Ollama and OpenCode on macOS. Agentic tool use, multi-model support, zero cloud dependencies — all running on Apple Silicon.',
+        category: 'ai',
+        component: () =>
+            import('~/components/articles/ai/OllamaOpenCodeSetup.vue') as Promise<{ default: DefineComponent }>,
+        seo: {
+            title: `Local AI Coding Setup: Ollama + OpenCode (macOS Terminal) – ${BRAND}`,
+            description:
+                'Complete guide to running a local AI coding agent with Ollama and OpenCode on macOS Apple Silicon. Covers installation, model configuration, context window tuning, agentic features, and multi-model setup.',
+            ogImage: OG,
+            keywords:
+                'ollama opencode, local ai coding, ollama macos, opencode cli, ai coding agent terminal, qwen coder ollama, local llm coding, apple silicon ai, ollama openai compatible, agentic coding local',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'TechArticle',
+                headline: 'Local AI Coding Setup: Ollama + OpenCode on macOS Terminal',
+                description:
+                    'Step-by-step guide to setting up Ollama and OpenCode for fully local AI-assisted coding on macOS with Apple Silicon. Covers model management, context window configuration, and agentic workflows.',
+                author: { '@type': 'Person', name: 'Gianluca' },
+                publisher: {
+                    '@type': 'Organization',
+                    name: 'CodeHelper',
+                    logo: { '@type': 'ImageObject', url: OG }
+                },
+                image: OG,
+                datePublished: '2026-02-12',
+                dateModified: '2026-02-12',
+                mainEntityOfPage: {
+                    '@type': 'WebPage',
+                    '@id': 'https://codehelper.me/articles/ollama-opencode-setup'
+                },
+                articleSection: 'Artificial Intelligence',
+                about: [
+                    'Ollama',
+                    'OpenCode',
+                    'Local AI',
+                    'Coding Agent',
+                    'Apple Silicon',
+                    'Terminal Workflow'
+                ],
+                keywords: [
+                    'Ollama',
+                    'OpenCode',
+                    'local AI coding',
+                    'Apple Silicon',
+                    'qwen coder',
+                    'agentic coding',
+                    'tool use',
+                    'macOS terminal',
+                    'privacy-first AI',
+                    'MLX alternative'
+                ],
+                proficiencyLevel: 'Intermediate'
+            }
+        }
+    },
+
     'osmotic-power-coastal-cities': {
         title: 'Blue Energy: Why Coastal Cities Are Betting on Osmotic Power',
         description:
