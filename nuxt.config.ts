@@ -2,12 +2,13 @@
 import { defineNuxtConfig } from 'nuxt/config'
 import { tools } from './utils/toolRegistry'
 import { articles } from './utils/articlesRegistry'
+import { games } from './utils/gamesRegistry'
 import { resourceCategoryMeta } from './utils/externalRegistry'
 import { apiCategoryMeta } from './utils/apiRegistry'
 
 
 // Static routes (Nuxt handles trailing slashes automatically)
-const staticRoutes = ['/', '/about', '/tools', '/project', '/articles', '/resources', '/resources/apis', '/feed.xml', '/feed.json']
+const staticRoutes = ['/', '/about', '/tools', '/project', '/articles', '/games', '/resources', '/resources/apis', '/feed.xml', '/feed.json']
 
 // Dynamic routes
 const dynamicToolRoutes = Object.keys(tools).map(slug => `/tools/${slug}`)
@@ -18,8 +19,9 @@ const dynamicResourceRoutes = Object.keys(resourceCategoryMeta).map(slug => `/re
 
 const dynamicAPIRoutes = Object.keys(apiCategoryMeta).map(slug => `/resources/apis/${slug}`)
 
+const dynamicGameRoutes = Object.keys(games).map(slug => `/games/${slug}`)
 
-const allRoutes = [...staticRoutes, ...dynamicToolRoutes, ...dynamicArticleRoutes, ...dynamicResourceRoutes, ...dynamicAPIRoutes]
+const allRoutes = [...staticRoutes, ...dynamicToolRoutes, ...dynamicArticleRoutes, ...dynamicResourceRoutes, ...dynamicAPIRoutes, ...dynamicGameRoutes]
 
 export default defineNuxtConfig({
     compatibilityDate: '2024-11-01',
@@ -119,6 +121,11 @@ export default defineNuxtConfig({
             },
             {
                 loc: '/resources/apis',
+                priority: 0.9,
+                changefreq: 'weekly'
+            },
+            {
+                loc: '/games',
                 priority: 0.9,
                 changefreq: 'weekly'
             }

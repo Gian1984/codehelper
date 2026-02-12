@@ -32,6 +32,9 @@
                 <NuxtLink to="/articles" :class="navClass('/articles')"
                           itemprop="url"
                           title="Technical Articles">Articles</NuxtLink>
+                <NuxtLink to="/games" :class="navClass('/games')"
+                          itemprop="url"
+                          title="Developer Games">Games</NuxtLink>
                 <NuxtLink to="/resources" :class="navClass('/resources')"
                           itemprop="url"
                           title="External Resources">Resources</NuxtLink>
@@ -68,7 +71,7 @@
                     @focus="showSuggestions = true"
                     @blur="() => setTimeout(() => (showSuggestions = false), 200)"
                     class="block w-full rounded-md bg-gray-800 border-2 border-gray-700 py-1.5 pr-3 pl-10 text-base text-white outline-none placeholder:text-gray-400 focus:bg-white focus:text-gray-900 focus:ring-2 focus:ring-indigo-400 focus:border-transparent sm:text-sm transition-colors"
-                    placeholder="Search tools or articles..."
+                    placeholder="Search tools, articles & games..."
                 />
                 <MagnifyingGlassIcon class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 size-5 text-gray-400" aria-hidden="true" />
 
@@ -119,6 +122,7 @@
           <NuxtLink to="/" @click="close()" :class="mobileNavClass('/')" role="menuitem" itemprop="url" title="CodeHelper Home">Home</NuxtLink>
           <NuxtLink to="/tools" @click="close()" :class="mobileNavClass('/tools')" role="menuitem" itemprop="url" title="Developer Tools">Tools</NuxtLink>
           <NuxtLink to="/articles" @click="close()" :class="mobileNavClass('/articles')" role="menuitem" itemprop="url" title="Technical Articles">Articles</NuxtLink>
+          <NuxtLink to="/games" @click="close()" :class="mobileNavClass('/games')" role="menuitem" itemprop="url" title="Developer Games">Games</NuxtLink>
           <NuxtLink to="/resources" @click="close()" :class="mobileNavClass('/resources')" role="menuitem" itemprop="url" title="External Resources">Resources</NuxtLink>
           <NuxtLink to="/project" @click="close()" :class="mobileNavClass('/project')" role="menuitem" itemprop="url" title="Project Overview">Project</NuxtLink>
           <NuxtLink to="/about" @click="close()" :class="mobileNavClass('/about')" role="menuitem" itemprop="url" title="About CodeHelper">About</NuxtLink>
@@ -133,6 +137,7 @@ import { ref, computed, watch } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { tools } from '~/utils/toolRegistry'
 import { articles } from '~/utils/articlesRegistry'
+import { games } from '~/utils/gamesRegistry'
 
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue'
 import { MagnifyingGlassIcon } from '@heroicons/vue/20/solid'
@@ -147,7 +152,8 @@ const showSuggestions = ref(false)
 const allEntries = computed(() => {
   return [
     ...Object.entries(tools).map(([slug, data]) => ({ slug, title: data.title, type: 'tool' })),
-    ...Object.entries(articles).map(([slug, data]) => ({ slug, title: data.title, type: 'article' }))
+    ...Object.entries(articles).map(([slug, data]) => ({ slug, title: data.title, type: 'article' })),
+    ...Object.entries(games).map(([slug, data]) => ({ slug, title: data.title, type: 'game' }))
   ]
 })
 
@@ -161,7 +167,7 @@ const suggestions = computed(() => {
 const goToEntry = (entry) => {
   query.value = ''
   showSuggestions.value = false
-  const basePath = entry.type === 'tool' ? '/tools/' : '/articles/'
+  const basePath = entry.type === 'tool' ? '/tools/' : entry.type === 'game' ? '/games/' : '/articles/'
   router.push(basePath + entry.slug)
 }
 

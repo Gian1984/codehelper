@@ -24,9 +24,9 @@
           type="text"
           :value="searchQuery"
           @input="setSearchQuery(($event.target as HTMLInputElement).value)"
-          placeholder="Search tools & articles..."
+          placeholder="Search tools, articles & games..."
           class="w-full rounded-md bg-gray-800 border-2 border-gray-700 px-3 py-2 text-sm text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors"
-          aria-label="Search tools and articles"
+          aria-label="Search tools, articles and games"
         />
         <button
           v-if="searchQuery"
@@ -143,6 +143,50 @@
         </ul>
       </div>
 
+      <!-- Games Section -->
+      <div v-if="(currentSection === 'games' || currentSection === 'all') && filteredGameCategories.length > 0">
+        <h2 v-if="currentSection === 'all'" class="text-gray-200 text-xs font-semibold uppercase tracking-wider mb-2">Games</h2>
+        <ul role="list" class="flex flex-col gap-y-2">
+          <li v-for="category in filteredGameCategories" :key="'game-' + category">
+            <Disclosure v-slot="{ open }" :defaultOpen="isCategoryOpen(`game-${category}`) || !!searchQuery">
+              <DisclosureButton
+                  class="flex w-full items-center gap-x-3 rounded-md p-2 text-left text-sm font-semibold text-gray-200 hover:bg-gray-800 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900"
+                  :aria-controls="`games-panel-${category}`"
+                  :aria-expanded="open ? 'true' : 'false'"
+                  :title="`Toggle ${category} games`"
+                  @click="toggleCategory(`game-${category}`)">
+                <FolderIcon class="size-6 shrink-0" aria-hidden="true" />
+                <span class="capitalize">{{ category }}</span>
+                <ChevronRightIcon
+                    :class="[open ? 'rotate-90 text-gray-400' : 'text-gray-400', 'ml-auto size-5 shrink-0 transition-transform']"
+                    aria-hidden="true" />
+              </DisclosureButton>
+
+              <DisclosurePanel :id="`games-panel-${category}`">
+                <ul role="list" class="ml-4 mt-2 space-y-1">
+                  <li v-for="game in filteredGames[category]" :key="game.slug">
+                    <NuxtLink
+                        :to="`/games/${game.slug}/`"
+                        :class="[
+                          'group flex gap-x-3 rounded-md p-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900 transition-colors',
+                          currentPath === `/games/${game.slug}/` || currentPath === `/games/${game.slug}`
+                            ? 'bg-indigo-500/20 text-indigo-400 font-semibold border-l-2 border-indigo-500'
+                            : 'text-gray-200 hover:bg-gray-800 hover:text-white'
+                        ]"
+                        :title="`${game.title} – play game`"
+                        itemprop="url"
+                        :prefetch="true"
+                        @click="handleLinkClick">
+                      <span class="truncate">{{ game.title }}</span>
+                    </NuxtLink>
+                  </li>
+                </ul>
+              </DisclosurePanel>
+            </Disclosure>
+          </li>
+        </ul>
+      </div>
+
     </nav>
   </div>
 </template>
@@ -152,9 +196,10 @@
 import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { FolderIcon, ChevronRightIcon } from '@heroicons/vue/24/outline'
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue'
-import { WrenchScrewdriverIcon, NewspaperIcon, LinkIcon } from '@heroicons/vue/24/outline'
+import { WrenchScrewdriverIcon, NewspaperIcon, LinkIcon, PuzzlePieceIcon } from '@heroicons/vue/24/outline'
 import { tools } from '~/utils/toolRegistry'
 import { articles } from '~/utils/articlesRegistry'
+import { games } from '~/utils/gamesRegistry'
 
 const route = useRoute()
 const {
@@ -190,6 +235,7 @@ const currentPath = computed(() => route.path)
 const currentSection = computed(() => {
   if (currentPath.value.startsWith('/tools')) return 'tools'
   if (currentPath.value.startsWith('/articles')) return 'articles'
+  if (currentPath.value.startsWith('/games')) return 'games'
   return 'all'
 })
 
@@ -197,6 +243,7 @@ const currentSection = computed(() => {
 const sectionTitle = computed(() => {
   if (currentSection.value === 'tools') return 'Tools'
   if (currentSection.value === 'articles') return 'Articles'
+  if (currentSection.value === 'games') return 'Games'
   return 'Resources'
 })
 
@@ -204,6 +251,7 @@ const sectionTitle = computed(() => {
 const sectionIcon = computed(() => {
   if (currentSection.value === 'tools') return WrenchScrewdriverIcon
   if (currentSection.value === 'articles') return NewspaperIcon
+  if (currentSection.value === 'games') return PuzzlePieceIcon
   return LinkIcon // default - represents external resources
 })
 
@@ -211,6 +259,7 @@ const sectionIcon = computed(() => {
 const sectionLink = computed(() => {
   if (currentSection.value === 'tools') return '/tools'
   if (currentSection.value === 'articles') return '/articles'
+  if (currentSection.value === 'games') return '/games'
   return '/resources' // default to resources page
 })
 
@@ -259,6 +308,29 @@ const categorizedArticles = computed(() => {
 
 const sortedArticleCategories = computed(() => Object.keys(categorizedArticles.value).sort())
 
+// --- Games by category (memoized for performance)
+const categorizedGames = computed(() => {
+  const result = Object.entries(games).reduce((acc, [slug, game]) => {
+    const category = game.category || 'general'
+    if (!acc[category]) acc[category] = []
+    acc[category].push({ ...game, slug })
+    return acc
+  }, {} as Record<string, any[]>)
+
+  // Sort games by date within each category
+  for (const cat in result) {
+    result[cat].sort((a, b) => {
+      const dateA = new Date(a.publishedAt).getTime()
+      const dateB = new Date(b.publishedAt).getTime()
+      return dateB - dateA // Newest first
+    })
+  }
+
+  return result
+})
+
+const sortedGameCategories = computed(() => Object.keys(categorizedGames.value).sort())
+
 // --- Search filtering
 const filteredTools = computed(() => {
   if (!searchQuery.value.trim()) return categorizedTools.value
@@ -303,9 +375,31 @@ const filteredArticles = computed(() => {
 const filteredToolCategories = computed(() => Object.keys(filteredTools.value).sort())
 const filteredArticleCategories = computed(() => Object.keys(filteredArticles.value).sort())
 
+const filteredGames = computed(() => {
+  if (!searchQuery.value.trim()) return categorizedGames.value
+
+  const query = searchQuery.value.toLowerCase()
+  const result: Record<string, any[]> = {}
+
+  for (const [category, gamesList] of Object.entries(categorizedGames.value)) {
+    const filtered = gamesList.filter(game =>
+      game.title.toLowerCase().includes(query) ||
+      game.description?.toLowerCase().includes(query) ||
+      category.toLowerCase().includes(query)
+    )
+    if (filtered.length > 0) {
+      result[category] = filtered
+    }
+  }
+
+  return result
+})
+
+const filteredGameCategories = computed(() => Object.keys(filteredGames.value).sort())
+
 // Check if search has results
 const hasSearchResults = computed(() =>
-  filteredToolCategories.value.length > 0 || filteredArticleCategories.value.length > 0
+  filteredToolCategories.value.length > 0 || filteredArticleCategories.value.length > 0 || filteredGameCategories.value.length > 0
 )
 
 // Scroll position management
