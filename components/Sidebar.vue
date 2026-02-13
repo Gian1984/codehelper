@@ -111,7 +111,7 @@ import { onMounted, onUnmounted, computed } from 'vue'
 import SidebarContent from './SidebarContent.vue'
 import { Dialog, DialogPanel, TransitionChild, TransitionRoot } from '@headlessui/vue'
 import { Bars3Icon, BookmarkIcon, XMarkIcon, ChevronRightIcon, ChevronLeftIcon } from '@heroicons/vue/20/solid'
-import { WrenchScrewdriverIcon, NewspaperIcon, LinkIcon } from '@heroicons/vue/24/outline'
+import { WrenchScrewdriverIcon, NewspaperIcon, LinkIcon, PuzzlePieceIcon } from '@heroicons/vue/24/outline'
 
 const { isOpen: sidebarOpen, isDesktopCollapsed, close, open, restoreState, searchQuery, toggleDesktopCollapse } = useSidebarState()
 
@@ -121,6 +121,7 @@ const sectionTitle = computed(() => {
   const path = route.path
   if (path.startsWith('/tools')) return 'Tools'
   if (path.startsWith('/articles')) return 'Articles'
+  if (path.startsWith('/games')) return 'Games'
   return 'Resources'
 })
 
@@ -129,6 +130,7 @@ const sectionIcon = computed(() => {
   const path = route.path
   if (path.startsWith('/tools')) return WrenchScrewdriverIcon
   if (path.startsWith('/articles')) return NewspaperIcon
+  if (path.startsWith('/games')) return PuzzlePieceIcon
   return LinkIcon // default - represents external resources
 })
 

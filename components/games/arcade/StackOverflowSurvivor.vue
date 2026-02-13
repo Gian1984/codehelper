@@ -2,7 +2,7 @@
   <div class="w-full flex flex-col items-center select-none gap-5" ref="wrapperRef">
 
     <!-- ============ LEGEND (above canvas) ============ -->
-    <div class="w-full grid grid-cols-1 sm:grid-cols-2 gap-4" style="max-width:480px">
+    <div class="w-full grid grid-cols-1 sm:grid-cols-2 gap-4">
 
       <!-- Hazards legend -->
       <div class="rounded-lg border border-gray-700 bg-gray-800/50 p-4">
@@ -70,12 +70,12 @@
     </div>
 
     <!-- ============ CANVAS + OVERLAYS ============ -->
-    <div class="relative w-full" style="max-width:480px">
+    <div class="relative mx-auto" style="width:480px;max-width:100%">
       <canvas
         ref="canvasRef"
         class="block w-full rounded-lg border border-gray-700 touch-none"
-        :width="GAME_W"
-        :height="GAME_H"
+        width="480"
+        height="640"
       />
 
       <!-- MENU overlay -->
@@ -142,7 +142,6 @@
     <!-- ============ BEST SCORE (below canvas) ============ -->
     <div
       class="w-full flex items-center justify-center gap-3 rounded-lg border border-gray-700 bg-gray-800/50 px-5 py-3"
-      style="max-width:480px"
     >
       <span class="text-sm text-gray-400">Your best score</span>
       <span class="text-lg font-bold" :class="bestScore > 0 ? 'text-indigo-400' : 'text-gray-600'">
@@ -271,9 +270,11 @@ function onKeyUp(e: KeyboardEvent) { keys[e.key] = false }
 function canvasXY(t: Touch): { cx: number; cy: number } {
   const canvas = canvasRef.value!
   const rect = canvas.getBoundingClientRect()
-  const scaleX = GAME_W / rect.width
-  const scaleY = GAME_H / rect.height
-  return { cx: (t.clientX - rect.left) * scaleX, cy: (t.clientY - rect.top) * scaleY }
+  // Map screen coords to game coords (GAME_W x GAME_H)
+  return {
+    cx: ((t.clientX - rect.left) / rect.width) * GAME_W,
+    cy: ((t.clientY - rect.top) / rect.height) * GAME_H
+  }
 }
 
 function onTouchStart(e: TouchEvent) {
@@ -496,16 +497,17 @@ function render() {
   c.fillStyle = grad
   c.fillRect(0, 0, GAME_W, GAME_H)
 
-  // flash on hit
+  // flash on hit (brief red overlay)
   if (flashTimer > 0) {
-    c.fillStyle = `rgba(239,68,68,${0.3 * (flashTimer / 300)})`
+    c.fillStyle = `rgba(239,68,68,${0.25 * (flashTimer / 300)})`
     c.fillRect(0, 0, GAME_W, GAME_H)
   }
 
-  // slow-motion tint
+  // slow-motion: subtle top/bottom border lines instead of full tint
   if (slowTimer.value > 0) {
-    c.fillStyle = 'rgba(251,191,36,0.06)'
-    c.fillRect(0, 0, GAME_W, GAME_H)
+    c.fillStyle = 'rgba(251,191,36,0.15)'
+    c.fillRect(0, 0, GAME_W, 3)
+    c.fillRect(0, GAME_H - 3, GAME_W, 3)
   }
 
   // objects
@@ -513,25 +515,26 @@ function render() {
   c.textBaseline = 'middle'
   for (const o of pool) {
     if (!o.active) continue
+    // powerup: small ring indicator (no filled glow)
     if (o.type === 'powerup') {
       c.beginPath()
-      c.arc(o.x, o.y, o.size * 0.8, 0, Math.PI * 2)
-      c.fillStyle = 'rgba(74,222,128,0.25)'
-      c.fill()
+      c.arc(o.x, o.y, o.size * 0.7, 0, Math.PI * 2)
+      c.strokeStyle = 'rgba(74,222,128,0.5)'
+      c.lineWidth = 2
+      c.stroke()
     }
     c.font = `${o.size}px serif`
+    c.fillStyle = '#ffffff'
     c.fillText(o.emoji, o.x, o.y)
   }
 
-  // player shield glow
+  // player shield glow (ring only, no fill)
   if (shieldTimer.value > 0) {
     c.beginPath()
     c.arc(player.x, player.y, PLAYER_SIZE * 0.75, 0, Math.PI * 2)
     c.strokeStyle = 'rgba(250,204,21,0.6)'
     c.lineWidth = 2
     c.stroke()
-    c.fillStyle = 'rgba(250,204,21,0.1)'
-    c.fill()
   }
   c.font = `${PLAYER_SIZE}px serif`
   c.fillText('🧑‍💻', player.x, player.y)
@@ -546,7 +549,4 @@ function clamp(v: number, min: number, max: number) {
 </script>
 
 <style scoped>
-canvas {
-  aspect-ratio: 480 / 640;
-}
 </style>
