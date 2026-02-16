@@ -7,19 +7,19 @@ import { resourceCategoryMeta } from './utils/externalRegistry'
 import { apiCategoryMeta } from './utils/apiRegistry'
 
 
-// Static routes (Nuxt handles trailing slashes automatically)
-const staticRoutes = ['/', '/about', '/tools', '/project', '/articles', '/games', '/resources', '/resources/apis', '/feed.xml', '/feed.json']
+// Static routes (with trailing slashes to match Apache rewrite rules)
+const staticRoutes = ['/', '/about/', '/tools/', '/project/', '/articles/', '/games/', '/resources/', '/resources/apis/', '/feed.xml', '/feed.json']
 
-// Dynamic routes
-const dynamicToolRoutes = Object.keys(tools).map(slug => `/tools/${slug}`)
+// Dynamic routes (with trailing slashes to match Apache rewrite rules)
+const dynamicToolRoutes = Object.keys(tools).map(slug => `/tools/${slug}/`)
 
-const dynamicArticleRoutes = Object.keys(articles).map(slug => `/articles/${slug}`)
+const dynamicArticleRoutes = Object.keys(articles).map(slug => `/articles/${slug}/`)
 
-const dynamicResourceRoutes = Object.keys(resourceCategoryMeta).map(slug => `/resources/${slug}`)
+const dynamicResourceRoutes = Object.keys(resourceCategoryMeta).map(slug => `/resources/${slug}/`)
 
-const dynamicAPIRoutes = Object.keys(apiCategoryMeta).map(slug => `/resources/apis/${slug}`)
+const dynamicAPIRoutes = Object.keys(apiCategoryMeta).map(slug => `/resources/apis/${slug}/`)
 
-const dynamicGameRoutes = Object.keys(games).map(slug => `/games/${slug}`)
+const dynamicGameRoutes = Object.keys(games).map(slug => `/games/${slug}/`)
 
 const allRoutes = [...staticRoutes, ...dynamicToolRoutes, ...dynamicArticleRoutes, ...dynamicResourceRoutes, ...dynamicAPIRoutes, ...dynamicGameRoutes]
 
@@ -28,6 +28,13 @@ export default defineNuxtConfig({
     devtools: { enabled: true },
 
     ssr: true,
+
+    // Force trailing slashes for all routes
+    router: {
+        options: {
+            trailingSlash: true
+        }
+    },
 
     css: [
         'vue3-json-viewer/dist/vue3-json-viewer.css'
@@ -97,7 +104,7 @@ export default defineNuxtConfig({
             priority: 0.8,
             lastmod: new Date().toISOString()
         },
-        // Customize specific route priorities
+        // Customize specific route priorities (with trailing slashes)
         urls: [
             {
                 loc: '/',
@@ -105,27 +112,27 @@ export default defineNuxtConfig({
                 changefreq: 'daily'
             },
             {
-                loc: '/tools',
+                loc: '/tools/',
                 priority: 0.9,
                 changefreq: 'weekly'
             },
             {
-                loc: '/articles',
+                loc: '/articles/',
                 priority: 0.9,
                 changefreq: 'weekly'
             },
             {
-                loc: '/resources',
+                loc: '/resources/',
                 priority: 0.9,
                 changefreq: 'weekly'
             },
             {
-                loc: '/resources/apis',
+                loc: '/resources/apis/',
                 priority: 0.9,
                 changefreq: 'weekly'
             },
             {
-                loc: '/games',
+                loc: '/games/',
                 priority: 0.9,
                 changefreq: 'weekly'
             }
@@ -143,6 +150,29 @@ export default defineNuxtConfig({
                     }
                     warn(warning)
                 }
+            }
+        }
+    },
+
+    // Hook to automatically add trailing slashes to generated files
+    hooks: {
+        'nitro:build:public-assets': async (nitro) => {
+            // Post-process sitemap to add trailing slashes
+            const fs = await import('fs')
+            const path = await import('path')
+            const sitemapPath = path.join(nitro.options.output.publicDir, 'sitemap.xml')
+
+            if (fs.existsSync(sitemapPath)) {
+                let sitemap = fs.readFileSync(sitemapPath, 'utf-8')
+
+                // Add trailing slash to all URLs except files and root
+                sitemap = sitemap.replace(
+                    /<loc>https:\/\/codehelper\.me\/((?!.*\.(xml|json|txt|ico|webp|jpg|jpeg|png|gif|svg|css|js|woff|woff2|ttf|eot|pdf))(?!$)[^<]+)(?<!\/)(<\/loc>)/g,
+                    '<loc>https://codehelper.me/$1/$3'
+                )
+
+                fs.writeFileSync(sitemapPath, sitemap, 'utf-8')
+                console.log('✅ Sitemap URLs updated with trailing slashes')
             }
         }
     }
