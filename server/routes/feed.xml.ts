@@ -248,6 +248,18 @@ const articlesData: Record<string, Omit<Article, 'component'>> = {
         dateModified: '2026-02-09'
       }
     }
+  },
+  'ai-automation-reality-check': {
+    title: 'The AI Automation Paradox: Why 96% of AI Work Still Fails the Human Test',
+    description: 'The Remote Labor Index reveals a stark truth: AI models fail 96.25% of professional tasks. An analysis of economic impacts, investment billions, job market realities, and why the future remains uncertain.',
+    category: 'ai',
+    seo: {
+      structuredData: {
+        datePublished: '2026-02-16',
+        dateModified: '2026-02-16',
+        author: { name: 'Gianluca' }
+      }
+    }
   }
 }
 
