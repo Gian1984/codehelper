@@ -260,6 +260,19 @@ const articlesData: Record<string, Omit<Article, 'component'>> = {
       },
       keywords: 'ai automation reality, remote labor index, ai failure rate, ai job displacement, ai investment bubble, elon musk coding prediction, coldfusion ai, ai economic impact, ai hype vs reality, professional ai tasks'
     }
+  },
+  'juan-pujol-garcia': {
+    title: 'History Doesn\'t Always Choose the Most Qualified. Sometimes It Chooses the Bold.',
+    description: 'The extraordinary story of Juan Pujol García: a chicken farmer with no training who invented 27 imaginary spies, fooled Adolf Hitler, changed the outcome of D-Day, and saved tens of thousands of Allied lives.',
+    category: 'history',
+    seo: {
+      structuredData: {
+        datePublished: '2026-02-17',
+        dateModified: '2026-02-17',
+        author: { name: 'Gianluca' }
+      },
+      keywords: 'juan pujol garcia, agent garbo, d-day deception, operation fortitude, double agent wwii, garbo spy, iron cross mbe, fusag fake army, spanish spy, boldness vs qualifications'
+    }
   }
 }
 

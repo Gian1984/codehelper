@@ -1217,4 +1217,69 @@ export const articles: Record<string, Article> = {
         }
     },
 
+    'juan-pujol-garcia': {
+        title: 'History Doesn\'t Always Choose the Most Qualified. Sometimes It Chooses the Bold.',
+        description:
+            'The extraordinary story of Juan Pujol García: a chicken farmer with no training who invented 27 imaginary spies, fooled Adolf Hitler, changed the outcome of D-Day, and saved tens of thousands of Allied lives.',
+        category: 'history',
+        component: () =>
+            import('~/components/articles/history/JuanPujolGarcia.vue') as Promise<{ default: DefineComponent }>,
+        seo: {
+            title: `History Doesn't Choose the Most Qualified. Sometimes the Bold. – ${BRAND}`,
+            description:
+                'Juan Pujol García: rejected chicken farmer who invented 27 fake spies, deceived Hitler, earned the Iron Cross & MBE, and changed D-Day. The story of when audacity beats credentials.',
+            ogImage: OG,
+            keywords:
+                'juan pujol garcia, agent garbo, d-day deception, operation fortitude, double agent wwii, garbo spy, iron cross mbe, fusag fake army, spanish spy, boldness vs qualifications',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'Article',
+                headline: 'History Doesn\'t Always Choose the Most Qualified. Sometimes It Chooses the Bold.',
+                description:
+                    'The remarkable true story of Juan Pujol García (Agent GARBO), the chicken farmer who became the greatest double agent of WWII, fooled Hitler, and saved D-Day with nothing but imagination and audacity.',
+                author: { '@type': 'Person', name: 'Gianluca' },
+                publisher: {
+                    '@type': 'Organization',
+                    name: 'CodeHelper',
+                    logo: { '@type': 'ImageObject', url: OG }
+                },
+                image: OG,
+                datePublished: '2026-02-17',
+                dateModified: '2026-02-17',
+                mainEntityOfPage: {
+                    '@type': 'WebPage',
+                    '@id': 'https://codehelper.me/articles/juan-pujol-garcia'
+                },
+                articleSection: 'History',
+                about: [
+                    'World War II',
+                    'D-Day',
+                    'Espionage',
+                    'Double Agents',
+                    'Operation Fortitude',
+                    'Boldness',
+                    'Audacity'
+                ],
+                keywords: [
+                    'Juan Pujol García',
+                    'Agent GARBO',
+                    'D-Day deception',
+                    'Operation Fortitude',
+                    'FUSAG',
+                    'double agent',
+                    'Iron Cross',
+                    'MBE',
+                    'boldness',
+                    'audacity',
+                    'WWII spy',
+                    'Normandy invasion',
+                    'Tomás Harris',
+                    'MI5',
+                    'Abwehr'
+                ],
+                proficiencyLevel: 'General'
+            }
+        }
+    },
+
 }

@@ -1,4 +1,4 @@
-<template>
+ <template>
   <div class="relative">
     <div class="flex flex-wrap gap-1.5 justify-center">
       <!-- Copy Score -->
