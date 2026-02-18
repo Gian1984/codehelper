@@ -1095,6 +1095,64 @@ export const articles: Record<string, Article> = {
         }
     },
 
+    'openclaw-saga': {
+        title: 'From Clawdbot to OpenClaw: Hype, Scams, and the Future of AI Agents',
+        description:
+            'The open-source AI agent that gained 193K GitHub stars, got hijacked by crypto scammers, exposed 42,900 control panels, and landed its creator a job at OpenAI. The full story of Clawdbot, Moltbot, and OpenClaw.',
+        category: 'ai',
+        component: () =>
+            import('~/components/articles/ai/OpenClawSaga.vue') as Promise<{ default: DefineComponent }>,
+        seo: {
+            title: `From Clawdbot to OpenClaw: Hype, Scams, and the Future of AI Agents – ${BRAND}`,
+            description:
+                'The full story of Clawdbot/Moltbot/OpenClaw: 193K GitHub stars, $16M crypto scam, 42,900 exposed panels, prompt injection attacks, and Peter Steinberger joining OpenAI. A case study on autonomous AI agents.',
+            ogImage: OG,
+            keywords:
+                'openclaw, clawdbot, moltbot, peter steinberger, ai agent, autonomous ai, prompt injection, crypto scam clawd token, openclaw security, openai, open source ai agent, github stars',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'TechArticle',
+                headline: 'From Clawdbot to OpenClaw: Hype, Scams, and the Future of AI Agents',
+                description:
+                    'The complete story of OpenClaw: from viral launch to trademark dispute, crypto fraud, massive security vulnerabilities, and acquisition by OpenAI. A case study on the promises and dangers of autonomous AI agents.',
+                author: { '@type': 'Person', name: 'Gianluca' },
+                publisher: {
+                    '@type': 'Organization',
+                    name: 'CodeHelper',
+                    logo: { '@type': 'ImageObject', url: OG }
+                },
+                image: OG,
+                datePublished: '2026-02-18',
+                dateModified: '2026-02-18',
+                mainEntityOfPage: {
+                    '@type': 'WebPage',
+                    '@id': 'https://codehelper.me/articles/openclaw-saga'
+                },
+                articleSection: 'Artificial Intelligence',
+                about: [
+                    'OpenClaw',
+                    'Autonomous AI Agents',
+                    'AI Security',
+                    'Crypto Scams',
+                    'Open Source'
+                ],
+                keywords: [
+                    'OpenClaw',
+                    'Clawdbot',
+                    'Moltbot',
+                    'Peter Steinberger',
+                    'AI agent',
+                    'prompt injection',
+                    'crypto scam',
+                    'OpenAI',
+                    'autonomous AI',
+                    'GitHub stars'
+                ],
+                proficiencyLevel: 'General'
+            }
+        }
+    },
+
     'osmotic-power-coastal-cities': {
         title: 'Blue Energy: Why Coastal Cities Are Betting on Osmotic Power',
         description:

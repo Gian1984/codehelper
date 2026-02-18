@@ -238,6 +238,17 @@ const articlesData: Record<string, Omit<Article, 'component'>> = {
       }
     }
   },
+  'openclaw-saga': {
+    title: 'From Clawdbot to OpenClaw: Hype, Scams, and the Future of AI Agents',
+    description: 'The open-source AI agent that gained 193K GitHub stars, got hijacked by crypto scammers, exposed 42,900 control panels, and landed its creator a job at OpenAI.',
+    category: 'ai',
+    seo: {
+      structuredData: {
+        datePublished: '2026-02-18',
+        dateModified: '2026-02-18'
+      }
+    }
+  },
   'osmotic-power-coastal-cities': {
     title: 'Blue Energy: Why Coastal Cities Are Betting on Osmotic Power',
     description: 'Osmotic power harvests electricity from the natural mixing of freshwater and saltwater. With 15,000 TWh of untapped potential yearly, coastal cities and desalination plants are turning waste into energy.',
