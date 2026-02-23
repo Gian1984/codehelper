@@ -976,6 +976,7 @@ export const externalResources: Record<ResourceCategory, ExternalResource[]> = {
         { name: 'Shitty Icons', href: 'https://shittyicons.com/', desc: 'Collection of Free icons.', category: 'icons', bgColor: 'bg-purple-600' },
         { name: 'Iconhub', href: 'https://iconhub.io/', desc: 'Just practical stunning icons for everyone', category: 'icons', bgColor: 'bg-yellow-500' },
         { name: '3DICONS', href: 'https://3dicons.co', desc: 'Beautifully crafted open source 3D icons', category: 'icons', bgColor: 'bg-green-500' },
+        { name: 'Woopicx', href: 'https://woopicx.com/collection/basic3d', desc: 'Premium 3D icon library with 12,000+ icons and an AI editor to customize any icon by describing what you want', category: 'icons', bgColor: 'bg-violet-500' },
         { name: 'IconsDb', href: 'https://www.iconsdb.com/', desc: 'Free Custom Icons', category: 'icons', bgColor: 'bg-orange-500' },
     ],
 
