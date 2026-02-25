@@ -1340,4 +1340,69 @@ export const articles: Record<string, Article> = {
         }
     },
 
+    'mit-thermal-computing': {
+        title: 'Heat as a Computer: MIT Engineers Build Silicon That Calculates Without Electricity',
+        description:
+            'MIT researchers designed silicon microstructures that perform matrix-vector multiplication using heat flow instead of electrical signals. No transistors, no code, the physics of heat propagation is the computation itself.',
+        category: 'hardware',
+        component: () =>
+            import('~/components/articles/hardware/MitThermalComputing.vue') as Promise<{ default: DefineComponent }>,
+        seo: {
+            title: `MIT Thermal Computing: Silicon Structures That Calculate With Heat – ${BRAND}`,
+            description:
+                'MIT engineers built porous silicon microstructures that compute matrix-vector multiplications using only heat flow — 99%+ accuracy, zero active energy. A look at thermal computing, inverse design, and the future of reconfigurable analog hardware.',
+            ogImage: OG,
+            keywords:
+                'thermal computing, mit thermal silicon, heat as computation, inverse design silicon, matrix vector multiplication heat, analog computing, phase change materials, memristor, neuromorphic chips, analog ai accelerator',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'TechArticle',
+                headline: 'Heat as a Computer: MIT Engineers Build Silicon That Calculates Without Electricity',
+                description:
+                    'MIT researchers designed silicon microstructures that perform matrix-vector multiplication using heat flow instead of electrical signals. An analysis of thermal computing, inverse design, current limitations, and the path toward reconfigurable physical operators.',
+                author: { '@type': 'Person', name: 'Gianluca' },
+                publisher: {
+                    '@type': 'Organization',
+                    name: 'CodeHelper',
+                    logo: { '@type': 'ImageObject', url: OG }
+                },
+                image: OG,
+                datePublished: '2026-02-24',
+                dateModified: '2026-02-24',
+                mainEntityOfPage: {
+                    '@type': 'WebPage',
+                    '@id': 'https://codehelper.me/articles/mit-thermal-computing'
+                },
+                articleSection: 'Hardware',
+                about: [
+                    'Thermal Computing',
+                    'Analog Computing',
+                    'Inverse Design',
+                    'Silicon Microstructures',
+                    'Matrix-Vector Multiplication',
+                    'Phase-Change Materials',
+                    'Neuromorphic Hardware',
+                    'AI Accelerators'
+                ],
+                keywords: [
+                    'thermal computing',
+                    'MIT silicon structures',
+                    'heat computation',
+                    'inverse design',
+                    'matrix-vector multiplication',
+                    'analog AI accelerator',
+                    'phase-change materials GST',
+                    'memristor crossbar',
+                    'neuromorphic chips',
+                    'computing in memory',
+                    'Caio Silva',
+                    'Giuseppe Romano',
+                    'reconfigurable hardware',
+                    'programmable metamaterials'
+                ],
+                proficiencyLevel: 'General'
+            }
+        }
+    },
+
 }

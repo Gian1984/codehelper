@@ -284,6 +284,19 @@ const articlesData: Record<string, Omit<Article, 'component'>> = {
       },
       keywords: 'juan pujol garcia, agent garbo, d-day deception, operation fortitude, double agent wwii, garbo spy, iron cross mbe, fusag fake army, spanish spy, boldness vs qualifications'
     }
+  },
+  'mit-thermal-computing': {
+    title: 'Heat as a Computer: MIT Engineers Build Silicon That Calculates Without Electricity',
+    description: 'MIT researchers designed silicon microstructures that perform matrix-vector multiplication using heat flow instead of electrical signals. No transistors, no code — the physics of heat propagation is the computation itself.',
+    category: 'hardware',
+    seo: {
+      structuredData: {
+        datePublished: '2026-02-24',
+        dateModified: '2026-02-24',
+        author: { name: 'Gianluca' }
+      },
+      keywords: 'thermal computing, mit thermal silicon, heat as computation, inverse design silicon, matrix vector multiplication heat, analog computing, phase change materials, memristor, neuromorphic chips, analog ai accelerator'
+    }
   }
 }
 
