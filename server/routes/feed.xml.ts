@@ -295,6 +295,18 @@ const articlesData: Record<string, Omit<Article, 'component'>> = {
         author: { name: 'Gianluca' }
       }
     }
+  },
+  'pentagon-ai-showdown': {
+    title: 'The Pentagon AI Showdown: When OpenAI Accepted What Anthropic Refused',
+    description: 'Inside the $200M OpenAI-Pentagon deal and Anthropic\'s refusal to compromise on AI safety. Analysis of the #QuitGPT boycott and the future of autonomous weapons.',
+    category: 'ethics',
+    seo: {
+      structuredData: {
+        datePublished: '2026-03-02',
+        dateModified: '2026-03-02',
+        author: { name: 'Gianluca' }
+      }
+    }
   }
 }
 

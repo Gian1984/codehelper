@@ -297,6 +297,19 @@ const articlesData: Record<string, Omit<Article, 'component'>> = {
       },
       keywords: 'thermal computing, mit thermal silicon, heat as computation, inverse design silicon, matrix vector multiplication heat, analog computing, phase change materials, memristor, neuromorphic chips, analog ai accelerator'
     }
+  },
+  'pentagon-ai-showdown': {
+    title: 'The Pentagon AI Showdown: When OpenAI Accepted What Anthropic Refused',
+    description: 'Inside the $200M OpenAI-Pentagon deal and Anthropic\'s refusal to compromise on AI safety. Analysis of the #QuitGPT boycott and the future of autonomous weapons.',
+    category: 'ethics',
+    seo: {
+      structuredData: {
+        datePublished: '2026-03-02',
+        dateModified: '2026-03-02',
+        author: { name: 'Gianluca' }
+      },
+      keywords: 'openai pentagon deal, anthropic ai safety, dario amodei interview, sam altman pentagon, quitgpt boycott, autonomous weapons ai, ai ethics showdown, maduro raid ai, supply chain risk anthropic'
+    }
   }
 }
 

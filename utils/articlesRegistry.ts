@@ -1405,4 +1405,60 @@ export const articles: Record<string, Article> = {
         }
     },
 
+    'pentagon-ai-showdown': {
+        title: 'The Pentagon AI Showdown: When OpenAI Accepted What Anthropic Refused',
+        description:
+            'Write an in-depth English article about the OpenAI-Pentagon deal and Anthropic\'s refusal to compromise on AI safety guardrails (Feb/March 2026).',
+        category: 'ethics',
+        component: () =>
+            import('~/components/articles/ethics/PentagonAiShowdown.vue') as Promise<{ default: DefineComponent }>,
+        seo: {
+            title: `The Pentagon AI Showdown: OpenAI vs Anthropic – ${BRAND}`,
+            description:
+                'Inside the $200M OpenAI-Pentagon deal and Anthropic\'s refusal to compromise on AI safety. Analysis of the #QuitGPT boycott and the future of autonomous weapons.',
+            ogImage: OG,
+            keywords:
+                'openai pentagon deal, anthropic ai safety, dario amodei interview, sam altman pentagon, quitgpt boycott, autonomous weapons ai, ai ethics showdown, maduro raid ai, supply chain risk anthropic',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'TechArticle',
+                headline: 'The Pentagon AI Showdown: When OpenAI Accepted What Anthropic Refused',
+                description:
+                    'An in-depth analysis of the ideological split between OpenAI and Anthropic regarding military contracts, autonomous weapons, and AI safety guardrails.',
+                author: { '@type': 'Person', name: 'Gianluca' },
+                publisher: {
+                    '@type': 'Organization',
+                    name: 'CodeHelper',
+                    logo: { '@type': 'ImageObject', url: OG }
+                },
+                image: OG,
+                datePublished: '2026-03-02',
+                dateModified: '2026-03-02',
+                mainEntityOfPage: {
+                    '@type': 'WebPage',
+                    '@id': 'https://codehelper.me/articles/pentagon-ai-showdown'
+                },
+                articleSection: 'Ethics',
+                about: [
+                    'AI Ethics',
+                    'Military AI',
+                    'Autonomous Weapons',
+                    'Corporate Responsibility',
+                    'AI Safety'
+                ],
+                keywords: [
+                    'OpenAI',
+                    'Anthropic',
+                    'Pentagon',
+                    'AI Safety',
+                    'Red Lines',
+                    '#QuitGPT',
+                    'Dario Amodei',
+                    'Sam Altman'
+                ],
+                proficiencyLevel: 'General'
+            }
+        }
+    },
+
 }
