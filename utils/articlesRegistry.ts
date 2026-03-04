@@ -1405,6 +1405,67 @@ export const articles: Record<string, Article> = {
         }
     },
 
+    'hacking-ai-search-truth': {
+        title: 'Hacking AI in 20 Minutes: The Slow Death of Trustworthy Search',
+        description:
+            'A BBC journalist tricked ChatGPT and Google into spreading lies with a single blog post. A reflection on AI manipulation, the content death spiral, model collapse, and the slow erosion of internet freedom.',
+        category: 'ethics',
+        component: () =>
+            import('~/components/articles/ethics/HackingAiSearchTruth.vue') as Promise<{ default: DefineComponent }>,
+        seo: {
+            title: `Hacking AI in 20 Minutes: The Slow Death of Trustworthy Search – ${BRAND}`,
+            description:
+                'A BBC journalist hacked ChatGPT and Google with a fake blog post in 20 minutes. Analysis of AI search manipulation, model collapse, content creator starvation, and the erosion of internet freedom.',
+            ogImage: OG,
+            keywords:
+                'ai search manipulation, hacking chatgpt, google ai overviews hack, ai misinformation, model collapse, ai content death spiral, seo ai manipulation, ai trust crisis, internet freedom, ai fake content',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'TechArticle',
+                headline: 'Hacking AI in 20 Minutes: The Slow Death of Trustworthy Search',
+                description:
+                    'Analysis of how AI chatbots can be manipulated with simple blog posts, the implications for information accuracy, the content death spiral affecting creators, and the erosion of the open internet.',
+                author: { '@type': 'Person', name: 'Gianluca' },
+                publisher: {
+                    '@type': 'Organization',
+                    name: 'CodeHelper',
+                    logo: { '@type': 'ImageObject', url: OG }
+                },
+                image: OG,
+                datePublished: '2026-03-04',
+                dateModified: '2026-03-04',
+                mainEntityOfPage: {
+                    '@type': 'WebPage',
+                    '@id': 'https://codehelper.me/articles/hacking-ai-search-truth'
+                },
+                articleSection: 'Ethics',
+                about: [
+                    'AI Search Manipulation',
+                    'Misinformation',
+                    'Model Collapse',
+                    'Content Creator Economy',
+                    'Internet Freedom',
+                    'Critical Thinking'
+                ],
+                keywords: [
+                    'AI search manipulation',
+                    'ChatGPT hacking',
+                    'Google AI Overviews',
+                    'model collapse',
+                    'content death spiral',
+                    'SEO AI',
+                    'misinformation',
+                    'internet freedom',
+                    'AI trust',
+                    'Lily Ray',
+                    'Thomas Germain',
+                    'BBC'
+                ],
+                proficiencyLevel: 'General'
+            }
+        }
+    },
+
     'pentagon-ai-showdown': {
         title: 'The Pentagon AI Showdown: When OpenAI Accepted What Anthropic Refused',
         description:

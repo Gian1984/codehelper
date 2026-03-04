@@ -298,6 +298,19 @@ const articlesData: Record<string, Omit<Article, 'component'>> = {
       keywords: 'thermal computing, mit thermal silicon, heat as computation, inverse design silicon, matrix vector multiplication heat, analog computing, phase change materials, memristor, neuromorphic chips, analog ai accelerator'
     }
   },
+  'hacking-ai-search-truth': {
+    title: 'Hacking AI in 20 Minutes: The Slow Death of Trustworthy Search',
+    description: 'A BBC journalist tricked ChatGPT and Google into spreading lies with a single blog post. A reflection on AI manipulation, the content death spiral, model collapse, and the slow erosion of internet freedom.',
+    category: 'ethics',
+    seo: {
+      structuredData: {
+        datePublished: '2026-03-04',
+        dateModified: '2026-03-04',
+        author: { name: 'Gianluca' }
+      },
+      keywords: 'ai search manipulation, hacking chatgpt, google ai overviews hack, ai misinformation, model collapse, ai content death spiral, seo ai manipulation, ai trust crisis, internet freedom'
+    }
+  },
   'pentagon-ai-showdown': {
     title: 'The Pentagon AI Showdown: When OpenAI Accepted What Anthropic Refused',
     description: 'Inside the $200M OpenAI-Pentagon deal and Anthropic\'s refusal to compromise on AI safety. Analysis of the #QuitGPT boycott and the future of autonomous weapons.',
