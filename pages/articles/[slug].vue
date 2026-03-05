@@ -167,6 +167,10 @@ useHead({
     ...(articleData.seo?.structuredData
       ? [{ type: 'application/ld+json', innerHTML: JSON.stringify({ '@context': 'https://schema.org', ...articleData.seo.structuredData }) }]
       : []),
+    // FAQ structured data
+    ...(articleData.seo?.faqSchema
+      ? [{ type: 'application/ld+json', innerHTML: JSON.stringify({ '@context': 'https://schema.org', ...articleData.seo.faqSchema }) }]
+      : []),
     // Breadcrumb structured data
     {
       type: 'application/ld+json',

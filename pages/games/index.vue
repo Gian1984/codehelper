@@ -97,11 +97,15 @@ useSeoMeta({
   ogTitle: 'CodeHelper — Games for Developers',
   ogDescription: 'Browser-based games for developers. Learn and have fun with CodeHelper.',
   ogImage: '/images/codehelper_blog_OG.webp',
-  ogUrl: 'https://codehelper.me/games',
+  ogUrl: 'https://codehelper.me/games/',
   twitterCard: 'summary_large_image',
   twitterTitle: 'CodeHelper — Developer Games',
   twitterDescription: 'Browser-based games for developers. Learn and have fun with CodeHelper.',
   twitterImage: '/images/codehelper_blog_OG.webp'
+})
+
+useHead({
+  link: [{ rel: 'canonical', href: 'https://codehelper.me/games/' }]
 })
 
 // Structured Data
@@ -113,7 +117,7 @@ useHead({
         '@context': 'https://schema.org',
         '@type': 'CollectionPage',
         name: 'CodeHelper Games',
-        url: 'https://codehelper.me/games',
+        url: 'https://codehelper.me/games/',
         description: 'Browser-based games for developers.',
         image: 'https://codehelper.me/images/codehelper_blog_OG.webp',
         potentialAction: {

@@ -96,11 +96,15 @@ useSeoMeta({
   ogTitle: 'CodeHelper — Articles for Developers',
   ogDescription: 'Browse articles written for developers. Learn about web performance, accessibility, SEO, and more.',
   ogImage: '/images/codehelper_blog_OG.webp',
-  ogUrl: 'https://codehelper.me/articles',
+  ogUrl: 'https://codehelper.me/articles/',
   twitterCard: 'summary_large_image',
   twitterTitle: 'CodeHelper — Developer Articles',
   twitterDescription: 'Expert-written articles for frontend developers. Learn and grow with CodeHelper.',
   twitterImage: '/images/codehelper_blog_OG.webp'
+})
+
+useHead({
+  link: [{ rel: 'canonical', href: 'https://codehelper.me/articles/' }]
 })
 
 // Structured Data

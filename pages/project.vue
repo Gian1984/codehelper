@@ -37,10 +37,10 @@
             Everything runs in your browser — <strong class="text-white">fast, private, and free forever</strong>.
           </p>
           <div class="mt-10 flex items-center justify-center lg:justify-start gap-x-6">
-            <NuxtLink to="/tools" class="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400">
+            <NuxtLink to="/tools/" class="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400">
               Get started
             </NuxtLink>
-            <NuxtLink to="/about" class="text-sm/6 font-semibold text-white">Learn more <span aria-hidden="true">→</span></NuxtLink>
+            <NuxtLink to="/about/" class="text-sm/6 font-semibold text-white">Learn more <span aria-hidden="true">→</span></NuxtLink>
           </div>
         </div>
       </div>
@@ -78,7 +78,7 @@
       </div>
       <div class="grid gap-8 lg:grid-cols-3">
         <!-- Privacy-First Tools -->
-        <NuxtLink to="/tools" class="block rounded-lg bg-gradient-to-br from-indigo-900/20 to-indigo-800/10 border border-indigo-500/30 p-8 hover:shadow-lg hover:border-indigo-500 transition">
+        <NuxtLink to="/tools/" class="block rounded-lg bg-gradient-to-br from-indigo-900/20 to-indigo-800/10 border border-indigo-500/30 p-8 hover:shadow-lg hover:border-indigo-500 transition">
           <h3 class="text-xl font-semibold text-white mb-4">Privacy-First Tools</h3>
           <p class="text-gray-300 mb-4">
             100+ developer utilities running entirely in your browser. Format code, convert data,
@@ -104,7 +104,7 @@
         </NuxtLink>
 
         <!-- Curated Resources -->
-        <NuxtLink to="/resources" class="block rounded-lg bg-gradient-to-br from-purple-900/20 to-purple-800/10 border border-purple-500/30 p-8 hover:shadow-lg hover:border-purple-500 transition">
+        <NuxtLink to="/resources/" class="block rounded-lg bg-gradient-to-br from-purple-900/20 to-purple-800/10 border border-purple-500/30 p-8 hover:shadow-lg hover:border-purple-500 transition">
           <h3 class="text-xl font-semibold text-white mb-4">Curated Resources</h3>
           <p class="text-gray-300 mb-4">
             800+ hand-picked external tools and resources. Discover the best UI libraries,
@@ -214,8 +214,8 @@
           </div>
         </dl>
         <div class="mt-20 flex items-center justify-center gap-x-6">
-          <NuxtLink to="/tools" class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-xs hover:bg-gray-100">Get started</NuxtLink>
-          <NuxtLink to="/about" class="text-sm/6 font-semibold text-white">Learn more <span aria-hidden="true">→</span></NuxtLink>
+          <NuxtLink to="/tools/" class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-xs hover:bg-gray-100">Get started</NuxtLink>
+          <NuxtLink to="/about/" class="text-sm/6 font-semibold text-white">Learn more <span aria-hidden="true">→</span></NuxtLink>
         </div>
       </div>
     </div>
@@ -244,7 +244,7 @@
           </li>
         </ul>
         <div class="mt-20 flex items-center justify-center gap-x-6">
-          <NuxtLink to="/articles" class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-xs hover:bg-gray-100">
+          <NuxtLink to="/articles/" class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-xs hover:bg-gray-100">
             Read all articles
           </NuxtLink>
         </div>

@@ -383,12 +383,12 @@ export const tools: Record<string, Tool> = {
         component: () =>
             import('~/components/tools/formatter/VarDumpFormatter.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `Free PHP var_dump() Formatter - Beautify Output Online – ${BRAND}`,
+            title: `PHP var_dump() Formatter & Beautifier – Pretty Print Online – ${BRAND}`,
             description:
-                'Clean up messy PHP var_dump() output instantly! Format arrays & objects into readable code. Perfect for debugging. Free, paste & format. No signup.',
+                'Paste messy PHP var_dump() output and get clean, readable formatting instantly. Supports arrays, objects, and nested structures. Free online tool, no signup needed.',
             ogImage: OG,
             keywords:
-                'PHP var_dump, formatter, pretty print, PHP arrays, dump viewer, debug tool, PHP debugging',
+                'PHP var_dump, formatter, pretty print, PHP arrays, dump viewer, debug tool, PHP debugging, var_dump pretty, pretty var_dump, var_dump beautifier, php var_dump pretty online',
             structuredData: {
                 '@context': 'https://schema.org',
                 '@type': 'SoftwareApplication',
@@ -933,12 +933,12 @@ export const tools: Record<string, Tool> = {
         category: 'imaging',
         component: () => import('~/components/tools/imaging/ClipPathMaker.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `Free CSS clip-path Generator - Create Shapes Visually Online – ${BRAND}`,
+            title: `CSS Clip-Path Generator – Polygon, Circle & Ellipse Editor – ${BRAND}`,
             description:
-                'Create stunning CSS clip-path shapes in seconds! Drag points to build polygons, circles & ellipses. Preview on images, copy CSS instantly. No signup, 100% free.',
+                'Visual CSS clip-path generator with drag-and-drop points. Create polygon, circle, and ellipse shapes, preview on images, and copy clean CSS code. Free online tool.',
             ogImage: OG,
             keywords:
-                'css clip-path generator, polygon editor, clip path maker, image clipping, css shapes, polygon points, circle clip-path, ellipse clip-path, visual css editor, draggable points, clip-path polygon, css masking, shape generator, web design tool',
+                'css clip-path generator, polygon editor, clip path maker, image clipping, css shapes, polygon points, circle clip-path, ellipse clip-path, visual css editor, draggable points, clip-path polygon, css masking, shape generator, web design tool, clip path generator, clip-path maker, polygon clip path, css shapes generator',
             structuredData: {
                 '@context': 'https://schema.org',
                 '@type': 'SoftwareApplication',

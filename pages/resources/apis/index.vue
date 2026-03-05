@@ -160,11 +160,15 @@ useSeoMeta({
   ogTitle: 'Public APIs Directory - CodeHelper',
   ogDescription: 'Curated collection of 400+ free public APIs for developers across 40 categories',
   ogImage: '/images/codehelper_OGIMAGE.webp',
-  ogUrl: 'https://codehelper.me/resources/apis',
+  ogUrl: 'https://codehelper.me/resources/apis/',
   twitterCard: 'summary_large_image',
   twitterTitle: 'Public APIs Directory - CodeHelper',
   twitterDescription: '400+ free public APIs for developers',
   twitterImage: '/images/codehelper_OGIMAGE.webp'
+})
+
+useHead({
+  link: [{ rel: 'canonical', href: 'https://codehelper.me/resources/apis/' }]
 })
 
 // Structured Data
@@ -177,7 +181,7 @@ useHead({
         '@type': 'CollectionPage',
         name: 'Public APIs Directory',
         description: 'Curated collection of free public APIs for developers',
-        url: 'https://codehelper.me/resources/apis',
+        url: 'https://codehelper.me/resources/apis/',
         mainEntity: {
           '@type': 'ItemList',
           numberOfItems: getTotalAPIsCount(),

@@ -130,11 +130,15 @@ useSeoMeta({
   ogTitle: 'External Developer Resources - CodeHelper',
   ogDescription: 'Curated collection of 800+ free developer tools and resources for designers and developers.',
   ogImage: '/images/codehelper_OGIMAGE.webp',
-  ogUrl: 'https://codehelper.me/resources',
+  ogUrl: 'https://codehelper.me/resources/',
   twitterCard: 'summary_large_image',
   twitterTitle: 'External Developer Resources - CodeHelper',
   twitterDescription: '800+ curated free developer tools and resources',
   twitterImage: '/images/codehelper_OGIMAGE.webp'
+})
+
+useHead({
+  link: [{ rel: 'canonical', href: 'https://codehelper.me/resources/' }]
 })
 
 // Structured Data
@@ -147,7 +151,7 @@ useHead({
         '@type': 'CollectionPage',
         name: 'External Developer Resources',
         description: 'Curated collection of free developer tools, libraries, and resources',
-        url: 'https://codehelper.me/resources',
+        url: 'https://codehelper.me/resources/',
         mainEntity: {
           '@type': 'ItemList',
           numberOfItems: getTotalResourcesCount(),

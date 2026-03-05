@@ -88,11 +88,15 @@ useSeoMeta({
   ogTitle: 'CodeHelper — Free Tools for Developers',
   ogDescription: 'All-in-one web tools for developers. Format JSON, minify CSS, convert code, and more — fast and free.',
   ogImage: '/images/codehelper_OGIMAGE.webp',
-  ogUrl: 'https://codehelper.me',
+  ogUrl: 'https://codehelper.me/tools/',
   twitterCard: 'summary_large_image',
   twitterTitle: 'CodeHelper — Free Tools for Developers',
   twitterDescription: 'A modern toolbox for coders: JSON formatter, CSS minifier, and more.',
   twitterImage: '/images/codehelper_OGIMAGE.webp'
+})
+
+useHead({
+  link: [{ rel: 'canonical', href: 'https://codehelper.me/tools/' }]
 })
 
 // Structured Data

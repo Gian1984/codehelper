@@ -16,11 +16,11 @@
     <div v-else>
       <!-- Breadcrumbs -->
       <nav class="mb-6 flex items-center text-sm text-gray-400">
-        <NuxtLink to="/resources" class="hover:text-white transition">Resources</NuxtLink>
+        <NuxtLink to="/resources/" class="hover:text-white transition">Resources</NuxtLink>
         <svg class="w-4 h-4 mx-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
         </svg>
-        <NuxtLink to="/resources/apis" class="hover:text-white transition">APIs</NuxtLink>
+        <NuxtLink to="/resources/apis/" class="hover:text-white transition">APIs</NuxtLink>
         <svg class="w-4 h-4 mx-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
         </svg>
@@ -184,7 +184,7 @@
           <NuxtLink
             v-for="cat in relatedCategories"
             :key="cat.slug"
-            :to="`/resources/apis/${cat.slug}`"
+            :to="`/resources/apis/${cat.slug}/`"
             class="block p-4 rounded-lg bg-gray-800 border border-gray-700 hover:border-indigo-500 hover:shadow-lg transition"
           >
             <h4 class="text-white font-medium mb-1">{{ cat.title }}</h4>
@@ -238,7 +238,7 @@ useSeoMeta({
     return categoryMeta.value.seo?.description || categoryMeta.value.description
   },
   ogImage: () => categoryMeta.value?.seo?.ogImage || '/images/codehelper_OGIMAGE.webp',
-  ogUrl: () => `https://codehelper.me/resources/apis/${slug}`,
+  ogUrl: () => `https://codehelper.me/resources/apis/${slug}/`,
   twitterCard: 'summary_large_image',
   keywords: () => categoryMeta.value?.seo?.keywords
 })
@@ -257,7 +257,7 @@ useHead({
           '@type': 'CollectionPage',
           name: categoryMeta.value?.title,
           description: categoryMeta.value?.description,
-          url: `https://codehelper.me/resources/apis/${slug}`,
+          url: `https://codehelper.me/resources/apis/${slug}/`,
           mainEntity: {
             '@type': 'ItemList',
             numberOfItems: apis.value.length,
@@ -272,6 +272,9 @@ useHead({
         })
       }
     }
+  ],
+  link: [
+    { rel: 'canonical', href: `https://codehelper.me/resources/apis/${slug}/` }
   ],
   __dangerouslyDisableSanitizers: ['script']
 } as any)

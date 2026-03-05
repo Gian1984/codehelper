@@ -70,7 +70,7 @@
       </h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <!-- CodeHelper Tools -->
-        <NuxtLink to="/tools" class="block rounded-lg bg-gradient-to-br from-indigo-900/30 to-indigo-800/20 border border-indigo-500/30 p-8 hover:border-indigo-500 hover:shadow-lg transition">
+        <NuxtLink to="/tools/" class="block rounded-lg bg-gradient-to-br from-indigo-900/30 to-indigo-800/20 border border-indigo-500/30 p-8 hover:border-indigo-500 hover:shadow-lg transition">
           <div class="w-12 h-12 rounded-lg bg-indigo-600 flex items-center justify-center mb-4">
             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
@@ -101,7 +101,7 @@
         </NuxtLink>
 
         <!-- External Resources -->
-        <NuxtLink to="/resources" class="block rounded-lg bg-gradient-to-br from-purple-900/30 to-purple-800/20 border border-purple-500/30 p-8 hover:border-purple-500 hover:shadow-lg transition">
+        <NuxtLink to="/resources/" class="block rounded-lg bg-gradient-to-br from-purple-900/30 to-purple-800/20 border border-purple-500/30 p-8 hover:border-purple-500 hover:shadow-lg transition">
           <div class="w-12 h-12 rounded-lg bg-purple-600 flex items-center justify-center mb-4">
             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
@@ -131,7 +131,7 @@
         </NuxtLink>
 
         <!-- Public APIs -->
-        <NuxtLink to="/resources/apis" class="block rounded-lg bg-gradient-to-br from-pink-900/30 to-pink-800/20 border border-pink-500/30 p-8 hover:border-pink-500 hover:shadow-lg transition">
+        <NuxtLink to="/resources/apis/" class="block rounded-lg bg-gradient-to-br from-pink-900/30 to-pink-800/20 border border-pink-500/30 p-8 hover:border-pink-500 hover:shadow-lg transition">
           <div class="w-12 h-12 rounded-lg bg-pink-600 flex items-center justify-center mb-4">
             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -170,7 +170,7 @@
         <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
           Popular Developer Tools
         </h2>
-        <NuxtLink to="/tools" class="text-indigo-400 hover:text-indigo-300 text-sm font-medium hidden sm:block">
+        <NuxtLink to="/tools/" class="text-indigo-400 hover:text-indigo-300 text-sm font-medium hidden sm:block">
           View all →
         </NuxtLink>
       </div>
@@ -183,7 +183,7 @@
         </li>
       </ul>
       <div class="text-center mt-10 sm:hidden">
-        <NuxtLink to="/tools" class="bg-indigo-600 px-5 py-3 rounded-lg hover:bg-indigo-500 text-white font-medium inline-block" aria-label="Explore all developer tools">
+        <NuxtLink to="/tools/" class="bg-indigo-600 px-5 py-3 rounded-lg hover:bg-indigo-500 text-white font-medium inline-block" aria-label="Explore all developer tools">
           Explore all tools
         </NuxtLink>
       </div>
@@ -197,7 +197,7 @@
         <h2 class="text-3xl font-semibold tracking-tight text-white sm:text-4xl">
           Featured Resources
         </h2>
-        <NuxtLink to="/resources" class="text-purple-400 hover:text-purple-300 text-sm font-medium hidden sm:block">
+        <NuxtLink to="/resources/" class="text-purple-400 hover:text-purple-300 text-sm font-medium hidden sm:block">
           View all →
         </NuxtLink>
       </div>
@@ -205,7 +205,7 @@
         <NuxtLink
           v-for="category in featuredResourceCategories"
           :key="category.slug"
-          :to="`/resources/${category.slug}`"
+          :to="`/resources/${category.slug}/`"
           class="rounded-lg bg-gray-800 border border-gray-700 p-6 hover:border-purple-500 hover:shadow-lg transition"
         >
           <h3 class="text-xl font-semibold text-white mb-2">{{ category.title }}</h3>
@@ -214,7 +214,7 @@
         </NuxtLink>
       </div>
       <div class="text-center mt-10 sm:hidden">
-        <NuxtLink to="/resources" class="bg-purple-600 px-5 py-3 rounded-lg hover:bg-purple-500 text-white font-medium inline-block">
+        <NuxtLink to="/resources/" class="bg-purple-600 px-5 py-3 rounded-lg hover:bg-purple-500 text-white font-medium inline-block">
           Explore all resources
         </NuxtLink>
       </div>
@@ -231,7 +231,7 @@
           </h2>
           <p class="text-gray-400">Insights, guides, and best practices for developers</p>
         </div>
-        <NuxtLink to="/articles" class="text-indigo-400 hover:text-indigo-300 text-sm font-medium hidden sm:block">
+        <NuxtLink to="/articles/" class="text-indigo-400 hover:text-indigo-300 text-sm font-medium hidden sm:block">
           View all →
         </NuxtLink>
       </div>
@@ -244,7 +244,7 @@
         </li>
       </ul>
       <div class="text-center mt-10 sm:hidden">
-        <NuxtLink to="/articles" class="bg-indigo-600 px-5 py-3 rounded-lg hover:bg-indigo-500 text-white font-medium inline-block" aria-label="Explore articles and tutorials">
+        <NuxtLink to="/articles/" class="bg-indigo-600 px-5 py-3 rounded-lg hover:bg-indigo-500 text-white font-medium inline-block" aria-label="Explore articles and tutorials">
           Explore Articles
         </NuxtLink>
       </div>
@@ -297,17 +297,17 @@ import { getTotalAPIsCount } from '~/utils/apiRegistry'
 import { useSeoMeta, useHead } from '#imports'
 
 useSeoMeta({
-  title: 'CodeHelper — Free Developer Tools, Resources & APIs',
-  description: '100+ privacy-first tools, 800+ curated resources, and 400+ public APIs. Format JSON, browse UI libraries, discover APIs—all fast, free, and built for developers.',
-  ogTitle: 'CodeHelper — Complete Developer Toolkit',
-  ogDescription: 'Privacy-first tools, curated resources, and public APIs directory. Everything developers need in one place.',
+  title: 'CodeHelper – Free Online Developer Tools, Resources & APIs',
+  description: '100+ free developer tools, 800+ curated resources, and 400+ public APIs. Format JSON, generate CSS, compress images, and more. Privacy-first, no signup, runs in your browser.',
+  ogTitle: 'CodeHelper – Free Online Developer Tools, Resources & APIs',
+  ogDescription: '100+ free developer tools, 800+ curated resources, and 400+ public APIs. Format JSON, generate CSS, compress images, and more. Privacy-first, no signup, runs in your browser.',
   ogImage: '/images/codehelper_OGIMAGE.webp',
   ogUrl: 'https://codehelper.me',
   ogSiteName: 'CodeHelper',
   ogType: 'website',
   twitterCard: 'summary_large_image',
-  twitterTitle: 'CodeHelper — Free Developer Tools, Resources & APIs',
-  twitterDescription: '100+ tools, 800+ resources, 400+ APIs. All free, fast, and privacy-focused.',
+  twitterTitle: 'CodeHelper – Free Online Developer Tools, Resources & APIs',
+  twitterDescription: '100+ free developer tools, 800+ curated resources, and 400+ public APIs. Privacy-first, no signup, runs in your browser.',
   twitterImage: '/images/codehelper_OGIMAGE.webp',
   robots: 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1',
   author: 'CodeHelper',

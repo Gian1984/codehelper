@@ -5,7 +5,7 @@
       :items="[
         { title: 'Home', url: '/' },
         { title: 'Tools', url: '/tools' },
-        { title: toolData.title, url: `/tools/${slug}` }
+        { title: toolData.title, url: `/tools/${slug}/` }
       ]"
     />
 

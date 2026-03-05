@@ -26,22 +26,22 @@
                 <NuxtLink to="/" :class="navClass('/')"
                           itemprop="url"
                           title="CodeHelper Home">Home</NuxtLink>
-                <NuxtLink to="/tools" :class="navClass('/tools')"
+                <NuxtLink to="/tools/" :class="navClass('/tools')"
                           itemprop="url"
                           title="Developer Tools">Tools</NuxtLink>
-                <NuxtLink to="/articles" :class="navClass('/articles')"
+                <NuxtLink to="/articles/" :class="navClass('/articles')"
                           itemprop="url"
                           title="Technical Articles">Articles</NuxtLink>
-                <NuxtLink to="/games" :class="navClass('/games')"
+                <NuxtLink to="/games/" :class="navClass('/games')"
                           itemprop="url"
                           title="Developer Games">Games</NuxtLink>
-                <NuxtLink to="/resources" :class="navClass('/resources')"
+                <NuxtLink to="/resources/" :class="navClass('/resources')"
                           itemprop="url"
                           title="External Resources">Resources</NuxtLink>
-                <NuxtLink to="/project" :class="navClass('/project')"
+                <NuxtLink to="/project/" :class="navClass('/project')"
                           itemprop="url"
                           title="Project Overview">Project</NuxtLink>
-                <NuxtLink to="/about" :class="navClass('/about')"
+                <NuxtLink to="/about/" :class="navClass('/about')"
                           itemprop="url"
                           title="About CodeHelper">About</NuxtLink>
               </div>
@@ -120,12 +120,12 @@
       <DisclosurePanel class="lg:hidden" id="mobile-primary-nav">
         <div class="space-y-1 px-2 pt-2 pb-3" role="menu" aria-label="Mobile primary">
           <NuxtLink to="/" @click="close()" :class="mobileNavClass('/')" role="menuitem" itemprop="url" title="CodeHelper Home">Home</NuxtLink>
-          <NuxtLink to="/tools" @click="close()" :class="mobileNavClass('/tools')" role="menuitem" itemprop="url" title="Developer Tools">Tools</NuxtLink>
-          <NuxtLink to="/articles" @click="close()" :class="mobileNavClass('/articles')" role="menuitem" itemprop="url" title="Technical Articles">Articles</NuxtLink>
-          <NuxtLink to="/games" @click="close()" :class="mobileNavClass('/games')" role="menuitem" itemprop="url" title="Developer Games">Games</NuxtLink>
-          <NuxtLink to="/resources" @click="close()" :class="mobileNavClass('/resources')" role="menuitem" itemprop="url" title="External Resources">Resources</NuxtLink>
-          <NuxtLink to="/project" @click="close()" :class="mobileNavClass('/project')" role="menuitem" itemprop="url" title="Project Overview">Project</NuxtLink>
-          <NuxtLink to="/about" @click="close()" :class="mobileNavClass('/about')" role="menuitem" itemprop="url" title="About CodeHelper">About</NuxtLink>
+          <NuxtLink to="/tools/" @click="close()" :class="mobileNavClass('/tools')" role="menuitem" itemprop="url" title="Developer Tools">Tools</NuxtLink>
+          <NuxtLink to="/articles/" @click="close()" :class="mobileNavClass('/articles')" role="menuitem" itemprop="url" title="Technical Articles">Articles</NuxtLink>
+          <NuxtLink to="/games/" @click="close()" :class="mobileNavClass('/games')" role="menuitem" itemprop="url" title="Developer Games">Games</NuxtLink>
+          <NuxtLink to="/resources/" @click="close()" :class="mobileNavClass('/resources')" role="menuitem" itemprop="url" title="External Resources">Resources</NuxtLink>
+          <NuxtLink to="/project/" @click="close()" :class="mobileNavClass('/project')" role="menuitem" itemprop="url" title="Project Overview">Project</NuxtLink>
+          <NuxtLink to="/about/" @click="close()" :class="mobileNavClass('/about')" role="menuitem" itemprop="url" title="About CodeHelper">About</NuxtLink>
         </div>
       </DisclosurePanel>
     </Disclosure>

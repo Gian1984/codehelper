@@ -11,6 +11,7 @@ type Article = {
         ogImage?: string
         keywords?: string
         structuredData?: Record<string, any>
+        faqSchema?: Record<string, any>
     }
 }
 
@@ -47,7 +48,7 @@ export const articles: Record<string, Article> = {
                 image: OG,
                 datePublished: '2025-09-03',
                 dateModified: '2025-09-03',
-                mainEntityOfPage: { '@type': 'WebPage', '@id': 'https://codehelper.me/articles/how-to-use-json' },
+                mainEntityOfPage: { '@type': 'WebPage', '@id': 'https://codehelper.me/articles/how-to-use-json/' },
                 articleSection: 'JavaScript',
                 keywords: [
                     'JSON.parse',
@@ -95,7 +96,7 @@ export const articles: Record<string, Article> = {
                 dateModified: '2025-09-04',
                 mainEntityOfPage: {
                     '@type': 'WebPage',
-                    '@id': 'https://codehelper.me/articles/clipboard-snippets'
+                    '@id': 'https://codehelper.me/articles/clipboard-snippets/'
                 },
                 articleSection: 'JavaScript',
                 keywords: [
@@ -141,7 +142,7 @@ export const articles: Record<string, Article> = {
                 image: OG,
                 datePublished: '2025-09-02',
                 dateModified: '2025-09-02',
-                mainEntityOfPage: { '@type': 'WebPage', '@id': 'https://codehelper.me/articles/ai-hacking' },
+                mainEntityOfPage: { '@type': 'WebPage', '@id': 'https://codehelper.me/articles/ai-hacking/' },
                 articleSection: 'Security',
                 about: ['Prompt Injection', 'Model Safety', 'Data Exfiltration'],
                 keywords: [
@@ -189,7 +190,7 @@ export const articles: Record<string, Article> = {
                 dateModified: '2025-09-16',
                 mainEntityOfPage: {
                     '@type': 'WebPage',
-                    '@id': 'https://codehelper.me/articles/ai-cyberattacks-rising'
+                    '@id': 'https://codehelper.me/articles/ai-cyberattacks-rising/'
                 },
                 articleSection: 'Security',
                 about: ['Artificial Intelligence', 'Cybersecurity', 'Ransomware', 'Deepfakes'],
@@ -240,7 +241,7 @@ export const articles: Record<string, Article> = {
                 dateModified: '2025-09-01',
                 mainEntityOfPage: {
                     '@type': 'WebPage',
-                    '@id': 'https://codehelper.me/articles/hacker-dropbox'
+                    '@id': 'https://codehelper.me/articles/hacker-dropbox/'
                 },
                 articleSection: 'Security',
                 about: ['Raspberry Pi', 'ZTNA', 'Remote Access'],
@@ -288,7 +289,7 @@ export const articles: Record<string, Article> = {
                 dateModified: '2025-09-07',
                 mainEntityOfPage: {
                     '@type': 'WebPage',
-                    '@id': 'https://codehelper.me/articles/polar-night-sand-battery'
+                    '@id': 'https://codehelper.me/articles/polar-night-sand-battery/'
                 },
                 articleSection: 'Energy',
                 about: [
@@ -340,7 +341,7 @@ export const articles: Record<string, Article> = {
                 dateModified: '2025-09-08',
                 mainEntityOfPage: {
                     '@type': 'WebPage',
-                    '@id': 'https://codehelper.me/articles/co2-battery'
+                    '@id': 'https://codehelper.me/articles/co2-battery/'
                 },
                 articleSection: 'Energy',
                 about: [
@@ -369,18 +370,18 @@ export const articles: Record<string, Article> = {
         component: () =>
             import('~/components/articles/hardware/RamPricesSurge2026.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `Why RAM Prices Are Surging in 2026: The Complete Breakdown – ${BRAND}`,
+            title: `Why RAM Is So Expensive in 2026: DDR4 & DDR5 Price Analysis – ${BRAND}`,
             description:
-                'RAM prices have increased 120-200% in 2026. Learn why DDR4 and DDR5 costs are rising due to AI demand, HBM production, wafer shortages, and when prices might stabilize.',
+                'RAM prices have surged 120-200% in 2026. DRAM spot prices, DDR4 vs DDR5 cost trends, reasons behind the shortage, and when prices might drop. Updated with latest DRAMeXchange data.',
             ogImage: OG,
             keywords:
                 'ram prices 2026, ddr5 price increase, dram shortage, hbm memory, ai memory demand, ddr4 prices rising, memory market, semiconductor shortage, wafer supply',
             structuredData: {
                 '@context': 'https://schema.org',
                 '@type': 'TechArticle',
-                headline: 'Why RAM Prices Are Surging in 2026',
+                headline: 'Why RAM Is So Expensive in 2026: DDR4 & DDR5 Price Analysis',
                 description:
-                    'Comprehensive analysis of the 2026 memory market: AI-driven HBM demand, wafer constraints, DDR4 phase-out, and strategies for consumers and businesses.',
+                    'RAM prices have surged 120-200% in 2026. DRAM spot prices, DDR4 vs DDR5 cost trends, reasons behind the shortage, and when prices might drop. Updated with latest DRAMeXchange data.',
                 author: { '@type': 'Person', name: 'Gianluca' },
                 publisher: {
                     '@type': 'Organization',
@@ -392,7 +393,7 @@ export const articles: Record<string, Article> = {
                 dateModified: '2026-01-25',
                 mainEntityOfPage: {
                     '@type': 'WebPage',
-                    '@id': 'https://codehelper.me/articles/ram-prices-surge-2026'
+                    '@id': 'https://codehelper.me/articles/ram-prices-surge-2026/'
                 },
                 articleSection: 'Hardware',
                 about: [
@@ -413,6 +414,43 @@ export const articles: Record<string, Article> = {
                     'memory market 2026'
                 ],
                 proficiencyLevel: 'General'
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'Why is RAM so expensive in 2026?',
+                        acceptedAnswer: {
+                            '@type': 'Answer',
+                            text: 'The primary driver is AI demand: data centers require High Bandwidth Memory (HBM) for training large models, and HBM production competes for the same semiconductor wafers as DDR4 and DDR5. Manufacturers are also managing supply deliberately to protect pricing, and wafer production capacity cannot scale quickly.'
+                        }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'How much have DDR5 prices increased in 2026?',
+                        acceptedAnswer: {
+                            '@type': 'Answer',
+                            text: 'DDR5 modules have increased by 120% to 200% compared to early 2025. Broader DRAM pricing indexes climbed nearly 50% year to date, and contract prices for memory chips rose 30% to 60% in just a few months.'
+                        }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Will RAM prices drop in 2026 or 2027?',
+                        acceptedAnswer: {
+                            '@type': 'Answer',
+                            text: 'Elevated prices are expected to persist through all of 2026 and into at least early or mid-2027. New fabrication facilities are being built, but most will not reach high-volume output until late 2027 or 2028. Meaningful price corrections are not expected before then.'
+                        }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Are DDR4 prices also affected, or only DDR5?',
+                        acceptedAnswer: {
+                            '@type': 'Answer',
+                            text: 'Both DDR4 and DDR5 prices have risen. DDR4 is being actively phased out by manufacturers who are shifting capacity toward DDR5 and HBM, which means fewer DDR4 production lines and less availability. Owners of older systems face higher upgrade costs even though DDR4 is an older standard.'
+                        }
+                    }
+                ]
             }
         }
     },
@@ -448,7 +486,7 @@ export const articles: Record<string, Article> = {
                 dateModified: '2025-09-08',
                 mainEntityOfPage: {
                     '@type': 'WebPage',
-                    '@id': 'https://codehelper.me/articles/samsung-9100-pro-nvme'
+                    '@id': 'https://codehelper.me/articles/samsung-9100-pro-nvme/'
                 },
                 articleSection: 'Hardware',
                 about: [
@@ -478,18 +516,18 @@ export const articles: Record<string, Article> = {
         component: () =>
             import('~/components/articles/education/GitHubStudentPack.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `GitHub Student Developer Pack — Free Tools & Resources – ${BRAND}`,
+            title: `GitHub Student Developer Pack 2026: Full List of Free Tools – ${BRAND}`,
             description:
-                'Discover everything included in GitHub\'s Student Developer Pack: Copilot Pro, JetBrains IDEs, cloud credits, domains, and learning platforms—all free for verified students.',
+                'Complete guide to GitHub Student Developer Pack 2026: Copilot Pro, JetBrains IDEs, DigitalOcean credits, free domains, and 20+ tools. How to apply and what you get.',
             ogImage: OG,
             keywords:
-                'GitHub Student Pack, free developer tools students, GitHub Education benefits, JetBrains free student license, GitHub Copilot free, student cloud credits',
+                'GitHub Student Pack, free developer tools students, GitHub Education benefits, JetBrains free student license, GitHub Copilot free, student cloud credits, github student developer pack 2026, github copilot student free, github student pack tools list',
             structuredData: {
                 '@context': 'https://schema.org',
                 '@type': 'TechArticle',
-                headline: 'GitHub Student Developer Pack — Free Tools & Resources for Students',
+                headline: 'GitHub Student Developer Pack 2026: Full List of Free Tools',
                 description:
-                    'Guide to GitHub\'s Student Developer Pack, including Copilot, JetBrains, cloud credits, domains, and learning resources. Learn how to apply and maximize your benefits.',
+                    'Complete guide to GitHub Student Developer Pack 2026: Copilot Pro, JetBrains IDEs, DigitalOcean credits, free domains, and 20+ tools. How to apply and what you get.',
                 author: { '@type': 'Person', name: 'Gianluca' },
                 publisher: {
                     '@type': 'Organization',
@@ -501,7 +539,7 @@ export const articles: Record<string, Article> = {
                 dateModified: '2025-09-08',
                 mainEntityOfPage: {
                     '@type': 'WebPage',
-                    '@id': 'https://codehelper.me/articles/github-student-pack'
+                    '@id': 'https://codehelper.me/articles/github-student-pack/'
                 },
                 articleSection: 'Education',
                 about: [
@@ -517,6 +555,43 @@ export const articles: Record<string, Article> = {
                     'GitHub Education benefits'
                 ],
                 proficiencyLevel: 'Beginner'
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'Is the GitHub Student Developer Pack free?',
+                        acceptedAnswer: {
+                            '@type': 'Answer',
+                            text: 'Yes, the GitHub Student Developer Pack is completely free for verified students. It unlocks professional-grade developer tools at no cost, including Copilot Pro, JetBrains IDEs, cloud credits, and learning platforms.'
+                        }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Does the GitHub Student Pack include GitHub Copilot?',
+                        acceptedAnswer: {
+                            '@type': 'Answer',
+                            text: 'Yes. The pack includes Copilot Pro free for as long as you remain a verified student. Copilot Pro is GitHub\'s AI pair programming tool that assists with code suggestions directly in your editor.'
+                        }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What tools are included in the GitHub Student Developer Pack?',
+                        acceptedAnswer: {
+                            '@type': 'Answer',
+                            text: 'Key benefits include GitHub Copilot Pro, JetBrains IDEs (IntelliJ IDEA, PyCharm, WebStorm), $200 in DigitalOcean credits, $100 in Microsoft Azure credits, free .me/.tech domains with SSL certificates, and access to learning platforms like Educative, DataCamp, FrontendMasters, and Scrimba.'
+                        }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'How do I apply for the GitHub Student Developer Pack?',
+                        acceptedAnswer: {
+                            '@type': 'Answer',
+                            text: 'You need a GitHub account (age 13+), then verify your enrollment using a school email address or an official document. Open the GitHub Education settings, submit your application, and once approved you can unlock all benefits through the Education portal.'
+                        }
+                    }
+                ]
             }
         }
     },
@@ -552,7 +627,7 @@ export const articles: Record<string, Article> = {
                 dateModified: '2026-01-25',
                 mainEntityOfPage: {
                     '@type': 'WebPage',
-                    '@id': 'https://codehelper.me/articles/claude-code-self-coding'
+                    '@id': 'https://codehelper.me/articles/claude-code-self-coding/'
                 },
                 articleSection: 'Artificial Intelligence',
                 about: [
@@ -585,18 +660,18 @@ export const articles: Record<string, Article> = {
         component: () =>
             import('~/components/articles/ai/MlxTerminalCode.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `MLX-CODE: Local AI Coding Assistant for Apple Silicon (Free) – ${BRAND}`,
+            title: `MLX Qwen2 1.5B Speed on M1 Mac: Benchmarks & Local AI Setup – ${BRAND}`,
             description:
-                'Complete guide to MLX-CODE: 100% local AI coding assistant for macOS with Apple MLX framework. Features 20+ models (Qwen, DeepSeek, Llama 3), intelligent file context, auto-backup, and GPU acceleration. Free alternative to GitHub Copilot.',
+                'Real speed benchmarks for Qwen2 & Qwen2.5 1.5B on M1/M1 Pro with MLX-LM. Token/s performance, model comparison, and step-by-step setup for local AI coding on Apple Silicon.',
             ogImage: OG,
             keywords:
-                'mlx code, local ai coding assistant, apple silicon ai, mlx framework mac, qwen coder, deepseek coder, private ai assistant, offline coding ai, mac ai coding tool, github copilot alternative, apple mlx lm, m1 m2 m3 m4 coding ai',
+                'mlx code, local ai coding assistant, apple silicon ai, mlx framework mac, qwen coder, deepseek coder, private ai assistant, offline coding ai, mac ai coding tool, github copilot alternative, apple mlx lm, m1 m2 m3 m4 coding ai, mlx qwen2 1.5b speed, m1 mac mlx benchmark, mlx-lm qwen2 speed, qwen2.5 1.5b mlx, apple silicon llm speed',
             structuredData: {
                 '@context': 'https://schema.org',
                 '@type': 'TechArticle',
-                headline: 'MLX-CODE: 100% Local AI Coding Assistant for macOS',
+                headline: 'MLX Qwen2 1.5B Speed on M1 Mac: Benchmarks & Local AI Setup',
                 description:
-                    'In-depth guide to MLX-CODE, a local AI coding assistant running on Apple Silicon with MLX framework. Covers installation, models (Qwen 1.5B-32B, DeepSeek V2), features, performance, and privacy.',
+                    'Real speed benchmarks for Qwen2 & Qwen2.5 1.5B on M1/M1 Pro with MLX-LM. Token/s performance, model comparison, and step-by-step setup for local AI coding on Apple Silicon.',
                 author: { '@type': 'Person', name: 'Gianluca' },
                 publisher: {
                     '@type': 'Organization',
@@ -608,7 +683,7 @@ export const articles: Record<string, Article> = {
                 dateModified: '2025-12-07',
                 mainEntityOfPage: {
                     '@type': 'WebPage',
-                    '@id': 'https://codehelper.me/articles/mlx-terminal-code'
+                    '@id': 'https://codehelper.me/articles/mlx-terminal-code/'
                 },
                 articleSection: 'Artificial Intelligence',
                 about: [
@@ -632,6 +707,43 @@ export const articles: Record<string, Article> = {
                     'privacy coding assistant'
                 ],
                 proficiencyLevel: 'Intermediate'
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'How fast is Qwen2 1.5B with MLX-LM on an M1 Mac?',
+                        acceptedAnswer: {
+                            '@type': 'Answer',
+                            text: 'On M1/M2/M3 Macs with 16GB RAM, MLX-LM delivers around 0.8 seconds response time for the Qwen 3B model and approximately 1.5 seconds for Qwen 7B. The 1.5B variant is even lighter and is recommended for demo and testing purposes only, not daily development.'
+                        }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'How do I install MLX-LM on macOS?',
+                        acceptedAnswer: {
+                            '@type': 'Answer',
+                            text: 'First install Python 3.12 via Homebrew, create a virtual environment with python3.12 -m venv ~/.mlx-env, then activate it and run pip install mlx-lm prompt-toolkit pillow. MLX-LM requires macOS 13 Ventura or later and an Apple Silicon chip (M1, M2, M3, or M4).'
+                        }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Which Qwen2 model size should I use on Apple Silicon?',
+                        acceptedAnswer: {
+                            '@type': 'Answer',
+                            text: 'Qwen 7B is recommended for daily development — it requires 8GB RAM, weighs about 4.3GB, and delivers around 1.5 seconds response time on M1/M2/M3. If you have 16GB or more RAM, DeepSeek V2 (~9GB) offers the best code quality with only ~1.8 seconds response time.'
+                        }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Does MLX-LM with Qwen run faster on M4 than M1?',
+                        acceptedAnswer: {
+                            '@type': 'Answer',
+                            text: 'Yes. On an M4 Pro with 24GB RAM, inference is 30-40% faster than on M1/M2, with better memory bandwidth and more efficient power usage. DeepSeek V2 runs with excellent stability on the M4 Pro at that memory configuration.'
+                        }
+                    }
+                ]
             }
         }
     },
@@ -667,7 +779,7 @@ export const articles: Record<string, Article> = {
                 dateModified: '2025-12-10',
                 mainEntityOfPage: {
                     '@type': 'WebPage',
-                    '@id': 'https://codehelper.me/articles/codehelper-resources-apis-update'
+                    '@id': 'https://codehelper.me/articles/codehelper-resources-apis-update/'
                 },
                 articleSection: 'Product Updates',
                 about: [
@@ -725,7 +837,7 @@ export const articles: Record<string, Article> = {
                 dateModified: '2026-01-27',
                 mainEntityOfPage: {
                     '@type': 'WebPage',
-                    '@id': 'https://codehelper.me/articles/intel-core-ultra-series-3'
+                    '@id': 'https://codehelper.me/articles/intel-core-ultra-series-3/'
                 },
                 articleSection: 'Hardware',
                 about: [
@@ -759,18 +871,18 @@ export const articles: Record<string, Article> = {
         component: () =>
             import('~/components/articles/crypto/NftMarket2026.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `NFT Market 2026: Recovery Signs, Liquidity Crisis & Investment Trends – ${BRAND}`,
+            title: `NFT Market Trends 2026: Prices, Volume & Recovery Analysis – ${BRAND}`,
             description:
-                'NFT market analysis for 2026: $220M weekly cap increase, but extreme liquidity constraints persist. Discover which NFT categories attract capital and where collectors are moving their money.',
+                'Is the NFT market recovering in 2026? Weekly trading volume, OpenSea trends, price analysis by category, and where smart money is moving. Data-driven market update.',
             ogImage: OG,
             keywords:
                 'nft market 2026, nft liquidity, nft recovery, opensea, cryptopunks, pudgy penguins, nft airdrops, real world assets nft, utility nft, nft trading volume',
             structuredData: {
                 '@context': 'https://schema.org',
                 '@type': 'TechArticle',
-                headline: 'NFT Market in 2026: Signs of Recovery or Final Gasps?',
+                headline: 'NFT Market Trends 2026: Prices, Volume & Recovery Analysis',
                 description:
-                    'Comprehensive analysis of the NFT market in early 2026, covering liquidity challenges, industry pivots, capital migration to physical collectibles, and NFT categories that still attract investment.',
+                    'Is the NFT market recovering in 2026? Weekly trading volume, OpenSea trends, price analysis by category, and where smart money is moving. Data-driven market update.',
                 author: { '@type': 'Person', name: 'Gianluca' },
                 publisher: {
                     '@type': 'Organization',
@@ -782,7 +894,7 @@ export const articles: Record<string, Article> = {
                 dateModified: '2026-01-27',
                 mainEntityOfPage: {
                     '@type': 'WebPage',
-                    '@id': 'https://codehelper.me/articles/nft-market-2026'
+                    '@id': 'https://codehelper.me/articles/nft-market-2026/'
                 },
                 articleSection: 'Crypto',
                 about: [
@@ -839,7 +951,7 @@ export const articles: Record<string, Article> = {
                 dateModified: '2026-01-28',
                 mainEntityOfPage: {
                     '@type': 'WebPage',
-                    '@id': 'https://codehelper.me/articles/ai-energy-nexus'
+                    '@id': 'https://codehelper.me/articles/ai-energy-nexus/'
                 },
                 articleSection: 'Sustainability',
                 about: [
@@ -895,7 +1007,7 @@ export const articles: Record<string, Article> = {
                 dateModified: '2026-01-29',
                 mainEntityOfPage: {
                     '@type': 'WebPage',
-                    '@id': 'https://codehelper.me/articles/ai-jobs-tsunami-youth'
+                    '@id': 'https://codehelper.me/articles/ai-jobs-tsunami-youth/'
                 },
                 articleSection: 'Artificial Intelligence',
                 about: [
@@ -952,7 +1064,7 @@ export const articles: Record<string, Article> = {
                 dateModified: '2026-01-30',
                 mainEntityOfPage: {
                     '@type': 'WebPage',
-                    '@id': 'https://codehelper.me/articles/space-data-centers-hype'
+                    '@id': 'https://codehelper.me/articles/space-data-centers-hype/'
                 },
                 articleSection: 'Sustainability',
                 about: [
@@ -1010,7 +1122,7 @@ export const articles: Record<string, Article> = {
                 dateModified: '2026-02-08',
                 mainEntityOfPage: {
                     '@type': 'WebPage',
-                    '@id': 'https://codehelper.me/articles/big-bang-echo-discovery'
+                    '@id': 'https://codehelper.me/articles/big-bang-echo-discovery/'
                 },
                 articleSection: 'Science',
                 about: [
@@ -1044,18 +1156,18 @@ export const articles: Record<string, Article> = {
         component: () =>
             import('~/components/articles/ai/OllamaOpenCodeSetup.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `Local AI Coding Setup: Ollama + OpenCode (macOS Terminal) – ${BRAND}`,
+            title: `How to Connect OpenCode to Ollama: Local AI Coding Setup Guide – ${BRAND}`,
             description:
-                'Complete guide to running a local AI coding agent with Ollama and OpenCode on macOS Apple Silicon. Covers installation, model configuration, context window tuning, agentic features, and multi-model setup.',
+                'Step-by-step guide to connect OpenCode with Ollama for 100% local AI coding on macOS. Model configuration, context window tuning, and agentic features — no cloud required.',
             ogImage: OG,
             keywords:
-                'ollama opencode, local ai coding, ollama macos, opencode cli, ai coding agent terminal, qwen coder ollama, local llm coding, apple silicon ai, ollama openai compatible, agentic coding local',
+                'ollama opencode, local ai coding, ollama macos, opencode cli, ai coding agent terminal, qwen coder ollama, local llm coding, apple silicon ai, ollama openai compatible, agentic coding local, opencode ollama, connect opencode ollama, opencode local model, ollama opencode setup',
             structuredData: {
                 '@context': 'https://schema.org',
                 '@type': 'TechArticle',
-                headline: 'Local AI Coding Setup: Ollama + OpenCode on macOS Terminal',
+                headline: 'How to Connect OpenCode to Ollama: Local AI Coding Setup Guide',
                 description:
-                    'Step-by-step guide to setting up Ollama and OpenCode for fully local AI-assisted coding on macOS with Apple Silicon. Covers model management, context window configuration, and agentic workflows.',
+                    'Step-by-step guide to connect OpenCode with Ollama for 100% local AI coding on macOS. Model configuration, context window tuning, and agentic features — no cloud required.',
                 author: { '@type': 'Person', name: 'Gianluca' },
                 publisher: {
                     '@type': 'Organization',
@@ -1067,7 +1179,7 @@ export const articles: Record<string, Article> = {
                 dateModified: '2026-02-12',
                 mainEntityOfPage: {
                     '@type': 'WebPage',
-                    '@id': 'https://codehelper.me/articles/ollama-opencode-setup'
+                    '@id': 'https://codehelper.me/articles/ollama-opencode-setup/'
                 },
                 articleSection: 'Artificial Intelligence',
                 about: [
@@ -1091,6 +1203,43 @@ export const articles: Record<string, Article> = {
                     'MLX alternative'
                 ],
                 proficiencyLevel: 'Intermediate'
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'How do I connect OpenCode to Ollama?',
+                        acceptedAnswer: {
+                            '@type': 'Answer',
+                            text: 'Create a config file at ~/.config/opencode/opencode.json that points to Ollama\'s OpenAI-compatible endpoint at http://localhost:11434/v1. Set the provider to @ai-sdk/openai-compatible, list your models with "tools": true, and make sure ollama serve is running before launching OpenCode.'
+                        }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Which models work best with OpenCode and Ollama?',
+                        acceptedAnswer: {
+                            '@type': 'Answer',
+                            text: 'qwen2.5-coder:7b is the recommended model for general coding due to its quality/speed balance. For PHP/WordPress work deepseek-coder:6.7b performs well, codellama:7b works on 8GB RAM machines, and qwen2.5-coder:32b provides the best quality but requires 32GB or more RAM.'
+                        }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What are the system requirements to run Ollama with OpenCode?',
+                        acceptedAnswer: {
+                            '@type': 'Answer',
+                            text: 'You need macOS Ventura or later, an Apple Silicon chip (M1-M4), Homebrew, Node.js/npm, and at least 8GB RAM (16GB or more is recommended for 7B models). Both Ollama and OpenCode are free and open source.'
+                        }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Why is my OpenCode setup not finding Ollama models?',
+                        acceptedAnswer: {
+                            '@type': 'Answer',
+                            text: 'The most common causes are: ollama serve is not running, the baseURL in your config is missing the /v1 suffix (it must be http://localhost:11434/v1), or the model name in your config does not exactly match the name shown by ollama list. Also ensure the context window is set to at least 16K.'
+                        }
+                    }
+                ]
             }
         }
     },
@@ -1126,7 +1275,7 @@ export const articles: Record<string, Article> = {
                 dateModified: '2026-02-18',
                 mainEntityOfPage: {
                     '@type': 'WebPage',
-                    '@id': 'https://codehelper.me/articles/openclaw-saga'
+                    '@id': 'https://codehelper.me/articles/openclaw-saga/'
                 },
                 articleSection: 'Artificial Intelligence',
                 about: [
@@ -1184,7 +1333,7 @@ export const articles: Record<string, Article> = {
                 dateModified: '2026-02-09',
                 mainEntityOfPage: {
                     '@type': 'WebPage',
-                    '@id': 'https://codehelper.me/articles/osmotic-power-coastal-cities'
+                    '@id': 'https://codehelper.me/articles/osmotic-power-coastal-cities/'
                 },
                 articleSection: 'Energy',
                 about: [
@@ -1219,18 +1368,18 @@ export const articles: Record<string, Article> = {
         component: () =>
             import('~/components/articles/ai/AiAutomationRealityCheck.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `AI Automation Reality Check: 96% Failure Rate on Real Work – ${BRAND}`,
+            title: `AI Fails at 96% of Jobs: What the Study Actually Says – ${BRAND}`,
             description:
-                'Remote Labor Index study shows AI models fail 96.25% of professional freelance tasks. Deep dive into economic impacts, investment billions, job displacement, and the disconnect between AI hype and reality in 2026.',
+                'The Remote Labor Index reveals AI models fail 96.25% of professional tasks. Deep analysis of the study, economic implications, and why the gap between AI hype and reality matters.',
             ogImage: OG,
             keywords:
                 'ai automation reality, remote labor index, ai failure rate, ai job displacement, ai investment bubble, elon musk coding prediction, coldfusion ai, ai economic impact, ai hype vs reality, professional ai tasks, gpt-5 performance, claude opus performance',
             structuredData: {
                 '@context': 'https://schema.org',
                 '@type': 'TechArticle',
-                headline: 'The AI Automation Paradox: Why 96% of AI Work Still Fails the Human Test',
+                headline: 'AI Fails at 96% of Jobs: What the Study Actually Says',
                 description:
-                    'Comprehensive analysis of the Remote Labor Index study revealing 96.25% AI failure rate on professional work. Explores economic implications, investment misallocation, job market impacts, and expert perspectives from Yann LeCun on the AI scaling problem.',
+                    'The Remote Labor Index reveals AI models fail 96.25% of professional tasks. Deep analysis of the study, economic implications, and why the gap between AI hype and reality matters.',
                 author: { '@type': 'Person', name: 'Gianluca' },
                 publisher: {
                     '@type': 'Organization',
@@ -1242,7 +1391,7 @@ export const articles: Record<string, Article> = {
                 dateModified: '2026-02-16',
                 mainEntityOfPage: {
                     '@type': 'WebPage',
-                    '@id': 'https://codehelper.me/articles/ai-automation-reality-check'
+                    '@id': 'https://codehelper.me/articles/ai-automation-reality-check/'
                 },
                 articleSection: 'Artificial Intelligence',
                 about: [
@@ -1306,7 +1455,7 @@ export const articles: Record<string, Article> = {
                 dateModified: '2026-02-17',
                 mainEntityOfPage: {
                     '@type': 'WebPage',
-                    '@id': 'https://codehelper.me/articles/juan-pujol-garcia'
+                    '@id': 'https://codehelper.me/articles/juan-pujol-garcia/'
                 },
                 articleSection: 'History',
                 about: [
@@ -1371,7 +1520,7 @@ export const articles: Record<string, Article> = {
                 dateModified: '2026-02-24',
                 mainEntityOfPage: {
                     '@type': 'WebPage',
-                    '@id': 'https://codehelper.me/articles/mit-thermal-computing'
+                    '@id': 'https://codehelper.me/articles/mit-thermal-computing/'
                 },
                 articleSection: 'Hardware',
                 about: [
@@ -1436,7 +1585,7 @@ export const articles: Record<string, Article> = {
                 dateModified: '2026-03-04',
                 mainEntityOfPage: {
                     '@type': 'WebPage',
-                    '@id': 'https://codehelper.me/articles/hacking-ai-search-truth'
+                    '@id': 'https://codehelper.me/articles/hacking-ai-search-truth/'
                 },
                 articleSection: 'Ethics',
                 about: [
@@ -1497,7 +1646,7 @@ export const articles: Record<string, Article> = {
                 dateModified: '2026-03-02',
                 mainEntityOfPage: {
                     '@type': 'WebPage',
-                    '@id': 'https://codehelper.me/articles/pentagon-ai-showdown'
+                    '@id': 'https://codehelper.me/articles/pentagon-ai-showdown/'
                 },
                 articleSection: 'Ethics',
                 about: [
