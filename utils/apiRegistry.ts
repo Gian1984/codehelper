@@ -70,6 +70,8 @@ export interface APICategoryMeta {
         ogImage?: string
         keywords?: string
         structuredData?: Record<string, any>
+        faqSchema?: Record<string, any>
+        seoContent?: string
     }
 }
 
@@ -95,7 +97,50 @@ export const apiCategoryMeta: Record<APICategory, APICategoryMeta> = {
                 name: 'Development APIs',
                 description: 'APIs for development tools and services',
                 url: 'https://codehelper.me/resources/apis/development'
-            }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What are development APIs?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Development APIs are interfaces that provide programmatic access to developer tools, services, and infrastructure such as version control, CI/CD pipelines, testing frameworks, and build automation systems.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Which development APIs are free to use?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Many development APIs offer free tiers, including GitHub API, GitLab API, and various DevOps tools. CodeHelper\'s directory highlights auth requirements so you can quickly identify no-auth and free-tier options.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'How do I integrate a development API into my project?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Click any API in this directory to visit its official documentation. Most development APIs provide SDKs, REST endpoints, and step-by-step quickstart guides for popular languages.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Development APIs for Developers</h2>
+                    <p>A <strong>development API</strong> allows developers to integrate essential tooling directly into their workflows: version control systems, build servers, code quality checkers, and more. Whether you are automating a deployment pipeline or querying repository metadata, the right API saves days of manual work.</p>
+                    <p>CodeHelper's curated development API collection covers DevOps, CI/CD, testing, code analysis, and general developer utilities, giving you a single starting point for discovery.</p>
+
+                    <h3>What to look for in a development API</h3>
+                    <ul>
+                        <li><strong>Authentication model</strong>: Prefer APIs with simple API key auth or no auth for prototyping, and OAuth for production integrations.</li>
+                        <li><strong>Rate limits</strong>: Check free-tier limits early; GitHub API, for example, allows 60 unauthenticated requests per hour.</li>
+                        <li><strong>HTTPS and CORS support</strong>: Both are essential for front-end and serverless integrations.</li>
+                    </ul>
+
+                    <h3>How to use this API directory</h3>
+                    <ol>
+                        <li>Browse the curated list of APIs below.</li>
+                        <li>Click any API to visit its documentation.</li>
+                        <li>Check the Auth column to understand what credentials you need.</li>
+                    </ol>
+
+                    <p>Whether you are building a developer dashboard or automating code reviews, this free curated API directory saves you hours of research.</p>
+                </section>
+            `
         }
     },
     'animals': {
@@ -112,7 +157,50 @@ export const apiCategoryMeta: Record<APICategory, APICategoryMeta> = {
                 name: 'Animals APIs',
                 description: 'APIs about animals and pets',
                 url: 'https://codehelper.me/resources/apis/animals'
-            }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What are animals and pets APIs?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Animals and pets APIs provide programmatic access to animal facts, species databases, pet adoption listings, wildlife data, and random dog or cat images for use in apps and websites.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Are animal APIs free?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Many animal APIs are completely free with no API key required. Examples include the Dog CEO API and the Cat API, which serve random pet images without authentication.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What can I build with an animal API?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'You can build pet adoption platforms, wildlife education apps, random pet image generators, animal trivia games, and species identification tools using the APIs in this directory.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Animals and Pets APIs for Developers</h2>
+                    <p>An <strong>animals API</strong> allows developers to fetch animal facts, species data, pet adoption listings, and wildlife imagery directly into their applications. From cute cat pictures to detailed biodiversity records, these APIs cover a wide range of use cases.</p>
+                    <p>CodeHelper's curated animals API collection includes APIs covering dogs, cats, wildlife, marine life, and pet adoption services, all in one place.</p>
+
+                    <h3>What to look for in an animals API</h3>
+                    <ul>
+                        <li><strong>Data breadth</strong>: Choose APIs that cover multiple species and provide rich metadata such as habitat, diet, and conservation status.</li>
+                        <li><strong>Image quality</strong>: For visual apps, verify image resolution and licensing before integrating.</li>
+                        <li><strong>Adoption data freshness</strong>: Pet adoption APIs should update listings in near real time for accurate results.</li>
+                    </ul>
+
+                    <h3>How to use this API directory</h3>
+                    <ol>
+                        <li>Browse the curated list of APIs below.</li>
+                        <li>Click any API to visit its documentation.</li>
+                        <li>Check the Auth column to understand what credentials you need.</li>
+                    </ol>
+
+                    <p>Whether you are building a pet adoption app or a wildlife education platform, this free curated API directory saves you hours of research.</p>
+                </section>
+            `
         }
     },
     'anime': {
@@ -129,7 +217,50 @@ export const apiCategoryMeta: Record<APICategory, APICategoryMeta> = {
                 name: 'Anime APIs',
                 description: 'Anime and manga information APIs',
                 url: 'https://codehelper.me/resources/apis/anime'
-            }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What are anime APIs?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Anime APIs provide programmatic access to anime and manga databases, including titles, episodes, characters, voice actors, ratings, and streaming availability.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Is AniList or MyAnimeList API free?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'AniList offers a free GraphQL API with no authentication required for read-only queries. MyAnimeList also provides a free API tier that requires client credentials.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What can I build with an anime API?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'You can build anime tracking apps, manga reading lists, character databases, recommendation engines, and community platforms using the anime APIs listed in this directory.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Anime and Manga APIs for Developers</h2>
+                    <p>An <strong>anime API</strong> allows developers to integrate anime and manga data into their applications: series details, episode guides, character profiles, voice actor credits, and community ratings. These APIs power fan sites, tracking tools, and recommendation engines worldwide.</p>
+                    <p>CodeHelper's curated anime API collection includes APIs covering anime databases, manga catalogs, streaming data, and character information.</p>
+
+                    <h3>What to look for in an anime API</h3>
+                    <ul>
+                        <li><strong>Database size</strong>: Larger databases like AniList and MyAnimeList cover tens of thousands of titles and provide more complete metadata.</li>
+                        <li><strong>GraphQL vs REST</strong>: GraphQL APIs let you fetch exactly the fields you need, reducing payload size for mobile apps.</li>
+                        <li><strong>Rate limits and caching</strong>: Plan your caching strategy based on each API's rate limit to avoid request throttling.</li>
+                    </ul>
+
+                    <h3>How to use this API directory</h3>
+                    <ol>
+                        <li>Browse the curated list of APIs below.</li>
+                        <li>Click any API to visit its documentation.</li>
+                        <li>Check the Auth column to understand what credentials you need.</li>
+                    </ol>
+
+                    <p>Whether you are building an anime tracker or a manga recommendation engine, this free curated API directory saves you hours of research.</p>
+                </section>
+            `
         }
     },
     'anti-malware': {
@@ -146,7 +277,50 @@ export const apiCategoryMeta: Record<APICategory, APICategoryMeta> = {
                 name: 'Anti-Malware APIs',
                 description: 'Security and malware detection APIs',
                 url: 'https://codehelper.me/resources/apis/anti-malware'
-            }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What are anti-malware APIs?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Anti-malware APIs provide programmatic access to malware scanning engines, virus databases, and threat intelligence feeds, allowing you to scan files, URLs, and IP addresses for malicious content.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Is VirusTotal API free?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'VirusTotal offers a free public API that allows up to 4 requests per minute for file and URL scanning. Higher rate limits are available on paid plans.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'How do I add malware scanning to my app?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Integrate an anti-malware API by sending file hashes or URLs to the API endpoint and parsing the response for threat scores. Most APIs return JSON results that you can evaluate against a threshold.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Anti-Malware APIs for Developers</h2>
+                    <p>An <strong>anti-malware API</strong> allows developers to scan files, URLs, domains, and IP addresses for malicious content without building a threat detection engine from scratch. These APIs tap into continuously updated virus databases and threat intelligence feeds.</p>
+                    <p>CodeHelper's curated anti-malware API collection includes APIs covering virus scanning, URL analysis, threat intelligence, and file reputation checks.</p>
+
+                    <h3>What to look for in an anti-malware API</h3>
+                    <ul>
+                        <li><strong>Detection coverage</strong>: APIs backed by multiple antivirus engines provide broader detection than single-engine solutions.</li>
+                        <li><strong>Scan speed</strong>: For user-facing uploads, choose APIs with low latency to keep wait times acceptable.</li>
+                        <li><strong>False positive rate</strong>: Evaluate the API's false positive track record to avoid incorrectly blocking legitimate files.</li>
+                    </ul>
+
+                    <h3>How to use this API directory</h3>
+                    <ol>
+                        <li>Browse the curated list of APIs below.</li>
+                        <li>Click any API to visit its documentation.</li>
+                        <li>Check the Auth column to understand what credentials you need.</li>
+                    </ol>
+
+                    <p>Whether you are building a file upload service or a threat intelligence dashboard, this free curated API directory saves you hours of research.</p>
+                </section>
+            `
         }
     },
     'art-design': {
@@ -163,7 +337,50 @@ export const apiCategoryMeta: Record<APICategory, APICategoryMeta> = {
                 name: 'Art & Design APIs',
                 description: 'Art and design resource APIs',
                 url: 'https://codehelper.me/resources/apis/art-design'
-            }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What are art and design APIs?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Art and design APIs provide programmatic access to museum collections, color palettes, fonts, design inspiration, and creative asset databases for use in design tools and creative applications.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Can I access museum artworks through an API?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Yes. Institutions like the Metropolitan Museum of Art and the Rijksmuseum offer free open APIs that provide high-resolution artwork images and metadata with no API key required.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What can I build with an art and design API?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'You can build virtual museum tours, color palette generators, design inspiration boards, font browsers, and creative portfolio apps using the APIs in this directory.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Art and Design APIs for Developers</h2>
+                    <p>An <strong>art and design API</strong> allows developers to access museum collections, color systems, typography resources, and creative datasets programmatically. These APIs are ideal for building design tools, generative art projects, and cultural heritage platforms.</p>
+                    <p>CodeHelper's curated art and design API collection includes APIs covering museum archives, color palettes, font libraries, creative commons imagery, and design inspiration feeds.</p>
+
+                    <h3>What to look for in an art and design API</h3>
+                    <ul>
+                        <li><strong>Image licensing</strong>: Confirm whether artwork images are in the public domain or require attribution before using them commercially.</li>
+                        <li><strong>Metadata richness</strong>: APIs with detailed metadata (artist, period, medium, dimensions) enable richer search and filtering experiences.</li>
+                        <li><strong>Color format support</strong>: Color APIs should return values in HEX, RGB, and HSL for maximum compatibility with design workflows.</li>
+                    </ul>
+
+                    <h3>How to use this API directory</h3>
+                    <ol>
+                        <li>Browse the curated list of APIs below.</li>
+                        <li>Click any API to visit its documentation.</li>
+                        <li>Check the Auth column to understand what credentials you need.</li>
+                    </ol>
+
+                    <p>Whether you are building a virtual museum or a color palette generator, this free curated API directory saves you hours of research.</p>
+                </section>
+            `
         }
     },
     'auth': {
@@ -180,7 +397,50 @@ export const apiCategoryMeta: Record<APICategory, APICategoryMeta> = {
                 name: 'Authentication APIs',
                 description: 'Authentication and authorization services',
                 url: 'https://codehelper.me/resources/apis/auth'
-            }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What are authentication APIs?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Authentication APIs provide services for verifying user identity, managing OAuth flows, implementing single sign-on (SSO), and issuing tokens such as JWTs for secure application access.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What is the difference between OAuth and API key authentication?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'OAuth is a delegated authorization framework that allows users to grant third-party apps limited access to their accounts without sharing passwords. API keys are simpler static credentials used for server-to-server communication.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Which authentication API should I use for my app?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'For most web apps, Auth0 or Okta provide managed identity platforms with free tiers. For simpler needs, a JWT-based solution or social OAuth via Google or GitHub may be sufficient.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Authentication APIs for Developers</h2>
+                    <p>An <strong>authentication API</strong> allows developers to implement secure user login, OAuth social sign-in, multi-factor authentication, and identity management without building these complex systems from scratch. These APIs handle token issuance, session management, and user verification.</p>
+                    <p>CodeHelper's curated authentication API collection includes APIs covering OAuth providers, SSO services, JWT utilities, and identity management platforms.</p>
+
+                    <h3>What to look for in an authentication API</h3>
+                    <ul>
+                        <li><strong>Standards compliance</strong>: Look for APIs that support OAuth 2.0 and OpenID Connect for maximum interoperability.</li>
+                        <li><strong>MFA support</strong>: Multi-factor authentication options (TOTP, SMS, email) add critical security layers for sensitive apps.</li>
+                        <li><strong>SDK availability</strong>: Official SDKs for your language or framework significantly reduce integration time.</li>
+                    </ul>
+
+                    <h3>How to use this API directory</h3>
+                    <ol>
+                        <li>Browse the curated list of APIs below.</li>
+                        <li>Click any API to visit its documentation.</li>
+                        <li>Check the Auth column to understand what credentials you need.</li>
+                    </ol>
+
+                    <p>Whether you are building a SaaS login system or a social sign-in feature, this free curated API directory saves you hours of research.</p>
+                </section>
+            `
         }
     },
     'blockchain': {
@@ -197,7 +457,50 @@ export const apiCategoryMeta: Record<APICategory, APICategoryMeta> = {
                 name: 'Blockchain APIs',
                 description: 'Blockchain and cryptocurrency APIs',
                 url: 'https://codehelper.me/resources/apis/blockchain'
-            }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What are blockchain APIs?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Blockchain APIs provide programmatic access to on-chain data including transaction history, wallet balances, smart contract interactions, NFT metadata, and DeFi protocol data across networks like Ethereum and Bitcoin.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Do I need an API key to query blockchain data?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Some blockchain APIs like Etherscan and Infura require free API keys. Others, such as public Ethereum JSON-RPC endpoints, allow anonymous queries with rate limits.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What can I build with a blockchain API?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'You can build crypto portfolio trackers, NFT marketplaces, DeFi dashboards, blockchain explorers, and Web3 wallets using the APIs in this directory.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Blockchain APIs for Developers</h2>
+                    <p>A <strong>blockchain API</strong> allows developers to read on-chain data, broadcast transactions, query smart contracts, and interact with decentralized networks without running a full node. These APIs abstract away the complexity of peer-to-peer blockchain protocols.</p>
+                    <p>CodeHelper's curated blockchain API collection includes APIs covering Bitcoin, Ethereum, NFTs, DeFi protocols, and multi-chain data aggregators.</p>
+
+                    <h3>What to look for in a blockchain API</h3>
+                    <ul>
+                        <li><strong>Chain support</strong>: Ensure the API supports all the networks your dApp targets, such as Ethereum, Polygon, or Solana.</li>
+                        <li><strong>Websocket support</strong>: Real-time subscriptions to new blocks and events are essential for live dashboards.</li>
+                        <li><strong>Archive node access</strong>: For querying historical state, you need an API backed by an archive node, not just a full node.</li>
+                    </ul>
+
+                    <h3>How to use this API directory</h3>
+                    <ol>
+                        <li>Browse the curated list of APIs below.</li>
+                        <li>Click any API to visit its documentation.</li>
+                        <li>Check the Auth column to understand what credentials you need.</li>
+                    </ol>
+
+                    <p>Whether you are building a DeFi dashboard or an NFT marketplace, this free curated API directory saves you hours of research.</p>
+                </section>
+            `
         }
     },
     'books': {
@@ -214,7 +517,50 @@ export const apiCategoryMeta: Record<APICategory, APICategoryMeta> = {
                 name: 'Books APIs',
                 description: 'Book information and library APIs',
                 url: 'https://codehelper.me/resources/apis/books'
-            }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What are books APIs?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Books APIs provide programmatic access to book metadata including titles, authors, ISBNs, cover images, descriptions, library catalog records, and reading list data.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Is the Open Library API free?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Yes. The Open Library API from the Internet Archive is completely free with no authentication required. It covers millions of books with rich bibliographic data.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'How do I look up a book by ISBN using an API?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'APIs like Open Library and Google Books allow you to query by ISBN-10 or ISBN-13. Send a GET request with the ISBN as a parameter and receive JSON metadata including title, author, and cover image URL.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Books and Library APIs for Developers</h2>
+                    <p>A <strong>books API</strong> allows developers to retrieve book metadata, ISBN lookups, library catalog records, and author information for use in reading apps, educational platforms, and e-commerce sites. These APIs save the effort of manually curating book databases.</p>
+                    <p>CodeHelper's curated books API collection includes APIs covering millions of titles, library systems, author databases, and reading list services.</p>
+
+                    <h3>What to look for in a books API</h3>
+                    <ul>
+                        <li><strong>Catalog size</strong>: Larger catalogs like Google Books and Open Library cover more obscure titles and editions.</li>
+                        <li><strong>Cover image availability</strong>: High-quality cover images are important for visually rich reading apps.</li>
+                        <li><strong>ISBN resolution</strong>: Confirm the API can resolve both ISBN-10 and ISBN-13 formats accurately.</li>
+                    </ul>
+
+                    <h3>How to use this API directory</h3>
+                    <ol>
+                        <li>Browse the curated list of APIs below.</li>
+                        <li>Click any API to visit its documentation.</li>
+                        <li>Check the Auth column to understand what credentials you need.</li>
+                    </ol>
+
+                    <p>Whether you are building a reading tracker or a library catalog app, this free curated API directory saves you hours of research.</p>
+                </section>
+            `
         }
     },
     'business': {
@@ -231,7 +577,50 @@ export const apiCategoryMeta: Record<APICategory, APICategoryMeta> = {
                 name: 'Business APIs',
                 description: 'Business data and services',
                 url: 'https://codehelper.me/resources/apis/business'
-            }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What are business APIs?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Business APIs provide programmatic access to company information, corporate registries, VAT numbers, business entity lookups, and commercial data for due diligence and B2B applications.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Can I look up a company by registration number through an API?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Yes. APIs like Companies House (UK) and OpenCorporates allow you to query companies by registration number and retrieve details like directors, filing history, and registered address.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What can I build with a business data API?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'You can build KYB (Know Your Business) verification tools, CRM enrichment pipelines, competitor research dashboards, and supplier due diligence platforms using the APIs in this directory.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Business APIs for Developers</h2>
+                    <p>A <strong>business API</strong> allows developers to access company profiles, corporate registry data, VAT validation, and business entity information programmatically. These APIs power KYB verification, CRM enrichment, and B2B data pipelines.</p>
+                    <p>CodeHelper's curated business API collection includes APIs covering company lookups, corporate registries, business validation, and commercial data services.</p>
+
+                    <h3>What to look for in a business API</h3>
+                    <ul>
+                        <li><strong>Data freshness</strong>: Corporate registry data changes frequently; prefer APIs that synchronize with official sources regularly.</li>
+                        <li><strong>Global coverage</strong>: For international B2B apps, choose APIs that cover multiple jurisdictions and countries.</li>
+                        <li><strong>VAT validation</strong>: EU VAT number validation is critical for e-commerce businesses serving European customers.</li>
+                    </ul>
+
+                    <h3>How to use this API directory</h3>
+                    <ol>
+                        <li>Browse the curated list of APIs below.</li>
+                        <li>Click any API to visit its documentation.</li>
+                        <li>Check the Auth column to understand what credentials you need.</li>
+                    </ol>
+
+                    <p>Whether you are building a KYB verification tool or a B2B data enrichment service, this free curated API directory saves you hours of research.</p>
+                </section>
+            `
         }
     },
     'calendar': {
@@ -248,7 +637,50 @@ export const apiCategoryMeta: Record<APICategory, APICategoryMeta> = {
                 name: 'Calendar APIs',
                 description: 'Calendar and scheduling services',
                 url: 'https://codehelper.me/resources/apis/calendar'
-            }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What are calendar APIs?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Calendar APIs provide programmatic access to calendar data, public holiday schedules, scheduling services, event management, and date calculation utilities for integration into apps and workflows.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Is there a free API for public holidays?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Yes. APIs like Calendarific and Nager.Date provide free tiers for querying public holidays across dozens of countries, returning JSON data with holiday names and dates.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'How do I integrate Google Calendar with my app?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'The Google Calendar API uses OAuth 2.0. You register your app in Google Cloud Console, obtain credentials, and use the REST API or official SDKs to read and write calendar events on behalf of users.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Calendar and Scheduling APIs for Developers</h2>
+                    <p>A <strong>calendar API</strong> allows developers to integrate scheduling, public holiday lookups, event management, and date utilities into their applications. These APIs eliminate the need to maintain your own holiday databases or build scheduling logic from scratch.</p>
+                    <p>CodeHelper's curated calendar API collection includes APIs covering holiday data, scheduling platforms, iCal feeds, and date calculation services.</p>
+
+                    <h3>What to look for in a calendar API</h3>
+                    <ul>
+                        <li><strong>Country coverage</strong>: Holiday APIs should cover the regions your users are in, with accurate regional subdivision support.</li>
+                        <li><strong>iCal compatibility</strong>: APIs that return iCal format can be consumed by most calendar applications directly.</li>
+                        <li><strong>Timezone handling</strong>: Proper timezone support is essential for scheduling apps serving global users.</li>
+                    </ul>
+
+                    <h3>How to use this API directory</h3>
+                    <ol>
+                        <li>Browse the curated list of APIs below.</li>
+                        <li>Click any API to visit its documentation.</li>
+                        <li>Check the Auth column to understand what credentials you need.</li>
+                    </ol>
+
+                    <p>Whether you are building a scheduling tool or a holiday-aware notification system, this free curated API directory saves you hours of research.</p>
+                </section>
+            `
         }
     },
     'cloud': {
@@ -265,7 +697,50 @@ export const apiCategoryMeta: Record<APICategory, APICategoryMeta> = {
                 name: 'Cloud Storage APIs',
                 description: 'Cloud storage and file sharing',
                 url: 'https://codehelper.me/resources/apis/cloud'
-            }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What are cloud storage APIs?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Cloud storage APIs provide programmatic access to file upload, download, sharing, and management on platforms like Google Drive, Dropbox, and OneDrive, enabling you to build file-centric features without managing server infrastructure.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Is the Dropbox API free to use?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Yes. Dropbox offers a free API tier for apps that access only their own app folder. Apps that require access to the full Dropbox folder need user approval and may be subject to Dropbox\'s usage policies.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'How do I upload files to cloud storage via an API?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Most cloud storage APIs accept multipart form uploads or binary streams over HTTPS. Authenticate with OAuth or an API key, then POST your file to the designated upload endpoint.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Cloud Storage APIs for Developers</h2>
+                    <p>A <strong>cloud storage API</strong> allows developers to upload, download, share, and manage files on remote storage platforms without managing server infrastructure. These APIs are the foundation of file-sharing features, backup systems, and document collaboration tools.</p>
+                    <p>CodeHelper's curated cloud storage API collection includes APIs covering file hosting, document sharing, backup services, and CDN-backed asset delivery.</p>
+
+                    <h3>What to look for in a cloud storage API</h3>
+                    <ul>
+                        <li><strong>Storage limits</strong>: Free tiers vary widely; compare storage quotas and transfer limits before committing to an API.</li>
+                        <li><strong>Resumable uploads</strong>: For large file transfers, ensure the API supports resumable uploads to handle network interruptions gracefully.</li>
+                        <li><strong>Access control</strong>: Fine-grained permission models let you share files with specific users or make them publicly accessible.</li>
+                    </ul>
+
+                    <h3>How to use this API directory</h3>
+                    <ol>
+                        <li>Browse the curated list of APIs below.</li>
+                        <li>Click any API to visit its documentation.</li>
+                        <li>Check the Auth column to understand what credentials you need.</li>
+                    </ol>
+
+                    <p>Whether you are building a document collaboration tool or a backup service, this free curated API directory saves you hours of research.</p>
+                </section>
+            `
         }
     },
     'continuous-integration': {
@@ -282,7 +757,50 @@ export const apiCategoryMeta: Record<APICategory, APICategoryMeta> = {
                 name: 'CI/CD APIs',
                 description: 'Continuous integration and deployment',
                 url: 'https://codehelper.me/resources/apis/continuous-integration'
-            }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What are CI/CD APIs?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'CI/CD APIs provide programmatic access to continuous integration and continuous deployment pipelines, allowing you to trigger builds, query pipeline status, retrieve test results, and manage deployments from external systems.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Can I trigger a GitHub Actions workflow via API?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Yes. GitHub provides a REST API endpoint for triggering workflow dispatch events. You send a POST request with a personal access token and can pass custom input parameters to the workflow.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What CI/CD tools offer free API access?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'GitHub Actions, GitLab CI, and CircleCI all offer free API access on their free tiers. Jenkins is self-hosted and provides a full REST API at no cost.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best CI/CD APIs for Developers</h2>
+                    <p>A <strong>CI/CD API</strong> allows developers to programmatically trigger builds, query pipeline status, retrieve test reports, and orchestrate deployments across their development lifecycle. These APIs are the backbone of modern DevOps automation.</p>
+                    <p>CodeHelper's curated CI/CD API collection includes APIs covering build automation, deployment pipelines, test reporting, and DevOps workflow integration.</p>
+
+                    <h3>What to look for in a CI/CD API</h3>
+                    <ul>
+                        <li><strong>Webhook support</strong>: Bidirectional webhooks let you react to pipeline events in real time without polling.</li>
+                        <li><strong>Artifact access</strong>: APIs that expose build artifacts allow downstream systems to consume test reports and binaries programmatically.</li>
+                        <li><strong>Environment management</strong>: Look for APIs that support environment variables and secrets management for secure pipeline configuration.</li>
+                    </ul>
+
+                    <h3>How to use this API directory</h3>
+                    <ol>
+                        <li>Browse the curated list of APIs below.</li>
+                        <li>Click any API to visit its documentation.</li>
+                        <li>Check the Auth column to understand what credentials you need.</li>
+                    </ol>
+
+                    <p>Whether you are building a deployment dashboard or automating release pipelines, this free curated API directory saves you hours of research.</p>
+                </section>
+            `
         }
     },
     'cryptocurrency': {
@@ -299,7 +817,50 @@ export const apiCategoryMeta: Record<APICategory, APICategoryMeta> = {
                 name: 'Cryptocurrency APIs',
                 description: 'Cryptocurrency data and trading',
                 url: 'https://codehelper.me/resources/apis/cryptocurrency'
-            }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What are cryptocurrency APIs?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Cryptocurrency APIs provide real-time and historical price data, order book information, trading functionality, wallet management, and market cap rankings for thousands of digital assets.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Is CoinGecko API free?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'CoinGecko offers a free public API that covers price data, market cap, volume, and historical charts for over 10,000 cryptocurrencies with a rate limit of 10-30 calls per minute.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Can I get real-time Bitcoin prices through an API?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Yes. APIs like CoinGecko, CoinMarketCap, and Binance provide real-time Bitcoin price data in multiple fiat currencies with sub-second update frequencies on paid tiers.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Cryptocurrency APIs for Developers</h2>
+                    <p>A <strong>cryptocurrency API</strong> allows developers to fetch real-time prices, historical market data, trading pair information, and portfolio metrics for Bitcoin, Ethereum, and thousands of altcoins. These APIs power crypto trackers, trading bots, and financial dashboards.</p>
+                    <p>CodeHelper's curated cryptocurrency API collection includes APIs covering price feeds, exchange data, wallet information, and market analytics.</p>
+
+                    <h3>What to look for in a cryptocurrency API</h3>
+                    <ul>
+                        <li><strong>Coin coverage</strong>: Ensure the API covers all tokens your application needs, including smaller altcoins and DeFi tokens.</li>
+                        <li><strong>Historical data depth</strong>: For backtesting trading strategies, you need APIs that provide years of historical OHLCV data.</li>
+                        <li><strong>WebSocket streaming</strong>: Real-time price updates via WebSocket are essential for live trading interfaces.</li>
+                    </ul>
+
+                    <h3>How to use this API directory</h3>
+                    <ol>
+                        <li>Browse the curated list of APIs below.</li>
+                        <li>Click any API to visit its documentation.</li>
+                        <li>Check the Auth column to understand what credentials you need.</li>
+                    </ol>
+
+                    <p>Whether you are building a crypto portfolio tracker or a trading bot, this free curated API directory saves you hours of research.</p>
+                </section>
+            `
         }
     },
     'currency-exchange': {
@@ -316,7 +877,50 @@ export const apiCategoryMeta: Record<APICategory, APICategoryMeta> = {
                 name: 'Currency Exchange APIs',
                 description: 'Currency rates and conversion',
                 url: 'https://codehelper.me/resources/apis/currency-exchange'
-            }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What are currency exchange APIs?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Currency exchange APIs provide real-time and historical foreign exchange rates, currency conversion calculations, and forex market data for over 150 world currencies.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Is there a free currency exchange rate API?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Yes. ExchangeRate-API and Open Exchange Rates both offer free tiers with hourly updated rates. Frankfurter API provides ECB rates with no authentication required.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'How accurate are currency exchange API rates?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Free APIs typically use aggregated mid-market rates sourced from financial data providers and central banks. For commercial foreign exchange transactions, use bank or regulated payment provider rates instead.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Currency Exchange APIs for Developers</h2>
+                    <p>A <strong>currency exchange API</strong> allows developers to retrieve real-time exchange rates, perform currency conversions, and access historical forex data for over 150 world currencies. These APIs are essential for e-commerce, fintech, and international applications.</p>
+                    <p>CodeHelper's curated currency exchange API collection includes APIs covering live rates, historical data, forex feeds, and multi-currency conversion services.</p>
+
+                    <h3>What to look for in a currency exchange API</h3>
+                    <ul>
+                        <li><strong>Update frequency</strong>: Live trading apps need minute-by-minute rate updates, while e-commerce sites typically need hourly or daily refreshes.</li>
+                        <li><strong>Currency coverage</strong>: Ensure the API covers all currencies and exotic pairs your application requires.</li>
+                        <li><strong>Historical data</strong>: Time-series data lets you build currency trend charts and perform backtesting on conversion strategies.</li>
+                    </ul>
+
+                    <h3>How to use this API directory</h3>
+                    <ol>
+                        <li>Browse the curated list of APIs below.</li>
+                        <li>Click any API to visit its documentation.</li>
+                        <li>Check the Auth column to understand what credentials you need.</li>
+                    </ol>
+
+                    <p>Whether you are building a currency converter or a multi-currency e-commerce platform, this free curated API directory saves you hours of research.</p>
+                </section>
+            `
         }
     },
     'data-validation': {
@@ -333,7 +937,50 @@ export const apiCategoryMeta: Record<APICategory, APICategoryMeta> = {
                 name: 'Data Validation APIs',
                 description: 'Data validation and verification',
                 url: 'https://codehelper.me/resources/apis/data-validation'
-            }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What are data validation APIs?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Data validation APIs verify the accuracy and format of user-submitted data including email addresses, phone numbers, postal addresses, credit card numbers, and VAT IDs to reduce form errors and fraud.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'How do I validate an email address with an API?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Send a GET or POST request with the email address to an email validation API. The response typically includes syntax checks, domain verification, and mailbox existence checks (SMTP verification).' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Are data validation APIs GDPR compliant?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Most reputable data validation API providers publish GDPR compliance documentation. Review each provider\'s data processing agreement before sending personal data to ensure compliance.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Data Validation APIs for Developers</h2>
+                    <p>A <strong>data validation API</strong> allows developers to verify the accuracy and integrity of user-submitted data in real time: email addresses, phone numbers, postal addresses, and more. These APIs reduce form errors, improve data quality, and help prevent fraudulent submissions.</p>
+                    <p>CodeHelper's curated data validation API collection includes APIs covering email verification, phone validation, address standardization, and general input sanitation.</p>
+
+                    <h3>What to look for in a data validation API</h3>
+                    <ul>
+                        <li><strong>Validation depth</strong>: Basic syntax checks differ from deep SMTP verification; choose the level of rigor your use case requires.</li>
+                        <li><strong>Response speed</strong>: For real-time form validation, prioritize APIs with sub-200ms response times to avoid UI lag.</li>
+                        <li><strong>Bulk validation support</strong>: For cleaning existing datasets, choose APIs that support batch processing endpoints.</li>
+                    </ul>
+
+                    <h3>How to use this API directory</h3>
+                    <ol>
+                        <li>Browse the curated list of APIs below.</li>
+                        <li>Click any API to visit its documentation.</li>
+                        <li>Check the Auth column to understand what credentials you need.</li>
+                    </ol>
+
+                    <p>Whether you are validating sign-up forms or cleaning a CRM database, this free curated API directory saves you hours of research.</p>
+                </section>
+            `
         }
     },
     'dictionaries': {
@@ -350,7 +997,50 @@ export const apiCategoryMeta: Record<APICategory, APICategoryMeta> = {
                 name: 'Dictionaries APIs',
                 description: 'Language dictionaries and translations',
                 url: 'https://codehelper.me/resources/apis/dictionaries'
-            }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What are dictionary APIs?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Dictionary APIs provide programmatic access to word definitions, pronunciations, etymologies, synonyms, antonyms, and translations across multiple languages for use in educational and linguistic applications.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Is there a free English dictionary API?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Yes. The Free Dictionary API and Merriam-Webster API both offer free tiers. The Free Dictionary API requires no key and provides definitions, phonetics, and example sentences.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Can I get word translations through a dictionary API?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Some dictionary APIs like Oxford Dictionaries include bilingual translation endpoints. For broader translation coverage, translation-specific APIs like DeepL or LibreTranslate may be more suitable.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Dictionary and Translation APIs for Developers</h2>
+                    <p>A <strong>dictionary API</strong> allows developers to fetch word definitions, phonetic pronunciations, etymologies, synonyms, and translations programmatically. These APIs are essential for building vocabulary apps, language learning tools, and content enrichment pipelines.</p>
+                    <p>CodeHelper's curated dictionary API collection includes APIs covering English definitions, multilingual translations, thesaurus data, and linguistic metadata.</p>
+
+                    <h3>What to look for in a dictionary API</h3>
+                    <ul>
+                        <li><strong>Language coverage</strong>: For multilingual apps, confirm the API supports all languages your users need with quality definitions.</li>
+                        <li><strong>Audio pronunciations</strong>: APIs that include audio pronunciation files enhance language learning and accessibility features.</li>
+                        <li><strong>Part-of-speech tagging</strong>: Grammatical metadata (noun, verb, adjective) enables advanced linguistic analysis and NLP pipelines.</li>
+                    </ul>
+
+                    <h3>How to use this API directory</h3>
+                    <ol>
+                        <li>Browse the curated list of APIs below.</li>
+                        <li>Click any API to visit its documentation.</li>
+                        <li>Check the Auth column to understand what credentials you need.</li>
+                    </ol>
+
+                    <p>Whether you are building a language learning app or a content enrichment tool, this free curated API directory saves you hours of research.</p>
+                </section>
+            `
         }
     },
     'productivity': {
@@ -367,7 +1057,50 @@ export const apiCategoryMeta: Record<APICategory, APICategoryMeta> = {
                 name: 'Productivity APIs',
                 description: 'Productivity and workflow tools',
                 url: 'https://codehelper.me/resources/apis/productivity'
-            }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What are productivity APIs?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Productivity APIs provide programmatic access to task management systems, note-taking platforms, time trackers, project management tools, and workflow automation services to build integrations and automations.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Is there a free Trello or Notion API?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Both Trello and Notion offer free APIs. Trello\'s REST API is available on all plans. Notion\'s API is free with a workspace; you authenticate with an integration token created in your account settings.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'How do I automate tasks with a productivity API?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Connect your productivity API to a webhook or scheduler. For example, you can create Trello cards from form submissions, sync Notion databases with external sources, or log time entries automatically when a Git commit is pushed.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Productivity APIs for Developers</h2>
+                    <p>A <strong>productivity API</strong> allows developers to integrate task management, project tracking, note-taking, and workflow automation into their applications. These APIs connect your custom tools with popular platforms like Trello, Notion, and Asana.</p>
+                    <p>CodeHelper's curated productivity API collection includes APIs covering task managers, project management platforms, time trackers, and workflow automation services.</p>
+
+                    <h3>What to look for in a productivity API</h3>
+                    <ul>
+                        <li><strong>Webhook support</strong>: Real-time notifications via webhooks eliminate the need for polling and enable instant cross-tool synchronization.</li>
+                        <li><strong>Data export formats</strong>: APIs that support JSON and CSV exports make it easy to integrate with analytics and reporting tools.</li>
+                        <li><strong>OAuth scopes</strong>: Fine-grained permission scopes let you request only the data your integration truly needs.</li>
+                    </ul>
+
+                    <h3>How to use this API directory</h3>
+                    <ol>
+                        <li>Browse the curated list of APIs below.</li>
+                        <li>Click any API to visit its documentation.</li>
+                        <li>Check the Auth column to understand what credentials you need.</li>
+                    </ol>
+
+                    <p>Whether you are building a workflow automation tool or a cross-platform task manager, this free curated API directory saves you hours of research.</p>
+                </section>
+            `
         }
     },
     'email': {
@@ -384,7 +1117,50 @@ export const apiCategoryMeta: Record<APICategory, APICategoryMeta> = {
                 name: 'Email APIs',
                 description: 'Email services and validation',
                 url: 'https://codehelper.me/resources/apis/email'
-            }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What are email APIs?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Email APIs provide services for sending transactional and marketing emails, validating email addresses, detecting disposable email domains, and managing email delivery for web applications.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Which email sending API has a free tier?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'SendGrid offers 100 free emails per day. Mailgun provides 5,000 free emails per month for 3 months. Resend and Brevo also offer generous free tiers for transactional email sending.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'How do I send a transactional email with an API?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Authenticate with your API key, then POST a JSON payload containing the recipient, subject, and HTML body to the provider\'s send endpoint. Most providers also offer official SDKs for popular languages.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Email APIs for Developers</h2>
+                    <p>An <strong>email API</strong> allows developers to send transactional emails, validate addresses, detect disposable domains, and manage delivery infrastructure without running their own mail servers. These APIs are critical for password resets, order confirmations, and notification systems.</p>
+                    <p>CodeHelper's curated email API collection includes APIs covering transactional sending, bulk campaigns, address verification, and temporary email detection.</p>
+
+                    <h3>What to look for in an email API</h3>
+                    <ul>
+                        <li><strong>Deliverability</strong>: Choose providers with strong sender reputation and built-in SPF/DKIM support for high inbox placement rates.</li>
+                        <li><strong>Webhook events</strong>: Delivery, open, and click webhooks let you track email engagement and handle bounces programmatically.</li>
+                        <li><strong>Template support</strong>: Dynamic templates with variable substitution simplify sending personalized emails at scale.</li>
+                    </ul>
+
+                    <h3>How to use this API directory</h3>
+                    <ol>
+                        <li>Browse the curated list of APIs below.</li>
+                        <li>Click any API to visit its documentation.</li>
+                        <li>Check the Auth column to understand what credentials you need.</li>
+                    </ol>
+
+                    <p>Whether you are building a notification system or an email validation service, this free curated API directory saves you hours of research.</p>
+                </section>
+            `
         }
     },
     'entertainment': {
@@ -401,7 +1177,50 @@ export const apiCategoryMeta: Record<APICategory, APICategoryMeta> = {
                 name: 'Entertainment APIs',
                 description: 'Movies, TV, and entertainment data',
                 url: 'https://codehelper.me/resources/apis/entertainment'
-            }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What are entertainment APIs?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Entertainment APIs provide programmatic access to movie databases, TV show metadata, cast and crew information, trailers, ratings, and streaming availability data for building media-related applications.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Is TMDB API free?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Yes. The Movie Database (TMDB) API is free for non-commercial use and requires a free API key. It covers hundreds of thousands of movies and TV shows with rich metadata and images.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'How do I find where a movie is streaming using an API?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'APIs like TMDB and Watchmode provide streaming availability data per country, listing which platforms (Netflix, Hulu, Amazon Prime) currently offer a title. Query by movie ID to get a list of providers.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Entertainment APIs for Developers</h2>
+                    <p>An <strong>entertainment API</strong> allows developers to access movies, TV show metadata, streaming availability, cast information, ratings, and trailers from comprehensive media databases. These APIs power recommendation engines, watchlist apps, and media discovery platforms.</p>
+                    <p>CodeHelper's curated entertainment API collection includes APIs covering film databases, TV series, streaming services, trailers, and celebrity information.</p>
+
+                    <h3>What to look for in an entertainment API</h3>
+                    <ul>
+                        <li><strong>Catalog depth</strong>: Larger databases like TMDB and OMDB cover more obscure films and international titles.</li>
+                        <li><strong>Image availability</strong>: High-resolution posters and backdrop images are essential for visually rich media apps.</li>
+                        <li><strong>Streaming data</strong>: APIs that include streaming availability data save you from aggregating multiple provider sources manually.</li>
+                    </ul>
+
+                    <h3>How to use this API directory</h3>
+                    <ol>
+                        <li>Browse the curated list of APIs below.</li>
+                        <li>Click any API to visit its documentation.</li>
+                        <li>Check the Auth column to understand what credentials you need.</li>
+                    </ol>
+
+                    <p>Whether you are building a movie recommendation app or a streaming guide, this free curated API directory saves you hours of research.</p>
+                </section>
+            `
         }
     },
     'environment': {
@@ -418,7 +1237,50 @@ export const apiCategoryMeta: Record<APICategory, APICategoryMeta> = {
                 name: 'Environment APIs',
                 description: 'Environmental data and weather',
                 url: 'https://codehelper.me/resources/apis/environment'
-            }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What are environment and weather APIs?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Environment APIs provide programmatic access to weather forecasts, historical climate data, air quality indices, natural disaster alerts, and environmental monitoring data from meteorological services and satellites.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Is OpenWeatherMap API free?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'OpenWeatherMap offers a free tier with up to 60 API calls per minute covering current weather, 5-day forecasts, and basic historical data. Hourly forecasts and extended history require paid plans.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'How do I get air quality data through an API?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'APIs like OpenWeatherMap Air Pollution API and AirVisual provide AQI (Air Quality Index) data by coordinates or city name, including concentrations of CO, NO2, PM2.5, and other pollutants.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Environment and Weather APIs for Developers</h2>
+                    <p>An <strong>environment API</strong> allows developers to integrate weather forecasts, air quality data, climate records, and natural disaster alerts into their applications. These APIs serve outdoor apps, agricultural tools, energy management systems, and smart city platforms.</p>
+                    <p>CodeHelper's curated environment API collection includes APIs covering weather forecasting, climate data, air quality monitoring, UV index, and natural event tracking.</p>
+
+                    <h3>What to look for in an environment API</h3>
+                    <ul>
+                        <li><strong>Forecast horizon</strong>: Different APIs offer 3-day, 7-day, or 14-day forecasts; choose based on your application's needs.</li>
+                        <li><strong>Data resolution</strong>: Hyperlocal weather APIs provide grid-level data while global APIs offer city-level resolution.</li>
+                        <li><strong>Historical access</strong>: Climate analysis and backtesting require APIs with deep historical weather archives.</li>
+                    </ul>
+
+                    <h3>How to use this API directory</h3>
+                    <ol>
+                        <li>Browse the curated list of APIs below.</li>
+                        <li>Click any API to visit its documentation.</li>
+                        <li>Check the Auth column to understand what credentials you need.</li>
+                    </ol>
+
+                    <p>Whether you are building a weather app or an environmental monitoring dashboard, this free curated API directory saves you hours of research.</p>
+                </section>
+            `
         }
     },
     'events': {
@@ -435,7 +1297,50 @@ export const apiCategoryMeta: Record<APICategory, APICategoryMeta> = {
                 name: 'Events APIs',
                 description: 'Event listings and tickets',
                 url: 'https://codehelper.me/resources/apis/events'
-            }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What are events APIs?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Events APIs provide programmatic access to event listings, ticket availability, venue information, and booking systems for concerts, conferences, sports, and local meetups.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Is the Eventbrite API free?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Eventbrite offers a free public API for reading event data. Creating and managing events via the API is available to Eventbrite account holders. Rate limits apply on the free tier.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'How do I search for local events using an API?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Pass a location (city, coordinates, or postal code) and optional date range to an events API. The response returns matching events with title, venue, date, and ticket link.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Events APIs for Developers</h2>
+                    <p>An <strong>events API</strong> allows developers to search event listings, check ticket availability, query venue information, and integrate event discovery features into apps and websites. These APIs serve local guides, travel platforms, and community applications.</p>
+                    <p>CodeHelper's curated events API collection includes APIs covering concerts, conferences, sports events, local meetups, and ticketing platforms.</p>
+
+                    <h3>What to look for in an events API</h3>
+                    <ul>
+                        <li><strong>Geographic search</strong>: Radius-based and city-level search lets you surface events near a user's location accurately.</li>
+                        <li><strong>Category filtering</strong>: APIs with category filters (music, sports, tech) improve relevance for niche event discovery apps.</li>
+                        <li><strong>Ticket availability</strong>: Real-time ticket data prevents showing sold-out events to users.</li>
+                    </ul>
+
+                    <h3>How to use this API directory</h3>
+                    <ol>
+                        <li>Browse the curated list of APIs below.</li>
+                        <li>Click any API to visit its documentation.</li>
+                        <li>Check the Auth column to understand what credentials you need.</li>
+                    </ol>
+
+                    <p>Whether you are building a local event guide or a conference discovery platform, this free curated API directory saves you hours of research.</p>
+                </section>
+            `
         }
     },
     'finance': {
@@ -452,7 +1357,50 @@ export const apiCategoryMeta: Record<APICategory, APICategoryMeta> = {
                 name: 'Finance APIs',
                 description: 'Financial data and services',
                 url: 'https://codehelper.me/resources/apis/finance'
-            }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What are finance APIs?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Finance APIs provide programmatic access to stock prices, market indices, company financials, earnings reports, banking data, and investment portfolio information for fintech and trading applications.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Is there a free stock market data API?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Yes. Alpha Vantage offers a free tier with up to 25 API calls per day for stock prices and financial indicators. Polygon.io also provides a free tier with delayed market data.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Can I access company financial statements through an API?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Yes. APIs like Financial Modeling Prep and Alpha Vantage provide income statements, balance sheets, and cash flow statements for publicly traded companies in JSON format.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Finance APIs for Developers</h2>
+                    <p>A <strong>finance API</strong> allows developers to retrieve stock prices, market indices, earnings data, company financials, and investment metrics programmatically. These APIs are the foundation of fintech apps, trading dashboards, and personal finance tools.</p>
+                    <p>CodeHelper's curated finance API collection includes APIs covering equities, ETFs, options, company fundamentals, and macroeconomic indicators.</p>
+
+                    <h3>What to look for in a finance API</h3>
+                    <ul>
+                        <li><strong>Data latency</strong>: Real-time trading apps require live data feeds, while portfolio trackers can often use 15-minute delayed data available on free tiers.</li>
+                        <li><strong>Historical depth</strong>: For backtesting investment strategies, APIs with 10+ years of daily OHLCV data are essential.</li>
+                        <li><strong>Fundamental data</strong>: P/E ratios, earnings, and balance sheets enable more sophisticated investment analysis applications.</li>
+                    </ul>
+
+                    <h3>How to use this API directory</h3>
+                    <ol>
+                        <li>Browse the curated list of APIs below.</li>
+                        <li>Click any API to visit its documentation.</li>
+                        <li>Check the Auth column to understand what credentials you need.</li>
+                    </ol>
+
+                    <p>Whether you are building a stock screener or a personal finance tracker, this free curated API directory saves you hours of research.</p>
+                </section>
+            `
         }
     },
     'food-drink': {
@@ -469,7 +1417,50 @@ export const apiCategoryMeta: Record<APICategory, APICategoryMeta> = {
                 name: 'Food & Drink APIs',
                 description: 'Recipes and nutrition information',
                 url: 'https://codehelper.me/resources/apis/food-drink'
-            }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What are food and drink APIs?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Food and drink APIs provide programmatic access to recipe databases, nutritional information, ingredient lists, restaurant data, meal plans, and dietary restriction filters for culinary applications.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Is there a free recipe API?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'TheMealDB offers a free recipe API with no API key required for basic access, covering thousands of recipes with ingredients, instructions, and images across many cuisines.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'How do I get nutritional data for foods using an API?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'The USDA FoodData Central API provides free nutritional data for thousands of foods. Pass a food name or FDC ID and receive macronutrients, vitamins, and minerals in JSON format.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Food and Drink APIs for Developers</h2>
+                    <p>A <strong>food and drink API</strong> allows developers to access recipe databases, nutritional information, ingredient substitutes, restaurant listings, and meal planning data. These APIs power cooking apps, diet trackers, and food delivery platforms.</p>
+                    <p>CodeHelper's curated food and drink API collection includes APIs covering recipes, nutrition facts, cocktails, restaurant data, and dietary filtering services.</p>
+
+                    <h3>What to look for in a food and drink API</h3>
+                    <ul>
+                        <li><strong>Nutritional accuracy</strong>: APIs sourced from official food databases like USDA provide more reliable macro and micronutrient data.</li>
+                        <li><strong>Dietary filters</strong>: Support for vegetarian, vegan, gluten-free, and allergen filters is essential for inclusive recipe apps.</li>
+                        <li><strong>Ingredient substitution</strong>: APIs that suggest ingredient alternatives add value for users with dietary restrictions.</li>
+                    </ul>
+
+                    <h3>How to use this API directory</h3>
+                    <ol>
+                        <li>Browse the curated list of APIs below.</li>
+                        <li>Click any API to visit its documentation.</li>
+                        <li>Check the Auth column to understand what credentials you need.</li>
+                    </ol>
+
+                    <p>Whether you are building a recipe app or a nutrition tracker, this free curated API directory saves you hours of research.</p>
+                </section>
+            `
         }
     },
     'games-comics': {
@@ -486,7 +1477,50 @@ export const apiCategoryMeta: Record<APICategory, APICategoryMeta> = {
                 name: 'Games & Comics APIs',
                 description: 'Gaming and comic book data',
                 url: 'https://codehelper.me/resources/apis/games-comics'
-            }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What are games and comics APIs?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Games and comics APIs provide programmatic access to video game databases, player statistics, achievement data, comic book catalogs, character information, and gaming platform data.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Is the Steam API free?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Yes. The Steam Web API is free to use and provides access to public player profiles, game libraries, achievement data, and the Steam game catalog. You need a free Steam API key to authenticate.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Is there a Marvel Comics API?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Yes. Marvel offers an official API that provides access to their catalog of characters, comics, series, and events. It requires a free API key and uses MD5-based authentication.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Games and Comics APIs for Developers</h2>
+                    <p>A <strong>games API</strong> allows developers to access video game metadata, player stats, achievement data, leaderboards, and gaming platform information. Comics APIs provide character databases, issue metadata, and publisher catalogs for fan and collector applications.</p>
+                    <p>CodeHelper's curated games and comics API collection includes APIs covering Steam, console platforms, board game databases, Marvel, DC, and independent comic publishers.</p>
+
+                    <h3>What to look for in a games and comics API</h3>
+                    <ul>
+                        <li><strong>Platform coverage</strong>: Multi-platform APIs covering PC, PlayStation, Xbox, and Nintendo reach wider audiences than platform-specific ones.</li>
+                        <li><strong>Real-time stats</strong>: For competitive gaming apps, APIs with live match data and leaderboard updates are essential.</li>
+                        <li><strong>Image assets</strong>: High-quality cover art and character artwork enhance the visual quality of gaming and comics apps.</li>
+                    </ul>
+
+                    <h3>How to use this API directory</h3>
+                    <ol>
+                        <li>Browse the curated list of APIs below.</li>
+                        <li>Click any API to visit its documentation.</li>
+                        <li>Check the Auth column to understand what credentials you need.</li>
+                    </ol>
+
+                    <p>Whether you are building a game tracker or a comic book collection app, this free curated API directory saves you hours of research.</p>
+                </section>
+            `
         }
     },
     'geocoding': {
@@ -503,7 +1537,50 @@ export const apiCategoryMeta: Record<APICategory, APICategoryMeta> = {
                 name: 'Geocoding APIs',
                 description: 'Location and mapping services',
                 url: 'https://codehelper.me/resources/apis/geocoding'
-            }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What are geocoding APIs?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Geocoding APIs convert addresses into geographic coordinates (latitude/longitude) and vice versa. They also provide map tile rendering, place search, routing, and IP-based geolocation services.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Is there a free geocoding API?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Yes. Nominatim (powered by OpenStreetMap) is a free geocoding API with no API key required. Google Maps Geocoding API offers a free monthly credit, and Positionstack provides a generous free tier.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What is the difference between geocoding and reverse geocoding?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Geocoding converts a text address into coordinates (e.g., "Eiffel Tower, Paris" becomes 48.8584, 2.2945). Reverse geocoding does the opposite: it converts coordinates into a human-readable address.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Geocoding and Maps APIs for Developers</h2>
+                    <p>A <strong>geocoding API</strong> allows developers to convert addresses to coordinates, resolve place names, perform reverse geocoding, and integrate interactive maps into their applications. These APIs are central to location-aware apps, logistics platforms, and geographic data analysis.</p>
+                    <p>CodeHelper's curated geocoding API collection includes APIs covering address geocoding, reverse geocoding, place search, map tiles, and IP geolocation.</p>
+
+                    <h3>What to look for in a geocoding API</h3>
+                    <ul>
+                        <li><strong>Address coverage</strong>: Global APIs like Google Maps and HERE cover more countries and street-level addresses than regional alternatives.</li>
+                        <li><strong>Autocomplete support</strong>: Place autocomplete APIs improve UX for address input fields by suggesting completions as the user types.</li>
+                        <li><strong>Batch geocoding</strong>: For processing large datasets of addresses, choose APIs that support bulk requests efficiently.</li>
+                    </ul>
+
+                    <h3>How to use this API directory</h3>
+                    <ol>
+                        <li>Browse the curated list of APIs below.</li>
+                        <li>Click any API to visit its documentation.</li>
+                        <li>Check the Auth column to understand what credentials you need.</li>
+                    </ol>
+
+                    <p>Whether you are building a delivery app or a geographic data visualization, this free curated API directory saves you hours of research.</p>
+                </section>
+            `
         }
     },
     'government': {
@@ -520,7 +1597,50 @@ export const apiCategoryMeta: Record<APICategory, APICategoryMeta> = {
                 name: 'Government APIs',
                 description: 'Government data and services',
                 url: 'https://codehelper.me/resources/apis/government'
-            }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What are government APIs?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Government APIs provide programmatic access to public records, legislative data, census statistics, economic indicators, court records, and other civic information published by government agencies.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Are government APIs free to use?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Most government APIs are free and open as part of open government data initiatives. Agencies like the US Census Bureau, data.gov, and the UK Office for National Statistics publish APIs with no cost.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What can I build with a government data API?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'You can build civic information portals, legislative tracking tools, census data visualizations, public spending dashboards, and open government transparency platforms using these APIs.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Government APIs for Developers</h2>
+                    <p>A <strong>government API</strong> allows developers to access public records, legislative data, census statistics, and civic information published by national and local government agencies. These APIs power transparency tools, civic tech applications, and policy research platforms.</p>
+                    <p>CodeHelper's curated government API collection includes APIs covering census data, legislation, public spending, court records, and official statistics from multiple countries.</p>
+
+                    <h3>What to look for in a government API</h3>
+                    <ul>
+                        <li><strong>Data freshness</strong>: Legislative and regulatory data changes frequently; prefer APIs that update in real time or near real time.</li>
+                        <li><strong>Documentation quality</strong>: Government APIs vary widely in documentation quality; check for example requests and response schemas before committing.</li>
+                        <li><strong>Bulk download support</strong>: For large-scale analysis, APIs with bulk export endpoints or data dump options are more efficient than paginated REST calls.</li>
+                    </ul>
+
+                    <h3>How to use this API directory</h3>
+                    <ol>
+                        <li>Browse the curated list of APIs below.</li>
+                        <li>Click any API to visit its documentation.</li>
+                        <li>Check the Auth column to understand what credentials you need.</li>
+                    </ol>
+
+                    <p>Whether you are building a civic transparency tool or a legislative tracker, this free curated API directory saves you hours of research.</p>
+                </section>
+            `
         }
     },
     'health': {
@@ -537,7 +1657,50 @@ export const apiCategoryMeta: Record<APICategory, APICategoryMeta> = {
                 name: 'Health APIs',
                 description: 'Health and fitness data',
                 url: 'https://codehelper.me/resources/apis/health'
-            }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What are health APIs?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Health APIs provide programmatic access to medical information, fitness tracking data, drug databases, clinical trial records, workout plans, and wellness metrics for healthcare and fitness applications.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Are there free medical information APIs?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Yes. The OpenFDA API from the US FDA provides free access to drug labels, adverse event reports, and medical device data. The National Library of Medicine also offers free clinical APIs.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Are health APIs HIPAA compliant?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'HIPAA compliance applies to APIs handling Protected Health Information (PHI). For apps processing real patient data, you need a HIPAA-compliant API provider with a signed BAA. Many general health APIs that deal with anonymous data do not require HIPAA compliance.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Health and Fitness APIs for Developers</h2>
+                    <p>A <strong>health API</strong> allows developers to integrate medical information, fitness tracking, drug databases, clinical data, and wellness metrics into their applications. These APIs serve healthcare apps, fitness trackers, and medical research platforms.</p>
+                    <p>CodeHelper's curated health API collection includes APIs covering drug information, clinical trials, fitness data, nutrition, and public health statistics.</p>
+
+                    <h3>What to look for in a health API</h3>
+                    <ul>
+                        <li><strong>Data authority</strong>: Prefer APIs sourced from official bodies like the FDA, WHO, or NIH for reliable medical information.</li>
+                        <li><strong>Privacy compliance</strong>: For apps handling personal health data, ensure the API provider is HIPAA-compliant and offers a BAA.</li>
+                        <li><strong>Update frequency</strong>: Drug and clinical trial databases update regularly; confirm the API reflects current information.</li>
+                    </ul>
+
+                    <h3>How to use this API directory</h3>
+                    <ol>
+                        <li>Browse the curated list of APIs below.</li>
+                        <li>Click any API to visit its documentation.</li>
+                        <li>Check the Auth column to understand what credentials you need.</li>
+                    </ol>
+
+                    <p>Whether you are building a fitness tracker or a medical information portal, this free curated API directory saves you hours of research.</p>
+                </section>
+            `
         }
     },
     'jobs': {
@@ -554,7 +1717,50 @@ export const apiCategoryMeta: Record<APICategory, APICategoryMeta> = {
                 name: 'Jobs APIs',
                 description: 'Job listings and career data',
                 url: 'https://codehelper.me/resources/apis/jobs'
-            }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What are jobs APIs?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Jobs APIs provide programmatic access to job listings, salary data, company reviews, skills databases, and recruitment services for building job search engines and HR applications.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Is there a free job search API?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'The US Jobs API from the Department of Labor and Adzuna offer free API access to job listings. GitHub Jobs (archived) and Remotive also provide free job board APIs focused on tech roles.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Can I get salary data from a jobs API?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Yes. APIs like the US Bureau of Labor Statistics Occupational Employment Statistics and PayScale provide salary ranges by job title, industry, and location.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Jobs and Career APIs for Developers</h2>
+                    <p>A <strong>jobs API</strong> allows developers to search job listings, retrieve salary benchmarks, access skills databases, and integrate recruitment features into their applications. These APIs power job boards, HR tools, and career development platforms.</p>
+                    <p>CodeHelper's curated jobs API collection includes APIs covering job search, salary data, company information, skills taxonomies, and recruitment services.</p>
+
+                    <h3>What to look for in a jobs API</h3>
+                    <ul>
+                        <li><strong>Listing freshness</strong>: Job postings have short shelf lives; APIs that update multiple times daily provide more accurate availability data.</li>
+                        <li><strong>Search filters</strong>: Location, salary range, experience level, and remote work filters are essential for a useful job search experience.</li>
+                        <li><strong>Skills taxonomy</strong>: APIs that map job titles to required skills enable competency-based career recommendation features.</li>
+                    </ul>
+
+                    <h3>How to use this API directory</h3>
+                    <ol>
+                        <li>Browse the curated list of APIs below.</li>
+                        <li>Click any API to visit its documentation.</li>
+                        <li>Check the Auth column to understand what credentials you need.</li>
+                    </ol>
+
+                    <p>Whether you are building a job board or a career development tool, this free curated API directory saves you hours of research.</p>
+                </section>
+            `
         }
     },
     'music': {
@@ -571,7 +1777,50 @@ export const apiCategoryMeta: Record<APICategory, APICategoryMeta> = {
                 name: 'Music APIs',
                 description: 'Music streaming and metadata',
                 url: 'https://codehelper.me/resources/apis/music'
-            }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What are music APIs?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Music APIs provide programmatic access to song metadata, artist information, album data, lyrics, audio features, and streaming platform data for building music-related applications.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Is the Spotify API free?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Yes. The Spotify Web API is free for non-commercial use. You register an app in the Spotify Developer Dashboard, use OAuth for user authorization, and get access to search, playlist, and audio feature endpoints.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Can I get song lyrics through an API?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Yes. APIs like Genius and Musixmatch provide lyric data. Musixmatch\'s free tier covers basic lyric snippet access while the full lyric API requires a commercial license due to copyright requirements.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Music APIs for Developers</h2>
+                    <p>A <strong>music API</strong> allows developers to access song metadata, artist profiles, album art, lyrics, audio features, and streaming data from major music platforms. These APIs power playlist generators, music discovery tools, and audio analysis applications.</p>
+                    <p>CodeHelper's curated music API collection includes APIs covering streaming platforms, lyrics databases, music metadata, audio analysis, and radio broadcast data.</p>
+
+                    <h3>What to look for in a music API</h3>
+                    <ul>
+                        <li><strong>Catalog breadth</strong>: Larger catalogs like Spotify and MusicBrainz cover more artists and tracks, including obscure and independent releases.</li>
+                        <li><strong>Audio features</strong>: APIs that provide tempo, key, energy, and danceability scores enable sophisticated music recommendation algorithms.</li>
+                        <li><strong>Lyrics licensing</strong>: Displaying full lyrics requires a commercial license from lyrics API providers; confirm terms before launching.</li>
+                    </ul>
+
+                    <h3>How to use this API directory</h3>
+                    <ol>
+                        <li>Browse the curated list of APIs below.</li>
+                        <li>Click any API to visit its documentation.</li>
+                        <li>Check the Auth column to understand what credentials you need.</li>
+                    </ol>
+
+                    <p>Whether you are building a playlist generator or a music discovery app, this free curated API directory saves you hours of research.</p>
+                </section>
+            `
         }
     },
     'news': {
@@ -588,7 +1837,50 @@ export const apiCategoryMeta: Record<APICategory, APICategoryMeta> = {
                 name: 'News APIs',
                 description: 'News articles and media',
                 url: 'https://codehelper.me/resources/apis/news'
-            }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What are news APIs?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'News APIs provide programmatic access to news articles, breaking headlines, media content, and journalism data from thousands of publishers and news sources around the world.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Is NewsAPI free?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'NewsAPI offers a free Developer plan that provides access to headlines and article search with a 1,000 request per day limit. Commercial and production use requires a paid plan.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'How do I filter news by topic or source using an API?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Most news APIs accept query parameters for keywords, source domains, language, country, and category. For example, you can request only technology articles in English from specific publishers.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best News APIs for Developers</h2>
+                    <p>A <strong>news API</strong> allows developers to fetch breaking headlines, search article archives, and aggregate content from thousands of publishers programmatically. These APIs power news aggregators, media monitoring tools, and content-driven applications.</p>
+                    <p>CodeHelper's curated news API collection includes APIs covering global headlines, topic-filtered news feeds, press releases, and media monitoring services.</p>
+
+                    <h3>What to look for in a news API</h3>
+                    <ul>
+                        <li><strong>Source coverage</strong>: APIs that aggregate thousands of sources provide broader topic coverage than those limited to a few publishers.</li>
+                        <li><strong>Filtering capabilities</strong>: Keyword, category, language, and country filters are essential for building targeted news feeds.</li>
+                        <li><strong>Archive depth</strong>: For media monitoring and research, APIs with multi-year article archives are more valuable than real-time-only services.</li>
+                    </ul>
+
+                    <h3>How to use this API directory</h3>
+                    <ol>
+                        <li>Browse the curated list of APIs below.</li>
+                        <li>Click any API to visit its documentation.</li>
+                        <li>Check the Auth column to understand what credentials you need.</li>
+                    </ol>
+
+                    <p>Whether you are building a news aggregator or a media monitoring dashboard, this free curated API directory saves you hours of research.</p>
+                </section>
+            `
         }
     },
     'open-data': {
@@ -605,7 +1897,50 @@ export const apiCategoryMeta: Record<APICategory, APICategoryMeta> = {
                 name: 'Open Data APIs',
                 description: 'Open datasets and statistics',
                 url: 'https://codehelper.me/resources/apis/open-data'
-            }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What are open data APIs?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Open data APIs provide programmatic access to publicly available datasets including economic statistics, social indicators, scientific measurements, and government-published data freely available for research and development.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What is data.gov and does it have an API?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Data.gov is the US federal government\'s open data portal. It provides APIs and downloadable datasets across agriculture, climate, education, energy, and many other domains at no cost.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Can I use World Bank data through an API?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Yes. The World Bank Open Data API is free and covers hundreds of development indicators across hundreds of countries, including GDP, population, literacy, and health metrics going back decades.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Open Data APIs for Developers</h2>
+                    <p>An <strong>open data API</strong> allows developers to access publicly available datasets from government agencies, research institutions, and international organizations. These APIs power data journalism, academic research, policy analysis, and public interest applications.</p>
+                    <p>CodeHelper's curated open data API collection includes APIs covering economic indicators, social statistics, scientific measurements, geographic datasets, and public health data.</p>
+
+                    <h3>What to look for in an open data API</h3>
+                    <ul>
+                        <li><strong>Data licensing</strong>: Confirm the dataset license (Creative Commons, ODbL, public domain) before using data in commercial products.</li>
+                        <li><strong>Indicator coverage</strong>: APIs with broad indicator coverage reduce the need to aggregate data from multiple sources.</li>
+                        <li><strong>Update cadence</strong>: Statistical data may be updated annually, quarterly, or monthly; match the API's cadence to your application's freshness requirements.</li>
+                    </ul>
+
+                    <h3>How to use this API directory</h3>
+                    <ol>
+                        <li>Browse the curated list of APIs below.</li>
+                        <li>Click any API to visit its documentation.</li>
+                        <li>Check the Auth column to understand what credentials you need.</li>
+                    </ol>
+
+                    <p>Whether you are building a data visualization tool or a research portal, this free curated API directory saves you hours of research.</p>
+                </section>
+            `
         }
     },
     'open-source': {
@@ -622,7 +1957,50 @@ export const apiCategoryMeta: Record<APICategory, APICategoryMeta> = {
                 name: 'Open Source APIs',
                 description: 'Open source project data',
                 url: 'https://codehelper.me/resources/apis/open-source'
-            }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What are open source APIs?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Open source APIs provide programmatic access to repository metadata, contributor statistics, issue trackers, package registries, and code hosting platform data for tracking and analyzing open source ecosystems.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Is the GitHub API free?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Yes. GitHub\'s REST and GraphQL APIs are free for public data. Unauthenticated requests are limited to 60 per hour; with a personal access token the limit increases to 5,000 per hour.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'How do I track GitHub repository stars and forks via API?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Query the GitHub REST API endpoint GET /repos/{owner}/{repo} to retrieve star count, fork count, open issues, and other repository metadata in JSON format.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Open Source APIs for Developers</h2>
+                    <p>An <strong>open source API</strong> allows developers to query repository data, track project health metrics, access contributor information, and monitor package ecosystems across GitHub, GitLab, and other code hosting platforms.</p>
+                    <p>CodeHelper's curated open source API collection includes APIs covering repository metadata, package registries, contributor analytics, issue tracking, and code search.</p>
+
+                    <h3>What to look for in an open source API</h3>
+                    <ul>
+                        <li><strong>Rate limits</strong>: GitHub's unauthenticated limit is 60 requests per hour; always authenticate to get the higher 5,000 request limit for production apps.</li>
+                        <li><strong>GraphQL support</strong>: GitHub and GitLab both offer GraphQL APIs that let you fetch exactly the fields you need in a single request.</li>
+                        <li><strong>Webhook events</strong>: Subscribe to repository events (push, PR, issue) to build real-time integrations without polling.</li>
+                    </ul>
+
+                    <h3>How to use this API directory</h3>
+                    <ol>
+                        <li>Browse the curated list of APIs below.</li>
+                        <li>Click any API to visit its documentation.</li>
+                        <li>Check the Auth column to understand what credentials you need.</li>
+                    </ol>
+
+                    <p>Whether you are building an open source analytics tool or a developer portfolio tracker, this free curated API directory saves you hours of research.</p>
+                </section>
+            `
         }
     },
     'patents': {
@@ -639,7 +2017,50 @@ export const apiCategoryMeta: Record<APICategory, APICategoryMeta> = {
                 name: 'Patent APIs',
                 description: 'Patent information and search',
                 url: 'https://codehelper.me/resources/apis/patents'
-            }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What are patent APIs?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Patent APIs provide programmatic access to patent databases, allowing developers to search patents by keyword, inventor, assignee, or classification and retrieve full patent documents and legal status information.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Is the USPTO patent API free?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Yes. The USPTO Patent Full-Text Database API and PatentsView API are free to use. They cover millions of US patents with metadata, claims, abstracts, and inventor information.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Can I search international patents through an API?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Yes. The European Patent Office (EPO) OPS API provides access to the Espacenet patent database covering patents from over 100 countries. A free registration provides access to millions of international patent documents.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Patent APIs for Developers</h2>
+                    <p>A <strong>patent API</strong> allows developers to search patent databases, retrieve full patent documents, track IP portfolios, and analyze patent landscapes programmatically. These APIs serve legal tech platforms, R&D tools, and competitive intelligence applications.</p>
+                    <p>CodeHelper's curated patent API collection includes APIs covering US patents, international filings, trademark databases, and intellectual property analytics.</p>
+
+                    <h3>What to look for in a patent API</h3>
+                    <ul>
+                        <li><strong>Full-text search</strong>: APIs that search within patent claims and descriptions provide more precise results than title-only search.</li>
+                        <li><strong>Classification support</strong>: CPC and IPC classification codes let you narrow searches to specific technology domains.</li>
+                        <li><strong>Legal status data</strong>: Knowing whether a patent is active, expired, or abandoned is critical for IP research and freedom-to-operate analysis.</li>
+                    </ul>
+
+                    <h3>How to use this API directory</h3>
+                    <ol>
+                        <li>Browse the curated list of APIs below.</li>
+                        <li>Click any API to visit its documentation.</li>
+                        <li>Check the Auth column to understand what credentials you need.</li>
+                    </ol>
+
+                    <p>Whether you are building a patent search tool or an IP portfolio tracker, this free curated API directory saves you hours of research.</p>
+                </section>
+            `
         }
     },
     'personality': {
@@ -656,7 +2077,50 @@ export const apiCategoryMeta: Record<APICategory, APICategoryMeta> = {
                 name: 'Personality APIs',
                 description: 'Personality tests and quizzes',
                 url: 'https://codehelper.me/resources/apis/personality'
-            }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What are personality APIs?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Personality APIs provide fun and engagement-oriented data including personality quiz content, horoscope readings, fun facts, random jokes, and trivia questions for entertainment applications.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Is there a free horoscope API?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Yes. Several horoscope APIs offer free tiers with daily zodiac readings. Aztro is a popular free option that returns daily horoscopes for all 12 zodiac signs with no authentication required.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What can I build with a personality or quiz API?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'You can build personality quiz apps, daily horoscope widgets, trivia games, fun fact feeds, and icebreaker tools for team-building platforms using the APIs in this directory.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Personality APIs for Developers</h2>
+                    <p>A <strong>personality API</strong> allows developers to integrate personality quizzes, horoscope readings, fun facts, jokes, and trivia into their applications. These APIs are perfect for engagement-driven features that keep users entertained and returning.</p>
+                    <p>CodeHelper's curated personality API collection includes APIs covering personality tests, horoscopes, random facts, trivia, and humor content.</p>
+
+                    <h3>What to look for in a personality API</h3>
+                    <ul>
+                        <li><strong>Content variety</strong>: APIs with a wide range of quiz types and topics keep content fresh and engaging for repeat users.</li>
+                        <li><strong>Content safety</strong>: For apps with younger audiences, choose APIs with content filtering options to exclude adult or offensive material.</li>
+                        <li><strong>Update frequency</strong>: Daily horoscope and fun fact APIs should refresh content every 24 hours to provide new material on each visit.</li>
+                    </ul>
+
+                    <h3>How to use this API directory</h3>
+                    <ol>
+                        <li>Browse the curated list of APIs below.</li>
+                        <li>Click any API to visit its documentation.</li>
+                        <li>Check the Auth column to understand what credentials you need.</li>
+                    </ol>
+
+                    <p>Whether you are building a personality quiz app or a daily horoscope widget, this free curated API directory saves you hours of research.</p>
+                </section>
+            `
         }
     },
     'phone': {
@@ -673,7 +2137,50 @@ export const apiCategoryMeta: Record<APICategory, APICategoryMeta> = {
                 name: 'Phone APIs',
                 description: 'Phone number validation and lookup',
                 url: 'https://codehelper.me/resources/apis/phone'
-            }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What are phone APIs?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Phone APIs provide services for validating phone number formats, performing carrier lookups, detecting line types (mobile vs. landline), sending SMS messages, and making programmatic voice calls.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Is there a free phone number validation API?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Abstract API and NumVerify both offer free phone validation tiers. They validate number format, determine country and carrier, and check whether the number appears active.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'How do I send SMS using an API?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Twilio and Vonage (formerly Nexmo) are the most popular SMS APIs. Both require account creation and provide free trial credits. Send a POST request with the recipient number and message body to their REST endpoints.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Phone APIs for Developers</h2>
+                    <p>A <strong>phone API</strong> allows developers to validate phone numbers, perform carrier lookups, send SMS messages, and integrate voice calling into their applications without managing telecom infrastructure. These APIs are essential for OTP verification, notifications, and user authentication.</p>
+                    <p>CodeHelper's curated phone API collection includes APIs covering number validation, carrier detection, SMS sending, voice calls, and telecommunications data.</p>
+
+                    <h3>What to look for in a phone API</h3>
+                    <ul>
+                        <li><strong>E.164 format support</strong>: Ensure the API accepts and normalizes numbers in E.164 international format for consistent storage and processing.</li>
+                        <li><strong>Line type detection</strong>: Distinguishing mobile from landline numbers is important for SMS campaigns, as landlines cannot receive text messages.</li>
+                        <li><strong>Delivery receipts</strong>: SMS APIs with delivery webhooks let you confirm whether messages were actually received by the handset.</li>
+                    </ul>
+
+                    <h3>How to use this API directory</h3>
+                    <ol>
+                        <li>Browse the curated list of APIs below.</li>
+                        <li>Click any API to visit its documentation.</li>
+                        <li>Check the Auth column to understand what credentials you need.</li>
+                    </ol>
+
+                    <p>Whether you are building an OTP system or an SMS notification service, this free curated API directory saves you hours of research.</p>
+                </section>
+            `
         }
     },
     'photography': {
@@ -690,7 +2197,50 @@ export const apiCategoryMeta: Record<APICategory, APICategoryMeta> = {
                 name: 'Photography APIs',
                 description: 'Photo sharing and stock images',
                 url: 'https://codehelper.me/resources/apis/photography'
-            }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What are photography APIs?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Photography APIs provide programmatic access to stock photo libraries, image search, EXIF metadata extraction, photo sharing platforms, and camera equipment databases for building image-centric applications.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Is the Unsplash API free?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Yes. Unsplash offers a free API with 50 requests per hour on the demo tier and up to 5,000 requests per hour on the production tier (requires application approval). All images are free to use under the Unsplash License.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Can I use stock photos commercially through an API?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Unsplash and Pexels both offer APIs with commercially usable images at no cost under their respective licenses. Always check attribution requirements; Pexels requires credit while Unsplash prefers but does not require it.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Photography APIs for Developers</h2>
+                    <p>A <strong>photography API</strong> allows developers to search stock photo libraries, retrieve image metadata, access photo sharing platforms, and integrate high-quality imagery into their applications. These APIs are essential for content platforms, design tools, and media-rich apps.</p>
+                    <p>CodeHelper's curated photography API collection includes APIs covering stock photos, image search, EXIF data, photo communities, and camera equipment databases.</p>
+
+                    <h3>What to look for in a photography API</h3>
+                    <ul>
+                        <li><strong>Image licensing</strong>: Confirm whether images can be used commercially and whether attribution is required before building public-facing features.</li>
+                        <li><strong>Image resolution options</strong>: APIs that provide multiple resolution variants let you serve appropriately sized images for different screen densities.</li>
+                        <li><strong>Search relevance</strong>: Test the API's search quality with your target queries; relevance varies significantly between providers.</li>
+                    </ul>
+
+                    <h3>How to use this API directory</h3>
+                    <ol>
+                        <li>Browse the curated list of APIs below.</li>
+                        <li>Click any API to visit its documentation.</li>
+                        <li>Check the Auth column to understand what credentials you need.</li>
+                    </ol>
+
+                    <p>Whether you are building a stock photo search or a photo sharing platform, this free curated API directory saves you hours of research.</p>
+                </section>
+            `
         }
     },
     'programming': {
@@ -707,7 +2257,50 @@ export const apiCategoryMeta: Record<APICategory, APICategoryMeta> = {
                 name: 'Programming APIs',
                 description: 'Programming languages and tools',
                 url: 'https://codehelper.me/resources/apis/programming'
-            }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What are programming APIs?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Programming APIs provide services for code execution in multiple languages, syntax highlighting, static analysis, compiler access, documentation generation, and programming language data for building developer tools.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Is there a free code execution API?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Yes. Judge0 and Piston are free open source code execution APIs that support dozens of programming languages. They sandbox code execution in isolated containers for security.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Can I run code in the browser using an API?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Yes. By integrating a code execution API like Judge0 or Piston with your frontend, you can accept code input from users, send it to the API, and display the output in real time in the browser without any server-side code runner.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Programming APIs for Developers</h2>
+                    <p>A <strong>programming API</strong> allows developers to execute code in multiple languages, perform syntax highlighting, run static analysis, and access programming language metadata without setting up complex infrastructure. These APIs are the backbone of online IDEs, coding challenge platforms, and developer education tools.</p>
+                    <p>CodeHelper's curated programming API collection includes APIs covering code execution, compilers, syntax highlighting, language references, and code quality analysis.</p>
+
+                    <h3>What to look for in a programming API</h3>
+                    <ul>
+                        <li><strong>Language support</strong>: Verify the API supports all programming languages your platform targets, including version-specific runtimes.</li>
+                        <li><strong>Sandbox security</strong>: Code execution APIs must isolate user code in secure sandboxes to prevent malicious code from accessing host resources.</li>
+                        <li><strong>Execution timeout</strong>: Configurable timeouts prevent infinite loops from consuming resources and ensure consistent response times.</li>
+                    </ul>
+
+                    <h3>How to use this API directory</h3>
+                    <ol>
+                        <li>Browse the curated list of APIs below.</li>
+                        <li>Click any API to visit its documentation.</li>
+                        <li>Check the Auth column to understand what credentials you need.</li>
+                    </ol>
+
+                    <p>Whether you are building an online IDE or a coding challenge platform, this free curated API directory saves you hours of research.</p>
+                </section>
+            `
         }
     },
     'science-math': {
@@ -724,7 +2317,50 @@ export const apiCategoryMeta: Record<APICategory, APICategoryMeta> = {
                 name: 'Science & Math APIs',
                 description: 'Scientific and mathematical data',
                 url: 'https://codehelper.me/resources/apis/science-math'
-            }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What are science and math APIs?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Science and math APIs provide programmatic access to scientific databases, astronomical data, chemical properties, mathematical computation engines, physics constants, and research publication metadata.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Is the NASA API free?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Yes. NASA offers several free APIs including APOD (Astronomy Picture of the Day), Mars Rover Photos, and Near Earth Object data. A free API key obtained from api.nasa.gov provides higher rate limits.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Are there free math computation APIs?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Newton API is a free open source math API for symbolic computation including derivatives, integrals, and factoring. Wolfram Alpha also provides an API with a free tier for limited computational queries.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Science and Math APIs for Developers</h2>
+                    <p>A <strong>science API</strong> allows developers to access astronomical data, chemical databases, physics constants, mathematical computation services, and scientific research repositories. These APIs power educational platforms, research tools, and STEM applications.</p>
+                    <p>CodeHelper's curated science and math API collection includes APIs covering astronomy, chemistry, biology, mathematics, earth science, and scientific literature.</p>
+
+                    <h3>What to look for in a science and math API</h3>
+                    <ul>
+                        <li><strong>Data provenance</strong>: For scientific applications, prefer APIs sourced from authoritative institutions like NASA, NIH, or NIST.</li>
+                        <li><strong>Computation accuracy</strong>: Math APIs vary in precision; test edge cases with known results before integrating into applications requiring high accuracy.</li>
+                        <li><strong>Real-time data</strong>: For astronomical and space applications, APIs with real-time telemetry and ephemeris data provide more accurate current positions.</li>
+                    </ul>
+
+                    <h3>How to use this API directory</h3>
+                    <ol>
+                        <li>Browse the curated list of APIs below.</li>
+                        <li>Click any API to visit its documentation.</li>
+                        <li>Check the Auth column to understand what credentials you need.</li>
+                    </ol>
+
+                    <p>Whether you are building a space exploration app or a mathematics education platform, this free curated API directory saves you hours of research.</p>
+                </section>
+            `
         }
     },
     'security': {
@@ -741,7 +2377,50 @@ export const apiCategoryMeta: Record<APICategory, APICategoryMeta> = {
                 name: 'Security APIs',
                 description: 'Security and vulnerability data',
                 url: 'https://codehelper.me/resources/apis/security'
-            }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What are security APIs?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Security APIs provide programmatic access to vulnerability databases, threat intelligence feeds, SSL certificate data, breach detection services, and cybersecurity scanning tools for building secure applications and security dashboards.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Is there a free CVE vulnerability database API?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Yes. The NIST National Vulnerability Database (NVD) API is free and provides access to the complete CVE dataset including severity scores, affected products, and remediation information.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'How do I check if an email was in a data breach using an API?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'The Have I Been Pwned API allows you to check email addresses against a database of known data breaches. The basic breach check endpoint is free and does not require an API key.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Security APIs for Developers</h2>
+                    <p>A <strong>security API</strong> allows developers to integrate vulnerability scanning, threat intelligence, breach detection, SSL monitoring, and cybersecurity data into their applications. These APIs are essential for building secure software and security operations tooling.</p>
+                    <p>CodeHelper's curated security API collection includes APIs covering CVE databases, threat feeds, SSL analysis, password breach detection, and network security scanning.</p>
+
+                    <h3>What to look for in a security API</h3>
+                    <ul>
+                        <li><strong>Data freshness</strong>: Threat intelligence APIs must update continuously to reflect the latest vulnerabilities and indicators of compromise.</li>
+                        <li><strong>CVSS scoring</strong>: Vulnerability APIs should include CVSS v3 severity scores to help you prioritize remediation efforts.</li>
+                        <li><strong>False positive rate</strong>: Evaluate each API's false positive track record before integrating into automated security pipelines where incorrect blocks cause disruption.</li>
+                    </ul>
+
+                    <h3>How to use this API directory</h3>
+                    <ol>
+                        <li>Browse the curated list of APIs below.</li>
+                        <li>Click any API to visit its documentation.</li>
+                        <li>Check the Auth column to understand what credentials you need.</li>
+                    </ol>
+
+                    <p>Whether you are building a vulnerability scanner or a security operations dashboard, this free curated API directory saves you hours of research.</p>
+                </section>
+            `
         }
     },
 }
@@ -1063,7 +2742,7 @@ export const externalAPIs: Record<APICategory, ExternalAPI[]> = {
         },
         {
             "api": "The Dog",
-            "desc": "Public service API about dogs — perfect for apps or websites",
+            "desc": "Public service API about dogs : perfect for apps or websites",
             "auth": "apiKey",
             "https": "Yes",
             "cors": "No",
@@ -5185,7 +6864,7 @@ export const externalAPIs: Record<APICategory, ExternalAPI[]> = {
         },
         {
             "api": "JokeAPI",
-            "desc": "Retrieve random jokes by category — programming, general, or dark humor",
+            "desc": "Retrieve random jokes by category : programming, general, or dark humor",
             "auth": "No",
             "https": "Yes",
             "cors": "Yes",
@@ -5194,7 +6873,7 @@ export const externalAPIs: Record<APICategory, ExternalAPI[]> = {
         },
         {
             "api": "Marvel",
-            "desc": "Access Marvel Comics data — characters, stories, and events",
+            "desc": "Access Marvel Comics data : characters, stories, and events",
             "auth": "apiKey",
             "https": "Yes",
             "cors": "Unknown",
@@ -5203,7 +6882,7 @@ export const externalAPIs: Record<APICategory, ExternalAPI[]> = {
         },
         {
             "api": "PokéAPI",
-            "desc": "Access comprehensive Pokémon data — species, moves, and abilities",
+            "desc": "Access comprehensive Pokémon data : species, moves, and abilities",
             "auth": "No",
             "https": "Yes",
             "cors": "Unknown",
@@ -6784,7 +8463,7 @@ export const externalAPIs: Record<APICategory, ExternalAPI[]> = {
         },
         {
             "api": "icanhazdadjoke",
-            "desc": "Get random dad jokes — the largest collection on the internet",
+            "desc": "Get random dad jokes : the largest collection on the internet",
             "auth": "No",
             "https": "Yes",
             "cors": "Unknown",
