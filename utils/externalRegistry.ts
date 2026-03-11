@@ -61,6 +61,8 @@ export interface ResourceCategoryMeta {
         ogImage?: string
         keywords?: string
         structuredData?: Record<string, any>
+        faqSchema?: Record<string, any>
+        seoContent?: string
     }
 }
 
@@ -76,26 +78,70 @@ export const resourceCategoryMeta: Record<ResourceCategory, ResourceCategoryMeta
         title: 'Colors',
         description: 'Color palette generators, gradient tools, and accessibility checkers',
         seo: {
-            title: `Colors Resources - Generators, Palettes & Tools – ${BRAND}`,
+            title: `Colors Resources: Generators, Palettes & Tools – ${BRAND}`,
             description: 'Curated collection of the best color palette generators, gradient tools, and accessibility checkers for developers and designers.',
             ogImage: OG,
             keywords: 'color palette generator, gradient tools, color accessibility, hex color picker, color contrast checker, web design colors, ui colors',
             structuredData: {
                 '@context': 'https://schema.org',
-                '@type': 'SoftwareApplication',
+                '@type': 'CollectionPage',
                 name: 'Colors Resources',
-                applicationCategory: 'DeveloperApplication',
-                operatingSystem: 'All',
-                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-                featureList: [
-                    'Color palette generators',
-                    'Gradient generators',
-                    'Accessibility checkers',
-                    'Color contrast testers',
-                    'Material Design colors'
-                ],
-                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '150' }
-            }
+                description: 'Curated collection of the best color palette generators, gradient tools, and accessibility checkers for developers and designers.',
+                url: 'https://codehelper.me/resources/colors/',
+                mainEntity: {
+                    '@type': 'ItemList',
+                    name: 'Best Color Tools & Resources',
+                    description: 'Curated list of color palette generators, gradient tools, accessibility checkers, and hex color pickers'
+                }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What is the best free color palette generator?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Some of the most popular free color palette generators include Coolors, Adobe Color, Color Hunt, and Paletton. Each offers a unique approach :  Coolors is great for quick random palettes, while Adobe Color excels at color theory-based combinations.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'How do I check color contrast for accessibility?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Tools like Colorable, Whocanuse, and Color Brewer 2 let you test foreground/background color combinations against WCAG accessibility guidelines. They show contrast ratios and indicate whether they pass AA or AAA standards.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'How can I generate CSS gradients for my website?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'CSS Gradient (cssgradient.io), ColorGradient.dev, and Colorzilla all provide visual gradient editors that generate ready-to-use CSS gradient code you can copy directly into your stylesheet.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Where can I find brand color codes?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'BrandColors (brandcolors.net) and Brand Palettes (brandpalettes.com) maintain large databases of official brand color codes and hex values for hundreds of well-known companies.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Color Tools for Developers &amp; Designers</h2>
+                    <p>A great <strong>color palette</strong> is the foundation of any successful web or app design. Whether you need a hex color picker, a CSS gradient generator, or a color contrast checker for accessibility compliance, having the right color tools saves hours of manual work.</p>
+                    <p>CodeHelper's curated color resources collection includes over 50 tools covering palette generation, gradient creation, accessibility testing, brand colors, and more :  all free to use.</p>
+
+                    <h3>What to look for in a good color tool</h3>
+                    <ul>
+                        <li><strong>Accessibility support</strong>: Check that colors meet WCAG contrast ratio standards for readable, inclusive designs.</li>
+                        <li><strong>Export options</strong>: Good tools export HEX, RGB, HSL, and CSS code directly.</li>
+                        <li><strong>Inspiration mode</strong>: Browsable galleries of curated palettes help when you're starting from scratch.</li>
+                    </ul>
+
+                    <h3>How to use this resource collection</h3>
+                    <ol>
+                        <li>Browse the curated list of color tools below.</li>
+                        <li>Click any tool to open it in a new tab.</li>
+                        <li>Use the search bar to filter by name or description.</li>
+                    </ol>
+
+                    <p>Whether you are building a brand identity, designing a UI component library, or simply looking for web design colors that work together, this free curated collection saves you hours of research.</p>
+                </section>
+            `
         }
     },
     'icons': {
@@ -108,20 +154,59 @@ export const resourceCategoryMeta: Record<ResourceCategory, ResourceCategoryMeta
             keywords: 'free icons, icon libraries, svg icons, icon fonts, material icons, font awesome, icon generator, web icons',
             structuredData: {
                 '@context': 'https://schema.org',
-                '@type': 'SoftwareApplication',
+                '@type': 'CollectionPage',
                 name: 'Icons Resources',
-                applicationCategory: 'DeveloperApplication',
-                operatingSystem: 'All',
-                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-                featureList: [
-                    'Free SVG icon libraries',
-                    'Icon fonts',
-                    'Icon generators',
-                    'Material Design icons',
-                    'Font Awesome alternatives'
-                ],
-                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '200' }
-            }
+                description: 'Huge collection of free icon libraries, icon fonts, and SVG icon generators for web and mobile development.',
+                url: 'https://codehelper.me/resources/icons/',
+                mainEntity: {
+                    '@type': 'ItemList',
+                    name: 'Best Icon Libraries & Tools',
+                    description: 'Curated list of free SVG icon libraries, icon fonts, material icons, and icon generators for developers'
+                }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What are the best free SVG icon libraries?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Top free SVG icon libraries include Heroicons, Feather Icons, Tabler Icons, Phosphor Icons, Lucide, and Remix Icon. All are open source and available in SVG format, many also provide React and Vue components.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Are Material Design icons free to use?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Yes, Material Design Icons are free and open source under the Apache License 2.0. You can use them in personal and commercial projects. They are available via Google Fonts or the community-maintained materialdesignicons.com.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What is the difference between icon fonts and SVG icons?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Icon fonts render icons as text characters and are styled with CSS, making them easy to colorize and scale. SVG icons are vector files that offer better accessibility, sharper rendering at all sizes, and individual icon loading for better performance.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Free Icon Libraries for Developers &amp; Designers</h2>
+                    <p>Finding the right <strong>icon library</strong> is essential for consistent, professional-looking interfaces. Free SVG icons, icon fonts, and animated icon sets are available in abundance :  but knowing which ones are high quality and actively maintained saves considerable time.</p>
+                    <p>CodeHelper's curated icon resources collection includes over 50 libraries covering SVG icons, material icons, animated icons, brand icons, and Font Awesome alternatives :  all free and ready to use in web and mobile projects.</p>
+
+                    <h3>What to look for in a good icon library</h3>
+                    <ul>
+                        <li><strong>License clarity</strong>: Confirm icons are free for commercial use, not just personal projects.</li>
+                        <li><strong>Format variety</strong>: Good libraries offer SVG, PNG, and framework-specific packages (React, Vue).</li>
+                        <li><strong>Consistency</strong>: Icons in the set should share the same visual style and stroke weight.</li>
+                    </ul>
+
+                    <h3>How to use this resource collection</h3>
+                    <ol>
+                        <li>Browse the curated list of icon tools below.</li>
+                        <li>Click any tool to open it in a new tab.</li>
+                        <li>Use the search bar to filter by name or description.</li>
+                    </ol>
+
+                    <p>Whether you are building a web application, a mobile app UI, or a design system, this free curated icon collection saves you hours of searching for the right web icons.</p>
+                </section>
+            `
         }
     },
     'fonts': {
@@ -134,20 +219,59 @@ export const resourceCategoryMeta: Record<ResourceCategory, ResourceCategoryMeta
             keywords: 'free fonts, google fonts, font pairing, typography tools, web fonts, font calculator, golden ratio typography',
             structuredData: {
                 '@context': 'https://schema.org',
-                '@type': 'SoftwareApplication',
+                '@type': 'CollectionPage',
                 name: 'Fonts Resources',
-                applicationCategory: 'DeveloperApplication',
-                operatingSystem: 'All',
-                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-                featureList: [
-                    'Free font libraries',
-                    'Font pairing tools',
-                    'Typography calculators',
-                    'Web font hosting',
-                    'Font identification tools'
-                ],
-                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '120' }
-            }
+                description: 'Best free font libraries, font pairing tools, and typography calculators for designers and developers.',
+                url: 'https://codehelper.me/resources/fonts/',
+                mainEntity: {
+                    '@type': 'ItemList',
+                    name: 'Best Free Fonts & Typography Tools',
+                    description: 'Curated list of free font libraries, font pairing tools, typography calculators, and web font hosting services'
+                }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'Where can I find free fonts for commercial use?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Google Fonts, Font Squirrel, and DaFont all offer large collections of free fonts. Font Squirrel specifically filters for fonts that are free for commercial use. Always check the individual font license before using in commercial projects.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What are the best font pairing tools?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'FontPair and Fontjoy are the most popular font pairing tools. FontPair focuses on Google Fonts combinations, while Fontjoy uses machine learning to generate aesthetically pleasing font pairings with one click.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'How do I calculate the right font size for my website?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'The Golden Ratio Typography Calculator (grtcalculator.com) helps you determine ideal font size, line height, and content width based on typographic principles. Enter your base font size and it calculates a harmonious type scale.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Free Fonts &amp; Typography Tools for Developers &amp; Designers</h2>
+                    <p>Good <strong>typography</strong> is the backbone of readable, professional web design. Choosing the right web fonts, pairing them correctly, and setting proper line heights and sizes makes a dramatic difference in user experience.</p>
+                    <p>CodeHelper's curated fonts collection includes free font libraries, font pairing tools, golden ratio typography calculators, and web font hosting services :  everything you need to make smart typographic decisions.</p>
+
+                    <h3>What to look for in a good font resource</h3>
+                    <ul>
+                        <li><strong>License type</strong>: Ensure fonts are free for commercial use, not just personal projects.</li>
+                        <li><strong>Web performance</strong>: Variable fonts and well-subsetted web fonts load faster and improve Core Web Vitals.</li>
+                        <li><strong>Pairing guidance</strong>: Tools that suggest complementary font combinations save design decision time.</li>
+                    </ul>
+
+                    <h3>How to use this resource collection</h3>
+                    <ol>
+                        <li>Browse the curated list of font tools below.</li>
+                        <li>Click any tool to open it in a new tab.</li>
+                        <li>Use the search bar to filter by name or description.</li>
+                    </ol>
+
+                    <p>Whether you are choosing Google Fonts for a SaaS product, learning about golden ratio typography, or downloading free fonts for a client project, this collection saves you hours of research.</p>
+                </section>
+            `
         }
     },
     'favicons': {
@@ -160,19 +284,59 @@ export const resourceCategoryMeta: Record<ResourceCategory, ResourceCategoryMeta
             keywords: 'favicon generator, create favicon, ico generator, app icons, maskable icons, favicon converter, website icons',
             structuredData: {
                 '@context': 'https://schema.org',
-                '@type': 'SoftwareApplication',
+                '@type': 'CollectionPage',
                 name: 'Favicons Resources',
-                applicationCategory: 'DeveloperApplication',
-                operatingSystem: 'All',
-                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-                featureList: [
-                    'Favicon generators',
-                    'ICO converters',
-                    'App icon generators',
-                    'Maskable icon tools'
-                ],
-                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '80' }
-            }
+                description: 'Create and optimize favicons for all devices and browsers with these top favicon generators and tools.',
+                url: 'https://codehelper.me/resources/favicons/',
+                mainEntity: {
+                    '@type': 'ItemList',
+                    name: 'Best Favicon Generator Tools',
+                    description: 'Curated list of favicon generators, ICO converters, app icon generators, and maskable icon tools'
+                }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What size should a favicon be?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'A standard favicon is 16x16 or 32x32 pixels in ICO format. Modern browsers also support 180x180 PNG for Apple Touch Icons and 192x192 or 512x512 PNG for Android/PWA icons. Favicon generators typically create all required sizes automatically.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What is a maskable icon?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'A maskable icon is a PWA app icon designed with extra padding so the operating system can crop it into any shape (circle, rounded square, etc.) without cutting off important content. Tools like Maskable.app let you preview and create maskable icons.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'How do I add a favicon to my website?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Generate your favicon files using a favicon generator tool, then add link tags in your HTML head: <link rel="icon" href="/favicon.ico"> for the basic ICO and additional link tags for Apple Touch Icons and PNG variants.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Favicon Generator Tools for Developers</h2>
+                    <p>A <strong>favicon</strong> is the small icon that appears in browser tabs, bookmarks, and home screen shortcuts. Getting favicons right :  across all devices and browsers :  requires generating multiple sizes and formats from a single source image.</p>
+                    <p>CodeHelper's curated favicon tools collection covers everything from basic ICO converters to full favicon packages that generate website icons for Apple devices, Android PWAs, and modern browsers.</p>
+
+                    <h3>What to look for in a good favicon tool</h3>
+                    <ul>
+                        <li><strong>Multi-size output</strong>: A good favicon generator creates all required sizes (16x16, 32x32, 180x180, 512x512) in one step.</li>
+                        <li><strong>Maskable icon support</strong>: PWA-friendly tools generate maskable icons with safe zones for Android home screen display.</li>
+                        <li><strong>HTML code snippet</strong>: The best tools also provide the HTML link tags you need to add to your page.</li>
+                    </ul>
+
+                    <h3>How to use this resource collection</h3>
+                    <ol>
+                        <li>Browse the curated list of favicon tools below.</li>
+                        <li>Click any tool to open it in a new tab.</li>
+                        <li>Use the search bar to filter by name or description.</li>
+                    </ol>
+
+                    <p>Whether you are creating app icons for a new product, converting a logo into an ICO file, or generating maskable icons for a PWA, this free collection saves you hours of research.</p>
+                </section>
+            `
         }
     },
     'logos': {
@@ -185,19 +349,59 @@ export const resourceCategoryMeta: Record<ResourceCategory, ResourceCategoryMeta
             keywords: 'free logos, vector logos, brand logos, logo maker, svg logos, company logos, logo design tools',
             structuredData: {
                 '@context': 'https://schema.org',
-                '@type': 'SoftwareApplication',
+                '@type': 'CollectionPage',
                 name: 'Logos Resources',
-                applicationCategory: 'DeveloperApplication',
-                operatingSystem: 'All',
-                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-                featureList: [
-                    'Vector brand logos',
-                    'Logo makers',
-                    'SVG logo libraries',
-                    'Logo search engines'
-                ],
-                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '90' }
-            }
+                description: 'Find free vector logos of popular brands or create your own with these logo makers and resources.',
+                url: 'https://codehelper.me/resources/logos/',
+                mainEntity: {
+                    '@type': 'ItemList',
+                    name: 'Best Logo Tools & Resources',
+                    description: 'Curated list of free vector brand logos, SVG logo libraries, logo makers, and logo search engines'
+                }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'Where can I download free vector logos of popular brands?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Websites like Worldvectorlogo, Seeklogo, and SVGporn maintain large collections of free brand logos in SVG format. These are useful for mockups, presentations, and development projects :  always verify the usage rights for your specific use case.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What format should a logo be in for web use?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'SVG is the ideal format for web logos because it scales perfectly at any size and has small file sizes. PNG with transparency is a good fallback for environments that do not support SVG. Avoid using JPEG for logos as it does not support transparency.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What are the best free online logo makers?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Free online logo makers include Canva, Hatchful by Shopify, and LogoMakr. For more control, vector design tools like Inkscape (free) or Figma (free tier) allow fully custom logo creation from scratch.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Free Logo Resources &amp; Makers for Developers &amp; Designers</h2>
+                    <p>Whether you need official <strong>brand logos</strong> for a mockup, a logo maker for a side project, or an SVG logo library to integrate into your design system, having the right logo resources at hand is essential.</p>
+                    <p>CodeHelper's curated logos collection covers free vector logos of popular companies, online logo design tools, SVG logo libraries, and logo search engines to help developers and designers find exactly what they need.</p>
+
+                    <h3>What to look for in a good logo resource</h3>
+                    <ul>
+                        <li><strong>SVG format availability</strong>: Vector logos scale perfectly at any resolution without pixelation.</li>
+                        <li><strong>License clarity</strong>: Confirm usage rights, especially for commercial use of brand logos in public-facing products.</li>
+                        <li><strong>Search capability</strong>: Large logo databases with good search help you find specific company logos quickly.</li>
+                    </ul>
+
+                    <h3>How to use this resource collection</h3>
+                    <ol>
+                        <li>Browse the curated list of logo tools below.</li>
+                        <li>Click any tool to open it in a new tab.</li>
+                        <li>Use the search bar to filter by name or description.</li>
+                    </ol>
+
+                    <p>Whether you are building client presentations, creating app mockups with company logos, or designing your own brand identity, this free curated collection saves you hours of research.</p>
+                </section>
+            `
         }
     },
     'stock-photos': {
@@ -210,19 +414,59 @@ export const resourceCategoryMeta: Record<ResourceCategory, ResourceCategoryMeta
             keywords: 'free stock photos, royalty free images, public domain images, free photography, stock images, commercial use photos',
             structuredData: {
                 '@context': 'https://schema.org',
-                '@type': 'SoftwareApplication',
+                '@type': 'CollectionPage',
                 name: 'Stock Photos Resources',
-                applicationCategory: 'DeveloperApplication',
-                operatingSystem: 'All',
-                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-                featureList: [
-                    'Free stock photo sites',
-                    'Royalty-free images',
-                    'Public domain photos',
-                    'High-resolution photography'
-                ],
-                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '250' }
-            }
+                description: 'The best websites for free, high-quality stock photos and royalty-free images for your projects.',
+                url: 'https://codehelper.me/resources/stock-photos/',
+                mainEntity: {
+                    '@type': 'ItemList',
+                    name: 'Best Free Stock Photo Sites',
+                    description: 'Curated list of free stock photo websites, royalty-free image libraries, and public domain photography resources'
+                }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What are the best free stock photo websites?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'The most popular free stock photo sites include Unsplash, Pexels, Pixabay, and StockSnap. All offer high-resolution photography free for personal and commercial use under their respective licenses.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Can I use free stock photos commercially?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Most free stock photo sites like Unsplash and Pexels allow commercial use without attribution, but always read the specific license. Some images may have model releases or property restrictions. When in doubt, use photos from sites with explicit commercial-use licenses.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What is the difference between royalty-free and public domain images?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Royalty-free images are licensed for use without paying royalties, but are still copyrighted :  you must follow usage terms. Public domain images have no copyright restrictions and can be used freely in any way. Unsplash uses a custom license, while sites like Pixabay offer CC0 public domain options.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Free Stock Photos for Developers &amp; Designers</h2>
+                    <p>High-quality <strong>stock photos</strong> are essential for websites, apps, presentations, and marketing materials. Finding royalty-free images that are both visually compelling and safe to use commercially can be time-consuming without the right resources.</p>
+                    <p>CodeHelper's curated stock photos collection includes the best free stock photography sites with thousands of high-resolution, royalty-free images available for commercial use :  no attribution required on most.</p>
+
+                    <h3>What to look for in a free stock photo site</h3>
+                    <ul>
+                        <li><strong>Commercial use license</strong>: Confirm photos can be used in client work and commercial products without royalty fees.</li>
+                        <li><strong>Image quality</strong>: High-resolution photography (at least 1920px wide) ensures images look sharp on retina displays.</li>
+                        <li><strong>Search quality</strong>: Good search and filtering by orientation, color, and category speeds up your workflow.</li>
+                    </ul>
+
+                    <h3>How to use this resource collection</h3>
+                    <ol>
+                        <li>Browse the curated list of stock photo sites below.</li>
+                        <li>Click any site to open it in a new tab.</li>
+                        <li>Use the search bar to filter by name or description.</li>
+                    </ol>
+
+                    <p>Whether you are looking for public domain images for a blog, commercial use photos for a client website, or free photography for a mobile app, this collection saves you hours of research.</p>
+                </section>
+            `
         }
     },
     'stock-videos': {
@@ -235,19 +479,59 @@ export const resourceCategoryMeta: Record<ResourceCategory, ResourceCategoryMeta
             keywords: 'free stock videos, royalty free footage, video clips, video backgrounds, stock footage, free video loops',
             structuredData: {
                 '@context': 'https://schema.org',
-                '@type': 'SoftwareApplication',
+                '@type': 'CollectionPage',
                 name: 'Stock Videos Resources',
-                applicationCategory: 'DeveloperApplication',
-                operatingSystem: 'All',
-                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-                featureList: [
-                    'Free stock video sites',
-                    'Royalty-free footage',
-                    'Video loops',
-                    '4K stock videos'
-                ],
-                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '70' }
-            }
+                description: 'Download free stock video footage, clips, and loops for your website or video projects.',
+                url: 'https://codehelper.me/resources/stock-videos/',
+                mainEntity: {
+                    '@type': 'ItemList',
+                    name: 'Best Free Stock Video Sites',
+                    description: 'Curated list of free stock video footage sites, royalty-free video clips, video loop libraries, and 4K stock footage resources'
+                }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'Where can I download free stock video footage?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Top free stock video sites include Pexels Videos, Pixabay Videos, Coverr, and Mixkit. All offer royalty-free footage for personal and commercial use. Pexels and Pixabay have the largest libraries with thousands of 4K clips.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Can I use free stock videos commercially?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Most free stock video sites allow commercial use, but always check the specific license for each clip. Sites like Coverr and Mixkit offer footage under licenses that explicitly permit commercial use without attribution.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What are video backgrounds used for in web design?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Video backgrounds are used as hero section backgrounds, ambient visuals, and storytelling elements on websites. Looping stock footage clips are particularly popular as subtle, attention-capturing background animations in modern web design.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Free Stock Video Footage for Developers &amp; Designers</h2>
+                    <p>High-quality <strong>stock video</strong> footage can dramatically elevate websites, app demos, and marketing materials. Finding royalty-free video clips that are free for commercial use :  especially 4K footage :  used to require paid subscriptions, but several excellent free resources now exist.</p>
+                    <p>CodeHelper's curated stock videos collection includes the best sites for free stock footage, video loops, video backgrounds, and royalty-free clips ready to use in commercial projects.</p>
+
+                    <h3>What to look for in a free stock video site</h3>
+                    <ul>
+                        <li><strong>Commercial license</strong>: Ensure videos can be used in client work, advertisements, and websites without attribution fees.</li>
+                        <li><strong>Resolution options</strong>: Sites offering 4K or at least 1080p footage ensure crisp visuals on modern displays.</li>
+                        <li><strong>Loop-friendly clips</strong>: Seamlessly looping video backgrounds are essential for web hero sections.</li>
+                    </ul>
+
+                    <h3>How to use this resource collection</h3>
+                    <ol>
+                        <li>Browse the curated list of stock video sites below.</li>
+                        <li>Click any site to open it in a new tab.</li>
+                        <li>Use the search bar to filter by name or description.</li>
+                    </ol>
+
+                    <p>Whether you are creating video backgrounds for a landing page, sourcing free footage for a promotional video, or building a multimedia web experience, this collection saves you hours of searching.</p>
+                </section>
+            `
         }
     },
     'vectors-clip': {
@@ -260,19 +544,59 @@ export const resourceCategoryMeta: Record<ResourceCategory, ResourceCategoryMeta
             keywords: 'free vectors, vector graphics, clipart, illustrations, svg patterns, vector art, free illustrations',
             structuredData: {
                 '@context': 'https://schema.org',
-                '@type': 'SoftwareApplication',
+                '@type': 'CollectionPage',
                 name: 'Vectors & Clip Art Resources',
-                applicationCategory: 'DeveloperApplication',
-                operatingSystem: 'All',
-                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-                featureList: [
-                    'Free vector libraries',
-                    'Illustration collections',
-                    'SVG patterns',
-                    'Clip art sites'
-                ],
-                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '110' }
-            }
+                description: 'Discover the best sources for free vector graphics, clip art, illustrations, and SVG patterns.',
+                url: 'https://codehelper.me/resources/vectors-clip/',
+                mainEntity: {
+                    '@type': 'ItemList',
+                    name: 'Best Free Vector & Illustration Resources',
+                    description: 'Curated list of free vector graphics libraries, illustration collections, SVG patterns, and clip art sites'
+                }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'Where can I find free vector illustrations for my website?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Popular free vector illustration resources include unDraw, Humaaans, Blush, Open Peeps, and Drawkit. These provide SVG illustrations in consistent styles, many customizable by color, and free for commercial use.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What is the difference between vector graphics and raster images?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Vector graphics (SVG, AI, EPS) are defined by mathematical paths and scale perfectly at any size without losing quality. Raster images (PNG, JPEG) are made of pixels and become blurry when enlarged. Vectors are preferred for logos, icons, and illustrations used at multiple sizes.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Are free vector graphics safe to use commercially?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Many free vector sites offer commercial licenses, but always check. unDraw, Open Peeps, and Humaaans explicitly allow commercial use. Freepik and Flaticon have free tiers with attribution requirements for non-premium accounts.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Free Vectors, Clip Art &amp; Illustrations for Developers &amp; Designers</h2>
+                    <p><strong>Vector graphics</strong> and illustrations bring warmth and visual storytelling to websites and applications. Unlike raster images, SVG illustrations scale perfectly at any resolution, making them ideal for hero sections, empty states, onboarding screens, and marketing pages.</p>
+                    <p>CodeHelper's curated vectors and clip art collection includes free illustration libraries, SVG pattern generators, vector art sites, and clip art resources :  all suitable for use in web and app design projects.</p>
+
+                    <h3>What to look for in a good vector resource</h3>
+                    <ul>
+                        <li><strong>Style consistency</strong>: Choose illustrations from a single collection for visual coherence across your project.</li>
+                        <li><strong>Color customizability</strong>: SVG illustrations that allow color changes make it easy to match your brand palette.</li>
+                        <li><strong>Commercial license</strong>: Verify you can use the vectors in client work and commercial products.</li>
+                    </ul>
+
+                    <h3>How to use this resource collection</h3>
+                    <ol>
+                        <li>Browse the curated list of vector tools below.</li>
+                        <li>Click any tool to open it in a new tab.</li>
+                        <li>Use the search bar to filter by name or description.</li>
+                    </ol>
+
+                    <p>Whether you are adding free illustrations to a landing page, sourcing SVG patterns for a UI background, or building a clip art library for a creative project, this collection saves you hours of searching.</p>
+                </section>
+            `
         }
     },
     'image-compression': {
@@ -285,19 +609,59 @@ export const resourceCategoryMeta: Record<ResourceCategory, ResourceCategoryMeta
             keywords: 'image compression, image optimizer, compress png, compress jpeg, webp converter, image resizer, reduce image size',
             structuredData: {
                 '@context': 'https://schema.org',
-                '@type': 'SoftwareApplication',
+                '@type': 'CollectionPage',
                 name: 'Image Compression Resources',
-                applicationCategory: 'DeveloperApplication',
-                operatingSystem: 'All',
-                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-                featureList: [
-                    'Image compressors',
-                    'Image resizers',
-                    'Format converters',
-                    'SVG optimizers'
-                ],
-                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '130' }
-            }
+                description: 'Optimize your images for the web with these top image compression and resizing tools.',
+                url: 'https://codehelper.me/resources/image-compression/',
+                mainEntity: {
+                    '@type': 'ItemList',
+                    name: 'Best Image Compression & Optimization Tools',
+                    description: 'Curated list of online image compressors, image resizers, WebP converters, and SVG optimizers'
+                }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What is the best free online image compression tool?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Popular free image compression tools include TinyPNG (supports PNG and JPEG), Squoosh (by Google, supports many formats including WebP and AVIF), and Compressor.io. All provide significant file size reductions with minimal quality loss.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Should I use WebP instead of PNG or JPEG for web images?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Yes, WebP typically provides 25-35% smaller file sizes than JPEG at equivalent quality, with support for transparency like PNG. All modern browsers support WebP. For maximum compatibility, serve WebP with a JPEG/PNG fallback using the HTML picture element.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'How do I optimize SVG files?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'SVGOMG (the online version of SVGO) is the best free tool for SVG optimization. It removes unnecessary metadata, comments, and redundant data from SVG files, often reducing file sizes by 50-70% without any visual difference.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Image Compression &amp; Optimization Tools for Developers</h2>
+                    <p><strong>Image compression</strong> and optimization is one of the highest-impact performance improvements you can make to a website. Unoptimized images are the leading cause of slow page loads, poor Core Web Vitals scores, and wasted bandwidth on mobile connections.</p>
+                    <p>CodeHelper's curated image compression collection includes the best tools for compressing PNG and JPEG files, converting images to WebP, resizing images for responsive layouts, and optimizing SVGs :  all free and online.</p>
+
+                    <h3>What to look for in a good image optimizer</h3>
+                    <ul>
+                        <li><strong>Lossless vs lossy options</strong>: Good tools offer both modes :  lossless for quality-critical images, lossy for dramatic size reductions.</li>
+                        <li><strong>WebP and AVIF support</strong>: Modern format conversion helps future-proof your image delivery strategy.</li>
+                        <li><strong>Batch processing</strong>: Tools that handle multiple files simultaneously save significant time in production workflows.</li>
+                    </ul>
+
+                    <h3>How to use this resource collection</h3>
+                    <ol>
+                        <li>Browse the curated list of image compression tools below.</li>
+                        <li>Click any tool to open it in a new tab.</li>
+                        <li>Use the search bar to filter by name or description.</li>
+                    </ol>
+
+                    <p>Whether you are reducing image size for a website, converting images to WebP for better performance, or optimizing SVG icons, this free collection saves you hours of searching for the right tools.</p>
+                </section>
+            `
         }
     },
     'image-mockups': {
@@ -310,19 +674,59 @@ export const resourceCategoryMeta: Record<ResourceCategory, ResourceCategoryMeta
             keywords: 'device mockups, mockup generator, iphone mockup, browser mockup, laptop mockup, screen mockup, 3d mockups',
             structuredData: {
                 '@context': 'https://schema.org',
-                '@type': 'SoftwareApplication',
+                '@type': 'CollectionPage',
                 name: 'Image Mockups Resources',
-                applicationCategory: 'DeveloperApplication',
-                operatingSystem: 'All',
-                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-                featureList: [
-                    'Device mockup generators',
-                    'Browser frame mockups',
-                    '3D mockup tools',
-                    'App screenshot generators'
-                ],
-                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '95' }
-            }
+                description: 'Create professional device mockups for your designs instantly with these free mockup generators.',
+                url: 'https://codehelper.me/resources/image-mockups/',
+                mainEntity: {
+                    '@type': 'ItemList',
+                    name: 'Best Device Mockup Generator Tools',
+                    description: 'Curated list of device mockup generators, browser frame mockups, 3D mockup tools, and app screenshot generators'
+                }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What is the best free device mockup generator?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Popular free mockup generators include Mockup World, Shots.so, Previewed, and Screely. Each lets you place a screenshot inside a realistic device frame :  phone, tablet, laptop, or browser window :  in seconds without design software.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'How do I create an iPhone mockup for free?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Tools like Previewed and MockuPhone let you upload a screenshot and instantly generate iPhone mockups in various poses. You can then download the image as PNG or export it for use in presentations and app store listings.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What are browser frame mockups used for?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Browser frame mockups wrap a website screenshot in a realistic browser window (Chrome, Safari, Firefox), making it look like a real website preview. They are commonly used in case studies, portfolios, landing pages, and product presentations.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Device Mockup Generators for Developers &amp; Designers</h2>
+                    <p><strong>Device mockups</strong> transform plain screenshots into professional presentations showing your designs inside realistic phones, tablets, laptops, and browser windows. They are essential for portfolio projects, app store listings, landing pages, and client presentations.</p>
+                    <p>CodeHelper's curated image mockups collection includes the best free mockup generators :  from iPhone and Android phone mockups to browser frame mockups and 3D device renders :  no design software required.</p>
+
+                    <h3>What to look for in a good mockup tool</h3>
+                    <ul>
+                        <li><strong>Device variety</strong>: Good tools cover phones, tablets, laptops, desktops, and browser frames to match any presentation need.</li>
+                        <li><strong>Export quality</strong>: High-resolution PNG exports (2x or 3x) ensure mockups look sharp in presentations and on retina displays.</li>
+                        <li><strong>3D and perspective options</strong>: Angled and 3D mockups add visual depth and make screenshots more engaging than flat frames.</li>
+                    </ul>
+
+                    <h3>How to use this resource collection</h3>
+                    <ol>
+                        <li>Browse the curated list of mockup tools below.</li>
+                        <li>Click any tool to open it in a new tab.</li>
+                        <li>Use the search bar to filter by name or description.</li>
+                    </ol>
+
+                    <p>Whether you are creating app store screenshots, building a portfolio, or preparing a client presentation, this free collection of screen mockup and device mockup generators saves you hours.</p>
+                </section>
+            `
         }
     },
     'ui-graphics': {
@@ -335,19 +739,59 @@ export const resourceCategoryMeta: Record<ResourceCategory, ResourceCategoryMeta
             keywords: 'ui graphics, design assets, background patterns, ui kits, free design resources, web textures, svg backgrounds',
             structuredData: {
                 '@context': 'https://schema.org',
-                '@type': 'SoftwareApplication',
+                '@type': 'CollectionPage',
                 name: 'UI Graphics Resources',
-                applicationCategory: 'DeveloperApplication',
-                operatingSystem: 'All',
-                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-                featureList: [
-                    'UI design assets',
-                    'Background patterns',
-                    'Texture libraries',
-                    'UI kits'
-                ],
-                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '105' }
-            }
+                description: 'Collection of free UI graphics, design assets, backgrounds, and patterns for web and app design.',
+                url: 'https://codehelper.me/resources/ui-graphics/',
+                mainEntity: {
+                    '@type': 'ItemList',
+                    name: 'Best Free UI Graphics & Design Assets',
+                    description: 'Curated list of free UI design assets, background pattern generators, texture libraries, and SVG background tools'
+                }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'Where can I find free background patterns for my website?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Great sources for free background patterns include Hero Patterns, SVG Backgrounds (svgbackgrounds.com), Patternico, and CSS Backgrounds. Most generate or provide SVG and CSS patterns ready to use directly in your stylesheets.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What are UI kits and where can I download free ones?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'UI kits are collections of pre-designed interface components :  buttons, forms, cards, navigation bars :  that speed up design and prototyping. Free UI kits are available on Figma Community, Sketch App Sources, and various design resource sites.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What are SVG backgrounds and how do I use them?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'SVG backgrounds are scalable vector patterns and shapes used as section backgrounds in web design. You can use them inline in HTML, as CSS background-image URLs, or as external SVG files. Sites like Hero Patterns generate CSS code you can paste directly into your stylesheet.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Free UI Graphics &amp; Design Assets for Developers &amp; Designers</h2>
+                    <p><strong>UI graphics</strong> :  including background patterns, textures, abstract shapes, and decorative SVG elements :  add visual depth and polish to websites and applications. Finding high-quality, free design assets saves hours of custom creation work.</p>
+                    <p>CodeHelper's curated UI graphics collection includes background pattern generators, free UI kits, SVG background tools, texture libraries, and web design assets :  all free and ready to use.</p>
+
+                    <h3>What to look for in good UI graphic resources</h3>
+                    <ul>
+                        <li><strong>CSS-ready output</strong>: Tools that generate CSS background-image code let you apply patterns without downloading files.</li>
+                        <li><strong>Customization options</strong>: Adjustable colors, sizes, and opacities let you match graphics to your brand.</li>
+                        <li><strong>Performance-friendly formats</strong>: SVG patterns are tiny in file size and scale perfectly, making them ideal for web backgrounds.</li>
+                    </ul>
+
+                    <h3>How to use this resource collection</h3>
+                    <ol>
+                        <li>Browse the curated list of UI graphic tools below.</li>
+                        <li>Click any tool to open it in a new tab.</li>
+                        <li>Use the search bar to filter by name or description.</li>
+                    </ol>
+
+                    <p>Whether you need free design resources for a landing page, svg backgrounds for a hero section, or UI kits for rapid prototyping, this collection covers everything you need.</p>
+                </section>
+            `
         }
     },
     'css-frameworks': {
@@ -360,19 +804,59 @@ export const resourceCategoryMeta: Record<ResourceCategory, ResourceCategoryMeta
             keywords: 'css frameworks, ui frameworks, tailwind css, bootstrap, bulma, css libraries, responsive framework, frontend frameworks',
             structuredData: {
                 '@context': 'https://schema.org',
-                '@type': 'SoftwareApplication',
+                '@type': 'CollectionPage',
                 name: 'CSS Frameworks Resources',
-                applicationCategory: 'DeveloperApplication',
-                operatingSystem: 'All',
-                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-                featureList: [
-                    'Utility-first frameworks',
-                    'Component-based frameworks',
-                    'Lightweight CSS libraries',
-                    'Material Design frameworks'
-                ],
-                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '180' }
-            }
+                description: 'Explore the best CSS frameworks and libraries for modern web development, from heavyweights to lightweight alternatives.',
+                url: 'https://codehelper.me/resources/css-frameworks/',
+                mainEntity: {
+                    '@type': 'ItemList',
+                    name: 'Best CSS Frameworks & Libraries',
+                    description: 'Curated list of CSS frameworks including utility-first frameworks, component-based libraries, and responsive frontend frameworks'
+                }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What is the best CSS framework for beginners?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Bootstrap is the most beginner-friendly CSS framework due to its extensive documentation, large community, and pre-built components. Tailwind CSS has a steeper learning curve but offers more flexibility. Bulma is also a good starting point for its simplicity.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What is the difference between Tailwind CSS and Bootstrap?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Bootstrap provides ready-made components (navbars, modals, cards) with predefined styles, while Tailwind CSS is utility-first :  it gives you low-level utility classes to build custom designs without leaving your HTML. Bootstrap is faster to prototype with; Tailwind offers more design flexibility.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Are CSS frameworks worth using in 2025?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Yes. CSS frameworks significantly speed up development by providing responsive grid systems, cross-browser-compatible styles, and reusable components. Tailwind CSS in particular has become a standard in modern web development for its performance and customizability.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best CSS Frameworks &amp; Libraries for Web Development</h2>
+                    <p><strong>CSS frameworks</strong> accelerate web development by providing pre-built responsive grids, UI components, and utility classes that eliminate writing repetitive styles from scratch. Choosing the right CSS library for your project can dramatically reduce development time.</p>
+                    <p>CodeHelper's curated CSS frameworks collection covers utility-first frameworks like Tailwind CSS, component-based frameworks like Bootstrap and Bulma, Material Design frameworks, and lightweight CSS libraries for every project scale.</p>
+
+                    <h3>What to look for in a CSS framework</h3>
+                    <ul>
+                        <li><strong>Bundle size</strong>: Utility-first frameworks with PurgeCSS integration produce very small final CSS files; component frameworks can be heavier without careful tree-shaking.</li>
+                        <li><strong>Customization</strong>: Good frameworks expose a design token system for colors, spacing, and typography that aligns with your brand.</li>
+                        <li><strong>Community and ecosystem</strong>: Active communities mean better plugins, templates, and long-term maintenance.</li>
+                    </ul>
+
+                    <h3>How to use this resource collection</h3>
+                    <ol>
+                        <li>Browse the curated list of CSS frameworks below.</li>
+                        <li>Click any framework to open its documentation in a new tab.</li>
+                        <li>Use the search bar to filter by name or description.</li>
+                    </ol>
+
+                    <p>Whether you are choosing between Tailwind CSS and Bootstrap, exploring responsive frameworks, or looking for a lightweight CSS library for a small project, this collection has you covered.</p>
+                </section>
+            `
         }
     },
     'css-animations': {
@@ -385,19 +869,59 @@ export const resourceCategoryMeta: Record<ResourceCategory, ResourceCategoryMeta
             keywords: 'css animations, animation library, keyframe generator, css transitions, animate.css, web animations, hover effects',
             structuredData: {
                 '@context': 'https://schema.org',
-                '@type': 'SoftwareApplication',
+                '@type': 'CollectionPage',
                 name: 'CSS Animations Resources',
-                applicationCategory: 'DeveloperApplication',
-                operatingSystem: 'All',
-                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-                featureList: [
-                    'CSS animation libraries',
-                    'Keyframe generators',
-                    'Transition tools',
-                    'Scroll animations'
-                ],
-                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '140' }
-            }
+                description: 'Add life to your website with these CSS animation libraries, keyframe generators, and transition tools.',
+                url: 'https://codehelper.me/resources/css-animations/',
+                mainEntity: {
+                    '@type': 'ItemList',
+                    name: 'Best CSS Animation Libraries & Tools',
+                    description: 'Curated list of CSS animation libraries, keyframe generators, transition tools, hover effects, and scroll animation resources'
+                }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What is the best CSS animation library?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Animate.css is the most widely used CSS animation library, offering ready-to-use keyframe animations for entrances, exits, and attention-seekers. For scroll-triggered animations, AOS (Animate On Scroll) and Wow.js are popular choices. For advanced sequences, GSAP is industry-standard.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'How do I create CSS keyframe animations?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'CSS keyframe animations use @keyframes rules to define animation states, then the animation property to apply them to elements. Tools like Animista and Keyframes.app provide visual editors that generate the CSS code for you, which you can copy directly into your stylesheet.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'How do I add scroll animations to a website?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'AOS (Animate On Scroll) is the simplest scroll animation library :  add data-aos attributes to HTML elements and initialize with one line of JavaScript. For more control, ScrollReveal and Intersection Observer API (native browser API) are excellent alternatives.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best CSS Animation Libraries &amp; Tools for Web Developers</h2>
+                    <p><strong>CSS animations</strong> bring interfaces to life with smooth transitions, entrance effects, hover states, and scroll-triggered animations. The right animation library can make a website feel polished and modern without the performance overhead of JavaScript-heavy solutions.</p>
+                    <p>CodeHelper's curated CSS animations collection includes keyframe animation libraries, CSS transition generators, hover effect libraries, scroll animation tools, and visual keyframe editors.</p>
+
+                    <h3>What to look for in a CSS animation resource</h3>
+                    <ul>
+                        <li><strong>Performance</strong>: Good animations use GPU-accelerated properties (transform, opacity) rather than layout-triggering properties (width, height, top).</li>
+                        <li><strong>Accessibility</strong>: Well-designed tools respect prefers-reduced-motion media queries for users who are sensitive to motion.</li>
+                        <li><strong>Copy-paste ready</strong>: The best tools generate clean CSS code you can drop directly into your project.</li>
+                    </ul>
+
+                    <h3>How to use this resource collection</h3>
+                    <ol>
+                        <li>Browse the curated list of CSS animation tools below.</li>
+                        <li>Click any tool to open it in a new tab.</li>
+                        <li>Use the search bar to filter by name or description.</li>
+                    </ol>
+
+                    <p>Whether you are adding hover effects to buttons, building scroll-triggered animations for a landing page, or exploring keyframe generators, this collection has what you need.</p>
+                </section>
+            `
         }
     },
     'css-methodologies': {
@@ -410,19 +934,59 @@ export const resourceCategoryMeta: Record<ResourceCategory, ResourceCategoryMeta
             keywords: 'css methodologies, bem, oocss, smacss, atomic css, css architecture, maintainable css, css best practices',
             structuredData: {
                 '@context': 'https://schema.org',
-                '@type': 'SoftwareApplication',
+                '@type': 'CollectionPage',
                 name: 'CSS Methodologies Resources',
-                applicationCategory: 'DeveloperApplication',
-                operatingSystem: 'All',
-                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-                featureList: [
-                    'BEM methodology',
-                    'OOCSS',
-                    'Atomic CSS',
-                    'SMACSS'
-                ],
-                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '60' }
-            }
+                description: 'Learn about popular CSS methodologies and architecture patterns for scalable and maintainable stylesheets.',
+                url: 'https://codehelper.me/resources/css-methodologies/',
+                mainEntity: {
+                    '@type': 'ItemList',
+                    name: 'Best CSS Methodologies & Architecture Resources',
+                    description: 'Curated list of CSS methodology guides including BEM, OOCSS, SMACSS, Atomic CSS, and CSS architecture best practices'
+                }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What is BEM in CSS?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'BEM (Block, Element, Modifier) is a CSS naming methodology that creates a consistent, predictable class naming structure. Blocks are standalone components (.card), Elements are parts of blocks (.card__title), and Modifiers are variations (.card--featured). BEM prevents specificity conflicts and makes styles more readable.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What is the difference between BEM, SMACSS, and OOCSS?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'BEM focuses on a strict naming convention for blocks, elements, and modifiers. SMACSS (Scalable and Modular Architecture for CSS) categorizes rules into base, layout, module, state, and theme layers. OOCSS (Object-Oriented CSS) promotes separating structure from skin. All three aim to create maintainable, scalable CSS architectures.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Should I use a CSS methodology with Tailwind CSS?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Tailwind CSS largely replaces traditional CSS methodology needs since utility classes eliminate custom class naming decisions. However, for component-level organization you may still benefit from patterns like OOCSS thinking when building reusable Tailwind component abstractions.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best CSS Methodologies &amp; Architecture Resources for Developers</h2>
+                    <p><strong>CSS methodologies</strong> provide structured approaches to writing scalable, maintainable stylesheets. Without a clear architecture, CSS in large projects quickly becomes difficult to manage, with specificity conflicts, unintended overrides, and inconsistent naming patterns.</p>
+                    <p>CodeHelper's curated CSS methodologies collection covers the major architectural patterns :  BEM, OOCSS, SMACSS, Atomic CSS, and CSS best practices :  with resources to help you choose and implement the right approach for your project.</p>
+
+                    <h3>What to look for when choosing a CSS methodology</h3>
+                    <ul>
+                        <li><strong>Team size</strong>: Strict methodologies like BEM benefit larger teams where consistency matters most.</li>
+                        <li><strong>Project scale</strong>: Simple projects may not need a formal methodology; large codebases benefit enormously from architectural patterns.</li>
+                        <li><strong>Framework compatibility</strong>: Consider how your chosen methodology integrates with CSS frameworks or preprocessors you are already using.</li>
+                    </ul>
+
+                    <h3>How to use this resource collection</h3>
+                    <ol>
+                        <li>Browse the curated list of CSS methodology resources below.</li>
+                        <li>Click any resource to open it in a new tab.</li>
+                        <li>Use the search bar to filter by name or description.</li>
+                    </ol>
+
+                    <p>Whether you are learning BEM for the first time, exploring Atomic CSS, or looking for CSS architecture best practices to apply to a large codebase, this collection is your starting point.</p>
+                </section>
+            `
         }
     },
     'react-ui-libraries': {
@@ -435,19 +999,59 @@ export const resourceCategoryMeta: Record<ResourceCategory, ResourceCategoryMeta
             keywords: 'react ui library, react components, material ui, ant design, chakra ui, react bootstrap, react design system',
             structuredData: {
                 '@context': 'https://schema.org',
-                '@type': 'SoftwareApplication',
+                '@type': 'CollectionPage',
                 name: 'React UI Libraries Resources',
-                applicationCategory: 'DeveloperApplication',
-                operatingSystem: 'All',
-                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-                featureList: [
-                    'React component libraries',
-                    'Material Design for React',
-                    'Tailwind React components',
-                    'Enterprise design systems'
-                ],
-                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '220' }
-            }
+                description: 'Top React UI component libraries and design systems to speed up your React application development.',
+                url: 'https://codehelper.me/resources/react-ui-libraries/',
+                mainEntity: {
+                    '@type': 'ItemList',
+                    name: 'Best React UI Component Libraries',
+                    description: 'Curated list of React component libraries, Material Design for React, Tailwind-based React components, and enterprise design systems'
+                }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What is the most popular React UI library?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Material UI (MUI) is the most widely used React UI library, offering a comprehensive set of components following Material Design guidelines. Ant Design is popular for enterprise applications. Chakra UI and shadcn/ui have gained significant adoption for their developer experience and accessibility focus.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What is the difference between MUI and Ant Design?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'MUI implements Google Material Design and is highly customizable through theming. Ant Design has its own design language, is particularly strong for admin and enterprise applications, and provides a more opinionated component set. Both are production-ready with excellent TypeScript support.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What is shadcn/ui and why is it popular?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'shadcn/ui is a collection of re-usable React components built with Tailwind CSS and Radix UI primitives. Unlike traditional libraries, you copy the component source code into your project rather than installing a package, giving you full control over customization. Its accessibility, design quality, and flexibility have made it extremely popular.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best React UI Component Libraries for Developers</h2>
+                    <p><strong>React UI libraries</strong> provide pre-built, accessible, and customizable components that dramatically accelerate frontend development. Choosing the right React component library for your project saves weeks of building common UI patterns from scratch.</p>
+                    <p>CodeHelper's curated React UI libraries collection covers the full spectrum :  from full-featured design systems like Material UI and Ant Design, to utility-first approaches like shadcn/ui and Headless UI, to specialized libraries for specific use cases.</p>
+
+                    <h3>What to look for in a React UI library</h3>
+                    <ul>
+                        <li><strong>Accessibility</strong>: Well-maintained libraries follow WAI-ARIA standards and are keyboard-navigable out of the box.</li>
+                        <li><strong>TypeScript support</strong>: First-class TypeScript support improves developer experience and catches bugs early.</li>
+                        <li><strong>Bundle size and tree-shaking</strong>: Libraries that support tree-shaking allow importing only the components you use, keeping bundle sizes small.</li>
+                    </ul>
+
+                    <h3>How to use this resource collection</h3>
+                    <ol>
+                        <li>Browse the curated list of React UI libraries below.</li>
+                        <li>Click any library to open its documentation in a new tab.</li>
+                        <li>Use the search bar to filter by name or description.</li>
+                    </ol>
+
+                    <p>Whether you are starting a new React project, evaluating Material UI alternatives, or building an enterprise design system, this collection helps you find the right react design system for your needs.</p>
+                </section>
+            `
         }
     },
     'vue-ui-libraries': {
@@ -460,19 +1064,59 @@ export const resourceCategoryMeta: Record<ResourceCategory, ResourceCategoryMeta
             keywords: 'vue ui library, vue components, vuetify, element ui, bootstrap vue, quasar, vue design system',
             structuredData: {
                 '@context': 'https://schema.org',
-                '@type': 'SoftwareApplication',
+                '@type': 'CollectionPage',
                 name: 'Vue UI Libraries Resources',
-                applicationCategory: 'DeveloperApplication',
-                operatingSystem: 'All',
-                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-                featureList: [
-                    'Vue component libraries',
-                    'Material Design for Vue',
-                    'Mobile UI frameworks',
-                    'Admin dashboard templates'
-                ],
-                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '190' }
-            }
+                description: 'Collection of the best UI component libraries and frameworks for Vue.js applications.',
+                url: 'https://codehelper.me/resources/vue-ui-libraries/',
+                mainEntity: {
+                    '@type': 'ItemList',
+                    name: 'Best Vue.js UI Component Libraries',
+                    description: 'Curated list of Vue component libraries, Vuetify, Element Plus, Quasar, and other Vue design system resources'
+                }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What is the best Vue.js UI component library?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Vuetify is the most feature-complete Vue UI library, offering Material Design components for Vue 3. Element Plus is excellent for enterprise admin interfaces. Quasar stands out for its ability to target web, mobile, and desktop from a single codebase. PrimeVue offers a large component set with multiple themes.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Is Vuetify compatible with Vue 3?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Yes, Vuetify 3 fully supports Vue 3 with the Composition API. It was rewritten for Vue 3 and provides improved performance, better TypeScript support, and a treeshakeable component library compared to Vuetify 2.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What Vue UI library should I use for mobile apps?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Quasar Framework is the top choice for building mobile-ready Vue applications, offering a unified component set for web, Capacitor (iOS/Android), and Electron (desktop). Ionic Vue is another strong option specifically for hybrid mobile app development with Vue.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Vue.js UI Component Libraries for Developers</h2>
+                    <p><strong>Vue UI libraries</strong> provide ready-made, accessible components that integrate seamlessly with Vue.js and Nuxt applications. The Vue ecosystem has matured significantly, offering excellent choices from full Material Design systems to lightweight headless component libraries.</p>
+                    <p>CodeHelper's curated Vue UI libraries collection includes Vuetify, Element Plus, Quasar, Bootstrap Vue, PrimeVue, and more :  covering everything from admin dashboards to mobile-first applications.</p>
+
+                    <h3>What to look for in a Vue UI library</h3>
+                    <ul>
+                        <li><strong>Vue 3 compatibility</strong>: Ensure the library supports Vue 3 with Composition API for modern projects.</li>
+                        <li><strong>Theming system</strong>: Good libraries provide CSS custom property-based theming for easy brand customization.</li>
+                        <li><strong>SSR support</strong>: For Nuxt.js projects, verify the library works with server-side rendering without hydration issues.</li>
+                    </ul>
+
+                    <h3>How to use this resource collection</h3>
+                    <ol>
+                        <li>Browse the curated list of Vue UI libraries below.</li>
+                        <li>Click any library to open its documentation in a new tab.</li>
+                        <li>Use the search bar to filter by name or description.</li>
+                    </ol>
+
+                    <p>Whether you are building a Vue 3 SaaS product, a Nuxt application, or an admin dashboard, this collection helps you find the right vue design system for your project.</p>
+                </section>
+            `
         }
     },
     'angular-ui-libraries': {
@@ -485,19 +1129,59 @@ export const resourceCategoryMeta: Record<ResourceCategory, ResourceCategoryMeta
             keywords: 'angular ui library, angular components, angular material, ng bootstrap, primeng, angular framework',
             structuredData: {
                 '@context': 'https://schema.org',
-                '@type': 'SoftwareApplication',
+                '@type': 'CollectionPage',
                 name: 'Angular UI Libraries Resources',
-                applicationCategory: 'DeveloperApplication',
-                operatingSystem: 'All',
-                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-                featureList: [
-                    'Angular component libraries',
-                    'Angular Material',
-                    'Bootstrap for Angular',
-                    'Enterprise UI kits'
-                ],
-                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '160' }
-            }
+                description: 'Top UI component libraries and material design frameworks for Angular developers.',
+                url: 'https://codehelper.me/resources/angular-ui-libraries/',
+                mainEntity: {
+                    '@type': 'ItemList',
+                    name: 'Best Angular UI Component Libraries',
+                    description: 'Curated list of Angular component libraries including Angular Material, NgBootstrap, PrimeNG, and enterprise Angular UI kits'
+                }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What is the best Angular UI library?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Angular Material (the official Google library) is the most used Angular UI library, providing Material Design components with deep Angular integration. PrimeNG is a strong alternative with a larger component set and multiple themes. NgBootstrap is ideal for projects already using Bootstrap CSS.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Is Angular Material free to use?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Yes, Angular Material is completely free and open source under the MIT license. It is maintained by the Angular team at Google and updated with every major Angular release, ensuring long-term compatibility and support.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'How do I add Angular Material to my project?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Run ng add @angular/material in your Angular CLI project. The schematic automatically installs the package, adds a theme, imports the BrowserAnimationsModule, and configures your project. You then import individual component modules as needed.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Angular UI Component Libraries for Developers</h2>
+                    <p><strong>Angular UI libraries</strong> provide production-ready components designed to work seamlessly with Angular's module system, dependency injection, and change detection. The right Angular component library can significantly reduce development time for enterprise applications.</p>
+                    <p>CodeHelper's curated Angular UI libraries collection includes Angular Material, PrimeNG, NgBootstrap, Clarity Design System, and more :  covering a range of design styles and use cases from admin panels to consumer applications.</p>
+
+                    <h3>What to look for in an Angular UI library</h3>
+                    <ul>
+                        <li><strong>Angular version compatibility</strong>: Verify the library actively supports the latest Angular version and uses standalone components for modern architectures.</li>
+                        <li><strong>Accessibility</strong>: Look for ARIA compliance and keyboard navigation support, especially for enterprise applications.</li>
+                        <li><strong>Theming</strong>: Component libraries with robust theming systems let you match your corporate brand without style conflicts.</li>
+                    </ul>
+
+                    <h3>How to use this resource collection</h3>
+                    <ol>
+                        <li>Browse the curated list of Angular UI libraries below.</li>
+                        <li>Click any library to open its documentation in a new tab.</li>
+                        <li>Use the search bar to filter by name or description.</li>
+                    </ol>
+
+                    <p>Whether you are building an enterprise Angular application, exploring Angular Material alternatives, or looking for angular components with advanced data grid capabilities, this collection is your guide.</p>
+                </section>
+            `
         }
     },
     'svelte-ui-libraries': {
@@ -510,19 +1194,59 @@ export const resourceCategoryMeta: Record<ResourceCategory, ResourceCategoryMeta
             keywords: 'svelte ui library, svelte components, svelte material ui, sveltestrap, svelte framework',
             structuredData: {
                 '@context': 'https://schema.org',
-                '@type': 'SoftwareApplication',
+                '@type': 'CollectionPage',
                 name: 'Svelte UI Libraries Resources',
-                applicationCategory: 'DeveloperApplication',
-                operatingSystem: 'All',
-                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-                featureList: [
-                    'Svelte component libraries',
-                    'Svelte Material UI',
-                    'SvelteStrap',
-                    'Lightweight UI kits'
-                ],
-                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '100' }
-            }
+                description: 'Explore the growing ecosystem of UI component libraries and tools for Svelte applications.',
+                url: 'https://codehelper.me/resources/svelte-ui-libraries/',
+                mainEntity: {
+                    '@type': 'ItemList',
+                    name: 'Best Svelte UI Component Libraries',
+                    description: 'Curated list of Svelte component libraries, Svelte Material UI, SvelteStrap, and lightweight Svelte UI kits'
+                }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What are the best UI libraries for Svelte?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Top Svelte UI libraries include Skeleton UI, Flowbite Svelte, Svelte Material UI, and SvelteStrap. Skeleton is particularly popular for SvelteKit projects, offering a modern design system with Tailwind CSS integration.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Can I use shadcn/ui with Svelte?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'shadcn-svelte is a community port of shadcn/ui for Svelte, built with Bits UI (accessible headless primitives) and Tailwind CSS. It follows the same copy-paste philosophy as the React version, giving you full component ownership.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Is the Svelte component ecosystem mature enough for production?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Yes. While the Svelte ecosystem is smaller than React or Vue, it has grown significantly with SvelteKit as the standard meta-framework. Libraries like Skeleton, Flowbite Svelte, and Svelte Material UI are production-ready and actively maintained.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Svelte UI Component Libraries for Developers</h2>
+                    <p><strong>Svelte UI libraries</strong> are growing rapidly alongside SvelteKit's adoption as a production meta-framework. Svelte's compile-time approach means UI libraries can be extremely lightweight, shipping only the component code you actually use.</p>
+                    <p>CodeHelper's curated Svelte UI libraries collection includes Skeleton, Flowbite Svelte, Svelte Material UI, SvelteStrap, and other svelte components and frameworks suitable for modern SvelteKit applications.</p>
+
+                    <h3>What to look for in a Svelte UI library</h3>
+                    <ul>
+                        <li><strong>SvelteKit compatibility</strong>: Ensure the library supports SSR and SvelteKit's file-based routing without client-only workarounds.</li>
+                        <li><strong>Tailwind integration</strong>: Many modern Svelte libraries are built with Tailwind CSS, making customization straightforward.</li>
+                        <li><strong>Accessibility</strong>: Look for libraries using accessible headless primitives like Bits UI or Melt UI under the hood.</li>
+                    </ul>
+
+                    <h3>How to use this resource collection</h3>
+                    <ol>
+                        <li>Browse the curated list of Svelte UI libraries below.</li>
+                        <li>Click any library to open its documentation in a new tab.</li>
+                        <li>Use the search bar to filter by name or description.</li>
+                    </ol>
+
+                    <p>Whether you are building a SvelteKit app, exploring Svelte Material UI, or looking for lightweight UI kits for a Svelte side project, this collection is your starting point.</p>
+                </section>
+            `
         }
     },
     'react-native-ui-libraries': {
@@ -535,19 +1259,59 @@ export const resourceCategoryMeta: Record<ResourceCategory, ResourceCategoryMeta
             keywords: 'react native ui, react native components, mobile ui kit, nativebase, react native elements, cross-platform ui',
             structuredData: {
                 '@context': 'https://schema.org',
-                '@type': 'SoftwareApplication',
+                '@type': 'CollectionPage',
                 name: 'React Native UI Libraries Resources',
-                applicationCategory: 'DeveloperApplication',
-                operatingSystem: 'All',
-                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-                featureList: [
-                    'React Native UI kits',
-                    'Cross-platform components',
-                    'Material Design for mobile',
-                    'Mobile UI frameworks'
-                ],
-                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '140' }
-            }
+                description: 'Best UI kits and component libraries for building cross-platform mobile apps with React Native.',
+                url: 'https://codehelper.me/resources/react-native-ui-libraries/',
+                mainEntity: {
+                    '@type': 'ItemList',
+                    name: 'Best React Native UI Libraries & Kits',
+                    description: 'Curated list of React Native component libraries, mobile UI kits, cross-platform UI frameworks, and Material Design for React Native'
+                }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What is the best React Native UI library?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Popular React Native UI libraries include React Native Paper (Material Design), NativeBase, React Native Elements, and Tamagui. React Native Paper is ideal for Material Design adherence; Tamagui is emerging as a high-performance alternative with universal (web + native) support.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Can I use the same UI library for React and React Native?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Some libraries support both React (web) and React Native. Tamagui and NativeBase (via React Native Web) offer universal component support. However, most React web UI libraries do not work in React Native, and vice versa, so separate library choices are typically needed.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What is Expo and how does it affect library compatibility?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Expo is a framework built on top of React Native that simplifies development and deployment. Most React Native UI libraries are compatible with Expo managed workflow, but some that require native modules may need bare workflow or expo-modules to work properly.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best React Native UI Libraries for Mobile Developers</h2>
+                    <p><strong>React Native UI libraries</strong> provide platform-aware components that adapt their appearance to iOS and Android design conventions while maintaining a single JavaScript codebase. Choosing the right mobile UI kit accelerates cross-platform app development significantly.</p>
+                    <p>CodeHelper's curated React Native UI libraries collection covers the best mobile UI kits :  from Material Design implementations to lightweight component sets :  all compatible with React Native and Expo projects.</p>
+
+                    <h3>What to look for in a React Native UI library</h3>
+                    <ul>
+                        <li><strong>Platform adaptation</strong>: Good libraries automatically apply iOS and Android-specific styling conventions where appropriate.</li>
+                        <li><strong>Expo compatibility</strong>: Verify the library works with Expo managed workflow if you are using Expo for your project.</li>
+                        <li><strong>Performance</strong>: Mobile libraries should avoid heavy JavaScript animations that could cause dropped frames on lower-end devices.</li>
+                    </ul>
+
+                    <h3>How to use this resource collection</h3>
+                    <ol>
+                        <li>Browse the curated list of React Native UI libraries below.</li>
+                        <li>Click any library to open its documentation in a new tab.</li>
+                        <li>Use the search bar to filter by name or description.</li>
+                    </ol>
+
+                    <p>Whether you are building a cross-platform mobile app with React Native, evaluating NativeBase alternatives, or looking for react native components with good Expo support, this collection is your guide.</p>
+                </section>
+            `
         }
     },
     'chart-libraries': {
@@ -560,19 +1324,59 @@ export const resourceCategoryMeta: Record<ResourceCategory, ResourceCategoryMeta
             keywords: 'chart libraries, javascript charts, d3.js, chart.js, data visualization, graphing libraries, plotting tools',
             structuredData: {
                 '@context': 'https://schema.org',
-                '@type': 'SoftwareApplication',
+                '@type': 'CollectionPage',
                 name: 'Chart Libraries Resources',
-                applicationCategory: 'DeveloperApplication',
-                operatingSystem: 'All',
-                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-                featureList: [
-                    'Charting libraries',
-                    'Data visualization tools',
-                    'D3.js resources',
-                    'Interactive graph libraries'
-                ],
-                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '170' }
-            }
+                description: 'Best JavaScript libraries for creating interactive charts, graphs, and data visualizations.',
+                url: 'https://codehelper.me/resources/chart-libraries/',
+                mainEntity: {
+                    '@type': 'ItemList',
+                    name: 'Best JavaScript Chart & Data Visualization Libraries',
+                    description: 'Curated list of JavaScript charting libraries, data visualization tools, D3.js resources, and interactive graph libraries'
+                }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What is the best JavaScript charting library?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Chart.js is the most beginner-friendly charting library with good out-of-the-box charts. D3.js is the most powerful for custom visualizations but has a steeper learning curve. Recharts and Victory are popular React-specific options. ECharts by Apache is excellent for complex dashboards.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What is the difference between Chart.js and D3.js?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Chart.js provides pre-built chart types (bar, line, pie, etc.) that are quick to set up with minimal code. D3.js is a low-level data binding library that gives you full control over every visual element, making it ideal for custom or unconventional visualizations. D3 has a much steeper learning curve.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Which chart library works best with React?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Recharts and Victory are purpose-built for React with declarative component APIs. Tremor provides pre-built React chart components styled for dashboards. For maximum flexibility, react-chartjs-2 wraps Chart.js for React use. Nivo offers both SVG and canvas rendering for React.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best JavaScript Charting &amp; Data Visualization Libraries</h2>
+                    <p><strong>Chart libraries</strong> and data visualization tools are essential for building dashboards, analytics platforms, and data-driven applications. From simple bar charts to complex interactive data visualizations, JavaScript charting libraries handle the heavy lifting of turning raw data into insightful graphics.</p>
+                    <p>CodeHelper's curated chart libraries collection covers the full range :  from beginner-friendly charting libraries like Chart.js to powerful low-level tools like D3.js, plus framework-specific options for React, Vue, and Angular.</p>
+
+                    <h3>What to look for in a JavaScript chart library</h3>
+                    <ul>
+                        <li><strong>Chart type coverage</strong>: Ensure the library covers the chart types you need :  bar, line, pie, scatter, heatmap, etc.</li>
+                        <li><strong>Interactivity</strong>: Hover tooltips, click events, zoom, and pan are important for data-rich dashboards.</li>
+                        <li><strong>Performance</strong>: Canvas-based libraries generally perform better than SVG for large datasets with thousands of data points.</li>
+                    </ul>
+
+                    <h3>How to use this resource collection</h3>
+                    <ol>
+                        <li>Browse the curated list of chart libraries below.</li>
+                        <li>Click any library to open its documentation in a new tab.</li>
+                        <li>Use the search bar to filter by name or description.</li>
+                    </ol>
+
+                    <p>Whether you are building a data dashboard, implementing interactive graphs, or exploring D3.js for custom data visualization, this collection of graphing libraries covers all your needs.</p>
+                </section>
+            `
         }
     },
     'animation-js-libraries': {
@@ -585,19 +1389,59 @@ export const resourceCategoryMeta: Record<ResourceCategory, ResourceCategoryMeta
             keywords: 'javascript animation, animation library, gsap, three.js, webgl, scroll animations, motion graphics web',
             structuredData: {
                 '@context': 'https://schema.org',
-                '@type': 'SoftwareApplication',
+                '@type': 'CollectionPage',
                 name: 'JavaScript Animation Libraries Resources',
-                applicationCategory: 'DeveloperApplication',
-                operatingSystem: 'All',
-                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-                featureList: [
-                    'GSAP resources',
-                    'WebGL libraries',
-                    'Scroll animation tools',
-                    'Canvas animation libraries'
-                ],
-                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '160' }
-            }
+                description: 'Powerful JavaScript libraries for web animations, motion graphics, scroll effects, and 3D rendering.',
+                url: 'https://codehelper.me/resources/animation-js-libraries/',
+                mainEntity: {
+                    '@type': 'ItemList',
+                    name: 'Best JavaScript Animation Libraries & Tools',
+                    description: 'Curated list of JavaScript animation libraries including GSAP, Three.js, WebGL tools, scroll animation libraries, and canvas animation frameworks'
+                }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What is GSAP and why is it popular?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'GSAP (GreenSock Animation Platform) is the industry-standard JavaScript animation library, used on millions of websites. It is extremely performant, works in all browsers, handles complex animation sequences, and includes powerful plugins for scroll-triggered animations, morphing SVGs, and more.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What is the difference between GSAP and Three.js?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'GSAP is a general-purpose animation engine that animates DOM elements, SVG, canvas, and more with timeline-based sequencing. Three.js is a 3D graphics library built on WebGL for creating 3D scenes, models, and visualizations in the browser. They serve different purposes and are often used together.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What are the best libraries for scroll-triggered animations?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'For scroll animations, GSAP ScrollTrigger is the most powerful and flexible option. Framer Motion (React) is excellent for component-level scroll animations. Locomotive Scroll provides smooth scrolling with scroll-linked effects. Lenis is a newer, lightweight smooth scroll library.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best JavaScript Animation Libraries for Web Developers</h2>
+                    <p><strong>JavaScript animation libraries</strong> enable sophisticated motion graphics, scroll effects, 3D scenes, and interactive experiences that pure CSS cannot achieve. From GSAP's industry-standard timeline-based animations to Three.js WebGL 3D rendering, the JavaScript animation ecosystem is rich and powerful.</p>
+                    <p>CodeHelper's curated JavaScript animation libraries collection covers GSAP, Three.js, Framer Motion, Lottie, Anime.js, and many more tools for building compelling web animations and motion graphics.</p>
+
+                    <h3>What to look for in a JavaScript animation library</h3>
+                    <ul>
+                        <li><strong>Performance</strong>: The best libraries use requestAnimationFrame, CSS transforms, and avoid layout thrashing for smooth 60fps animations.</li>
+                        <li><strong>Timeline control</strong>: Sequence-based animation systems (like GSAP timelines) make complex multi-step animations manageable.</li>
+                        <li><strong>Scroll integration</strong>: Many modern animation libraries include scroll-trigger capabilities for scroll-linked and scroll-triggered animations.</li>
+                    </ul>
+
+                    <h3>How to use this resource collection</h3>
+                    <ol>
+                        <li>Browse the curated list of JavaScript animation libraries below.</li>
+                        <li>Click any library to open its documentation in a new tab.</li>
+                        <li>Use the search bar to filter by name or description.</li>
+                    </ol>
+
+                    <p>Whether you are implementing scroll animations for a landing page, building a WebGL 3D experience, or creating motion graphics with GSAP, this collection covers all your animation library needs.</p>
+                </section>
+            `
         }
     },
     'ui-components': {
@@ -610,19 +1454,59 @@ export const resourceCategoryMeta: Record<ResourceCategory, ResourceCategoryMeta
             keywords: 'ui components, ui kits, web components, css components, html snippets, reusable ui, frontend components',
             structuredData: {
                 '@context': 'https://schema.org',
-                '@type': 'SoftwareApplication',
+                '@type': 'CollectionPage',
                 name: 'UI Components Resources',
-                applicationCategory: 'DeveloperApplication',
-                operatingSystem: 'All',
-                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-                featureList: [
-                    'CSS components',
-                    'HTML snippets',
-                    'Tailwind UI kits',
-                    'Bootstrap components'
-                ],
-                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '130' }
-            }
+                description: 'Collection of reusable UI components, snippets, and kits for faster web development.',
+                url: 'https://codehelper.me/resources/ui-components/',
+                mainEntity: {
+                    '@type': 'ItemList',
+                    name: 'Best Free UI Components & Kits',
+                    description: 'Curated list of CSS components, HTML snippet collections, Tailwind UI kits, and reusable frontend component resources'
+                }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'Where can I find free UI components for my website?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Great sources for free UI components include Tailwind UI (free examples), Flowbite, DaisyUI, HyperUI, Meraki UI, and Headless UI. These provide ready-to-use HTML and CSS components for common UI patterns like cards, navbars, modals, and forms.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What are Web Components and can I use them in any framework?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Web Components are a set of browser APIs (Custom Elements, Shadow DOM, HTML Templates) that enable creating reusable, encapsulated components that work natively in any HTML page, regardless of JavaScript framework. They work in React, Vue, Angular, and vanilla HTML.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What are the best Tailwind CSS component libraries?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Top Tailwind CSS component libraries include DaisyUI (adds component classes to Tailwind), Flowbite (interactive components with JavaScript), HyperUI (free open-source copy-paste components), and Meraki UI. All provide pre-built components styled with Tailwind utility classes.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Free UI Components &amp; Kits for Web Development</h2>
+                    <p><strong>UI components</strong> :  pre-built HTML, CSS, and JavaScript patterns for buttons, cards, navigation, modals, forms, and more :  are the building blocks of modern web interfaces. Having a library of reusable components dramatically speeds up frontend development.</p>
+                    <p>CodeHelper's curated UI components collection includes CSS component libraries, Tailwind UI kits, HTML snippet collections, and framework-agnostic web components :  all free and ready to copy into your projects.</p>
+
+                    <h3>What to look for in UI component resources</h3>
+                    <ul>
+                        <li><strong>Framework compatibility</strong>: Check if components work with your tech stack :  some are framework-agnostic HTML/CSS, others are React or Vue-specific.</li>
+                        <li><strong>Accessibility</strong>: Well-built components include correct ARIA attributes and keyboard interaction patterns.</li>
+                        <li><strong>Copy-paste workflow</strong>: Component resources that provide clean, copy-paste-ready code integrate faster than those requiring package installation.</li>
+                    </ul>
+
+                    <h3>How to use this resource collection</h3>
+                    <ol>
+                        <li>Browse the curated list of UI component resources below.</li>
+                        <li>Click any resource to open it in a new tab.</li>
+                        <li>Use the search bar to filter by name or description.</li>
+                    </ol>
+
+                    <p>Whether you need free CSS components for a quick prototype, Tailwind UI kits for a product landing page, or html snippets for common patterns, this collection covers your frontend component needs.</p>
+                </section>
+            `
         }
     },
     'design-systems': {
@@ -635,19 +1519,59 @@ export const resourceCategoryMeta: Record<ResourceCategory, ResourceCategoryMeta
             keywords: 'design systems, style guides, material design, human interface guidelines, brand guidelines, ui system, design language',
             structuredData: {
                 '@context': 'https://schema.org',
-                '@type': 'SoftwareApplication',
+                '@type': 'CollectionPage',
                 name: 'Design Systems Resources',
-                applicationCategory: 'DeveloperApplication',
-                operatingSystem: 'All',
-                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-                featureList: [
-                    'Corporate design systems',
-                    'Style guide galleries',
-                    'UI guidelines',
-                    'Brand identity systems'
-                ],
-                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '115' }
-            }
+                description: 'Explore famous design systems and style guides from top companies like Google, Apple, and IBM.',
+                url: 'https://codehelper.me/resources/design-systems/',
+                mainEntity: {
+                    '@type': 'ItemList',
+                    name: 'Best Design Systems & Style Guides',
+                    description: 'Curated collection of enterprise design systems, corporate style guides, UI guidelines, and design language resources from leading companies'
+                }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What is a design system?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'A design system is a collection of reusable components, design tokens (colors, typography, spacing), patterns, and guidelines that ensure consistency across a product or brand. Famous examples include Google Material Design, Apple Human Interface Guidelines, IBM Carbon, and Salesforce Lightning.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What is the difference between a design system and a style guide?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'A style guide documents visual rules (colors, typography, logo usage), while a design system is broader :  it includes a component library, design tokens, usage guidelines, and often code implementations. Design systems are living documents maintained by dedicated teams.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'How do I build my own design system?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Start by defining design tokens (color palette, type scale, spacing system), then build a component library from your most reused UI patterns. Document usage guidelines and maintain a Figma or Storybook reference. Study existing design systems like Carbon or Ant Design for inspiration and best practices.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Design Systems &amp; Style Guides for Developers &amp; Designers</h2>
+                    <p><strong>Design systems</strong> are the source of truth for product design and development teams. They codify visual decisions into reusable components and guidelines that ensure consistency across every screen, platform, and team member. Studying established design systems accelerates both design and development work.</p>
+                    <p>CodeHelper's curated design systems collection includes famous examples from Google, Apple, IBM, Microsoft, Salesforce, and more :  plus resources for building and maintaining your own design language and style guides.</p>
+
+                    <h3>What to look for when studying design systems</h3>
+                    <ul>
+                        <li><strong>Design token structure</strong>: How the system defines and names colors, spacing, typography, and elevation scales is instructive for building your own.</li>
+                        <li><strong>Component documentation</strong>: Well-documented systems explain not just how components look, but when and why to use each one.</li>
+                        <li><strong>Accessibility standards</strong>: Leading design systems explicitly document their accessibility approach and include guidance for keyboard, screen reader, and motion preferences.</li>
+                    </ul>
+
+                    <h3>How to use this resource collection</h3>
+                    <ol>
+                        <li>Browse the curated list of design systems below.</li>
+                        <li>Click any system to open its documentation in a new tab.</li>
+                        <li>Use the search bar to filter by name or description.</li>
+                    </ol>
+
+                    <p>Whether you are building a new design system from scratch, studying material design guidelines, or looking for brand guidelines inspiration, this collection is the ideal reference.</p>
+                </section>
+            `
         }
     },
     'design-inspiration': {
@@ -660,19 +1584,59 @@ export const resourceCategoryMeta: Record<ResourceCategory, ResourceCategoryMeta
             keywords: 'web design inspiration, ui inspiration, website gallery, design showcase, landing page examples, dribbble, behance',
             structuredData: {
                 '@context': 'https://schema.org',
-                '@type': 'SoftwareApplication',
+                '@type': 'CollectionPage',
                 name: 'Design Inspiration Resources',
-                applicationCategory: 'DeveloperApplication',
-                operatingSystem: 'All',
-                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-                featureList: [
-                    'Design galleries',
-                    'UI pattern libraries',
-                    'Landing page inspiration',
-                    'Portfolio showcases'
-                ],
-                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '210' }
-            }
+                description: 'Get inspired by the best web design showcases, landing page galleries, and UI patterns.',
+                url: 'https://codehelper.me/resources/design-inspiration/',
+                mainEntity: {
+                    '@type': 'ItemList',
+                    name: 'Best Web Design Inspiration Sites',
+                    description: 'Curated list of web design galleries, UI inspiration sites, landing page showcases, and portfolio collections'
+                }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What are the best websites for web design inspiration?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Top web design inspiration sites include Awwwards, Dribbble, Behance, Land-book, Lapa Ninja, and Minimal.gallery. Awwwards curates award-winning websites, while Lapa Ninja and Land-book focus specifically on landing page design inspiration.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Where can I find landing page design examples?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Lapa Ninja, Land-book, Landingfolio, and One Page Love are dedicated landing page galleries showcasing hundreds of real-world examples. They are great for studying how successful products present their value proposition, CTAs, and visual hierarchy.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What are UI patterns and where can I find examples?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'UI patterns are established solutions to common interface design problems :  navigation patterns, onboarding flows, empty states, error messages, and more. UI Patterns (ui-patterns.com), Mobbin, and Pttrns collect real-world examples of UI patterns from popular apps and websites.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Web Design Inspiration Sites for Developers &amp; Designers</h2>
+                    <p><strong>Web design inspiration</strong> is the starting point for any new creative project. Studying award-winning websites, outstanding landing pages, and innovative UI patterns helps you understand current design trends and raises the quality bar for your own work.</p>
+                    <p>CodeHelper's curated design inspiration collection includes the best website galleries, UI inspiration sites, landing page showcases, design showcases, and pattern libraries :  handpicked to cover a wide range of styles and industries.</p>
+
+                    <h3>What to look for in design inspiration resources</h3>
+                    <ul>
+                        <li><strong>Category filtering</strong>: Sites that organize inspiration by industry, style, or component type help you find relevant examples faster.</li>
+                        <li><strong>Real-world examples</strong>: Inspiration from live production sites is more applicable than conceptual or unrealistic portfolio pieces.</li>
+                        <li><strong>Pattern libraries</strong>: Collections organized by UI pattern (onboarding, empty states, CTAs) are especially useful for solving specific design problems.</li>
+                    </ul>
+
+                    <h3>How to use this resource collection</h3>
+                    <ol>
+                        <li>Browse the curated list of design inspiration sites below.</li>
+                        <li>Click any site to open it in a new tab.</li>
+                        <li>Use the search bar to filter by name or description.</li>
+                    </ol>
+
+                    <p>Whether you are seeking landing page examples, studying ui inspiration for an app, or browsing design showcases from sites like Dribbble and Behance, this collection is your creative starting point.</p>
+                </section>
+            `
         }
     },
     'design-software': {
@@ -685,19 +1649,59 @@ export const resourceCategoryMeta: Record<ResourceCategory, ResourceCategoryMeta
             keywords: 'design software, graphic design tools, ui design tools, vector software, photo editor, prototyping tools, figma alternatives',
             structuredData: {
                 '@context': 'https://schema.org',
-                '@type': 'SoftwareApplication',
+                '@type': 'CollectionPage',
                 name: 'Design Software Resources',
-                applicationCategory: 'DeveloperApplication',
-                operatingSystem: 'All',
-                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-                featureList: [
-                    'Vector design tools',
-                    'Photo editing software',
-                    'Prototyping apps',
-                    'Open source design tools'
-                ],
-                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '125' }
-            }
+                description: 'Top design software and tools for UI/UX design, vector graphics, photo editing, and prototyping.',
+                url: 'https://codehelper.me/resources/design-software/',
+                mainEntity: {
+                    '@type': 'ItemList',
+                    name: 'Best Design Software & Graphic Tools',
+                    description: 'Curated list of UI design tools, vector software, photo editing applications, prototyping tools, and Figma alternatives'
+                }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What is the best free design software for UI/UX?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Figma offers the most powerful free tier for UI/UX design, supporting up to 3 projects with full collaboration features. Penpot is a fully open-source alternative with similar capabilities. Adobe XD had a free tier but has been discontinued in favor of Figma.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What are the best Figma alternatives?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Notable Figma alternatives include Penpot (open source, self-hostable), Sketch (macOS only, subscription), Affinity Designer (one-time purchase), and Lunacy (free for Windows and Mac). Penpot is the top choice for teams wanting an open-source design tool.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What is the best free vector graphics software?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Inkscape is the best free, open-source vector graphics editor :  a capable alternative to Adobe Illustrator. Vectornator (Linearity Curve) offers a modern interface on Mac and iPad. For web-based vector editing, SVGator and Boxy SVG are excellent lightweight options.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Design Software &amp; Graphic Tools for Developers &amp; Designers</h2>
+                    <p>The right <strong>design software</strong> is essential for creating professional UI/UX mockups, vector graphics, photo composites, and interactive prototypes. The design tool landscape has expanded significantly, offering powerful free and open-source alternatives alongside industry standards.</p>
+                    <p>CodeHelper's curated design software collection covers UI design tools, vector software, photo editors, prototyping apps, and Figma alternatives :  from free open-source tools to industry-standard applications.</p>
+
+                    <h3>What to look for in design software</h3>
+                    <ul>
+                        <li><strong>Collaboration features</strong>: Cloud-based tools like Figma enable real-time team collaboration, reducing handoff friction between designers and developers.</li>
+                        <li><strong>Developer handoff</strong>: Good UI design tools provide inspect modes with CSS values, measurements, and asset export for developers.</li>
+                        <li><strong>Plugin ecosystem</strong>: A rich plugin marketplace extends functionality with icon libraries, content generators, and workflow automation.</li>
+                    </ul>
+
+                    <h3>How to use this resource collection</h3>
+                    <ol>
+                        <li>Browse the curated list of design software below.</li>
+                        <li>Click any tool to open its website in a new tab.</li>
+                        <li>Use the search bar to filter by name or description.</li>
+                    </ol>
+
+                    <p>Whether you are choosing your first graphic design tool, exploring Figma alternatives, or looking for free prototyping tools, this collection covers all the major design software options.</p>
+                </section>
+            `
         }
     },
     'online-design-tools': {
@@ -710,19 +1714,59 @@ export const resourceCategoryMeta: Record<ResourceCategory, ResourceCategoryMeta
             keywords: 'online design tools, web design tools, online photo editor, svg generator, mockup generator, css tools, browser tools',
             structuredData: {
                 '@context': 'https://schema.org',
-                '@type': 'SoftwareApplication',
+                '@type': 'CollectionPage',
                 name: 'Online Design Tools Resources',
-                applicationCategory: 'DeveloperApplication',
-                operatingSystem: 'All',
-                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-                featureList: [
-                    'Online graphic editors',
-                    'CSS generators',
-                    'SVG tools',
-                    'Mockup creators'
-                ],
-                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '155' }
-            }
+                description: 'Useful online tools for quick design tasks, prototyping, image editing, and asset generation.',
+                url: 'https://codehelper.me/resources/online-design-tools/',
+                mainEntity: {
+                    '@type': 'ItemList',
+                    name: 'Best Free Online Design & Prototyping Tools',
+                    description: 'Curated list of online graphic editors, CSS generators, SVG tools, mockup creators, and web-based design utilities'
+                }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What are the best free online design tools?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Top free online design tools include Canva (graphic design), Figma (UI/UX design and prototyping), Photopea (Photoshop-like photo editing), Vectr (vector graphics), and Remove.bg (background removal). All run in the browser without installation.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What online CSS generator tools are available?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Popular online CSS generator tools include CSS Gradient (gradient backgrounds), Neumorphism.io (soft-UI shadows), Glassmorphism.com (glass effect styles), CSS Grid Generator, and Flexbox Froggy (for learning flexbox). These generate ready-to-use CSS code.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Can I edit SVG files online for free?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Yes, several free online SVG editors are available including Boxy SVG, SVG-Edit, and Vectr. For optimizing SVG files, SVGOMG (the online SVGO interface) is the best tool, typically reducing file sizes by 40-70% without visual quality loss.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Free Online Design Tools for Developers &amp; Designers</h2>
+                    <p><strong>Online design tools</strong> bring powerful design capabilities directly to the browser :  no installation, no subscription, no OS restrictions. From quick CSS generation to full image editing, web-based design tools have become indispensable in modern development workflows.</p>
+                    <p>CodeHelper's curated online design tools collection includes CSS generators, SVG editors, mockup creators, online photo editors, background removers, and other browser tools that solve specific design tasks quickly and for free.</p>
+
+                    <h3>What to look for in online design tools</h3>
+                    <ul>
+                        <li><strong>No-install convenience</strong>: The best online tools run entirely in the browser with no account required for basic functionality.</li>
+                        <li><strong>Code output</strong>: Tools that generate ready-to-use CSS, SVG, or HTML code are especially valuable for developers.</li>
+                        <li><strong>Export options</strong>: Good tools support multiple export formats (PNG, SVG, PDF) for use across different contexts.</li>
+                    </ul>
+
+                    <h3>How to use this resource collection</h3>
+                    <ol>
+                        <li>Browse the curated list of online design tools below.</li>
+                        <li>Click any tool to open it in a new tab.</li>
+                        <li>Use the search bar to filter by name or description.</li>
+                    </ol>
+
+                    <p>Whether you need a quick CSS tool, a browser-based photo editor, or an SVG generator for a design project, this collection of web design tools provides instant access without any software installation.</p>
+                </section>
+            `
         }
     },
     'chrome-extensions': {
@@ -735,19 +1779,59 @@ export const resourceCategoryMeta: Record<ResourceCategory, ResourceCategoryMeta
             keywords: 'chrome extensions, developer tools, web development extensions, productivity tools, browser extensions, design extensions',
             structuredData: {
                 '@context': 'https://schema.org',
-                '@type': 'SoftwareApplication',
+                '@type': 'CollectionPage',
                 name: 'Chrome Extensions Resources',
-                applicationCategory: 'DeveloperApplication',
-                operatingSystem: 'All',
-                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-                featureList: [
-                    'Developer productivity tools',
-                    'Design inspectors',
-                    'Code validators',
-                    'Color pickers'
-                ],
-                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '195' }
-            }
+                description: 'Must-have Chrome extensions for web developers and designers to boost productivity.',
+                url: 'https://codehelper.me/resources/chrome-extensions/',
+                mainEntity: {
+                    '@type': 'ItemList',
+                    name: 'Best Chrome Extensions for Web Developers',
+                    description: 'Curated list of must-have Chrome extensions for developer productivity, design inspection, code validation, and color picking'
+                }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What are the must-have Chrome extensions for web developers?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Essential Chrome extensions for web developers include React DevTools, Vue.js devtools, Lighthouse (performance auditing), axe DevTools (accessibility), ColorZilla (color picker), WhatFont (font identifier), and JSON Formatter. These directly integrate with your development workflow.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What Chrome extensions help with web design?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Useful design Chrome extensions include Eye Dropper (color picker from any webpage), WhatFont (identify fonts in use), CSS Peeper (inspect CSS styles), PixelParallel (design overlay comparison), and Page Ruler Redux (measure distances on screen).' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Are developer Chrome extensions free?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Most essential developer Chrome extensions are completely free. Extensions like React DevTools, Vue DevTools, Lighthouse, axe DevTools, ColorZilla, and WhatFont are all free in the Chrome Web Store. Some advanced extensions offer paid premium tiers for additional features.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Chrome Extensions for Web Developers &amp; Designers</h2>
+                    <p><strong>Chrome extensions</strong> for developers can dramatically boost productivity by bringing debugging tools, design inspectors, accessibility checkers, and performance auditors directly into your browser. The right set of browser extensions makes your daily development workflow faster and more efficient.</p>
+                    <p>CodeHelper's curated Chrome extensions collection covers the must-have productivity tools, design extensions, code validators, color pickers, and developer tools that every web developer and designer should have installed.</p>
+
+                    <h3>What to look for in developer Chrome extensions</h3>
+                    <ul>
+                        <li><strong>DevTools integration</strong>: Extensions that add panels to Chrome DevTools (React DevTools, Vue devtools) provide the deepest inspection capabilities.</li>
+                        <li><strong>Performance impact</strong>: Avoid installing too many extensions simultaneously as they can slow page loads; enable them as needed.</li>
+                        <li><strong>Maintenance status</strong>: Check that extensions are actively maintained and updated for recent Chrome versions to avoid compatibility issues.</li>
+                    </ul>
+
+                    <h3>How to use this resource collection</h3>
+                    <ol>
+                        <li>Browse the curated list of Chrome extensions below.</li>
+                        <li>Click any extension to open its Chrome Web Store page in a new tab.</li>
+                        <li>Use the search bar to filter by name or description.</li>
+                    </ol>
+
+                    <p>Whether you are looking for web development extensions to speed up debugging, design extensions for inspecting styles, or productivity tools to streamline your workflow, this collection covers all the essentials.</p>
+                </section>
+            `
         }
     },
     'html-css-templates': {
@@ -760,19 +1844,59 @@ export const resourceCategoryMeta: Record<ResourceCategory, ResourceCategoryMeta
             keywords: 'free html templates, website templates, css themes, bootstrap templates, responsive templates, landing page templates',
             structuredData: {
                 '@context': 'https://schema.org',
-                '@type': 'SoftwareApplication',
+                '@type': 'CollectionPage',
                 name: 'HTML & CSS Templates Resources',
-                applicationCategory: 'DeveloperApplication',
-                operatingSystem: 'All',
-                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-                featureList: [
-                    'HTML5 templates',
-                    'Bootstrap themes',
-                    'Landing page templates',
-                    'Admin dashboard templates'
-                ],
-                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '165' }
-            }
+                description: 'Download high-quality free HTML5 and CSS3 website templates and themes for your next project.',
+                url: 'https://codehelper.me/resources/html-css-templates/',
+                mainEntity: {
+                    '@type': 'ItemList',
+                    name: 'Best Free HTML & CSS Website Templates',
+                    description: 'Curated list of free HTML5 templates, Bootstrap themes, responsive website templates, landing page templates, and admin dashboard themes'
+                }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'Where can I download free HTML and CSS website templates?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Top sources for free HTML/CSS templates include HTML5 UP, Free CSS, TemplateFlip, Colorlib, and Start Bootstrap. These sites offer a wide variety of responsive HTML5 templates for portfolios, landing pages, business sites, and admin dashboards.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Are free HTML templates safe to use commercially?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Many free HTML templates are released under Creative Commons or MIT licenses that permit commercial use. Always read the specific license for each template. Some free templates require attribution (a link back to the template creator), while others like those from HTML5 UP allow commercial use with attribution.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What is the difference between HTML templates and WordPress themes?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'HTML/CSS templates are static files (HTML, CSS, JavaScript) that you serve directly or integrate into any backend. WordPress themes are designed specifically for the WordPress CMS and include PHP templates that integrate with WordPress functionality. HTML templates offer more flexibility; WordPress themes work best with the WordPress ecosystem.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Free HTML &amp; CSS Website Templates for Developers</h2>
+                    <p><strong>HTML and CSS templates</strong> provide a ready-made structural and visual starting point for websites, saving hours of initial setup. Whether you need a landing page, portfolio, business site, or admin dashboard, free HTML5 templates let you go from zero to working prototype quickly.</p>
+                    <p>CodeHelper's curated HTML/CSS templates collection includes the best sources for free responsive templates, Bootstrap themes, landing page templates, and admin dashboard templates :  all downloadable and customizable.</p>
+
+                    <h3>What to look for in a free HTML template</h3>
+                    <ul>
+                        <li><strong>Responsive design</strong>: Templates should work well on mobile, tablet, and desktop without additional media query work.</li>
+                        <li><strong>Clean code quality</strong>: Well-structured HTML and organized CSS make templates easier to customize and maintain.</li>
+                        <li><strong>License terms</strong>: Verify whether the template requires attribution for commercial use, especially for client projects.</li>
+                    </ul>
+
+                    <h3>How to use this resource collection</h3>
+                    <ol>
+                        <li>Browse the curated list of template sites below.</li>
+                        <li>Click any site to open it in a new tab.</li>
+                        <li>Use the search bar to filter by name or description.</li>
+                    </ol>
+
+                    <p>Whether you are building a portfolio, creating a landing page for a product, or looking for free Bootstrap templates for a client project, this collection covers a wide range of website templates and css themes.</p>
+                </section>
+            `
         }
     },
     'icon-fonts': {
@@ -785,19 +1909,59 @@ export const resourceCategoryMeta: Record<ResourceCategory, ResourceCategoryMeta
             keywords: 'icon fonts, web fonts, font awesome, material icons, icon sets, scalable icons, web design icons',
             structuredData: {
                 '@context': 'https://schema.org',
-                '@type': 'SoftwareApplication',
+                '@type': 'CollectionPage',
                 name: 'Icon Fonts Resources',
-                applicationCategory: 'DeveloperApplication',
-                operatingSystem: 'All',
-                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-                featureList: [
-                    'Popular icon fonts',
-                    'Web font kits',
-                    'Icon font generators',
-                    'SVG icon sets'
-                ],
-                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '135' }
-            }
+                description: 'Popular icon font libraries for web developers. Easily scalable and styleable icons for your website.',
+                url: 'https://codehelper.me/resources/icon-fonts/',
+                mainEntity: {
+                    '@type': 'ItemList',
+                    name: 'Best Icon Fonts & Web Icon Libraries',
+                    description: 'Curated list of popular icon fonts, web font kits, icon font generators, and scalable icon libraries for web developers'
+                }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What are the most popular icon fonts for web development?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'The most widely used icon fonts include Font Awesome (the most popular, with free and pro tiers), Material Icons (Google), Ionicons, Remix Icon, and Bootstrap Icons. Font Awesome 6 free includes over 2000 icons in solid, regular, and brand styles.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Should I use icon fonts or SVG icons in 2025?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'SVG icons are generally preferred in modern web development for better accessibility, sharper rendering, individual loading capability, and the ability to style individual paths. Icon fonts are still widely used and practical, especially when you need a large icon set via a single CSS import.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'How do I add Font Awesome to my website?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Add Font Awesome via CDN by including the link tag from cdnjs or the Font Awesome CDN in your HTML head. Alternatively, install the npm package for use in JavaScript frameworks. Use class names like fa-solid fa-house to display icons in your HTML.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Icon Fonts &amp; Web Icon Libraries for Developers</h2>
+                    <p><strong>Icon fonts</strong> remain one of the most practical ways to add scalable, CSS-styleable icons to websites. A single font file can provide thousands of icons that render crisp at any size and can be colored, sized, and animated with pure CSS.</p>
+                    <p>CodeHelper's curated icon fonts collection covers the most popular icon font libraries :  Font Awesome, Material Icons, Ionicons, Bootstrap Icons, Remix Icon :  plus tools for generating custom icon fonts from your own SVG files.</p>
+
+                    <h3>What to look for in an icon font library</h3>
+                    <ul>
+                        <li><strong>Icon variety and coverage</strong>: Good icon fonts cover UI essentials (arrows, controls, navigation) plus domain-specific icons (brands, social, e-commerce).</li>
+                        <li><strong>Free tier scope</strong>: Check how many icons are available for free vs. requiring a paid license :  Font Awesome free offers 2000+ icons.</li>
+                        <li><strong>CDN availability</strong>: Easy CDN installation makes icon fonts quick to add to any project without a build step.</li>
+                    </ul>
+
+                    <h3>How to use this resource collection</h3>
+                    <ol>
+                        <li>Browse the curated list of icon font libraries below.</li>
+                        <li>Click any library to open its website in a new tab.</li>
+                        <li>Use the search bar to filter by name or description.</li>
+                    </ol>
+
+                    <p>Whether you are adding Font Awesome to a project, looking for scalable icons for a design system, or building a custom icon font from your own SVG icons, this collection provides all the resources you need.</p>
+                </section>
+            `
         }
     },
     'sound-effects': {
@@ -810,19 +1974,59 @@ export const resourceCategoryMeta: Record<ResourceCategory, ResourceCategoryMeta
             keywords: 'free sound effects, royalty free music, game audio, background music, stock audio, sound clips',
             structuredData: {
                 '@context': 'https://schema.org',
-                '@type': 'SoftwareApplication',
+                '@type': 'CollectionPage',
                 name: 'Sound Effects Resources',
-                applicationCategory: 'DeveloperApplication',
-                operatingSystem: 'All',
-                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-                featureList: [
-                    'Free sound effects',
-                    'Royalty-free music',
-                    'Game audio assets',
-                    'UI sounds'
-                ],
-                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '75' }
-            }
+                description: 'Libraries of free sound effects and royalty-free music for games, videos, and applications.',
+                url: 'https://codehelper.me/resources/sound-effects/',
+                mainEntity: {
+                    '@type': 'ItemList',
+                    name: 'Best Free Sound Effects & Royalty-Free Audio Libraries',
+                    description: 'Curated list of free sound effect libraries, royalty-free music sites, game audio assets, and UI sound resources'
+                }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'Where can I download free sound effects?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Top sources for free sound effects include Freesound.org (community-driven library), Zapsplat, Mixkit, and BBC Sound Effects (released under a non-commercial license). Freesound has the largest library with over 500,000 sounds in various formats.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Where can I find royalty-free music for my game or video?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Free royalty-free music sources include Free Music Archive, ccMixter, Incompetech (by Kevin MacLeod), and YouTube Audio Library. These offer music for commercial use under Creative Commons or custom licenses, often with attribution requirements.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What are UI sounds and how do I add them to a web app?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'UI sounds are short audio cues for user interface interactions :  button clicks, notifications, success/error feedback. In web apps, use the Web Audio API or simple HTML5 audio elements to trigger sounds on user interactions. Keep UI sounds subtle and provide a way for users to mute them.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Free Sound Effects &amp; Royalty-Free Audio for Developers</h2>
+                    <p><strong>Sound effects</strong> and royalty-free audio are essential for game development, video production, podcast creation, and interactive web applications. Finding high-quality, free audio assets that are safe to use commercially can be challenging without the right resources.</p>
+                    <p>CodeHelper's curated sound effects collection covers free sound effect libraries, royalty-free music sites, game audio asset collections, and UI sound resources :  everything a developer or content creator needs.</p>
+
+                    <h3>What to look for in a free sound library</h3>
+                    <ul>
+                        <li><strong>License clarity</strong>: Distinguish between Creative Commons (may require attribution), public domain (completely free), and custom commercial licenses.</li>
+                        <li><strong>Audio quality</strong>: High-quality WAV files (44.1kHz, 16-bit minimum) ensure professional results in games and video productions.</li>
+                        <li><strong>Search capability</strong>: Good sound libraries have detailed tagging and search so you can find specific sounds quickly by category or description.</li>
+                    </ul>
+
+                    <h3>How to use this resource collection</h3>
+                    <ol>
+                        <li>Browse the curated list of sound effect sites below.</li>
+                        <li>Click any site to open it in a new tab.</li>
+                        <li>Use the search bar to filter by name or description.</li>
+                    </ol>
+
+                    <p>Whether you are adding UI sounds to a web application, sourcing game audio assets for an indie game, or finding royalty-free music for a video project, this free collection saves you hours of searching.</p>
+                </section>
+            `
         }
     },
     'others': {
@@ -835,19 +2039,59 @@ export const resourceCategoryMeta: Record<ResourceCategory, ResourceCategoryMeta
             keywords: 'developer resources, web tools, coding cheatsheets, utilities, miscellaneous tools, programming resources',
             structuredData: {
                 '@context': 'https://schema.org',
-                '@type': 'SoftwareApplication',
+                '@type': 'CollectionPage',
                 name: 'Other Resources',
-                applicationCategory: 'DeveloperApplication',
-                operatingSystem: 'All',
-                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-                featureList: [
-                    'Developer cheatsheets',
-                    'File converters',
-                    'Accessibility tools',
-                    'Testing utilities'
-                ],
-                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '145' }
-            }
+                description: 'A collection of miscellaneous but incredibly useful tools, cheatsheets, and resources for developers.',
+                url: 'https://codehelper.me/resources/others/',
+                mainEntity: {
+                    '@type': 'ItemList',
+                    name: 'Best Miscellaneous Developer Tools & Resources',
+                    description: 'Curated list of developer cheatsheets, web utilities, file converters, accessibility tools, and miscellaneous programming resources'
+                }
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What are useful miscellaneous tools for web developers?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Useful miscellaneous developer tools include Can I Use (browser compatibility), RegExr (regular expression testing), DevDocs (unified API documentation), Bundlephobia (npm package size checker), Carbon (code screenshot tool), and Ray.so. These solve specific development tasks that do not fit neatly into other categories.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Where can I find developer cheatsheets?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Devhints.io offers beautifully designed cheatsheets for many development topics. OverAPI.com provides large visual cheatsheets for popular languages and frameworks. QuickRef.me is another comprehensive cheatsheet collection covering CSS, JavaScript, Git, Linux, and more.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What accessibility testing tools should developers use?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Key accessibility testing tools include axe DevTools (browser extension and CLI), WAVE (web accessibility evaluation), Lighthouse (built into Chrome DevTools), and the WebAIM Contrast Checker. Using a screen reader like NVDA (Windows) or VoiceOver (Mac/iOS) for manual testing is also recommended.' }
+                    }
+                ]
+            },
+            seoContent: `
+                <section>
+                    <h2>Best Miscellaneous Developer Tools &amp; Resources</h2>
+                    <p>Some of the most valuable <strong>developer resources</strong> do not fit neatly into a single category. From browser compatibility checkers and coding cheatsheets to accessibility auditors and file converters, miscellaneous web tools fill important gaps in any developer's toolkit.</p>
+                    <p>CodeHelper's curated miscellaneous resources collection gathers the most useful programming resources that do not belong elsewhere :  utilities that developers reach for daily across all kinds of projects and tech stacks.</p>
+
+                    <h3>What to look for in miscellaneous developer tools</h3>
+                    <ul>
+                        <li><strong>Focused functionality</strong>: The best utility tools do one thing exceptionally well :  a regex tester, a diff checker, a base64 encoder :  rather than trying to be everything.</li>
+                        <li><strong>No-account required</strong>: For quick utility tasks, tools that work instantly without sign-up provide the best developer experience.</li>
+                        <li><strong>Reliable uptime</strong>: Developer tools you depend on daily should be stable, maintained, and available offline or as CLI tools where possible.</li>
+                    </ul>
+
+                    <h3>How to use this resource collection</h3>
+                    <ol>
+                        <li>Browse the curated list of developer tools below.</li>
+                        <li>Click any tool to open it in a new tab.</li>
+                        <li>Use the search bar to filter by name or description.</li>
+                    </ol>
+
+                    <p>Whether you are looking for coding cheatsheets for a new technology, web utilities to solve a specific problem, or miscellaneous tools to round out your programming resources toolkit, this collection has you covered.</p>
+                </section>
+            `
         }
     },
 }
@@ -1040,11 +2284,11 @@ export const externalResources: Record<ResourceCategory, ExternalResource[]> = {
         { name: 'SkitterPhoto', href: "https://skitterphoto.com/", desc: 'Free high-resolution photography', bgColor: 'bg-amber-500', category: 'stock-photos' },
         { name: 'PicoGraphy', href: "https://picography.co/", desc: 'Gorgeous, High-Resolution, Free Photos', bgColor: 'bg-red-500', category: 'stock-photos' },
         { name: 'Wunder Stock', href: "https://wunderstock.com/", desc: 'Stunningly amazing free photos', bgColor: 'bg-emerald-500', category: 'stock-photos' },
-        { name: 'PxHere', href: "https://pxhere.com/", desc: 'Free Images & Free stock photos - PxHere', bgColor: 'bg-pink-500', category: 'stock-photos' },
+        { name: 'PxHere', href: "https://pxhere.com/", desc: 'Free Images & Free stock photos: PxHere', bgColor: 'bg-pink-500', category: 'stock-photos' },
         { name: 'Piqsels', href:"https://piqsels.com/", desc:'Royalty Free Stock Photos', bgColor: 'bg-purple-600', category: 'stock-photos' },
         { name: 'Nappy', href: "https://www.nappy.co/", desc: 'A website offering Beautiful, high-res photos of black and brown people.', bgColor: 'bg-yellow-500', category: 'stock-photos' },
         { name: 'Generated Photos', href: "https://generated.photos/", desc: 'Unique AI Generated model photos', bgColor: 'bg-green-500', category: 'stock-photos' },
-        { name: 'Lorem.space - Placeholder image generator', href: "https://lorem.space", desc: 'API for placeholder images but useful!', bgColor: 'bg-orange-500', category: 'stock-photos' },
+        { name: 'Lorem.space: Placeholder image generator', href: "https://lorem.space", desc: 'API for placeholder images but useful!', bgColor: 'bg-orange-500', category: 'stock-photos' },
         { name: 'Openverse', href: "https://wordpress.org/openverse/", desc: 'Openverse is a search engine for openly-licensed media', bgColor: 'bg-blue-500', category: 'stock-photos' },
     ],
 
@@ -1140,7 +2384,7 @@ export const externalResources: Record<ResourceCategory, ExternalResource[]> = {
         { name: 'Anime.js', href:"https://animejs.com/", desc:'Anime.js (/ˈæn.ə.meɪ/) is a lightweight JavaScript animation library with a simple, yet powerful API. It works with CSS properties, SVG, DOM attributes and JavaScript Objects', bgColor: 'bg-yellow-500', category: 'css-animations' },
         { name: 'Magic Animations', href:"https://www.minimamente.com/project/magic/", desc: 'Animations has been one of the most impressive animation libraries availabl', bgColor: 'bg-green-500', category: 'css-animations' },
         { name: 'Zdog', href:"https://zzz.dog/", desc: 'Round, flat, designer-friendly pseudo-3D engine for canvas & SVG', bgColor: 'bg-orange-500', category: 'css-animations' },
-        { name: 'CSShake', href:"http://elrumordelaluz.github.io/csshake/", desc: 'CSShake delivers exactly what it says on the box — a CSS library designed specifically for shaking elements within your web page', bgColor: 'bg-blue-500', category: 'css-animations' },
+        { name: 'CSShake', href:"http://elrumordelaluz.github.io/csshake/", desc: 'CSShake delivers exactly what it says on the box :  a CSS library designed specifically for shaking elements within your web page', bgColor: 'bg-blue-500', category: 'css-animations' },
         { name: 'Hover.css', href:"http://ianlunn.github.io/Hover/", desc: 'Hover.css is a CSS animation library designed for use with buttons and other UI elements in your website', bgColor: 'bg-cyan-500' , category: 'css-animations'},
         { name: 'AniJS', href:"http://anijs.github.io/", desc:'AniJS is an animation library that allows you to add animations to elements in a simple ‘sentence-like’ structure', bgColor: 'bg-sky-500', category: 'css-animations' },
         { name: 'Animista', href:"http://animista.net/", desc: 'CSS Animations On Demand', bgColor: 'bg-amber-500', category: 'css-animations' },
@@ -1326,7 +2570,7 @@ export const externalResources: Record<ResourceCategory, ExternalResource[]> = {
         { name: 'Data Driven Documents (D3)', href:"https://d3js.org/", desc:'Bind complicated and massive data to interactive graphs.', bgColor: 'bg-orange-500', category: 'chart-libraries' },
         { name: 'ApexCharts.Js', href:"https://apexcharts.com/", desc: 'Modern & Interactive Open-source Charts', bgColor: 'bg-blue-500', category: 'chart-libraries' },
         { name: 'Chartist', href:"http://gionkunz.github.io/chartist-js/index.html", desc:'Simple responsive charts', bgColor: 'bg-cyan-500', category: 'chart-libraries' },
-        { name: 'Vizzu', href:"https://lib.vizzuhq.com/0.3.0/", desc:'Vizzu - a free, open-source Javascript library for building animated charts, data stories, and interactive explorers.', bgColor: 'bg-sky-500', category: 'chart-libraries' },
+        { name: 'Vizzu', href:"https://lib.vizzuhq.com/0.3.0/", desc:'Vizzu: a free, open-source Javascript library for building animated charts, data stories, and interactive explorers.', bgColor: 'bg-sky-500', category: 'chart-libraries' },
     ],
 
     'animation-js-libraries': [
@@ -1476,25 +2720,25 @@ export const externalResources: Record<ResourceCategory, ExternalResource[]> = {
     // Developer Tools
     'chrome-extensions': [
         { name: 'WhatFont', href:"https://chrome.google.com/webstore/detail/whatfont/jabopobgcpjmedljpbcaablpmlmfcogm", desc:'The easiest way to identify fonts on web pages.', bgColor: 'bg-pink-600', category: 'chrome-extensions' },
-        { name: 'WhatRuns', href:"https://chrome.google.com/webstore/detail/whatruns/cmkdbmfndkfgebldhnkbfhlneefdaaip?hl=en", desc:'Discover what runs a website. Frameworks, Analytics Tools, WordPress Plugins, Fonts - you name it.', bgColor: 'bg-purple-600', category: 'chrome-extensions' },
+        { name: 'WhatRuns', href:"https://chrome.google.com/webstore/detail/whatruns/cmkdbmfndkfgebldhnkbfhlneefdaaip?hl=en", desc:'Discover what runs a website. Frameworks, Analytics Tools, WordPress Plugins, Fonts: you name it.', bgColor: 'bg-purple-600', category: 'chrome-extensions' },
         { name: 'Web Developer', href:"https://chrome.google.com/webstore/detail/web-developer/bfbameneiokkgbdmiekhjnmfkcnldhhm", desc:'Adds a toolbar button with various web developer tools.', bgColor: 'bg-yellow-500', category: 'chrome-extensions' },
-        { name: 'Awesome Screenshot & Screen Recorder', href:"https://chrome.google.com/webstore/detail/awesome-screenshot-screen/nlipoenfbbikpbjkfpfillcgkoblgpmj?hl=en", desc:'Full page screen capture and screen recorder - 2 in 1. Share screencast video instantly.', bgColor: 'bg-green-500', category: 'chrome-extensions' },
+        { name: 'Awesome Screenshot & Screen Recorder', href:"https://chrome.google.com/webstore/detail/awesome-screenshot-screen/nlipoenfbbikpbjkfpfillcgkoblgpmj?hl=en", desc:'Full page screen capture and screen recorder: 2 in 1. Share screencast video instantly.', bgColor: 'bg-green-500', category: 'chrome-extensions' },
         { name: 'News for Busy Developers', href:"https://chrome.google.com/webstore/detail/dailydev-news-for-busy-de/jlmpjdjjbgclbocgajdjefcidcncaied", desc:'Get programming news with zero effort. Simply open a new tab, and you’re all set. A must-have tool for busy developers!', bgColor: 'bg-orange-500', category: 'chrome-extensions' },
         { name: 'JSONView', href:"https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc?hl=en", desc:'Validate and view JSON documents.', bgColor: 'bg-blue-500', category: 'chrome-extensions' },
         { name: 'JSON Lite', href:"https://github.com/lauriro/json-lite", desc:'Browser extension for viewing JSON files.', bgColor: 'bg-cyan-500', category: 'chrome-extensions' },
         { name: 'Window Resizer', href:"https://chrome.google.com/webstore/detail/window-resizer/kkelicaakdanhinjdeammmilcgefonfh?hl=en", desc:'Resize the browser window to emulate various screen resolutions.', bgColor: 'bg-sky-500', category: 'chrome-extensions' },
-        { name: 'Responsive Viewer', href:"https://chrome.google.com/webstore/detail/responsive-viewer/inmopeiepgfljkpkidclfgbgbmfcennb?hl=en", desc:'Show multiple screens at once — responsive design tester.', bgColor: 'bg-amber-500', category: 'chrome-extensions' },
+        { name: 'Responsive Viewer', href:"https://chrome.google.com/webstore/detail/responsive-viewer/inmopeiepgfljkpkidclfgbgbmfcennb?hl=en", desc:'Show multiple screens at once :  responsive design tester.', bgColor: 'bg-amber-500', category: 'chrome-extensions' },
         { name: 'BrowserStack', href:"https://chrome.google.com/webstore/detail/browserstack/nkihdmlheodkdfojglpcjjmioefjahjb?hl=en", desc:'Instantly test your webpage on any desktop or mobile browser.', bgColor: 'bg-red-500', category: 'chrome-extensions' },
         { name: 'VisBug', href:"https://chrome.google.com/webstore/detail/visbug/cdockenadnadldjbbgcallicgledbeoc?hl=en", desc:'Open-source web design debug tool built with JavaScript.', bgColor: 'bg-emerald-500', category: 'chrome-extensions' },
-        { name: 'Kontrast - WCAG Contrast Checker', href:"https://chrome.google.com/webstore/detail/kontrast-wcag-contrast-ch/haphaaenepedkjngghandlmhfillnhjk?hl=en", desc:'Quickly check and adjust contrast in real time to meet WCAG 2.1 requirements.', bgColor: 'bg-pink-500', category: 'chrome-extensions' },
+        { name: 'Kontrast: WCAG Contrast Checker', href:"https://chrome.google.com/webstore/detail/kontrast-wcag-contrast-ch/haphaaenepedkjngghandlmhfillnhjk?hl=en", desc:'Quickly check and adjust contrast in real time to meet WCAG 2.1 requirements.', bgColor: 'bg-pink-500', category: 'chrome-extensions' },
         { name: 'PerfectPixel', href:"https://chrome.google.com/webstore/detail/perfectpixel-by-welldonec/dkaagdgjmgdmbnecmcefdhjekcoceebi", desc:'Adds a semi-transparent image overlay to perform pixel-perfect comparisons.', bgColor: 'bg-purple-600', category: 'chrome-extensions' },
-        { name: 'Pesticide', href:"https://chrome.google.com/webstore/detail/pesticide-for-chrome-with/neonnmencpneifkhlmhmfhfiklgjmloi", desc:'Outlines all HTML elements to visualize layout structure — great for debugging.', bgColor: 'bg-yellow-500', category: 'chrome-extensions' },
+        { name: 'Pesticide', href:"https://chrome.google.com/webstore/detail/pesticide-for-chrome-with/neonnmencpneifkhlmhmfhfiklgjmloi", desc:'Outlines all HTML elements to visualize layout structure :  great for debugging.', bgColor: 'bg-yellow-500', category: 'chrome-extensions' },
         { name: 'Site Palette', href:"https://chrome.google.com/webstore/detail/site-palette/pekhihjiehdafocefoimckjpbkegknoh", desc:'Grab color palettes from any website.', bgColor: 'bg-green-500', category: 'chrome-extensions' },
         { name: 'ColorZilla', href:"https://chrome.google.com/webstore/detail/colorzilla/bhlhnicpbhignbdhedgjhgdocnmhomnp", desc:'Advanced Eyedropper, Color Picker, Gradient Generator and other color tools.', bgColor: 'bg-orange-500', category: 'chrome-extensions' },
         { name: 'Lorem Ipsum Generator', href:"https://chrome.google.com/webstore/detail/lorem-ipsum-generator-def/mcdcbjjoakogbcopinefncmkcamnfkdb", desc:'Quickly create Lorem Ipsum or custom placeholder text.', bgColor: 'bg-blue-500', category: 'chrome-extensions' },
         { name: 'JavaScript and CSS Code Beautifier', href:"https://chrome.google.com/webstore/detail/javascript-and-css-code-b/iiglodndmmefofehaibmaignglbpdald?hl=en", desc:'Beautify CSS, JavaScript, and JSON code directly in the browser.', bgColor: 'bg-cyan-500', category: 'chrome-extensions' },
-        { name: 'Imageye - Image Downloader', href:"https://chrome.google.com/webstore/detail/imageye-image-downloader/agionbommeaifngbhincahgmoflcikhm", desc:'Find and download all images on a web page easily.', bgColor: 'bg-sky-500', category: 'chrome-extensions' },
-        { name: 'GoFullPage - Full Page Screen Capture', href:"https://chrome.google.com/webstore/detail/gofullpage-full-page-scre/fdpohaocaechififmbbbbbknoalclacl", desc:'Capture an entire web page as a screenshot — simple and reliable.', bgColor: 'bg-amber-500', category: 'chrome-extensions' },
+        { name: 'Imageye: Image Downloader', href:"https://chrome.google.com/webstore/detail/imageye-image-downloader/agionbommeaifngbhincahgmoflcikhm", desc:'Find and download all images on a web page easily.', bgColor: 'bg-sky-500', category: 'chrome-extensions' },
+        { name: 'GoFullPage: Full Page Screen Capture', href:"https://chrome.google.com/webstore/detail/gofullpage-full-page-scre/fdpohaocaechififmbbbbbknoalclacl", desc:'Capture an entire web page as a screenshot :  simple and reliable.', bgColor: 'bg-amber-500', category: 'chrome-extensions' },
         { name: 'Stylebot', href:"https://chrome.google.com/webstore/detail/stylebot/oiaejidbmkiecgbjeifoejpgmdaleoha", desc:'Change the appearance of any website instantly.', bgColor: 'bg-red-500', category: 'chrome-extensions' },
         { name: 'ColorPick Eyedropper', href:"https://chrome.google.com/webstore/detail/colorpick-eyedropper/ohcpnigalekghcmgcdcenkpelffpdolg", desc:'A zoomed eyedropper & color chooser tool.', bgColor: 'bg-emerald-500', category: 'chrome-extensions' },
         { name: 'React Developer Tools', href:"https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi", desc:'Inspect React component hierarchies in Chrome DevTools.', bgColor: 'bg-pink-500', category: 'chrome-extensions' },
@@ -1520,7 +2764,7 @@ export const externalResources: Record<ResourceCategory, ExternalResource[]> = {
     ],
 
     'logos': [
-        { name: 'Instant Logo Search', href: "http://instantlogosearch.com/", desc:'Thousands of free brand logos (SVG - PNG)', bgColor: 'bg-pink-600', category: 'logos' },
+        { name: 'Instant Logo Search', href: "http://instantlogosearch.com/", desc:'Thousands of free brand logos (SVG: PNG)', bgColor: 'bg-pink-600', category: 'logos' },
         { name: 'LogoSear.ch', href:"https://logosear.ch/search.html", desc:'Search engine with over 200,000 SVG logos indexed', bgColor: 'bg-purple-600', category: 'logos' },
         { name: 'SVGPorn', href: "https://svgporn.com", desc:'1000+ high-quality SVG logos', bgColor: 'bg-yellow-500', category: 'logos' },
         { name: 'Payment System Logos', href:"https://github.com/mpay24/payment-logos/", desc:'Logos for payment systems available in PNG and SVG', bgColor: 'bg-green-500', category: 'logos' },
@@ -1586,7 +2830,7 @@ export const externalResources: Record<ResourceCategory, ExternalResource[]> = {
         { name: 'Mockuphone', href:"https://mockuphone.com/", desc:'100% free mockups for all devices including iOS, Android, Windows Phone, Laptop, Desktop, and TV.', bgColor: 'bg-emerald-500', category: 'image-mockups' },
         { name: 'Device Shots', href:"https://deviceshots.com/", desc:'Create high-resolution device mockups for social media, for free.', bgColor: 'bg-pink-500', category: 'image-mockups' },
         { name: 'Clean Mock', href:"https://www.mock.video/", desc:'Instantly create mockups by adding a device frame to your videos.', bgColor: 'bg-purple-600', category: 'image-mockups' },
-        { name: 'MockupBro', href:"https://mockupbro.com/", desc:'Create product mockups with an online generator — choose a mockup, upload your design, and download without watermark.', bgColor: 'bg-yellow-500', category: 'image-mockups' },
+        { name: 'MockupBro', href:"https://mockupbro.com/", desc:'Create product mockups with an online generator :  choose a mockup, upload your design, and download without watermark.', bgColor: 'bg-yellow-500', category: 'image-mockups' },
         { name: 'Animockup', href:"https://animockup.com/", desc:'Create animated mockups directly in the browser.', bgColor: 'bg-green-500', category: 'image-mockups' },
     ],
 
@@ -1702,7 +2946,7 @@ export const externalResources: Record<ResourceCategory, ExternalResource[]> = {
         { name: 'Webframe', href:"https://webframe.xyz", desc:'Discover and be inspired by beautiful web app designs.', bgColor: 'bg-orange-500', category: 'design-inspiration' },
         { name: 'Collect UI', href:"http://collectui.com/", desc:'Daily inspiration collected from the Daily UI archive and beyond.', bgColor: 'bg-blue-500', category: 'design-inspiration' },
         { name: 'Graphic Burger', href:"https://graphicburger.com/", desc:'Free and premium icons, mockups, UI kits, text effects, and backgrounds.', bgColor: 'bg-cyan-500', category: 'design-inspiration' },
-        { name: 'Really Good Emails', href:"https://reallygoodemails.com/", desc:'Showcases company emails — from customer service to marketing.', bgColor: 'bg-sky-500', category: 'design-inspiration' },
+        { name: 'Really Good Emails', href:"https://reallygoodemails.com/", desc:'Showcases company emails :  from customer service to marketing.', bgColor: 'bg-sky-500', category: 'design-inspiration' },
         { name: 'Free Design Resource', href:"https://freedesignresources.net/", desc:'Fonts, mockups, templates, graphics, and UI kits.', bgColor: 'bg-amber-500', category: 'design-inspiration' },
         { name: 'Site Inspire', href:"https://www.siteinspire.com/", desc:'Showcase of the finest web and interactive designs.', bgColor: 'bg-red-500', category: 'design-inspiration' },
         { name: 'Web Design Inspiration', href:"https://www.webdesign-inspiration.com/", desc:'Daily updated gallery of web design inspiration.', bgColor: 'bg-emerald-500', category: 'design-inspiration' },
@@ -1734,7 +2978,7 @@ export const externalResources: Record<ResourceCategory, ExternalResource[]> = {
         { name: 'Inkscape', href:"https://inkscape.org/", desc:'Powerful and free vector graphic design tool.', bgColor: 'bg-sky-500', category: 'design-software' },
         { name: 'Adobe XD', href:"https://www.adobe.com/products/xd.html", desc:'Free design and prototyping tool from Adobe.', bgColor: 'bg-amber-500', category: 'design-software' },
         { name: 'Shape.so', href:"https://shape.so/pricing", desc:'Icon library that can be used as code directly in your projects.', bgColor: 'bg-red-500', category: 'design-software' },
-        { name: 'Lunacy', href:"https://icons8.com/lunacy", desc:'Free graphic design software — a Sketch alternative for Windows.', bgColor: 'bg-emerald-500', category: 'design-software' },
+        { name: 'Lunacy', href:"https://icons8.com/lunacy", desc:'Free graphic design software :  a Sketch alternative for Windows.', bgColor: 'bg-emerald-500', category: 'design-software' },
         { name: 'InVision Studio', href:"https://www.invisionapp.com/studio", desc:'Free screen design and prototyping tool from InVision.', bgColor: 'bg-pink-500', category: 'design-software' },
         { name: 'Darktable', href:"https://www.darktable.org/", desc:'Free & open-source photography workflow application and RAW developer.', bgColor: 'bg-purple-600', category: 'design-software' },
         { name: 'InPixio Photo Editor', href:"https://www.inpixio.com/free-photo-editor", desc:'Free photo editor for Windows.', bgColor: 'bg-yellow-500', category: 'design-software' },
@@ -1840,7 +3084,7 @@ export const externalResources: Record<ResourceCategory, ExternalResource[]> = {
         { name: 'Flexbox Froggy', href:"http://flexboxfroggy.com/", desc:'Learn CSS Flexbox interactively by helping Froggy and friends!', bgColor: 'bg-pink-500', category: 'others' },
         { name: 'DesignBetter Books', href:"https://www.designbetter.co/books", desc:'Essential reads on design practices used by top design teams.', bgColor: 'bg-purple-600', category: 'others' },
         { name: 'OverAPI', href:"https://overapi.com/", desc:'Comprehensive collection of developer cheat sheets.', bgColor: 'bg-yellow-500', category: 'others' },
-        { name: 'Pageclip', href:"https://pageclip.co/", desc:'Server backend for static HTML forms — simple and easy to use.', bgColor: 'bg-green-500', category: 'others' },
+        { name: 'Pageclip', href:"https://pageclip.co/", desc:'Server backend for static HTML forms :  simple and easy to use.', bgColor: 'bg-green-500', category: 'others' },
         { name: 'Shields.io', href:"https://shields.io", desc:'Create custom badges for GitHub, npm, and other projects.', bgColor: 'bg-orange-500', category: 'others' },
         { name: 'WilliamSharkey', href:"http://williamsharkey.com/Shapes.html", desc:'Random SVG graphic generator.', bgColor: 'bg-blue-500', category: 'others' },
         { name: 'Bootstrap CheatSheet', href:"https://bootstrap-cheatsheet.themeselection.com/", desc:'Interactive list of Bootstrap classes, variables, and mixins.', bgColor: 'bg-cyan-500', category: 'others' },

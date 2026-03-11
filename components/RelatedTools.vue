@@ -8,7 +8,7 @@
       <NuxtLink
         v-for="tool in relatedTools"
         :key="tool.slug"
-        :to="`/tools/${tool.slug}`"
+        :to="`/tools/${tool.slug}/`"
         class="group p-4 bg-gray-800 rounded-lg border border-gray-700 hover:border-indigo-500 hover:bg-gray-750 transition-all"
       >
         <div class="font-medium text-white group-hover:text-indigo-400 transition-colors">

@@ -123,6 +123,22 @@
         <p class="text-gray-400">No tools found matching "{{ searchQuery }}"</p>
       </div>
 
+      <!-- SEO long-form content -->
+      <div v-if="categoryMeta.seo?.seoContent" class="mt-16 pt-12 border-t border-gray-800">
+        <div
+          class="prose prose-invert prose-sm sm:prose-base max-w-none
+                 prose-headings:font-bold prose-headings:tracking-tight
+                 prose-h2:text-xl prose-h2:mt-8 prose-h2:mb-3
+                 prose-h3:text-base prose-h3:mt-6 prose-h3:mb-2
+                 prose-p:text-gray-400 prose-p:leading-7
+                 prose-li:text-gray-400
+                 prose-strong:text-gray-200
+                 prose-code:text-indigo-300 prose-code:bg-gray-800 prose-code:px-1 prose-code:rounded"
+        >
+          <div v-html="categoryMeta.seo.seoContent"></div>
+        </div>
+      </div>
+
       <!-- You might be interested in -->
       <div v-if="relatedCategories.length > 0" class="mt-12">
         <h3 class="text-xl font-semibold text-white mb-4">You might be interested in</h3>
@@ -217,7 +233,13 @@ useHead({
           }
         })
       }
-    }
+    },
+    ...(categoryMeta.value?.seo?.faqSchema
+      ? [{
+          type: 'application/ld+json',
+          innerHTML: () => JSON.stringify({ '@context': 'https://schema.org', ...categoryMeta.value!.seo!.faqSchema })
+        }]
+      : []),
   ],
   link: [
     { rel: 'canonical', href: `https://codehelper.me/resources/${slug}/` }

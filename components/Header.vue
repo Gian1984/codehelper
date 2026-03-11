@@ -168,7 +168,7 @@ const goToEntry = (entry) => {
   query.value = ''
   showSuggestions.value = false
   const basePath = entry.type === 'tool' ? '/tools/' : entry.type === 'game' ? '/games/' : '/articles/'
-  router.push(basePath + entry.slug)
+  router.push(basePath + entry.slug + '/')
 }
 
 watch(() => route.path, () => {

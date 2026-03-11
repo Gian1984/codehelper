@@ -178,7 +178,7 @@ export const articles: Record<string, Article> = {
         seo: {
             title: `Can AI Be Hacked? Real-World Attacks & Defenses – ${BRAND}`,
             description:
-                'Understand AI attack vectors—prompt injection, data exfiltration, tool abuse—and practical defenses: policy hardening, sandboxes, allowlists, and logging.',
+                'Understand AI attack vectors: prompt injection, data exfiltration, tool abuse: and practical defenses: policy hardening, sandboxes, allowlists, and logging.',
             ogImage: OG,
             keywords:
                 'ai security, prompt injection defense, jailbreak prompts, model exploitation, llm security best practices, ai red teaming, data exfiltration llm',
@@ -249,7 +249,7 @@ export const articles: Record<string, Article> = {
         seo: {
             title: `AI-powered cyberattacks: how AI is fueling a new wave of hacking – ${BRAND}`,
             description:
-                'Data-backed analysis of AI-driven attacks in 2025 (ransomware, deepfakes, biometrics spoofing) with sources from IBM, MIT Sloan, Acronis, Reuters, and arXiv — plus a practical defense stack.',
+                'Data-backed analysis of AI-driven attacks in 2025 (ransomware, deepfakes, biometrics spoofing) with sources from IBM, MIT Sloan, Acronis, Reuters, and arXiv :  plus a practical defense stack.',
             ogImage: OG,
             keywords:
                 'ai cyberattacks, ai hacking, deepfake phishing, ai-driven ransomware, autonomous agents, spear phishing llm, biometric spoofing, xdr, zero trust, 2025 cybersecurity trends',
@@ -454,7 +454,7 @@ export const articles: Record<string, Article> = {
                     {
                         '@type': 'Question',
                         name: 'How does the sand battery reduce CO₂ emissions?',
-                        acceptedAnswer: { '@type': 'Answer', text: 'By replacing oil-fired boilers with a sand battery charged by renewable electricity, the system eliminates roughly 160 tonnes of CO₂ emissions per year — a reduction of approximately 70% compared to the previous fossil fuel setup.' }
+                        acceptedAnswer: { '@type': 'Answer', text: 'By replacing oil-fired boilers with a sand battery charged by renewable electricity, the system eliminates roughly 160 tonnes of CO₂ emissions per year :  a reduction of approximately 70% compared to the previous fossil fuel setup.' }
                     },
                     {
                         '@type': 'Question',
@@ -468,7 +468,7 @@ export const articles: Record<string, Article> = {
     'co2-battery': {
         title: 'CO₂ Battery: Closed Thermo-Mechanical Energy Storage Explained',
         description:
-            'Learn how the CO₂ Battery stores and generates electricity using closed thermo-mechanical cycles with carbon dioxide—offering long-duration energy storage with zero emissions.',
+            'Learn how the CO₂ Battery stores and generates electricity using closed thermo-mechanical cycles with carbon dioxide: offering long-duration energy storage with zero emissions.',
         category: 'energy',
         component: () =>
             import('~/components/articles/energy/CO2Battery.vue') as Promise<{ default: DefineComponent }>,
@@ -520,7 +520,7 @@ export const articles: Record<string, Article> = {
                     {
                         '@type': 'Question',
                         name: 'What is a CO₂ battery and how does it work?',
-                        acceptedAnswer: { '@type': 'Answer', text: 'A CO₂ battery (developed by Energy Dome) is a closed thermodynamic system that stores energy by liquefying carbon dioxide when electricity is cheap, then re-gasifying it through a turbine to generate electricity when needed. No CO₂ is released — the gas cycles continuously inside the sealed system.' }
+                        acceptedAnswer: { '@type': 'Answer', text: 'A CO₂ battery (developed by Energy Dome) is a closed thermodynamic system that stores energy by liquefying carbon dioxide when electricity is cheap, then re-gasifying it through a turbine to generate electricity when needed. No CO₂ is released :  the gas cycles continuously inside the sealed system.' }
                     },
                     {
                         '@type': 'Question',
@@ -535,7 +535,7 @@ export const articles: Record<string, Article> = {
                     {
                         '@type': 'Question',
                         name: 'Is the CO₂ battery an alternative to lithium-ion batteries?',
-                        acceptedAnswer: { '@type': 'Answer', text: 'Yes, for grid-scale long-duration storage. The CO₂ battery avoids lithium, cobalt, and rare earth mining, uses widely available CO₂ as the working fluid, has a 30+ year operational lifespan, and can be built with standard industrial components — making it a more sustainable and scalable alternative for utility storage.' }
+                        acceptedAnswer: { '@type': 'Answer', text: 'Yes, for grid-scale long-duration storage. The CO₂ battery avoids lithium, cobalt, and rare earth mining, uses widely available CO₂ as the working fluid, has a 30+ year operational lifespan, and can be built with standard industrial components :  making it a more sustainable and scalable alternative for utility storage.' }
                     }
                 ]
             }
@@ -636,16 +636,16 @@ export const articles: Record<string, Article> = {
     },
 
     'samsung-9100-pro-nvme': {
-        title: 'Samsung 9100 Pro NVMe — 14 GB/s Gen5 Storage & LLM Workflow Acceleration',
+        title: 'Samsung 9100 Pro NVMe :  14 GB/s Gen5 Storage & LLM Workflow Acceleration',
         description:
             'Explore Samsung’s 9100 Pro PCIe 5.0 NVMe SSD with up to 14.8 GB/s read/write. Its ultra-fast storage reshapes GPU offloading for large model workflows and data-heavy tasks.',
         category: 'hardware',
         component: () =>
             import('~/components/articles/hardware/Samsung9100Pro.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `Samsung 9100 Pro NVMe Gen5 (14 GB/s) — Hardware Deep Dive – ${BRAND}`,
+            title: `Samsung 9100 Pro NVMe Gen5 (14 GB/s) :  Hardware Deep Dive – ${BRAND}`,
             description:
-                'Samsung’s 9100 Pro SSD delivers PCle 5.0 speeds—14.8 GB/s read, 13.4 GB/s write. Learn how this transforms GPU-based LLM offloading, dataset streaming, and checkpointing workflows.',
+                'Samsung’s 9100 Pro SSD delivers PCle 5.0 speeds: 14.8 GB/s read, 13.4 GB/s write. Learn how this transforms GPU-based LLM offloading, dataset streaming, and checkpointing workflows.',
             ogImage: OG,
             keywords:
                 'Samsung 9100 Pro, PCIe 5.0 SSD, NVMe Gen5, LLM offload, model swapping, GPU workflows, fast storage SSD',
@@ -714,7 +714,7 @@ export const articles: Record<string, Article> = {
         }
     },
     'github-student-pack': {
-        title: 'GitHub Student Developer Pack — Free Tools & Resources for Students',
+        title: 'GitHub Student Developer Pack :  Free Tools & Resources for Students',
         description:
             'A complete overview of GitHub\'s Student Developer Pack: free IDEs, cloud credits, domains, and pro tools to help students learn and ship real projects.',
         category: 'education',
@@ -860,12 +860,12 @@ export const articles: Record<string, Article> = {
                     {
                         '@type': 'Question',
                         name: 'Did Claude Code really write 80% of its own code?',
-                        acceptedAnswer: { '@type': 'Answer', text: 'Anthropic reported that approximately 80% of Claude Code\'s codebase was written by Claude itself in an agentic loop — the AI wrote code, tested it, fixed bugs, and iterated. This does not mean Claude is fully autonomous; human engineers designed the architecture, reviewed outputs, and directed the process.' }
+                        acceptedAnswer: { '@type': 'Answer', text: 'Anthropic reported that approximately 80% of Claude Code\'s codebase was written by Claude itself in an agentic loop :  the AI wrote code, tested it, fixed bugs, and iterated. This does not mean Claude is fully autonomous; human engineers designed the architecture, reviewed outputs, and directed the process.' }
                     },
                     {
                         '@type': 'Question',
                         name: 'What is an agentic AI coding tool?',
-                        acceptedAnswer: { '@type': 'Answer', text: 'An agentic AI coding tool can execute multi-step tasks autonomously: reading files, running tests, editing code, and iterating based on results — all without requiring a human to approve each action. Claude Code operates as a CLI-based agent that works directly in your terminal and repository.' }
+                        acceptedAnswer: { '@type': 'Answer', text: 'An agentic AI coding tool can execute multi-step tasks autonomously: reading files, running tests, editing code, and iterating based on results :  all without requiring a human to approve each action. Claude Code operates as a CLI-based agent that works directly in your terminal and repository.' }
                     },
                     {
                         '@type': 'Question',
@@ -962,7 +962,7 @@ export const articles: Record<string, Article> = {
                         name: 'Which Qwen2 model size should I use on Apple Silicon?',
                         acceptedAnswer: {
                             '@type': 'Answer',
-                            text: 'Qwen 7B is recommended for daily development — it requires 8GB RAM, weighs about 4.3GB, and delivers around 1.5 seconds response time on M1/M2/M3. If you have 16GB or more RAM, DeepSeek V2 (~9GB) offers the best code quality with only ~1.8 seconds response time.'
+                            text: 'Qwen 7B is recommended for daily development :  it requires 8GB RAM, weighs about 4.3GB, and delivers around 1.5 seconds response time on M1/M2/M3. If you have 16GB or more RAM, DeepSeek V2 (~9GB) offers the best code quality with only ~1.8 seconds response time.'
                         }
                     },
                     {
@@ -1039,7 +1039,7 @@ export const articles: Record<string, Article> = {
                     {
                         '@type': 'Question',
                         name: 'What is the CodeHelper developer resources directory?',
-                        acceptedAnswer: { '@type': 'Answer', text: 'CodeHelper\'s resources directory is a curated collection of 800+ external developer tools, libraries, and assets organized across 31 categories including colors, icons, UI libraries, fonts, design tools, and testing resources — all searchable and filterable.' }
+                        acceptedAnswer: { '@type': 'Answer', text: 'CodeHelper\'s resources directory is a curated collection of 800+ external developer tools, libraries, and assets organized across 31 categories including colors, icons, UI libraries, fonts, design tools, and testing resources :  all searchable and filterable.' }
                     },
                     {
                         '@type': 'Question',
@@ -1049,7 +1049,7 @@ export const articles: Record<string, Article> = {
                     {
                         '@type': 'Question',
                         name: 'What categories are available in the CodeHelper API directory?',
-                        acceptedAnswer: { '@type': 'Answer', text: 'The API directory covers categories such as weather, finance, maps, authentication, machine learning, entertainment, news, sports, government data, health, and many more — each with details on rate limits, authentication, and documentation links.' }
+                        acceptedAnswer: { '@type': 'Answer', text: 'The API directory covers categories such as weather, finance, maps, authentication, machine learning, entertainment, news, sports, government data, health, and many more :  each with details on rate limits, authentication, and documentation links.' }
                     },
                     {
                         '@type': 'Question',
@@ -1381,7 +1381,7 @@ export const articles: Record<string, Article> = {
                     {
                         '@type': 'Question',
                         name: 'Is human creativity safe from AI automation?',
-                        acceptedAnswer: { '@type': 'Answer', text: 'Genuine human creativity — the ability to synthesize novel ideas from lived experience, cultural context, and emotional depth — remains a significant differentiator. While AI can generate creative-looking outputs, it lacks true originality, lived experience, and the unpredictability that makes human creativity irreplaceable.' }
+                        acceptedAnswer: { '@type': 'Answer', text: 'Genuine human creativity :  the ability to synthesize novel ideas from lived experience, cultural context, and emotional depth :  remains a significant differentiator. While AI can generate creative-looking outputs, it lacks true originality, lived experience, and the unpredictability that makes human creativity irreplaceable.' }
                     }
                 ]
             }
@@ -1459,12 +1459,12 @@ export const articles: Record<string, Article> = {
                     {
                         '@type': 'Question',
                         name: 'What are Big Tech companies investing in instead of space data centers?',
-                        acceptedAnswer: { '@type': 'Answer', text: 'Microsoft, Google, and Amazon are all making concrete investments in nuclear power — small modular reactors (SMRs) and restarted conventional nuclear plants — as a more practical path to powering AI data centers with carbon-free baseload electricity, unlike the speculative space data center concept.' }
+                        acceptedAnswer: { '@type': 'Answer', text: 'Microsoft, Google, and Amazon are all making concrete investments in nuclear power :  small modular reactors (SMRs) and restarted conventional nuclear plants :  as a more practical path to powering AI data centers with carbon-free baseload electricity, unlike the speculative space data center concept.' }
                     },
                     {
                         '@type': 'Question',
                         name: 'Why is the space data center concept considered financial engineering?',
-                        acceptedAnswer: { '@type': 'Answer', text: 'Critics argue that proposals for space-based AI data centers serve primarily to attract investor attention and government contracts rather than presenting a credible near-term technical solution. The engineering challenges — launch costs, reliability, latency, heat dissipation in vacuum — make commercial viability decades away at best.' }
+                        acceptedAnswer: { '@type': 'Answer', text: 'Critics argue that proposals for space-based AI data centers serve primarily to attract investor attention and government contracts rather than presenting a credible near-term technical solution. The engineering challenges :  launch costs, reliability, latency, heat dissipation in vacuum :  make commercial viability decades away at best.' }
                     }
                 ]
             }
@@ -1474,7 +1474,7 @@ export const articles: Record<string, Article> = {
     'big-bang-echo-discovery': {
         title: 'The Echo of the Big Bang: How a Mysterious Noise Proved the Origin of the Universe',
         description:
-            'The remarkable story of how Penzias and Wilson accidentally discovered the Cosmic Microwave Background radiation while trying to eliminate noise from their antenna—proving the Big Bang theory.',
+            'The remarkable story of how Penzias and Wilson accidentally discovered the Cosmic Microwave Background radiation while trying to eliminate noise from their antenna: proving the Big Bang theory.',
         category: 'science',
         component: () =>
             import('~/components/articles/science/BigBangEchoDiscovery.vue') as Promise<{ default: DefineComponent }>,
@@ -1536,7 +1536,7 @@ export const articles: Record<string, Article> = {
                     {
                         '@type': 'Question',
                         name: 'How did Penzias and Wilson discover the CMB?',
-                        acceptedAnswer: { '@type': 'Answer', text: 'In 1964, Arno Penzias and Robert Wilson at Bell Laboratories detected an unexplained 3.5K excess noise in their Horn Antenna in Holmdel, New Jersey while calibrating it for satellite communication. After eliminating all other sources (including removing pigeon droppings), they realized the noise came from all directions equally — the signature of the CMB.' }
+                        acceptedAnswer: { '@type': 'Answer', text: 'In 1964, Arno Penzias and Robert Wilson at Bell Laboratories detected an unexplained 3.5K excess noise in their Horn Antenna in Holmdel, New Jersey while calibrating it for satellite communication. After eliminating all other sources (including removing pigeon droppings), they realized the noise came from all directions equally :  the signature of the CMB.' }
                     },
                     {
                         '@type': 'Question',
@@ -1556,14 +1556,14 @@ export const articles: Record<string, Article> = {
     'ollama-opencode-setup': {
         title: 'Local AI Coding Setup: Ollama + OpenCode on macOS Terminal',
         description:
-            'Step-by-step guide to setting up a fully local AI coding agent with Ollama and OpenCode on macOS. Agentic tool use, multi-model support, zero cloud dependencies — all running on Apple Silicon.',
+            'Step-by-step guide to setting up a fully local AI coding agent with Ollama and OpenCode on macOS. Agentic tool use, multi-model support, zero cloud dependencies :  all running on Apple Silicon.',
         category: 'ai',
         component: () =>
             import('~/components/articles/ai/OllamaOpenCodeSetup.vue') as Promise<{ default: DefineComponent }>,
         seo: {
             title: `How to Connect OpenCode to Ollama: Local AI Coding Setup Guide – ${BRAND}`,
             description:
-                'Step-by-step guide to connect OpenCode with Ollama for 100% local AI coding on macOS. Model configuration, context window tuning, and agentic features — no cloud required.',
+                'Step-by-step guide to connect OpenCode with Ollama for 100% local AI coding on macOS. Model configuration, context window tuning, and agentic features :  no cloud required.',
             ogImage: OG,
             keywords:
                 'ollama opencode, local ai coding, ollama macos, opencode cli, ai coding agent terminal, qwen coder ollama, local llm coding, apple silicon ai, ollama openai compatible, agentic coding local, opencode ollama, connect opencode ollama, opencode local model, ollama opencode setup',
@@ -1572,7 +1572,7 @@ export const articles: Record<string, Article> = {
                 '@type': 'TechArticle',
                 headline: 'How to Connect OpenCode to Ollama: Local AI Coding Setup Guide',
                 description:
-                    'Step-by-step guide to connect OpenCode with Ollama for 100% local AI coding on macOS. Model configuration, context window tuning, and agentic features — no cloud required.',
+                    'Step-by-step guide to connect OpenCode with Ollama for 100% local AI coding on macOS. Model configuration, context window tuning, and agentic features :  no cloud required.',
                 author: { '@type': 'Person', name: 'Gianluca' },
                 publisher: {
                     '@type': 'Organization',
@@ -1740,7 +1740,7 @@ export const articles: Record<string, Article> = {
         component: () =>
             import('~/components/articles/energy/OsmoticPowerCoastalCities.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `Blue Energy: Osmotic Power Explained - The Future of Coastal Renewables – ${BRAND}`,
+            title: `Blue Energy: Osmotic Power Explained: The Future of Coastal Renewables – ${BRAND}`,
             description:
                 'Discover how osmotic power (blue energy) generates electricity from mixing freshwater and saltwater. PRO vs ionic generators, real projects in Japan, Denmark & France, and why desalination plants are key.',
             ogImage: OG,
@@ -1798,7 +1798,7 @@ export const articles: Record<string, Article> = {
                     {
                         '@type': 'Question',
                         name: 'What is the global potential of osmotic power?',
-                        acceptedAnswer: { '@type': 'Answer', text: 'Scientists estimate the global theoretical potential of osmotic power at approximately 15,000 TWh per year — roughly half of current global electricity consumption. The exploitable potential near coastal cities and desalination plants is smaller but still significant as a complementary baseload renewable.' }
+                        acceptedAnswer: { '@type': 'Answer', text: 'Scientists estimate the global theoretical potential of osmotic power at approximately 15,000 TWh per year :  roughly half of current global electricity consumption. The exploitable potential near coastal cities and desalination plants is smaller but still significant as a complementary baseload renewable.' }
                     },
                     {
                         '@type': 'Question',
@@ -1977,12 +1977,12 @@ export const articles: Record<string, Article> = {
                     {
                         '@type': 'Question',
                         name: 'How did Juan Pujol García influence the D-Day landings?',
-                        acceptedAnswer: { '@type': 'Answer', text: 'Pujol García fed false intelligence to the Nazis as part of Operation Fortitude, convincing Hitler that the main Allied invasion would target Pas-de-Calais rather than Normandy. Even after D-Day began on June 6, 1944, Hitler believed it was a feint and withheld Panzer divisions for weeks — a delay historians consider decisive to the Allied success.' }
+                        acceptedAnswer: { '@type': 'Answer', text: 'Pujol García fed false intelligence to the Nazis as part of Operation Fortitude, convincing Hitler that the main Allied invasion would target Pas-de-Calais rather than Normandy. Even after D-Day began on June 6, 1944, Hitler believed it was a feint and withheld Panzer divisions for weeks :  a delay historians consider decisive to the Allied success.' }
                     },
                     {
                         '@type': 'Question',
                         name: 'Is it true that Juan Pujol García received both the Iron Cross and an MBE?',
-                        acceptedAnswer: { '@type': 'Answer', text: 'Yes. In a unique historical distinction, Pujol García received the Iron Cross from Nazi Germany (for his "services" as a spy) and was simultaneously awarded the MBE (Member of the Order of the British Empire) by King George VI — both sides believing him to be their loyal agent.' }
+                        acceptedAnswer: { '@type': 'Answer', text: 'Yes. In a unique historical distinction, Pujol García received the Iron Cross from Nazi Germany (for his "services" as a spy) and was simultaneously awarded the MBE (Member of the Order of the British Empire) by King George VI :  both sides believing him to be their loyal agent.' }
                     },
                     {
                         '@type': 'Question',
@@ -2004,7 +2004,7 @@ export const articles: Record<string, Article> = {
         seo: {
             title: `MIT Thermal Computing: Silicon Structures That Calculate With Heat – ${BRAND}`,
             description:
-                'MIT engineers built porous silicon microstructures that compute matrix-vector multiplications using only heat flow — 99%+ accuracy, zero active energy. A look at thermal computing, inverse design, and the future of reconfigurable analog hardware.',
+                'MIT engineers built porous silicon microstructures that compute matrix-vector multiplications using only heat flow :  99%+ accuracy, zero active energy. A look at thermal computing, inverse design, and the future of reconfigurable analog hardware.',
             ogImage: OG,
             keywords:
                 'thermal computing, mit thermal silicon, heat as computation, inverse design silicon, matrix vector multiplication heat, analog computing, phase change materials, memristor, neuromorphic chips, analog ai accelerator',
@@ -2077,7 +2077,7 @@ export const articles: Record<string, Article> = {
                     {
                         '@type': 'Question',
                         name: 'What are the limitations of thermal computing compared to electronic computing?',
-                        acceptedAnswer: { '@type': 'Answer', text: 'Current thermal computing is extremely slow — heat diffusion operates at milliseconds compared to nanoseconds for electronic circuits. The computation is also static (the structure performs one specific operation), unlike reconfigurable electronics. It currently targets energy-harvesting and sensor-embedded applications rather than general-purpose processors.' }
+                        acceptedAnswer: { '@type': 'Answer', text: 'Current thermal computing is extremely slow :  heat diffusion operates at milliseconds compared to nanoseconds for electronic circuits. The computation is also static (the structure performs one specific operation), unlike reconfigurable electronics. It currently targets energy-harvesting and sensor-embedded applications rather than general-purpose processors.' }
                     }
                 ]
             }

@@ -27,7 +27,7 @@ export const games: Record<string, Game> = {
         component: () =>
             import('~/components/games/arcade/StackOverflowSurvivor.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `Stack Overflow Survivor — Dodge Bugs Arcade Game – ${BRAND}`,
+            title: `Stack Overflow Survivor :  Dodge Bugs Arcade Game – ${BRAND}`,
             description:
                 'Play Stack Overflow Survivor: dodge SyntaxErrors, TypeErrors, RuntimeBugs and DeprecatedWarnings falling from the sky. Collect powerups, beat your high score, and share with friends.',
             ogImage: OG,
@@ -68,7 +68,7 @@ export const games: Record<string, Game> = {
                 <section>
                     <h2>What is Stack Overflow Survivor?</h2>
                     <p><strong>Stack Overflow Survivor</strong> is a browser-based arcade game built for developers who live and breathe code. Falling from the sky are the bugs, errors, and exceptions every programmer dreads: <code>SyntaxError</code>, <code>TypeError</code>, <code>RuntimeBug</code>, <code>DeprecatedWarning</code>, and more. Your mission? Dodge them all and survive as long as possible.</p>
-                    <p>Built entirely with the HTML5 Canvas API and zero external dependencies, the game runs instantly in any modern browser—no install, no signup needed.</p>
+                    <p>Built entirely with the HTML5 Canvas API and zero external dependencies, the game runs instantly in any modern browser: no install, no signup needed.</p>
 
                     <h3>Game features</h3>
                     <ul>
@@ -83,7 +83,7 @@ export const games: Record<string, Game> = {
                         <li>Click <strong>Play</strong> to start the game.</li>
                         <li>Move your character left and right to dodge falling bugs and errors.</li>
                         <li>Collect powerups to gain bonuses and survive longer.</li>
-                        <li>The game speeds up over time—stay sharp!</li>
+                        <li>The game speeds up over time: stay sharp!</li>
                         <li>Share your high score with your dev team.</li>
                     </ol>
 
@@ -143,12 +143,12 @@ export const games: Record<string, Game> = {
                 <section>
                     <h2>What is Bug Breaker?</h2>
                     <p><strong>Bug Breaker</strong> (DevBreakout) is a developer-themed take on the classic Breakout/Arkanoid genre. Instead of ordinary bricks, you're smashing through layers of bugs, errors, and broken code on your way to a successful production deploy. It's the most satisfying debugging session you'll ever have.</p>
-                    <p>With 5 game modes and themed levels from <em>HTML</em> all the way to <em>Production</em>, Bug Breaker captures the full lifecycle of shipping software—one brick at a time.</p>
+                    <p>With 5 game modes and themed levels from <em>HTML</em> all the way to <em>Production</em>, Bug Breaker captures the full lifecycle of shipping software: one brick at a time.</p>
 
                     <h3>Game modes</h3>
                     <ul>
                         <li><strong>Classic</strong>: The traditional Breakout experience with a developer twist.</li>
-                        <li><strong>Sprint</strong>: Clear levels as fast as possible—time is your enemy.</li>
+                        <li><strong>Sprint</strong>: Clear levels as fast as possible: time is your enemy.</li>
                         <li><strong>Survival</strong>: How many levels can you clear before losing all your lives?</li>
                         <li><strong>Zen</strong>: Relaxed, no-pressure mode to unwind after a long coding session.</li>
                         <li><strong>Hardcore</strong>: One life, maximum speed, no mercy.</li>
@@ -218,14 +218,14 @@ export const games: Record<string, Game> = {
             seoContent: `
                 <section>
                     <h2>What is Code Eater?</h2>
-                    <p><strong>Code Eater</strong> (DevSnake) is a developer-themed reimagining of the classic Snake game. Instead of eating dots, you grow your codebase by consuming variables, functions, and arrays. But watch out—bugs, memory leaks, infinite loops, and deprecated warnings lurk around every corner, ready to crash your program.</p>
+                    <p><strong>Code Eater</strong> (DevSnake) is a developer-themed reimagining of the classic Snake game. Instead of eating dots, you grow your codebase by consuming variables, functions, and arrays. But watch out: bugs, memory leaks, infinite loops, and deprecated warnings lurk around every corner, ready to crash your program.</p>
                     <p>Built with the HTML5 Canvas API and running entirely in the browser, Code Eater needs no install or signup. Just open it and start coding… or eating code.</p>
 
                     <h3>What to eat, what to avoid</h3>
                     <ul>
-                        <li><strong>Eat</strong>: <code>variables</code>, <code>functions</code>, <code>arrays</code>, <code>objects</code>—each one grows your snake and boosts your score.</li>
-                        <li><strong>Avoid</strong>: <code>bugs</code>, <code>memory leaks</code>, <code>infinite loops</code>, <code>deprecated warnings</code>—any collision ends your session.</li>
-                        <li><strong>Speed scaling</strong>: The more code you consume, the faster your snake moves—keeping experienced players challenged.</li>
+                        <li><strong>Eat</strong>: <code>variables</code>, <code>functions</code>, <code>arrays</code>, <code>objects</code>: each one grows your snake and boosts your score.</li>
+                        <li><strong>Avoid</strong>: <code>bugs</code>, <code>memory leaks</code>, <code>infinite loops</code>, <code>deprecated warnings</code>: any collision ends your session.</li>
+                        <li><strong>Speed scaling</strong>: The more code you consume, the faster your snake moves: keeping experienced players challenged.</li>
                     </ul>
 
                     <h3>How to play Code Eater</h3>

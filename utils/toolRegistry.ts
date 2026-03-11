@@ -26,7 +26,7 @@ export const tools: Record<string, Tool> = {
         component: () =>
             import('~/components/tools/formatter/JsonFormatter.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `Free JSON Formatter & Validator Online - Beautify JSON Instantly – ${BRAND}`,
+            title: `Free JSON Formatter & Validator Online: Beautify JSON Instantly – ${BRAND}`,
             description:
                 'Format, validate & compare JSON in one click! Tree view, syntax highlighting, diff tool, schema validation. Free online, no signup. Try it now!',
             ogImage: OG,
@@ -55,7 +55,7 @@ export const tools: Record<string, Tool> = {
             seoContent: `
                 <section>
                     <h2>What is a JSON Formatter?</h2>
-                    <p>A <strong>JSON formatter</strong> is an online tool that takes raw, unstructured JSON text and transforms it into a clean, indented, and human-readable format. JSON (JavaScript Object Notation) is the universal data format used by APIs, configuration files, and web applications, but it is often minified or poorly indented—making it hard to read and debug.</p>
+                    <p>A <strong>JSON formatter</strong> is an online tool that takes raw, unstructured JSON text and transforms it into a clean, indented, and human-readable format. JSON (JavaScript Object Notation) is the universal data format used by APIs, configuration files, and web applications, but it is often minified or poorly indented: making it hard to read and debug.</p>
                     <p>CodeHelper's <strong>JSON Formatter & Validator</strong> goes far beyond simple pretty-printing. It includes a collapsible tree view, a diff comparison tool, JSON Schema validation, and support for JSONC (JSON with comments).</p>
 
                     <h3>Key Features</h3>
@@ -88,7 +88,7 @@ export const tools: Record<string, Tool> = {
         category: 'formatter',
         component: () => import('~/components/tools/formatter/XmlFormatter.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `Free XML Formatter Online - Beautify, Validate & Convert to JSON – ${BRAND}`,
+            title: `Free XML Formatter Online: Beautify, Validate & Convert to JSON – ${BRAND}`,
             description:
                 'Format & beautify XML instantly! Convert XML to JSON, test XPath queries, validate structure. Free online tool, works in browser. No upload needed.',
             ogImage: OG,
@@ -117,8 +117,8 @@ export const tools: Record<string, Tool> = {
             seoContent: `
                 <section>
                     <h2>What is an XML Formatter?</h2>
-                    <p>An <strong>XML formatter</strong> is a tool that takes raw or minified XML markup and reformats it with proper indentation and line breaks, making it easy to read and understand. XML (eXtensible Markup Language) is widely used in configuration files, SOAP APIs, SVG graphics, and data exchange formats—but its verbose, nested structure can quickly become unreadable without proper formatting.</p>
-                    <p>CodeHelper's <strong>XML Formatter & Converter</strong> lets you beautify, validate, and convert XML to JSON, plus test XPath queries—all directly in your browser with no file uploads required.</p>
+                    <p>An <strong>XML formatter</strong> is a tool that takes raw or minified XML markup and reformats it with proper indentation and line breaks, making it easy to read and understand. XML (eXtensible Markup Language) is widely used in configuration files, SOAP APIs, SVG graphics, and data exchange formats: but its verbose, nested structure can quickly become unreadable without proper formatting.</p>
+                    <p>CodeHelper's <strong>XML Formatter & Converter</strong> lets you beautify, validate, and convert XML to JSON, plus test XPath queries: all directly in your browser with no file uploads required.</p>
 
                     <h3>Key Features</h3>
                     <ul>
@@ -237,7 +237,7 @@ export const tools: Record<string, Tool> = {
             seoContent: `
                 <section>
                     <h2>What is a Number Base Converter?</h2>
-                    <p>A <strong>number base converter</strong> is a tool that translates numbers between different positional numeral systems—the most common being Binary (base 2), Octal (base 8), Decimal (base 10), and Hexadecimal (base 16). Understanding these conversions is fundamental in computer science, programming, and digital electronics.</p>
+                    <p>A <strong>number base converter</strong> is a tool that translates numbers between different positional numeral systems: the most common being Binary (base 2), Octal (base 8), Decimal (base 10), and Hexadecimal (base 16). Understanding these conversions is fundamental in computer science, programming, and digital electronics.</p>
                     <p>CodeHelper's <strong>Number Base Converter</strong> supports large numbers via BigInt, handles negative values correctly, and visually displays binary results in grouped bytes for easy reading.</p>
 
                     <h3>When do you need to convert number bases?</h3>
@@ -271,7 +271,7 @@ export const tools: Record<string, Tool> = {
         seo: {
             title: `README.md Generator with Templates & Badge Builder – ${BRAND}`,
             description:
-                'Generate professional GitHub README.md files with 5 project templates (Frontend, Backend, CLI, Library, Full-Stack), custom badge builder, and live markdown preview. Create complete documentation in seconds—all in your browser.',
+                'Generate professional GitHub README.md files with 5 project templates (Frontend, Backend, CLI, Library, Full-Stack), custom badge builder, and live markdown preview. Create complete documentation in seconds: all in your browser.',
             ogImage: OG,
             keywords:
                 'readme generator, github readme template, markdown generator, project documentation, readme builder, shields.io badges, npm badge generator, github stars badge, readme preview, readme template frontend, readme template backend, open source documentation',
@@ -302,12 +302,12 @@ export const tools: Record<string, Tool> = {
             seoContent: `
                 <section>
                     <h2>What is a README Generator?</h2>
-                    <p>A <strong>README generator</strong> is a tool that helps developers quickly create professional, well-structured <code>README.md</code> files for their GitHub repositories. A great README is the face of any open-source project—it communicates what the project does, how to install it, how to use it, and how to contribute.</p>
+                    <p>A <strong>README generator</strong> is a tool that helps developers quickly create professional, well-structured <code>README.md</code> files for their GitHub repositories. A great README is the face of any open-source project: it communicates what the project does, how to install it, how to use it, and how to contribute.</p>
                     <p>CodeHelper's <strong>README Generator</strong> provides five project-specific templates (Frontend, Backend, CLI, Library, Full-Stack), a Shields.io badge builder, and a live GitHub-styled markdown preview.</p>
 
                     <h3>Key Features</h3>
                     <ul>
-                        <li><strong>5 Quick Templates</strong>: Start with a pre-filled template matched to your project type—Frontend, Backend, CLI tool, Library, or Full-Stack app.</li>
+                        <li><strong>5 Quick Templates</strong>: Start with a pre-filled template matched to your project type: Frontend, Backend, CLI tool, Library, or Full-Stack app.</li>
                         <li><strong>Badge Builder</strong>: Add GitHub stars, forks, build status, npm version, and license badges powered by Shields.io.</li>
                         <li><strong>13 Customizable Sections</strong>: Including installation, usage, environment variables, API reference, contributing, FAQ, and changelog.</li>
                         <li><strong>Live Preview</strong>: See exactly how your README will render on GitHub before downloading.</li>
@@ -335,7 +335,7 @@ export const tools: Record<string, Tool> = {
         component: () =>
             import('~/components/tools/generator/GitignoreGenerator.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `Free .gitignore Generator - 40+ Templates (Node, Python, React) – ${BRAND}`,
+            title: `Free .gitignore Generator: 40+ Templates (Node, Python, React) – ${BRAND}`,
             description:
                 'Create perfect .gitignore files in seconds! 40+ templates for Node.js, Python, React, Java & more. Combine templates, add custom rules. Free download.',
             ogImage: OG,
@@ -371,7 +371,7 @@ export const tools: Record<string, Tool> = {
             seoContent: `
                 <section>
                     <h2>What is a .gitignore Generator?</h2>
-                    <p>A <strong>.gitignore generator</strong> is a tool that creates the <code>.gitignore</code> file for your project—a special Git configuration file that tells Git which files and directories to ignore and never commit to your repository. Without a proper .gitignore, you risk accidentally committing sensitive credentials, node_modules, build artifacts, or OS-specific files.</p>
+                    <p>A <strong>.gitignore generator</strong> is a tool that creates the <code>.gitignore</code> file for your project: a special Git configuration file that tells Git which files and directories to ignore and never commit to your repository. Without a proper .gitignore, you risk accidentally committing sensitive credentials, node_modules, build artifacts, or OS-specific files.</p>
                     <p>CodeHelper's <strong>.gitignore Generator</strong> offers 40+ pre-built templates covering languages, frameworks, build tools, operating systems, and IDEs, which you can combine and customize freely.</p>
 
                     <h3>Available Template Categories</h3>
@@ -386,7 +386,7 @@ export const tools: Record<string, Tool> = {
                     <h3>How to generate a .gitignore file</h3>
                     <ol>
                         <li>Search or browse for templates that match your project's tech stack.</li>
-                        <li>Select one or more templates—they combine automatically.</li>
+                        <li>Select one or more templates: they combine automatically.</li>
                         <li>Add any custom ignore rules in the custom rules section.</li>
                         <li>Preview the final output and click <strong>Download .gitignore</strong>.</li>
                         <li>Place the file in your project's root directory.</li>
@@ -400,14 +400,14 @@ export const tools: Record<string, Tool> = {
 
     'password-generator': {
         title: 'Password Generator',
-        description: 'Generate secure passwords with customizable length, character types, and strength meter. Bulk generation support, presets (strong, memorable, PIN), and entropy calculation—all client-side.',
+        description: 'Generate secure passwords with customizable length, character types, and strength meter. Bulk generation support, presets (strong, memorable, PIN), and entropy calculation: all client-side.',
         category: 'generator',
         component: () =>
             import('~/components/tools/generator/PasswordGenerator.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `Free Secure Password Generator - Strong Passwords with Strength Meter – ${BRAND}`,
+            title: `Free Secure Password Generator: Strong Passwords with Strength Meter – ${BRAND}`,
             description:
-                'Generate uncrackable passwords instantly! Strength meter, bulk generation (up to 50), PIN mode. 100% private - nothing stored. Free, no signup needed.',
+                'Generate uncrackable passwords instantly! Strength meter, bulk generation (up to 50), PIN mode. 100% private: nothing stored. Free, no signup needed.',
             ogImage: OG,
             keywords:
                 'password generator, secure password, random password generator, strong password generator, password strength meter, generate password online, password creator, entropy calculator, password security, bulk password generator, pin generator, memorable password, exclude similar characters',
@@ -440,12 +440,12 @@ export const tools: Record<string, Tool> = {
             seoContent: `
                 <section>
                     <h2>What is a Password Generator?</h2>
-                    <p>A <strong>password generator</strong> is a tool that creates random, cryptographically secure passwords that are virtually impossible to guess or brute-force. Using weak or reused passwords is one of the leading causes of account breaches—a strong, unique password for every account is the most important step you can take to protect your digital security.</p>
+                    <p>A <strong>password generator</strong> is a tool that creates random, cryptographically secure passwords that are virtually impossible to guess or brute-force. Using weak or reused passwords is one of the leading causes of account breaches: a strong, unique password for every account is the most important step you can take to protect your digital security.</p>
                     <p>CodeHelper's <strong>Password Generator</strong> runs 100% in your browser using the Web Crypto API (<code>crypto.getRandomValues</code>), so your generated passwords are never sent to any server.</p>
 
                     <h3>Password Strength Options</h3>
                     <ul>
-                        <li><strong>Strong Preset</strong>: 20-character password with uppercase, lowercase, numbers, and symbols—ideal for most accounts.</li>
+                        <li><strong>Strong Preset</strong>: 20-character password with uppercase, lowercase, numbers, and symbols: ideal for most accounts.</li>
                         <li><strong>Memorable Preset</strong>: Avoids visually similar characters (i, l, 1, O, 0) for easier manual entry.</li>
                         <li><strong>PIN Preset</strong>: Numeric-only password for device PINs and bank codes.</li>
                         <li><strong>Custom</strong>: Choose length (4–128), character sets, and symbols manually.</li>
@@ -469,12 +469,12 @@ export const tools: Record<string, Tool> = {
 
     'qr-code-generator': {
         title: 'QR Code Generator',
-        description: 'Generate QR codes for URLs, text, WiFi, vCards, and more. Customizable size, colors, error correction. Download as PNG or SVG—all client-side.',
+        description: 'Generate QR codes for URLs, text, WiFi, vCards, and more. Customizable size, colors, error correction. Download as PNG or SVG: all client-side.',
         category: 'generator',
         component: () =>
             import('~/components/tools/generator/QRCodeGenerator.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `Free QR Code Generator - Create QR for URL, WiFi, vCard Online – ${BRAND}`,
+            title: `Free QR Code Generator: Create QR for URL, WiFi, vCard Online – ${BRAND}`,
             description:
                 'Create QR codes in seconds! URLs, WiFi, vCards, emails & more. Custom colors, download PNG/SVG. 100% free, no watermark, no signup. Try it now!',
             ogImage: OG,
@@ -511,13 +511,13 @@ export const tools: Record<string, Tool> = {
             seoContent: `
                 <section>
                     <h2>What is a QR Code Generator?</h2>
-                    <p>A <strong>QR code generator</strong> is a tool that creates scannable Quick Response (QR) codes—two-dimensional barcodes that smartphones can read with their cameras. QR codes can encode URLs, contact details, WiFi credentials, text, email addresses, phone numbers, and more, making them incredibly versatile for marketing, business, and personal use.</p>
+                    <p>A <strong>QR code generator</strong> is a tool that creates scannable Quick Response (QR) codes: two-dimensional barcodes that smartphones can read with their cameras. QR codes can encode URLs, contact details, WiFi credentials, text, email addresses, phone numbers, and more, making them incredibly versatile for marketing, business, and personal use.</p>
                     <p>CodeHelper's <strong>QR Code Generator</strong> creates custom QR codes directly in your browser with no watermarks, no sign-up, and complete privacy. Export as PNG or SVG for any use case.</p>
 
                     <h3>Supported QR Code Types</h3>
                     <ul>
                         <li><strong>URL QR Code</strong>: Link directly to a website, landing page, or app store listing.</li>
-                        <li><strong>WiFi QR Code</strong>: Let guests connect to your network by scanning—no password typing needed.</li>
+                        <li><strong>WiFi QR Code</strong>: Let guests connect to your network by scanning: no password typing needed.</li>
                         <li><strong>vCard QR Code</strong>: Share your contact information including name, phone, email, and address.</li>
                         <li><strong>Email & SMS QR Codes</strong>: Pre-fill an email or text message for recipients to send.</li>
                         <li><strong>Geo Location QR Code</strong>: Encode GPS coordinates to open directly in Maps apps.</li>
@@ -545,7 +545,7 @@ export const tools: Record<string, Tool> = {
         component: () =>
             import('~/components/tools/converter/ByteSizeConverter.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `Bytes to KB/MB/GB Converter - Free File Size Calculator – ${BRAND}`,
+            title: `Bytes to KB/MB/GB Converter: Free File Size Calculator – ${BRAND}`,
             description:
                 'Instantly convert bytes to KB, MB, GB, TB and back. Supports binary (KiB, MiB) & decimal units. Perfect for developers. Free, fast, no signup.',
             ogImage: OG,
@@ -564,8 +564,8 @@ export const tools: Record<string, Tool> = {
             seoContent: `
                 <section>
                     <h2>What is a Byte Size Converter?</h2>
-                    <p>A <strong>byte size converter</strong> is a tool that translates digital storage values between units—Bytes, Kilobytes (KB), Megabytes (MB), Gigabytes (GB), and Terabytes (TB). Understanding data sizes is essential for developers working with file uploads, APIs, databases, network bandwidth, and cloud storage pricing.</p>
-                    <p>CodeHelper's <strong>Byte Size Converter</strong> supports both the decimal (SI) standard used by hard drive manufacturers and the binary (IEC) standard used by operating systems—so you always get the right answer for your context.</p>
+                    <p>A <strong>byte size converter</strong> is a tool that translates digital storage values between units: Bytes, Kilobytes (KB), Megabytes (MB), Gigabytes (GB), and Terabytes (TB). Understanding data sizes is essential for developers working with file uploads, APIs, databases, network bandwidth, and cloud storage pricing.</p>
+                    <p>CodeHelper's <strong>Byte Size Converter</strong> supports both the decimal (SI) standard used by hard drive manufacturers and the binary (IEC) standard used by operating systems: so you always get the right answer for your context.</p>
 
                     <h3>Decimal vs Binary Units</h3>
                     <ul>
@@ -594,7 +594,7 @@ export const tools: Record<string, Tool> = {
         category: 'css',
         component: () => import('~/components/tools/css/ClampGenerator.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `CSS clamp() Generator - Fluid Typography Made Easy (Free) – ${BRAND}`,
+            title: `CSS clamp() Generator: Fluid Typography Made Easy (Free) – ${BRAND}`,
             description:
                 'Create perfect responsive font sizes with CSS clamp() in seconds. Set min/max sizes, preview live, copy CSS. The easiest fluid typography tool online.',
             ogImage: OG,
@@ -613,7 +613,7 @@ export const tools: Record<string, Tool> = {
             seoContent: `
                 <section>
                     <h2>What is a CSS clamp() Generator?</h2>
-                    <p>A <strong>CSS clamp() generator</strong> is a tool that produces fluid typography and spacing values using the CSS <code>clamp()</code> function. The <code>clamp(min, preferred, max)</code> function allows a value to scale smoothly between a minimum and maximum based on the viewport width—eliminating the need for multiple media query breakpoints for typography.</p>
+                    <p>A <strong>CSS clamp() generator</strong> is a tool that produces fluid typography and spacing values using the CSS <code>clamp()</code> function. The <code>clamp(min, preferred, max)</code> function allows a value to scale smoothly between a minimum and maximum based on the viewport width: eliminating the need for multiple media query breakpoints for typography.</p>
                     <p>CodeHelper's <strong>Clamp Generator</strong> calculates the optimal viewport-based slope and intercept so your font sizes and spacing values scale perfectly across all screen sizes.</p>
 
                     <h3>Why use CSS clamp() for fluid typography?</h3>
@@ -702,7 +702,7 @@ export const tools: Record<string, Tool> = {
         component: () =>
             import('~/components/tools/formatter/HTMLMinifier.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `HTML Minifier & Beautifier - Compress HTML Online Free – ${BRAND}`,
+            title: `HTML Minifier & Beautifier: Compress HTML Online Free – ${BRAND}`,
             description:
                 'Reduce HTML file size by up to 70%! Minify or beautify HTML instantly. Remove comments, whitespace & optimize code. Free online tool, no upload needed.',
             ogImage: OG,
@@ -737,7 +737,7 @@ export const tools: Record<string, Tool> = {
             seoContent: `
                 <section>
                     <h2>What is an HTML Minifier?</h2>
-                    <p>An <strong>HTML minifier</strong> is a tool that reduces the file size of HTML documents by removing unnecessary characters—whitespace, comments, optional end tags, and redundant attributes—without changing how the page renders in a browser. Smaller HTML files load faster, consume less bandwidth, and improve your website's Core Web Vitals scores.</p>
+                    <p>An <strong>HTML minifier</strong> is a tool that reduces the file size of HTML documents by removing unnecessary characters: whitespace, comments, optional end tags, and redundant attributes: without changing how the page renders in a browser. Smaller HTML files load faster, consume less bandwidth, and improve your website's Core Web Vitals scores.</p>
                     <p>CodeHelper's <strong>HTML Optimizer</strong> uses a professional parser engine and can reduce HTML size by up to 70%, while also offering a beautify mode to format messy HTML for readability.</p>
 
                     <h3>Minify vs. Beautify HTML</h3>
@@ -769,7 +769,7 @@ export const tools: Record<string, Tool> = {
         component: () =>
             import('~/components/tools/css/ViewportUnitConverter.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `PX to VW/VH Converter - Free Viewport Unit Calculator (2026) – ${BRAND}`,
+            title: `PX to VW/VH Converter: Free Viewport Unit Calculator (2026) – ${BRAND}`,
             description:
                 'Instantly convert px to vw, vh, vmin, vmax & modern CSS units (dvh, svh, cqw). 18 device presets included. Batch convert multiple values. Free, no signup required.',
             ogImage: OG,
@@ -798,13 +798,13 @@ export const tools: Record<string, Tool> = {
             seoContent: `
                 <section>
                     <h2>What is a Viewport Unit Converter?</h2>
-                    <p>A <strong>viewport unit converter</strong> is a tool that translates pixel (px) values into CSS viewport-relative units—<code>vw</code>, <code>vh</code>, <code>vmin</code>, <code>vmax</code>—and modern units like <code>dvh</code> (dynamic viewport height), <code>svh</code> (small viewport height), and container query units (<code>cqw</code>, <code>cqh</code>). These units are essential for building truly responsive layouts that adapt to any screen size without fixed breakpoints.</p>
+                    <p>A <strong>viewport unit converter</strong> is a tool that translates pixel (px) values into CSS viewport-relative units: <code>vw</code>, <code>vh</code>, <code>vmin</code>, <code>vmax</code>: and modern units like <code>dvh</code> (dynamic viewport height), <code>svh</code> (small viewport height), and container query units (<code>cqw</code>, <code>cqh</code>). These units are essential for building truly responsive layouts that adapt to any screen size without fixed breakpoints.</p>
                     <p>CodeHelper's <strong>Viewport Unit Converter</strong> includes 18 device presets, batch conversion, and a built-in fluid <code>clamp()</code> generator.</p>
 
                     <h3>Modern CSS Viewport Units Explained</h3>
                     <ul>
                         <li><strong>vw / vh</strong>: Classic viewport width and height. 1vw = 1% of the viewport width.</li>
-                        <li><strong>dvh</strong>: Dynamic viewport height—adjusts when the browser's address bar shows or hides on mobile.</li>
+                        <li><strong>dvh</strong>: Dynamic viewport height: adjusts when the browser's address bar shows or hides on mobile.</li>
                         <li><strong>svh / lvh</strong>: Small and large viewport height variants for stable full-screen layouts.</li>
                         <li><strong>cqw / cqh</strong>: Container query units that respond to the parent container's size, not the viewport.</li>
                     </ul>
@@ -830,7 +830,7 @@ export const tools: Record<string, Tool> = {
         category: 'svg',
         component: () => import('~/components/tools/svg/IconGenerator.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `Free SVG Icon Generator - Create Custom Icons Online (33+ Shapes) – ${BRAND}`,
+            title: `Free SVG Icon Generator: Create Custom Icons Online (33+ Shapes) – ${BRAND}`,
             description:
                 'Create custom SVG icons in minutes! 33+ shapes, color presets, export icon packs (16-512px). Import & edit existing SVGs. Free, no account needed.',
             ogImage: OG,
@@ -865,12 +865,12 @@ export const tools: Record<string, Tool> = {
             seoContent: `
                 <section>
                     <h2>What is an SVG Icon Generator?</h2>
-                    <p>An <strong>SVG icon generator</strong> is a visual design tool that lets you create, customize, and export scalable vector icons for web and app projects. SVG icons are resolution-independent, meaning they look crisp on any screen—from small mobile displays to 4K monitors—and are typically much smaller in file size than raster icon images.</p>
+                    <p>An <strong>SVG icon generator</strong> is a visual design tool that lets you create, customize, and export scalable vector icons for web and app projects. SVG icons are resolution-independent, meaning they look crisp on any screen: from small mobile displays to 4K monitors: and are typically much smaller in file size than raster icon images.</p>
                     <p>CodeHelper's <strong>SVG Icon Generator</strong> includes 33+ pre-made shapes, import support for existing SVG files, and export to multiple sizes simultaneously for icon packs.</p>
 
                     <h3>Key Features</h3>
                     <ul>
-                        <li><strong>33+ Shape Library</strong>: Stars, hearts, triangles, arrows, badges, and more—ready to customize instantly.</li>
+                        <li><strong>33+ Shape Library</strong>: Stars, hearts, triangles, arrows, badges, and more: ready to customize instantly.</li>
                         <li><strong>Import SVG</strong>: Upload an existing SVG file and edit its paths directly in the tool.</li>
                         <li><strong>Export Icon Pack</strong>: Download your icon in multiple sizes (16px to 512px) for favicons, app icons, and UI kits.</li>
                         <li><strong>Alignment Tools</strong>: Center horizontally/vertically, send to front/back, snap to grid.</li>
@@ -898,7 +898,7 @@ export const tools: Record<string, Tool> = {
         category: 'svg',
         component: () => import('~/components/tools/svg/WaveGenerator.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `Free SVG Wave Generator - Create Hero Backgrounds Instantly – ${BRAND}`,
+            title: `Free SVG Wave Generator: Create Hero Backgrounds Instantly – ${BRAND}`,
             description:
                 'Generate beautiful SVG waves for website headers & backgrounds. Customize colors, amplitude, layers. Download SVG or copy code. 100% free, no signup.',
             ogImage: OG,
@@ -917,13 +917,13 @@ export const tools: Record<string, Tool> = {
             seoContent: `
                 <section>
                     <h2>What is an SVG Wave Generator?</h2>
-                    <p>An <strong>SVG wave generator</strong> is a design tool that creates smooth, customizable wave shapes as scalable vector graphics. SVG waves are widely used in modern web design as decorative section dividers, hero backgrounds, and page separators—giving websites a polished, professional look without relying on heavy image files.</p>
+                    <p>An <strong>SVG wave generator</strong> is a design tool that creates smooth, customizable wave shapes as scalable vector graphics. SVG waves are widely used in modern web design as decorative section dividers, hero backgrounds, and page separators: giving websites a polished, professional look without relying on heavy image files.</p>
                     <p>CodeHelper's <strong>SVG Wave Generator</strong> lets you build multi-layered waves with custom colors, amplitudes, and frequencies, then download the result or copy the SVG code directly.</p>
 
                     <h3>Why use SVG waves in web design?</h3>
                     <ul>
                         <li><strong>Lightweight</strong>: An SVG wave is just a few bytes of code compared to a PNG or JPEG background image.</li>
-                        <li><strong>Scalable</strong>: SVG graphics look perfect at any resolution—ideal for responsive designs and Retina displays.</li>
+                        <li><strong>Scalable</strong>: SVG graphics look perfect at any resolution: ideal for responsive designs and Retina displays.</li>
                         <li><strong>Animatable</strong>: SVG waves can be animated with CSS or JavaScript for stunning motion effects.</li>
                         <li><strong>Customizable</strong>: Change colors, layers, amplitude, and frequency to match any brand palette.</li>
                     </ul>
@@ -1020,7 +1020,7 @@ export const tools: Record<string, Tool> = {
             seoContent: `
                 <section>
                     <h2>What is an Aspect Frame Generator?</h2>
-                    <p>An <strong>aspect frame generator</strong> is a tool that creates matte-style frame overlays—the black bars you see in cinematic videos that create a letterbox or pillarbox effect. These frames are used in video production, photography, social media content creation, and UI mockups to simulate different screen formats or add a cinematic look to footage.</p>
+                    <p>An <strong>aspect frame generator</strong> is a tool that creates matte-style frame overlays: the black bars you see in cinematic videos that create a letterbox or pillarbox effect. These frames are used in video production, photography, social media content creation, and UI mockups to simulate different screen formats or add a cinematic look to footage.</p>
                     <p>CodeHelper's <strong>Aspect Frame Generator</strong> lets you choose from common cinema aspect ratios, set a custom resolution, and download a transparent PNG overlay ready to use in your video editor or image editor.</p>
 
                     <h3>Common Use Cases</h3>
@@ -1052,7 +1052,7 @@ export const tools: Record<string, Tool> = {
         component: () =>
             import('~/components/tools/textes/LoremIpsumGenerator.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `Free Lorem Ipsum Generator - Create Dummy Text Online – ${BRAND}`,
+            title: `Free Lorem Ipsum Generator: Create Dummy Text Online – ${BRAND}`,
             description:
                 'Generate Lorem Ipsum text instantly! By words, paragraphs or characters. Multiple variants included. Perfect for mockups & wireframes. Free, no signup.',
             ogImage: OG,
@@ -1087,7 +1087,7 @@ export const tools: Record<string, Tool> = {
 
                     <h3>Generation Modes</h3>
                     <ul>
-                        <li><strong>By Words</strong>: Generate an exact number of lorem ipsum words—perfect for testing headlines and short copy fields.</li>
+                        <li><strong>By Words</strong>: Generate an exact number of lorem ipsum words: perfect for testing headlines and short copy fields.</li>
                         <li><strong>By Paragraphs</strong>: Generate multiple paragraphs for body text mockups.</li>
                         <li><strong>By Characters</strong>: Limit output to a precise character count for tight UI constraints like meta descriptions or tweet-length copy.</li>
                         <li><strong>Multiple Variants</strong>: Choose from classic Lorem Ipsum or other text variants for variety.</li>
@@ -1115,7 +1115,7 @@ export const tools: Record<string, Tool> = {
         component: () =>
             import('~/components/tools/textes/TextCaseConverter.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `Free Text Case Converter - UPPERCASE, camelCase, snake_case Online – ${BRAND}`,
+            title: `Free Text Case Converter: UPPERCASE, camelCase, snake_case Online – ${BRAND}`,
             description:
                 'Convert text to any case instantly! UPPERCASE, lowercase, Title Case, camelCase, snake_case, kebab-case & more. 15+ options. Free, works offline.',
             ogImage: OG,
@@ -1157,7 +1157,7 @@ export const tools: Record<string, Tool> = {
                     <h3>Supported Case Formats</h3>
                     <ul>
                         <li><strong>UPPERCASE / lowercase</strong>: The classic all-caps or all-lowercase transformations.</li>
-                        <li><strong>Title Case</strong>: Capitalizes the first letter of each word—great for headings.</li>
+                        <li><strong>Title Case</strong>: Capitalizes the first letter of each word: great for headings.</li>
                         <li><strong>Sentence case</strong>: Capitalizes only the first word of a sentence.</li>
                         <li><strong>camelCase</strong>: Joins words with no separator, capitalizing each word after the first. Used in JavaScript, Java, and most APIs.</li>
                         <li><strong>snake_case</strong>: Words joined with underscores. Common in Python, Ruby, and database column names.</li>
@@ -1186,7 +1186,7 @@ export const tools: Record<string, Tool> = {
         component: () =>
             import('~/components/tools/colors/ColorShadesGenerator.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `Color Shades Generator - Create Tints & Shades Free Online – ${BRAND}`,
+            title: `Color Shades Generator: Create Tints & Shades Free Online – ${BRAND}`,
             description:
                 'Generate 10+ tints and shades from any color instantly. Perfect for design systems & Tailwind. Copy HEX codes with one click. Free, no signup.',
             ogImage: OG,
@@ -1210,8 +1210,8 @@ export const tools: Record<string, Tool> = {
 
                     <h3>Tints vs Shades</h3>
                     <ul>
-                        <li><strong>Tints</strong>: Created by mixing a color with white—progressively lighter versions toward pure white.</li>
-                        <li><strong>Shades</strong>: Created by mixing a color with black—progressively darker versions toward pure black.</li>
+                        <li><strong>Tints</strong>: Created by mixing a color with white: progressively lighter versions toward pure white.</li>
+                        <li><strong>Shades</strong>: Created by mixing a color with black: progressively darker versions toward pure black.</li>
                         <li><strong>Design System Use</strong>: Tools like Tailwind CSS use a 50-950 scale (50 being the lightest, 950 the darkest) for each color in the palette.</li>
                     </ul>
 
@@ -1256,13 +1256,13 @@ export const tools: Record<string, Tool> = {
             seoContent: `
                 <section>
                     <h2>What is a CSS Box Shadow Generator?</h2>
-                    <p>A <strong>CSS box shadow generator</strong> is a visual tool for creating and previewing CSS <code>box-shadow</code> declarations. The <code>box-shadow</code> property adds shadow effects around an element's frame, and its syntax—offset-x, offset-y, blur-radius, spread-radius, color, and inset—can be tricky to write by hand without seeing the result.</p>
+                    <p>A <strong>CSS box shadow generator</strong> is a visual tool for creating and previewing CSS <code>box-shadow</code> declarations. The <code>box-shadow</code> property adds shadow effects around an element's frame, and its syntax: offset-x, offset-y, blur-radius, spread-radius, color, and inset: can be tricky to write by hand without seeing the result.</p>
                     <p>CodeHelper's <strong>Box Shadow Designer</strong> gives you interactive sliders for every parameter, a live preview on a real element, and a one-click copy of the final CSS code.</p>
 
                     <h3>Box Shadow Parameters</h3>
                     <ul>
                         <li><strong>Offset X / Y</strong>: Move the shadow horizontally and vertically relative to the element.</li>
-                        <li><strong>Blur Radius</strong>: Soften the shadow edges—higher values create a more diffuse, realistic shadow.</li>
+                        <li><strong>Blur Radius</strong>: Soften the shadow edges: higher values create a more diffuse, realistic shadow.</li>
                         <li><strong>Spread Radius</strong>: Expand or contract the shadow size beyond the element's bounds.</li>
                         <li><strong>Color</strong>: Set shadow color with opacity (rgba) for subtle, layered depth effects.</li>
                         <li><strong>Inset</strong>: Render the shadow inside the element, creating a pressed or embossed appearance.</li>
@@ -1289,7 +1289,7 @@ export const tools: Record<string, Tool> = {
         category: 'colors',
         component: () => import('~/components/tools/colors/ColorConverter.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `Free Color Converter - HEX to RGB, HSL, CMYK + WCAG Checker – ${BRAND}`,
+            title: `Free Color Converter: HEX to RGB, HSL, CMYK + WCAG Checker – ${BRAND}`,
             description:
                 'Convert colors between HEX, RGB, HSL, CMYK instantly! WCAG contrast checker, color blindness simulator, harmony generator. Free tool for designers.',
             ogImage: OG,
@@ -1325,13 +1325,13 @@ export const tools: Record<string, Tool> = {
                 <section>
                     <h2>What is a Color Converter?</h2>
                     <p>A <strong>color converter</strong> is a tool that translates color values between different formats used in design and development. Designers work in HEX codes, CSS developers use RGB and HSL, print designers need CMYK values, and accessibility audits require contrast ratios. Having all these formats in one tool eliminates constant back-and-forth between applications.</p>
-                    <p>CodeHelper's <strong>Color Converter & Analyzer</strong> goes beyond simple conversion—it includes a WCAG accessibility checker, a color blindness simulator, a color harmony generator, and export to Tailwind, SCSS, and CSS custom properties.</p>
+                    <p>CodeHelper's <strong>Color Converter & Analyzer</strong> goes beyond simple conversion: it includes a WCAG accessibility checker, a color blindness simulator, a color harmony generator, and export to Tailwind, SCSS, and CSS custom properties.</p>
 
                     <h3>Supported Color Formats</h3>
                     <ul>
                         <li><strong>HEX</strong>: The most common web format (e.g., #FF5733). Supports 3-digit and 8-digit (with alpha) variants.</li>
                         <li><strong>RGB / RGBA</strong>: Red, Green, Blue values from 0–255 with optional alpha transparency.</li>
-                        <li><strong>HSL / HSLA</strong>: Hue (0–360°), Saturation (%), and Lightness (%)—the most intuitive format for designers.</li>
+                        <li><strong>HSL / HSLA</strong>: Hue (0–360°), Saturation (%), and Lightness (%): the most intuitive format for designers.</li>
                         <li><strong>CMYK</strong>: Cyan, Magenta, Yellow, Black percentages for print color reproduction.</li>
                     </ul>
 
@@ -1393,17 +1393,17 @@ export const tools: Record<string, Tool> = {
             seoContent: `
                 <section>
                     <h2>What is a Color Palette Generator?</h2>
-                    <p>A <strong>color palette generator</strong> is a tool that creates harmonious sets of colors based on color theory principles. Building a coherent color palette is one of the most important—and challenging—aspects of visual design. Whether you are creating a brand identity, designing a web application, or building a component library, a well-chosen palette ensures visual harmony and accessibility.</p>
+                    <p>A <strong>color palette generator</strong> is a tool that creates harmonious sets of colors based on color theory principles. Building a coherent color palette is one of the most important: and challenging: aspects of visual design. Whether you are creating a brand identity, designing a web application, or building a component library, a well-chosen palette ensures visual harmony and accessibility.</p>
                     <p>CodeHelper's <strong>Color Palette Generator</strong> offers six harmony schemes, a full Material Design palette generator, WCAG accessibility checking, and export to CSS, SCSS, JSON, and Tailwind Config.</p>
 
                     <h3>Color Harmony Schemes</h3>
                     <ul>
                         <li><strong>Monochromatic</strong>: A Tailwind-style scale of 10 shades derived from a single base color.</li>
                         <li><strong>Material Design</strong>: The full 500-level primary + accent palette used in Google's Material Design system.</li>
-                        <li><strong>Analogous</strong>: Colors adjacent on the color wheel—creates calm, cohesive palettes.</li>
-                        <li><strong>Complementary</strong>: Opposite colors on the wheel—high contrast and visually dynamic.</li>
-                        <li><strong>Triadic</strong>: Three equally spaced hues—vibrant and balanced.</li>
-                        <li><strong>Split-Complementary</strong>: A base color plus two colors adjacent to its complement—contrast with less tension.</li>
+                        <li><strong>Analogous</strong>: Colors adjacent on the color wheel: creates calm, cohesive palettes.</li>
+                        <li><strong>Complementary</strong>: Opposite colors on the wheel: high contrast and visually dynamic.</li>
+                        <li><strong>Triadic</strong>: Three equally spaced hues: vibrant and balanced.</li>
+                        <li><strong>Split-Complementary</strong>: A base color plus two colors adjacent to its complement: contrast with less tension.</li>
                     </ul>
 
                     <h3>How to generate a color palette</h3>
@@ -1423,14 +1423,14 @@ export const tools: Record<string, Tool> = {
 
     'image-color-picker': {
         title: 'Image Color Picker',
-        description: 'Pick colors from images with k-means palette extraction. Get HEX/RGB/HSL, extract dominant colors, and export to CSS/JSON/Tailwind—all client-side with magnifier.',
+        description: 'Pick colors from images with k-means palette extraction. Get HEX/RGB/HSL, extract dominant colors, and export to CSS/JSON/Tailwind: all client-side with magnifier.',
         category: 'colors',
         component: () =>
             import('~/components/tools/colors/ImageColorPicker.vue') as Promise<{ default: DefineComponent }>,
         seo: {
             title: `Image Color Picker with Palette Extractor & K-Means – ${BRAND}`,
             description:
-                'Upload an image to pick colors with precision magnifier and extract dominant color palette using k-means clustering. Export to CSS, JSON, Tailwind, or SCSS. Get HEX/RGB/HSL instantly—fully client-side with no uploads.',
+                'Upload an image to pick colors with precision magnifier and extract dominant color palette using k-means clustering. Export to CSS, JSON, Tailwind, or SCSS. Get HEX/RGB/HSL instantly: fully client-side with no uploads.',
             ogImage: OG,
             keywords:
                 'image color picker, pick color from image, hex from image, eyedropper online, rgb sampler, color from photo, dominant colors, k-means clustering, color palette extractor, export to css, export to tailwind, color palette from image',
@@ -1496,7 +1496,7 @@ export const tools: Record<string, Tool> = {
         category: 'textes',
         component: () => import('~/components/tools/textes/DevNotepad.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `Dev Notepad - Markdown & HTML Editor with Version History – ${BRAND}`,
+            title: `Dev Notepad: Markdown & HTML Editor with Version History – ${BRAND}`,
             description:
                 'Feature-rich in-browser notepad for developers. Supports Markdown with live preview, HTML WYSIWYG, multi-tabs, regex search/replace, and version snapshots. 100% local and privacy-friendly.',
             ogImage: OG,
@@ -1526,7 +1526,7 @@ export const tools: Record<string, Tool> = {
             seoContent: `
                 <section>
                     <h2>What is a Dev Notepad?</h2>
-                    <p>A <strong>Dev Notepad</strong> is a browser-based text editor designed specifically for developers—combining the simplicity of a notepad with developer-focused features like Markdown rendering, syntax highlighting, regex search, and version history. Unlike generic note-taking apps, it is built for writing code snippets, documentation drafts, and structured notes that benefit from markup and formatting.</p>
+                    <p>A <strong>Dev Notepad</strong> is a browser-based text editor designed specifically for developers: combining the simplicity of a notepad with developer-focused features like Markdown rendering, syntax highlighting, regex search, and version history. Unlike generic note-taking apps, it is built for writing code snippets, documentation drafts, and structured notes that benefit from markup and formatting.</p>
                     <p>CodeHelper's <strong>Dev Notepad</strong> saves all data locally in your browser using localStorage, meaning your notes are completely private and available offline.</p>
 
                     <h3>Key Features</h3>
@@ -1556,11 +1556,11 @@ export const tools: Record<string, Tool> = {
 
     'css-formatter': {
         title: 'CSS Formatter',
-        description: 'Professional CSS formatter with syntax highlighting, property sorting, and advanced minification. Minify or beautify CSS with smart optimizations—all client-side.',
+        description: 'Professional CSS formatter with syntax highlighting, property sorting, and advanced minification. Minify or beautify CSS with smart optimizations: all client-side.',
         category: 'formatter',
         component: () => import('~/components/tools/formatter/CssFormatter.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `Free CSS Formatter & Minifier Online - Beautify CSS Instantly – ${BRAND}`,
+            title: `Free CSS Formatter & Minifier Online: Beautify CSS Instantly – ${BRAND}`,
             description:
                 'Format or minify CSS in one click! Sort properties, shorten colors, remove whitespace. Reduce file size up to 50%. Free online tool, no signup.',
             ogImage: OG,
@@ -1590,7 +1590,7 @@ export const tools: Record<string, Tool> = {
             seoContent: `
                 <section>
                     <h2>What is a CSS Formatter & Minifier?</h2>
-                    <p>A <strong>CSS formatter</strong> (also called a CSS beautifier) takes compressed or poorly indented CSS code and restructures it into a clean, readable format with consistent indentation and line breaks. A <strong>CSS minifier</strong> does the opposite—it strips all unnecessary whitespace, comments, and redundant characters to reduce file size and improve page load performance.</p>
+                    <p>A <strong>CSS formatter</strong> (also called a CSS beautifier) takes compressed or poorly indented CSS code and restructures it into a clean, readable format with consistent indentation and line breaks. A <strong>CSS minifier</strong> does the opposite: it strips all unnecessary whitespace, comments, and redundant characters to reduce file size and improve page load performance.</p>
                     <p>CodeHelper's <strong>CSS Formatter Pro</strong> handles both tasks in one place, with additional optimizations like property sorting, hex color shortening, and zero-unit removal.</p>
 
                     <h3>Beautify vs. Minify: when to use each</h3>
@@ -1692,16 +1692,16 @@ export const tools: Record<string, Tool> = {
         component: () =>
             import('~/components/tools/imaging/ImageCompressor.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `Free Image Compressor - Reduce PNG/JPEG/WebP Size Online (No Upload) – ${BRAND}`,
+            title: `Free Image Compressor: Reduce PNG/JPEG/WebP Size Online (No Upload) – ${BRAND}`,
             description:
-                'Compress images up to 80% smaller! Supports PNG, JPEG, WebP, AVIF. Batch compress, view EXIF data, download as ZIP. 100% private - files never leave your browser.',
+                'Compress images up to 80% smaller! Supports PNG, JPEG, WebP, AVIF. Batch compress, view EXIF data, download as ZIP. 100% private: files never leave your browser.',
             ogImage: OG,
             keywords:
                 'image compressor, smart compression, exif viewer, batch image compression, compress png, compress jpeg, convert to webp, avif compressor, resize image online, optimize images, zip download images, bulk image optimization, image quality reducer, webp converter, avif converter, exif data, camera metadata, gps photo location, target file size, auto quality adjustment',
             structuredData: {
                 '@context': 'https://schema.org',
                 '@type': 'SoftwareApplication',
-                name: 'Image Compressor Pro - Smart Compression & EXIF',
+                name: 'Image Compressor Pro: Smart Compression & EXIF',
                 applicationCategory: 'MultimediaApplication',
                 operatingSystem: 'All',
                 offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
@@ -1729,8 +1729,8 @@ export const tools: Record<string, Tool> = {
             seoContent: `
                 <section>
                     <h2>What is an Image Compressor?</h2>
-                    <p>An <strong>image compressor</strong> is a tool that reduces the file size of images while preserving acceptable visual quality. Large images are one of the biggest contributors to slow page load times—compressing them is one of the highest-impact optimizations you can make for web performance, Core Web Vitals, and SEO.</p>
-                    <p>CodeHelper's <strong>Image Compressor</strong> processes images entirely in your browser using client-side JavaScript, so your photos are never uploaded to any server—ensuring complete privacy. It supports JPEG, PNG, WebP, and AVIF formats with batch processing and ZIP download.</p>
+                    <p>An <strong>image compressor</strong> is a tool that reduces the file size of images while preserving acceptable visual quality. Large images are one of the biggest contributors to slow page load times: compressing them is one of the highest-impact optimizations you can make for web performance, Core Web Vitals, and SEO.</p>
+                    <p>CodeHelper's <strong>Image Compressor</strong> processes images entirely in your browser using client-side JavaScript, so your photos are never uploaded to any server: ensuring complete privacy. It supports JPEG, PNG, WebP, and AVIF formats with batch processing and ZIP download.</p>
 
                     <h3>Key Features</h3>
                     <ul>
@@ -1763,7 +1763,7 @@ export const tools: Record<string, Tool> = {
         component: () =>
             import('~/components/tools/converter/TimeConverter.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `Free UNIX Timestamp Converter - Epoch to Date Online – ${BRAND}`,
+            title: `Free UNIX Timestamp Converter: Epoch to Date Online – ${BRAND}`,
             description:
                 'Convert UNIX timestamps to dates instantly! Timezone support, duration calculator, human-readable format. Seconds, milliseconds, nanoseconds. Free, fast.',
             ogImage: OG,
@@ -1795,12 +1795,12 @@ export const tools: Record<string, Tool> = {
             seoContent: `
                 <section>
                     <h2>What is a UNIX Timestamp Converter?</h2>
-                    <p>A <strong>UNIX timestamp converter</strong> is a tool that translates epoch time values—the number of seconds (or milliseconds) since January 1, 1970 00:00:00 UTC—into human-readable dates and times. UNIX timestamps are used ubiquitously in programming: database records, API responses, JWT expiration claims, server logs, and file metadata all commonly use this format.</p>
+                    <p>A <strong>UNIX timestamp converter</strong> is a tool that translates epoch time values: the number of seconds (or milliseconds) since January 1, 1970 00:00:00 UTC: into human-readable dates and times. UNIX timestamps are used ubiquitously in programming: database records, API responses, JWT expiration claims, server logs, and file metadata all commonly use this format.</p>
                     <p>CodeHelper's <strong>Time Converter</strong> auto-detects whether your timestamp is in seconds, milliseconds, or nanoseconds and converts it instantly to any timezone with DST-safe handling.</p>
 
                     <h3>Key Features</h3>
                     <ul>
-                        <li><strong>Auto-detect Units</strong>: Automatically identifies seconds, milliseconds, and nanoseconds—no manual selection needed.</li>
+                        <li><strong>Auto-detect Units</strong>: Automatically identifies seconds, milliseconds, and nanoseconds: no manual selection needed.</li>
                         <li><strong>Timezone Support</strong>: Convert to UTC, your local timezone, or any IANA timezone (America/New_York, Europe/Paris, etc.).</li>
                         <li><strong>ISO 8601 Output</strong>: Get dates in the standard ISO format used by APIs and databases.</li>
                         <li><strong>Human-readable Format</strong>: Understand timestamps as "2 hours ago" or "in 3 days" for quick context.</li>
@@ -1860,7 +1860,7 @@ export const tools: Record<string, Tool> = {
             seoContent: `
                 <section>
                     <h2>What is a Mini Image Editor?</h2>
-                    <p>A <strong>mini image editor</strong> is a lightweight, browser-based tool for performing quick image edits without needing to open a full application like Photoshop or GIMP. For everyday tasks—cropping a screenshot, resizing a photo for a blog post, rotating an image, or applying a filter before uploading—a mini editor in the browser is dramatically faster than launching a desktop application.</p>
+                    <p>A <strong>mini image editor</strong> is a lightweight, browser-based tool for performing quick image edits without needing to open a full application like Photoshop or GIMP. For everyday tasks: cropping a screenshot, resizing a photo for a blog post, rotating an image, or applying a filter before uploading: a mini editor in the browser is dramatically faster than launching a desktop application.</p>
                     <p>CodeHelper's <strong>Mini Image Editor</strong> processes everything locally in your browser with undo/redo support and export to PNG, JPEG, or WebP.</p>
 
                     <h3>Editing Tools</h3>
@@ -1895,9 +1895,9 @@ export const tools: Record<string, Tool> = {
         component: () =>
             import('~/components/tools/converter/UnitConverter.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `Unit Converter - 80+ Units (Length, Weight, Temperature, CSS) – ${BRAND}`,
+            title: `Unit Converter: 80+ Units (Length, Weight, Temperature, CSS) – ${BRAND}`,
             description:
-                'Professional unit converter with 80+ units across 10 categories: length, area, volume, weight, speed, temperature, pressure, energy, power, and CSS units (px/rem/em). Search units, save favorites, track recent conversions, view all conversions at once. Modern harmonized UI—all client-side.',
+                'Professional unit converter with 80+ units across 10 categories: length, area, volume, weight, speed, temperature, pressure, energy, power, and CSS units (px/rem/em). Search units, save favorites, track recent conversions, view all conversions at once. Modern harmonized UI: all client-side.',
             ogImage: OG,
             keywords:
                 'unit converter, length converter, weight converter, temperature converter, speed converter, pressure converter, energy converter, power converter, area converter, volume converter, px to rem, px to em, metric to imperial, unit search, favorite units, celsius fahrenheit, km to miles, kg to pounds, bar to psi, joules to calories, watts to horsepower',
@@ -1933,16 +1933,16 @@ export const tools: Record<string, Tool> = {
             seoContent: `
                 <section>
                     <h2>What is a Unit Converter?</h2>
-                    <p>A <strong>unit converter</strong> is a tool that translates measurements between different units of the same physical quantity—converting kilometers to miles, kilograms to pounds, Celsius to Fahrenheit, and so on. Developers, engineers, scientists, and everyday users constantly encounter values in units that differ from what they need, making a fast, reliable converter essential.</p>
+                    <p>A <strong>unit converter</strong> is a tool that translates measurements between different units of the same physical quantity: converting kilometers to miles, kilograms to pounds, Celsius to Fahrenheit, and so on. Developers, engineers, scientists, and everyday users constantly encounter values in units that differ from what they need, making a fast, reliable converter essential.</p>
                     <p>CodeHelper's <strong>Unit Converter</strong> supports 80+ units across 10 categories including a unique CSS units category (px, rem, em) that is invaluable for front-end developers.</p>
 
                     <h3>Supported Categories</h3>
                     <ul>
-                        <li><strong>Length</strong>: km, m, cm, mm, miles, yards, feet, inches—and more.</li>
+                        <li><strong>Length</strong>: km, m, cm, mm, miles, yards, feet, inches: and more.</li>
                         <li><strong>Weight & Mass</strong>: tonnes, kg, g, mg, pounds, ounces, stone.</li>
                         <li><strong>Temperature</strong>: Celsius, Fahrenheit, Kelvin with exact conversion formulas.</li>
                         <li><strong>Speed</strong>: m/s, km/h, mph, knots, ft/s.</li>
-                        <li><strong>CSS Units</strong>: px to rem, em, and back—with configurable root and context font sizes for accurate front-end calculations.</li>
+                        <li><strong>CSS Units</strong>: px to rem, em, and back: with configurable root and context font sizes for accurate front-end calculations.</li>
                         <li><strong>Energy, Power, Pressure, Area, Volume</strong>: Complete scientific and engineering unit sets.</li>
                     </ul>
 
@@ -1968,7 +1968,7 @@ export const tools: Record<string, Tool> = {
         component: () =>
             import('~/components/tools/dev/RegexTester.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `Free Regex Tester Online - Test Regular Expressions Instantly – ${BRAND}`,
+            title: `Free Regex Tester Online: Test Regular Expressions Instantly – ${BRAND}`,
             description:
                 'Test regex patterns in real-time! Highlight matches, view groups, test replacements. Includes cheat sheet & common patterns library. Free, works offline.',
             ogImage: OG,
@@ -1999,7 +1999,7 @@ export const tools: Record<string, Tool> = {
             seoContent: `
                 <section>
                     <h2>What is a Regex Tester?</h2>
-                    <p>A <strong>regex tester</strong> is a tool for writing, testing, and debugging regular expressions—powerful pattern-matching syntax used in virtually every programming language. Regular expressions can validate email addresses, extract data from strings, find and replace text, parse log files, and much more. However, regex syntax is notoriously difficult to write correctly without instant feedback.</p>
+                    <p>A <strong>regex tester</strong> is a tool for writing, testing, and debugging regular expressions: powerful pattern-matching syntax used in virtually every programming language. Regular expressions can validate email addresses, extract data from strings, find and replace text, parse log files, and much more. However, regex syntax is notoriously difficult to write correctly without instant feedback.</p>
                     <p>CodeHelper's <strong>Regex Tester</strong> highlights matches in real time, shows named groups, tests replacements, and includes a full cheat sheet and pattern library so you can write correct regex faster.</p>
 
                     <h3>Key Features</h3>
@@ -2008,7 +2008,7 @@ export const tools: Record<string, Tool> = {
                         <li><strong>Capture Groups & Named Groups</strong>: View all captured groups and their values for complex extraction patterns.</li>
                         <li><strong>Replace Preview</strong>: Test your <code>.replace()</code> pattern with a replacement string to verify the output.</li>
                         <li><strong>Flags Support</strong>: Toggle global (g), case-insensitive (i), multiline (m), dotAll (s), and unicode (u) flags.</li>
-                        <li><strong>Pattern Library</strong>: A built-in library of common patterns—email, URL, IP address, date, phone number, and more.</li>
+                        <li><strong>Pattern Library</strong>: A built-in library of common patterns: email, URL, IP address, date, phone number, and more.</li>
                         <li><strong>Regex Cheat Sheet</strong>: Quick reference for metacharacters, quantifiers, anchors, and assertions.</li>
                     </ul>
 
@@ -2034,7 +2034,7 @@ export const tools: Record<string, Tool> = {
         component: () =>
             import('~/components/tools/dev/Base64EncoderDecoder.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `Free Base64 Encoder & Decoder Online - Encode Images & Files – ${BRAND}`,
+            title: `Free Base64 Encoder & Decoder Online: Encode Images & Files – ${BRAND}`,
             description:
                 'Encode or decode Base64 instantly! Supports text, images & files. Generate data URLs, preview images. Free, private, works offline. No signup required.',
             ogImage: OG,
@@ -2068,8 +2068,8 @@ export const tools: Record<string, Tool> = {
             seoContent: `
                 <section>
                     <h2>What is a Base64 Encoder/Decoder?</h2>
-                    <p>A <strong>Base64 encoder/decoder</strong> is a tool that converts binary data—text, images, or files—into a text-safe ASCII representation using Base64 encoding, and reverses the process for decoding. Base64 is not encryption; it is an encoding scheme used when binary data needs to be transmitted over text-based protocols like HTTP, JSON, email (MIME), or embedded directly in HTML and CSS.</p>
-                    <p>CodeHelper's <strong>Base64 Encoder/Decoder</strong> handles text, file uploads, and images—including generating data URLs for embedding images directly in HTML or CSS without separate file requests.</p>
+                    <p>A <strong>Base64 encoder/decoder</strong> is a tool that converts binary data: text, images, or files: into a text-safe ASCII representation using Base64 encoding, and reverses the process for decoding. Base64 is not encryption; it is an encoding scheme used when binary data needs to be transmitted over text-based protocols like HTTP, JSON, email (MIME), or embedded directly in HTML and CSS.</p>
+                    <p>CodeHelper's <strong>Base64 Encoder/Decoder</strong> handles text, file uploads, and images: including generating data URLs for embedding images directly in HTML or CSS without separate file requests.</p>
 
                     <h3>Common Use Cases</h3>
                     <ul>
@@ -2102,7 +2102,7 @@ export const tools: Record<string, Tool> = {
         component: () =>
             import('~/components/tools/css/BorderRadiusGenerator.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `CSS Border Radius Generator - Create Rounded Corners Free – ${BRAND}`,
+            title: `CSS Border Radius Generator: Create Rounded Corners Free – ${BRAND}`,
             description:
                 'Design perfect rounded corners & blob shapes visually. Control each corner, create elliptical curves, copy CSS instantly. Free online tool.',
             ogImage: OG,
@@ -2126,7 +2126,7 @@ export const tools: Record<string, Tool> = {
 
                     <h3>Border Radius Modes</h3>
                     <ul>
-                        <li><strong>Uniform Radius</strong>: Set the same radius on all four corners with a single slider—perfect for buttons, cards, and input fields.</li>
+                        <li><strong>Uniform Radius</strong>: Set the same radius on all four corners with a single slider: perfect for buttons, cards, and input fields.</li>
                         <li><strong>Per-Corner Control</strong>: Independently adjust each corner (top-left, top-right, bottom-right, bottom-left) for asymmetric designs.</li>
                         <li><strong>Elliptical Radius</strong>: Control both the horizontal and vertical radii of each corner separately to create organic blob shapes and curved designs.</li>
                     </ul>
@@ -2148,13 +2148,13 @@ export const tools: Record<string, Tool> = {
 
     'jwt-decoder': {
         title: 'JWT Decoder & Validator',
-        description: 'Decode, validate, and inspect JSON Web Tokens (JWT). Parse header, payload, verify signatures with HMAC algorithms, and check token expiration—all client-side.',
+        description: 'Decode, validate, and inspect JSON Web Tokens (JWT). Parse header, payload, verify signatures with HMAC algorithms, and check token expiration: all client-side.',
         category: 'dev',
         component: () => import('~/components/tools/dev/JwtDecoder.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `Free JWT Decoder Online - Decode & Validate JSON Web Tokens – ${BRAND}`,
+            title: `Free JWT Decoder Online: Decode & Validate JSON Web Tokens – ${BRAND}`,
             description:
-                'Decode JWT tokens instantly! View header, payload, verify signatures (HS256/384/512), check expiration. 100% private - tokens never leave your browser.',
+                'Decode JWT tokens instantly! View header, payload, verify signatures (HS256/384/512), check expiration. 100% private: tokens never leave your browser.',
             ogImage: OG,
             keywords:
                 'jwt decoder, jwt validator, decode jwt online, json web token decoder, jwt parser, verify jwt signature, jwt debugger, jwt claims inspector, check jwt expiration, hs256 validator, jwt token analyzer, decode jwt header payload, jwt verification tool, jwt signature checker',
@@ -2187,17 +2187,17 @@ export const tools: Record<string, Tool> = {
             seoContent: `
                 <section>
                     <h2>What is a JWT Decoder?</h2>
-                    <p>A <strong>JWT decoder</strong> is a tool that parses and displays the contents of a JSON Web Token (JWT). JWTs are the most widely used authentication tokens in modern web applications—used by OAuth 2.0, OpenID Connect, and stateless REST APIs. They consist of three Base64URL-encoded parts: a header describing the algorithm, a payload containing claims (user data and metadata), and a signature for verification.</p>
+                    <p>A <strong>JWT decoder</strong> is a tool that parses and displays the contents of a JSON Web Token (JWT). JWTs are the most widely used authentication tokens in modern web applications: used by OAuth 2.0, OpenID Connect, and stateless REST APIs. They consist of three Base64URL-encoded parts: a header describing the algorithm, a payload containing claims (user data and metadata), and a signature for verification.</p>
                     <p>CodeHelper's <strong>JWT Decoder & Validator</strong> decodes tokens instantly and can verify HMAC signatures (HS256, HS384, HS512) entirely in your browser, so your tokens never leave your machine.</p>
 
                     <h3>JWT Claims Explained</h3>
                     <ul>
-                        <li><strong>exp</strong>: Expiration time—the token is invalid after this UNIX timestamp.</li>
-                        <li><strong>iat</strong>: Issued at—when the token was created.</li>
-                        <li><strong>sub</strong>: Subject—typically the user ID the token represents.</li>
-                        <li><strong>iss</strong>: Issuer—the entity that created the token (e.g., your auth server URL).</li>
-                        <li><strong>aud</strong>: Audience—the intended recipient(s) of the token.</li>
-                        <li><strong>nbf</strong>: Not Before—the token is not valid before this time.</li>
+                        <li><strong>exp</strong>: Expiration time: the token is invalid after this UNIX timestamp.</li>
+                        <li><strong>iat</strong>: Issued at: when the token was created.</li>
+                        <li><strong>sub</strong>: Subject: typically the user ID the token represents.</li>
+                        <li><strong>iss</strong>: Issuer: the entity that created the token (e.g., your auth server URL).</li>
+                        <li><strong>aud</strong>: Audience: the intended recipient(s) of the token.</li>
+                        <li><strong>nbf</strong>: Not Before: the token is not valid before this time.</li>
                     </ul>
 
                     <h3>How to decode a JWT token</h3>
@@ -2217,11 +2217,11 @@ export const tools: Record<string, Tool> = {
 
     'hash-generator': {
         title: 'Hash Generator',
-        description: 'Generate cryptographic hashes for text and files using MD5, SHA-1, SHA-256, SHA-384, SHA-512, and HMAC. File hashing support with real-time processing—all client-side.',
+        description: 'Generate cryptographic hashes for text and files using MD5, SHA-1, SHA-256, SHA-384, SHA-512, and HMAC. File hashing support with real-time processing: all client-side.',
         category: 'dev',
         component: () => import('~/components/tools/dev/HashGenerator.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `Free Hash Generator - MD5, SHA-256, SHA-512 Online (Text & Files) – ${BRAND}`,
+            title: `Free Hash Generator: MD5, SHA-256, SHA-512 Online (Text & Files) – ${BRAND}`,
             description:
                 'Generate MD5, SHA-256, SHA-512 hashes instantly! Hash text or files, HMAC support. Verify file integrity. Free, private, works offline. No upload needed.',
             ogImage: OG,
@@ -2257,16 +2257,16 @@ export const tools: Record<string, Tool> = {
             seoContent: `
                 <section>
                     <h2>What is a Hash Generator?</h2>
-                    <p>A <strong>hash generator</strong> is a tool that applies a cryptographic hash function to input data—text or files—producing a fixed-length digest (hash) that acts as a unique fingerprint for that data. Cryptographic hashes are one-way functions: given the hash, you cannot reconstruct the original input. They are used to verify data integrity, store passwords securely, generate checksums, and create digital signatures.</p>
+                    <p>A <strong>hash generator</strong> is a tool that applies a cryptographic hash function to input data: text or files: producing a fixed-length digest (hash) that acts as a unique fingerprint for that data. Cryptographic hashes are one-way functions: given the hash, you cannot reconstruct the original input. They are used to verify data integrity, store passwords securely, generate checksums, and create digital signatures.</p>
                     <p>CodeHelper's <strong>Hash Generator</strong> supports MD5, SHA-1, SHA-256, SHA-384, SHA-512, and HMAC, processing everything locally in your browser for complete privacy.</p>
 
                     <h3>Hash Algorithms Compared</h3>
                     <ul>
-                        <li><strong>MD5</strong>: Fast but cryptographically broken—use only for non-security checksums like deduplication.</li>
-                        <li><strong>SHA-1</strong>: Legacy algorithm, deprecated for security use—still seen in older systems and Git.</li>
-                        <li><strong>SHA-256</strong>: The current standard for most security applications—used in TLS, Bitcoin, and code signing.</li>
+                        <li><strong>MD5</strong>: Fast but cryptographically broken: use only for non-security checksums like deduplication.</li>
+                        <li><strong>SHA-1</strong>: Legacy algorithm, deprecated for security use: still seen in older systems and Git.</li>
+                        <li><strong>SHA-256</strong>: The current standard for most security applications: used in TLS, Bitcoin, and code signing.</li>
                         <li><strong>SHA-512</strong>: Higher security margin than SHA-256, preferred for password hashing schemes and high-security contexts.</li>
-                        <li><strong>HMAC</strong>: Hash-based Message Authentication Code—combines a secret key with a hash to verify both integrity and authenticity.</li>
+                        <li><strong>HMAC</strong>: Hash-based Message Authentication Code: combines a secret key with a hash to verify both integrity and authenticity.</li>
                     </ul>
 
                     <h3>How to generate a hash</h3>
@@ -2286,11 +2286,11 @@ export const tools: Record<string, Tool> = {
 
     'url-encoder-decoder': {
         title: 'URL Encoder/Decoder',
-        description: 'Encode and decode URLs, query strings, and URI components. Supports encodeURIComponent and encodeURI with URL parser and query parameter inspector—all client-side.',
+        description: 'Encode and decode URLs, query strings, and URI components. Supports encodeURIComponent and encodeURI with URL parser and query parameter inspector: all client-side.',
         category: 'dev',
         component: () => import('~/components/tools/dev/UrlEncoderDecoder.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `Free URL Encoder & Decoder Online - Encode Query Strings Instantly – ${BRAND}`,
+            title: `Free URL Encoder & Decoder Online: Encode Query Strings Instantly – ${BRAND}`,
             description:
                 'Encode or decode URLs & query strings in one click! Parse URLs, inspect parameters, percent-encode special chars. Free tool, no signup. Works offline.',
             ogImage: OG,
@@ -2324,7 +2324,7 @@ export const tools: Record<string, Tool> = {
             seoContent: `
                 <section>
                     <h2>What is a URL Encoder/Decoder?</h2>
-                    <p>A <strong>URL encoder/decoder</strong> is a tool that converts special characters in URLs to and from their percent-encoded form. URLs can only be transmitted over the internet using the ASCII character set—characters like spaces, ampersands, question marks, and non-ASCII letters must be encoded as a percent sign followed by two hexadecimal digits (e.g., space = <code>%20</code>, &amp; = <code>%26</code>). Encoding errors are a common source of broken links, failed API requests, and security vulnerabilities.</p>
+                    <p>A <strong>URL encoder/decoder</strong> is a tool that converts special characters in URLs to and from their percent-encoded form. URLs can only be transmitted over the internet using the ASCII character set: characters like spaces, ampersands, question marks, and non-ASCII letters must be encoded as a percent sign followed by two hexadecimal digits (e.g., space = <code>%20</code>, &amp; = <code>%26</code>). Encoding errors are a common source of broken links, failed API requests, and security vulnerabilities.</p>
                     <p>CodeHelper's <strong>URL Encoder/Decoder</strong> supports both <code>encodeURIComponent</code> (for query values) and <code>encodeURI</code> (for full URLs), plus a URL parser that breaks any URL into its component parts.</p>
 
                     <h3>encodeURIComponent vs encodeURI</h3>
@@ -2351,11 +2351,11 @@ export const tools: Record<string, Tool> = {
 
     'uuid-generator': {
         title: 'UUID/GUID Generator',
-        description: 'Generate unique identifiers (UUID v4, v1, Nil, Max) with bulk generation support. Includes UUID validator and multiple output formats—all client-side.',
+        description: 'Generate unique identifiers (UUID v4, v1, Nil, Max) with bulk generation support. Includes UUID validator and multiple output formats: all client-side.',
         category: 'dev',
         component: () => import('~/components/tools/dev/UuidGenerator.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `Free UUID Generator Online - Generate v4, v1 & Bulk UUIDs – ${BRAND}`,
+            title: `Free UUID Generator Online: Generate v4, v1 & Bulk UUIDs – ${BRAND}`,
             description:
                 'Generate UUIDs/GUIDs instantly! v4 random, v1 timestamp, bulk up to 1000. Validate existing UUIDs. Free online tool, cryptographically secure. No signup.',
             ogImage: OG,
@@ -2388,15 +2388,15 @@ export const tools: Record<string, Tool> = {
             seoContent: `
                 <section>
                     <h2>What is a UUID Generator?</h2>
-                    <p>A <strong>UUID generator</strong> is a tool that creates Universally Unique Identifiers (UUIDs)—also known as GUIDs (Globally Unique Identifiers). UUIDs are 128-bit identifiers formatted as 32 hexadecimal characters in five groups separated by hyphens (e.g., <code>550e8400-e29b-41d4-a716-446655440000</code>). They are designed to be unique across space and time without requiring a central registry—making them ideal for distributed systems, database primary keys, session IDs, and API resource identifiers.</p>
+                    <p>A <strong>UUID generator</strong> is a tool that creates Universally Unique Identifiers (UUIDs): also known as GUIDs (Globally Unique Identifiers). UUIDs are 128-bit identifiers formatted as 32 hexadecimal characters in five groups separated by hyphens (e.g., <code>550e8400-e29b-41d4-a716-446655440000</code>). They are designed to be unique across space and time without requiring a central registry: making them ideal for distributed systems, database primary keys, session IDs, and API resource identifiers.</p>
                     <p>CodeHelper's <strong>UUID/GUID Generator</strong> uses the browser's native <code>crypto.randomUUID()</code> for cryptographically secure v4 UUIDs and supports bulk generation of up to 1,000 identifiers at once.</p>
 
                     <h3>UUID Versions Explained</h3>
                     <ul>
-                        <li><strong>UUID v4 (Random)</strong>: The most widely used version—122 bits of cryptographically random data. Virtually collision-free for all practical applications.</li>
+                        <li><strong>UUID v4 (Random)</strong>: The most widely used version: 122 bits of cryptographically random data. Virtually collision-free for all practical applications.</li>
                         <li><strong>UUID v1 (Timestamp)</strong>: Based on the current timestamp and MAC address. Sortable by creation time but reveals timing information.</li>
-                        <li><strong>Nil UUID</strong>: All zeros (<code>00000000-0000-0000-0000-000000000000</code>)—used as a null or default value in systems that require UUID format.</li>
-                        <li><strong>Max UUID</strong>: All ones (all f's)—the maximum possible UUID value, used in some range-query contexts.</li>
+                        <li><strong>Nil UUID</strong>: All zeros (<code>00000000-0000-0000-0000-000000000000</code>): used as a null or default value in systems that require UUID format.</li>
+                        <li><strong>Max UUID</strong>: All ones (all f's): the maximum possible UUID value, used in some range-query contexts.</li>
                     </ul>
 
                     <h3>How to generate a UUID</h3>
