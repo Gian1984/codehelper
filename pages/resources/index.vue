@@ -71,7 +71,7 @@
         <NuxtLink
           v-for="(meta, category) in resourceCategoryMeta"
           :key="category"
-          :to="`/resources/${category}`"
+          :to="`/resources/${category}/`"
           class="block rounded-lg bg-gray-800 border border-gray-700 p-6 hover:border-indigo-500 hover:shadow-lg transition"
         >
           <h3 class="text-xl font-semibold text-white mb-2">{{ meta.title }}</h3>
@@ -94,7 +94,7 @@
           Browse our collection of 400+ public APIs for developers
         </p>
         <NuxtLink
-          to="/resources/apis"
+          to="/resources/apis/"
           class="inline-flex items-center px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg transition"
         >
           Browse APIs
@@ -160,7 +160,7 @@ useHead({
             position: index + 1,
             name: meta.title,
             description: meta.description,
-            url: `https://codehelper.me/resources/${category}`
+            url: `https://codehelper.me/resources/${category}/`
           }))
         }
       })

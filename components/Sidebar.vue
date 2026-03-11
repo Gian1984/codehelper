@@ -119,18 +119,18 @@ const { isOpen: sidebarOpen, isDesktopCollapsed, close, open, restoreState, sear
 const route = useRoute()
 const sectionTitle = computed(() => {
   const path = route.path
-  if (path.startsWith('/tools')) return 'Tools'
-  if (path.startsWith('/articles')) return 'Articles'
-  if (path.startsWith('/games')) return 'Games'
+  if (path.startsWith('/tools/')) return 'Tools'
+  if (path.startsWith('/articles/')) return 'Articles'
+  if (path.startsWith('/games/')) return 'Games'
   return 'Resources'
 })
 
 // Dynamic icon based on current route
 const sectionIcon = computed(() => {
   const path = route.path
-  if (path.startsWith('/tools')) return WrenchScrewdriverIcon
-  if (path.startsWith('/articles')) return NewspaperIcon
-  if (path.startsWith('/games')) return PuzzlePieceIcon
+  if (path.startsWith('/tools/')) return WrenchScrewdriverIcon
+  if (path.startsWith('/articles/')) return NewspaperIcon
+  if (path.startsWith('/games/')) return PuzzlePieceIcon
   return LinkIcon // default - represents external resources
 })
 

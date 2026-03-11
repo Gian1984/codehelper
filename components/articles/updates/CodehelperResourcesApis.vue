@@ -197,7 +197,7 @@
 
     <h2 class="text-xl font-semibold text-white">🚀 Getting Started</h2>
     <div class="grid md:grid-cols-3 gap-4">
-      <a href="https://codehelper.me/resources" target="_blank" rel="noopener"
+      <a href="https://codehelper.me/resources/" target="_blank" rel="noopener"
          class="block bg-gradient-to-br from-purple-900/30 to-purple-800/20 border-2 border-purple-500/50 hover:border-purple-500 rounded-lg p-6 transition">
         <div class="text-2xl mb-2">🎨</div>
         <h3 class="text-lg font-semibold text-white mb-2">Browse Resources</h3>
@@ -205,7 +205,7 @@
         <span class="text-sm text-purple-400 font-medium">Go to Resources →</span>
       </a>
 
-      <a href="https://codehelper.me/resources/apis" target="_blank" rel="noopener"
+      <a href="https://codehelper.me/resources/apis/" target="_blank" rel="noopener"
          class="block bg-gradient-to-br from-pink-900/30 to-pink-800/20 border-2 border-pink-500/50 hover:border-pink-500 rounded-lg p-6 transition">
         <div class="text-2xl mb-2">🔌</div>
         <h3 class="text-lg font-semibold text-white mb-2">Discover APIs</h3>
@@ -213,7 +213,7 @@
         <span class="text-sm text-pink-400 font-medium">Go to APIs →</span>
       </a>
 
-      <a href="https://codehelper.me/tools" target="_blank" rel="noopener"
+      <a href="https://codehelper.me/tools/" target="_blank" rel="noopener"
          class="block bg-gradient-to-br from-indigo-900/30 to-indigo-800/20 border-2 border-indigo-500/50 hover:border-indigo-500 rounded-lg p-6 transition">
         <div class="text-2xl mb-2">🛠️</div>
         <h3 class="text-lg font-semibold text-white mb-2">Use Our Tools</h3>

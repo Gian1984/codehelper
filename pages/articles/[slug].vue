@@ -5,7 +5,7 @@
     <Breadcrumb
       :items="[
         { title: 'Home', url: '/' },
-        { title: 'Articles', url: '/articles' },
+        { title: 'Articles', url: '/articles/' },
         { title: articleData.title, url: `/articles/${slug}/` }
       ]"
     />

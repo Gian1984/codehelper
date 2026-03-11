@@ -5,7 +5,7 @@
     <Breadcrumb
       :items="[
         { title: 'Home', url: '/' },
-        { title: 'Games', url: '/games' },
+        { title: 'Games', url: '/games/' },
         { title: gameData.title, url: `/games/${slug}/` }
       ]"
     />
@@ -53,6 +53,23 @@
     </div>
 
     <component :is="GameComponent" />
+
+    <!-- SEO long-form content -->
+    <div v-if="gameData.seo?.seoContent" class="mt-16 pt-12 border-t border-gray-800">
+      <div
+        class="prose prose-invert prose-sm sm:prose-base max-w-none
+               prose-headings:font-bold prose-headings:tracking-tight
+               prose-h2:text-xl prose-h2:mt-8 prose-h2:mb-3
+               prose-h3:text-base prose-h3:mt-6 prose-h3:mb-2
+               prose-p:text-gray-400 prose-p:leading-7
+               prose-li:text-gray-400
+               prose-strong:text-gray-200
+               prose-code:text-indigo-300 prose-code:bg-gray-800 prose-code:px-1 prose-code:rounded
+               prose-a:text-indigo-400"
+      >
+        <div v-html="gameData.seo.seoContent"></div>
+      </div>
+    </div>
   </div>
 </template>
 

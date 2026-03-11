@@ -4,7 +4,7 @@
     <Breadcrumb
       :items="[
         { title: 'Home', url: '/' },
-        { title: 'Tools', url: '/tools' },
+        { title: 'Tools', url: '/tools/' },
         { title: toolData.title, url: `/tools/${slug}/` }
       ]"
     />
@@ -25,6 +25,15 @@
     </div>
 
     <component :is="ToolComponent" />
+
+    <!-- SEO Content Section -->
+    <div v-if="toolData.seo?.seoContent" class="mt-16 pt-12 border-t border-gray-800">
+      <div class="prose prose-invert max-w-none prose-indigo prose-sm sm:prose-base
+                  prose-headings:font-semibold prose-h2:text-2xl prose-h3:text-xl
+                  prose-p:text-gray-400 prose-strong:text-white prose-code:text-indigo-300">
+        <div v-html="toolData.seo.seoContent"></div>
+      </div>
+    </div>
   </div>
 </template>
 

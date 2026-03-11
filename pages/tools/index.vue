@@ -10,7 +10,7 @@
 
       <NuxtLink
           v-if="selectedCategory"
-          to="/tools"
+          to="/tools/"
           class="inline-block text-sm font-medium bg-gray-700 hover:bg-gray-600 text-white px-4 py-2 rounded transition"
       >
         Reset Filter
@@ -59,7 +59,7 @@
               :key="cat.name"
               class="rounded-lg bg-gray-800 border border-gray-700 p-4 hover:border-indigo-500 hover:shadow-lg transition"
           >
-            <NuxtLink :to="`/tools?category=${cat.name}`" class="block">
+            <NuxtLink :to="`/tools/?category=${cat.name}`" class="block">
               <h3 class="text-lg font-semibold text-white">{{ capitalize(cat.name) }}</h3>
               <p class="text-gray-500 text-sm mt-1">{{ cat.count }} {{ cat.count === 1 ? 'tool' : 'tools' }}</p>
             </NuxtLink>
@@ -108,15 +108,14 @@ useHead({
         '@context': 'https://schema.org',
         '@type': 'WebSite',
         name: 'CodeHelper',
-        url: 'https://codehelper.me',
+        url: 'https://codehelper.me/',
         description: 'Boost your workflow with modern tools for web developers. Format, convert, and minify code — fast and free.',
         image: 'https://codehelper.me/images/codehelper_OGIMAGE.webp',
         potentialAction: {
           '@type': 'SearchAction',
-          target: 'https://codehelper.me/tools?q={search_term_string}',
+          target: 'https://codehelper.me/tools/?q={search_term_string}',
           'query-input': 'required name=search_term_string'
-        }
-      })
+        }      })
     }
   ]
 })

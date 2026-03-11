@@ -120,7 +120,7 @@
         <p class="text-gray-500 text-xs mb-2">Share your score</p>
         <GameShareButtons
           game-title="Stack Overflow Survivor"
-          game-url="https://codehelper.me/games/stack-overflow-survivor"
+          game-url="https://codehelper.me/games/stack-overflow-survivor/"
           :score="score"
         />
       </div>

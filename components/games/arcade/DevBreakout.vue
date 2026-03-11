@@ -67,7 +67,7 @@
           Menu
         </button>
         <p class="text-gray-500 text-xs mt-3 mb-2">Share your score</p>
-        <GameShareButtons game-title="DevBreakout" game-url="https://codehelper.me/games/dev-breakout" :score="score" />
+        <GameShareButtons game-title="DevBreakout" game-url="https://codehelper.me/games/dev-breakout/" :score="score" />
       </div>
 
       <!-- WIN -->
@@ -85,7 +85,7 @@
           Menu
         </button>
         <p class="text-gray-500 text-xs mt-3 mb-2">Share your score</p>
-        <GameShareButtons game-title="DevBreakout" game-url="https://codehelper.me/games/dev-breakout" :score="score" />
+        <GameShareButtons game-title="DevBreakout" game-url="https://codehelper.me/games/dev-breakout/" :score="score" />
       </div>
 
       <!-- LEVEL TITLE (brief overlay) -->

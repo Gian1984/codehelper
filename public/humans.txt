@@ -1,7 +1,7 @@
 /* TEAM */
 
 Developer & Designer: Gianluca Tiengo
-Site: https://codehelper.me
+Site: https://codehelper.me/
 Location: Italy
 GitHub: https://github.com/Gian1984
 
@@ -48,7 +48,7 @@ Sustainability: Minimal resource usage
 
 GitHub Issues: https://github.com/Gian1984/codehelper/issues
 Security: https://codehelper.me/.well-known/security.txt
-Website: https://codehelper.me
+Website: https://codehelper.me/
 
 /* FUN FACTS */
 

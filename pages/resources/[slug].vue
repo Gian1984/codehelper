@@ -5,7 +5,7 @@
       <h1 class="text-3xl font-semibold text-white mb-4">Category Not Found</h1>
       <p class="text-gray-400 mb-6">The resource category you're looking for doesn't exist.</p>
       <NuxtLink
-        to="/resources"
+        to="/resources/"
         class="inline-flex items-center px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg transition"
       >
         ← Back to Resources

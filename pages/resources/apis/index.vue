@@ -101,7 +101,7 @@
         <NuxtLink
           v-for="(meta, category) in apiCategoryMeta"
           :key="category"
-          :to="`/resources/apis/${category}`"
+          :to="`/resources/apis/${category}/`"
           class="block rounded-lg bg-gray-800 border border-gray-700 p-6 hover:border-indigo-500 hover:shadow-lg transition"
         >
           <h3 class="text-xl font-semibold text-white mb-2">{{ meta.title }}</h3>
@@ -124,7 +124,7 @@
           Browse our collection of 800+ external developer resources and tools
         </p>
         <NuxtLink
-          to="/resources"
+          to="/resources/"
           class="inline-flex items-center px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white font-medium rounded-lg transition"
         >
           Browse Resources
@@ -190,7 +190,7 @@ useHead({
             position: index + 1,
             name: meta.title,
             description: meta.description,
-            url: `https://codehelper.me/resources/apis/${category}`
+            url: `https://codehelper.me/resources/apis/${category}/`
           }))
         }
       })

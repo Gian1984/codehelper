@@ -1,6 +1,6 @@
 # robots.txt for CodeHelper
-# https://codehelper.me
-# Last updated: 2025-11-04
+# https://codehelper.me/
+# Last updated: 2026-03-11
 
 User-agent: *
 Allow: /
@@ -12,8 +12,10 @@ Disallow: /__sitemap__/
 # Allow important pages
 Allow: /tools/
 Allow: /articles/
-Allow: /about
-Allow: /project
+Allow: /games/
+Allow: /resources/
+Allow: /about/
+Allow: /project/
 
 # Sitemap location
 Sitemap: https://codehelper.me/sitemap.xml

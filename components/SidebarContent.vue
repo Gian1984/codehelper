@@ -233,9 +233,9 @@ const currentPath = computed(() => route.path)
 
 // Determine current section (tools or articles) based on route
 const currentSection = computed(() => {
-  if (currentPath.value.startsWith('/tools')) return 'tools'
-  if (currentPath.value.startsWith('/articles')) return 'articles'
-  if (currentPath.value.startsWith('/games')) return 'games'
+  if (currentPath.value.startsWith('/tools/')) return 'tools'
+  if (currentPath.value.startsWith('/articles/')) return 'articles'
+  if (currentPath.value.startsWith('/games/')) return 'games'
   return 'all'
 })
 
@@ -257,10 +257,10 @@ const sectionIcon = computed(() => {
 
 // Section link based on context
 const sectionLink = computed(() => {
-  if (currentSection.value === 'tools') return '/tools'
-  if (currentSection.value === 'articles') return '/articles'
-  if (currentSection.value === 'games') return '/games'
-  return '/resources' // default to resources page
+  if (currentSection.value === 'tools') return '/tools/'
+  if (currentSection.value === 'articles') return '/articles/'
+  if (currentSection.value === 'games') return '/games/'
+  return '/resources/' // default to resources page
 })
 
 // Search input ref for focus management

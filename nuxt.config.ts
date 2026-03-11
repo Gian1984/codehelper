@@ -50,7 +50,7 @@ export default defineNuxtConfig({
     // SEO settings (nuxt-seo, sitemap)
     // @ts-expect-error: used by @nuxtjs/sitemap and nuxt-seo
     site: {
-        url: 'https://codehelper.me'
+        url: 'https://codehelper.me/'
     },
 
     app: {
@@ -96,7 +96,7 @@ export default defineNuxtConfig({
 
     sitemap: {
         sitemapName: 'sitemap.xml',
-        hostname: 'https://codehelper.me',
+        hostname: 'https://codehelper.me/',
         gzip: true,
         routes: allRoutes,
         defaults: {

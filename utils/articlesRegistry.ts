@@ -59,6 +59,36 @@ export const articles: Record<string, Article> = {
                     'localStorage'
                 ],
                 proficiencyLevel: 'Beginner'
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What is JSON.parse() in JavaScript?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'JSON.parse() converts a JSON string into a JavaScript object, allowing you to work with data received from a server or stored in localStorage.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What is the difference between JSON.parse and JSON.stringify?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'JSON.parse() converts a JSON string to a JavaScript object (deserialization), while JSON.stringify() converts a JavaScript object to a JSON string (serialization). Use stringify() to send data and parse() to receive it.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'How do I handle JSON parse errors in JavaScript?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Wrap JSON.parse() in a try/catch block. If the input is invalid JSON, it throws a SyntaxError which you can catch and handle gracefully, preventing runtime crashes in your application.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Can I use JSON with localStorage in JavaScript?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Yes. localStorage only stores strings, so use JSON.stringify() before saving an object and JSON.parse() when reading it back. This is the standard pattern for persisting structured data in the browser.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What data types does JSON support?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'JSON supports strings, numbers, booleans, null, arrays, and objects. It does not support undefined, functions, Dates, or symbols. Date values are typically serialized as ISO 8601 strings.' }
+                    }
+                ]
             }
         }
     },
@@ -109,6 +139,31 @@ export const articles: Record<string, Article> = {
                     'query params'
                 ],
                 proficiencyLevel: 'Intermediate'
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What is a debounce function in JavaScript?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'A debounce function delays execution of a callback until a specified time has passed since the last call. It is commonly used on search inputs, scroll handlers, and resize events to prevent excessive function calls.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What is the difference between debounce and throttle in JavaScript?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Debounce waits for a quiet period before firing (ideal for search inputs), while throttle limits how often a function can fire regardless of how many times it is called (ideal for scroll or mouse-move events).' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'How do I deep clone an object in JavaScript without using external libraries?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'The most reliable modern method is structuredClone(obj), available natively in Node.js 17+ and all modern browsers. For environments without it, JSON.parse(JSON.stringify(obj)) works for plain data, though it strips functions and undefined values.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'How do I copy text to the clipboard in JavaScript?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Use the Clipboard API: await navigator.clipboard.writeText(text). This requires a secure context (HTTPS or localhost) and may prompt the user for permission in some browsers.' }
+                    }
+                ]
             }
         }
     },
@@ -155,6 +210,31 @@ export const articles: Record<string, Article> = {
                     'audit logs'
                 ],
                 proficiencyLevel: 'Intermediate'
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'Can AI models be hacked through prompt injection?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Yes. Prompt injection is one of the most critical vulnerabilities in LLM-powered apps. An attacker embeds malicious instructions in user input or external content, causing the AI to override its original instructions and perform unintended actions.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What is an LLM jailbreak attack?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'A jailbreak is a crafted prompt designed to bypass an AI model\'s safety guidelines and make it produce content it would normally refuse. Common techniques include role-playing scenarios, indirect framing, and token-splitting tricks.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'How can I protect an AI application from prompt injection?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Key defenses include separating system prompts from user input, using allowlists for tool actions, sandboxing AI agent execution, implementing output filtering, and logging all model interactions for audit and anomaly detection.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What is AI red teaming?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'AI red teaming is a structured adversarial testing process where security professionals attempt to find vulnerabilities in AI systems before attackers do. It includes testing for prompt injection, data exfiltration, tool abuse, and model manipulation.' }
+                    }
+                ]
             }
         }
     },
@@ -206,6 +286,31 @@ export const articles: Record<string, Article> = {
                     'defense in depth'
                 ],
                 proficiencyLevel: 'Intermediate'
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'How is AI being used in cyberattacks in 2025?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'AI is automating ransomware campaigns, generating highly convincing spear phishing emails at scale, cloning voices for deepfake fraud, and creating polymorphic malware that changes its signature to evade antivirus detection.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What is deepfake phishing and how does it work?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Deepfake phishing uses AI-generated audio or video of a trusted person (like a CEO) to trick employees into transferring funds or revealing credentials. Attackers need only a few seconds of real audio to clone a voice convincingly.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What is polymorphic malware and why is it dangerous?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Polymorphic malware uses AI to continuously mutate its code signature, making it undetectable by traditional signature-based antivirus tools. Each new variant looks different while performing the same malicious function.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What defenses work best against AI-powered cyberattacks?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'An effective defense stack combines Zero Trust architecture, multi-factor authentication (MFA), Extended Detection and Response (XDR), behavioral anomaly detection, and regular employee training to recognize AI-generated phishing content.' }
+                    }
+                ]
             }
         }
     },
@@ -255,6 +360,31 @@ export const articles: Record<string, Article> = {
                     'hardening'
                 ],
                 proficiencyLevel: 'Intermediate'
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What is a hacker dropbox device?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'A hacker dropbox is a small, low-cost computer (typically a Raspberry Pi) that can be covertly plugged into a network to provide remote access. It is used in ethical hacking, penetration testing, and legitimate IT remote support scenarios.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What is Twingate and why use it for a dropbox build?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Twingate is a Zero Trust Network Access (ZTNA) solution that creates a secure, identity-verified tunnel without exposing open ports to the internet. It replaces traditional VPNs with a more secure, easier-to-manage access model, making it ideal for remote dropbox deployments.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Is building a Raspberry Pi dropbox legal?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Building and using a dropbox on your own network or in an authorized penetration test is legal. Deploying one on any network without explicit written permission from the owner is illegal under computer fraud laws in most jurisdictions.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What are the key hardening steps for a Raspberry Pi dropbox?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Essential hardening steps include disabling default credentials, enabling SSH key-only authentication, disabling password login, configuring a firewall (ufw), enabling automatic security updates, and using ZTNA rather than exposing any open ports.' }
+                    }
+                ]
             }
         }
     },
@@ -307,6 +437,31 @@ export const articles: Record<string, Article> = {
                     'Finland climate goals'
                 ],
                 proficiencyLevel: 'General'
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What is a sand battery and how does it store energy?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'A sand battery stores thermal energy by heating large volumes of sand (or soapstone) to very high temperatures using surplus renewable electricity. The stored heat is later used to warm water for district heating systems, acting as a long-duration thermal battery.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'How much energy can Polar Night Energy\'s sand battery store?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'The Pornainen installation stores 100 MWh of thermal energy and delivers 1 MW of continuous thermal power to the Loviisan Lämpö district heating network, enough to serve a significant share of the town\'s heating needs.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'How does the sand battery reduce CO₂ emissions?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'By replacing oil-fired boilers with a sand battery charged by renewable electricity, the system eliminates roughly 160 tonnes of CO₂ emissions per year — a reduction of approximately 70% compared to the previous fossil fuel setup.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What material is used in the Polar Night Energy sand battery?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'The Pornainen installation reuses locally sourced soapstone (a circular economy approach), which has excellent thermal mass properties and can withstand repeated heating and cooling cycles without degrading performance.' }
+                    }
+                ]
             }
         }
     },
@@ -358,6 +513,31 @@ export const articles: Record<string, Article> = {
                     'alternative energy storage'
                 ],
                 proficiencyLevel: 'General'
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What is a CO₂ battery and how does it work?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'A CO₂ battery (developed by Energy Dome) is a closed thermodynamic system that stores energy by liquefying carbon dioxide when electricity is cheap, then re-gasifying it through a turbine to generate electricity when needed. No CO₂ is released — the gas cycles continuously inside the sealed system.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What is the round-trip efficiency of the CO₂ battery?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'The CO₂ battery achieves approximately 75% round-trip efficiency, meaning 75% of the electricity used to charge it is recovered during discharge. This is comparable to lithium-ion batteries and significantly better than many alternative long-duration storage technologies.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'How long can a CO₂ battery store energy?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'The CO₂ battery is designed for long-duration energy storage, capable of storing and discharging energy over periods of 8 to 24 hours, making it suitable for grid balancing applications that lithium-ion batteries cannot economically serve.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Is the CO₂ battery an alternative to lithium-ion batteries?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Yes, for grid-scale long-duration storage. The CO₂ battery avoids lithium, cobalt, and rare earth mining, uses widely available CO₂ as the working fluid, has a 30+ year operational lifespan, and can be built with standard industrial components — making it a more sustainable and scalable alternative for utility storage.' }
+                    }
+                ]
             }
         }
     },
@@ -505,6 +685,31 @@ export const articles: Record<string, Article> = {
                     'PCIe 5 SSD'
                 ],
                 proficiencyLevel: 'Advanced'
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What is the Samsung 9100 Pro NVMe SSD?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'The Samsung 9100 Pro is a PCIe 5.0 NVMe SSD that delivers up to 14.8 GB/s sequential read and 13.4 GB/s sequential write speeds. It is designed for workstation-class workloads including AI model swapping, dataset streaming, and high-throughput checkpointing.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'How does the Samsung 9100 Pro help with LLM workflows?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'With PCIe 5.0 speeds above 14 GB/s, the 9100 Pro dramatically reduces model load times for large language models that exceed GPU VRAM. It enables faster GPU offloading, quicker dataset streaming for training, and near-instant checkpoint saves and restores.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Is PCIe 5.0 NVMe worth it over PCIe 4.0 for developers?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'For general web development and coding, PCIe 4.0 SSDs are sufficient. PCIe 5.0 delivers a meaningful real-world advantage specifically for AI/ML pipelines, large dataset operations, video production, and workloads where storage throughput is the bottleneck.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What motherboard is needed for the Samsung 9100 Pro?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'The Samsung 9100 Pro requires a motherboard with a PCIe 5.0 M.2 slot, typically found on platforms using Intel Core Ultra (Series 2 or later) or AMD Ryzen 9000 series processors. It is backward compatible with PCIe 4.0 and 3.0 slots at reduced speeds.' }
+                    }
+                ]
             }
         }
     },
@@ -648,6 +853,31 @@ export const articles: Record<string, Article> = {
                     'Latent Space podcast'
                 ],
                 proficiencyLevel: 'Intermediate'
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'Did Claude Code really write 80% of its own code?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Anthropic reported that approximately 80% of Claude Code\'s codebase was written by Claude itself in an agentic loop — the AI wrote code, tested it, fixed bugs, and iterated. This does not mean Claude is fully autonomous; human engineers designed the architecture, reviewed outputs, and directed the process.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What is an agentic AI coding tool?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'An agentic AI coding tool can execute multi-step tasks autonomously: reading files, running tests, editing code, and iterating based on results — all without requiring a human to approve each action. Claude Code operates as a CLI-based agent that works directly in your terminal and repository.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'How does Claude Code differ from GitHub Copilot?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'GitHub Copilot provides inline code suggestions as you type in an IDE. Claude Code is an agentic CLI tool that can understand an entire codebase, execute shell commands, run tests, and complete full tasks across multiple files without constant prompting.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What are the risks of using AI to write its own code?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Key risks include compounding errors (small mistakes become large ones in long agentic runs), lack of architectural judgment, difficulty with novel logic, and security vulnerabilities introduced by AI-generated code. Human review of AI-produced code remains essential.' }
+                    }
+                ]
             }
         }
     },
@@ -660,12 +890,12 @@ export const articles: Record<string, Article> = {
         component: () =>
             import('~/components/articles/ai/MlxTerminalCode.vue') as Promise<{ default: DefineComponent }>,
         seo: {
-            title: `MLX Qwen2 1.5B Speed on M1 Mac: Benchmarks & Local AI Setup – ${BRAND}`,
+            title: `MLX Qwen2.5 Coder Benchmarks on M1/M2/M3/M4 Mac: 100% Local AI – ${BRAND}`,
             description:
-                'Real speed benchmarks for Qwen2 & Qwen2.5 1.5B on M1/M1 Pro with MLX-LM. Token/s performance, model comparison, and step-by-step setup for local AI coding on Apple Silicon.',
+                'Real speed benchmarks for Qwen2.5 & DeepSeek on M1/M2/M3/M4 with MLX-LM. Step-by-step setup for a 100% local, private AI coding assistant on macOS. Better than Copilot?',
             ogImage: OG,
             keywords:
-                'mlx code, local ai coding assistant, apple silicon ai, mlx framework mac, qwen coder, deepseek coder, private ai assistant, offline coding ai, mac ai coding tool, github copilot alternative, apple mlx lm, m1 m2 m3 m4 coding ai, mlx qwen2 1.5b speed, m1 mac mlx benchmark, mlx-lm qwen2 speed, qwen2.5 1.5b mlx, apple silicon llm speed',
+                'mlx code benchmarks, local ai macbook m1 speed, apple silicon ai development, qwen2.5 coder mlx, deepseek coder mac m2, m3 pro ai coding, m4 max local llm, offline coding assistant macos, privacy ai tool mac, github copilot alternative local',
             structuredData: {
                 '@context': 'https://schema.org',
                 '@type': 'TechArticle',
@@ -802,6 +1032,31 @@ export const articles: Record<string, Article> = {
                     'developer hub'
                 ],
                 proficiencyLevel: 'General'
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What is the CodeHelper developer resources directory?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'CodeHelper\'s resources directory is a curated collection of 800+ external developer tools, libraries, and assets organized across 31 categories including colors, icons, UI libraries, fonts, design tools, and testing resources — all searchable and filterable.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'How many public APIs does CodeHelper index?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'CodeHelper indexes 400+ public APIs across more than 40 categories, with filters for authentication type, HTTPS support, CORS availability, and category. It helps developers quickly discover and evaluate APIs for their projects.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What categories are available in the CodeHelper API directory?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'The API directory covers categories such as weather, finance, maps, authentication, machine learning, entertainment, news, sports, government data, health, and many more — each with details on rate limits, authentication, and documentation links.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Is CodeHelper free to use?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Yes, CodeHelper is a free developer platform. All tools, resources directories, API listings, articles, and utilities on codehelper.me are accessible without a subscription or account.' }
+                    }
+                ]
             }
         }
     },
@@ -859,6 +1114,31 @@ export const articles: Record<string, Article> = {
                     'x86 processors'
                 ],
                 proficiencyLevel: 'General'
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What is Intel Core Ultra Series 3?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Intel Core Ultra Series 3 is a family of processors unveiled at CES 2026, manufactured using Intel\'s 18A process node entirely in the United States. The chips feature up to 16 cores, an integrated Arc B390 GPU, and a 50 TOPS NPU for on-device AI workloads.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What is the Intel 18A manufacturing process?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Intel 18A is Intel\'s most advanced semiconductor manufacturing node, equivalent to approximately 1.8 nanometers. It uses RibbonFET gate-all-around transistors and PowerVia backside power delivery, representing a major advance in chip density and power efficiency.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'How does the Intel Core Ultra Series 3 NPU perform for AI tasks?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'The integrated NPU in Core Ultra Series 3 delivers 50 TOPS (Tera Operations Per Second), which exceeds Microsoft\'s 45 TOPS Copilot+ PC requirement. It enables on-device AI inference for features like real-time translation, image generation, and Windows AI Studio tasks without cloud dependency.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Are Intel Core Ultra Series 3 processors made in the United States?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Yes. Core Ultra Series 3 is the first commercially shipped line of advanced logic chips manufactured in the United States using Intel\'s Fab 52 in Chandler, Arizona, a key milestone in domestic semiconductor production under the CHIPS and Science Act.' }
+                    }
+                ]
             }
         }
     },
@@ -916,6 +1196,31 @@ export const articles: Record<string, Article> = {
                     'digital collectibles'
                 ],
                 proficiencyLevel: 'General'
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'Is the NFT market recovering in 2026?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'The NFT market shows selective signs of recovery in early 2026, particularly in blue-chip collections like CryptoPunks and Pudgy Penguins, and in utility-focused NFTs tied to gaming and real-world assets. However, overall liquidity and trading volume remain far below the 2021-2022 peak.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What NFT categories are attracting investment in 2026?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'In 2026, capital is concentrating in established blue-chip PFP collections, utility NFTs with in-game or platform value, and tokenized real-world assets (RWA NFTs). Speculative profile-picture projects with no utility continue to see declining demand.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What happened to NFT trading volume after the 2022 crash?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'NFT weekly trading volume fell from peaks of several billion dollars in early 2022 to low hundreds of millions by 2023-2024. The crash was driven by hype deflating, liquidity drying up as crypto markets declined, and a flood of low-quality projects overwhelming the space.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Are NFT airdrops still a viable strategy in 2026?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'NFT airdrops remain a community engagement tool but their value is much more variable than in the 2021 bull market. Only airdrops from projects with strong communities and genuine utility tend to hold significant value; speculative airdrop farming has largely diminished as a profitable strategy.' }
+                    }
+                ]
             }
         }
     },
@@ -972,6 +1277,31 @@ export const articles: Record<string, Article> = {
                     'developer responsibility'
                 ],
                 proficiencyLevel: 'Intermediate'
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'How much energy do AI data centers consume?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Global data centers are projected to consume approximately 945 TWh of electricity by 2030, up from around 400 TWh in 2020. AI workloads are the primary driver of this growth, with training large models and running inference at scale requiring enormous, continuous power.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'How much water do AI data centers use?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Data centers use water primarily for cooling, and AI inference clusters are among the most water-intensive facilities. Microsoft reported its global water consumption surged over 34% in a single year largely due to AI infrastructure, with some campuses consuming millions of liters daily.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What is the carbon footprint of training a large AI model?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Training a single large language model can emit hundreds of tonnes of CO₂ equivalent, comparable to multiple transatlantic flights or the lifetime emissions of several cars. The exact figure depends on the model size, hardware used, and whether the electricity comes from renewable sources.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What is sustainable AI and how can developers practice it?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Sustainable AI means choosing smaller, efficient models for tasks that do not require frontier-scale reasoning, running inference on local hardware (Apple Silicon, edge devices) where possible, batching requests, and critically evaluating whether AI is genuinely needed for a given task versus simpler programmatic solutions.' }
+                    }
+                ]
             }
         }
     },
@@ -1029,6 +1359,31 @@ export const articles: Record<string, Article> = {
                     'future of work'
                 ],
                 proficiencyLevel: 'General'
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'Will AI replace entry-level jobs?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'The IMF estimates that 60% of jobs in advanced economies will be affected by AI, with entry-level roles at the highest risk because they involve well-defined, repeatable tasks that AI models can learn to perform. However, most jobs will be transformed rather than fully eliminated in the near term.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What skills should young people develop to stay relevant in an AI economy?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Experts point to skills that AI struggles to replicate: critical thinking, creative problem-solving, emotional intelligence, cross-disciplinary synthesis, ethical judgment, and the ability to work with AI tools effectively as a collaborator rather than being displaced by them.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What did the IMF say about AI and jobs at Davos 2026?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'IMF Managing Director Kristalina Georgieva described AI\'s impact on labor markets as potentially "tsunami-like," warning that 60% of jobs in advanced economies face significant disruption. She called for urgent education reform and social safety net adaptation to prepare the workforce.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Is human creativity safe from AI automation?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Genuine human creativity — the ability to synthesize novel ideas from lived experience, cultural context, and emotional depth — remains a significant differentiator. While AI can generate creative-looking outputs, it lacks true originality, lived experience, and the unpredictability that makes human creativity irreplaceable.' }
+                    }
+                ]
             }
         }
     },
@@ -1087,6 +1442,31 @@ export const articles: Record<string, Article> = {
                     'solar efficiency space'
                 ],
                 proficiencyLevel: 'General'
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'Are space-based AI data centers really more sustainable than ground-based ones?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'The sustainability case is weak. Each Starlink or data center satellite launch emits 50-150 tonnes of CO₂ equivalent, and with hundreds of launches required per year, the total emissions dwarf the potential savings from using space-based solar power, which itself faces severe efficiency losses converting to microwave transmission and back.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What is the problem with Starlink satellite pollution?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Starlink satellites re-enter Earth\'s atmosphere daily, depositing aluminium oxide and other metallic particles in the stratosphere. Scientists warn this could damage the ozone layer and affect atmospheric chemistry, though the full long-term effects are still being studied.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What are Big Tech companies investing in instead of space data centers?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Microsoft, Google, and Amazon are all making concrete investments in nuclear power — small modular reactors (SMRs) and restarted conventional nuclear plants — as a more practical path to powering AI data centers with carbon-free baseload electricity, unlike the speculative space data center concept.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Why is the space data center concept considered financial engineering?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Critics argue that proposals for space-based AI data centers serve primarily to attract investor attention and government contracts rather than presenting a credible near-term technical solution. The engineering challenges — launch costs, reliability, latency, heat dissipation in vacuum — make commercial viability decades away at best.' }
+                    }
+                ]
             }
         }
     },
@@ -1144,6 +1524,31 @@ export const articles: Record<string, Article> = {
                     'cosmology'
                 ],
                 proficiencyLevel: 'General'
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What is the Cosmic Microwave Background (CMB)?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'The Cosmic Microwave Background is the thermal radiation left over from the Big Bang approximately 380,000 years after the universe was formed. It permeates the entire universe and represents the oldest light we can observe, providing direct evidence for the Big Bang theory.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'How did Penzias and Wilson discover the CMB?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'In 1964, Arno Penzias and Robert Wilson at Bell Laboratories detected an unexplained 3.5K excess noise in their Horn Antenna in Holmdel, New Jersey while calibrating it for satellite communication. After eliminating all other sources (including removing pigeon droppings), they realized the noise came from all directions equally — the signature of the CMB.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Why did Penzias and Wilson win the Nobel Prize?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Arno Penzias and Robert Wilson were awarded the Nobel Prize in Physics in 1978 for their accidental discovery of the Cosmic Microwave Background radiation, which provided definitive observational proof of the Big Bang theory and resolved a decades-long debate between Big Bang and Steady State cosmological models.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What does the Big Bang echo discovery tell us about the universe?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'The CMB discovery confirmed that the universe had a hot, dense beginning approximately 13.8 billion years ago. Its near-perfect uniformity with tiny temperature fluctuations also seeded our understanding of how galaxies and large-scale cosmic structures formed over billions of years.' }
+                    }
+                ]
             }
         }
     },
@@ -1298,6 +1703,31 @@ export const articles: Record<string, Article> = {
                     'GitHub stars'
                 ],
                 proficiencyLevel: 'General'
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What happened to the OpenClaw AI agent?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'OpenClaw (originally called Clawdbot/Moltbot) gained 193K GitHub stars and massive viral attention as an autonomous AI agent, then suffered a trademark dispute, was hijacked by crypto scammers who launched the fraudulent CLAWD token, exposed 42,900 unsecured control panels to the internet, and ultimately had its creator Peter Steinberger join OpenAI.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What security vulnerabilities did OpenClaw have?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'OpenClaw\'s default configuration exposed control panel web interfaces with no authentication on public internet ports. Security researchers found 42,900 such panels accessible worldwide, creating a massive attack surface for prompt injection, data theft, and remote control abuse.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What is the CLAWD token crypto scam?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'After OpenClaw went viral, scammers launched a fraudulent cryptocurrency called CLAWD token, falsely implying official affiliation with the project. The token raised approximately $16 million from retail investors before the fraud was exposed, causing major financial losses.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What lessons does the OpenClaw saga teach about autonomous AI agents?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'The OpenClaw story highlights key risks of rapidly deployed autonomous AI agents: default-insecure configurations lead to massive attack surfaces, hype attracts scammers who exploit the project name, prompt injection in agentic systems can be catastrophic, and community management for open-source AI tools requires dedicated security oversight.' }
+                    }
+                ]
             }
         }
     },
@@ -1356,6 +1786,31 @@ export const articles: Record<string, Article> = {
                     'Fukuoka'
                 ],
                 proficiencyLevel: 'General'
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What is osmotic power (blue energy)?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Osmotic power, also called blue energy or salinity gradient energy, generates electricity by harnessing the natural energy released when freshwater and saltwater mix. This mixing process occurs constantly at river deltas and desalination plant outflows, representing a vast, continuous renewable energy resource.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What is the global potential of osmotic power?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Scientists estimate the global theoretical potential of osmotic power at approximately 15,000 TWh per year — roughly half of current global electricity consumption. The exploitable potential near coastal cities and desalination plants is smaller but still significant as a complementary baseload renewable.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What is the difference between pressure retarded osmosis (PRO) and ionic generators?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Pressure Retarded Osmosis (PRO) uses semipermeable membranes to allow water to flow against a pressure gradient, driving a turbine. Ionic generators use nanoporous membranes to selectively conduct ions, generating electricity directly from the ion concentration difference without moving water. Ionic generators are newer, more efficient, and better suited to small-scale urban installations.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Which companies are building osmotic power plants?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Key players include Sweetch Energy (France), which uses ionic nanogenerators and has projects near desalination plants, and SaltPower (Denmark), a Grundfos spinout developing PRO-based systems. Japan\'s Fukuoka desalination plant has also conducted pilot PRO experiments, representing one of the most advanced real-world deployments.' }
+                    }
+                ]
             }
         }
     },
@@ -1420,6 +1875,31 @@ export const articles: Record<string, Article> = {
                     'investment bubble'
                 ],
                 proficiencyLevel: 'General'
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What is the Remote Labor Index and what did it find about AI?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'The Remote Labor Index is a benchmark that tests AI models on real-world professional tasks. It found that current AI models fail approximately 96.25% of professional freelance tasks, meaning only about 3.75% of tasks can be successfully completed end-to-end by AI without human intervention.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Why do AI models fail most professional tasks?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'AI models struggle with tasks requiring multi-step reasoning across real-world systems, handling ambiguous instructions, navigating complex software interfaces, recovering from errors autonomously, and exercising judgment in novel situations. The gap between benchmark performance and real production task completion remains large.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Is Elon Musk right that AI will replace all coders?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Current evidence does not support the claim. While AI tools significantly boost developer productivity for specific tasks, the Remote Labor Index data shows AI agents fail the vast majority of complex, real-world coding projects. AI augments developers effectively but does not replace the full range of skills needed for professional software engineering.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Is AI investment in 2025-2026 a bubble?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'The question is genuinely debated. Hundreds of billions in AI investment are flowing in while productivity gains at the macroeconomic level remain modest. Critics like Yann LeCun argue current LLM architectures face fundamental scaling limits. The mismatch between hype and measurable real-world task performance suggests some degree of market mispricing.' }
+                    }
+                ]
             }
         }
     },
@@ -1485,6 +1965,31 @@ export const articles: Record<string, Article> = {
                     'Abwehr'
                 ],
                 proficiencyLevel: 'General'
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'Who was Agent GARBO and why was he important?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Agent GARBO was the codename for Juan Pujol García, a Spanish double agent who worked for British intelligence during World War II. He is considered the most successful double agent of the war, having built an entirely fictitious spy network of 27 imaginary agents that completely deceived Nazi Germany about the D-Day invasion location.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'How did Juan Pujol García influence the D-Day landings?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Pujol García fed false intelligence to the Nazis as part of Operation Fortitude, convincing Hitler that the main Allied invasion would target Pas-de-Calais rather than Normandy. Even after D-Day began on June 6, 1944, Hitler believed it was a feint and withheld Panzer divisions for weeks — a delay historians consider decisive to the Allied success.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Is it true that Juan Pujol García received both the Iron Cross and an MBE?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Yes. In a unique historical distinction, Pujol García received the Iron Cross from Nazi Germany (for his "services" as a spy) and was simultaneously awarded the MBE (Member of the Order of the British Empire) by King George VI — both sides believing him to be their loyal agent.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'How did Juan Pujol García start his espionage career with no training?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Pujol had no intelligence training at all. He initially offered his services to the British, was rejected, then approached the Germans pretending to be a pro-Nazi Spaniard. He invented a fake trip to Britain and fabricated intelligence from tourist guidebooks before the British finally took him seriously and brought him to London as a genuine double agent.' }
+                    }
+                ]
             }
         }
     },
@@ -1550,6 +2055,31 @@ export const articles: Record<string, Article> = {
                     'programmable metamaterials'
                 ],
                 proficiencyLevel: 'General'
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What is MIT thermal computing?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'MIT thermal computing refers to research by Caio Silva and Giuseppe Romano, who designed porous silicon microstructures that perform matrix-vector multiplication using heat flow as the computing medium. The physics of heat propagation through the silicon geometry encodes the mathematical operation, requiring no transistors, no active power, and no software.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'How can heat be used for computation?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Heat flows through materials according to physical laws governed by the geometry and thermal conductivity of the medium. By precisely designing the shape of a silicon structure using inverse design algorithms, MIT researchers created structures where the heat flux pattern at the output directly encodes the result of a matrix-vector multiplication performed on the input temperatures.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What accuracy does MIT\'s thermal computing achieve?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'The MIT thermal computing experiments achieved over 99% accuracy on the matrix-vector multiplications performed. The silicon structures were also found to be robust to fabrication imperfections, suggesting practical manufacturability.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What are the limitations of thermal computing compared to electronic computing?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Current thermal computing is extremely slow — heat diffusion operates at milliseconds compared to nanoseconds for electronic circuits. The computation is also static (the structure performs one specific operation), unlike reconfigurable electronics. It currently targets energy-harvesting and sensor-embedded applications rather than general-purpose processors.' }
+                    }
+                ]
             }
         }
     },
@@ -1611,6 +2141,31 @@ export const articles: Record<string, Article> = {
                     'BBC'
                 ],
                 proficiencyLevel: 'General'
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'Can a blog post fool ChatGPT or Google into spreading misinformation?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Yes, as demonstrated by a BBC journalist in 2025. A single fabricated blog post with false claims was indexed by Google and consumed by ChatGPT\'s training or retrieval pipeline, causing both to repeat the false information as fact. This illustrates how AI search is vulnerable to simple SEO-style manipulation.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What is model collapse in AI?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Model collapse is a process where AI models trained on AI-generated content gradually degrade in quality. As the internet fills with AI-produced text, future training datasets become contaminated with synthetic content, causing models to lose touch with authentic human knowledge and amplify errors across generations.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What is the AI content death spiral?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'The content death spiral describes a vicious cycle where AI answers replace organic search traffic, starving content creators of revenue, causing fewer humans to create original content, leaving AI systems with less quality data to learn from, accelerating the dominance of AI-generated (and potentially inaccurate) content online.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'How can you verify information from AI search results?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Always follow AI-cited sources to the original document. Check publication dates, author credentials, and whether the source is a primary reference (scientific paper, official report) or a secondary blog. Cross-reference claims across multiple independent sources before treating them as factual.' }
+                    }
+                ]
             }
         }
     },
@@ -1667,6 +2222,31 @@ export const articles: Record<string, Article> = {
                     'Sam Altman'
                 ],
                 proficiencyLevel: 'General'
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'Why did Anthropic refuse the Pentagon AI contract?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Anthropic declined to modify its AI safety guardrails to allow lethal autonomous weapons applications, which was a condition of a proposed Pentagon contract. Dario Amodei and the Anthropic leadership treated the removal of safety constraints around autonomous lethal decision-making as a non-negotiable red line.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What did OpenAI agree to in the Pentagon deal?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'OpenAI signed a contract with the U.S. Department of Defense worth approximately $200 million, agreeing to provide AI capabilities for military applications. Unlike Anthropic, OpenAI updated its usage policies to permit certain national security use cases that its previous guidelines had excluded.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What is the #QuitGPT movement?',
+                        acceptedAnswer: { '@type': 'Answer', text: '#QuitGPT was a social media boycott campaign launched by users and AI ethics advocates who objected to OpenAI\'s decision to accept military contracts for autonomous weapons applications. Participants announced they were switching to alternative AI tools, with many citing Anthropic\'s refusal as a reason to prefer Claude.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What are the ethical concerns around AI in autonomous weapons?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Key ethical concerns include AI making lethal targeting decisions without meaningful human control, the risk of misidentification in combat (especially in civilian areas), the lowering of the psychological and political threshold for using lethal force, and the difficulty of assigning legal accountability when an autonomous system causes civilian casualties.' }
+                    }
+                ]
             }
         }
     },

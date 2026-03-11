@@ -10,12 +10,12 @@
       <div class="px-6 pt-14 lg:px-8">
         <div class="mx-auto max-w-4xl pt-6 text-center sm:pt-24">
           <h1 class="text-5xl font-semibold tracking-tight text-white sm:text-7xl">
-            About CodeHelper
+            Privacy shouldn't be a feature. It should be the default.
           </h1>
           <p class="mt-8 text-lg font-medium text-pretty text-gray-400 sm:text-xl/8">
-            CodeHelper is your <strong class="text-white">complete developer toolkit</strong> —
-            100+ privacy-first tools, 800+ curated resources, and 400+ public APIs.
-            Everything runs <strong class="text-white">entirely in your browser</strong>, fast and sustainable.
+            In an era where every developer utility requires a login and sends your data to the cloud, 
+            <strong class="text-white">CodeHelper</strong> was built to take back control. 
+            No tracking, no server uploads, just high-performance tools running <strong class="text-white">locally in your browser</strong>.
           </p>
         </div>
       </div>
@@ -235,13 +235,13 @@ import { getTotalAPIsCount } from '~/utils/apiRegistry'
 import { articles } from '~/utils/articlesRegistry'
 
 useSeoMeta({
-  title: 'About CodeHelper — Privacy-First Developer Tools, Resources & APIs',
-  description: 'Learn about CodeHelper: 100+ privacy-first tools, 800+ curated resources, 400+ public APIs. Open-source, client-side, and built for developers.',
-  ogTitle: 'About CodeHelper & Gianluca Tiengo',
-  ogDescription: 'The story, principles, and mission behind CodeHelper—your complete developer toolkit.',
+  title: 'Why I Built CodeHelper: The Mission for Private, Local Developer Tools',
+  description: 'CodeHelper is my response to the cloud-first world. 100+ tools that run 100% in your browser. No accounts, no tracking, just fast utilities for developers who value privacy.',
+  ogTitle: 'The Mission Behind CodeHelper & Gianluca Tiengo',
+  ogDescription: 'Why we need client-side tools in a cloud-monopolized world. The story, principles, and mission behind CodeHelper.',
   ogImage: '/images/codehelper_OGIMAGE.webp',
   ogType: 'profile',
-  ogUrl: 'https://codehelper.me/about',
+  ogUrl: 'https://codehelper.me/about/',
   twitterCard: 'summary_large_image',
   twitterTitle: 'About CodeHelper & Gianluca Tiengo',
   twitterDescription: 'Open-source, privacy-first toolkit for developers—learn the why behind CodeHelper.',
@@ -252,7 +252,7 @@ useSeoMeta({
 
 useHead({
   link: [
-    { rel: 'canonical', href: 'https://codehelper.me/about' }
+    { rel: 'canonical', href: 'https://codehelper.me/about/' }
   ],
   script: [
     {
@@ -262,7 +262,7 @@ useHead({
         '@context': 'https://schema.org',
         '@type': 'AboutPage',
         name: 'About CodeHelper',
-        url: 'https://codehelper.me/about',
+        url: 'https://codehelper.me/about/',
         description: 'About CodeHelper and Gianluca Tiengo - open-source, privacy-first tools for developers.'
       })
     },
@@ -273,17 +273,17 @@ useHead({
         '@context': 'https://schema.org',
         '@type': 'Person',
         name: 'Gianluca Tiengo',
-        url: 'https://codehelper.me/about',
+        url: 'https://codehelper.me/about/',
         image: 'https://codehelper.me/images/codehelper_OGIMAGE.webp',
         jobTitle: 'Web Developer',
         sameAs: [
           'https://github.com/gianlucatiengo',
-          'https://codehelper.me'
+          'https://codehelper.me/'
         ],
         worksFor: {
           '@type': 'Organization',
           name: 'CodeHelper',
-          url: 'https://codehelper.me'
+          url: 'https://codehelper.me/'
         }
       })
     },
@@ -294,7 +294,7 @@ useHead({
         '@context': 'https://schema.org',
         '@type': 'Organization',
         name: 'CodeHelper',
-        url: 'https://codehelper.me',
+        url: 'https://codehelper.me/',
         logo: 'https://codehelper.me/images/codehelper_OGIMAGE.webp',
         sameAs: ['https://github.com/Gian1984/codehelper']
       })
@@ -306,8 +306,8 @@ useHead({
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
         itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://codehelper.me' },
-          { '@type': 'ListItem', position: 2, name: 'About', item: 'https://codehelper.me/about' }
+          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://codehelper.me/' },
+          { '@type': 'ListItem', position: 2, name: 'About', item: 'https://codehelper.me/about/' }
         ]
       })
     }

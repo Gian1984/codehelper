@@ -29,12 +29,13 @@
             format="webp"
           />
           <h1 class="mt-10 text-5xl font-semibold tracking-tight text-pretty text-white sm:text-7xl">
-            The Complete Developer Toolkit
+            Modern Engineering for Modern Developers
           </h1>
           <p class="mt-8 text-lg font-medium text-pretty text-gray-400 sm:text-xl/8">
-            CodeHelper is an <strong class="text-white">open-source developer platform</strong>
-            with 100+ privacy-first tools, 800+ curated resources, and 400+ public APIs.
-            Everything runs in your browser — <strong class="text-white">fast, private, and free forever</strong>.
+            CodeHelper is a <strong class="text-white">high-performance developer platform</strong> 
+            engineered with <strong class="text-white">Nuxt 3 and Static Site Generation</strong>. 
+            By leveraging browser-native APIs, we deliver a suite of zero-latency tools that 
+            run entirely without server-side processing.
           </p>
           <div class="mt-10 flex items-center justify-center lg:justify-start gap-x-6">
             <NuxtLink to="/tools/" class="rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-400">
@@ -130,7 +131,7 @@
         </NuxtLink>
 
         <!-- Public APIs -->
-        <NuxtLink to="/resources/apis" class="block rounded-lg bg-gradient-to-br from-pink-900/20 to-pink-800/10 border border-pink-500/30 p-8 hover:shadow-lg hover:border-pink-500 transition">
+        <NuxtLink to="/resources/apis/" class="block rounded-lg bg-gradient-to-br from-pink-900/20 to-pink-800/10 border border-pink-500/30 p-8 hover:shadow-lg hover:border-pink-500 transition">
           <h3 class="text-xl font-semibold text-white mb-4">Public APIs Directory</h3>
           <p class="text-gray-300 mb-4">
             400+ public APIs across 40+ categories. Find APIs for weather, finance, AI, social media,
@@ -174,7 +175,7 @@
             class="rounded-lg bg-gray-800 border border-gray-700 p-6 hover:border-indigo-500 hover:shadow-lg transition"
         >
           <NuxtLink
-              :to="`/tools?category=${category}`"
+              :to="`/tools/?category=${category}`"
               class="block text-lg font-semibold capitalize text-white"
           >
             {{ category }}
@@ -298,12 +299,12 @@ const stats = computed(() => [
 ])
 
 useSeoMeta({
-  title: 'CodeHelper Project — Complete Developer Platform with Tools, Resources & APIs',
-  description: 'CodeHelper is an open-source developer platform with 100+ privacy-first tools, 800+ curated resources, and 400+ public APIs. Everything runs in your browser — fast, private, and free forever.',
-  ogTitle: 'CodeHelper Project — Complete Developer Platform',
-  ogDescription: 'Discover CodeHelper: 100+ tools, 800+ resources, 400+ APIs. Privacy-first, open-source, and built for developers.',
+  title: 'CodeHelper: Nuxt 3 Architecture & Open Source Developer Platform',
+  description: 'Technical deep-dive into CodeHelper: A high-performance developer toolkit built with Nuxt 3, Tailwind CSS, and client-side logic. Open source and privacy-engineered.',
+  ogTitle: 'CodeHelper Project — Technical Architecture & Roadmap',
+  ogDescription: 'Discover the tech stack behind CodeHelper: 100+ tools built for zero-latency, client-side execution.',
   ogImage: '/images/codehelper_OGIMAGE.webp',
-  ogUrl: 'https://codehelper.me/project',
+  ogUrl: 'https://codehelper.me/project/',
   twitterCard: 'summary_large_image',
   twitterTitle: 'CodeHelper Project — Your Complete Developer Toolkit',
   twitterDescription: 'Privacy-first tools, curated resources, and public APIs — all in one open-source platform for developers.',
@@ -319,7 +320,7 @@ useHead({
         '@context': 'https://schema.org',
         '@type': 'WebPage',
         name: 'CodeHelper Project',
-        url: 'https://codehelper.me/project',
+        url: 'https://codehelper.me/project/',
         description: 'CodeHelper is an open-source developer platform with 100+ privacy-first tools, 800+ curated resources, and 400+ public APIs. Everything runs in your browser — fast, private, and free forever.',
         image: 'https://codehelper.me/images/codehelper_OGIMAGE.webp'
       })

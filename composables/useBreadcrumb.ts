@@ -21,8 +21,8 @@ export function useBreadcrumb(
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://codehelper.me'
-      }
+        item: 'https://codehelper.me/'
+      },
     ]
   }
 

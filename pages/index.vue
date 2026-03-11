@@ -302,7 +302,7 @@ useSeoMeta({
   ogTitle: 'CodeHelper – Free Online Developer Tools, Resources & APIs',
   ogDescription: '100+ free developer tools, 800+ curated resources, and 400+ public APIs. Format JSON, generate CSS, compress images, and more. Privacy-first, no signup, runs in your browser.',
   ogImage: '/images/codehelper_OGIMAGE.webp',
-  ogUrl: 'https://codehelper.me',
+  ogUrl: 'https://codehelper.me/',
   ogSiteName: 'CodeHelper',
   ogType: 'website',
   twitterCard: 'summary_large_image',
@@ -312,13 +312,13 @@ useSeoMeta({
   robots: 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1',
   author: 'CodeHelper',
   themeColor: '#111827',
-  canonical: 'https://codehelper.me',
+  canonical: 'https://codehelper.me/',
   keywords: 'developer tools, online code tools, json formatter, css minifier, ui libraries, public apis, free resources, open source'
 })
 
 useHead({
   link: [
-    { rel: 'canonical', href: 'https://codehelper.me' }
+    { rel: 'canonical', href: 'https://codehelper.me/' }
   ],
   script: [
     {
@@ -329,12 +329,12 @@ useHead({
           '@context': 'https://schema.org',
           '@type': 'WebSite',
           name: 'CodeHelper',
-          url: 'https://codehelper.me',
+          url: 'https://codehelper.me/',
           description: 'Free developer tools, curated resources, and public APIs directory',
           image: 'https://codehelper.me/images/codehelper_OGIMAGE.webp',
           potentialAction: {
             '@type': 'SearchAction',
-            target: 'https://codehelper.me/tools?q={search_term_string}',
+            target: 'https://codehelper.me/tools/?q={search_term_string}',
             'query-input': 'required name=search_term_string'
           }
         },
@@ -342,7 +342,7 @@ useHead({
           '@context': 'https://schema.org',
           '@type': 'Organization',
           name: 'CodeHelper',
-          url: 'https://codehelper.me',
+          url: 'https://codehelper.me/',
           logo: {
             '@type': 'ImageObject',
             url: 'https://codehelper.me/images/codehelper_logo_500_500_no_bg.webp'

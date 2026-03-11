@@ -298,7 +298,7 @@ let debounceTimer: ReturnType<typeof setTimeout> | null = null
 
 function applyTemplate(type: string) {
   if (type === 'url') {
-    content.value = 'https://codehelper.me'
+    content.value = 'https://codehelper.me/'
   } else if (type === 'text') {
     content.value = 'Hello World! This is a QR code.'
   } else if (type === 'wifi') {
