@@ -2168,6 +2168,90 @@ export const articles: Record<string, Article> = {
         }
     },
 
+    'ai-job-anxiety': {
+        title: 'The Real Problem Is Not Future Job Loss. It Is Today\'s Anxiety.',
+        description:
+            'Matt Shumer\'s viral essay "Something Big Is Happening" shocked millions. But beyond the debate about future job loss, a more immediate crisis is already unfolding: the psychological damage of anticipatory AI anxiety on workers today.',
+        category: 'ethics',
+        component: () =>
+            import('~/components/articles/ethics/AIJobAnxiety.vue') as Promise<{ default: DefineComponent }>,
+        seo: {
+            title: `AI Job Anxiety: The Real Crisis Is Today, Not Tomorrow – ${BRAND}`,
+            description:
+                'Analyzing Matt Shumer\'s viral essay on AI and jobs alongside Pew, Mercer, and PMC research showing that worker anxiety about AI is already causing measurable psychological harm, burnout, and productivity loss today.',
+            ogImage: OG,
+            keywords:
+                'ai job anxiety, matt shumer something big is happening, ai job loss fear, ai worker stress, FOBO fear of becoming obsolete, ai burnout, anticipatory grief ai, ai future of work, daron acemoglu ai, david autor ai jobs, ai white collar jobs',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'TechArticle',
+                headline: 'The Real Problem Is Not Future Job Loss. It Is Today\'s Anxiety.',
+                description:
+                    'Beyond the debate over AI replacing jobs, peer-reviewed research and major surveys document a present-tense crisis: anticipatory grief, pre-traumatic stress, and burnout already affecting millions of workers responding to AI\'s rise.',
+                author: { '@type': 'Person', name: 'Gianluca' },
+                publisher: {
+                    '@type': 'Organization',
+                    name: 'CodeHelper',
+                    logo: { '@type': 'ImageObject', url: OG }
+                },
+                image: OG,
+                datePublished: '2026-03-13',
+                dateModified: '2026-03-13',
+                mainEntityOfPage: {
+                    '@type': 'WebPage',
+                    '@id': 'https://codehelper.me/articles/ai-job-anxiety/'
+                },
+                articleSection: 'Ethics',
+                about: [
+                    'AI and Employment',
+                    'Worker Anxiety',
+                    'Future of Work',
+                    'AI Ethics',
+                    'Labor Market',
+                    'Mental Health'
+                ],
+                keywords: [
+                    'AI job anxiety',
+                    'Matt Shumer',
+                    'FOBO',
+                    'anticipatory grief',
+                    'AI burnout',
+                    'future of work',
+                    'Daron Acemoglu',
+                    'David Autor',
+                    'labor market',
+                    'AI ethics'
+                ],
+                proficiencyLevel: 'General'
+            },
+            faqSchema: {
+                '@type': 'FAQPage',
+                mainEntity: [
+                    {
+                        '@type': 'Question',
+                        name: 'What is Matt Shumer\'s essay "Something Big Is Happening"?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'It is a nearly 5,000-word essay published in February 2026 by Matt Shumer, CEO of HyperWrite AI, that accumulated over 73 million views across platforms. The essay argues that AI has crossed a qualitative threshold and that jobs performed on screens are at serious risk in the medium term, citing Anthropic CEO Dario Amodei\'s estimate that 50% of entry-level white-collar jobs could be eliminated within one to five years.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What is FOBO and how does AI contribute to it?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'FOBO stands for Fear of Becoming Obsolete, a phenomenon named by the World Economic Forum. It describes the creeping anxiety that one\'s skills are degrading in real time as AI improves. Research shows 64% of workers are "job hugging," staying in unsatisfying roles because they fear they cannot compete elsewhere in an AI-shifting job market.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'Is AI actually eliminating jobs right now?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'The overall labor market shows no aggregate disruption in the 33 months since ChatGPT\'s release, according to Yale Budget Lab. However, specific sectors such as marketing consulting, graphic design, office administration, and call centers show measurable employment decline below trend. The picture is uneven: no crisis overall, but real contraction in exposed areas.' }
+                    },
+                    {
+                        '@type': 'Question',
+                        name: 'What does research say about the psychological impact of AI on workers today?',
+                        acceptedAnswer: { '@type': 'Answer', text: 'Peer-reviewed studies document anticipatory grief and pre-traumatic stress appearing in workers before any actual displacement. BCG research (2026) identified "AI brain fry" showing that sustained AI-assisted work leads to burnout, with high-burnout teams showing 18 to 20% lower productivity. Pew Research found 52% of U.S. workers are worried about AI\'s future impact, and Mercer data shows concern about job loss jumping from 28% to 40% between 2024 and 2026.' }
+                    }
+                ]
+            }
+        }
+    },
+
     'hacking-ai-search-truth': {
         title: 'Hacking AI in 20 Minutes: The Slow Death of Trustworthy Search',
         description:
