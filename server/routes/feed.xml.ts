@@ -319,6 +319,30 @@ const articlesData: Record<string, Omit<Article, 'component'>> = {
         author: { name: 'Gianluca' }
       }
     }
+  },
+  'parker-solar-probe': {
+    title: 'Touching the Sun: How Parker Solar Probe\'s Technology Could Power Our Future',
+    description: 'How the technologies developed to survive the Sun (carbon heat shields, plasma physics, autonomous systems) have direct applications on Earth, from fusion reactors to space weather forecasting.',
+    category: 'science',
+    seo: {
+      structuredData: {
+        datePublished: '2026-03-13',
+        dateModified: '2026-03-13',
+        author: { name: 'Gianluca' }
+      }
+    }
+  },
+  'ai-job-anxiety': {
+    title: 'The Real Problem Is Not Future Job Loss. It Is Today\'s Anxiety.',
+    description: 'Matt Shumer\'s viral essay "Something Big Is Happening" shocked millions. But beyond the debate about future job loss, a more immediate crisis is already unfolding: the psychological damage of anticipatory AI anxiety on workers today.',
+    category: 'ethics',
+    seo: {
+      structuredData: {
+        datePublished: '2026-03-13',
+        dateModified: '2026-03-13',
+        author: { name: 'Gianluca' }
+      }
+    }
   }
 }
 

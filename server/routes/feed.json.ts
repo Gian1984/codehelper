@@ -323,6 +323,32 @@ const articlesData: Record<string, Omit<Article, 'component'>> = {
       },
       keywords: 'openai pentagon deal, anthropic ai safety, dario amodei interview, sam altman pentagon, quitgpt boycott, autonomous weapons ai, ai ethics showdown, maduro raid ai, supply chain risk anthropic'
     }
+  },
+  'parker-solar-probe': {
+    title: 'Touching the Sun: How Parker Solar Probe\'s Technology Could Power Our Future',
+    description: 'How the technologies developed to survive the Sun (carbon heat shields, plasma physics, autonomous systems) have direct applications on Earth, from fusion reactors to space weather forecasting.',
+    category: 'science',
+    seo: {
+      structuredData: {
+        datePublished: '2026-03-13',
+        dateModified: '2026-03-13',
+        author: { name: 'Gianluca' }
+      },
+      keywords: 'parker solar probe, solar probe technology, fusion reactor materials, plasma physics, carbon heat shield, space technology earth applications, nuclear fusion, ITER, solar wind, space weather'
+    }
+  },
+  'ai-job-anxiety': {
+    title: 'The Real Problem Is Not Future Job Loss. It Is Today\'s Anxiety.',
+    description: 'Matt Shumer\'s viral essay "Something Big Is Happening" shocked millions. But beyond the debate about future job loss, a more immediate crisis is already unfolding: the psychological damage of anticipatory AI anxiety on workers today.',
+    category: 'ethics',
+    seo: {
+      structuredData: {
+        datePublished: '2026-03-13',
+        dateModified: '2026-03-13',
+        author: { name: 'Gianluca' }
+      },
+      keywords: 'ai job anxiety, matt shumer something big is happening, ai job loss fear, ai worker stress, FOBO fear of becoming obsolete, ai burnout, anticipatory grief ai, ai future of work, daron acemoglu ai, david autor ai jobs'
+    }
   }
 }
 
