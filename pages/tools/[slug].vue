@@ -122,7 +122,7 @@ useHead({
     },
     {
       property: 'og:image',
-      content: toolData.seo?.ogImage || '/images/codehelper_logo.webp'
+      content: `https://codehelper.me/og-image.php?title=${encodeURIComponent(toolData.title)}&type=tool`
     },
     {
       property: 'og:url',

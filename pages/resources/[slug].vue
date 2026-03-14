@@ -199,7 +199,7 @@ useSeoMeta({
     if (!categoryMeta.value) return 'Category not found'
     return categoryMeta.value.seo?.description || categoryMeta.value.description
   },
-  ogImage: () => categoryMeta.value?.seo?.ogImage || '/images/codehelper_OGIMAGE.webp',
+  ogImage: () => `https://codehelper.me/og-image.php?title=${encodeURIComponent(categoryMeta.value?.title || 'Resources')}&type=resource`,
   ogUrl: () => `https://codehelper.me/resources/${slug}/`,
   twitterCard: 'summary_large_image',
   keywords: () => categoryMeta.value?.seo?.keywords

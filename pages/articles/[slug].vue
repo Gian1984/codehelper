@@ -155,7 +155,7 @@ useHead({
     { name: 'keywords', content: articleData.seo?.keywords || '' },
     { property: 'og:title', content: articleData.seo?.title || articleData.title },
     { property: 'og:description', content: articleData.seo?.description || articleData.description },
-    { property: 'og:image', content: articleData.seo?.ogImage || '/images/codehelper_blog_OG.webp' },
+    { property: 'og:image', content: `https://codehelper.me/og-image.php?title=${encodeURIComponent(articleData.title)}&type=article` },
     { property: 'og:url', content: `https://codehelper.me/articles/${slug}/` },
     { property: 'og:type', content: 'article' },
     ...(publishedISO.value ? [{ property: 'article:published_time', content: publishedISO.value }] : []),
