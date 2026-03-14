@@ -142,10 +142,19 @@ export default defineNuxtConfig({
     // Vite configuration to suppress some build warnings
     vite: {
         build: {
+            chunkSizeWarningLimit: 800,
             rollupOptions: {
                 onwarn(warning, warn) {
                     // Suppress terser/rollup comment annotation warnings
                     if (warning.message && warning.message.includes('annotation that Rollup cannot interpret')) {
+                        return
+                    }
+                    // Suppress module externalized warnings (clean-css Node.js modules)
+                    if (warning.message && warning.message.includes('has been externalized for browser compatibility')) {
+                        return
+                    }
+                    // Suppress sourcemap warnings from Nuxt internal plugins
+                    if (warning.message && warning.message.includes('Sourcemap is likely to be incorrect')) {
                         return
                     }
                     warn(warning)

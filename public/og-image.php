@@ -66,7 +66,7 @@ if (file_exists($logoPath)) {
         $logoY = 50;
         imagecopy($image, $logoResized, $logoX, $logoY, 0, 0, $newLogoW, $newLogoH);
 
-        $logoBottomY = $logoY + $newLogoH + 30;
+        $logoBottomY = $logoY + $newLogoH + 10;
 
         imagedestroy($logo);
         imagedestroy($logoResized);
