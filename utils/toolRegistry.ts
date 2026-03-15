@@ -2664,6 +2664,315 @@ export const tools: Record<string, Tool> = {
                 </section>
             `
         }
+    },
+
+    'json-schema-generator': {
+        title: 'JSON Schema Generator',
+        description: 'Generate JSON Schema (Draft 7) from any JSON object or array with recursive type detection and required fields.',
+        category: 'generator',
+        component: () =>
+            import('~/components/tools/generator/JsonSchemaGenerator.vue') as Promise<{ default: DefineComponent }>,
+        seo: {
+            title: `Free JSON Schema Generator Online – ${BRAND}`,
+            description:
+                'Generate JSON Schema (Draft 7) from any JSON instantly. Detects types, nested objects, arrays, required fields. Free online tool for API developers.',
+            ogImage: OG,
+            keywords:
+                'json schema generator, generate json schema, json schema from json, json schema draft 7, json to schema, json schema builder, json schema creator, json schema tool',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'JSON Schema Generator',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    'Generate JSON Schema Draft 7',
+                    'Recursive type detection',
+                    'Integer vs number distinction',
+                    'Nested object support',
+                    'Array item type merging',
+                    'Required fields toggle',
+                    'Description placeholders',
+                    'Custom schema title',
+                    'Download .schema.json',
+                    'Client-side processing'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '18' }
+            },
+            seoContent: `
+                <section>
+                    <h2>What is a JSON Schema Generator?</h2>
+                    <p>A <strong>JSON Schema generator</strong> is a tool that takes a sample JSON object or array and automatically creates a JSON Schema definition that describes its structure. JSON Schema is a declarative language for validating the format, types, and constraints of JSON data: widely used in API documentation (OpenAPI/Swagger), form validation, and data pipeline contracts.</p>
+                    <p>CodeHelper's <strong>JSON Schema Generator</strong> produces Draft 7 schemas with recursive type detection for nested objects, arrays with merged item types, integer vs number distinction, and optional required fields and description placeholders.</p>
+
+                    <h3>Key Features</h3>
+                    <ul>
+                        <li><strong>Draft 7 Output</strong>: Generates schemas compliant with the JSON Schema Draft 7 specification.</li>
+                        <li><strong>Type Detection</strong>: Identifies string, number, integer, boolean, null, object, and array types automatically.</li>
+                        <li><strong>Nested Objects</strong>: Recursively builds schema definitions for deeply nested structures.</li>
+                        <li><strong>Array Merging</strong>: Analyzes all items in an array to build a unified items schema.</li>
+                        <li><strong>Required Fields</strong>: Toggle to mark all present properties as required.</li>
+                    </ul>
+
+                    <h3>How to use the JSON Schema Generator</h3>
+                    <ol>
+                        <li>Paste a sample JSON object or array into the input.</li>
+                        <li>Optionally set a schema title and toggle required/description options.</li>
+                        <li>Click <strong>Generate</strong> to produce the JSON Schema.</li>
+                        <li>Copy or download the schema for use in your project.</li>
+                    </ol>
+
+                    <p>Whether you are documenting REST APIs, building form validators, or setting up data contracts between services, this free JSON Schema generator saves you from writing schemas by hand.</p>
+                </section>
+            `
+        }
+    },
+
+    'cron-parser': {
+        title: 'Cron Expression Parser',
+        description: 'Parse cron expressions into human-readable descriptions with field breakdown and next 10 execution times.',
+        category: 'dev',
+        component: () =>
+            import('~/components/tools/dev/CronParser.vue') as Promise<{ default: DefineComponent }>,
+        seo: {
+            title: `Free Cron Expression Parser & Explainer Online – ${BRAND}`,
+            description:
+                'Parse any cron expression into a human-readable description. View field breakdown, next 10 run times, and validate syntax. Free online cron parser.',
+            ogImage: OG,
+            keywords:
+                'cron parser, cron expression explainer, crontab parser, cron to english, cron next run, cron validator, parse cron expression, cron schedule explainer, crontab decoder',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'Cron Expression Parser',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    'Parse cron expressions to plain English',
+                    'Visual field breakdown',
+                    'Next 10 execution times',
+                    'Expression validation',
+                    'Quick example presets',
+                    'Supports ranges, steps, lists',
+                    'Copy description',
+                    'Client-side processing'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '15' }
+            },
+            seoContent: `
+                <section>
+                    <h2>What is a Cron Expression Parser?</h2>
+                    <p>A <strong>cron expression parser</strong> is a tool that takes a five-field cron schedule expression and translates it into a human-readable description, showing you exactly when and how often the job will run. Cron syntax uses asterisks, slashes, ranges, and comma-separated lists across five fields (minute, hour, day of month, month, day of week) which can be difficult to read at a glance.</p>
+                    <p>CodeHelper's <strong>Cron Expression Parser</strong> breaks down each field visually, generates a plain-English description, validates the syntax, and computes the next 10 execution times from the current moment.</p>
+
+                    <h3>Key Features</h3>
+                    <ul>
+                        <li><strong>Human-Readable Output</strong>: Converts cryptic cron syntax into clear, plain-English descriptions.</li>
+                        <li><strong>Field Breakdown</strong>: Visual display of each of the 5 cron fields with individual explanations.</li>
+                        <li><strong>Next 10 Runs</strong>: Computes upcoming execution dates and times so you can verify the schedule.</li>
+                        <li><strong>Validation</strong>: Catches invalid values and syntax errors with clear error messages.</li>
+                        <li><strong>Quick Examples</strong>: Click preset expressions to instantly parse common schedules.</li>
+                    </ul>
+
+                    <h3>How to use the Cron Parser</h3>
+                    <ol>
+                        <li>Enter a cron expression (e.g., <code>*/5 * * * *</code>) or click a quick example.</li>
+                        <li>Click <strong>Parse</strong> to analyze the expression.</li>
+                        <li>Review the field breakdown and human-readable description.</li>
+                        <li>Check the next 10 execution times to verify correctness.</li>
+                    </ol>
+
+                    <p>Whether you are debugging crontab entries, reviewing CI/CD schedules, or understanding inherited cron jobs, this free parser makes cron expressions instantly understandable.</p>
+                </section>
+            `
+        }
+    },
+
+    'json-to-csv': {
+        title: 'JSON to CSV',
+        description: 'Convert JSON arrays of objects into CSV format with custom delimiters, nested object flattening, and download.',
+        category: 'converter',
+        component: () =>
+            import('~/components/tools/converter/JsonToCsv.vue') as Promise<{ default: DefineComponent }>,
+        seo: {
+            title: `Free JSON to CSV Converter Online – ${BRAND}`,
+            description:
+                'Convert JSON arrays to CSV instantly. Custom delimiters, flatten nested objects, include headers. Free online tool, no signup required.',
+            ogImage: OG,
+            keywords:
+                'json to csv, convert json to csv, json to csv online, json csv converter, json array to csv, json to spreadsheet, export json csv, json to excel',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'JSON to CSV Converter',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    'Convert JSON arrays to CSV',
+                    'Custom delimiter (comma, semicolon, tab)',
+                    'Flatten nested objects with dot notation',
+                    'Include/exclude header row',
+                    'Proper CSV escaping',
+                    'Row and column statistics',
+                    'Download .csv file',
+                    'Client-side processing'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '21' }
+            },
+            seoContent: `
+                <section>
+                    <h2>What is a JSON to CSV Converter?</h2>
+                    <p>A <strong>JSON to CSV converter</strong> is a tool that transforms a JSON array of objects into comma-separated values (CSV) format: the universal tabular data format supported by Excel, Google Sheets, databases, and data analysis tools. JSON is great for APIs and web apps, but when you need to analyze data in a spreadsheet or import it into a database, CSV is the standard format.</p>
+                    <p>CodeHelper's <strong>JSON to CSV Converter</strong> handles nested objects (flattening them with dot notation), custom delimiters, proper CSV escaping for values containing commas or quotes, and generates a downloadable .csv file.</p>
+
+                    <h3>Key Features</h3>
+                    <ul>
+                        <li><strong>Auto Column Detection</strong>: Extracts all unique keys from the JSON array as CSV columns.</li>
+                        <li><strong>Flatten Nested Objects</strong>: Converts nested objects into flat columns using dot notation (e.g., address.city).</li>
+                        <li><strong>Custom Delimiters</strong>: Choose comma, semicolon, or tab as the field separator.</li>
+                        <li><strong>Proper Escaping</strong>: Values containing delimiters, quotes, or newlines are properly escaped.</li>
+                        <li><strong>Download CSV</strong>: Export the converted data as a .csv file.</li>
+                    </ul>
+
+                    <h3>How to use the JSON to CSV Converter</h3>
+                    <ol>
+                        <li>Paste your JSON array of objects into the input.</li>
+                        <li>Configure delimiter and flattening options.</li>
+                        <li>Click <strong>Convert</strong> to generate the CSV output.</li>
+                        <li>Copy or download the result.</li>
+                    </ol>
+
+                    <p>Whether you are exporting API data for analysis, preparing database imports, or converting logs to spreadsheet format, this free tool converts JSON to CSV in seconds.</p>
+                </section>
+            `
+        }
+    },
+
+    'csv-to-json': {
+        title: 'CSV to JSON',
+        description: 'Convert CSV data to JSON arrays with auto-detection, quoted field support, file upload, and type inference.',
+        category: 'converter',
+        component: () =>
+            import('~/components/tools/converter/CsvToJson.vue') as Promise<{ default: DefineComponent }>,
+        seo: {
+            title: `Free CSV to JSON Converter Online – ${BRAND}`,
+            description:
+                'Convert CSV to JSON arrays instantly. Auto-detect delimiters, handle quoted fields, infer types. Upload files or paste. Free online tool.',
+            ogImage: OG,
+            keywords:
+                'csv to json, convert csv to json, csv json converter, csv to json online, csv file to json, csv to json array, csv parser, csv to javascript',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'CSV to JSON Converter',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    'Convert CSV to JSON arrays',
+                    'Auto-detect delimiter',
+                    'Handle quoted fields and escaped quotes',
+                    'File upload support',
+                    'Type inference (number, boolean, null)',
+                    'First row as headers toggle',
+                    'Trim whitespace option',
+                    'Download .json file',
+                    'Client-side processing'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '17' }
+            },
+            seoContent: `
+                <section>
+                    <h2>What is a CSV to JSON Converter?</h2>
+                    <p>A <strong>CSV to JSON converter</strong> is a tool that transforms comma-separated values (CSV) data into JSON format: the standard data format for web APIs, JavaScript applications, and modern databases. CSV files from spreadsheets, databases, and legacy systems often need to be converted to JSON for use in web applications and APIs.</p>
+                    <p>CodeHelper's <strong>CSV to JSON Converter</strong> auto-detects the delimiter (comma, semicolon, or tab), handles quoted fields with embedded commas and newlines, infers data types (numbers, booleans, null), and supports direct file upload.</p>
+
+                    <h3>Key Features</h3>
+                    <ul>
+                        <li><strong>Auto-Detect Delimiter</strong>: Automatically identifies whether your CSV uses commas, semicolons, or tabs.</li>
+                        <li><strong>Quoted Field Support</strong>: Correctly parses fields wrapped in quotes, including escaped quotes and embedded delimiters.</li>
+                        <li><strong>Type Inference</strong>: Converts numeric strings to numbers, "true"/"false" to booleans, and empty values to null.</li>
+                        <li><strong>File Upload</strong>: Upload .csv files directly from your computer.</li>
+                        <li><strong>Download JSON</strong>: Export the converted data as a .json file.</li>
+                    </ul>
+
+                    <h3>How to use the CSV to JSON Converter</h3>
+                    <ol>
+                        <li>Paste your CSV data or upload a .csv file.</li>
+                        <li>Configure delimiter and header options.</li>
+                        <li>Click <strong>Convert</strong> to generate the JSON output.</li>
+                        <li>Copy or download the result.</li>
+                    </ol>
+
+                    <p>Whether you are importing spreadsheet data into a web app, consuming legacy data exports, or building data pipelines, this free CSV to JSON converter handles all the edge cases of CSV parsing.</p>
+                </section>
+            `
+        }
+    },
+
+    'regex-visualizer': {
+        title: 'Regex Visualizer',
+        description: 'Visualize, explain, and test regular expressions with token breakdown, match highlighting, and common presets.',
+        category: 'dev',
+        component: () =>
+            import('~/components/tools/dev/RegexVisualizer.vue') as Promise<{ default: DefineComponent }>,
+        seo: {
+            title: `Free Regex Visualizer & Explainer Online – ${BRAND}`,
+            description:
+                'Visualize and explain regular expressions token by token. Test against strings with match highlighting. Common pattern presets. Free online regex tool.',
+            ogImage: OG,
+            keywords:
+                'regex visualizer, regex explainer, regex breakdown, regex tester, visualize regex, explain regex, regex debugger, regex cheat sheet, regex patterns, regex tool online',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'Regex Visualizer & Explainer',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    'Token-by-token regex breakdown',
+                    'Color-coded token types',
+                    'Plain English explanations',
+                    'Test string with match highlighting',
+                    'Flag selection (g, i, m, s)',
+                    'Common pattern presets',
+                    'Copy explanation',
+                    'Client-side processing'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '24' }
+            },
+            seoContent: `
+                <section>
+                    <h2>What is a Regex Visualizer?</h2>
+                    <p>A <strong>regex visualizer</strong> is a tool that breaks down a regular expression into its individual tokens and explains each one in plain English. Regular expressions are powerful but notoriously difficult to read: even experienced developers struggle with complex patterns. A visualizer makes any regex instantly understandable by showing what each character, quantifier, group, and character class does.</p>
+                    <p>CodeHelper's <strong>Regex Visualizer & Explainer</strong> tokenizes your pattern, color-codes each token by type (character classes, quantifiers, groups, anchors, literals), and lets you test the pattern against sample strings with match highlighting.</p>
+
+                    <h3>Key Features</h3>
+                    <ul>
+                        <li><strong>Token Breakdown</strong>: Every part of the regex is listed with a plain-English explanation.</li>
+                        <li><strong>Color Coding</strong>: Token types are color-coded — blue for character classes, yellow for quantifiers, purple for groups, cyan for anchors.</li>
+                        <li><strong>Match Testing</strong>: Paste a test string and see matches highlighted in real-time with match count.</li>
+                        <li><strong>Flag Support</strong>: Toggle global, case-insensitive, multiline, and dotAll flags.</li>
+                        <li><strong>Common Presets</strong>: One-click loading of common patterns for email, URL, phone, IP, date, and hex color.</li>
+                    </ul>
+
+                    <h3>How to use the Regex Visualizer</h3>
+                    <ol>
+                        <li>Enter a regex pattern or click a common preset.</li>
+                        <li>Toggle flags as needed (g, i, m, s).</li>
+                        <li>Click <strong>Analyze</strong> to see the token breakdown.</li>
+                        <li>Type a test string to see matches highlighted.</li>
+                        <li>Copy the explanation for documentation.</li>
+                    </ol>
+
+                    <p>Whether you are learning regex, reviewing someone else's patterns, or debugging a complex expression, this free regex visualizer makes regular expressions human-readable.</p>
+                </section>
+            `
+        }
     }
 }
 
