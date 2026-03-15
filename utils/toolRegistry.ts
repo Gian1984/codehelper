@@ -2973,6 +2973,507 @@ export const tools: Record<string, Tool> = {
                 </section>
             `
         }
+    },
+
+    'diff-checker': {
+        title: 'Diff Checker',
+        description: 'Compare two texts or code snippets side by side and highlight the differences with LCS-based diffing.',
+        category: 'dev',
+        component: () =>
+            import('~/components/tools/dev/DiffChecker.vue') as Promise<{ default: DefineComponent }>,
+        seo: {
+            title: `Free Diff Checker Online: Compare Text & Code – ${BRAND}`,
+            description:
+                'Compare two texts or code snippets and see the differences highlighted. Unified and side-by-side views, ignore whitespace/case. Free online diff tool.',
+            ogImage: OG,
+            keywords:
+                'diff checker, text compare, code diff, compare files, online diff tool, text difference, side by side diff, unified diff, compare text online, diff viewer',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'Diff Checker',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    'Compare two texts or code snippets',
+                    'Unified diff view',
+                    'Side-by-side comparison',
+                    'Line-by-line highlighting',
+                    'Ignore whitespace option',
+                    'Ignore case option',
+                    'Added/removed/unchanged line counts',
+                    'Swap inputs',
+                    'Copy diff output',
+                    'Client-side processing'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '45' }
+            },
+            seoContent: `
+                <section>
+                    <h2>What is a Diff Checker?</h2>
+                    <p>A <strong>diff checker</strong> is a tool that compares two pieces of text or code and highlights the differences between them. Developers use diff tools daily to review code changes, compare configuration files, and understand what changed between two versions of a document.</p>
+                    <p>CodeHelper's <strong>Diff Checker</strong> uses an LCS (Longest Common Subsequence) algorithm to produce accurate diffs with line-level granularity, supporting both unified and side-by-side views.</p>
+
+                    <h3>Key Features</h3>
+                    <ul>
+                        <li><strong>Unified View</strong>: See additions and removals in a single stream with +/- prefixes and color coding.</li>
+                        <li><strong>Side-by-Side View</strong>: Compare original and modified texts in parallel columns.</li>
+                        <li><strong>Ignore Options</strong>: Optionally ignore leading/trailing whitespace or case differences.</li>
+                        <li><strong>Statistics</strong>: See how many lines were added, removed, and unchanged.</li>
+                        <li><strong>Swap Inputs</strong>: Quickly reverse the comparison direction.</li>
+                    </ul>
+
+                    <h3>How to use the Diff Checker</h3>
+                    <ol>
+                        <li>Paste the original text in the left panel.</li>
+                        <li>Paste the modified text in the right panel.</li>
+                        <li>Click <strong>Compare</strong> to see the differences.</li>
+                        <li>Toggle between unified and side-by-side views.</li>
+                        <li>Copy the diff output for documentation or code review.</li>
+                    </ol>
+
+                    <p>Whether you are reviewing pull requests, comparing API responses, or tracking configuration changes, this free diff checker makes differences instantly visible.</p>
+                </section>
+            `
+        }
+    },
+
+    'ai-token-counter': {
+        title: 'AI Token Counter',
+        description: 'Estimate token count and API cost for GPT-4, Claude, Gemini, and Llama models with live counting.',
+        category: 'dev',
+        component: () =>
+            import('~/components/tools/dev/AiTokenCounter.vue') as Promise<{ default: DefineComponent }>,
+        seo: {
+            title: `Free AI Token Counter: GPT-4, Claude, Gemini – ${BRAND}`,
+            description:
+                'Count tokens and estimate API costs for GPT-4o, Claude Opus/Sonnet/Haiku, Gemini, Llama. Live counting, context window usage. Free online token counter.',
+            ogImage: OG,
+            keywords:
+                'ai token counter, gpt token counter, claude token counter, count tokens, openai tokens, anthropic tokens, token estimator, api cost calculator, llm token counter, gemini tokens',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'AI Token Counter',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    'Token estimation for GPT-4o, GPT-4 Turbo, GPT-3.5',
+                    'Token estimation for Claude Opus, Sonnet, Haiku',
+                    'Gemini 1.5 Pro and Llama 3 support',
+                    'Input and output cost estimation',
+                    'Context window usage visualization',
+                    'Live counting as you type',
+                    'Word, character, and line statistics',
+                    'Client-side processing'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '32' }
+            },
+            seoContent: `
+                <section>
+                    <h2>What is an AI Token Counter?</h2>
+                    <p>An <strong>AI token counter</strong> is a tool that estimates how many tokens a piece of text will consume when sent to large language model APIs like OpenAI's GPT-4, Anthropic's Claude, or Google's Gemini. Tokens are the fundamental billing unit for AI APIs: each API call is priced per token, and understanding token usage is essential for cost optimization and staying within context window limits.</p>
+                    <p>CodeHelper's <strong>AI Token Counter</strong> provides instant token estimates for all major models, calculates API costs for both input and output, and shows context window usage as a visual progress bar.</p>
+
+                    <h3>Key Features</h3>
+                    <ul>
+                        <li><strong>Multi-Model Support</strong>: Estimates for GPT-4o, GPT-4 Turbo, GPT-3.5, Claude Opus/Sonnet/Haiku, Gemini 1.5 Pro, and Llama 3.</li>
+                        <li><strong>Cost Estimation</strong>: See the estimated API cost for both input (prompt) and output (completion) pricing.</li>
+                        <li><strong>Context Window</strong>: Visual progress bar showing what percentage of the model's context window your text uses.</li>
+                        <li><strong>Live Counting</strong>: Token count updates as you type for real-time feedback.</li>
+                        <li><strong>Text Statistics</strong>: Word count, character count, and line count alongside token estimates.</li>
+                    </ul>
+
+                    <h3>How to use the AI Token Counter</h3>
+                    <ol>
+                        <li>Select the AI model you are using.</li>
+                        <li>Paste your prompt, system message, or any text.</li>
+                        <li>View the estimated token count, cost, and context window usage instantly.</li>
+                    </ol>
+
+                    <p>Whether you are optimizing prompts for cost, checking context window limits, or estimating API budgets, this free token counter helps you manage AI API usage effectively.</p>
+                </section>
+            `
+        }
+    },
+
+    'social-meta-generator': {
+        title: 'Social Meta Tag Generator',
+        description: 'Generate Open Graph, Twitter Card, and SEO meta tags with live Google, Facebook, and LinkedIn previews.',
+        category: 'dev',
+        component: () =>
+            import('~/components/tools/dev/SocialMetaGenerator.vue') as Promise<{ default: DefineComponent }>,
+        seo: {
+            title: `Free Social Meta Tag Generator: OG Tags & Twitter Cards – ${BRAND}`,
+            description:
+                'Generate Open Graph and Twitter Card meta tags with live previews for Google, Facebook, and LinkedIn. Free online meta tag generator for web developers.',
+            ogImage: OG,
+            keywords:
+                'meta tag generator, og tag generator, open graph generator, twitter card generator, social media meta tags, seo meta tags, facebook og tags, linkedin preview, google preview, meta tags creator',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'Social Meta Tag Generator',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    'Open Graph meta tag generation',
+                    'Twitter Card meta tags',
+                    'Primary SEO meta tags',
+                    'Live Google search preview',
+                    'Live Facebook/LinkedIn preview',
+                    'Character count warnings',
+                    'OG type selection',
+                    'Twitter Card type selection',
+                    'Copy generated HTML',
+                    'Client-side processing'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '27' }
+            },
+            seoContent: `
+                <section>
+                    <h2>What is a Social Meta Tag Generator?</h2>
+                    <p>A <strong>social meta tag generator</strong> creates the HTML meta tags that control how your web pages appear when shared on social media platforms like Facebook, LinkedIn, and Twitter, and in Google search results. Open Graph (OG) tags define the title, description, and image for Facebook and LinkedIn, while Twitter Card tags do the same for Twitter.</p>
+                    <p>CodeHelper's <strong>Social Meta Tag Generator</strong> lets you fill in your page details and instantly see how the page will look on Google, Facebook, and LinkedIn, then copy the generated HTML meta tags.</p>
+
+                    <h3>Key Features</h3>
+                    <ul>
+                        <li><strong>Open Graph Tags</strong>: Generate og:title, og:description, og:image, og:url, and og:site_name tags.</li>
+                        <li><strong>Twitter Cards</strong>: Generate twitter:card, twitter:title, twitter:description, and twitter:image tags.</li>
+                        <li><strong>Live Previews</strong>: See how your page will appear on Google search results and social media platforms.</li>
+                        <li><strong>Character Warnings</strong>: Get warned when title (>60 chars) or description (>160 chars) exceed recommended lengths.</li>
+                        <li><strong>Copy HTML</strong>: One-click copy of all generated meta tags ready to paste into your HTML head.</li>
+                    </ul>
+
+                    <h3>How to use the Social Meta Tag Generator</h3>
+                    <ol>
+                        <li>Enter your page title, description, URL, and image URL.</li>
+                        <li>Select the OG type and Twitter Card type.</li>
+                        <li>Preview how the page will appear on Google and social media.</li>
+                        <li>Click <strong>Generate</strong> and copy the HTML meta tags.</li>
+                    </ol>
+
+                    <p>Whether you are launching a new website, optimizing existing pages for social sharing, or debugging why your links look wrong on Facebook, this free meta tag generator produces correct, standards-compliant meta tags instantly.</p>
+                </section>
+            `
+        }
+    },
+
+    'glassmorphism-generator': {
+        title: 'Glassmorphism Generator',
+        description: 'Create frosted glass CSS effects with live preview, customizable blur, opacity, and border controls.',
+        category: 'css',
+        component: () =>
+            import('~/components/tools/css/GlassmorphismGenerator.vue') as Promise<{ default: DefineComponent }>,
+        seo: {
+            title: `Free Glassmorphism CSS Generator Online – ${BRAND}`,
+            description:
+                'Create beautiful frosted glass effects with CSS. Customize blur, opacity, border, and shadow with live preview. Copy the CSS code instantly. Free online tool.',
+            ogImage: OG,
+            keywords:
+                'glassmorphism generator, glass effect css, frosted glass css, backdrop filter, glassmorphism css, glass ui, glass card css, blur effect css, glassmorphism maker',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'Glassmorphism CSS Generator',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    'Live glassmorphism preview',
+                    'Adjustable blur intensity',
+                    'Opacity control',
+                    'Border radius and width',
+                    'Shadow intensity',
+                    'Custom glass color',
+                    'Multiple background presets',
+                    'Generated CSS with vendor prefixes',
+                    'Copy CSS code',
+                    'Reset to defaults'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '38' }
+            },
+            seoContent: `
+                <section>
+                    <h2>What is a Glassmorphism Generator?</h2>
+                    <p><strong>Glassmorphism</strong> is a modern UI design trend that creates a frosted glass effect using CSS <code>backdrop-filter: blur()</code> combined with semi-transparent backgrounds. The effect gives elements a translucent, glass-like appearance that lets the background show through with a beautiful blur, creating depth and visual hierarchy in user interfaces.</p>
+                    <p>CodeHelper's <strong>Glassmorphism Generator</strong> lets you customize every aspect of the glass effect: blur intensity, opacity, border radius, border width, shadow, and color. See the result in real-time on multiple gradient backgrounds and copy the production-ready CSS.</p>
+
+                    <h3>Key Features</h3>
+                    <ul>
+                        <li><strong>Live Preview</strong>: See the glass effect update in real-time on colorful gradient backgrounds.</li>
+                        <li><strong>Full Customization</strong>: Control blur, opacity, border radius, border width, shadow, and glass color with range sliders.</li>
+                        <li><strong>Multiple Backgrounds</strong>: Test the effect on 6 different gradient backgrounds.</li>
+                        <li><strong>Vendor Prefixes</strong>: Generated CSS includes <code>-webkit-backdrop-filter</code> for Safari compatibility.</li>
+                        <li><strong>Copy CSS</strong>: One-click copy of production-ready CSS code.</li>
+                    </ul>
+
+                    <h3>How to use the Glassmorphism Generator</h3>
+                    <ol>
+                        <li>Adjust the blur, opacity, and other controls to your liking.</li>
+                        <li>Pick a glass color and test on different background gradients.</li>
+                        <li>Preview the effect in the live preview panel.</li>
+                        <li>Copy the generated CSS code for your project.</li>
+                    </ol>
+
+                    <p>Whether you are designing modern dashboards, landing pages, or card-based UIs, this free glassmorphism generator helps you create stunning frosted glass effects with the right CSS in seconds.</p>
+                </section>
+            `
+        }
+    },
+
+    'mesh-gradient-generator': {
+        title: 'Mesh Gradient Generator',
+        description: 'Create beautiful multi-color mesh gradients with customizable color points, presets, and CSS export.',
+        category: 'css',
+        component: () =>
+            import('~/components/tools/css/MeshGradientGenerator.vue') as Promise<{ default: DefineComponent }>,
+        seo: {
+            title: `Free Mesh Gradient Generator Online – ${BRAND}`,
+            description:
+                'Create stunning mesh gradients with multiple color points. Randomize, use presets, adjust intensity. Copy CSS code. Free online gradient generator.',
+            ogImage: OG,
+            keywords:
+                'mesh gradient generator, mesh gradient css, multi color gradient, gradient background, gradient generator, css gradient, radial gradient, gradient maker, background gradient',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'Mesh Gradient Generator',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    'Multi-point mesh gradients',
+                    'Customizable color positions',
+                    'One-click randomize',
+                    'Beautiful preset gradients',
+                    'Adjustable intensity',
+                    'Optional grain texture',
+                    'Add/remove color points',
+                    'Live preview',
+                    'Copy CSS code',
+                    'Pure CSS output'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '41' }
+            },
+            seoContent: `
+                <section>
+                    <h2>What is a Mesh Gradient Generator?</h2>
+                    <p>A <strong>mesh gradient generator</strong> creates complex, multi-color gradient backgrounds by combining multiple radial gradients positioned at different points on the canvas. Unlike simple linear or radial gradients, mesh gradients blend multiple colors in organic, flowing patterns that create visually striking backgrounds for hero sections, landing pages, and modern UI designs.</p>
+                    <p>CodeHelper's <strong>Mesh Gradient Generator</strong> lets you add up to 6 color points, position them with X/Y controls, randomize the entire gradient, and export pure CSS code with no images required.</p>
+
+                    <h3>Key Features</h3>
+                    <ul>
+                        <li><strong>Multi-Point Colors</strong>: Add up to 6 color points with individual position controls.</li>
+                        <li><strong>Randomize</strong>: Generate harmonious random gradients with one click.</li>
+                        <li><strong>Presets</strong>: Start from curated presets like Aurora, Sunset, Ocean, Forest, Neon, and Pastel.</li>
+                        <li><strong>Grain Texture</strong>: Add optional grain/noise overlay for a more organic feel.</li>
+                        <li><strong>Pure CSS</strong>: Output uses only CSS radial gradients — no images or canvas needed.</li>
+                    </ul>
+
+                    <h3>How to use the Mesh Gradient Generator</h3>
+                    <ol>
+                        <li>Add color points and position them using X/Y sliders.</li>
+                        <li>Adjust the base color and intensity.</li>
+                        <li>Click <strong>Randomize</strong> for instant inspiration, or load a preset.</li>
+                        <li>Copy the generated CSS for your project.</li>
+                    </ol>
+
+                    <p>Whether you are designing hero sections, app backgrounds, or social media graphics, this free mesh gradient generator creates beautiful, modern gradients with pure CSS.</p>
+                </section>
+            `
+        }
+    },
+
+    'tailwind-config-generator': {
+        title: 'Tailwind Config Generator',
+        description: 'Enter brand colors and generate a ready-to-use tailwind.config.js with automatic shade generation.',
+        category: 'dev',
+        component: () =>
+            import('~/components/tools/dev/TailwindConfigGenerator.vue') as Promise<{ default: DefineComponent }>,
+        seo: {
+            title: `Free Tailwind Config Generator: Brand Colors to Config – ${BRAND}`,
+            description:
+                'Enter your brand colors and generate a complete tailwind.config.js with automatic shade scales (50-950). Preview colors and copy config. Free online tool.',
+            ogImage: OG,
+            keywords:
+                'tailwind config generator, tailwind colors, tailwind.config.js generator, tailwind custom colors, tailwind palette, tailwind shade generator, tailwind brand colors, tailwind css config',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'Tailwind Config Generator',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    'Enter brand colors by name and hex',
+                    'Auto-generate shade scales (50-950)',
+                    'Visual color palette preview',
+                    'Toggle shade generation per color',
+                    'Add multiple color groups',
+                    'Ready-to-use tailwind.config.js output',
+                    'Copy config',
+                    'Client-side processing'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '23' }
+            },
+            seoContent: `
+                <section>
+                    <h2>What is a Tailwind Config Generator?</h2>
+                    <p>A <strong>Tailwind Config Generator</strong> is a tool that takes your brand colors and automatically creates a <code>tailwind.config.js</code> configuration file with properly generated shade scales (from 50 to 950), matching the Tailwind CSS convention. Instead of manually calculating tints and shades for each brand color, you enter a hex value and the tool generates the full spectrum.</p>
+                    <p>CodeHelper's <strong>Tailwind Config Generator</strong> lets you add multiple named colors, toggle shade generation per color, preview the full palette visually, and export a ready-to-paste config file.</p>
+
+                    <h3>Key Features</h3>
+                    <ul>
+                        <li><strong>Shade Generation</strong>: Automatically creates 11 shades (50-950) from any base color, following Tailwind conventions.</li>
+                        <li><strong>Visual Preview</strong>: See the full color palette with all shades before copying.</li>
+                        <li><strong>Multiple Colors</strong>: Add as many named color groups as your brand needs (primary, secondary, accent, etc.).</li>
+                        <li><strong>Per-Color Control</strong>: Toggle shade generation on/off for each color — use a single value or a full scale.</li>
+                        <li><strong>Copy Config</strong>: One-click copy of the complete tailwind.config.js ready for your project.</li>
+                    </ul>
+
+                    <h3>How to use the Tailwind Config Generator</h3>
+                    <ol>
+                        <li>Add your brand colors with names and hex values.</li>
+                        <li>Enable shade generation for colors that need a full scale.</li>
+                        <li>Preview the generated palette.</li>
+                        <li>Click <strong>Generate</strong> and copy the config file.</li>
+                    </ol>
+
+                    <p>Whether you are starting a new Tailwind CSS project, rebranding an existing one, or creating a design system, this free config generator saves you from manually defining color scales.</p>
+                </section>
+            `
+        }
+    },
+
+    'robots-txt-generator': {
+        title: 'Robots.txt Generator',
+        description: 'Generate robots.txt files with user-agent rules, allow/disallow paths, sitemaps, and presets for common platforms.',
+        category: 'generator',
+        component: () =>
+            import('~/components/tools/generator/RobotsTxtGenerator.vue') as Promise<{ default: DefineComponent }>,
+        seo: {
+            title: `Free Robots.txt Generator Online – ${BRAND}`,
+            description:
+                'Generate robots.txt files with custom rules, presets for WordPress/Next.js, sitemap URLs. Download or copy. Free online robots.txt generator.',
+            ogImage: OG,
+            keywords:
+                'robots.txt generator, robots txt creator, generate robots.txt, robots.txt maker, robots.txt builder, search engine crawler, seo robots, disallow robots, crawl control, sitemap robots',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'Robots.txt Generator',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    'Custom user-agent rules',
+                    'Allow and disallow paths',
+                    'Crawl-delay setting',
+                    'Multiple sitemap URLs',
+                    'Quick presets (Allow All, Block All, Standard)',
+                    'WordPress preset',
+                    'Next.js / Nuxt preset',
+                    'Download robots.txt file',
+                    'Copy output',
+                    'Multiple rule groups'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '19' }
+            },
+            seoContent: `
+                <section>
+                    <h2>What is a Robots.txt Generator?</h2>
+                    <p>A <strong>robots.txt generator</strong> creates the robots.txt file that tells search engine crawlers which pages and directories on your website they are allowed to access. The robots.txt file sits at the root of your domain and uses a simple syntax with User-agent, Disallow, Allow, and Sitemap directives to control crawling behavior.</p>
+                    <p>CodeHelper's <strong>Robots.txt Generator</strong> provides a visual interface for building rules, quick presets for common platforms (WordPress, Next.js), support for multiple user-agent groups, and sitemap URL inclusion.</p>
+
+                    <h3>Key Features</h3>
+                    <ul>
+                        <li><strong>Visual Rule Builder</strong>: Add user-agents, disallow paths, and allow overrides through a clean interface.</li>
+                        <li><strong>Quick Presets</strong>: One-click presets for Allow All, Block All, Standard, WordPress, and Next.js/Nuxt configurations.</li>
+                        <li><strong>Multiple Rule Groups</strong>: Create separate rules for different crawlers (Googlebot, Bingbot, etc.).</li>
+                        <li><strong>Sitemap Integration</strong>: Add sitemap URLs so crawlers can discover your page structure.</li>
+                        <li><strong>Download File</strong>: Download the generated robots.txt file ready to upload to your server.</li>
+                    </ul>
+
+                    <h3>How to use the Robots.txt Generator</h3>
+                    <ol>
+                        <li>Choose a quick preset or build rules manually.</li>
+                        <li>Add disallow and allow paths for each user-agent.</li>
+                        <li>Add your sitemap URL(s).</li>
+                        <li>Click <strong>Generate</strong>, then copy or download the file.</li>
+                    </ol>
+
+                    <p>Whether you are launching a new website, blocking admin pages from search engines, or optimizing crawl budget, this free robots.txt generator ensures your file follows the correct syntax.</p>
+                </section>
+            `
+        }
+    },
+
+    'prompt-optimizer': {
+        title: 'Prompt Optimizer',
+        description: 'Structure and optimize AI prompts with role, context, constraints, examples, and output format templates.',
+        category: 'dev',
+        component: () =>
+            import('~/components/tools/dev/PromptOptimizer.vue') as Promise<{ default: DefineComponent }>,
+        seo: {
+            title: `Free AI Prompt Optimizer & Builder Online – ${BRAND}`,
+            description:
+                'Build structured AI prompts with role, context, constraints, examples, and output format. Templates for code review, docs, debugging. Free prompt engineering tool.',
+            ogImage: OG,
+            keywords:
+                'prompt optimizer, prompt builder, prompt engineering tool, ai prompt generator, chatgpt prompt, claude prompt, structured prompt, prompt template, few shot prompt, prompt creator',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'Prompt Optimizer',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    'Structured prompt builder',
+                    'Role, context, task sections',
+                    'Custom constraints',
+                    'Output format selection',
+                    'Few-shot examples',
+                    'Tone selection',
+                    'Pre-built templates',
+                    'Token estimation',
+                    'Copy optimized prompt',
+                    'Client-side processing'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '29' }
+            },
+            seoContent: `
+                <section>
+                    <h2>What is a Prompt Optimizer?</h2>
+                    <p>A <strong>prompt optimizer</strong> is a tool that helps you structure and format prompts for AI language models like ChatGPT, Claude, and Gemini. Well-structured prompts with clear roles, context, constraints, and output format instructions consistently produce better results than vague, unstructured requests. Prompt engineering is becoming an essential skill for developers, writers, and anyone working with AI.</p>
+                    <p>CodeHelper's <strong>Prompt Optimizer</strong> guides you through building structured prompts with sections for role definition, task description, context, constraints, few-shot examples, tone selection, and output format specification.</p>
+
+                    <h3>Key Features</h3>
+                    <ul>
+                        <li><strong>Structured Sections</strong>: Organize your prompt into Role, Context, Task, Constraints, Examples, Tone, and Output Format.</li>
+                        <li><strong>Templates</strong>: Pre-built templates for common use cases like code review, technical writing, bug fixing, SQL queries, and content creation.</li>
+                        <li><strong>Few-Shot Examples</strong>: Add input/output examples to guide the AI's behavior.</li>
+                        <li><strong>Output Format</strong>: Choose from Markdown, JSON, bullet lists, numbered lists, tables, code blocks, or custom formats.</li>
+                        <li><strong>Token Estimate</strong>: See the approximate token count of your prompt.</li>
+                    </ul>
+
+                    <h3>How to use the Prompt Optimizer</h3>
+                    <ol>
+                        <li>Select a template or start from scratch.</li>
+                        <li>Fill in the role, task, and context sections.</li>
+                        <li>Add constraints and choose the output format.</li>
+                        <li>Optionally add few-shot examples and select a tone.</li>
+                        <li>Click <strong>Build Prompt</strong> and copy the optimized prompt.</li>
+                    </ol>
+
+                    <p>Whether you are a developer using AI coding assistants, a marketer generating content, or a researcher querying LLMs, this free prompt optimizer helps you get better results from any AI model.</p>
+                </section>
+            `
+        }
     }
 }
 
