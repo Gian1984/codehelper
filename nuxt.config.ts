@@ -141,6 +141,18 @@ export default defineNuxtConfig({
 
     // Vite configuration to suppress some build warnings
     vite: {
+        optimizeDeps: {
+            include: [
+                '@vue/devtools-core',
+                '@vue/devtools-kit',
+                'web-vitals',
+                '@headlessui/vue',
+                '@heroicons/vue/20/solid',
+                '@heroicons/vue/24/outline',
+                'prismjs',
+                'prismjs/components/prism-css'
+            ]
+        },
         build: {
             chunkSizeWarningLimit: 800,
             rollupOptions: {

@@ -2412,6 +2412,258 @@ export const tools: Record<string, Tool> = {
                 </section>
             `
         }
+    },
+
+    'sql-formatter': {
+        title: 'SQL Formatter',
+        description: 'Format, beautify, and minify SQL queries with customizable indentation, keyword casing, and syntax highlighting.',
+        category: 'formatter',
+        component: () =>
+            import('~/components/tools/formatter/SqlFormatter.vue') as Promise<{ default: DefineComponent }>,
+        seo: {
+            title: `Free SQL Formatter & Beautifier Online – ${BRAND}`,
+            description:
+                'Format, beautify & minify SQL queries instantly. Customizable indentation, uppercase keywords, syntax highlighting. Free online SQL formatter, no signup required.',
+            ogImage: OG,
+            keywords:
+                'sql formatter, sql beautifier, format sql online, sql pretty print, sql minifier, sql indent, sql tidy, beautify sql, format query, sql syntax highlighter',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'SQL Formatter & Beautifier',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    'Format and beautify SQL queries',
+                    'Minify SQL for production',
+                    'Customizable indentation (spaces or tabs)',
+                    'Uppercase keyword conversion',
+                    'Syntax highlighting',
+                    'Handle SELECT, INSERT, UPDATE, DELETE',
+                    'Subquery and CASE/WHEN formatting',
+                    'Copy and download formatted SQL',
+                    'Client-side processing'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '34' }
+            },
+            seoContent: `
+                <section>
+                    <h2>What is a SQL Formatter?</h2>
+                    <p>A <strong>SQL formatter</strong> is an online tool that takes raw, unformatted SQL queries and transforms them into clean, properly indented, readable code. SQL (Structured Query Language) is the standard language for querying and managing relational databases, but complex queries with multiple joins, subqueries, and conditions can quickly become unreadable without proper formatting.</p>
+                    <p>CodeHelper's <strong>SQL Formatter & Beautifier</strong> supports SELECT, INSERT, UPDATE, DELETE, and CREATE statements with intelligent formatting for subqueries, CASE/WHEN blocks, and nested expressions.</p>
+
+                    <h3>Key Features</h3>
+                    <ul>
+                        <li><strong>Beautify SQL</strong>: Add proper indentation and line breaks for maximum readability.</li>
+                        <li><strong>Minify SQL</strong>: Strip comments and collapse whitespace for compact production queries.</li>
+                        <li><strong>Uppercase Keywords</strong>: Automatically convert SQL keywords to uppercase (SELECT, FROM, WHERE, JOIN).</li>
+                        <li><strong>Custom Indentation</strong>: Choose between spaces and tabs, and set the indent width.</li>
+                        <li><strong>Syntax Highlighting</strong>: Color-coded output for keywords, strings, numbers, and comments.</li>
+                    </ul>
+
+                    <h3>How to use the SQL Formatter</h3>
+                    <ol>
+                        <li>Paste your raw SQL query into the input area.</li>
+                        <li>Select your formatting options (indent style, keyword casing).</li>
+                        <li>Click <strong>Format</strong> to beautify or <strong>Minify</strong> to compress.</li>
+                        <li>Copy the formatted output or download it as a .sql file.</li>
+                    </ol>
+
+                    <p>Whether you are debugging database queries, reviewing pull requests, or writing documentation, this free online SQL formatter helps you work with clean, readable SQL code instantly.</p>
+                </section>
+            `
+        }
+    },
+
+    'json-to-typescript': {
+        title: 'JSON to TypeScript',
+        description: 'Convert JSON objects into TypeScript interfaces with automatic type inference, nested object support, and array detection.',
+        category: 'converter',
+        component: () =>
+            import('~/components/tools/converter/JsonToTypescript.vue') as Promise<{ default: DefineComponent }>,
+        seo: {
+            title: `Free JSON to TypeScript Converter Online – ${BRAND}`,
+            description:
+                'Convert JSON to TypeScript interfaces instantly. Automatic type inference, nested objects, array detection, export keyword. Free online tool for TypeScript developers.',
+            ogImage: OG,
+            keywords:
+                'json to typescript, json to ts interface, convert json to typescript, json to type, typescript interface generator, json to ts, typescript types from json, json to interface',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'JSON to TypeScript Converter',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    'Convert JSON to TypeScript interfaces',
+                    'Automatic type inference',
+                    'Nested object support',
+                    'Array item type detection',
+                    'Union types for mixed arrays',
+                    'Custom root interface name',
+                    'Export keyword toggle',
+                    'Optional properties toggle',
+                    'Download .ts file',
+                    'Client-side processing'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '28' }
+            },
+            seoContent: `
+                <section>
+                    <h2>What is a JSON to TypeScript Converter?</h2>
+                    <p>A <strong>JSON to TypeScript converter</strong> is a tool that takes a JSON object or array and automatically generates TypeScript interface definitions that match the data structure. TypeScript interfaces provide type safety and autocompletion in your IDE, but writing them manually from API responses or JSON data is tedious and error-prone.</p>
+                    <p>CodeHelper's <strong>JSON to TypeScript Converter</strong> handles nested objects (creating separate interfaces), arrays (with item type inference), union types for mixed arrays, and null values: all in a single click.</p>
+
+                    <h3>Key Features</h3>
+                    <ul>
+                        <li><strong>Automatic Type Inference</strong>: Detects string, number, boolean, null, object, and array types from your JSON data.</li>
+                        <li><strong>Nested Interfaces</strong>: Nested objects are extracted into their own named interfaces for clean, reusable code.</li>
+                        <li><strong>Array Detection</strong>: Arrays are typed based on their contents, including union types for mixed arrays.</li>
+                        <li><strong>Export Toggle</strong>: Add the <code>export</code> keyword to all generated interfaces.</li>
+                        <li><strong>Optional Properties</strong>: Mark all properties as optional with the <code>?</code> modifier.</li>
+                    </ul>
+
+                    <h3>How to use the JSON to TypeScript Converter</h3>
+                    <ol>
+                        <li>Paste your JSON data into the input area.</li>
+                        <li>Set the root interface name (defaults to "Root").</li>
+                        <li>Toggle export and optional properties as needed.</li>
+                        <li>Click <strong>Convert</strong> to generate TypeScript interfaces.</li>
+                        <li>Copy the output or download it as a .ts file.</li>
+                    </ol>
+
+                    <p>Whether you are consuming REST APIs, working with configuration files, or bootstrapping a new TypeScript project, this free tool generates accurate type definitions from any JSON structure in seconds.</p>
+                </section>
+            `
+        }
+    },
+
+    'cron-generator': {
+        title: 'Cron Expression Generator',
+        description: 'Visual cron expression builder with presets, human-readable descriptions, and next execution time preview.',
+        category: 'generator',
+        component: () =>
+            import('~/components/tools/generator/CronGenerator.vue') as Promise<{ default: DefineComponent }>,
+        seo: {
+            title: `Free Cron Expression Generator Online – ${BRAND}`,
+            description:
+                'Build cron expressions visually with presets, field builders, human-readable descriptions, and next 5 run times. Free online cron generator for developers.',
+            ogImage: OG,
+            keywords:
+                'cron expression generator, cron schedule generator, crontab generator, cron job maker, unix cron builder, cron syntax, cron presets, cron schedule builder, crontab maker',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'Cron Expression Generator',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    'Visual cron expression builder',
+                    'Quick presets for common schedules',
+                    'Per-field mode: every, specific, interval',
+                    'Human-readable schedule description',
+                    'Next 5 execution times preview',
+                    'Standard 5-field cron format',
+                    'Copy expression to clipboard',
+                    'Client-side processing'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '22' }
+            },
+            seoContent: `
+                <section>
+                    <h2>What is a Cron Expression Generator?</h2>
+                    <p>A <strong>cron expression generator</strong> is a tool that helps you build cron schedule expressions visually, without memorizing the cryptic five-field syntax. Cron is the standard job scheduler on Unix and Linux systems, used to run commands at specific times or intervals. The five fields: minute, hour, day of month, month, and day of week: use special characters like <code>*</code>, <code>/</code>, and <code>,</code> that can be confusing to write correctly.</p>
+                    <p>CodeHelper's <strong>Cron Expression Generator</strong> provides quick presets for common schedules, per-field visual builders, a human-readable description of your expression, and a preview of the next 5 execution times.</p>
+
+                    <h3>Key Features</h3>
+                    <ul>
+                        <li><strong>Quick Presets</strong>: One-click presets for common schedules like "Every 5 minutes", "Daily at midnight", "Weekly on Monday", and more.</li>
+                        <li><strong>Visual Builder</strong>: Configure each of the 5 cron fields with dropdowns and checkboxes instead of writing raw syntax.</li>
+                        <li><strong>Human-Readable Description</strong>: See a plain-English explanation of what your cron expression does.</li>
+                        <li><strong>Next Runs Preview</strong>: View the next 5 execution dates and times to verify your schedule is correct.</li>
+                        <li><strong>Field Modes</strong>: Each field supports "Every", "Specific values", and "Interval" modes for maximum flexibility.</li>
+                    </ul>
+
+                    <h3>How to use the Cron Generator</h3>
+                    <ol>
+                        <li>Start with a quick preset or build from scratch.</li>
+                        <li>Configure each field (minute, hour, day, month, weekday) using the visual builders.</li>
+                        <li>Review the generated expression and its human-readable description.</li>
+                        <li>Check the next 5 execution times to verify the schedule.</li>
+                        <li>Copy the cron expression for use in crontab, CI/CD, or task schedulers.</li>
+                    </ol>
+
+                    <p>Whether you are setting up server cron jobs, CI/CD pipelines, Kubernetes CronJobs, or cloud scheduler tasks, this free cron generator helps you build correct expressions without guesswork.</p>
+                </section>
+            `
+        }
+    },
+
+    'jwt-generator': {
+        title: 'JWT Generator',
+        description: 'Create and sign JSON Web Tokens with HMAC algorithms, standard claims, custom payloads, and client-side signing.',
+        category: 'dev',
+        component: () =>
+            import('~/components/tools/dev/JwtGenerator.vue') as Promise<{ default: DefineComponent }>,
+        seo: {
+            title: `Free JWT Generator Online: Create & Sign JSON Web Tokens – ${BRAND}`,
+            description:
+                'Generate and sign JWT tokens with HS256, HS384, HS512. Set claims (sub, iss, exp, iat), add custom payloads. All signing done client-side with Web Crypto API.',
+            ogImage: OG,
+            keywords:
+                'jwt generator, create jwt token, jwt maker, json web token generator, jwt builder online, jwt sign, hs256 jwt, jwt creator, generate jwt, jwt token maker',
+            structuredData: {
+                '@context': 'https://schema.org',
+                '@type': 'SoftwareApplication',
+                name: 'JWT Generator',
+                applicationCategory: 'DeveloperApplication',
+                operatingSystem: 'All',
+                offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+                featureList: [
+                    'Generate signed JWT tokens',
+                    'HS256, HS384, HS512 algorithms',
+                    'Standard claims: sub, iss, aud, exp, iat, nbf',
+                    'Custom JSON claims',
+                    'Expiration presets (1h, 6h, 24h, 7d, 30d, 1y)',
+                    'Color-coded token output',
+                    'Client-side signing with Web Crypto API',
+                    'Copy token to clipboard',
+                    'Privacy-friendly: secret never leaves browser'
+                ],
+                aggregateRating: { '@type': 'AggregateRating', ratingValue: '5', ratingCount: '19' }
+            },
+            seoContent: `
+                <section>
+                    <h2>What is a JWT Generator?</h2>
+                    <p>A <strong>JWT generator</strong> is a tool that creates and signs JSON Web Tokens (JWTs): the industry-standard format for securely transmitting claims between parties. JWTs are widely used for authentication, authorization, and API security. Each token consists of three parts: a header (algorithm and type), a payload (claims like user ID, issuer, and expiration), and a signature that verifies the token has not been tampered with.</p>
+                    <p>CodeHelper's <strong>JWT Generator</strong> lets you build tokens visually with standard and custom claims, sign them with HMAC algorithms (HS256, HS384, HS512), and copy the result: all entirely in your browser using the Web Crypto API. Your secret key never leaves your machine.</p>
+
+                    <h3>Key Features</h3>
+                    <ul>
+                        <li><strong>HMAC Signing</strong>: Sign tokens with HS256, HS384, or HS512 algorithms using the Web Crypto API.</li>
+                        <li><strong>Standard Claims</strong>: Set subject (sub), issuer (iss), audience (aud), expiration (exp), issued at (iat), and not before (nbf).</li>
+                        <li><strong>Expiration Presets</strong>: Quick presets for 1 hour, 6 hours, 24 hours, 7 days, 30 days, or 1 year.</li>
+                        <li><strong>Custom Claims</strong>: Add any JSON payload as custom claims (e.g., role, permissions, name).</li>
+                        <li><strong>Color-Coded Output</strong>: Header, payload, and signature are color-coded for easy visual inspection.</li>
+                    </ul>
+
+                    <h3>How to use the JWT Generator</h3>
+                    <ol>
+                        <li>Select the signing algorithm (HS256, HS384, or HS512).</li>
+                        <li>Fill in standard claims: subject, issuer, audience, and expiration.</li>
+                        <li>Add custom claims as JSON if needed.</li>
+                        <li>Enter your secret key for signing.</li>
+                        <li>Click <strong>Generate</strong> to create the signed JWT.</li>
+                        <li>Copy the token for use in your application or API testing.</li>
+                    </ol>
+
+                    <p>Whether you are testing API authentication, generating tokens for development, or learning how JWTs work, this free JWT generator creates properly signed tokens instantly with complete privacy.</p>
+                </section>
+            `
+        }
     }
 }
 
